@@ -1,8 +1,8 @@
 ---
-name: Bug report
-about: Create a report to help us improve
+name: Gameplay Bug Report
+about: Report gameplay (class, feat, spell) bugs
 title: ''
-labels: bug
+labels: bug, gameplay
 assignees: ''
 
 ---
@@ -11,20 +11,18 @@ assignees: ''
 A clear and concise description of what the bug is.
 
 **To Reproduce**
-Steps to reproduce the behaviour:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+Steps to reproduce the behavior:
+1. Use spell '....'
+2. See problem
 
-**Expected behaviour**
+**Expected behavior**
 A clear and concise description of what you expected to happen.
 
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
-**Software**
- - Version: [e.g. Overhaul 0.3]
+**Information**
+ - Overhaul version: 
 
 **Additional context**
 Add any other context about the problem here.
