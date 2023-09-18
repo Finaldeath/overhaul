@@ -1,6 +1,6 @@
 ---
 name: Art Bug Report
-about: Report art (model, texture) bugs with this
+about: Report art (model, texture) bugs with this. If a module has a creature with the wrong appearance or similar instead use "module" bug report. 
 title: ''
 labels: art, bug
 assignees: ''
