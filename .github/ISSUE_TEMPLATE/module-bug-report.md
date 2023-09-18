@@ -1,6 +1,6 @@
 ---
 name: Module Bug Report
-about: Report module (quests, area layout) bugs with this
+about: Report module (quests, area layout, script issues, conversation issues, wrong appearances, wrong descriptions) bugs with this
 title: ''
 labels: bug, module
 assignees: ''
