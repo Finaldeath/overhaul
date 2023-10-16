@@ -21,9 +21,17 @@
     "value": [
       {
         "__struct_id": 0,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -43,7 +51,7 @@
         },
         "Script": {
           "type": "resref",
-          "value": "m2q5lfirsttalk1"
+          "value": ""
         },
         "Sound": {
           "type": "resref",
@@ -56,15 +64,23 @@
         "Text": {
           "type": "cexolocstring",
           "value": {
-            "id": 38821
+            "id": 38825
           }
         }
       },
       {
         "__struct_id": 1,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -103,50 +119,17 @@
       },
       {
         "__struct_id": 2,
-        "Animation": {
-          "type": "dword",
-          "value": 0
-        },
-        "Comment": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Delay": {
-          "type": "dword",
-          "value": 4294967295
-        },
-        "Quest": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "RepliesList": {
+        "ActionParams": {
           "type": "list",
           "value": []
         },
-        "Script": {
-          "type": "resref",
-          "value": ""
-        },
-        "Sound": {
-          "type": "resref",
-          "value": ""
-        },
-        "Speaker": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Text": {
-          "type": "cexolocstring",
-          "value": {
-            "id": 38823
-          }
-        }
-      },
-      {
-        "__struct_id": 3,
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -184,10 +167,67 @@
         }
       },
       {
-        "__struct_id": 4,
+        "__struct_id": 3,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
+        "Comment": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Delay": {
+          "type": "dword",
+          "value": 4294967295
+        },
+        "Quest": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "RepliesList": {
+          "type": "list",
+          "value": []
+        },
+        "Script": {
+          "type": "resref",
+          "value": "m2q5lfirsttalk1"
+        },
+        "Sound": {
+          "type": "resref",
+          "value": ""
+        },
+        "Speaker": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Text": {
+          "type": "cexolocstring",
+          "value": {
+            "id": 38821
+          }
+        }
+      },
+      {
+        "__struct_id": 4,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
+        "Animation": {
+          "type": "dword",
+          "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -220,7 +260,7 @@
         "Text": {
           "type": "cexolocstring",
           "value": {
-            "id": 38825
+            "id": 38823
           }
         }
       }
@@ -228,7 +268,11 @@
   },
   "NumWords": {
     "type": "dword",
-    "value": 92
+    "value": 93
+  },
+  "PreventZoomIn": {
+    "type": "byte",
+    "value": 0
   },
   "ReplyList": {
     "type": "list",
@@ -243,9 +287,13 @@
           "type": "resref",
           "value": "m2q5cscontest1"
         },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
+        },
         "Index": {
           "type": "dword",
-          "value": 2
+          "value": 4
         }
       },
       {
@@ -254,9 +302,13 @@
           "type": "resref",
           "value": "m2q5lfirsttalk"
         },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
+        },
         "Index": {
           "type": "dword",
-          "value": 0
+          "value": 3
         }
       },
       {
@@ -265,9 +317,13 @@
           "type": "resref",
           "value": "nw_d2_chrh"
         },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
+        },
         "Index": {
           "type": "dword",
-          "value": 3
+          "value": 2
         }
       },
       {
@@ -275,6 +331,10 @@
         "Active": {
           "type": "resref",
           "value": "nw_d2_chrm"
+        },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
         },
         "Index": {
           "type": "dword",
@@ -287,9 +347,13 @@
           "type": "resref",
           "value": "nw_d2_chrl"
         },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
+        },
         "Index": {
           "type": "dword",
-          "value": 4
+          "value": 0
         }
       }
     ]

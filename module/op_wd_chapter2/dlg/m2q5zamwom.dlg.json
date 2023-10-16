@@ -21,13 +21,21 @@
     "value": [
       {
         "__struct_id": 0,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
         },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
         "Comment": {
           "type": "cexostring",
-          "value": "Default, player female"
+          "value": "Default, player male"
         },
         "Delay": {
           "type": "dword",
@@ -56,19 +64,27 @@
         "Text": {
           "type": "cexolocstring",
           "value": {
-            "id": 38994
+            "id": 38998
           }
         }
       },
       {
         "__struct_id": 1,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
         },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
         "Comment": {
           "type": "cexostring",
-          "value": "Zamithra gone upstairs to wait for the player or the witless fighter"
+          "value": ""
         },
         "Delay": {
           "type": "dword",
@@ -97,15 +113,23 @@
         "Text": {
           "type": "cexolocstring",
           "value": {
-            "id": 38995
+            "id": 38997
           }
         }
       },
       {
         "__struct_id": 2,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -144,13 +168,21 @@
       },
       {
         "__struct_id": 3,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
         },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
         "Comment": {
           "type": "cexostring",
-          "value": ""
+          "value": "Zamithra gone upstairs to wait for the player or the witless fighter"
         },
         "Delay": {
           "type": "dword",
@@ -179,19 +211,27 @@
         "Text": {
           "type": "cexolocstring",
           "value": {
-            "id": 38997
+            "id": 38995
           }
         }
       },
       {
         "__struct_id": 4,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
         },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
         "Comment": {
           "type": "cexostring",
-          "value": "Default, player male"
+          "value": "Default, player female"
         },
         "Delay": {
           "type": "dword",
@@ -220,7 +260,7 @@
         "Text": {
           "type": "cexolocstring",
           "value": {
-            "id": 38998
+            "id": 38994
           }
         }
       }
@@ -229,6 +269,10 @@
   "NumWords": {
     "type": "dword",
     "value": 76
+  },
+  "PreventZoomIn": {
+    "type": "byte",
+    "value": 0
   },
   "ReplyList": {
     "type": "list",
@@ -243,9 +287,13 @@
           "type": "resref",
           "value": ""
         },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
+        },
         "Index": {
           "type": "dword",
-          "value": 0
+          "value": 4
         }
       },
       {
@@ -254,9 +302,13 @@
           "type": "resref",
           "value": ""
         },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
+        },
         "Index": {
           "type": "dword",
-          "value": 1
+          "value": 3
         }
       },
       {
@@ -264,6 +316,10 @@
         "Active": {
           "type": "resref",
           "value": ""
+        },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
         },
         "Index": {
           "type": "dword",
@@ -276,9 +332,13 @@
           "type": "resref",
           "value": ""
         },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
+        },
         "Index": {
           "type": "dword",
-          "value": 3
+          "value": 1
         }
       },
       {
@@ -287,9 +347,13 @@
           "type": "resref",
           "value": ""
         },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
+        },
         "Index": {
           "type": "dword",
-          "value": 4
+          "value": 0
         }
       }
     ]

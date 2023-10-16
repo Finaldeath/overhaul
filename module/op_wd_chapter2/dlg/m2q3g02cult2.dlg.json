@@ -21,50 +21,17 @@
     "value": [
       {
         "__struct_id": 0,
-        "Animation": {
-          "type": "dword",
-          "value": 0
-        },
-        "Comment": {
-          "type": "cexostring",
-          "value": "This is the \"same\" cult guy that was in the first Charwood area. he is placed on the second Charwood area.\r\n\r\nIF THE PLAYER KILLED HIM IN THE FIRST AREA, HE SHOULD BE DESTROYED HERE.\r\n\r\nHe has a buble over his head\r\nHe has a single selected."
-        },
-        "Delay": {
-          "type": "dword",
-          "value": 4294967295
-        },
-        "Quest": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "RepliesList": {
+        "ActionParams": {
           "type": "list",
           "value": []
         },
-        "Script": {
-          "type": "resref",
-          "value": ""
-        },
-        "Sound": {
-          "type": "resref",
-          "value": ""
-        },
-        "Speaker": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Text": {
-          "type": "cexolocstring",
-          "value": {
-            "id": 36468
-          }
-        }
-      },
-      {
-        "__struct_id": 1,
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -100,12 +67,65 @@
             "id": 36469
           }
         }
+      },
+      {
+        "__struct_id": 1,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
+        "Animation": {
+          "type": "dword",
+          "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
+        "Comment": {
+          "type": "cexostring",
+          "value": "This is the \"same\" cult guy that was in the first Charwood area. he is placed on the second Charwood area.\r\n\r\nIF THE PLAYER KILLED HIM IN THE FIRST AREA, HE SHOULD BE DESTROYED HERE.\r\n\r\nHe has a buble over his head\r\nHe has a single selected."
+        },
+        "Delay": {
+          "type": "dword",
+          "value": 4294967295
+        },
+        "Quest": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "RepliesList": {
+          "type": "list",
+          "value": []
+        },
+        "Script": {
+          "type": "resref",
+          "value": ""
+        },
+        "Sound": {
+          "type": "resref",
+          "value": ""
+        },
+        "Speaker": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Text": {
+          "type": "cexolocstring",
+          "value": {
+            "id": 36468
+          }
+        }
       }
     ]
   },
   "NumWords": {
     "type": "dword",
     "value": 35
+  },
+  "PreventZoomIn": {
+    "type": "byte",
+    "value": 0
   },
   "ReplyList": {
     "type": "list",
@@ -120,9 +140,13 @@
           "type": "resref",
           "value": "m2csnopcspeaking"
         },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
+        },
         "Index": {
           "type": "dword",
-          "value": 0
+          "value": 1
         }
       },
       {
@@ -131,9 +155,13 @@
           "type": "resref",
           "value": "m2cspcspeaking"
         },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
+        },
         "Index": {
           "type": "dword",
-          "value": 1
+          "value": 0
         }
       }
     ]

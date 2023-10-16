@@ -21,13 +21,21 @@
     "value": [
       {
         "__struct_id": 0,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
         },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
         "Comment": {
           "type": "cexostring",
-          "value": "\r\n\r\nThis is a vrock demon summoned by the player by using the summoning verses\r\n\r\nThis creature stays in the circle and cannot move. It does attack people that come near it, displaying the final string if anyone attacks it or gets in range of it. All of these lines of dialogue are screamed at the player as it stands there. \r\nIt cannot be reasoned with.\r\nIf it is selected, if just repeats one of these lines.\r\nIf the balor is summoned while this creature is inthe circle, the vrock screams its last line about being free and attacks.\r\n\r\n"
+          "value": "If attacked or someone walks too close."
         },
         "Delay": {
           "type": "dword",
@@ -56,15 +64,23 @@
         "Text": {
           "type": "cexolocstring",
           "value": {
-            "id": 37429
+            "id": 37435
           }
         }
       },
       {
         "__struct_id": 1,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -97,15 +113,23 @@
         "Text": {
           "type": "cexolocstring",
           "value": {
-            "id": 37430
+            "id": 37434
           }
         }
       },
       {
         "__struct_id": 2,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -138,15 +162,23 @@
         "Text": {
           "type": "cexolocstring",
           "value": {
-            "id": 37431
+            "id": 37433
           }
         }
       },
       {
         "__struct_id": 3,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -185,9 +217,17 @@
       },
       {
         "__struct_id": 4,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -220,15 +260,23 @@
         "Text": {
           "type": "cexolocstring",
           "value": {
-            "id": 37433
+            "id": 37431
           }
         }
       },
       {
         "__struct_id": 5,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -261,19 +309,27 @@
         "Text": {
           "type": "cexolocstring",
           "value": {
-            "id": 37434
+            "id": 37430
           }
         }
       },
       {
         "__struct_id": 6,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
         },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
         "Comment": {
           "type": "cexostring",
-          "value": "If attacked or someone walks too close."
+          "value": "\r\n\r\nThis is a vrock demon summoned by the player by using the summoning verses\r\n\r\nThis creature stays in the circle and cannot move. It does attack people that come near it, displaying the final string if anyone attacks it or gets in range of it. All of these lines of dialogue are screamed at the player as it stands there. \r\nIt cannot be reasoned with.\r\nIf it is selected, if just repeats one of these lines.\r\nIf the balor is summoned while this creature is inthe circle, the vrock screams its last line about being free and attacks.\r\n\r\n"
         },
         "Delay": {
           "type": "dword",
@@ -302,7 +358,7 @@
         "Text": {
           "type": "cexolocstring",
           "value": {
-            "id": 37435
+            "id": 37429
           }
         }
       }
@@ -311,6 +367,10 @@
   "NumWords": {
     "type": "dword",
     "value": 84
+  },
+  "PreventZoomIn": {
+    "type": "byte",
+    "value": 0
   },
   "ReplyList": {
     "type": "list",
@@ -325,9 +385,13 @@
           "type": "resref",
           "value": ""
         },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
+        },
         "Index": {
           "type": "dword",
-          "value": 0
+          "value": 6
         }
       },
       {
@@ -336,9 +400,13 @@
           "type": "resref",
           "value": ""
         },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
+        },
         "Index": {
           "type": "dword",
-          "value": 1
+          "value": 5
         }
       },
       {
@@ -347,9 +415,13 @@
           "type": "resref",
           "value": ""
         },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
+        },
         "Index": {
           "type": "dword",
-          "value": 2
+          "value": 4
         }
       },
       {
@@ -357,6 +429,10 @@
         "Active": {
           "type": "resref",
           "value": ""
+        },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
         },
         "Index": {
           "type": "dword",
@@ -369,9 +445,13 @@
           "type": "resref",
           "value": ""
         },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
+        },
         "Index": {
           "type": "dword",
-          "value": 4
+          "value": 2
         }
       },
       {
@@ -380,9 +460,13 @@
           "type": "resref",
           "value": ""
         },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
+        },
         "Index": {
           "type": "dword",
-          "value": 5
+          "value": 1
         }
       },
       {
@@ -391,9 +475,13 @@
           "type": "resref",
           "value": ""
         },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
+        },
         "Index": {
           "type": "dword",
-          "value": 6
+          "value": 0
         }
       }
     ]
