@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Name hx_denfire_ext
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     This will turn off fire trap damage.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Brad Prince
+//:: Created On: Sept 15, 2003
+//:://////////////////////////////////////////////
+
+void main()
+{
+    object oPC = GetExitingObject();
+
+    SetLocalInt(oPC, "HX_DENFIRE_ON", 0);
+}

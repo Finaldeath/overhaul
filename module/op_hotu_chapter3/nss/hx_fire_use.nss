@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: Name hx_fire_use
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     This starts the fire conv with the player.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Brad Prince
+//:: Created On: Aug 15, 2003
+//:://////////////////////////////////////////////
+
+void main()
+{
+    AssignCommand(GetLastUsedBy(), ClearAllActions());
+    BeginConversation("", GetLastUsedBy());
+}

@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: H2 Door Autoclose (OnOpen)
+//:: H2_Op_AutoClose.nss
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Door automatically closes itself when opened.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Rob Bartel
+//:: Created On: August 12, 2003
+//:://////////////////////////////////////////////
+
+void main()
+{
+    DelayCommand(15.0, ActionCloseDoor(OBJECT_SELF));
+}

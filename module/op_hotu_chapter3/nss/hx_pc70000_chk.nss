@@ -1,0 +1,20 @@
+//::///////////////////////////////////////////////
+//:: Name hx_pc70000_chk
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Check to see if PC has 70,000 gp.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Brad Prince
+//:: Created On: Oct 23, 2003
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    if(GetGold(GetPCSpeaker()) >= 70000)
+    {
+        return TRUE;
+    }
+    return FALSE;
+}

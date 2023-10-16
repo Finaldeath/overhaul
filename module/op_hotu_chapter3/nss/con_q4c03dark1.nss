@@ -1,0 +1,19 @@
+//::///////////////////////////////////////////////
+//:: Name
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Checks if Darkfist game on.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On: Oct 2002
+//:://////////////////////////////////////////////
+#include "inc_plot_locals"
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = IsDarkfistGameOn(GetPCSpeaker());
+    return iResult;
+}

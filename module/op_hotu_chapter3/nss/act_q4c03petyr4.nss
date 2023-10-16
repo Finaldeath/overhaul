@@ -1,0 +1,14 @@
+//:://////////////////////////////////////////////
+/*
+     Sets pc to having asked about the mirror.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On: Oct 2002
+//:://////////////////////////////////////////////
+#include "inc_plot_locals"
+void main()
+{
+    PetyrToldAboutMirror(GetPCSpeaker());
+}
+

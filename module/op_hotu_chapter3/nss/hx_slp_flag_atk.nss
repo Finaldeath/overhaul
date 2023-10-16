@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: Name hx_slp_flag_atk
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Flag the Sleeping Man to attack if the PC
+     aborts the conv.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Brad Prince
+//:: Created On: Oct 30, 2003
+//:://////////////////////////////////////////////
+
+void main()
+{
+    SetLocalInt(GetModule(), "HX_SLEEPMAN_ATTACK", TRUE);
+}

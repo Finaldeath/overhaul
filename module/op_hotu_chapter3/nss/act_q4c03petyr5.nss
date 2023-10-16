@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Name
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Sets plot done, gives 1000 gold.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On: Oct 2002
+//:://////////////////////////////////////////////
+#include "inc_plot_locals"
+void main()
+{
+    object oPC = (GetPCSpeaker());
+    PetyrPlotDone(oPC);
+    GiveGoldToCreature(oPC,1000);
+}

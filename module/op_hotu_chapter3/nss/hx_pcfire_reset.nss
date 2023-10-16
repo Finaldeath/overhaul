@@ -1,0 +1,19 @@
+//::///////////////////////////////////////////////
+//:: Name hx_pcfire_reset
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Resets the fire variable so the camp can be
+     used again.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Brad Prince
+//:: Created On: Aug 15, 2003
+//:://////////////////////////////////////////////
+
+void main()
+{
+    object oPC = GetPCSpeaker();
+
+    SetLocalInt(oPC, "HX_PC_STARTED_FIRE", 0);
+}
