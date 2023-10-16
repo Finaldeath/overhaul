@@ -11,42 +11,7 @@
         "__struct_id": 6,
         "Area_Name": {
           "type": "resref",
-          "value": "_base"
-        }
-      },
-      {
-        "__struct_id": 6,
-        "Area_Name": {
-          "type": "resref",
           "value": "mapm1q6f1"
-        }
-      },
-      {
-        "__struct_id": 6,
-        "Area_Name": {
-          "type": "resref",
-          "value": "map_m1q6e"
-        }
-      },
-      {
-        "__struct_id": 6,
-        "Area_Name": {
-          "type": "resref",
-          "value": "map_m1q6f2"
-        }
-      },
-      {
-        "__struct_id": 6,
-        "Area_Name": {
-          "type": "resref",
-          "value": "map_m1q6f3"
-        }
-      },
-      {
-        "__struct_id": 6,
-        "Area_Name": {
-          "type": "resref",
-          "value": "map_m1q6f4"
         }
       },
       {
@@ -74,40 +39,42 @@
         "__struct_id": 6,
         "Area_Name": {
           "type": "resref",
+          "value": "map_m1q6e"
+        }
+      },
+      {
+        "__struct_id": 6,
+        "Area_Name": {
+          "type": "resref",
           "value": "map_m1q6f006"
         }
-      }
-    ]
-  },
-  "Mod_CacheNSSList": {
-    "type": "list",
-    "value": [
+      },
       {
-        "__struct_id": 9,
-        "ResRef": {
+        "__struct_id": 6,
+        "Area_Name": {
           "type": "resref",
-          "value": "nw_c2_default1"
+          "value": "map_m1q6f2"
         }
       },
       {
-        "__struct_id": 9,
-        "ResRef": {
+        "__struct_id": 6,
+        "Area_Name": {
           "type": "resref",
-          "value": "nw_c2_default2"
+          "value": "map_m1q6f3"
         }
       },
       {
-        "__struct_id": 9,
-        "ResRef": {
+        "__struct_id": 6,
+        "Area_Name": {
           "type": "resref",
-          "value": "nw_c2_default9"
+          "value": "map_m1q6f4"
         }
       },
       {
-        "__struct_id": 9,
-        "ResRef": {
+        "__struct_id": 6,
+        "Area_Name": {
           "type": "resref",
-          "value": "nw_c2_defaultd"
+          "value": "_base"
         }
       }
     ]
@@ -127,6 +94,10 @@
   "Mod_DawnHour": {
     "type": "byte",
     "value": 6
+  },
+  "Mod_DefaultBic": {
+    "type": "resref",
+    "value": ""
   },
   "Mod_Description": {
     "type": "cexolocstring",
@@ -180,7 +151,7 @@
   },
   "Mod_MinGameVer": {
     "type": "cexostring",
-    "value": "1.77"
+    "value": "1.88"
   },
   "Mod_MinPerHour": {
     "type": "byte",
@@ -224,6 +195,10 @@
     "type": "resref",
     "value": ""
   },
+  "Mod_OnNuiEvent": {
+    "type": "resref",
+    "value": ""
+  },
   "Mod_OnPlrChat": {
     "type": "resref",
     "value": ""
@@ -240,11 +215,23 @@
     "type": "resref",
     "value": ""
   },
+  "Mod_OnPlrGuiEvt": {
+    "type": "resref",
+    "value": ""
+  },
   "Mod_OnPlrLvlUp": {
     "type": "resref",
     "value": ""
   },
   "Mod_OnPlrRest": {
+    "type": "resref",
+    "value": ""
+  },
+  "Mod_OnPlrTarget": {
+    "type": "resref",
+    "value": ""
+  },
+  "Mod_OnPlrTileAct": {
     "type": "resref",
     "value": ""
   },
@@ -263,6 +250,10 @@
   "Mod_OnUsrDefined": {
     "type": "resref",
     "value": ""
+  },
+  "Mod_PartyControl": {
+    "type": "int",
+    "value": 0
   },
   "Mod_StartDay": {
     "type": "byte",
@@ -287,6 +278,10 @@
   "Mod_Tag": {
     "type": "cexostring",
     "value": "ENDMODULE1"
+  },
+  "Mod_UUID": {
+    "type": "cexostring",
+    "value": ""
   },
   "Mod_Version": {
     "type": "dword",
