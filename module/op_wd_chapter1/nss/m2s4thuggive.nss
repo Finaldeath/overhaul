@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Conversation
+//:: m2s4ThugGive
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+
+*/
+//:://////////////////////////////////////////////
+//:: Created By: John Winski
+//:: Created On: October 29, 2001
+//:://////////////////////////////////////////////
+#include "NW_I0_Plot"
+void main()
+{
+    CreateItemOnObject("M1S04IFIGHTPASS",GetPCSpeaker());
+    TakeGold(50,GetPCSpeaker());
+}

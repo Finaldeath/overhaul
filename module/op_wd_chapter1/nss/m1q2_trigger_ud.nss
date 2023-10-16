@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: Trigger User-Defined Event
+//:: m1q2_Trigger_UD
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    This script triggers the User-Defined Event
+    of the Host Object.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Rob Bartel
+//:: Created On: November 20, 2001
+//:://////////////////////////////////////////////
+void main()
+{
+    SignalEvent(OBJECT_SELF, EventUserDefined(0));
+}

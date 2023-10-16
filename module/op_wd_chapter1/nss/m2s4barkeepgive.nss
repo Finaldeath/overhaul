@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Conversation
+//:: m2s4BarkeepGive
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+
+*/
+//:://////////////////////////////////////////////
+//:: Created By: John Winski
+//:: Created On: October 29, 2001
+//:://////////////////////////////////////////////
+
+void main()
+{
+    CreateItemOnObject("M1S04IFIGHTKEY",GetLastSpeaker());
+    DestroyObject(GetItemPossessedBy(GetLastSpeaker(),"M1S04IFIGHTPASS"));
+}
