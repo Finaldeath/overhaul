@@ -17,11 +17,11 @@
 int StartingConditional()
 {
     int nGender = GetGender(GetPCSpeaker());
-    if(CheckCharismaNormal(GetPCSpeaker()))
+    if(CheckCharismaNormal())
     {
-        if(nGender == 0)
+        if(nGender == GENDER_MALE)
         {
-            if(GetGender(OBJECT_SELF) == 1)
+            if(GetGender(OBJECT_SELF) == GENDER_FEMALE)
             {
                 return TRUE;
             }
@@ -30,9 +30,9 @@ int StartingConditional()
                 return FALSE;
             }
         }
-        else if (nGender == 1)
+        else if (nGender == GENDER_FEMALE)
         {
-            if(GetGender(OBJECT_SELF) == 0)
+            if(GetGender(OBJECT_SELF) == GENDER_MALE)
             {
                 return TRUE;
             }
