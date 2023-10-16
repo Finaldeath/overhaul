@@ -29,7 +29,7 @@ void main()
         //Check if the last percieved creature was actually seen
         if(GetLastPerceptionSeen())
         {
-            if(GetIsEnemy(GetLastPerceived())
+            if(GetIsEnemy(GetLastPerceived()))
             {
                 DetermineCombatRound();
             }

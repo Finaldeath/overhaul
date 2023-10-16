@@ -20,7 +20,7 @@ void main()
 // Check to see if a Bloodsailor already exists.
     object oBloodsailor = GetObjectByTag("m1q2_Bloodsail");
 
-    if(!GetIsObjectValid(oBloodsailor));
+    if(!GetIsObjectValid(oBloodsailor))
     {
 // If not, spawn in Bloodsailor at the Spawn Point.
         object oSpawnPoint = GetObjectByTag("m1q2_BloodSpawn");
