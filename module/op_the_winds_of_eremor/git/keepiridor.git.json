@@ -96,6 +96,10 @@
           "type": "short",
           "value": 32
         },
+        "DecayTime": {
+          "type": "dword",
+          "value": 0
+        },
         "Deity": {
           "type": "cexostring",
           "value": ""
@@ -177,6 +181,10 @@
                 "type": "byte",
                 "value": 5
               },
+              "ArmorPart_Robe": {
+                "type": "byte",
+                "value": 0
+              },
               "ArmorPart_RShin": {
                 "type": "byte",
                 "value": 12
@@ -212,6 +220,10 @@
               "Cost": {
                 "type": "dword",
                 "value": 4424
+              },
+              "Cursed": {
+                "type": "byte",
+                "value": 0
               },
               "DescIdentified": {
                 "type": "cexolocstring",
@@ -305,6 +317,82 @@
                 "type": "resref",
                 "value": "nw_maarcl068"
               },
+              "xArmorPart_Belt": {
+                "type": "word",
+                "value": 12
+              },
+              "xArmorPart_LBice": {
+                "type": "word",
+                "value": 7
+              },
+              "xArmorPart_LFArm": {
+                "type": "word",
+                "value": 15
+              },
+              "xArmorPart_LFoot": {
+                "type": "word",
+                "value": 5
+              },
+              "xArmorPart_LHand": {
+                "type": "word",
+                "value": 5
+              },
+              "xArmorPart_LShin": {
+                "type": "word",
+                "value": 12
+              },
+              "xArmorPart_LShou": {
+                "type": "word",
+                "value": 19
+              },
+              "xArmorPart_LThig": {
+                "type": "word",
+                "value": 10
+              },
+              "xArmorPart_Neck": {
+                "type": "word",
+                "value": 1
+              },
+              "xArmorPart_Pelvi": {
+                "type": "word",
+                "value": 6
+              },
+              "xArmorPart_RBice": {
+                "type": "word",
+                "value": 7
+              },
+              "xArmorPart_RFArm": {
+                "type": "word",
+                "value": 15
+              },
+              "xArmorPart_RFoot": {
+                "type": "word",
+                "value": 5
+              },
+              "xArmorPart_RHand": {
+                "type": "word",
+                "value": 5
+              },
+              "xArmorPart_Robe": {
+                "type": "word",
+                "value": 0
+              },
+              "xArmorPart_RShin": {
+                "type": "word",
+                "value": 12
+              },
+              "xArmorPart_RShou": {
+                "type": "word",
+                "value": 19
+              },
+              "xArmorPart_RThig": {
+                "type": "word",
+                "value": 10
+              },
+              "xArmorPart_Torso": {
+                "type": "word",
+                "value": 21
+              },
               "XOrientation": {
                 "type": "float",
                 "value": 0.0
@@ -343,6 +431,10 @@
               "Cost": {
                 "type": "dword",
                 "value": 7248
+              },
+              "Cursed": {
+                "type": "byte",
+                "value": 0
               },
               "DescIdentified": {
                 "type": "cexolocstring",
@@ -431,6 +523,18 @@
               "TemplateResRef": {
                 "type": "resref",
                 "value": "nw_wswmls010"
+              },
+              "xModelPart1": {
+                "type": "word",
+                "value": 22
+              },
+              "xModelPart2": {
+                "type": "word",
+                "value": 62
+              },
+              "xModelPart3": {
+                "type": "word",
+                "value": 22
               },
               "XOrientation": {
                 "type": "float",
@@ -592,6 +696,10 @@
           "type": "byte",
           "value": 1
         },
+        "IsImmortal": {
+          "type": "byte",
+          "value": 0
+        },
         "IsPC": {
           "type": "byte",
           "value": 0
@@ -603,6 +711,10 @@
         "LawfulChaotic": {
           "type": "byte",
           "value": 50
+        },
+        "Lootable": {
+          "type": "byte",
+          "value": 0
         },
         "MaxHitPoints": {
           "type": "short",
@@ -834,6 +946,62 @@
                 "type": "byte",
                 "value": 0
               }
+            },
+            {
+              "__struct_id": 0,
+              "Rank": {
+                "type": "byte",
+                "value": 0
+              }
+            },
+            {
+              "__struct_id": 0,
+              "Rank": {
+                "type": "byte",
+                "value": 0
+              }
+            },
+            {
+              "__struct_id": 0,
+              "Rank": {
+                "type": "byte",
+                "value": 0
+              }
+            },
+            {
+              "__struct_id": 0,
+              "Rank": {
+                "type": "byte",
+                "value": 0
+              }
+            },
+            {
+              "__struct_id": 0,
+              "Rank": {
+                "type": "byte",
+                "value": 0
+              }
+            },
+            {
+              "__struct_id": 0,
+              "Rank": {
+                "type": "byte",
+                "value": 0
+              }
+            },
+            {
+              "__struct_id": 0,
+              "Rank": {
+                "type": "byte",
+                "value": 0
+              }
+            },
+            {
+              "__struct_id": 0,
+              "Rank": {
+                "type": "byte",
+                "value": 0
+              }
             }
           ]
         },
@@ -844,6 +1012,10 @@
         "SpecAbilityList": {
           "type": "list",
           "value": []
+        },
+        "StartingPackage": {
+          "type": "byte",
+          "value": 0
         },
         "Str": {
           "type": "byte",
@@ -857,8 +1029,8 @@
           "type": "cexostring",
           "value": "LordEremor"
         },
-        "Tail": {
-          "type": "byte",
+        "Tail_New": {
+          "type": "dword",
           "value": 0
         },
         "TemplateList": {
@@ -877,8 +1049,8 @@
           "type": "short",
           "value": 0
         },
-        "Wings": {
-          "type": "byte",
+        "Wings_New": {
+          "type": "dword",
           "value": 0
         },
         "Wis": {
@@ -957,8 +1129,8 @@
           "type": "byte",
           "value": 16
         },
-        "GenericType": {
-          "type": "byte",
+        "GenericType_New": {
+          "type": "dword",
           "value": 0
         },
         "Hardness": {
@@ -1174,8 +1346,8 @@
           "type": "byte",
           "value": 16
         },
-        "GenericType": {
-          "type": "byte",
+        "GenericType_New": {
+          "type": "dword",
           "value": 0
         },
         "Hardness": {
@@ -1391,8 +1563,8 @@
           "type": "byte",
           "value": 16
         },
-        "GenericType": {
-          "type": "byte",
+        "GenericType_New": {
+          "type": "dword",
           "value": 0
         },
         "Hardness": {
@@ -1608,8 +1780,8 @@
           "type": "byte",
           "value": 16
         },
-        "GenericType": {
-          "type": "byte",
+        "GenericType_New": {
+          "type": "dword",
           "value": 0
         },
         "Hardness": {
@@ -1883,6 +2055,10 @@
             "id": 14741
           }
         },
+        "OnClick": {
+          "type": "resref",
+          "value": ""
+        },
         "OnClosed": {
           "type": "resref",
           "value": ""
@@ -2105,6 +2281,10 @@
           "value": {
             "id": 14576
           }
+        },
+        "OnClick": {
+          "type": "resref",
+          "value": ""
         },
         "OnClosed": {
           "type": "resref",
@@ -2329,6 +2509,10 @@
             "id": 14576
           }
         },
+        "OnClick": {
+          "type": "resref",
+          "value": ""
+        },
         "OnClosed": {
           "type": "resref",
           "value": ""
@@ -2551,6 +2735,10 @@
           "value": {
             "id": 5655
           }
+        },
+        "OnClick": {
+          "type": "resref",
+          "value": ""
         },
         "OnClosed": {
           "type": "resref",
@@ -2775,6 +2963,10 @@
             "id": 5745
           }
         },
+        "OnClick": {
+          "type": "resref",
+          "value": ""
+        },
         "OnClosed": {
           "type": "resref",
           "value": ""
@@ -2997,6 +3189,10 @@
           "value": {
             "id": 5745
           }
+        },
+        "OnClick": {
+          "type": "resref",
+          "value": ""
         },
         "OnClosed": {
           "type": "resref",
@@ -3221,6 +3417,10 @@
             "id": 5726
           }
         },
+        "OnClick": {
+          "type": "resref",
+          "value": ""
+        },
         "OnClosed": {
           "type": "resref",
           "value": ""
@@ -3443,6 +3643,10 @@
           "value": {
             "id": 14541
           }
+        },
+        "OnClick": {
+          "type": "resref",
+          "value": ""
         },
         "OnClosed": {
           "type": "resref",
@@ -3667,6 +3871,10 @@
             "id": 5348
           }
         },
+        "OnClick": {
+          "type": "resref",
+          "value": ""
+        },
         "OnClosed": {
           "type": "resref",
           "value": ""
@@ -3889,6 +4097,10 @@
           "value": {
             "id": 5821
           }
+        },
+        "OnClick": {
+          "type": "resref",
+          "value": ""
         },
         "OnClosed": {
           "type": "resref",
@@ -4113,6 +4325,10 @@
             "id": 5748
           }
         },
+        "OnClick": {
+          "type": "resref",
+          "value": ""
+        },
         "OnClosed": {
           "type": "resref",
           "value": ""
@@ -4335,6 +4551,10 @@
           "value": {
             "id": 5681
           }
+        },
+        "OnClick": {
+          "type": "resref",
+          "value": ""
         },
         "OnClosed": {
           "type": "resref",
@@ -4559,6 +4779,10 @@
             "id": 5699
           }
         },
+        "OnClick": {
+          "type": "resref",
+          "value": ""
+        },
         "OnClosed": {
           "type": "resref",
           "value": ""
@@ -4781,6 +5005,10 @@
           "value": {
             "id": 5699
           }
+        },
+        "OnClick": {
+          "type": "resref",
+          "value": ""
         },
         "OnClosed": {
           "type": "resref",
@@ -5005,6 +5233,10 @@
             "id": 5699
           }
         },
+        "OnClick": {
+          "type": "resref",
+          "value": ""
+        },
         "OnClosed": {
           "type": "resref",
           "value": ""
@@ -5227,6 +5459,10 @@
           "value": {
             "id": 5699
           }
+        },
+        "OnClick": {
+          "type": "resref",
+          "value": ""
         },
         "OnClosed": {
           "type": "resref",
@@ -5451,6 +5687,10 @@
             "id": 5699
           }
         },
+        "OnClick": {
+          "type": "resref",
+          "value": ""
+        },
         "OnClosed": {
           "type": "resref",
           "value": ""
@@ -5673,6 +5913,10 @@
           "value": {
             "id": 5699
           }
+        },
+        "OnClick": {
+          "type": "resref",
+          "value": ""
         },
         "OnClosed": {
           "type": "resref",

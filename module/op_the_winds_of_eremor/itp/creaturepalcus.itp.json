@@ -10,6 +10,17 @@
           "value": [
             {
               "__struct_id": 0,
+              "ID": {
+                "type": "byte",
+                "value": 48
+              },
+              "STRREF": {
+                "type": "dword",
+                "value": 63235
+              }
+            },
+            {
+              "__struct_id": 0,
               "LIST": {
                 "type": "list",
                 "value": [
@@ -234,6 +245,17 @@
                       "type": "dword",
                       "value": 537
                     }
+                  },
+                  {
+                    "__struct_id": 0,
+                    "ID": {
+                      "type": "byte",
+                      "value": 50
+                    },
+                    "STRREF": {
+                      "type": "dword",
+                      "value": 201
+                    }
                   }
                 ]
               },
@@ -274,6 +296,17 @@
               "STRREF": {
                 "type": "dword",
                 "value": 6700
+              }
+            },
+            {
+              "__struct_id": 0,
+              "ID": {
+                "type": "byte",
+                "value": 49
+              },
+              "STRREF": {
+                "type": "dword",
+                "value": 63246
               }
             },
             {
@@ -389,13 +422,13 @@
                             "type": "cexostring",
                             "value": "Hostile"
                           },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Ghast"
-                          },
                           "RESREF": {
                             "type": "resref",
                             "value": "ghast001"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 12552
                           }
                         },
                         {
@@ -408,13 +441,13 @@
                             "type": "cexostring",
                             "value": "Hostile"
                           },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Ghoul"
-                          },
                           "RESREF": {
                             "type": "resref",
                             "value": "ghoul001"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 12554
                           }
                         },
                         {
@@ -427,32 +460,32 @@
                             "type": "cexostring",
                             "value": "Hostile"
                           },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Ghoul Lord"
-                          },
                           "RESREF": {
                             "type": "resref",
                             "value": "ghoullord001"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 12556
                           }
                         },
                         {
                           "__struct_id": 0,
                           "CR": {
                             "type": "float",
-                            "value": 9.0
+                            "value": 10.0
                           },
                           "FACTION": {
                             "type": "cexostring",
                             "value": "Hostile"
                           },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Ghoul Ravager"
-                          },
                           "RESREF": {
                             "type": "resref",
                             "value": "ghoulboss001"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 56567
                           }
                         }
                       ]
@@ -475,7 +508,7 @@
                           "__struct_id": 0,
                           "CR": {
                             "type": "float",
-                            "value": 12.0
+                            "value": 10.0
                           },
                           "FACTION": {
                             "type": "cexostring",
@@ -494,7 +527,7 @@
                           "__struct_id": 0,
                           "CR": {
                             "type": "float",
-                            "value": 13.0
+                            "value": 12.0
                           },
                           "FACTION": {
                             "type": "cexostring",
@@ -513,38 +546,38 @@
                           "__struct_id": 0,
                           "CR": {
                             "type": "float",
-                            "value": 6.0
+                            "value": 5.0
                           },
                           "FACTION": {
                             "type": "cexostring",
                             "value": "Hostile"
                           },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Mummy"
-                          },
                           "RESREF": {
                             "type": "resref",
                             "value": "mummy001"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 12656
                           }
                         },
                         {
                           "__struct_id": 0,
                           "CR": {
                             "type": "float",
-                            "value": 12.0
+                            "value": 10.0
                           },
                           "FACTION": {
                             "type": "cexostring",
                             "value": "Hostile"
                           },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Warrior Mummy"
-                          },
                           "RESREF": {
                             "type": "resref",
                             "value": "mumfight001"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 12654
                           }
                         }
                       ]
@@ -573,32 +606,32 @@
                             "type": "cexostring",
                             "value": "Hostile"
                           },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Bodak"
-                          },
                           "RESREF": {
                             "type": "resref",
                             "value": "bodak001"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 12401
                           }
                         },
                         {
                           "__struct_id": 0,
                           "CR": {
                             "type": "float",
-                            "value": 7.0
+                            "value": 6.0
                           },
                           "FACTION": {
                             "type": "cexostring",
                             "value": "Hostile"
-                          },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Curst Monk"
                           },
                           "RESREF": {
                             "type": "resref",
                             "value": "curst005"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 12438
                           }
                         },
                         {
@@ -610,33 +643,14 @@
                           "FACTION": {
                             "type": "cexostring",
                             "value": "Hostile"
-                          },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Curst Ranger"
                           },
                           "RESREF": {
                             "type": "resref",
                             "value": "curst004"
-                          }
-                        },
-                        {
-                          "__struct_id": 0,
-                          "CR": {
-                            "type": "float",
-                            "value": 7.0
                           },
-                          "FACTION": {
-                            "type": "cexostring",
-                            "value": "Hostile"
-                          },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Curst Rogue"
-                          },
-                          "RESREF": {
-                            "type": "resref",
-                            "value": "curst003"
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 12437
                           }
                         },
                         {
@@ -649,51 +663,32 @@
                             "type": "cexostring",
                             "value": "Hostile"
                           },
-                          "NAME": {
+                          "RESREF": {
+                            "type": "resref",
+                            "value": "curst003"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 12436
+                          }
+                        },
+                        {
+                          "__struct_id": 0,
+                          "CR": {
+                            "type": "float",
+                            "value": 5.0
+                          },
+                          "FACTION": {
                             "type": "cexostring",
-                            "value": "Curst Warrior"
+                            "value": "Hostile"
                           },
                           "RESREF": {
                             "type": "resref",
                             "value": "curst002"
-                          }
-                        },
-                        {
-                          "__struct_id": 0,
-                          "CR": {
-                            "type": "float",
-                            "value": 9.0
                           },
-                          "FACTION": {
-                            "type": "cexostring",
-                            "value": "Hostile"
-                          },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Doom Knight"
-                          },
-                          "RESREF": {
-                            "type": "resref",
-                            "value": "doomkght001"
-                          }
-                        },
-                        {
-                          "__struct_id": 0,
-                          "CR": {
-                            "type": "float",
-                            "value": 12.0
-                          },
-                          "FACTION": {
-                            "type": "cexostring",
-                            "value": "Hostile"
-                          },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Doom Knight Commander"
-                          },
-                          "RESREF": {
-                            "type": "resref",
-                            "value": "doomkghtboss001"
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 12435
                           }
                         },
                         {
@@ -706,20 +701,58 @@
                             "type": "cexostring",
                             "value": "Hostile"
                           },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Mohrg"
-                          },
                           "RESREF": {
                             "type": "resref",
-                            "value": "mohrg001"
+                            "value": "doomkght001"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 12459
                           }
                         },
                         {
                           "__struct_id": 0,
                           "CR": {
                             "type": "float",
-                            "value": 27.0
+                            "value": 15.0
+                          },
+                          "FACTION": {
+                            "type": "cexostring",
+                            "value": "Hostile"
+                          },
+                          "RESREF": {
+                            "type": "resref",
+                            "value": "doomkghtboss001"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 56566
+                          }
+                        },
+                        {
+                          "__struct_id": 0,
+                          "CR": {
+                            "type": "float",
+                            "value": 12.0
+                          },
+                          "FACTION": {
+                            "type": "cexostring",
+                            "value": "Hostile"
+                          },
+                          "RESREF": {
+                            "type": "resref",
+                            "value": "mohrg001"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 12651
+                          }
+                        },
+                        {
+                          "__struct_id": 0,
+                          "CR": {
+                            "type": "float",
+                            "value": 28.0
                           },
                           "FACTION": {
                             "type": "cexostring",
@@ -738,7 +771,7 @@
                           "__struct_id": 0,
                           "CR": {
                             "type": "float",
-                            "value": 19.0
+                            "value": 18.0
                           },
                           "FACTION": {
                             "type": "cexostring",
@@ -757,7 +790,7 @@
                           "__struct_id": 0,
                           "CR": {
                             "type": "float",
-                            "value": 18.0
+                            "value": 17.0
                           },
                           "FACTION": {
                             "type": "cexostring",
@@ -795,7 +828,7 @@
                           "__struct_id": 0,
                           "CR": {
                             "type": "float",
-                            "value": 15.0
+                            "value": 16.0
                           },
                           "FACTION": {
                             "type": "cexostring",
@@ -814,38 +847,38 @@
                           "__struct_id": 0,
                           "CR": {
                             "type": "float",
-                            "value": 11.0
-                          },
-                          "FACTION": {
-                            "type": "cexostring",
-                            "value": "Hostile"
-                          },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Revenant"
-                          },
-                          "RESREF": {
-                            "type": "resref",
-                            "value": "revenant002"
-                          }
-                        },
-                        {
-                          "__struct_id": 0,
-                          "CR": {
-                            "type": "float",
                             "value": 7.0
                           },
                           "FACTION": {
                             "type": "cexostring",
                             "value": "Hostile"
                           },
-                          "NAME": {
+                          "RESREF": {
+                            "type": "resref",
+                            "value": "revenant002"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 5641
+                          }
+                        },
+                        {
+                          "__struct_id": 0,
+                          "CR": {
+                            "type": "float",
+                            "value": 6.0
+                          },
+                          "FACTION": {
                             "type": "cexostring",
-                            "value": "Vampire"
+                            "value": "Hostile"
                           },
                           "RESREF": {
                             "type": "resref",
                             "value": "vampire001"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 5637
                           }
                         },
                         {
@@ -858,13 +891,13 @@
                             "type": "cexostring",
                             "value": "Hostile"
                           },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Vampire Rogue"
-                          },
                           "RESREF": {
                             "type": "resref",
                             "value": "vampire003"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 12795
                           }
                         },
                         {
@@ -877,32 +910,32 @@
                             "type": "cexostring",
                             "value": "Hostile"
                           },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Vampire Warrior"
-                          },
                           "RESREF": {
                             "type": "resref",
                             "value": "vampire002"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 12794
                           }
                         },
                         {
                           "__struct_id": 0,
                           "CR": {
                             "type": "float",
-                            "value": 3.0
+                            "value": 4.0
                           },
                           "FACTION": {
                             "type": "cexostring",
                             "value": "Hostile"
                           },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Wight"
-                          },
                           "RESREF": {
                             "type": "resref",
                             "value": "wight001"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 12812
                           }
                         }
                       ]
@@ -931,13 +964,13 @@
                             "type": "cexostring",
                             "value": "Hostile"
                           },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Gaseous Form"
-                          },
                           "RESREF": {
                             "type": "resref",
                             "value": "vampire_shad001"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 12798
                           }
                         },
                         {
@@ -950,13 +983,13 @@
                             "type": "cexostring",
                             "value": "Hostile"
                           },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Shadow"
-                          },
                           "RESREF": {
                             "type": "resref",
                             "value": "shadow001"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 12689
                           }
                         },
                         {
@@ -969,13 +1002,13 @@
                             "type": "cexostring",
                             "value": "Hostile"
                           },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Shadow Fiend"
-                          },
                           "RESREF": {
                             "type": "resref",
                             "value": "shfiend001"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 12691
                           }
                         }
                       ]
@@ -998,19 +1031,19 @@
                           "__struct_id": 0,
                           "CR": {
                             "type": "float",
-                            "value": 12.0
+                            "value": 11.0
                           },
                           "FACTION": {
                             "type": "cexostring",
                             "value": "Hostile"
                           },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Bone Golem"
-                          },
                           "RESREF": {
                             "type": "resref",
                             "value": "golbone001"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 12570
                           }
                         },
                         {
@@ -1061,70 +1094,70 @@
                             "type": "cexostring",
                             "value": "Hostile"
                           },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Skeleton"
-                          },
                           "RESREF": {
                             "type": "resref",
                             "value": "skeleton001"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 12701
                           }
                         },
                         {
                           "__struct_id": 0,
                           "CR": {
                             "type": "float",
-                            "value": 9.0
+                            "value": 7.0
                           },
                           "FACTION": {
                             "type": "cexostring",
                             "value": "Hostile"
-                          },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Skeleton Chieftain"
                           },
                           "RESREF": {
                             "type": "resref",
                             "value": "skelchief001"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 12698
                           }
                         },
                         {
                           "__struct_id": 0,
                           "CR": {
                             "type": "float",
-                            "value": 8.0
+                            "value": 6.0
                           },
                           "FACTION": {
                             "type": "cexostring",
                             "value": "Hostile"
-                          },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Skeleton Warrior"
                           },
                           "RESREF": {
                             "type": "resref",
                             "value": "skelwarr002"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 12704
                           }
                         },
                         {
                           "__struct_id": 0,
                           "CR": {
                             "type": "float",
-                            "value": 8.0
+                            "value": 6.0
                           },
                           "FACTION": {
                             "type": "cexostring",
                             "value": "Hostile"
                           },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Skeleton Warrior"
-                          },
                           "RESREF": {
                             "type": "resref",
                             "value": "skelwarr003"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 12704
                           }
                         }
                       ]
@@ -1147,19 +1180,19 @@
                           "__struct_id": 0,
                           "CR": {
                             "type": "float",
-                            "value": 4.0
+                            "value": 3.0
                           },
                           "FACTION": {
                             "type": "cexostring",
                             "value": "Hostile"
                           },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Allip"
-                          },
                           "RESREF": {
                             "type": "resref",
                             "value": "allip001"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 12360
                           }
                         },
                         {
@@ -1172,13 +1205,13 @@
                             "type": "cexostring",
                             "value": "Hostile"
                           },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Spectre"
-                          },
                           "RESREF": {
                             "type": "resref",
                             "value": "spectre001"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 12716
                           }
                         },
                         {
@@ -1191,13 +1224,13 @@
                             "type": "cexostring",
                             "value": "Hostile"
                           },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Wraith"
-                          },
                           "RESREF": {
                             "type": "resref",
                             "value": "wraith001"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 12822
                           }
                         }
                       ]
@@ -1226,13 +1259,13 @@
                             "type": "cexostring",
                             "value": "Hostile"
                           },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Tyrantfog Zombie"
-                          },
                           "RESREF": {
                             "type": "resref",
                             "value": "zombtyrant001"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 12829
                           }
                         },
                         {
@@ -1244,14 +1277,14 @@
                           "FACTION": {
                             "type": "cexostring",
                             "value": "Hostile"
-                          },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Zombie"
                           },
                           "RESREF": {
                             "type": "resref",
                             "value": "zombie002"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 12827
                           }
                         },
                         {
@@ -1264,70 +1297,70 @@
                             "type": "cexostring",
                             "value": "Hostile"
                           },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Zombie"
-                          },
                           "RESREF": {
                             "type": "resref",
                             "value": "zombie003"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 12827
                           }
                         },
                         {
                           "__struct_id": 0,
                           "CR": {
                             "type": "float",
-                            "value": 6.0
+                            "value": 8.0
                           },
                           "FACTION": {
                             "type": "cexostring",
                             "value": "Hostile"
-                          },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Zombie Lord"
                           },
                           "RESREF": {
                             "type": "resref",
                             "value": "zombieboss001"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 56579
                           }
                         },
                         {
                           "__struct_id": 0,
                           "CR": {
                             "type": "float",
-                            "value": 3.0
+                            "value": 4.0
                           },
                           "FACTION": {
                             "type": "cexostring",
                             "value": "Hostile"
-                          },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Zombie Warrior"
                           },
                           "RESREF": {
                             "type": "resref",
                             "value": "zombwarr002"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 12830
                           }
                         },
                         {
                           "__struct_id": 0,
                           "CR": {
                             "type": "float",
-                            "value": 3.0
+                            "value": 4.0
                           },
                           "FACTION": {
                             "type": "cexostring",
                             "value": "Hostile"
                           },
-                          "NAME": {
-                            "type": "cexostring",
-                            "value": "Zombie Warrior"
-                          },
                           "RESREF": {
                             "type": "resref",
                             "value": "zombwarr003"
+                          },
+                          "STRREF": {
+                            "type": "dword",
+                            "value": 12830
                           }
                         }
                       ]

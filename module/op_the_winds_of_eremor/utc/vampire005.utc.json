@@ -14,7 +14,7 @@
   },
   "ChallengeRating": {
     "type": "float",
-    "value": 15.0
+    "value": 16.0
   },
   "ClassList": {
     "type": "list",
@@ -367,6 +367,10 @@
     "type": "short",
     "value": 74
   },
+  "DecayTime": {
+    "type": "dword",
+    "value": 0
+  },
   "Deity": {
     "type": "cexostring",
     "value": ""
@@ -563,6 +567,10 @@
     "type": "byte",
     "value": 1
   },
+  "IsImmortal": {
+    "type": "byte",
+    "value": 0
+  },
   "IsPC": {
     "type": "byte",
     "value": 0
@@ -611,6 +619,10 @@
     "value": {}
   },
   "LawfulChaotic": {
+    "type": "byte",
+    "value": 0
+  },
+  "Lootable": {
     "type": "byte",
     "value": 0
   },
@@ -848,6 +860,62 @@
           "type": "byte",
           "value": 0
         }
+      },
+      {
+        "__struct_id": 0,
+        "Rank": {
+          "type": "byte",
+          "value": 0
+        }
+      },
+      {
+        "__struct_id": 0,
+        "Rank": {
+          "type": "byte",
+          "value": 0
+        }
+      },
+      {
+        "__struct_id": 0,
+        "Rank": {
+          "type": "byte",
+          "value": 0
+        }
+      },
+      {
+        "__struct_id": 0,
+        "Rank": {
+          "type": "byte",
+          "value": 0
+        }
+      },
+      {
+        "__struct_id": 0,
+        "Rank": {
+          "type": "byte",
+          "value": 0
+        }
+      },
+      {
+        "__struct_id": 0,
+        "Rank": {
+          "type": "byte",
+          "value": 0
+        }
+      },
+      {
+        "__struct_id": 0,
+        "Rank": {
+          "type": "byte",
+          "value": 0
+        }
+      },
+      {
+        "__struct_id": 0,
+        "Rank": {
+          "type": "byte",
+          "value": 0
+        }
       }
     ]
   },
@@ -875,6 +943,10 @@
       }
     ]
   },
+  "StartingPackage": {
+    "type": "byte",
+    "value": 0
+  },
   "Str": {
     "type": "byte",
     "value": 19
@@ -887,8 +959,8 @@
     "type": "cexostring",
     "value": "Morgroth"
   },
-  "Tail": {
-    "type": "byte",
+  "Tail_New": {
+    "type": "dword",
     "value": 0
   },
   "TemplateList": {
@@ -907,8 +979,8 @@
     "type": "short",
     "value": 0
   },
-  "Wings": {
-    "type": "byte",
+  "Wings_New": {
+    "type": "dword",
     "value": 0
   },
   "Wis": {
