@@ -1,0 +1,21 @@
+//::///////////////////////////////////////////////
+//   q6_Shaori10
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Checks if Shaori variable is 20 or greater
+    (Mirror mentioned)
+*/
+//:://////////////////////////////////////////////
+//:: Created By:
+//:: Created On:
+//:://////////////////////////////////////////////
+
+
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetLocalInt(OBJECT_SELF,"Shaori")>=20;
+    return iResult;
+}

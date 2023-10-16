@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Name x2_def_attacked
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Default On Physically attacked script
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Keith Warner
+//:: Created On: June 11/03
+//:://////////////////////////////////////////////
+
+void main()
+{
+    if(GetPlotFlag(OBJECT_SELF) == TRUE)
+        return;
+    ExecuteScript("nw_c2_default5", OBJECT_SELF);
+}

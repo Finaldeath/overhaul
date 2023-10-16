@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: q4b10000gold
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Checks if player has 10,000 gold
+*/
+//:://////////////////////////////////////////////
+//:: Created By:    Drew Karpyshyn
+//:: Created On:    August 14, 2003
+//:://////////////////////////////////////////////
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetGold(GetPCSpeaker())>=10000;
+    return iResult;
+}

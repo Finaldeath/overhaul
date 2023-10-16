@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: q4c_ghostgem
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Takes the Ghost Gem from the player
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Drew Karpyshyn
+//:: Created On: August 18, 2003
+//:://////////////////////////////////////////////
+
+
+void main()
+{
+    object oGem = GetItemPossessedBy(GetPCSpeaker(), "SoulGem");
+    ActionTakeItem(oGem, GetPCSpeaker());
+}

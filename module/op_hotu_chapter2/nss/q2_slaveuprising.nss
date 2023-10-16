@@ -1,0 +1,20 @@
+//::///////////////////////////////////////////////
+//:: q2_slaveuprising
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+  slaves have agreed to postpone their uprising
+*/
+//:://////////////////////////////////////////////
+//:: Created By:
+//:: Created On:
+//:://////////////////////////////////////////////
+
+
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetLocalInt(GetModule(), "X2_Q2DSlaveUprising")==1;
+    return iResult;
+}

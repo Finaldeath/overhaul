@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: q2_elderbrain2
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+   Player spoke to Elder Brain, agreed to get the mirror
+*/
+//:://////////////////////////////////////////////
+//:: Created By:
+//:: Created On:
+//:://////////////////////////////////////////////
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetLocalInt(GetModule(),"elder_brain")==2;
+    return iResult;
+}

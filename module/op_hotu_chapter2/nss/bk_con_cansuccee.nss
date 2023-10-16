@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: bk_con_cansuccee
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Returns true if figure out the beholder
+    language
+*/
+//:://////////////////////////////////////////////
+//:: Created By:
+//:: Created On:
+//:://////////////////////////////////////////////
+#include "nw_i0_plot"
+int StartingConditional()
+{
+
+       return AutoDC(DC_LEGENDARY, SKILL_LORE, GetPCSpeaker());
+}

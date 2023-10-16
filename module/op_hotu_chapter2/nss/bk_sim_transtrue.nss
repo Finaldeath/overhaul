@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: bk_sim_transtrue
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    The language has been set to common
+*/
+//:://////////////////////////////////////////////
+//:: Created By:
+//:: Created On:
+//:://////////////////////////////////////////////
+#include "nw_i0_plot"
+
+void main()
+{
+    Reward_2daXP(GetPCSpeaker(), 55, TRUE);
+    SetLocalInt(GetModule(), "X2_L_LANGUAGE", 2);
+}

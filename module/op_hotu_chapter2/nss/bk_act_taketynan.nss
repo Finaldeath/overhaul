@@ -1,0 +1,21 @@
+//::///////////////////////////////////////////////
+//:: bk_act_takepearl
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Takes Tynan
+*/
+//:://////////////////////////////////////////////
+//:: Created By:
+//:: Created On:
+//:://////////////////////////////////////////////
+
+void main()
+{
+    object oPearl = GetItemPossessedBy(GetPCSpeaker(),"q1hbaby");
+    if (GetIsObjectValid(oPearl) == TRUE)
+    {
+        DestroyObject(oPearl);
+    }
+}
+

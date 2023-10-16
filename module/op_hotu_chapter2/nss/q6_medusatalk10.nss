@@ -1,0 +1,22 @@
+//::///////////////////////////////////////////////
+//:: q6_medusatalk10
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+   Checks if medusa has been talked to
+*/
+//:://////////////////////////////////////////////
+//:: Created By:
+//:: Created On:
+//:://////////////////////////////////////////////
+
+
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetLocalInt(GetModule(),"MedusaTalk")==10;
+    return iResult;
+}
+
+

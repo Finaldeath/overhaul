@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: q4b_dahannaend01
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+   Sets the Dahanna_End variable to 01 - Duergar hostile on conversation end
+*/
+//:://////////////////////////////////////////////
+//:: Created By:  Drew Karpyshyn
+//:: Created On:  August 15, 2003
+//:://////////////////////////////////////////////
+
+
+void main()
+{
+ SetLocalInt(GetModule(),"Dahanna_End",1);
+}
