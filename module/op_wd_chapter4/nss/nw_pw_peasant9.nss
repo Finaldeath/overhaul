@@ -18,11 +18,15 @@
 void main()
 {
     int nRand;
-    int nCount;
+    int nCount = 1;
     object oDoor = GetNearestObject(OBJECT_TYPE_DOOR);
     object oWaypoint = GetNearestObjectByTag("WP_PEASANT_EXIT");
 
-    for (nCount = 1;GetIsObjectValid(GetNearestObjectByTag("WP_PEASANT_EXIT",OBJECT_SELF,nCount));nCount++);
+    // Count exits
+    while(GetIsObjectValid(GetNearestObjectByTag("WP_PEASANT_EXIT",OBJECT_SELF,nCount)))
+    {
+        nCount++;
+    }
 
     nCount--;
     nRand = Random(nCount - 1) + 2;
