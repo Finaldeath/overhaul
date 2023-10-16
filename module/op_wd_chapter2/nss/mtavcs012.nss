@@ -1,0 +1,8 @@
+int StartingConditional()
+{
+	int l_iResult;
+
+	l_iResult = GetIsObjectValid(GetItemPossessedBy(GetPCSpeaker(),"VA_ARENABADGE001")) &&
+                GetLocalInt(GetModule(),"NW_G_ARENALEVEL2") == 10;
+	return l_iResult;
+}

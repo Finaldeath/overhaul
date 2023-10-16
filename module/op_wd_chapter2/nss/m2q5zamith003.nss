@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Conversation
+//:: M2Q5ZAMITH003
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Zamithra signals the event to have her go to
+    her room and wait for the PC.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: John Winski
+//:: Created On: January 12, 2002
+//:://////////////////////////////////////////////
+
+void main()
+{
+    SignalEvent(OBJECT_SELF,EventUserDefined(501));
+}

@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Conversation
+//:: M2Q1CSSOLOMON001
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+
+*/
+//:://////////////////////////////////////////////
+//:: Created By: John Winski
+//:: Created On: January 16, 2002
+//:://////////////////////////////////////////////
+
+void main()
+{
+    SetLocalInt(OBJECT_SELF,"NW_L_HEARTBEAT",1);
+    SetLocalInt(OBJECT_SELF,"NW_L_InitConversation",10);
+}

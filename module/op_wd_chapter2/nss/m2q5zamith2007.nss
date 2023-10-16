@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Conversation
+//:: M2Q5ZAMITH2007
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Zamithra leaves.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: John Winski
+//:: Created On: January 14, 2002
+//:://////////////////////////////////////////////
+
+void main()
+{
+    ActionForceMoveToObject(GetWaypointByTag("WP_ZAMITH3"));
+    ActionDoCommand(DestroyObject(OBJECT_SELF));
+}

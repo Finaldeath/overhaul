@@ -1,0 +1,19 @@
+//::///////////////////////////////////////////////
+//:: Conversation
+//:: m2q6JaluthAttack
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Jaluth attacks.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: John Winski
+//:: Created On: November 15, 2001
+//:://////////////////////////////////////////////
+#include "NW_I0_GENERIC"
+
+void main()
+{
+    AdjustReputation(GetPCSpeaker(),OBJECT_SELF,-100);
+    DetermineCombatRound();
+}

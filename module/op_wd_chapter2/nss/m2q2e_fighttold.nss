@@ -1,0 +1,16 @@
+//::///////////////////////////////////////////////
+//:: M2Q2E_FIGHTTOLD.NSS
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Indicates that the rules of the fight club have been told to the player.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori May
+//:: Created On: February 6, 2002
+//:://////////////////////////////////////////////
+
+void main()
+{
+    SetLocalInt(GetPCSpeaker(),"NW_M2Q2E_LFIGHTTOLD",TRUE);
+}

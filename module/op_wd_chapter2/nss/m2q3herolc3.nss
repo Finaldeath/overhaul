@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: Conversation
+//:: m2q3HeroLC3
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Set the hero quest local to 3, ending the quest.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: John Winski
+//:: Created On: November 20, 2001
+//:://////////////////////////////////////////////
+
+void main()
+{
+    SetLocalInt(GetArea(OBJECT_SELF),"NW_A_M2Q3HEROQUEST",3);
+}

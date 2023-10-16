@@ -1,0 +1,5 @@
+void main()
+{
+    ActionAttack(GetPCSpeaker());
+}
+

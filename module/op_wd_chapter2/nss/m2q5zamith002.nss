@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Conversation
+//:: M2Q5ZAMITH002
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Zamithra signals the event to have her and
+    the witless fighter go upstairs.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: John Winski
+//:: Created On: January 12, 2002
+//:://////////////////////////////////////////////
+
+void main()
+{
+    SignalEvent(OBJECT_SELF,EventUserDefined(500));
+}

@@ -1,0 +1,20 @@
+//::///////////////////////////////////////////////
+//:: Perceived
+//:: m2Init
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Start conversation.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: John Winski
+//:: Created On: November 20, 2001
+//:://////////////////////////////////////////////
+
+void main()
+{
+    if(GetLocalInt(OBJECT_SELF,"NW_L_TALKTIMES") == 0)
+    {
+        ActionStartConversation(OBJECT_SELF);
+    }
+}

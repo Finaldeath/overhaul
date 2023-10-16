@@ -1,0 +1,8 @@
+int StartingConditional()
+{
+    int l_iResult;
+
+    l_iResult = GetIsObjectValid(GetItemPossessedBy(OBJECT_SELF,"M2Q01IWARDWANEV")) &&
+                GetGender(GetPCSpeaker()) == GENDER_FEMALE;
+    return l_iResult;
+}

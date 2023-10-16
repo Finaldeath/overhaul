@@ -1,0 +1,20 @@
+//::///////////////////////////////////////////////
+//:: Conversation
+//:: m2TurnHostile
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+
+*/
+//:://////////////////////////////////////////////
+//:: Created By: John Winski
+//:: Created On: December 10, 2001
+//:://////////////////////////////////////////////
+#include "NW_I0_GENERIC"
+
+void main()
+{
+    AdjustReputation(GetLastSpeaker(),OBJECT_SELF,-100);
+    DetermineCombatRound();
+}
+

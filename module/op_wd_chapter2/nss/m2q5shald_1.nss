@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Follow Player
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+  Follows Player.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: John Winski
+//:: Created On: January 11, 2002
+//:://////////////////////////////////////////////
+void main()
+{
+    if (GetLocalInt(OBJECT_SELF,"NW_L_HEARTBEAT") == 0)
+    {
+        SignalEvent(OBJECT_SELF,EventUserDefined(500));
+    }
+}

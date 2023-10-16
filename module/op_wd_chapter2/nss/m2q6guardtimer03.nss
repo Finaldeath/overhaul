@@ -1,0 +1,20 @@
+//::///////////////////////////////////////////////
+//:: Conversation
+//:: m2q6GuardTimer03
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    The guards attack.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: John Winski
+//:: Created On: November 8, 2001
+//:://////////////////////////////////////////////
+#include "NW_I0_PLOT"
+
+void main()
+{
+    object oPC = GetNearestPC();
+    
+    ActionAttack(oPC);
+}

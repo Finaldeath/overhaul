@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Conversation
+//:: m2q5OrcRun
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    The orc runs away.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: John Winski
+//:: Created On: November 6, 2001
+//:://////////////////////////////////////////////
+
+void main()
+{
+    ActionMoveAwayFromObject(GetLastSpeaker());
+    DelayCommand(5.0,DestroyObject(OBJECT_SELF));
+}

@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Used
+//:: m2converse
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Makes the object start a conversation with the
+    last person to use it.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: John Winski
+//:: Created On: April 29, 2002
+//:://////////////////////////////////////////////
+
+void main()
+{
+    ActionStartConversation(GetLastUsedBy());
+}

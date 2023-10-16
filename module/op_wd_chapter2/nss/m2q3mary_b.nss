@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: Death
+//:: m2q3Mary_B
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Spawn Maryweather when she dies.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: John Winski
+//:: Created On: November 28, 2001
+//:://////////////////////////////////////////////
+
+void main()
+{
+    CreateObject(OBJECT_TYPE_CREATURE,"M2Q03CMARY",GetLocation(GetWaypointByTag("WP_M2Q3MARYSPAWN")));
+}

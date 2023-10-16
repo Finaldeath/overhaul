@@ -1,0 +1,19 @@
+//:://////////////////////////////////////////////
+//:: Set Surrender to State 2
+//:: SURRENDER_TEST
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Set the local so that Vaath can talk with the
+    PC
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Preston Watamaniuk
+//:: Created On: Nov 15, 2001
+//:://////////////////////////////////////////////
+
+void main()
+{
+    SetLocalInt(OBJECT_SELF, "Generic_Surrender", 2);
+}
+

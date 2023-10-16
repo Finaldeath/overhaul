@@ -1,0 +1,19 @@
+//::///////////////////////////////////////////////
+//:: Conversation
+//:: m2q3Stirge001
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Stirge leaves.
+*/
+//:://////////////////////////////////////////////
+//:: Created By:
+//:: Created On:
+//:://////////////////////////////////////////////
+
+void main()
+{
+    ActionMoveAwayFromObject(GetPCSpeaker());
+    DelayCommand(5.0,DestroyObject(OBJECT_SELF));
+    SetCommandable(FALSE);
+}

@@ -1,0 +1,27 @@
+//::///////////////////////////////////////////////
+//:: Entered
+//:: M2BOSS2BA
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Kevin Martens
+//:: Created On: MARCH 13, 2002
+//:://////////////////////////////////////////////
+#include "NW_I0_GENERIC"
+
+void main()
+{
+    object oBoss = GetNearestObjectByTag("NW_TROLLCHIEF");
+    object oEntered = GetEnteringObject();
+
+    if (GetIsPC(oEntered)||oBoss==oEntered)
+    {
+        AssignCommand(oBoss,SpeakOneLinerConversation());
+        AssignCommand(oBoss,PlayAnimation(ANIMATION_FIREFORGET_TAUNT));
+        AssignCommand(oBoss,DetermineCombatRound());
+        DestroyObject(OBJECT_SELF);
+    }
+}

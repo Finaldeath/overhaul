@@ -1,0 +1,20 @@
+//::///////////////////////////////////////////////
+//:: Used
+//:: M2Q52C_UsePortal
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+
+*/
+//:://////////////////////////////////////////////
+//:: Created By: John Winski
+//:: Created On: April 30, 2002
+//:://////////////////////////////////////////////
+
+void main()
+{
+    object oWaypoint = GetWaypointByTag("M2Q2D_M2Q2CE");
+    object oUsed = GetLastUsedBy();
+
+    AssignCommand(oUsed,JumpToObject(oWaypoint));
+}
