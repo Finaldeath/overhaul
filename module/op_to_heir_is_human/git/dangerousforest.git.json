@@ -96,8 +96,8 @@
           "type": "byte",
           "value": 16
         },
-        "GenericType": {
-          "type": "byte",
+        "GenericType_New": {
+          "type": "dword",
           "value": 0
         },
         "Hardness": {
@@ -317,8 +317,8 @@
           "type": "byte",
           "value": 16
         },
-        "GenericType": {
-          "type": "byte",
+        "GenericType_New": {
+          "type": "dword",
           "value": 0
         },
         "Hardness": {
@@ -541,7 +541,7 @@
               },
               "CR": {
                 "type": "float",
-                "value": 4.0
+                "value": 5.0
               },
               "ResRef": {
                 "type": "resref",
@@ -564,7 +564,7 @@
               },
               "CR": {
                 "type": "float",
-                "value": 4.0
+                "value": 3.0
               },
               "ResRef": {
                 "type": "resref",
@@ -776,7 +776,7 @@
               "__struct_id": 2,
               "Orientation": {
                 "type": "float",
-                "value": 0.0
+                "value": -0.0
               },
               "X": {
                 "type": "float",
@@ -850,7 +850,7 @@
               },
               "CR": {
                 "type": "float",
-                "value": 4.0
+                "value": 3.0
               },
               "ResRef": {
                 "type": "resref",
@@ -1058,7 +1058,7 @@
               "__struct_id": 2,
               "Orientation": {
                 "type": "float",
-                "value": 0.0
+                "value": -0.0
               },
               "X": {
                 "type": "float",
@@ -1132,7 +1132,7 @@
               },
               "CR": {
                 "type": "float",
-                "value": 4.0
+                "value": 5.0
               },
               "ResRef": {
                 "type": "resref",
@@ -1151,7 +1151,7 @@
               },
               "CR": {
                 "type": "float",
-                "value": 4.0
+                "value": 3.0
               },
               "ResRef": {
                 "type": "resref",
@@ -1359,7 +1359,7 @@
               "__struct_id": 2,
               "Orientation": {
                 "type": "float",
-                "value": 0.0
+                "value": -0.0
               },
               "X": {
                 "type": "float",
@@ -1433,7 +1433,7 @@
               },
               "CR": {
                 "type": "float",
-                "value": 4.0
+                "value": 3.0
               },
               "ResRef": {
                 "type": "resref",
@@ -1641,7 +1641,7 @@
               "__struct_id": 2,
               "Orientation": {
                 "type": "float",
-                "value": 0.0
+                "value": -0.0
               },
               "X": {
                 "type": "float",
@@ -1715,7 +1715,7 @@
               },
               "CR": {
                 "type": "float",
-                "value": 4.0
+                "value": 5.0
               },
               "ResRef": {
                 "type": "resref",
@@ -1734,7 +1734,7 @@
               },
               "CR": {
                 "type": "float",
-                "value": 4.0
+                "value": 3.0
               },
               "ResRef": {
                 "type": "resref",
@@ -1958,7 +1958,7 @@
               "__struct_id": 2,
               "Orientation": {
                 "type": "float",
-                "value": 0.0
+                "value": -0.0
               },
               "X": {
                 "type": "float",
@@ -2032,7 +2032,7 @@
               },
               "CR": {
                 "type": "float",
-                "value": 4.0
+                "value": 3.0
               },
               "ResRef": {
                 "type": "resref",
@@ -2240,7 +2240,7 @@
               "__struct_id": 2,
               "Orientation": {
                 "type": "float",
-                "value": 0.0
+                "value": -0.0
               },
               "X": {
                 "type": "float",
@@ -2377,6 +2377,10 @@
                 "type": "dword",
                 "value": 0
               },
+              "Cursed": {
+                "type": "byte",
+                "value": 0
+              },
               "DescIdentified": {
                 "type": "cexolocstring",
                 "value": {}
@@ -2433,6 +2437,10 @@
                 "type": "resref",
                 "value": "note2"
               },
+              "xModelPart1": {
+                "type": "word",
+                "value": 32
+              },
               "XOrientation": {
                 "type": "float",
                 "value": 0.0
@@ -2478,6 +2486,10 @@
             "0": "Corpse",
             "id": 14601
           }
+        },
+        "OnClick": {
+          "type": "resref",
+          "value": ""
         },
         "OnClosed": {
           "type": "resref",
@@ -2702,6 +2714,10 @@
                 "type": "dword",
                 "value": 0
               },
+              "Cursed": {
+                "type": "byte",
+                "value": 0
+              },
               "DescIdentified": {
                 "type": "cexolocstring",
                 "value": {}
@@ -2758,6 +2774,10 @@
                 "type": "resref",
                 "value": "anothernote"
               },
+              "xModelPart1": {
+                "type": "word",
+                "value": 15
+              },
               "XOrientation": {
                 "type": "float",
                 "value": 0.0
@@ -2803,6 +2823,10 @@
             "0": "Corpse",
             "id": 14601
           }
+        },
+        "OnClick": {
+          "type": "resref",
+          "value": ""
         },
         "OnClosed": {
           "type": "resref",
@@ -3027,6 +3051,10 @@
                 "type": "dword",
                 "value": 0
               },
+              "Cursed": {
+                "type": "byte",
+                "value": 0
+              },
               "DescIdentified": {
                 "type": "cexolocstring",
                 "value": {}
@@ -3083,6 +3111,10 @@
                 "type": "resref",
                 "value": "morenote"
               },
+              "xModelPart1": {
+                "type": "word",
+                "value": 15
+              },
               "XOrientation": {
                 "type": "float",
                 "value": 0.0
@@ -3128,6 +3160,10 @@
             "0": "Corpse",
             "id": 14601
           }
+        },
+        "OnClick": {
+          "type": "resref",
+          "value": ""
         },
         "OnClosed": {
           "type": "resref",
@@ -3352,6 +3388,10 @@
                 "type": "dword",
                 "value": 0
               },
+              "Cursed": {
+                "type": "byte",
+                "value": 0
+              },
               "DescIdentified": {
                 "type": "cexolocstring",
                 "value": {}
@@ -3408,6 +3448,10 @@
                 "type": "resref",
                 "value": "yetanothernote"
               },
+              "xModelPart1": {
+                "type": "word",
+                "value": 32
+              },
               "XOrientation": {
                 "type": "float",
                 "value": 0.0
@@ -3453,6 +3497,10 @@
             "0": "Corpse",
             "id": 14601
           }
+        },
+        "OnClick": {
+          "type": "resref",
+          "value": ""
         },
         "OnClosed": {
           "type": "resref",
@@ -3677,6 +3725,10 @@
             "id": 14601
           }
         },
+        "OnClick": {
+          "type": "resref",
+          "value": ""
+        },
         "OnClosed": {
           "type": "resref",
           "value": ""
@@ -3899,6 +3951,10 @@
           "value": {
             "id": 14601
           }
+        },
+        "OnClick": {
+          "type": "resref",
+          "value": ""
         },
         "OnClosed": {
           "type": "resref",
@@ -4123,6 +4179,10 @@
                 "type": "dword",
                 "value": 0
               },
+              "Cursed": {
+                "type": "byte",
+                "value": 0
+              },
               "DescIdentified": {
                 "type": "cexolocstring",
                 "value": {}
@@ -4179,6 +4239,10 @@
                 "type": "resref",
                 "value": "note002"
               },
+              "xModelPart1": {
+                "type": "word",
+                "value": 15
+              },
               "XOrientation": {
                 "type": "float",
                 "value": 0.0
@@ -4224,6 +4288,10 @@
             "0": "Corpse",
             "id": 14601
           }
+        },
+        "OnClick": {
+          "type": "resref",
+          "value": ""
         },
         "OnClosed": {
           "type": "resref",
@@ -4448,6 +4516,10 @@
             "id": 14729
           }
         },
+        "OnClick": {
+          "type": "resref",
+          "value": ""
+        },
         "OnClosed": {
           "type": "resref",
           "value": ""
@@ -4671,6 +4743,10 @@
             "id": 14729
           }
         },
+        "OnClick": {
+          "type": "resref",
+          "value": ""
+        },
         "OnClosed": {
           "type": "resref",
           "value": ""
@@ -4893,6 +4969,10 @@
                 "type": "dword",
                 "value": 10
               },
+              "Cursed": {
+                "type": "byte",
+                "value": 0
+              },
               "DescIdentified": {
                 "type": "cexolocstring",
                 "value": {
@@ -4949,6 +5029,10 @@
                 "type": "resref",
                 "value": "nw_it_msmlmisc11"
               },
+              "xModelPart1": {
+                "type": "word",
+                "value": 68
+              },
               "XOrientation": {
                 "type": "float",
                 "value": 0.0
@@ -4993,6 +5077,10 @@
           "value": {
             "id": 14682
           }
+        },
+        "OnClick": {
+          "type": "resref",
+          "value": ""
         },
         "OnClosed": {
           "type": "resref",
@@ -5216,6 +5304,10 @@
           "value": {
             "id": 5799
           }
+        },
+        "OnClick": {
+          "type": "resref",
+          "value": ""
         },
         "OnClosed": {
           "type": "resref",
@@ -5441,6 +5533,10 @@
             "0": "Chest",
             "id": 5348
           }
+        },
+        "OnClick": {
+          "type": "resref",
+          "value": ""
         },
         "OnClosed": {
           "type": "resref",

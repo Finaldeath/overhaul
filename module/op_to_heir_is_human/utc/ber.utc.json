@@ -144,6 +144,10 @@
     "type": "short",
     "value": 26
   },
+  "DecayTime": {
+    "type": "dword",
+    "value": 0
+  },
   "Deity": {
     "type": "cexostring",
     "value": ""
@@ -388,6 +392,10 @@
     "type": "byte",
     "value": 1
   },
+  "IsImmortal": {
+    "type": "byte",
+    "value": 0
+  },
   "IsPC": {
     "type": "byte",
     "value": 0
@@ -401,6 +409,10 @@
   "LawfulChaotic": {
     "type": "byte",
     "value": 50
+  },
+  "Lootable": {
+    "type": "byte",
+    "value": 0
   },
   "MaxHitPoints": {
     "type": "short",
@@ -636,6 +648,62 @@
           "type": "byte",
           "value": 0
         }
+      },
+      {
+        "__struct_id": 0,
+        "Rank": {
+          "type": "byte",
+          "value": 0
+        }
+      },
+      {
+        "__struct_id": 0,
+        "Rank": {
+          "type": "byte",
+          "value": 0
+        }
+      },
+      {
+        "__struct_id": 0,
+        "Rank": {
+          "type": "byte",
+          "value": 0
+        }
+      },
+      {
+        "__struct_id": 0,
+        "Rank": {
+          "type": "byte",
+          "value": 0
+        }
+      },
+      {
+        "__struct_id": 0,
+        "Rank": {
+          "type": "byte",
+          "value": 0
+        }
+      },
+      {
+        "__struct_id": 0,
+        "Rank": {
+          "type": "byte",
+          "value": 0
+        }
+      },
+      {
+        "__struct_id": 0,
+        "Rank": {
+          "type": "byte",
+          "value": 0
+        }
+      },
+      {
+        "__struct_id": 0,
+        "Rank": {
+          "type": "byte",
+          "value": 0
+        }
       }
     ]
   },
@@ -678,6 +746,10 @@
       }
     ]
   },
+  "StartingPackage": {
+    "type": "byte",
+    "value": 0
+  },
   "Str": {
     "type": "byte",
     "value": 12
@@ -690,8 +762,8 @@
     "type": "cexostring",
     "value": "Ber"
   },
-  "Tail": {
-    "type": "byte",
+  "Tail_New": {
+    "type": "dword",
     "value": 0
   },
   "TemplateList": {
@@ -710,12 +782,88 @@
     "type": "short",
     "value": 0
   },
-  "Wings": {
-    "type": "byte",
+  "Wings_New": {
+    "type": "dword",
     "value": 0
   },
   "Wis": {
     "type": "byte",
     "value": 17
+  },
+  "xAppearance_Head": {
+    "type": "word",
+    "value": 1
+  },
+  "xArmorPart_RFoot": {
+    "type": "word",
+    "value": 1
+  },
+  "xBodyPart_Belt": {
+    "type": "word",
+    "value": 0
+  },
+  "xBodyPart_LBicep": {
+    "type": "word",
+    "value": 1
+  },
+  "xBodyPart_LFArm": {
+    "type": "word",
+    "value": 1
+  },
+  "xBodyPart_LFoot": {
+    "type": "word",
+    "value": 1
+  },
+  "xBodyPart_LHand": {
+    "type": "word",
+    "value": 1
+  },
+  "xBodyPart_LShin": {
+    "type": "word",
+    "value": 1
+  },
+  "xBodyPart_LShoul": {
+    "type": "word",
+    "value": 0
+  },
+  "xBodyPart_LThigh": {
+    "type": "word",
+    "value": 1
+  },
+  "xBodyPart_Neck": {
+    "type": "word",
+    "value": 1
+  },
+  "xBodyPart_Pelvis": {
+    "type": "word",
+    "value": 1
+  },
+  "xBodyPart_RBicep": {
+    "type": "word",
+    "value": 1
+  },
+  "xBodyPart_RFArm": {
+    "type": "word",
+    "value": 1
+  },
+  "xBodyPart_RHand": {
+    "type": "word",
+    "value": 1
+  },
+  "xBodyPart_RShin": {
+    "type": "word",
+    "value": 1
+  },
+  "xBodyPart_RShoul": {
+    "type": "word",
+    "value": 0
+  },
+  "xBodyPart_RThigh": {
+    "type": "word",
+    "value": 1
+  },
+  "xBodyPart_Torso": {
+    "type": "word",
+    "value": 1
   }
 }
