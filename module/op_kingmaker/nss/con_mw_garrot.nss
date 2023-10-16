@@ -1,0 +1,19 @@
+//::///////////////////////////////////////////////
+//:: con_mw_garrot
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    The PC has spoken to Garrot about Yenna's story
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: Nov 2003
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetLocalInt(OBJECT_SELF,"OS_MW_YENNA")==2;
+    return iResult;
+}

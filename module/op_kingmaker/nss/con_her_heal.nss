@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: Name
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Check if the pc was healed yet.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On: Nov, 2003
+//:://////////////////////////////////////////////
+int StartingConditional()
+{
+    if (GetLocalInt(OBJECT_SELF,"OS_HERMITHEALEDPC")==0)
+        return TRUE;
+    return FALSE;
+}

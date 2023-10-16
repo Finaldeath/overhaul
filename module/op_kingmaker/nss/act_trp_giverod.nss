@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: act_trp_giverrod
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Trip gives the lightning rod to the PC
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: Nov 2003
+//:://////////////////////////////////////////////
+
+void main()
+{
+    object oPC = GetFirstPC();
+    //lightning rod
+    CreateItemOnObject("q3_lightningrod",oPC);
+}

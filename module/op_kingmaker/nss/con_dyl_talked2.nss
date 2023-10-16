@@ -1,0 +1,19 @@
+//::///////////////////////////////////////////////
+//:: con_dyl_talked2
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Dylan has been talked to you in the prison
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: August 2003
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetLocalInt(OBJECT_SELF,"OS_DYLAN_PRISON")==1;
+    return iResult;
+}

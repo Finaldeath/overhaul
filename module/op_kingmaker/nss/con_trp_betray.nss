@@ -1,0 +1,19 @@
+//::///////////////////////////////////////////////
+//:: con_trp_betray
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Trip is possessed of the urge to betray the PC
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: Nov 2003
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetLocalInt(OBJECT_SELF,"OS_TRIP_BETRAY")==10;
+    return iResult;
+}

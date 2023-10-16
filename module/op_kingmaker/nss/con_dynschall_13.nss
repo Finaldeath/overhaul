@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: Name
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Check if Dynschall votes for Sir Becket.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On: July 23, 2003
+//:://////////////////////////////////////////////
+int StartingConditional()
+{
+    if (GetLocalInt(GetFirstPC(),"os_templeguild_pc")==30)
+        return TRUE;
+    return FALSE;
+}

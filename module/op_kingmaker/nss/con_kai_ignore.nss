@@ -1,0 +1,19 @@
+//::///////////////////////////////////////////////
+//:: con_kai_ignore
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Kaidala will not talk to the PC
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: Nov 2003
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetLocalInt(OBJECT_SELF,"OS_KAI_UPSET")==10;
+    return iResult;
+}

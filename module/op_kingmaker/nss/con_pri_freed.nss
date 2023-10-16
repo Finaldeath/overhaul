@@ -1,0 +1,19 @@
+//::///////////////////////////////////////////////
+//:: con_pri_freed
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    The prisoner has been freed
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: Dec 2003
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetLocalInt(OBJECT_SELF,"OS_PRISONER_FREE")==TRUE;
+    return iResult;
+}

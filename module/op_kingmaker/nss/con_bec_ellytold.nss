@@ -1,0 +1,19 @@
+//::///////////////////////////////////////////////
+//:: con_bec_ellytold
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Ellysia was told about Beckett's perfidy
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: Sept 2003
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetLocalInt(GetFirstPC(),"OS_BECKET_AFFAIR")>=20;
+    return iResult;
+}

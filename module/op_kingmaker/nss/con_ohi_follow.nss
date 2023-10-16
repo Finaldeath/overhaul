@@ -1,0 +1,20 @@
+//::///////////////////////////////////////////////
+//:: Ohio is Following
+//:: con_ohi_follow
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Ohio is in follow mode
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: Oct 2003
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetLocalInt(OBJECT_SELF,"OS_OHIO_FOLLOW")==10;
+    return iResult;
+}

@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: act_gem_undead
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Sets that the PC has talked to the gem about the undead
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: Oct 2003
+//:://////////////////////////////////////////////
+
+void main()
+{
+    object oPC = GetFirstPC();
+    SetLocalInt(oPC,"OS_GEM_UNDEAD",10);
+}

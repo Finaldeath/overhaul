@@ -1,0 +1,20 @@
+//::///////////////////////////////////////////////
+//:: Cows dead
+//:: con_grd_cowbad
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    The cows are dead
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: Sept 2003
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetLocalInt(GetModule(), "OS_THEGORD_COWS")==35;
+    return iResult;
+}

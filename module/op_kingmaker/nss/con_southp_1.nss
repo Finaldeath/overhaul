@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Name
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Check if this is the first time Southpaw has met PC.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On: July 24, 2003
+//:://////////////////////////////////////////////
+#include "os_include"
+int StartingConditional()
+{
+    if (os_CheckTalkedTo(0))
+        return TRUE;
+    return FALSE;
+}

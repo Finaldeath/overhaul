@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: q3_spn_deathstay
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Spawn-in script for the monsters in the opening cutscene
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: Nov 2003
+//:://////////////////////////////////////////////
+
+void main()
+{
+    SetIsDestroyable(FALSE,FALSE,TRUE);
+    SetLootable(OBJECT_SELF,TRUE);
+}

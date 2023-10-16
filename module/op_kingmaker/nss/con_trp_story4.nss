@@ -1,0 +1,19 @@
+//::///////////////////////////////////////////////
+//:: con_trp_story4
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+// Trip's story has finished the third stage
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: Nov 2003
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetLocalInt(OBJECT_SELF, "OS_TRIP_STORY") == 30;
+    return iResult;
+}

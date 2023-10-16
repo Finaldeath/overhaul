@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: act_coronation
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Give PC Lord's Helm
+     Give PC 5000 XP.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On: Oct. 2003
+//:://////////////////////////////////////////////
+void main()
+{
+    GiveXPToCreature(GetFirstPC(),5000);
+    CreateItemOnObject("q2_lordshelm",GetFirstPC());
+}

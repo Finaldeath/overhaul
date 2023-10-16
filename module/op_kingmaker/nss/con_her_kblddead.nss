@@ -1,0 +1,19 @@
+//::///////////////////////////////////////////////
+//:: FileName
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    The kobold chief is dead
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: Oct 2003
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetLocalInt(OBJECT_SELF,"OS_HONEY_THIEF")>=10;
+    return iResult;
+}

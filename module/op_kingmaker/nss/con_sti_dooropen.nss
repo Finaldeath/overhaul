@@ -1,0 +1,19 @@
+//::///////////////////////////////////////////////
+//:: con_sti_dooropen
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Stiletto has been freed.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: Dec 2003
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetLocalInt(OBJECT_SELF,"OS_STIL_FREE")==10;
+    return iResult;
+}

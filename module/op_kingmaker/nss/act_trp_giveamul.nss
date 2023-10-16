@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: act_trp_giveamul
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+//give PC amulet of Natural Armor +2
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: Nov 2003
+//:://////////////////////////////////////////////
+
+void main()
+{
+    object oPC = GetFirstPC();
+    //amulet of Natural Armor +2
+    CreateItemOnObject("nw_it_mneck012",oPC);
+}

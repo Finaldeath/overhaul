@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: con_tha_typhdead
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Check if Thaddeus asked PC to kill Typhus.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: Sept, 2003
+//:://////////////////////////////////////////////
+int StartingConditional()
+{
+    if (GetLocalInt(GetModule(),"OS_KILLTYPHUS")==15)
+        return TRUE;
+    return FALSE;
+}

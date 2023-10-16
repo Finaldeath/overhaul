@@ -1,0 +1,19 @@
+//::///////////////////////////////////////////////
+//:: q2c25_env_pcnice
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Checks if The PC was nice to Enivid
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: August 2003
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetLocalInt(OBJECT_SELF,"OS_ENIVID_KIND")==10;
+    return iResult;
+}

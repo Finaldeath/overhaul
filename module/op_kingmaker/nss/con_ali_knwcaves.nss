@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: con_ali_knwcaves
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Check if PC Doesn't know about caves.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: Sept 2003
+//:://////////////////////////////////////////////
+int StartingConditional()
+{
+    if (GetLocalInt(GetFirstPC(),"os_serahcaves")==0)
+        return TRUE;
+    return FALSE;
+}

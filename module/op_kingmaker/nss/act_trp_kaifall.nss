@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: act_trp_kaifall
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Kaidala collapses
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: Jan 2004
+//:://////////////////////////////////////////////
+
+void main()
+{
+    object oKai = GetNearestObjectByTag("os_hen_kai");
+    AssignCommand(oKai,ActionPlayAnimation(ANIMATION_LOOPING_DEAD_BACK,1.0,12.0));
+}

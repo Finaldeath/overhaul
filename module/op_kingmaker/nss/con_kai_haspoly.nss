@@ -1,0 +1,19 @@
+//::///////////////////////////////////////////////
+//:: con_kai_haspoly
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Kaidala has the wild shape feat
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: Nov 2003
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetHasFeat(FEAT_WILD_SHAPE);
+    return iResult;
+}

@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Sets the weapon type to rapier
+//:: q3ai_mw_swdrapie
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    The player picks 'rapier' as his magic weapon type
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: August 20, 2003
+//:://////////////////////////////////////////////
+
+void main()
+{
+    SetLocalInt(OBJECT_SELF,"Q3AI_WEAPON_TYPE",33);
+    //33=Rapier
+}

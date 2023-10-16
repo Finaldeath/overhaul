@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: os_con_has30
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Check if PC has thirty gold pieces.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: Sept 2003
+//:://////////////////////////////////////////////
+int StartingConditional()
+{
+    object oPC = GetFirstPC();
+    if (GetGold(oPC)>29)
+        return TRUE;
+    return FALSE;
+}

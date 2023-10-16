@@ -1,0 +1,19 @@
+//::///////////////////////////////////////////////
+//:: PC Knows Hermit
+//:: con_ali_knwherm3
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    The PC killed the hermit
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: September 2003
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    int iResult;
+    iResult = GetLocalInt(GetFirstPC(), "OS_HELPDRUID")==60;
+    return iResult;
+}

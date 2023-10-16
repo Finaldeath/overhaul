@@ -1,0 +1,20 @@
+//::///////////////////////////////////////////////
+//:: Option cut
+//:: os_con_cut
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    This has been cut for now
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: Sept 2003
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetLocalInt(OBJECT_SELF,"OS_OPTIONCUT")==99;
+    return iResult;
+}

@@ -1,0 +1,20 @@
+//::///////////////////////////////////////////////
+//:: PC has Trades Vote
+//:: con_grd_hasvote
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+
+*/
+//:://////////////////////////////////////////////
+//:: Created By:
+//:: Created On:
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    int iResult;
+    object oPC = GetFirstPC();
+    iResult = GetLocalInt(oPC,"OS_TRADES_GUILD")==10;
+    return iResult;
+}

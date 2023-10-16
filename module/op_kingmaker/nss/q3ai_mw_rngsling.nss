@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Sets the weapon type to sling
+//:: q3ai_mw_rngsling
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    The player picks 'sling' as his magic weapon type
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: August 21, 2003
+//:://////////////////////////////////////////////
+
+void main()
+{
+    SetLocalInt(OBJECT_SELF,"Q3AI_WEAPON_TYPE",85);
+    //85=Sling
+}

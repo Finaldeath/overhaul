@@ -1,0 +1,20 @@
+//::///////////////////////////////////////////////
+//:: M3Q1A_1AM
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Checks to see if it's 1 a.m.
+*/
+//:://////////////////////////////////////////////
+//:: Created By:    Cori May
+//:: Created On:    April 7, 2002
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    if(GetTimeHour()==1)
+    {
+        return TRUE;
+    }
+    return FALSE;
+}

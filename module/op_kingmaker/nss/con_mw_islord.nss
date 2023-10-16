@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: con_mw_islord
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    The PC has just been named Lord.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: Nov 2003
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    int iResult;
+    iResult = GetLocalInt(OBJECT_SELF,"OS_MW_ISLORD")==1;
+    return iResult;
+}

@@ -1,0 +1,20 @@
+//::///////////////////////////////////////////////
+//:: Troops deployed
+//:: q2c25_env_deploy
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    The troops are deployed
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: August 2003
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetLocalInt(GetModule() ,"OS_ENIVID_DEPLOY")>0;
+    return iResult;
+}

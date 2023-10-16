@@ -1,0 +1,20 @@
+//::///////////////////////////////////////////////
+//:: Ellysia is Happy
+//:: con_ell_happy
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Ellysia is happy
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: August 2003
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetLocalInt(GetFirstPC(), "OS_ELLYSIA_MOOD")==20;
+    return iResult;
+}

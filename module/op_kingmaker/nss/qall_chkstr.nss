@@ -1,0 +1,19 @@
+//::///////////////////////////////////////////////
+//:: qall_chkstr
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Checks the player's strength
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: August 7, 2003
+//:://////////////////////////////////////////////
+#include "nw_i0_plot"
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = CheckDCStr(DC_EASY, 0, GetFirstPC());;
+    return iResult;
+}

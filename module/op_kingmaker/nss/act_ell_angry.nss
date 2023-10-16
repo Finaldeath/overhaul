@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Ellysia mad
+//:: act_ell_angry
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Ellysia will not speak to you
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: Sept 2003
+//:://////////////////////////////////////////////
+
+void main()
+{
+    SetLocalInt(GetFirstPC(),"OS_BECKET_AFFAIR",30);
+    SetLocalInt(GetFirstPC(), "OS_ELLYSIA_MOOD",99);
+}

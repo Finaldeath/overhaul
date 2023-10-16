@@ -1,0 +1,21 @@
+//::///////////////////////////////////////////////
+//:: Name
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Check if PC is Half-orc
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On: Sept. 2003
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    if (GetRacialType(GetFirstPC())==RACIAL_TYPE_HALFORC)
+        return TRUE;
+    return FALSE;
+}
+
+
+

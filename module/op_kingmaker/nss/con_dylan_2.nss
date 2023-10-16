@@ -1,0 +1,20 @@
+//::///////////////////////////////////////////////
+//:: con_dylan_2
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    The PC has already been rewarded.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Keith K2 Hayward
+//:: Created On: Nov 2004
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetLocalInt(OBJECT_SELF,"OS_DYLAN_PRISON")==3;
+    return iResult;
+}
+

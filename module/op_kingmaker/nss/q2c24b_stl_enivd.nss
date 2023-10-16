@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Stiletto's Story
+//:: q2c24b_stl_enivd
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Stiletto has told you about Enivid
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: August 2003
+//:://////////////////////////////////////////////
+
+void main()
+{
+    object oEnivid = GetObjectByTag("q2_enivid");
+    SetLocalInt(oEnivid,"OS_ENIVID_STILETTO",10);
+}

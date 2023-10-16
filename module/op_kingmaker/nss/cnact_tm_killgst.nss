@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: cnact_tm_killght
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Destroy the ghost in the sewer on conversation end
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Keith Hayward
+//:: Created On: June 2004
+//:://////////////////////////////////////////////
+
+void main()
+{
+    object oGhost = GetObjectByTag("SEWER_GHOST");
+    DestroyObject(oGhost);
+}

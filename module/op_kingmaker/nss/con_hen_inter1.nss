@@ -1,0 +1,19 @@
+//::///////////////////////////////////////////////
+//:: con_hen_inter1
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    The Henchman is on its first interjection
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: Nov 2003
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetLocalInt(OBJECT_SELF,"OS_HENCH_CONV")==10;
+    return iResult;
+}

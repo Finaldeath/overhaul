@@ -1,0 +1,19 @@
+//::///////////////////////////////////////////////
+//:: con_gla_notguild
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    The PC is not a member of the militia guild
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: Dec 2003
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetLocalInt(OBJECT_SELF,"OS_JOIN_MILITIA")<10;
+    return iResult;
+}

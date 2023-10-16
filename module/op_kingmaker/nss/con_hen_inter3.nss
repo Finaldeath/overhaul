@@ -1,0 +1,19 @@
+//::///////////////////////////////////////////////
+//:: con_hen_inter3
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    The Henchman is on its third interjection
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: Nov 2003
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetLocalInt(OBJECT_SELF,"OS_HENCH_CONV")==30;
+    return iResult;
+}

@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: Name
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Give PC 200 xp,
+     Mark Thaddeus told PC about Kill Gelani Plot
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On: Sept 2003
+//:://////////////////////////////////////////////
+void main()
+{
+    GiveXPToCreature(GetFirstPC(),200);
+    SetLocalInt(GetModule(), "OS_KILLGELANI",10);
+}

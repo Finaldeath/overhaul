@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: act_trp_givering
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Trip gives the hobgoblin's ring to the PC
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: Nov 2003
+//:://////////////////////////////////////////////
+
+void main()
+{
+    object oPC = GetFirstPC();
+    //ring of protection +2
+    CreateItemOnObject("nw_it_mring008",oPC);
+}

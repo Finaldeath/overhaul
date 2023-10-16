@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Join Thieves' Guild
+//:: act_sou_joinguil
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    The PC joins the thieves' guild
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: Sept 2003
+//:://////////////////////////////////////////////
+
+void main()
+{
+    object oPC = GetFirstPC();
+    SetLocalInt(oPC,"os_thievesguild_pc",1);
+}

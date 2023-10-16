@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: act_mw_yenna
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    The PC has spoken to the magic weapon about Yenna's eavesdropping
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: Nov 2003
+//:://////////////////////////////////////////////
+
+void main()
+{
+    object oYenna = GetObjectByTag("q2_yenna");
+    SetLocalInt(oYenna,"OS_YENNA_EAVESDROP",15);
+}

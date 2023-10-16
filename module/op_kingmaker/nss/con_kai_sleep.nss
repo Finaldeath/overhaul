@@ -1,0 +1,19 @@
+//::///////////////////////////////////////////////
+//:: con_kai_sleep
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Kaidala's nightmare
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: Nov 2003
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetLocalInt(GetFirstPC(), "OS_KAI_PLANT")==50;
+    return iResult;
+}

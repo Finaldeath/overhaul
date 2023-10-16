@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: con_alias_2
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Check if PC cleared caves.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On: July 28, 2003
+//:://////////////////////////////////////////////
+int StartingConditional()
+{
+    if (GetLocalInt(GetFirstPC(),"os_serahcaves")==30)
+        return TRUE;
+    return FALSE;
+}

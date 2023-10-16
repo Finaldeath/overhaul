@@ -1,0 +1,20 @@
+//::///////////////////////////////////////////////
+//:: Cows Rescued
+//:: con_grd_cowgood
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    The cows have been rescued
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: Sept 2003
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetLocalInt(GetModule(), "OS_THEGORD_COWS")==30;
+    return iResult;
+}

@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: act_jab_dislike
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Decreases how much Jaboli likes the PC
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: Nov 2003
+//:://////////////////////////////////////////////
+
+void main()
+{
+    int nLike = GetLocalInt(GetFirstPC(), "OS_JAB_LIKE")-5;
+    SetLocalInt(GetFirstPC(), "OS_JAB_LIKE",nLike);
+}

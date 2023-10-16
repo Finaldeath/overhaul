@@ -1,0 +1,16 @@
+//::///////////////////////////////////////////////
+//:: Name
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Sets that Dynschall dislikes the PC. PC still
+     has a chance for forgiveness.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On: July 21, 2003
+//:://////////////////////////////////////////////
+void main()
+{
+    SetLocalInt(GetFirstPC(),"os_templeguild_pc",70);
+}

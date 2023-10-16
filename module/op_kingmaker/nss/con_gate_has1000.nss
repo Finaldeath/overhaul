@@ -1,0 +1,19 @@
+//::///////////////////////////////////////////////
+//:: con_gate_has1000
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    The PC has at least 1000 gold
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: Oct 2003
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    int iResult;
+    object oPC = GetFirstPC();
+    iResult = GetGold(oPC)>=1000;
+    return iResult;
+}

@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: act_trp_story
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Advances Trip's story
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: Nov 2003
+//:://////////////////////////////////////////////
+
+void main()
+{
+    int nStory = GetLocalInt(OBJECT_SELF,"OS_TRIP_STORY")+10;
+    SetLocalInt(OBJECT_SELF,"OS_TRIP_STORY",nStory);
+}
