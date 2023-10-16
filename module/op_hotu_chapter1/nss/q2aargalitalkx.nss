@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: q2aArgaliTalkx
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+   Marks that the player has asked Argali about
+   refererring to herself in the third person
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Drew Karpyshyn
+//:: Created On: July 24, 2003
+//:://////////////////////////////////////////////
+
+void main()
+{
+  SetLocalInt(GetPCSpeaker(),"Argali_3rdPerson",1);
+}

@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: act_inn1_rumor
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+Takes a gold coin and gives a random rumor.
+
+*/
+//:://////////////////////////////////////////////
+//:: Created By:
+//:: Created On:
+//:://////////////////////////////////////////////
+
+void main()
+{
+    TakeGoldFromCreature(1, GetPCSpeaker());
+    DelayCommand(0.3,ActionStartConversation(GetPCSpeaker(), "inn1rumor"));
+}

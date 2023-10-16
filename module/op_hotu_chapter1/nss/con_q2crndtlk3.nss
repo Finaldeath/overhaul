@@ -1,0 +1,21 @@
+//::///////////////////////////////////////////////
+//:: con_q2crndtlk3
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Checks if ambient random talk variable is at 3
+*/
+//:://////////////////////////////////////////////
+//:: Created By:
+//:: Created On:
+//:://////////////////////////////////////////////
+
+
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetLocalInt(GetModule(),"RandomTalk")==3;
+    return iResult;
+}
+

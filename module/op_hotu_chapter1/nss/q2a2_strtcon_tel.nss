@@ -1,0 +1,16 @@
+//::///////////////////////////////////////////////
+//:: Name; q2a2_strtcon_tel
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    When clicked on, start the telescope conversation
+*/
+//:://////////////////////////////////////////////
+//:: Created By:Keith warner
+//:: Created On: Nov 29/02
+//:://////////////////////////////////////////////
+
+void main()
+{
+    ActionStartConversation(GetLastUsedBy(), "q2a2telescope", TRUE);
+}

@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Name: q2d_use_stonew
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    On use of the stone walk - start the stones
+    conversation file.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Keith WArner
+//:: Created On: Dec 12/02
+//:://////////////////////////////////////////////
+
+
+void main()
+{
+    ActionStartConversation(GetLastUsedBy());
+}

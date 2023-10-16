@@ -1,0 +1,16 @@
+//::///////////////////////////////////////////////
+//:: FileName q2d_at_portal1
+//:://////////////////////////////////////////////
+//:://////////////////////////////////////////////
+//:: Created By: Script Wizard
+//:: Created On: 6/27/2003 12:00:09 PM
+//:://////////////////////////////////////////////
+int StartingConditional()
+{
+
+    // Make sure the player has the required skills
+    if(!GetHasSkill(SKILL_SET_TRAP, GetPCSpeaker()))
+        return FALSE;
+
+    return TRUE;
+}

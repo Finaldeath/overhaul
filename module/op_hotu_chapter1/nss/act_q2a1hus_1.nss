@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: Name: act_q2a1hus_1
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+      Give the PC the husband's ring to take to
+      his wife in Mother Salinka's
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Keith Warner
+//:: Created On: Jan 14/03
+//:://////////////////////////////////////////////
+
+void main()
+{
+    CreateItemOnObject("q2a1ring", GetPCSpeaker());
+}

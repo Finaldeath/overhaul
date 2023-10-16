@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: Name  act_q2b5_sit
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+        Sit on the throne of bone
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Keith Warner
+//:: Created On: Dec 10/02
+//:://////////////////////////////////////////////
+
+void main()
+{
+    object oChair = GetObjectByTag("q2b5throne");
+    AssignCommand(GetPCSpeaker(), ActionSit(oChair));
+}

@@ -1,0 +1,20 @@
+//::///////////////////////////////////////////////
+//:: con_q2crndtlk0
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Checks if ambient random talk variable is at 0
+*/
+//:://////////////////////////////////////////////
+//:: Created By:
+//:: Created On:
+//:://////////////////////////////////////////////
+
+
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetLocalInt(GetModule(),"RandomTalk")==0;
+    return iResult;
+}

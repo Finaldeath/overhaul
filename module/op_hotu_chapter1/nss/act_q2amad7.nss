@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: act12amad7
+//:: FileName
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Player told by Mother Salinka to ask about
+     Argali's special item
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Drew Karpyshyn
+//:: Created On: July 24, 2003
+//:://////////////////////////////////////////////
+void main()
+{
+   SetLocalInt(GetPCSpeaker(),"NW_ARGALIITEM",10);
+}

@@ -1,0 +1,20 @@
+//::///////////////////////////////////////////////
+//:: Name q2a_chk_cook4
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Check cook dialog status on PC Speaker
+*/
+//:://////////////////////////////////////////////
+//:: Created By:
+//:: Created On:
+//:://////////////////////////////////////////////
+
+
+int StartingConditional()
+{
+    if (GetLocalInt(GetPCSpeaker(), "nCookDialog") < 4)
+        return TRUE;
+
+    return FALSE;
+}

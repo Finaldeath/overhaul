@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Name
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Check if PC has spoken to Cyphus before.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On: Jan 20, 2003
+//:://////////////////////////////////////////////
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetLocalInt(GetPCSpeaker(),"X2_CYPHUSSPEAK")==10;
+    return iResult;
+}

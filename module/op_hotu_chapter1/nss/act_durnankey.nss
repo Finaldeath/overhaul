@@ -1,0 +1,15 @@
+//::///////////////////////////////////////////////
+//:: FileName act_durnankey
+//:://////////////////////////////////////////////
+//:://////////////////////////////////////////////
+//:: Created By: Script Wizard
+//:: Created On: 9/12/2002 9:42:34 AM
+//:://////////////////////////////////////////////
+void main()
+{
+    // Give the speaker the items
+    CreateItemOnObject("q2awellkey", GetPCSpeaker(), 1);
+    //Set Durnan's talk state
+    SetLocalInt(GetPCSpeaker(), "nLeftYP", 2);
+
+}

@@ -1,0 +1,16 @@
+//::///////////////////////////////////////////////
+//:: Name
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Set PC spoke to prostitute thrice.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On: Jan 23, 2003
+//:://////////////////////////////////////////////
+#include "inc_plot_locals"
+void main()
+{
+    PCSpokeToProstituteThrice(GetTag(OBJECT_SELF), GetPCSpeaker());
+}

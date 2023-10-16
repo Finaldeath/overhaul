@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: Name: act_durnan_1
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Set variable so that Durnan doesn't try to
+    init conversation with PC anymore...
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Keith Warner
+//:: Created On: Jan 13/03
+//:://////////////////////////////////////////////
+
+void main()
+{
+    SetLocalInt(OBJECT_SELF, "nWellTalk", 1);
+}

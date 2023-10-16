@@ -1,0 +1,16 @@
+//::///////////////////////////////////////////////
+//:: Name
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Set PC spoke to prostitute once.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On: Jan 23, 2003
+//:://////////////////////////////////////////////
+#include "inc_plot_locals"
+void main()
+{
+    PCSpokeToProstituteOnce(GetTag(OBJECT_SELF), GetPCSpeaker());
+}

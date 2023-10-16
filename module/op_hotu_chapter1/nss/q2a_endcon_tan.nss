@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Name q2a_endcon_tan
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Tanarell will sit down in his chair after speaking
+    with the PC
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Keith Warner
+//:: Created On: July 22/03
+//:://////////////////////////////////////////////
+
+void main()
+{
+   // object oChair = GetObjectByTag("q2atanchair");
+  //  ActionSit(oChair);
+}

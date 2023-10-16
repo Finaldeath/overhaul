@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: Name
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Sets Mother Salinka as mad at the pc.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On: June 16, 2003
+//:://////////////////////////////////////////////
+#include "inc_plot_locals"
+void main()
+{
+    MotherSalinkaHatesPCs(GetPCSpeaker());
+    MotherSalinkaHatesPC(GetPCSpeaker());
+}

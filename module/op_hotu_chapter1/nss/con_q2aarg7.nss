@@ -1,0 +1,19 @@
+//::///////////////////////////////////////////////
+//:: Name
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Does pc have 5000 gold?
+     Sep 2003 - 10000 gp (bk)
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On: Nov 2002
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    if (GetGold(GetPCSpeaker())>=10000)
+        return TRUE;
+    return FALSE;
+}

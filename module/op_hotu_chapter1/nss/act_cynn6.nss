@@ -1,0 +1,19 @@
+//::///////////////////////////////////////////////
+//:: Name act_cynn6
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Take Ring from the PC
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Keith Warner
+//:: Created On: August 12/03
+//:: UPDATE - August 1/03  - local object
+//:://////////////////////////////////////////////
+
+void main()
+{
+    object oRing = GetLocalObject(OBJECT_SELF, "oRing");
+
+    DestroyObject(oRing);
+}

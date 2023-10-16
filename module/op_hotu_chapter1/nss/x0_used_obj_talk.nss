@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: x0_used_obj_talk
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Makes the object (door or placeable)
+    talk to the person using it with the dialog
+    file attached to this object.
+*/
+//:://////////////////////////////////////////////
+//:: Created By:
+//:: Created On:
+//:://////////////////////////////////////////////
+
+void main()
+{
+    ActionStartConversation(GetLastUsedBy());
+}

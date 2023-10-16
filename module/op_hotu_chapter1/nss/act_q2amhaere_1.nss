@@ -1,0 +1,16 @@
+//::///////////////////////////////////////////////
+//:: Name: act_q2amhaere_1
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Mhaere turns to the well room
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Keith Warner
+//:: Created On: Jan 24/03
+//:://////////////////////////////////////////////
+
+void main()
+{
+  AssignCommand(GetObjectByTag("q2amhaere"), SetFacingPoint(GetPosition(GetObjectByTag("wp_cut5_doorspawn"))));
+}

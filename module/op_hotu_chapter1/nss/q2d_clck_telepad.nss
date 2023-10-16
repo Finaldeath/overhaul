@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: Name :q2d_clck_telepad
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    On use of the telepad - start the telepad's
+    conversation
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Keith Warner
+//:: Created On: Dec 12/02
+//:://////////////////////////////////////////////
+
+void main()
+{
+    ActionStartConversation(GetClickingObject(), "q2dportal", TRUE);
+}

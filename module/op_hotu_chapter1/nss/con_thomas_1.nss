@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Name con_thomas_1
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    return TRUE if Thomas has been raised from the dead
+*/
+//:://////////////////////////////////////////////
+//:: Created By:
+//:: Created On:
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    if (GetLocalInt(OBJECT_SELF, "nRaised") == 1)
+        return TRUE;
+    return FALSE;
+}

@@ -1,0 +1,19 @@
+//::///////////////////////////////////////////////
+//:: x0_con_nopc
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+   only returns true if PC is NOT involved in the conversation
+*/
+//:://////////////////////////////////////////////
+//:: Created By:
+//:: Created On:
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetIsObjectValid(GetPCSpeaker()) == FALSE;
+    return iResult;
+}

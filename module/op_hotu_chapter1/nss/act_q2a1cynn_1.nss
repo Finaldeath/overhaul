@@ -1,0 +1,19 @@
+//::///////////////////////////////////////////////
+//:: Name act_q2a1cynn_1
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Take Ring.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Keith Warner
+//:: Created On: Jan 14, 2003
+//:: UPDATE - August 1/03  - local object
+//:://////////////////////////////////////////////
+
+void main()
+{
+    object oRing = GetLocalObject(OBJECT_SELF, "oRing");
+
+    DestroyObject(oRing);
+}

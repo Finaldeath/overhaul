@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Name
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Check if Tanarell is morose.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On: Jan 3, 2003
+//:://////////////////////////////////////////////
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetLocalInt(GetModule(),"XP_TANARELLSPEAK")==10;
+    return iResult;
+}

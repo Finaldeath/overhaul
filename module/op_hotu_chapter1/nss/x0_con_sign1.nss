@@ -1,0 +1,20 @@
+//::///////////////////////////////////////////////
+//:: x0_con_sign1
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Returns true if the tag of this sign
+    is 1.
+*/
+//:://////////////////////////////////////////////
+//:: Created By:
+//:: Created On:
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = StringToInt(GetTag(OBJECT_SELF)) == 1;
+    return iResult;
+}
