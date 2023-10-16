@@ -1,0 +1,16 @@
+//::///////////////////////////////////////////////
+//:: Name
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Garrick gave gold to PC once and give gold.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On: April 10, 2003
+//:://////////////////////////////////////////////
+void main()
+{
+    SetLocalInt(GetModule(),"X1_GARRICKSPEAK",10);
+    GiveGoldToCreature(GetPCSpeaker(),50);
+}

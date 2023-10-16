@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: Name
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Check if no other PC is Ao.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On: April 9, 2003
+//:://////////////////////////////////////////////
+int StartingConditional()
+{
+    if(GetLocalInt(GetModule(),"X1_NOMOREGODS")==0)
+        return TRUE;
+    return FALSE;
+}
