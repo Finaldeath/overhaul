@@ -1,0 +1,120 @@
+//::///////////////////////////////////////////////
+//:: M3_PLOTITEMS
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Adds all plot items in the game to a chest in
+    Aarin's Lodge
+*/
+//:://////////////////////////////////////////////
+//:: Created By:    Cori May
+//:: Created On:    May 2002
+//:://////////////////////////////////////////////
+
+void main()
+{
+    object oKeg = OBJECT_SELF;
+    CreateItemOnObject("m3q2_elkwarhelm",oKeg);
+    CreateItemOnObject("m3q3c_journarwyl",oKeg);
+    CreateItemOnObject("it_brun",oKeg);
+    CreateItemOnObject("m3_cultjournal1",oKeg);
+    CreateItemOnObject("m3_cultjournal2",oKeg);
+    CreateItemOnObject("m3_cultjournal3",oKeg);
+    CreateItemOnObject("m3q1trialbook",oKeg);
+    CreateItemOnObject("m3q3c_journhodd",oKeg);
+    CreateItemOnObject("m3q2c05_journal",oKeg);
+    CreateItemOnObject("m3q2d_book_1",oKeg);
+    CreateItemOnObject("m3q2d_book_3",oKeg);
+    CreateItemOnObject("m3q2d_book_2",oKeg);
+    CreateItemOnObject("m3q3dgem012",oKeg);
+    CreateItemOnObject("m3q3dgem005",oKeg);
+    CreateItemOnObject("m3q3dgem003",oKeg);
+    CreateItemOnObject("m3q3dgem008",oKeg);
+    CreateItemOnObject("m3q3d_succstone",oKeg);
+    CreateItemOnObject("m3q3d_succneck",oKeg);
+    CreateItemOnObject("m3q3d_succring",oKeg);
+    CreateItemOnObject("m3q2a10bretband",oKeg);
+    CreateItemOnObject("m3q2f_golem",oKeg);
+    CreateItemOnObject("m3q2_b07_feathe",oKeg);
+    CreateItemOnObject("m3q2f_golemkey",oKeg);
+    CreateItemOnObject("m3q1_c8_key",oKeg);
+    CreateItemOnObject("m3q1_a11_lil_not",oKeg);
+    CreateItemOnObject("m3q3a_orchead",oKeg);
+    CreateItemOnObject("m3q2a14_arness",oKeg);
+    CreateItemOnObject("m3q2f22powder1",oKeg,2);
+    CreateItemOnObject("m3q1a07writ",oKeg);
+    CreateItemOnObject("m3q2a10ecknote",oKeg);
+    CreateItemOnObject("m3q2fsprite",oKeg);
+    CreateItemOnObject("m3q4dragon_eggs",oKeg);
+    CreateItemOnObject("m3q4dragon_egggr",oKeg);
+    CreateItemOnObject("m3q3_a02guzud",oKeg);
+    CreateItemOnObject("m3q4_c03_giant_h",oKeg);
+    CreateItemOnObject("m3q2_wall2gate",oKeg);
+    CreateItemOnObject("m3q4_f02_klauth",oKeg);
+    CreateItemOnObject("m3q3_a02oboul",oKeg);
+    CreateItemOnObject("m3q2a14_cure",oKeg);
+    CreateItemOnObject("m3q2_a11blankets",oKeg);
+    CreateItemOnObject("m3q2f_book_1",oKeg);
+    CreateItemOnObject("it_smlmisc001",oKeg);
+    CreateItemOnObject("m3q2f22powder2",oKeg,2);
+    CreateItemOnObject("it_thnmisc001",oKeg);
+    CreateItemOnObject("m3q1_a11_lil_sno",oKeg);
+    CreateItemOnObject("m3q1_a11_lil_sta",oKeg);
+    CreateItemOnObject("m3q2ftime_cry",oKeg);
+    CreateItemOnObject("m3q1a09tomeofboo",oKeg);
+    CreateItemOnObject("m3q1a09tomeofpow",oKeg);
+    CreateItemOnObject("m3q1a09tomeofrob",oKeg);
+    CreateItemOnObject("m3q1a09tomeofamu",oKeg);
+    CreateItemOnObject("m3q1a09tomeofrin",oKeg);
+    CreateItemOnObject("m3q2ultargseed",oKeg);
+    CreateItemOnObject("m3q3_a02vaath",oKeg);
+    CreateItemOnObject("m3q1_wordpower3",oKeg);
+    CreateItemOnObject("m3q2f22powder3",oKeg,2);
+    CreateItemOnObject("m3q2d08_zokan",oKeg);
+    CreateItemOnObject("m3q3_cyrilletter",oKeg);
+    CreateItemOnObject("m3q2_d08_dream",oKeg);
+    CreateItemOnObject("m3q2_letter1",oKeg);
+    CreateItemOnObject("m3q2g08ring",oKeg);
+    CreateItemOnObject("m3q2g07puzzlen",oKeg);
+    CreateItemOnObject("m3q2g_hints",oKeg);
+    CreateItemOnObject("m3q2gtranam",oKeg);
+    CreateItemOnObject("m3q1_wordpower2",oKeg);
+    CreateItemOnObject("m3q3c_swordages",oKeg);
+    CreateItemOnObject("m3q3c_brokenages",oKeg);
+    CreateItemOnObject("m3q3c_fixedages",oKeg);
+    CreateItemOnObject("m3q3b_buildstaff",oKeg);
+    CreateItemOnObject("m3q3melfring",oKeg);
+    CreateItemOnObject("m3all_magscroll",oKeg);
+    CreateItemOnObject("m3q3b_howsummon",oKeg);
+    CreateItemOnObject("m3q1_wordpower1",oKeg);
+    CreateItemOnObject("m3q04g_sphere2",oKeg);
+    CreateItemOnObject("m3q04g_sphere",oKeg);
+    CreateItemOnObject("m3q04g_sphere3",oKeg);
+    CreateItemOnObject("m3q04h07_lock",oKeg);
+    CreateItemOnObject("m3q4d12_note",oKeg);
+    CreateItemOnObject("m3q4d17_notes",oKeg);
+    CreateItemOnObject("m3q04_pass",oKeg);
+    CreateItemOnObject("m3q04g_book",oKeg);
+    CreateItemOnObject("m3q2f18_blue",oKeg);
+    CreateItemOnObject("m3q2f18_green",oKeg,2);
+    CreateItemOnObject("m3q2f18_orange",oKeg,2);
+    CreateItemOnObject("m3q2f18_purple",oKeg,2);
+    CreateItemOnObject("m3q2f18_red",oKeg);
+    CreateItemOnObject("m3q2f18_yellow",oKeg);
+    CreateItemOnObject("nw_hen_gri3qt",oKeg);
+    CreateItemOnObject("nw_hen_bod3qt",oKeg);
+    CreateItemOnObject("nw_hen_sha3qt",oKeg);
+    CreateItemOnObject("nw_hen_gal3qt",oKeg);
+    CreateItemOnObject("nw_hen_dae3qt",oKeg);
+    CreateItemOnObject("nw_hen_lin3qt",oKeg);
+    CreateItemOnObject("m3oboulddrow",oKeg);
+    CreateItemOnObject("aribeth_ring",oKeg);
+    CreateItemOnObject("aarin_amulet2",oKeg);
+    CreateItemOnObject("aarin_amulet",oKeg);
+    CreateItemOnObject("m3q1a09whitepor",oKeg);
+    CreateItemOnObject("m3q3d_ped_green",oKeg);
+    CreateItemOnObject("m3q3d_ped_blue",oKeg);
+    CreateItemOnObject("m3q3d_ped_purple",oKeg);
+    CreateItemOnObject("m3q3d_ped_white",oKeg);
+    AssignCommand(oKeg,SpeakString("Done."));
+}

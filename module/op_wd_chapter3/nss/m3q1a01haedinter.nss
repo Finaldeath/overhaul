@@ -1,0 +1,19 @@
+//::///////////////////////////////////////////////
+//:: Interrupted Haedraline
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Haedraline will say this only when talking to herself
+*/
+//:://////////////////////////////////////////////
+//:: Created By:
+//:: Created On:
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = !GetIsObjectValid(GetPCSpeaker());
+    return iResult;
+}

@@ -1,0 +1,21 @@
+//::///////////////////////////////////////////////
+//:: Shaman Leaves Area
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+
+*/
+//:://////////////////////////////////////////////
+//:: Created By:
+//:: Created On:
+//:://////////////////////////////////////////////
+#include "nw_i0_generic"
+
+void main()
+{
+    if (GetIsEnemy(GetLastSpeaker()) == FALSE)
+    {
+        SetSpawnInCondition(NW_FLAG_ESCAPE_LEAVE);
+        ActivateFleeToExit();
+    }
+}

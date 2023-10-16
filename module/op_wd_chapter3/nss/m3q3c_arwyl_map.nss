@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: M3Q3C_ARWYL_MAP
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Creates a map note where arwyl is standing.
+*/
+//:://////////////////////////////////////////////
+//:: Created By:    Cori May
+//:: Created On:    April 2002
+//:://////////////////////////////////////////////
+
+void main()
+{
+    object oMap = GetObjectByTag("WP_M3Q3B_ARWYL_MAP");
+    SetMapPinEnabled(oMap,TRUE);
+}

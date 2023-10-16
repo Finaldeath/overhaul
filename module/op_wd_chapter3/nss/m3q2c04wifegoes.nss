@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Wife Goes to War Camp
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    She has hit the trigger and spoken
+    and said that she is going to the camp now.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Brent
+//:: Created On: November
+//:://////////////////////////////////////////////
+
+
+void main()
+{
+    JumpToObject(GetObjectByTag("M3Q2A10_WIFE_DEST"));
+}

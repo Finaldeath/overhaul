@@ -1,0 +1,16 @@
+//::///////////////////////////////////////////////
+//:: M3Q2D_SLEEPING
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Sets the child back to sleep after talking.
+*/
+//:://////////////////////////////////////////////
+//:: Created By:    Cori May
+//:: Created On:    March 12, 2002
+//:://////////////////////////////////////////////
+
+void main()
+{
+        ApplyEffectToObject(DURATION_TYPE_PERMANENT, EffectSleep(), OBJECT_SELF);
+}

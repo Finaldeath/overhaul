@@ -1,0 +1,19 @@
+//::///////////////////////////////////////////////
+//:: Talk to first PC seen
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+
+*/
+//:://////////////////////////////////////////////
+//:: Created By:
+//:: Created On:
+//:://////////////////////////////////////////////
+
+void main()
+{
+    if (GetIsPC(GetLastPerceived()) == TRUE && GetLastPerceptionSeen() == TRUE)
+    {
+        ActionStartConversation(GetLastPerceived());
+    }
+}

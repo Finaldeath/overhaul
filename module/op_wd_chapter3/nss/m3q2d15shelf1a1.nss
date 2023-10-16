@@ -1,0 +1,19 @@
+//::///////////////////////////////////////////////
+//:: Place First Book
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Places the first book in the bookcase.
+*/
+//:://////////////////////////////////////////////
+//:: Created By:
+//:: Created On:
+//:://////////////////////////////////////////////
+#include "M3PLOTINCLUDE"
+
+void main()
+{
+    PlaceMyBook(GetPCSpeaker());
+    OpenMyDoor();
+    SetLocalInt(OBJECT_SELF, "NW_L_BOOK_IN_ME", 1);
+}

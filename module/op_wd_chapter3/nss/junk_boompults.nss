@@ -1,0 +1,6 @@
+#include "M3PLOTINCLUDE"
+
+void main()
+{
+    SetLocalInt(GetModule(),"NW_G_M3Q02TALKFORTILKARDSIEGE",M3Q2_SIEGEENGINESGONE);
+}

@@ -1,0 +1,8 @@
+void main()
+{
+    if(GetLocalInt(GetModule(),"NW_G_M3Q3CA_AUTOSAVE")==0 && GetIsPC(GetEnteringObject()))
+    {
+        DoSinglePlayerAutoSave();
+        SetLocalInt(GetModule(),"NW_G_M3Q3CA_AUTOSAVE",1);
+    }
+}

@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: M3Q3D_SUCCLAST
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    returns the script and sets a variable
+*/
+//:://////////////////////////////////////////////
+//:: Created By:    Cori May
+//:: Created On:    May 2002
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    SetLocalInt(OBJECT_SELF,"NW_G_SUCCUBUS_FREE",1);
+    return TRUE;
+}

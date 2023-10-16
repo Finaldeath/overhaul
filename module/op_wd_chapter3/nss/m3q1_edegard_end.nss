@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: M3Q1_EDEGARD_END
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Sets that he's out of conversation and sets
+    the praying local to false.
+*/
+//:://////////////////////////////////////////////
+//:: Created By:    Cori May
+//:: Created On:    March 11, 2002
+//:://////////////////////////////////////////////
+
+void main()
+{
+    SetLocalInt(OBJECT_SELF, "NW_M3Q1_PRAY_DELAY", FALSE);
+}

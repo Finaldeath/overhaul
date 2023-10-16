@@ -1,0 +1,23 @@
+//::///////////////////////////////////////////////
+//:: Smart  and 1000 gold
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+
+*/
+//:://////////////////////////////////////////////
+//:: Created By:
+//:: Created On:
+//:://////////////////////////////////////////////
+
+#include "nw_i0_plot"
+
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = HasGold(1000, GetPCSpeaker()) & CheckIntelligenceNormal();
+    return iResult;
+}
+
+

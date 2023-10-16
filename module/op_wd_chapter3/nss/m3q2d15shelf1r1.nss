@@ -1,0 +1,20 @@
+//::///////////////////////////////////////////////
+//:: Player has Book
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+  Returns True if Player has Appropriate Book
+*/
+//:://////////////////////////////////////////////
+//:: Created By:
+//:: Created On:
+//:://////////////////////////////////////////////
+#include "M3PLOTINCLUDE"
+
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = PlayerHasMyBook(GetPCSpeaker());
+    return iResult;
+}

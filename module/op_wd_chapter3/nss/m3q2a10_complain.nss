@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: M3Q2A10_COMPLAIN
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Sets that the player has heard the settlers
+    complain about Damas.
+*/
+//:://////////////////////////////////////////////
+//:: Created By:    Cori May
+//:: Created On:    April 2002
+//:://////////////////////////////////////////////
+
+void main()
+{
+    SetLocalInt(GetPCSpeaker(),"NW_G_COMPLAIN",1);
+}

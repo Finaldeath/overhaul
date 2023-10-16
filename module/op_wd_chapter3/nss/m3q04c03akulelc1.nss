@@ -1,0 +1,4 @@
+void main()
+{
+    SetLocalInt(OBJECT_SELF,"NW_G_M3Q04TALKETIQUETTE",(GetLocalInt(OBJECT_SELF,"NW_G_M3Q04TALKETIQUETTE") +1));
+}

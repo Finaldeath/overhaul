@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: M3Q2ALLSAPP2.nss
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+Sapphira gives a magic scroll, if player succeeds
+in persuasion.
+*/
+//:://////////////////////////////////////////////
+//:: Created By:  Brent
+//:: Created On:  December 20 2001
+//:://////////////////////////////////////////////
+
+void main()
+{
+    CreateItemOnObject("NW_IT_SPARSCR409", GetPCSpeaker());
+}

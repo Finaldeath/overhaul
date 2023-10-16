@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: M3Q3C_HODD_MAP
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Creates a map note where Hodd is standing.
+*/
+//:://////////////////////////////////////////////
+//:: Created By:    Cori May
+//:: Created On:    April 2002
+//:://////////////////////////////////////////////
+
+void main()
+{
+    object oMap = GetObjectByTag("WP_M3Q3B_HODD_MAP");
+    SetMapPinEnabled(oMap,TRUE);
+}
+
