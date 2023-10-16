@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Set Local Generic Plot Flag to 10
+//:: 2Q4_SETPLOTAT2
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Sets the local plot flag at 10
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Preston Watamaniuk
+//:: Created On: Jan 14, 2002
+//:://////////////////////////////////////////////
+#include "NW_I0_2Q4LUSKAN"
+
+void main()
+{
+    SetLocalPlotIntOnCharacter(OBJECT_SELF, 10);
+}

@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Undead Panic Shout
+//:: 2Q4A_PANCIC_03
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Panic shout variable for Undead.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Preston Watamaniuk
+//:: Created On: Feb 13, 2002
+//:://////////////////////////////////////////////
+
+
+void main()
+{
+    SetLocalInt(OBJECT_SELF, "NW_2Q4A_PANIC_SHOUT", 3);
+}

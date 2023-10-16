@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Kurth Panic Shout
+//:: 2Q4A_SETPANIC
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Panic shout variable for Kurth's side.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Preston Watamaniuk
+//:: Created On: Feb 13, 2002
+//:://////////////////////////////////////////////
+
+
+void main()
+{
+    SetLocalInt(OBJECT_SELF, "NW_2Q4A_PANIC_SHOUT", 1);
+}

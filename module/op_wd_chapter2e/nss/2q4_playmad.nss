@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Play Mad
+//:: 2Q4_PlayMad
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Play a mad animation
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Preston Watamaniuk
+//:: Created On: Jan 28, 2002
+//:://////////////////////////////////////////////
+#include "NW_I0_2Q4LUSKAN"
+
+void main()
+{
+    PlayConversationAnimation(ANIMATION_LOOPING_TALK_FORCEFUL);
+}

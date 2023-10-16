@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Acolyte Pray
+//:: 2Q4_AcolytePray
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Returns a acolyte to praying after talking to the
+    PC.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Preston Watamaniuk
+//:: Created On: March 20, 2002
+//:://////////////////////////////////////////////
+
+void main()
+{
+    SetLocalInt(OBJECT_SELF, "NW_2Q4_PRAY_DELAY", FALSE);
+}

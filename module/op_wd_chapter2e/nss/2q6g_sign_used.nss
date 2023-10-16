@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Sign On Use
+//:: 2Q6G_Sign_Use
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    When the person clicks the sign a warning
+    dialogue will appear.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Preston Watamaniuk
+//:: Created On: FEb 26, 2002
+//:://////////////////////////////////////////////
+
+void main()
+{
+    ActionStartConversation(OBJECT_SELF);
+}

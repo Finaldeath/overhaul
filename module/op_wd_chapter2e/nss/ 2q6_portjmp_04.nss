@@ -1,0 +1,20 @@
+//::///////////////////////////////////////////////
+//:: Teleporter Activate
+//:: 2Q6_PortJmp_04
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Jumps the PC to a specified level of the
+    host tower.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Preston Watamaniuk
+//:: Created On: Feb 15, 2002
+//:://////////////////////////////////////////////
+
+#include "NW_I0_HOSTINCL"
+void main()
+{
+    HOST_ActivatePortal(4);
+}
+
