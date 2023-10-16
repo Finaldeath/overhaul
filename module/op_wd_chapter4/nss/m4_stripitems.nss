@@ -1,0 +1,121 @@
+//::///////////////////////////////////////////////
+//:: M4_STRIPITEMS
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Strips items from chapter 2E when entering the module
+*/
+//:://////////////////////////////////////////////
+//:: Created By:    Cori May
+//:: Created On:    April 2002
+//:://////////////////////////////////////////////
+
+void Strip3Items(string sTag)
+{
+    if(GetIsPC(GetEnteringObject()))
+    {
+        object oPC = GetEnteringObject();
+        object oItem = GetItemPossessedBy(oPC,sTag);
+        if (GetIsObjectValid(oItem))
+        {
+            DestroyObject(oItem);
+            DelayCommand(0.1,Strip3Items(sTag));
+        }
+    }
+}
+void main()
+{
+    Strip3Items("M3Q2_ELKWARHELM");
+    Strip3Items("M3Q3C_JOURNARWYL");
+    Strip3Items("it_Brun");
+    Strip3Items("m3_cultjournal1");
+    Strip3Items("m3_cultjournal2");
+    Strip3Items("m3_cultjournal3");
+    Strip3Items("M3Q1TrialBook");
+    Strip3Items("M3Q3C_JOURNHODD");
+    Strip3Items("M3Q2C05_JOURNAL");
+    Strip3Items("M3Q2D_BOOK_1");
+    Strip3Items("M3Q2D_BOOK_3");
+    Strip3Items("M3Q2D_BOOK_2");
+    Strip3Items("M3Q3DGEM012");
+    Strip3Items("M3Q3DGEM005");
+    Strip3Items("M3Q3DGEM003");
+    Strip3Items("M3Q3DGEM008");
+    Strip3Items("M3Q3D_SUCCUBUS");
+    Strip3Items("M3Q3D_SUCCUBUS");
+    Strip3Items("M3Q3D_SUCCUBUS");
+    Strip3Items("M3Q2A10BRETBAND");
+    Strip3Items("M3Q2F_GOLEM");
+    Strip3Items("M3Q2_B07_FEATHE");
+    Strip3Items("M3Q1_C8_KEY");
+    Strip3Items("M3Q2F_GOLEMKEY");
+    Strip3Items("M3Q1_A11_LIL_NOT");
+    Strip3Items("M3Q3A_ORCHEAD");
+    Strip3Items("M3Q2A14_ARNESS");
+    Strip3Items("M3Q2F22POWDER1");
+    Strip3Items("M3Q1A07WRIT");
+    Strip3Items("M3Q2A10ECKNOTE");
+    Strip3Items("m3q2fsprite");
+    Strip3Items("M3Q4Dragon_Eggs");
+    Strip3Items("M3Q4Dragon_Eggs");
+    Strip3Items("M3Q3_A02GUZUD");
+    Strip3Items("M3Q4_C03_GIANT_H");
+    Strip3Items("M3Q2_Wall2Gate");
+    Strip3Items("M3Q4_F02_KLAUTH");
+    Strip3Items("M3Q3_A02OBOUL");
+    Strip3Items("M3Q2A14_CURE");
+    Strip3Items("M3Q2_A11BLANKETS");
+    Strip3Items("M3Q2F_BOOK_1");
+    Strip3Items("M3Q3B_REAGENT_01");
+    Strip3Items("M3Q2F22POWDER2");
+    Strip3Items("M3Q3B_REAGENT_02");
+    Strip3Items("M3Q1_A11_LIL_SNO");
+    Strip3Items("M3Q1_A11_LIL_STA");
+    Strip3Items("M3Q2FTIME_CRY");
+    Strip3Items("M3Q1A09TOMEOFBOO");
+    Strip3Items("M3Q1A09TOMEOFPOW");
+    Strip3Items("M3Q1A09TOMEOFROB");
+    Strip3Items("M3Q1A09TOMEOFAMU");
+    Strip3Items("M3Q1A09TOMEOFRIN");
+    Strip3Items("M3Q2ULTARGSEED");
+    Strip3Items("M3Q3_A02VAATH");
+    Strip3Items("M3Q1_WORDPOWER3");
+    Strip3Items("M3Q2F22POWDER3");
+    Strip3Items("M3Q2D08_ZOKAN");
+    Strip3Items("M3Q3_CYRILLETTER");
+    Strip3Items("M3Q2_D08_DREAM");
+    Strip3Items("M3Q2_Letter1");
+    Strip3Items("M3Q2G08RING");
+    Strip3Items("M3Q2G07PUZZLEN");
+    Strip3Items("M3Q2G_HINTS");
+    Strip3Items("M3Q2STASIS_SCROL");
+    Strip3Items("M3Q2GTRANAM");
+    Strip3Items("M3Q1_WORDPOWER2");
+    Strip3Items("M3Q2F25FAKEWORD");
+    Strip3Items("M3Q3C_SWORDAGES");
+    Strip3Items("M3Q3C_BROKENAGES");
+    Strip3Items("M3Q3C_FIXEDAGES");
+    Strip3Items("M3Q3B_BUILDSTAFF");
+    Strip3Items("M3Q3MelfRing");
+    Strip3Items("M3ALL_MAGSCROLL");
+    Strip3Items("M3Q3B_HOWSUMMON");
+    Strip3Items("M3Q1_WORDPOWER1");
+    Strip3Items("M3Q04G_SPHERE2");
+    Strip3Items("M3Q04G_Sphere");
+    Strip3Items("M3Q04G_Sphere3");
+    Strip3Items("M3Q04H07_Lock");
+    Strip3Items("M3Q4D12_Note");
+    Strip3Items("M3Q4D17_NOTES");
+    Strip3Items("M3Q04_PASS");
+    Strip3Items("M3Q04G_BOOK");
+    Strip3Items("M3Q2F18_BLUE");
+    Strip3Items("M3Q2F18_GREEN");
+    Strip3Items("M3Q2F18_ORANGE");
+    Strip3Items("M3Q2F18_PURPLE");
+    Strip3Items("M3Q2F18_RED");
+    Strip3Items("M3Q2F18_YELLOW");
+    Strip3Items("M3Q3D_PED_PURPLE");
+    Strip3Items("M3Q3D_PED_WHITE");
+    Strip3Items("M3Q3D_PED_GREEN");
+    Strip3Items("M3Q3D_PED_BLUE");
+}

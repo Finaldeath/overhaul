@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: M4_SIT_END
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Makes the NPC go back to sitting at the end
+    of a conversation
+*/
+//:://////////////////////////////////////////////
+//:: Created By:    Cori May
+//:: Created On:    March 12, 2002
+//:://////////////////////////////////////////////
+
+void main()
+{
+    SetLocalInt(OBJECT_SELF, "NW_M4_SIT", FALSE);
+}

@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: M4Q1A11_DOORTALK
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Starts a conversation with the PC so he can use
+    the bookshelf as a door.
+*/
+//:://////////////////////////////////////////////
+//:: Created By:    Cori May
+//:: Created On:    April 5, 2002
+//:://////////////////////////////////////////////
+
+void main()
+{
+    ActionStartConversation(GetLastUsedBy());
+}

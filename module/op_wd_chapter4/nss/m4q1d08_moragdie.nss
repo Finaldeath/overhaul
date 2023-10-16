@@ -1,0 +1,5 @@
+// * Morag explodes
+void main()
+{
+
+}
