@@ -21,9 +21,17 @@
     "value": [
       {
         "__struct_id": 0,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -45,6 +53,10 @@
               "Active": {
                 "type": "resref",
                 "value": ""
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
               },
               "Index": {
                 "type": "dword",
@@ -78,9 +90,17 @@
       },
       {
         "__struct_id": 1,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -103,6 +123,10 @@
                 "type": "resref",
                 "value": ""
               },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
               "Index": {
                 "type": "dword",
                 "value": 2
@@ -117,6 +141,10 @@
               "Active": {
                 "type": "resref",
                 "value": ""
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
               },
               "Index": {
                 "type": "dword",
@@ -152,16 +180,28 @@
   },
   "NumWords": {
     "type": "dword",
-    "value": 48
+    "value": 49
+  },
+  "PreventZoomIn": {
+    "type": "byte",
+    "value": 0
   },
   "ReplyList": {
     "type": "list",
     "value": [
       {
         "__struct_id": 0,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -194,9 +234,17 @@
       },
       {
         "__struct_id": 1,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -231,9 +279,17 @@
       },
       {
         "__struct_id": 2,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -277,6 +333,10 @@
           "type": "resref",
           "value": "2q6p_leavemodule"
         },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
+        },
         "Index": {
           "type": "dword",
           "value": 1
@@ -287,6 +347,10 @@
         "Active": {
           "type": "resref",
           "value": ""
+        },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
         },
         "Index": {
           "type": "dword",

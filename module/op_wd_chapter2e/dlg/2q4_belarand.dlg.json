@@ -21,9 +21,17 @@
     "value": [
       {
         "__struct_id": 0,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -64,7 +72,11 @@
   },
   "NumWords": {
     "type": "dword",
-    "value": 11
+    "value": 8
+  },
+  "PreventZoomIn": {
+    "type": "byte",
+    "value": 0
   },
   "ReplyList": {
     "type": "list",
@@ -78,6 +90,10 @@
         "Active": {
           "type": "resref",
           "value": ""
+        },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
         },
         "Index": {
           "type": "dword",

@@ -21,9 +21,17 @@
     "value": [
       {
         "__struct_id": 0,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -56,15 +64,23 @@
         "Text": {
           "type": "cexolocstring",
           "value": {
-            "id": 27757
+            "id": 27759
           }
         }
       },
       {
         "__struct_id": 1,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -103,9 +119,17 @@
       },
       {
         "__struct_id": 2,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -138,7 +162,7 @@
         "Text": {
           "type": "cexolocstring",
           "value": {
-            "id": 27759
+            "id": 27757
           }
         }
       }
@@ -147,6 +171,10 @@
   "NumWords": {
     "type": "dword",
     "value": 36
+  },
+  "PreventZoomIn": {
+    "type": "byte",
+    "value": 0
   },
   "ReplyList": {
     "type": "list",
@@ -161,9 +189,13 @@
           "type": "resref",
           "value": "2q4a_pan_kurth"
         },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
+        },
         "Index": {
           "type": "dword",
-          "value": 0
+          "value": 2
         }
       },
       {
@@ -171,6 +203,10 @@
         "Active": {
           "type": "resref",
           "value": "2q4a_pan_baram"
+        },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
         },
         "Index": {
           "type": "dword",
@@ -183,9 +219,13 @@
           "type": "resref",
           "value": "2q4a_pan_undead"
         },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
+        },
         "Index": {
           "type": "dword",
-          "value": 2
+          "value": 0
         }
       }
     ]
