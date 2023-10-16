@@ -1,0 +1,16 @@
+//::///////////////////////////////////////////////
+//:: FileName conv_align_evil
+//:://////////////////////////////////////////////
+//:://////////////////////////////////////////////
+//:: Created By: Script Wizard
+//:: Created On: 5/4/2003 10:34:03 PM
+//:://////////////////////////////////////////////
+int StartingConditional()
+{
+
+    // Restrict based on the player's alignment
+    if(GetAlignmentGoodEvil(GetPCSpeaker()) != ALIGNMENT_EVIL)
+        return FALSE;
+
+    return TRUE;
+}

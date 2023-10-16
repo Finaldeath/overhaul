@@ -1,0 +1,16 @@
+//::///////////////////////////////////////////////
+//:: FileName conv_align_neut
+//:://////////////////////////////////////////////
+//:://////////////////////////////////////////////
+//:: Created By: Script Wizard
+//:: Created On: 5/4/2003 10:34:26 PM
+//:://////////////////////////////////////////////
+int StartingConditional()
+{
+
+	// Restrict based on the player's alignment
+	if(GetAlignmentLawChaos(GetPCSpeaker()) != ALIGNMENT_NEUTRAL)
+		return FALSE;
+
+	return TRUE;
+}

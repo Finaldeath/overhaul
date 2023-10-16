@@ -1,0 +1,16 @@
+//::///////////////////////////////////////////////
+//:: FileName conv_align_chao
+//:://////////////////////////////////////////////
+//:://////////////////////////////////////////////
+//:: Created By: Script Wizard
+//:: Created On: 5/4/2003 10:34:54 PM
+//:://////////////////////////////////////////////
+int StartingConditional()
+{
+
+	// Restrict based on the player's alignment
+	if(GetAlignmentLawChaos(GetPCSpeaker()) != ALIGNMENT_CHAOTIC)
+		return FALSE;
+
+	return TRUE;
+}
