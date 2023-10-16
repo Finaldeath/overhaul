@@ -21,13 +21,21 @@
     "value": [
       {
         "__struct_id": 0,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
         },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
         "Comment": {
           "type": "cexostring",
-          "value": "START/TERMINATE\r\n\r\nOne liner - followed by a countdown from 5 to 1, followed by a series of fireballs."
+          "value": ""
         },
         "Delay": {
           "type": "dword",
@@ -56,15 +64,23 @@
         "Text": {
           "type": "cexolocstring",
           "value": {
-            "id": 46948
+            "id": 46954
           }
         }
       },
       {
         "__struct_id": 1,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -97,15 +113,23 @@
         "Text": {
           "type": "cexolocstring",
           "value": {
-            "id": 46949
+            "id": 46953
           }
         }
       },
       {
         "__struct_id": 2,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -138,15 +162,23 @@
         "Text": {
           "type": "cexolocstring",
           "value": {
-            "id": 46950
+            "id": 46952
           }
         }
       },
       {
         "__struct_id": 3,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -185,9 +217,17 @@
       },
       {
         "__struct_id": 4,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -220,15 +260,23 @@
         "Text": {
           "type": "cexolocstring",
           "value": {
-            "id": 46952
+            "id": 46950
           }
         }
       },
       {
         "__struct_id": 5,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -261,19 +309,27 @@
         "Text": {
           "type": "cexolocstring",
           "value": {
-            "id": 46953
+            "id": 46949
           }
         }
       },
       {
         "__struct_id": 6,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
         },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
         "Comment": {
           "type": "cexostring",
-          "value": ""
+          "value": "START/TERMINATE\r\n\r\nOne liner - followed by a countdown from 5 to 1, followed by a series of fireballs."
         },
         "Delay": {
           "type": "dword",
@@ -302,7 +358,7 @@
         "Text": {
           "type": "cexolocstring",
           "value": {
-            "id": 46954
+            "id": 46948
           }
         }
       }
@@ -310,7 +366,11 @@
   },
   "NumWords": {
     "type": "dword",
-    "value": 34
+    "value": 20
+  },
+  "PreventZoomIn": {
+    "type": "byte",
+    "value": 0
   },
   "ReplyList": {
     "type": "list",
@@ -325,9 +385,13 @@
           "type": "resref",
           "value": "m3q3sc_fgrd_007"
         },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
+        },
         "Index": {
           "type": "dword",
-          "value": 0
+          "value": 6
         }
       },
       {
@@ -336,9 +400,13 @@
           "type": "resref",
           "value": "m3q3sc_fgrd_001"
         },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
+        },
         "Index": {
           "type": "dword",
-          "value": 1
+          "value": 5
         }
       },
       {
@@ -347,9 +415,13 @@
           "type": "resref",
           "value": "m3q3sc_fgrd_002"
         },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
+        },
         "Index": {
           "type": "dword",
-          "value": 2
+          "value": 4
         }
       },
       {
@@ -357,6 +429,10 @@
         "Active": {
           "type": "resref",
           "value": "m3q3sc_fgrd_003"
+        },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
         },
         "Index": {
           "type": "dword",
@@ -369,9 +445,13 @@
           "type": "resref",
           "value": "m3q3sc_fgrd_004"
         },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
+        },
         "Index": {
           "type": "dword",
-          "value": 4
+          "value": 2
         }
       },
       {
@@ -380,9 +460,13 @@
           "type": "resref",
           "value": "m3q3sc_fgrd_005"
         },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
+        },
         "Index": {
           "type": "dword",
-          "value": 5
+          "value": 1
         }
       },
       {
@@ -391,9 +475,13 @@
           "type": "resref",
           "value": "m3q3sc_fgrd_006"
         },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
+        },
         "Index": {
           "type": "dword",
-          "value": 6
+          "value": 0
         }
       }
     ]
