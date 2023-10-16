@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Start Conversation (OnUse)
+//:: Us_StartConv.nss
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Launch the placeable's conversation OnUse.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Rob Bartel
+//:: Created On: March 14, 2003
+//:://////////////////////////////////////////////
+
+void main()
+{
+    object oPC = GetLastUsedBy();
+    ActionStartConversation(oPC);
+}

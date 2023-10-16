@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Portable Door (Action - Shrink)
+//:: A_PortDoorShrink.nss
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Shrinks the portable door and returns it to
+     the player's pack.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Rob Bartel
+//:: Created On: March 18, 2003
+//:://////////////////////////////////////////////
+
+void main()
+{
+    DestroyObject(OBJECT_SELF);
+}

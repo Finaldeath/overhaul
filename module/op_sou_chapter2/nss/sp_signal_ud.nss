@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: Signal User-Defined (OnSpawn)
+//:: Sp_Signal_UD.nss
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Signal the object's User-Defined Event.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Rob Bartel
+//:: Created On: March 13, 2003
+//:://////////////////////////////////////////////
+
+void main()
+{
+    SignalEvent(OBJECT_SELF, EventUserDefined(5000));
+}

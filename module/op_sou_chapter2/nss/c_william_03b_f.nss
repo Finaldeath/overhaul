@@ -1,0 +1,26 @@
+//::///////////////////////////////////////////////
+//:: William Rey (Condition - Area 03b, Not Talked To)
+//:: C_William_03b_F.nss
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Return TRUE if the conversation takes place
+     in the rewritten romance novel area.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Rob Bartel
+//:: Created On: March 14, 2003
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    object oArea = GetArea(OBJECT_SELF);
+    string sAreaTag = GetTag(oArea);
+    int bTalkedTo = GetLocalInt(OBJECT_SELF, "Library_03b_bTalkedTo");
+
+    if (sAreaTag == "Library_03b" && bTalkedTo == FALSE)
+    {
+        return TRUE;
+    }
+    return FALSE;
+}

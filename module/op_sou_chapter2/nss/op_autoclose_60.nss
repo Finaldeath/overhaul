@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: Auto-Close, 60 seconds (OnOpen)
+//:: Op_AutoClose_60.nss
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Close self 60 seconds after first opening.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Rob Bartel
+//:: Created On: March 24, 2003
+//:://////////////////////////////////////////////
+
+void main()
+{
+    DelayCommand(60.0, ActionCloseDoor(OBJECT_SELF));
+}
