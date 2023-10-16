@@ -1,0 +1,121 @@
+{
+  "__data_type": "UTI ",
+  "AddCost": {
+    "type": "dword",
+    "value": 0
+  },
+  "BaseItem": {
+    "type": "int",
+    "value": 44
+  },
+  "Charges": {
+    "type": "byte",
+    "value": 50
+  },
+  "Comment": {
+    "type": "cexostring",
+    "value": ""
+  },
+  "Cost": {
+    "type": "dword",
+    "value": 4
+  },
+  "Cursed": {
+    "type": "byte",
+    "value": 0
+  },
+  "DescIdentified": {
+    "type": "cexolocstring",
+    "value": {
+      "0": "DM Tool:\n\nIf cast on a player...\n- Display attributes (stats, equipped items, player name, etc)\n- Change alignment (Law, Chaos, Good, Evil) by one or five points\n- Give the player a full map of the area\n- Follow the player\n- Force the player to follow you (for a short period of time)\n- Take items - all equipped, all unequipped, all items, or an item equipped into a specific slot\n- Penguin the player - paralyze the player, and turn him into a penguin\n- Unpenguin the player\n- Boot the PC out of the game\n- Roll a skill or ability check\n- Join the PC's party\n- Leave the party\n\nIf cast on a creature...\n- Display attributes (stats, equipped items, player name, etc)\n- Change alignment (Law, Chaos, Good, Evil) by one or five points\n- Follow the creature\n- Force the creature to follow you for a short period of time (it will resume walking waypoints, if any, once it stops following)\n- Tell the creature to run the \"nw_c2_default9\" script (resumes waypoint walking)\n- Take items - all equipped, all unequipped, all items, or an item equipped into a specific slot\n- Kill creature, leaving a corpse\n- Change All Players or One Players faction with this creatures faction.\n\nIf cast on a creature or selectable object...\n- Kill object, leaving any loot it would normally leave\n- Destroy this object\n- Turn this object on or off (for placeables that can turn on and off)\n\nIf cast without a target...\n- Reload the current running module (use with caution, may cause server to become unstable on large maps)\n- Advance the current time of day by one, three, or five hours\n- Advance to the next day or night period\n- Destroy an object that is close by (includes untargettable objects)\n- Turn an object that is close by on or off (for placeables that can turn on and off) -- (Warning: some objects may not show the change until the observer has exited the area and re-entered. This is probably related to a similar problem with destroying static objects)\n- List All Player Names with their Character Names.\n- Jump to a PC (player name and character name listed together to make it easier to tell who to jump to).\n- Jump a PC to you (same as above)"
+    }
+  },
+  "Description": {
+    "type": "cexolocstring",
+    "value": {
+      "0": ""
+    }
+  },
+  "Identified": {
+    "type": "byte",
+    "value": 1
+  },
+  "LocalizedName": {
+    "type": "cexolocstring",
+    "value": {
+      "0": "DM's Helper"
+    }
+  },
+  "ModelPart1": {
+    "type": "byte",
+    "value": 33
+  },
+  "ModelPart2": {
+    "type": "byte",
+    "value": 42
+  },
+  "ModelPart3": {
+    "type": "byte",
+    "value": 42
+  },
+  "PaletteID": {
+    "type": "byte",
+    "value": 0
+  },
+  "Plot": {
+    "type": "byte",
+    "value": 1
+  },
+  "PropertiesList": {
+    "type": "list",
+    "value": [
+      {
+        "__struct_id": 0,
+        "ChanceAppear": {
+          "type": "byte",
+          "value": 100
+        },
+        "CostTable": {
+          "type": "byte",
+          "value": 3
+        },
+        "CostValue": {
+          "type": "word",
+          "value": 13
+        },
+        "Param1": {
+          "type": "byte",
+          "value": 255
+        },
+        "Param1Value": {
+          "type": "byte",
+          "value": 0
+        },
+        "PropertyName": {
+          "type": "word",
+          "value": 15
+        },
+        "Subtype": {
+          "type": "word",
+          "value": 329
+        }
+      }
+    ]
+  },
+  "StackSize": {
+    "type": "word",
+    "value": 1
+  },
+  "Stolen": {
+    "type": "byte",
+    "value": 0
+  },
+  "Tag": {
+    "type": "cexostring",
+    "value": "DMsHelper"
+  },
+  "TemplateResRef": {
+    "type": "resref",
+    "value": "dmshelper"
+  }
+}

@@ -1,0 +1,217 @@
+{
+  "__data_type": "UTP ",
+  "AnimationState": {
+    "type": "byte",
+    "value": 0
+  },
+  "Appearance": {
+    "type": "dword",
+    "value": 89
+  },
+  "AutoRemoveKey": {
+    "type": "byte",
+    "value": 0
+  },
+  "BodyBag": {
+    "type": "byte",
+    "value": 0
+  },
+  "CloseLockDC": {
+    "type": "byte",
+    "value": 0
+  },
+  "Comment": {
+    "type": "cexostring",
+    "value": ""
+  },
+  "Conversation": {
+    "type": "resref",
+    "value": ""
+  },
+  "CurrentHP": {
+    "type": "short",
+    "value": 15
+  },
+  "Description": {
+    "type": "cexolocstring",
+    "value": {
+      "0": "Persistent World Support\nSo long as the server remains online, the status that a player leaves the world in is the status the player will return to the world in. So if a player is dying at -5 hp and they quit out of the game, they will return dying at -5 hp. This also holds true if the server is restarted from a saved game.\n\nCharacter Generation\nWhen a character with 0 experience points enters the game, they are stripped of all items, and given the PHB amount of gold for their class. The player character may now purchase basic items by clicking on the HCR Signpost (custom placeable item). You may either choose to place your start point in the _Base area with a one-way portal to your module's actual start area or create your own start area with the same properties.\n\nAdjusting the Minimum Character Level for the Module\nYou can set your module up so that all characters start with a minimum level.\n\nSubraces\nSubraces are supported. Subraces which require an ECL (effective character level) are not included.\n\nExperience in HCR\nHCR is meant to be played with the modules experience slider set to 0.  \n\nExperience in HCR is now handled per the DMG pg 165. The current Bioware system takes into account Familiars, Summoned Creatures, Animal Companions and Henchmen when calculating your average level. Plus it bases exp on the individual (and pets) level and doesn't do a party split of the EXP. In fact, a single creature actually gives more exp in a larger party with pets than a single pc fighting solo. \n\nIf the CR of the creature is 8 more or less than the Average party level, they will gain 0 experience.  8 CR below is no challenge, 8 CR above they should be unable to defeat, so the DM should award exp in that case.\n\nLeveling Up and Trainers\nLevel trainers (turned on by default) are now supported. When turned on, a person must go to a trainer to level. If he/she levels without going to a trainer he/she will lose that level and must go to the trainer to regain it. \n\nDeath and Dying\nDeath and dying follows what is defined in the Player Handbook (PHB) pg 129 as closely as is possible.\n\nWhen a player takes damage that reduces them to 0 hp, they are DISABLED.  While disabled, a player receives an 80% movement penalty, is Slowed, and is Cursed with -5 pts to all stats save constitution and charisma.\n\nWhen a player takes damage that reduces them between -1 and -9 hp, they begin to die.  They fall to the ground, and a Death Corpse (DC) appears beside them.  Everything not equipped on the character, including their gold, appears on the DC.  Anyone can loot these items, the intent being that your party members can use the cure potion you have on your body to heal you.\n\nOnce a round (6 sec) there is a 10% chance that you will STABILIZE.  If you do, you stop bleeding, if not, you take 1pt of damage.  Once stabilized, there is a 10% chance per hour (2 min by default timer) that you will enter RECOVERY, if not, you take 1pt of damage.  Once in recovery, you have a 10% chance per day of beginning to heal normally.  While in recovery, you suffer the exact same penalties as when disabled.\n\nIf you heal ANY while -1 to -9, you automatically jump to a stable heal state.  You will take no more damage and are under the same effects as when in Recovery.\n\nOnce you reach -10 hp, you are dead.  All equipped items join your Death Corpse, along with the Player Corpse Token (PCT).\n\nWhen you die, you get one automatic roll to see if your Deity chooses to notice your passing and resurrect you.  There is a 5% chance this will happen, +1% per 4 levels.  If not, you are off to the Fugue Plane.\n\nOne on the Fugue Plane, you are able to move, but not attack anyone.  You stay here till you decide you are tired of waiting, or till you get resurrected (See below)\n\nBack in the real world, your corpse may be dragged by anyone who picks up your PCT. It weighs 130lbs.  When they pick up your PCT, your DC goes to the Storage area, making it look like they picked up your corpse.  When they drop the PCT, your DC reappears where they drop it.\n\nThe PCT may be activated targeting a NPC cleric of level 9 or higher.  The NPC cleric will raise the dead person, if the person using the PCT has 50gp*level of NPC cleric for raise dead, 70*level for resurrection and 90*level for true resurrection.  Raise dead and Resurrection have an additional 500gp cost, and true resurrection has an additional 5000gp cost, so 950gp minimum.  (Thus its usually not financially feasible to raise a level 1 person). When resurrected by any means other than Deity, you lose 1 level, going to the middle of the previous level.  If level 1, you lose 1 hp.  BUG: If you are multiclassed and lose a level, it bugs your character if you are only 1/1 in level. Will be fixed soon.\n\nWhen you return to life, everything on your Death Corpse is put back on you and it and the PCT vanish.\n\nResting and Natural Healing\nYou can rest in game once every 24 hours (48 min). If you have a bedroll, that time becomes every 8 hours (16 min). This is done so that casters do not just cast all their spells, rest for 30 seconds and then rinse and repeat. \n\nQuitting and returning does not reset this timer. \n\nIf you are using the FOODSYSTEM you need food on you to be able to rest. (Cant rest on an empty stomach you just toss and turn all night). \n\nWhen you rest, you only heal 1 hit point per level instead of full heal.  This prevents fighters from attack, rest, attack sequence. \n\nRest Button\nWhen your character can rest, the rest button will now blink. This way, Any spellcasters can safely cast all his/her spells right before resting. \n\nResting In Armor\nResting in Armor with a total bonus of AC 6 or more will produce fatigue (-2 to Str, -2 to Dex, walk only). Resting in armor while fatigued will produce exhaustion (-6 to Str, -6 to Dex, slow walk only). \n\nUnderstandably, this isn't 100% PHB behavior, but PHB behavior requires querying an armor's Armor Check penalty. Bioware, in their wisdom failed to supply us with any method that would give us this much needed data. \n\nSkills\nHealing\nWhen using the HC Healing kits, the Healing skill now follows the PHB. Healing only serves to stabilize anyone who is bleeding to death, allows the healer to attempt to cure poison or disease (on a successful heal check), or allows the healer to attempt long term care. \n\nScroll and Potion Creation\nThe Magic Item Creation System Add-on allows mages to create scrolls and potions if they have enough money and XP. For detailed instructions on how to use this addon, please read the MagicItemCreationSystem.txt file in the HardCoreERFMI.zip addon file. \n\nSearching and Traps\nSearching\nA new search and trap system has been introduced as of release 1.5.2 to better emulate PHB rules and to get rid of the automatic \"Take 20\" roll. In order to detect traps, a player must now use a \"Search Tool\". This tool completely replaces the NWN search button. When HCRTRAPS is set to 1, this tool is automatically given to any players that don't have one when they log in. \n\nBuilders adept at scripting may also use this tool to allow players to find hidden items. Simply insert your search code in the preEvent or postEvent hooks (see tablescriptsevenrow on event hooks). \n\nTraps and Locks\nWhen using this system, in order to disarm traps or open locks, the player must now use the HC \"Thieves' Tools\". \n\nTraps of DC 21 or more may only be dectected and disarmed by Rogues. \n\nYou may not use the thieves' tools if you are untrained in disarm trap or unlock. Do so only at your own risk. \n\nSpells and Special Abilities\nSpell Changes\nThe Summon Creature line (I-IX) now lasts the duration given in the PHB, i.e. 1 round per caster level. (Plus 1 round to make up for NWN Game mechanics).  If you want this to last longer, you may set SUMMONTIMER to the number of rounds/level you want it to last.  This change does not affect Familiars, which still last till dead or you rest.\n\nYou may designate what they Summon Creature line will summon. You may either have one per spell level, or a random set per spell level. This is all defined in the script:  hc_summon_inc\n\nThe Cure <blank> Wounds series of spells has been modified such that they do not cure for maximum when cast on Players.\n\nThe spells Raise Dead and Resurrection have been modified to apply the resurrection penalty of level loss.\n\nMaterial Components\nIf you set MATERCOMP in hc_inc to 1 you will turn on requirements for material components. Note, if you choose to use them (I recommend it) you must also install the add-on Material Components (HardCoreERFMC.zip) if you did not download the Full Hardcore set.\n\nWhen material components are turned on, Clerics and Paladins must now carry a holy/unholy symbol.\n\nWild Magic and Null Magic\nNo, not druid spells.\n\nWild magic is magic gone awry -- usually due to the magical nature of the area (such as a planar area) or perhaps due to some really powerful wards and glyphs. The possible effects are random (and not always good or bad). You may place the wild magic effect upon your whole module, an area or several areas, or an object (creature, placeable, item, etc).\n\nNull Magic is simply that... for some reason, the area/object/creature nullifies spells.\n\nSound Familiar?\nWhen a Familiar dies, the familiar's master will now lose 200xp x level of the owner. The owner will be given a chance to avoid half the penalty by making a successful Fortitude check. \n\nFeeding a familiar will no longer heal it fully. Sorry, but the ability to spontaneously heal is reserved for Artifact Familiars. \n\nIf you feel your familiar is getting a bit too daring, simply unsummon it. \n\nTurning Undead\nEvil Clerics may now dominate the most powerful undead creature that was supposed to be destroyed. The rest of the undead that were meant to die will now follow the cleric. \n\nDetermining the turning levels for pure Paladins and Paladin/Cleric multiclass is now correct as per PHB p. 56 (fixes a Bioware bug). \n\nMiscellaneous\nLogin message\nA login message appears to all players when logging in.\n\nLocking the Server\nSay your playing along, and you like your current grouping, or you don't want new players for the moment? Simply use the command line (hit ` to bring it up) and type:\n\nTo Lock the server: \ndmsetmodulevarint LOCKED 1\n\nTo unlock the server:\ndmsetmodulevarint LOCKED 0\n\nDM reservation system\nBy setting DMRESERVE in hc_inc to some number greater than 0, the game will limit the number of players to that number, regardless of what Maxplayers is set to on the server.  This allows the DM to always have a slot to log into.\n\nHCR Helper\nThere is a new tool for DM's called the HCR helper. This tool allows the DM to turn HCR settings on or off on the fly, or to change HCR settings on the fly. Feel your party isn't making enough money to level? Lower leveling costs! It's that simple! Monsters giving too much XP? As long as you didn't place them by hand, simply change the XP settings at will! And you get all of this for the low price of... FREE! Act now and we'll even throw in this manual! \n\nBe very careful, though, as some settings would be very bad to change under certain circumstances... such as turning off the LOOTSYSTEM off while someone is dead. \n\nDM Helper\nIf you downloaded the full Hardcore file, or installed the DM Helper add-on package, all DM’s are given a DM Helper upon login. (See DM Helper below)\n\nEvent Hooks\nEvent hooks are a great way to add custom code to your modules, and yet make it very easy to upgrade from HC version to HC version. As long as you do not touch the base files and put any modified code in the event hooks, upgrading to a new HC module should be very quick and very painless (perhaps not as painless as a wax job, but it's getting there). \n\nEvent hooks can now be used to completely bypass HCR behavior. \n\nPotions\nThere are four new potions that may be used on others rather than just self. They are the Cure <blank> wounds series. They appear under miscellaneous since Bioware has potions hardcoded as self only. These potions cost IAW the PHB. Its strongly recommended you remove the normal cure potions from vendors and just use the improved ones.\n\nSittables\nAny item may be made sittable upon by addition of the hc_pc_sittable script (hey, its cheesy, but I liked it).\n\nSummoned Monsters and Random Encounters\nAn add-on summon monster system adds more than 200 creatures to the possible results when casting Summon Creature\n\n.A wandering monster system is available, allowing you to set the strength and chance of wandering critters when players rest.\n\nCommunication\nAn add-on bulletin board system is available. at this link: http://nwn.darkemud.com/~darke/HC/download.htm\n\nPlayer Killer Tracking and Banning\nA PK Tracker system  Setting PKTRACKER to a number higher than 0 in hc_inc will make it so that if anyone kills more PC's than that number, they are booted from the game and cannot get back in in any form till the server resets.  If TELLONPK is set to 1 in hc_in (default) then all dm's are told anytime a player kills a player.  Note that PK's against members of your own party do not count against your total allowed (whoops, fireball)\n\nNatural Light Sources\nNatural light objects have a duration per the PHB, duration settable by BURNTORCH in hc_inc. You would want to remove all NWN torches from the game. HC Torches are dimmer so that a lantern can be brighter than a torch.\n\nGrenade Like Weapons and Oil Flasks\nOil, Holy Water, Alchemist's Fire and Acid Flasks can be thrown per phb pg 109, 113, 114, and 138\n\nPlayers may use a flask of oil to create a campfire that they can sit around.\n\nWhere's the beef?\nPlayers may use a skinning knife to carve meat from dead animals and then cook it on a campfire.\n\nMonster and NPC Corpses\nTired of watching seeing your awesome kills simply vanish into thin air, only to leave tons of loot in a tiny little bag? \n\nWorry no more! When monsters or NPCs die, they leave their corpses behind. Use this to search for loot instead of the loot bags. \n\nTo get back the starting merchant please click on use this item.",
+      "id": 14655
+    }
+  },
+  "DisarmDC": {
+    "type": "byte",
+    "value": 15
+  },
+  "Faction": {
+    "type": "dword",
+    "value": 2
+  },
+  "Fort": {
+    "type": "byte",
+    "value": 16
+  },
+  "Hardness": {
+    "type": "byte",
+    "value": 5
+  },
+  "HasInventory": {
+    "type": "byte",
+    "value": 0
+  },
+  "HP": {
+    "type": "short",
+    "value": 15
+  },
+  "Interruptable": {
+    "type": "byte",
+    "value": 1
+  },
+  "KeyName": {
+    "type": "cexostring",
+    "value": ""
+  },
+  "KeyRequired": {
+    "type": "byte",
+    "value": 0
+  },
+  "Lockable": {
+    "type": "byte",
+    "value": 0
+  },
+  "Locked": {
+    "type": "byte",
+    "value": 0
+  },
+  "LocName": {
+    "type": "cexolocstring",
+    "value": {
+      "0": "HCR Signpost",
+      "id": 5712
+    }
+  },
+  "OnClosed": {
+    "type": "resref",
+    "value": ""
+  },
+  "OnDamaged": {
+    "type": "resref",
+    "value": ""
+  },
+  "OnDeath": {
+    "type": "resref",
+    "value": ""
+  },
+  "OnDisarm": {
+    "type": "resref",
+    "value": ""
+  },
+  "OnHeartbeat": {
+    "type": "resref",
+    "value": ""
+  },
+  "OnInvDisturbed": {
+    "type": "resref",
+    "value": ""
+  },
+  "OnLock": {
+    "type": "resref",
+    "value": ""
+  },
+  "OnMeleeAttacked": {
+    "type": "resref",
+    "value": ""
+  },
+  "OnOpen": {
+    "type": "resref",
+    "value": ""
+  },
+  "OnSpellCastAt": {
+    "type": "resref",
+    "value": ""
+  },
+  "OnTrapTriggered": {
+    "type": "resref",
+    "value": ""
+  },
+  "OnUnlock": {
+    "type": "resref",
+    "value": ""
+  },
+  "OnUsed": {
+    "type": "resref",
+    "value": "hc_clicknewstore"
+  },
+  "OnUserDefined": {
+    "type": "resref",
+    "value": ""
+  },
+  "OpenLockDC": {
+    "type": "byte",
+    "value": 18
+  },
+  "PaletteID": {
+    "type": "byte",
+    "value": 12
+  },
+  "Plot": {
+    "type": "byte",
+    "value": 1
+  },
+  "PortraitId": {
+    "type": "word",
+    "value": 447
+  },
+  "Ref": {
+    "type": "byte",
+    "value": 0
+  },
+  "Static": {
+    "type": "byte",
+    "value": 0
+  },
+  "Tag": {
+    "type": "cexostring",
+    "value": "Headstone"
+  },
+  "TemplateResRef": {
+    "type": "resref",
+    "value": "headstone"
+  },
+  "TrapDetectable": {
+    "type": "byte",
+    "value": 1
+  },
+  "TrapDetectDC": {
+    "type": "byte",
+    "value": 0
+  },
+  "TrapDisarmable": {
+    "type": "byte",
+    "value": 1
+  },
+  "TrapFlag": {
+    "type": "byte",
+    "value": 0
+  },
+  "TrapOneShot": {
+    "type": "byte",
+    "value": 1
+  },
+  "TrapType": {
+    "type": "byte",
+    "value": 0
+  },
+  "Type": {
+    "type": "byte",
+    "value": 0
+  },
+  "Useable": {
+    "type": "byte",
+    "value": 1
+  },
+  "Will": {
+    "type": "byte",
+    "value": 0
+  }
+}
