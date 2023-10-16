@@ -2,7 +2,7 @@
   "__data_type": "IFO ",
   "Expansion_Pack": {
     "type": "word",
-    "value": 0
+    "value": 3
   },
   "Mod_Area_list": {
     "type": "list",
@@ -12,6 +12,20 @@
         "Area_Name": {
           "type": "resref",
           "value": "arena"
+        }
+      },
+      {
+        "__struct_id": 6,
+        "Area_Name": {
+          "type": "resref",
+          "value": "arena01"
+        }
+      },
+      {
+        "__struct_id": 6,
+        "Area_Name": {
+          "type": "resref",
+          "value": "arena02"
         }
       },
       {
@@ -48,26 +62,16 @@
           "type": "resref",
           "value": "team03purpleteam"
         }
-      },
-      {
-        "__struct_id": 6,
-        "Area_Name": {
-          "type": "resref",
-          "value": "arena01"
-        }
-      },
-      {
-        "__struct_id": 6,
-        "Area_Name": {
-          "type": "resref",
-          "value": "arena02"
-        }
       }
     ]
   },
   "Mod_Creator_ID": {
     "type": "int",
     "value": 2
+  },
+  "Mod_CustomTlk": {
+    "type": "cexostring",
+    "value": ""
   },
   "Mod_CutSceneList": {
     "type": "list",
@@ -76,6 +80,10 @@
   "Mod_DawnHour": {
     "type": "byte",
     "value": 6
+  },
+  "Mod_DefaultBic": {
+    "type": "resref",
+    "value": ""
   },
   "Mod_Description": {
     "type": "cexolocstring",
@@ -119,13 +127,17 @@
     "type": "list",
     "value": []
   },
-  "Mod_Hak": {
-    "type": "cexostring",
-    "value": ""
+  "Mod_HakList": {
+    "type": "list",
+    "value": []
   },
   "Mod_IsSaveGame": {
     "type": "byte",
     "value": 0
+  },
+  "Mod_MinGameVer": {
+    "type": "cexostring",
+    "value": "1.88"
   },
   "Mod_MinPerHour": {
     "type": "byte",
@@ -153,6 +165,10 @@
     "type": "resref",
     "value": "coc_exit"
   },
+  "Mod_OnCutsnAbort": {
+    "type": "resref",
+    "value": ""
+  },
   "Mod_OnHeartbeat": {
     "type": "resref",
     "value": ""
@@ -165,6 +181,14 @@
     "type": "resref",
     "value": ""
   },
+  "Mod_OnNuiEvent": {
+    "type": "resref",
+    "value": ""
+  },
+  "Mod_OnPlrChat": {
+    "type": "resref",
+    "value": ""
+  },
   "Mod_OnPlrDeath": {
     "type": "resref",
     "value": "coc_death"
@@ -173,6 +197,14 @@
     "type": "resref",
     "value": "coc_dying"
   },
+  "Mod_OnPlrEqItm": {
+    "type": "resref",
+    "value": ""
+  },
+  "Mod_OnPlrGuiEvt": {
+    "type": "resref",
+    "value": ""
+  },
   "Mod_OnPlrLvlUp": {
     "type": "resref",
     "value": ""
@@ -180,6 +212,18 @@
   "Mod_OnPlrRest": {
     "type": "resref",
     "value": "coc_rest"
+  },
+  "Mod_OnPlrTarget": {
+    "type": "resref",
+    "value": ""
+  },
+  "Mod_OnPlrTileAct": {
+    "type": "resref",
+    "value": ""
+  },
+  "Mod_OnPlrUnEqItm": {
+    "type": "resref",
+    "value": ""
   },
   "Mod_OnSpawnBtnDn": {
     "type": "resref",
@@ -192,6 +236,10 @@
   "Mod_OnUsrDefined": {
     "type": "resref",
     "value": "coc_user"
+  },
+  "Mod_PartyControl": {
+    "type": "int",
+    "value": 0
   },
   "Mod_StartDay": {
     "type": "byte",
@@ -216,6 +264,10 @@
   "Mod_Tag": {
     "type": "cexostring",
     "value": "NW_CONTEST"
+  },
+  "Mod_UUID": {
+    "type": "cexostring",
+    "value": ""
   },
   "Mod_Version": {
     "type": "dword",
