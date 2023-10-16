@@ -1,0 +1,16 @@
+//::///////////////////////////////////////////////
+//:: Name act_q1hblake_9b
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+        Take the baby from the PC
+*/
+//:://////////////////////////////////////////////
+//:: Created By:  Dan Whiteside
+//:: Created On:  March 06, 2003
+//:://////////////////////////////////////////////
+#include "nw_i0_plot"
+void main()
+{
+    DestroyObject(GetItemPossessedBy(GetPCSpeaker(), "q1hbaby"));
+}

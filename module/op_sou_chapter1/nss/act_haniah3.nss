@@ -1,0 +1,16 @@
+//::///////////////////////////////////////////////
+//:: Name
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Sets Haniah as pleased with the PC.
+
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On: Feb 12, 2003
+//:://////////////////////////////////////////////
+void main()
+{
+    SetLocalInt(GetPCSpeaker(),"HANIAHLOVE",GetLocalInt(GetPCSpeaker(),"HANIAHLOVE")+10);
+}

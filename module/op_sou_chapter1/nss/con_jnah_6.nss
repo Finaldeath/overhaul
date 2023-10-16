@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Name
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Check if J'Nah knows PC lied to her.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On: Mar 12, 2003
+//:://////////////////////////////////////////////
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetLocalInt(GetPCSpeaker(),"X1_JNAHNOTDECEIVED")==0;
+    return iResult;
+}

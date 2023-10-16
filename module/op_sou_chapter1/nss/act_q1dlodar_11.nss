@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: Name  act_q1dlodar_11
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+        Lodar spoken to variable on pc speaker
+        for lodars conversation
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Keith Warner
+//:: Created On: Feb 19/03
+//:://////////////////////////////////////////////
+
+void main()
+{
+    SetLocalInt(GetPCSpeaker(), "nSpokeToLodar", 1);
+}

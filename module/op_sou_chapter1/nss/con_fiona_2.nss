@@ -1,0 +1,19 @@
+//::///////////////////////////////////////////////
+//:: Name
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Checks if Fiona has Piper's sword.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On: Feb 21, 2003
+//:://////////////////////////////////////////////
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = GetLocalInt(GetPCSpeaker(),"X1_PIPERSWORD")==10;
+    return iResult;
+}
+

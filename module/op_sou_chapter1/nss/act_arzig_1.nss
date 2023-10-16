@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Name
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Arzig declares PC champion, gives 200 XP.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On: March 20, 2003
+//:://////////////////////////////////////////////
+#include "nw_i0_plot"
+void main()
+{
+    SetLocalInt(GetModule(),"X1_Q5CHAMPION",30);
+    RewardXP("xpmid",100,GetPCSpeaker());
+
+}

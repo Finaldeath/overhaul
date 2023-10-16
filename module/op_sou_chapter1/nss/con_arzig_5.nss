@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: Name
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Check if Master Jumper is dead.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On: April 9, 2003
+//:://////////////////////////////////////////////
+int StartingConditional()
+{
+    if (GetLocalInt(GetModule(),"X1_Q5KLUMPHDEAD")==10)
+        return TRUE;
+    return FALSE;
+}

@@ -1,0 +1,16 @@
+//::///////////////////////////////////////////////
+//:: Name
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Sets that PC asked her for the tax already.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On: Feb 21, 2003
+//:://////////////////////////////////////////////
+void main()
+{
+    SetLocalInt(GetPCSpeaker(),"XP1_Q1FIONATAX",10);
+    GiveGoldToCreature(GetPCSpeaker(),12);
+}

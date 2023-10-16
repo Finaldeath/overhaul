@@ -1,0 +1,16 @@
+//::///////////////////////////////////////////////
+//:: Name
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Sets that PC told Fiona glendir is home.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On: Feb 21, 2003
+//:://////////////////////////////////////////////
+void main()
+{
+    SetLocalInt(GetModule(),"q3_Glendir_Safe",2);
+    SetLocalInt(GetModule(),"q3_Glendir_Told",1);
+}

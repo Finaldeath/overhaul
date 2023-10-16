@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Name
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Sets Haniah at liking the PC and they have met once.
+
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On: Feb 12, 2003
+//:://////////////////////////////////////////////
+void main()
+{
+    SetLocalInt(GetPCSpeaker(),"HANIAHLOVE",50);
+    SetLocalInt(GetPCSpeaker(),"HANIAHSPEAK",10);
+}
+

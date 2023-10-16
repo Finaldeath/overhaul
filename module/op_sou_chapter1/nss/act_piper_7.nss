@@ -1,0 +1,23 @@
+//::///////////////////////////////////////////////
+//:: M2Q2CE_ATTACK
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Attack Nearest PC
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Cori
+//:: Created On: January 25, 2002
+//:://////////////////////////////////////////////
+#include "nw_i0_generic"
+void main()
+{
+    object oPC = GetPCSpeaker();
+
+    SetIsTemporaryEnemy(oPC);
+
+    DetermineCombatRound(oPC);
+}
+
+
+

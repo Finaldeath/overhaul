@@ -1,0 +1,19 @@
+//::///////////////////////////////////////////////
+//:: Name
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Yazka thinks she is leader.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On: Mar 3, 2003
+//:://////////////////////////////////////////////
+#include "dan_plot_locals"
+int StartingConditional()
+{
+    int iResult;
+
+    iResult = IsYazkaLeader();
+    return iResult;
+}

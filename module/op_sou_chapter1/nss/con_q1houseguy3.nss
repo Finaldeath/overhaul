@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Name
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Check if PC is a halfling.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On:Feb 25, 2003
+//:://////////////////////////////////////////////
+int StartingConditional()
+{
+    if (GetRacialType(GetPCSpeaker())==RACIAL_TYPE_HALFLING)
+        return TRUE;
+    return FALSE;
+}
+

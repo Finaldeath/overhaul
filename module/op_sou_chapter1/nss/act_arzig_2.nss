@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Name
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Arzig declares PC friend, gives 100 XP.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On: March 20, 2003
+//:://////////////////////////////////////////////
+#include "nw_i0_plot"
+void main()
+{
+    SetLocalInt(GetModule(),"X1_Q5CHAMPION",20);
+    RewardXP("xplow",100,GetPCSpeaker());
+
+}

@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: FileName q2_at_urko_per
+//:://////////////////////////////////////////////
+//:://////////////////////////////////////////////
+//:: Created By: Script Wizard
+//:: Created On: 2/4/2003 1:14:29 PM
+//:://////////////////////////////////////////////
+#include "nw_i0_tool"
+
+int StartingConditional()
+{
+
+    // Perform skill checks
+    if(!(AutoDC(DC_MEDIUM, SKILL_PERSUADE, GetPCSpeaker())))
+        return FALSE;
+
+    return TRUE;
+}

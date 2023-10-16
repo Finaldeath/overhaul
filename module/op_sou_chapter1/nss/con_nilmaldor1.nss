@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Name
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Checks to see if the kobolds are dead.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On:Feb 7, 2003
+//:://////////////////////////////////////////////
+#include "dan_plot_locals"
+int StartingConditional()
+{
+    if (IsUrkoDead())
+        return TRUE;
+    return FALSE;
+}

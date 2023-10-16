@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Name
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Check if pc has 10 gold
+*/
+//:://////////////////////////////////////////////
+//:: Created By:    Dan Whiteside
+//:: Created On:    Feb 13, 2003
+//:://////////////////////////////////////////////
+#include "nw_i0_plot"
+int StartingConditional()
+{
+    if (GetGold(GetPCSpeaker())>9)
+        return TRUE;
+    return FALSE;
+}

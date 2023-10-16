@@ -1,0 +1,18 @@
+//::///////////////////////////////////////////////
+//:: Name con_raceelf
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Checks to see if the PC is an elf.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On: Feb 4, 2003
+//:://////////////////////////////////////////////
+
+int StartingConditional()
+{
+    if (GetRacialType(GetPCSpeaker())== RACIAL_TYPE_ELF)
+        return TRUE;
+    return FALSE;
+}

@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: Name
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Give PC Nora's ring.
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On: Feb 24, 2003
+//:://////////////////////////////////////////////
+
+void main()
+{
+    CreateItemOnObject("q1norawedring",GetPCSpeaker());
+    SetLocalInt(GetPCSpeaker(),"X1_NORAPOOR",10);
+}

@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: Name
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     check if PC killed Nathan
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On: March 5, 2003
+//:://////////////////////////////////////////////
+int StartingConditional()
+{
+    if (GetLocalInt(GetModule(),"X1_NATHANMURDERED")==10)
+        return TRUE;
+    return FALSE;
+}

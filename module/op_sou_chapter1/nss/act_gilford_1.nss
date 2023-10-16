@@ -1,0 +1,17 @@
+//::///////////////////////////////////////////////
+//:: Name
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+     Set that Gilford was robbed already, give ten gold
+     to PC
+*/
+//:://////////////////////////////////////////////
+//:: Created By: Dan Whiteside
+//:: Created On: Feb 21, 2003
+//:://////////////////////////////////////////////
+void main()
+{
+    SetLocalInt(GetModule(),"X1_ROBTHEPRIEST",10);
+    GiveGoldToCreature(GetPCSpeaker(),10);
+}
