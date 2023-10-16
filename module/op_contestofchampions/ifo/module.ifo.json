@@ -1,0 +1,228 @@
+{
+  "__data_type": "IFO ",
+  "Expansion_Pack": {
+    "type": "word",
+    "value": 0
+  },
+  "Mod_Area_list": {
+    "type": "list",
+    "value": [
+      {
+        "__struct_id": 6,
+        "Area_Name": {
+          "type": "resref",
+          "value": "arena"
+        }
+      },
+      {
+        "__struct_id": 6,
+        "Area_Name": {
+          "type": "resref",
+          "value": "itemrestrictions"
+        }
+      },
+      {
+        "__struct_id": 6,
+        "Area_Name": {
+          "type": "resref",
+          "value": "team00hqbluet001"
+        }
+      },
+      {
+        "__struct_id": 6,
+        "Area_Name": {
+          "type": "resref",
+          "value": "team01redteam"
+        }
+      },
+      {
+        "__struct_id": 6,
+        "Area_Name": {
+          "type": "resref",
+          "value": "team02goldteam"
+        }
+      },
+      {
+        "__struct_id": 6,
+        "Area_Name": {
+          "type": "resref",
+          "value": "team03purpleteam"
+        }
+      },
+      {
+        "__struct_id": 6,
+        "Area_Name": {
+          "type": "resref",
+          "value": "arena01"
+        }
+      },
+      {
+        "__struct_id": 6,
+        "Area_Name": {
+          "type": "resref",
+          "value": "arena02"
+        }
+      }
+    ]
+  },
+  "Mod_Creator_ID": {
+    "type": "int",
+    "value": 2
+  },
+  "Mod_CutSceneList": {
+    "type": "list",
+    "value": []
+  },
+  "Mod_DawnHour": {
+    "type": "byte",
+    "value": 6
+  },
+  "Mod_Description": {
+    "type": "cexolocstring",
+    "value": {
+      "0": "v0.492\n- Fixed issues with flags not appearing in Purple HQ\n- Fixed bugs with multiple team selections\n- Added polling code to remove players from the active battlemap\n- Added like/dislike setup for joining the active battlemap\n\nv0.491\n- Fixed issues with item cost scaling\n- A few dialog tweaks\n- Fixed rewards system.\n- Fixed issue with team switching\n- Fixed issue with changing number of teams to 2\n\nContest of Champions is an arena where you can pit your favorite character against your friends... or your enemies. Characters who enter will be divided into teams to fight to the death. \nWARNING: All plot specific items will be stripped when the players enter this module.\n\nServer Requirements: Make sure the 'Only One Party' button in the server's advanced options is off."
+    }
+  },
+  "Mod_DuskHour": {
+    "type": "byte",
+    "value": 18
+  },
+  "Mod_Entry_Area": {
+    "type": "resref",
+    "value": "itemrestrictions"
+  },
+  "Mod_Entry_Dir_X": {
+    "type": "float",
+    "value": 0.0
+  },
+  "Mod_Entry_Dir_Y": {
+    "type": "float",
+    "value": 1.0
+  },
+  "Mod_Entry_X": {
+    "type": "float",
+    "value": 20.0
+  },
+  "Mod_Entry_Y": {
+    "type": "float",
+    "value": 20.0
+  },
+  "Mod_Entry_Z": {
+    "type": "float",
+    "value": 0.0
+  },
+  "Mod_Expan_List": {
+    "type": "list",
+    "value": []
+  },
+  "Mod_GVar_List": {
+    "type": "list",
+    "value": []
+  },
+  "Mod_Hak": {
+    "type": "cexostring",
+    "value": ""
+  },
+  "Mod_IsSaveGame": {
+    "type": "byte",
+    "value": 0
+  },
+  "Mod_MinPerHour": {
+    "type": "byte",
+    "value": 2
+  },
+  "Mod_Name": {
+    "type": "cexolocstring",
+    "value": {
+      "0": "Contest of Champions"
+    }
+  },
+  "Mod_OnAcquirItem": {
+    "type": "resref",
+    "value": ""
+  },
+  "Mod_OnActvtItem": {
+    "type": "resref",
+    "value": ""
+  },
+  "Mod_OnClientEntr": {
+    "type": "resref",
+    "value": "coc_enter"
+  },
+  "Mod_OnClientLeav": {
+    "type": "resref",
+    "value": "coc_exit"
+  },
+  "Mod_OnHeartbeat": {
+    "type": "resref",
+    "value": ""
+  },
+  "Mod_OnModLoad": {
+    "type": "resref",
+    "value": ""
+  },
+  "Mod_OnModStart": {
+    "type": "resref",
+    "value": ""
+  },
+  "Mod_OnPlrDeath": {
+    "type": "resref",
+    "value": "coc_death"
+  },
+  "Mod_OnPlrDying": {
+    "type": "resref",
+    "value": "coc_dying"
+  },
+  "Mod_OnPlrLvlUp": {
+    "type": "resref",
+    "value": ""
+  },
+  "Mod_OnPlrRest": {
+    "type": "resref",
+    "value": "coc_rest"
+  },
+  "Mod_OnSpawnBtnDn": {
+    "type": "resref",
+    "value": "coc_respawn"
+  },
+  "Mod_OnUnAqreItem": {
+    "type": "resref",
+    "value": ""
+  },
+  "Mod_OnUsrDefined": {
+    "type": "resref",
+    "value": "coc_user"
+  },
+  "Mod_StartDay": {
+    "type": "byte",
+    "value": 1
+  },
+  "Mod_StartHour": {
+    "type": "byte",
+    "value": 13
+  },
+  "Mod_StartMonth": {
+    "type": "byte",
+    "value": 6
+  },
+  "Mod_StartMovie": {
+    "type": "resref",
+    "value": ""
+  },
+  "Mod_StartYear": {
+    "type": "dword",
+    "value": 1372
+  },
+  "Mod_Tag": {
+    "type": "cexostring",
+    "value": "NW_CONTEST"
+  },
+  "Mod_Version": {
+    "type": "dword",
+    "value": 3
+  },
+  "Mod_XPScale": {
+    "type": "byte",
+    "value": 10
+  }
+}
