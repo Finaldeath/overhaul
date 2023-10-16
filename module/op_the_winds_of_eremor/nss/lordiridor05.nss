@@ -1,0 +1,14 @@
+//::///////////////////////////////////////////////
+//:: Lord Iridor Conversation Script #5
+//:: LordIridor05
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Sets Lord Iridor's "Talked" local to 2.
+*/
+//:://////////////////////////////////////////////
+
+void main()
+{
+    SetLocalInt(OBJECT_SELF, "IridorTalked", 2);
+}

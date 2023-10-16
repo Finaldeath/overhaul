@@ -1,0 +1,15 @@
+//::///////////////////////////////////////////////
+//:: DestroySelf
+//:: DestroySelf.nss
+//:: Copyright (c) 2001 Bioware Corp.
+//:://////////////////////////////////////////////
+/*
+    Causes the object to destroy itself after a
+    0.5 second delay.
+*/
+//:://////////////////////////////////////////////
+
+void main()
+{
+    DestroyObject(OBJECT_SELF, 0.5);
+}
