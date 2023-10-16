@@ -21,13 +21,21 @@
     "value": [
       {
         "__struct_id": 0,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
         },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
         "Comment": {
           "type": "cexostring",
-          "value": "Dialogue for this line has been recorded as a goblin (vs_NGOBKNGM: VS_NGOBKNGM_053)\r\nand as an evil human (VS_NFANATM1: vs_nFanatM1_060)\r\nCurrently this is said by a gobling but if it is changed, the sound file should be changed as well.\r\n"
+          "value": ""
         },
         "Delay": {
           "type": "dword",
@@ -47,7 +55,7 @@
         },
         "Sound": {
           "type": "resref",
-          "value": "vs_ngobkngm_053"
+          "value": "vs_ngulnanf_061"
         },
         "Speaker": {
           "type": "cexostring",
@@ -56,56 +64,23 @@
         "Text": {
           "type": "cexolocstring",
           "value": {
-            "id": 50907
+            "id": 50910
           }
         }
       },
       {
         "__struct_id": 1,
-        "Animation": {
-          "type": "dword",
-          "value": 0
-        },
-        "Comment": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Delay": {
-          "type": "dword",
-          "value": 4294967295
-        },
-        "Quest": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "RepliesList": {
+        "ActionParams": {
           "type": "list",
           "value": []
         },
-        "Script": {
-          "type": "resref",
-          "value": ""
-        },
-        "Sound": {
-          "type": "resref",
-          "value": "vs_nnymphf_061"
-        },
-        "Speaker": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Text": {
-          "type": "cexolocstring",
-          "value": {
-            "id": 50908
-          }
-        }
-      },
-      {
-        "__struct_id": 2,
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -143,10 +118,18 @@
         }
       },
       {
-        "__struct_id": 3,
+        "__struct_id": 2,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -170,7 +153,7 @@
         },
         "Sound": {
           "type": "resref",
-          "value": "vs_ngulnanf_061"
+          "value": "vs_nnymphf_061"
         },
         "Speaker": {
           "type": "cexostring",
@@ -179,7 +162,56 @@
         "Text": {
           "type": "cexolocstring",
           "value": {
-            "id": 50910
+            "id": 50908
+          }
+        }
+      },
+      {
+        "__struct_id": 3,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
+        "Animation": {
+          "type": "dword",
+          "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
+        "Comment": {
+          "type": "cexostring",
+          "value": "Dialogue for this line has been recorded as a goblin (vs_NGOBKNGM: VS_NGOBKNGM_053)\r\nand as an evil human (VS_NFANATM1: vs_nFanatM1_060)\r\nCurrently this is said by a gobling but if it is changed, the sound file should be changed as well.\r\n"
+        },
+        "Delay": {
+          "type": "dword",
+          "value": 4294967295
+        },
+        "Quest": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "RepliesList": {
+          "type": "list",
+          "value": []
+        },
+        "Script": {
+          "type": "resref",
+          "value": ""
+        },
+        "Sound": {
+          "type": "resref",
+          "value": "vs_ngobkngm_053"
+        },
+        "Speaker": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Text": {
+          "type": "cexolocstring",
+          "value": {
+            "id": 50907
           }
         }
       }
@@ -188,6 +220,10 @@
   "NumWords": {
     "type": "dword",
     "value": 20
+  },
+  "PreventZoomIn": {
+    "type": "byte",
+    "value": 0
   },
   "ReplyList": {
     "type": "list",
@@ -202,9 +238,13 @@
           "type": "resref",
           "value": "m1q0efinalclg01"
         },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
+        },
         "Index": {
           "type": "dword",
-          "value": 0
+          "value": 3
         }
       },
       {
@@ -213,9 +253,13 @@
           "type": "resref",
           "value": "m1q0efinalclg02"
         },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
+        },
         "Index": {
           "type": "dword",
-          "value": 1
+          "value": 2
         }
       },
       {
@@ -224,9 +268,13 @@
           "type": "resref",
           "value": "m1q0efinalclg03"
         },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
+        },
         "Index": {
           "type": "dword",
-          "value": 2
+          "value": 1
         }
       },
       {
@@ -235,9 +283,13 @@
           "type": "resref",
           "value": "m1q0efinalclg04"
         },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
+        },
         "Index": {
           "type": "dword",
-          "value": 3
+          "value": 0
         }
       }
     ]

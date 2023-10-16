@@ -21,141 +21,17 @@
     "value": [
       {
         "__struct_id": 0,
-        "Animation": {
-          "type": "dword",
-          "value": 0
-        },
-        "Comment": {
-          "type": "cexostring",
-          "value": "Not if PC is the proper class for the tests of the room"
-        },
-        "Delay": {
-          "type": "dword",
-          "value": 4294967295
-        },
-        "Quest": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "RepliesList": {
+        "ActionParams": {
           "type": "list",
-          "value": [
-            {
-              "__struct_id": 0,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intn"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 0
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            },
-            {
-              "__struct_id": 1,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intn"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 3
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            },
-            {
-              "__struct_id": 2,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intn"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 2
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            },
-            {
-              "__struct_id": 3,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intl"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 1
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            },
-            {
-              "__struct_id": 4,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intl"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 5
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            },
-            {
-              "__struct_id": 5,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intl"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 4
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            }
-          ]
+          "value": []
         },
-        "Script": {
-          "type": "resref",
-          "value": ""
-        },
-        "Sound": {
-          "type": "resref",
-          "value": ""
-        },
-        "Speaker": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Text": {
-          "type": "cexolocstring",
-          "value": {
-            "id": 50281
-          }
-        }
-      },
-      {
-        "__struct_id": 1,
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -178,9 +54,13 @@
                 "type": "resref",
                 "value": "nw_d2_intn"
               },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
               "Index": {
                 "type": "dword",
-                "value": 0
+                "value": 29
               },
               "IsChild": {
                 "type": "byte",
@@ -197,9 +77,13 @@
                 "type": "resref",
                 "value": "nw_d2_intn"
               },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
               "Index": {
                 "type": "dword",
-                "value": 3
+                "value": 4
               },
               "IsChild": {
                 "type": "byte",
@@ -216,9 +100,13 @@
                 "type": "resref",
                 "value": "nw_d2_intn"
               },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
               "Index": {
                 "type": "dword",
-                "value": 2
+                "value": 3
               },
               "IsChild": {
                 "type": "byte",
@@ -235,9 +123,13 @@
                 "type": "resref",
                 "value": "nw_d2_intl"
               },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
               "Index": {
                 "type": "dword",
-                "value": 1
+                "value": 2
               },
               "IsChild": {
                 "type": "byte",
@@ -254,9 +146,13 @@
                 "type": "resref",
                 "value": "nw_d2_intl"
               },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
               "Index": {
                 "type": "dword",
-                "value": 5
+                "value": 1
               },
               "IsChild": {
                 "type": "byte",
@@ -273,9 +169,13 @@
                 "type": "resref",
                 "value": "nw_d2_intl"
               },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
               "Index": {
                 "type": "dword",
-                "value": 4
+                "value": 0
               },
               "IsChild": {
                 "type": "byte",
@@ -308,438 +208,182 @@
         }
       },
       {
+        "__struct_id": 1,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
+        "Animation": {
+          "type": "dword",
+          "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
+        "Comment": {
+          "type": "cexostring",
+          "value": "Not if PC is the proper class for the tests of the room"
+        },
+        "Delay": {
+          "type": "dword",
+          "value": 4294967295
+        },
+        "Quest": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "RepliesList": {
+          "type": "list",
+          "value": [
+            {
+              "__struct_id": 0,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intn"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 29
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 0
+              }
+            },
+            {
+              "__struct_id": 1,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intn"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 4
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 0
+              }
+            },
+            {
+              "__struct_id": 2,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intn"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 3
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 0
+              }
+            },
+            {
+              "__struct_id": 3,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intl"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 2
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 0
+              }
+            },
+            {
+              "__struct_id": 4,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intl"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 1
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 0
+              }
+            },
+            {
+              "__struct_id": 5,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intl"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 0
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 0
+              }
+            }
+          ]
+        },
+        "Script": {
+          "type": "resref",
+          "value": ""
+        },
+        "Sound": {
+          "type": "resref",
+          "value": ""
+        },
+        "Speaker": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Text": {
+          "type": "cexolocstring",
+          "value": {
+            "id": 50281
+          }
+        }
+      },
+      {
         "__struct_id": 2,
-        "Animation": {
-          "type": "dword",
-          "value": 0
-        },
-        "Comment": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Delay": {
-          "type": "dword",
-          "value": 4294967295
-        },
-        "Quest": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "RepliesList": {
+        "ActionParams": {
           "type": "list",
-          "value": [
-            {
-              "__struct_id": 0,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intn"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 8
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            },
-            {
-              "__struct_id": 1,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intl"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 11
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            },
-            {
-              "__struct_id": 2,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intn"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 2
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            },
-            {
-              "__struct_id": 3,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intl"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 4
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            }
-          ]
+          "value": []
         },
-        "Script": {
-          "type": "resref",
-          "value": ""
-        },
-        "Sound": {
-          "type": "resref",
-          "value": ""
-        },
-        "Speaker": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Text": {
-          "type": "cexolocstring",
-          "value": {
-            "id": 50283
-          }
-        }
-      },
-      {
-        "__struct_id": 3,
         "Animation": {
           "type": "dword",
           "value": 0
         },
-        "Comment": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Delay": {
-          "type": "dword",
-          "value": 4294967295
-        },
-        "Quest": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "RepliesList": {
-          "type": "list",
-          "value": [
-            {
-              "__struct_id": 0,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intn"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 22
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            },
-            {
-              "__struct_id": 1,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intl"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 23
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            },
-            {
-              "__struct_id": 2,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intn"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 24
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            },
-            {
-              "__struct_id": 3,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intl"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 25
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            },
-            {
-              "__struct_id": 4,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intn"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 2
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            },
-            {
-              "__struct_id": 5,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intl"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 4
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            }
-          ]
-        },
-        "Script": {
-          "type": "resref",
-          "value": ""
-        },
-        "Sound": {
-          "type": "resref",
-          "value": ""
-        },
-        "Speaker": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Text": {
-          "type": "cexolocstring",
-          "value": {
-            "id": 50284
-          }
-        }
-      },
-      {
-        "__struct_id": 4,
-        "Animation": {
-          "type": "dword",
-          "value": 0
-        },
-        "Comment": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Delay": {
-          "type": "dword",
-          "value": 4294967295
-        },
-        "Quest": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "RepliesList": {
-          "type": "list",
-          "value": [
-            {
-              "__struct_id": 0,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intn"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 6
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            },
-            {
-              "__struct_id": 1,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intn"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 7
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            },
-            {
-              "__struct_id": 2,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intn"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 8
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            },
-            {
-              "__struct_id": 3,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intl"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 9
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            },
-            {
-              "__struct_id": 4,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intl"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 10
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            },
-            {
-              "__struct_id": 5,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intl"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 11
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            },
-            {
-              "__struct_id": 6,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intn"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 2
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            },
-            {
-              "__struct_id": 7,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intl"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 4
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            }
-          ]
-        },
-        "Script": {
-          "type": "resref",
-          "value": "nw_d1_talklevel"
-        },
-        "Sound": {
-          "type": "resref",
-          "value": ""
-        },
-        "Speaker": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Text": {
-          "type": "cexolocstring",
-          "value": {
-            "id": 50285
-          }
-        }
-      },
-      {
-        "__struct_id": 5,
-        "Animation": {
-          "type": "dword",
-          "value": 0
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -777,10 +421,18 @@
         }
       },
       {
-        "__struct_id": 6,
+        "__struct_id": 3,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -803,9 +455,13 @@
                 "type": "resref",
                 "value": "nw_d2_intn"
               },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
               "Index": {
                 "type": "dword",
-                "value": 12
+                "value": 8
               },
               "IsChild": {
                 "type": "byte",
@@ -816,11 +472,15 @@
               "__struct_id": 1,
               "Active": {
                 "type": "resref",
-                "value": "nw_d2_intn"
+                "value": "nw_d2_intl"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
               },
               "Index": {
                 "type": "dword",
-                "value": 13
+                "value": 7
               },
               "IsChild": {
                 "type": "byte",
@@ -833,434 +493,9 @@
                 "type": "resref",
                 "value": "nw_d2_intn"
               },
-              "Index": {
-                "type": "dword",
-                "value": 14
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            },
-            {
-              "__struct_id": 3,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intl"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 15
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            },
-            {
-              "__struct_id": 4,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intl"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 16
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            },
-            {
-              "__struct_id": 5,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intl"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 17
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            },
-            {
-              "__struct_id": 6,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intl"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 4
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            }
-          ]
-        },
-        "Script": {
-          "type": "resref",
-          "value": ""
-        },
-        "Sound": {
-          "type": "resref",
-          "value": ""
-        },
-        "Speaker": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Text": {
-          "type": "cexolocstring",
-          "value": {
-            "id": 50287
-          }
-        }
-      },
-      {
-        "__struct_id": 7,
-        "Animation": {
-          "type": "dword",
-          "value": 0
-        },
-        "Comment": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Delay": {
-          "type": "dword",
-          "value": 4294967295
-        },
-        "Quest": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "RepliesList": {
-          "type": "list",
-          "value": [
-            {
-              "__struct_id": 0,
-              "Active": {
-                "type": "resref",
-                "value": ""
-              },
-              "Index": {
-                "type": "dword",
-                "value": 18
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            }
-          ]
-        },
-        "Script": {
-          "type": "resref",
-          "value": ""
-        },
-        "Sound": {
-          "type": "resref",
-          "value": ""
-        },
-        "Speaker": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Text": {
-          "type": "cexolocstring",
-          "value": {
-            "id": 50288
-          }
-        }
-      },
-      {
-        "__struct_id": 8,
-        "Animation": {
-          "type": "dword",
-          "value": 0
-        },
-        "Comment": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Delay": {
-          "type": "dword",
-          "value": 4294967295
-        },
-        "Quest": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "RepliesList": {
-          "type": "list",
-          "value": [
-            {
-              "__struct_id": 0,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intn"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 12
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            },
-            {
-              "__struct_id": 1,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intn"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 13
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            },
-            {
-              "__struct_id": 2,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intn"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 14
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            },
-            {
-              "__struct_id": 3,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intl"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 15
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            },
-            {
-              "__struct_id": 4,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intl"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 16
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            },
-            {
-              "__struct_id": 5,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intl"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 17
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            },
-            {
-              "__struct_id": 6,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intl"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 4
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            },
-            {
-              "__struct_id": 7,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intn"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 2
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            }
-          ]
-        },
-        "Script": {
-          "type": "resref",
-          "value": ""
-        },
-        "Sound": {
-          "type": "resref",
-          "value": ""
-        },
-        "Speaker": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Text": {
-          "type": "cexolocstring",
-          "value": {
-            "id": 50289
-          }
-        }
-      },
-      {
-        "__struct_id": 9,
-        "Animation": {
-          "type": "dword",
-          "value": 0
-        },
-        "Comment": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Delay": {
-          "type": "dword",
-          "value": 4294967295
-        },
-        "Quest": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "RepliesList": {
-          "type": "list",
-          "value": [
-            {
-              "__struct_id": 0,
-              "Active": {
-                "type": "resref",
-                "value": ""
-              },
-              "Index": {
-                "type": "dword",
-                "value": 19
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            }
-          ]
-        },
-        "Script": {
-          "type": "resref",
-          "value": ""
-        },
-        "Sound": {
-          "type": "resref",
-          "value": ""
-        },
-        "Speaker": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Text": {
-          "type": "cexolocstring",
-          "value": {
-            "id": 50290
-          }
-        }
-      },
-      {
-        "__struct_id": 10,
-        "Animation": {
-          "type": "dword",
-          "value": 0
-        },
-        "Comment": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Delay": {
-          "type": "dword",
-          "value": 4294967295
-        },
-        "Quest": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "RepliesList": {
-          "type": "list",
-          "value": [
-            {
-              "__struct_id": 0,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intn"
+              "ConditionParams": {
+                "type": "list",
+                "value": []
               },
               "Index": {
                 "type": "dword",
@@ -1268,79 +503,41 @@
               },
               "IsChild": {
                 "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            },
-            {
-              "__struct_id": 1,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intn"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 12
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            },
-            {
-              "__struct_id": 2,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intn"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 13
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
+                "value": 0
               }
             },
             {
               "__struct_id": 3,
               "Active": {
                 "type": "resref",
-                "value": "nw_d2_intn"
+                "value": "nw_d2_intl"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
               },
               "Index": {
                 "type": "dword",
-                "value": 2
+                "value": 5
               },
               "IsChild": {
                 "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
+                "value": 0
               }
             },
             {
               "__struct_id": 4,
               "Active": {
                 "type": "resref",
-                "value": "nw_d2_intl"
+                "value": "nw_d2_intn"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
               },
               "Index": {
                 "type": "dword",
-                "value": 9
+                "value": 3
               },
               "IsChild": {
                 "type": "byte",
@@ -1357,47 +554,13 @@
                 "type": "resref",
                 "value": "nw_d2_intl"
               },
-              "Index": {
-                "type": "dword",
-                "value": 15
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            },
-            {
-              "__struct_id": 6,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intl"
+              "ConditionParams": {
+                "type": "list",
+                "value": []
               },
               "Index": {
                 "type": "dword",
-                "value": 16
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            },
-            {
-              "__struct_id": 7,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intl"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 4
+                "value": 0
               },
               "IsChild": {
                 "type": "byte",
@@ -1425,413 +588,23 @@
         "Text": {
           "type": "cexolocstring",
           "value": {
-            "id": 50291
+            "id": 50284
           }
         }
       },
       {
-        "__struct_id": 11,
-        "Animation": {
-          "type": "dword",
-          "value": 0
-        },
-        "Comment": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Delay": {
-          "type": "dword",
-          "value": 4294967295
-        },
-        "Quest": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "RepliesList": {
-          "type": "list",
-          "value": [
-            {
-              "__struct_id": 0,
-              "Active": {
-                "type": "resref",
-                "value": ""
-              },
-              "Index": {
-                "type": "dword",
-                "value": 21
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            }
-          ]
-        },
-        "Script": {
-          "type": "resref",
-          "value": ""
-        },
-        "Sound": {
-          "type": "resref",
-          "value": ""
-        },
-        "Speaker": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Text": {
-          "type": "cexolocstring",
-          "value": {
-            "id": 50292
-          }
-        }
-      },
-      {
-        "__struct_id": 12,
-        "Animation": {
-          "type": "dword",
-          "value": 0
-        },
-        "Comment": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Delay": {
-          "type": "dword",
-          "value": 0
-        },
-        "Quest": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "RepliesList": {
-          "type": "list",
-          "value": [
-            {
-              "__struct_id": 0,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intn"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 26
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            },
-            {
-              "__struct_id": 1,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intn"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 13
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            },
-            {
-              "__struct_id": 2,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intn"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 14
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            },
-            {
-              "__struct_id": 3,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intl"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 27
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            },
-            {
-              "__struct_id": 4,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intl"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 16
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            },
-            {
-              "__struct_id": 5,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intl"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 17
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            },
-            {
-              "__struct_id": 6,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intl"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 4
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            },
-            {
-              "__struct_id": 7,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intn"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 2
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            }
-          ]
-        },
-        "Script": {
-          "type": "resref",
-          "value": ""
-        },
-        "Sound": {
-          "type": "resref",
-          "value": ""
-        },
-        "Speaker": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Text": {
-          "type": "cexolocstring",
-          "value": {
-            "id": 50293
-          }
-        }
-      },
-      {
-        "__struct_id": 13,
-        "Animation": {
-          "type": "dword",
-          "value": 0
-        },
-        "Comment": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Delay": {
-          "type": "dword",
-          "value": 4294967295
-        },
-        "Quest": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "RepliesList": {
-          "type": "list",
-          "value": [
-            {
-              "__struct_id": 0,
-              "Active": {
-                "type": "resref",
-                "value": ""
-              },
-              "Index": {
-                "type": "dword",
-                "value": 29
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            }
-          ]
-        },
-        "Script": {
-          "type": "resref",
-          "value": ""
-        },
-        "Sound": {
-          "type": "resref",
-          "value": ""
-        },
-        "Speaker": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Text": {
-          "type": "cexolocstring",
-          "value": {
-            "id": 50294
-          }
-        }
-      },
-      {
-        "__struct_id": 14,
-        "Animation": {
-          "type": "dword",
-          "value": 0
-        },
-        "Comment": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Delay": {
-          "type": "dword",
-          "value": 4294967295
-        },
-        "Quest": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "RepliesList": {
-          "type": "list",
-          "value": [
-            {
-              "__struct_id": 0,
-              "Active": {
-                "type": "resref",
-                "value": ""
-              },
-              "Index": {
-                "type": "dword",
-                "value": 20
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            }
-          ]
-        },
-        "Script": {
-          "type": "resref",
-          "value": ""
-        },
-        "Sound": {
-          "type": "resref",
-          "value": ""
-        },
-        "Speaker": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Text": {
-          "type": "cexolocstring",
-          "value": {
-            "id": 50295
-          }
-        }
-      },
-      {
-        "__struct_id": 15,
-        "Animation": {
-          "type": "dword",
-          "value": 0
-        },
-        "Comment": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Delay": {
-          "type": "dword",
-          "value": 4294967295
-        },
-        "Quest": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "RepliesList": {
+        "__struct_id": 4,
+        "ActionParams": {
           "type": "list",
           "value": []
         },
-        "Script": {
-          "type": "resref",
-          "value": ""
-        },
-        "Sound": {
-          "type": "resref",
-          "value": ""
-        },
-        "Speaker": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Text": {
-          "type": "cexolocstring",
-          "value": {
-            "id": 50296
-          }
-        }
-      },
-      {
-        "__struct_id": 16,
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -1869,10 +642,228 @@
         }
       },
       {
-        "__struct_id": 17,
+        "__struct_id": 5,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
+        "Comment": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Delay": {
+          "type": "dword",
+          "value": 4294967295
+        },
+        "Quest": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "RepliesList": {
+          "type": "list",
+          "value": [
+            {
+              "__struct_id": 0,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intn"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 28
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 0
+              }
+            },
+            {
+              "__struct_id": 1,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intn"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 27
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 0
+              }
+            },
+            {
+              "__struct_id": 2,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intn"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 14
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 0
+              }
+            },
+            {
+              "__struct_id": 3,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intl"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 12
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 0
+              }
+            },
+            {
+              "__struct_id": 4,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intl"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 10
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 0
+              }
+            },
+            {
+              "__struct_id": 5,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intl"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 9
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 0
+              }
+            },
+            {
+              "__struct_id": 6,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intn"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 3
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            },
+            {
+              "__struct_id": 7,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intl"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 0
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            }
+          ]
+        },
+        "Script": {
+          "type": "resref",
+          "value": "nw_d1_talklevel"
+        },
+        "Sound": {
+          "type": "resref",
+          "value": ""
+        },
+        "Speaker": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Text": {
+          "type": "cexolocstring",
+          "value": {
+            "id": 50285
+          }
+        }
+      },
+      {
+        "__struct_id": 6,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
+        "Animation": {
+          "type": "dword",
+          "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -1895,9 +886,1473 @@
                 "type": "resref",
                 "value": ""
               },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 11
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 0
+              }
+            }
+          ]
+        },
+        "Script": {
+          "type": "resref",
+          "value": ""
+        },
+        "Sound": {
+          "type": "resref",
+          "value": ""
+        },
+        "Speaker": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Text": {
+          "type": "cexolocstring",
+          "value": {
+            "id": 50290
+          }
+        }
+      },
+      {
+        "__struct_id": 7,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
+        "Animation": {
+          "type": "dword",
+          "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
+        "Comment": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Delay": {
+          "type": "dword",
+          "value": 4294967295
+        },
+        "Quest": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "RepliesList": {
+          "type": "list",
+          "value": [
+            {
+              "__struct_id": 0,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intn"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
               "Index": {
                 "type": "dword",
                 "value": 28
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            },
+            {
+              "__struct_id": 1,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intn"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 21
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            },
+            {
+              "__struct_id": 2,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intn"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 19
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            },
+            {
+              "__struct_id": 3,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intn"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 3
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            },
+            {
+              "__struct_id": 4,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intl"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 12
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            },
+            {
+              "__struct_id": 5,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intl"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 17
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            },
+            {
+              "__struct_id": 6,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intl"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 16
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            },
+            {
+              "__struct_id": 7,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intl"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 0
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            }
+          ]
+        },
+        "Script": {
+          "type": "resref",
+          "value": ""
+        },
+        "Sound": {
+          "type": "resref",
+          "value": ""
+        },
+        "Speaker": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Text": {
+          "type": "cexolocstring",
+          "value": {
+            "id": 50291
+          }
+        }
+      },
+      {
+        "__struct_id": 8,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
+        "Animation": {
+          "type": "dword",
+          "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
+        "Comment": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Delay": {
+          "type": "dword",
+          "value": 4294967295
+        },
+        "Quest": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "RepliesList": {
+          "type": "list",
+          "value": [
+            {
+              "__struct_id": 0,
+              "Active": {
+                "type": "resref",
+                "value": ""
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 13
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 0
+              }
+            }
+          ]
+        },
+        "Script": {
+          "type": "resref",
+          "value": ""
+        },
+        "Sound": {
+          "type": "resref",
+          "value": ""
+        },
+        "Speaker": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Text": {
+          "type": "cexolocstring",
+          "value": {
+            "id": 50288
+          }
+        }
+      },
+      {
+        "__struct_id": 9,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
+        "Animation": {
+          "type": "dword",
+          "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
+        "Comment": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Delay": {
+          "type": "dword",
+          "value": 4294967295
+        },
+        "Quest": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "RepliesList": {
+          "type": "list",
+          "value": [
+            {
+              "__struct_id": 0,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intn"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 21
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            },
+            {
+              "__struct_id": 1,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intn"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 19
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            },
+            {
+              "__struct_id": 2,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intn"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 18
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            },
+            {
+              "__struct_id": 3,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intl"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 17
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            },
+            {
+              "__struct_id": 4,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intl"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 16
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            },
+            {
+              "__struct_id": 5,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intl"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 15
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            },
+            {
+              "__struct_id": 6,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intl"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 0
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            },
+            {
+              "__struct_id": 7,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intn"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 3
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            }
+          ]
+        },
+        "Script": {
+          "type": "resref",
+          "value": ""
+        },
+        "Sound": {
+          "type": "resref",
+          "value": ""
+        },
+        "Speaker": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Text": {
+          "type": "cexolocstring",
+          "value": {
+            "id": 50289
+          }
+        }
+      },
+      {
+        "__struct_id": 10,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
+        "Animation": {
+          "type": "dword",
+          "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
+        "Comment": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Delay": {
+          "type": "dword",
+          "value": 4294967295
+        },
+        "Quest": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "RepliesList": {
+          "type": "list",
+          "value": [
+            {
+              "__struct_id": 0,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intn"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 21
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 0
+              }
+            },
+            {
+              "__struct_id": 1,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intn"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 19
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 0
+              }
+            },
+            {
+              "__struct_id": 2,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intn"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 18
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 0
+              }
+            },
+            {
+              "__struct_id": 3,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intl"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 17
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 0
+              }
+            },
+            {
+              "__struct_id": 4,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intl"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 16
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 0
+              }
+            },
+            {
+              "__struct_id": 5,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intl"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 15
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 0
+              }
+            },
+            {
+              "__struct_id": 6,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intl"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 0
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            }
+          ]
+        },
+        "Script": {
+          "type": "resref",
+          "value": ""
+        },
+        "Sound": {
+          "type": "resref",
+          "value": ""
+        },
+        "Speaker": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Text": {
+          "type": "cexolocstring",
+          "value": {
+            "id": 50287
+          }
+        }
+      },
+      {
+        "__struct_id": 11,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
+        "Animation": {
+          "type": "dword",
+          "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
+        "Comment": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Delay": {
+          "type": "dword",
+          "value": 4294967295
+        },
+        "Quest": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "RepliesList": {
+          "type": "list",
+          "value": [
+            {
+              "__struct_id": 0,
+              "Active": {
+                "type": "resref",
+                "value": ""
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 20
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 0
+              }
+            }
+          ]
+        },
+        "Script": {
+          "type": "resref",
+          "value": ""
+        },
+        "Sound": {
+          "type": "resref",
+          "value": ""
+        },
+        "Speaker": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Text": {
+          "type": "cexolocstring",
+          "value": {
+            "id": 50294
+          }
+        }
+      },
+      {
+        "__struct_id": 12,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
+        "Animation": {
+          "type": "dword",
+          "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
+        "Comment": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Delay": {
+          "type": "dword",
+          "value": 0
+        },
+        "Quest": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "RepliesList": {
+          "type": "list",
+          "value": [
+            {
+              "__struct_id": 0,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intn"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 28
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            },
+            {
+              "__struct_id": 1,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intl"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 12
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            },
+            {
+              "__struct_id": 2,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intn"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 21
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            },
+            {
+              "__struct_id": 3,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intl"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 17
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            },
+            {
+              "__struct_id": 4,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intn"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 18
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            },
+            {
+              "__struct_id": 5,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intl"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 15
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            },
+            {
+              "__struct_id": 6,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intn"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 3
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            },
+            {
+              "__struct_id": 7,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intl"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 0
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            }
+          ]
+        },
+        "Script": {
+          "type": "resref",
+          "value": ""
+        },
+        "Sound": {
+          "type": "resref",
+          "value": ""
+        },
+        "Speaker": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Text": {
+          "type": "cexolocstring",
+          "value": {
+            "id": 50300
+          }
+        }
+      },
+      {
+        "__struct_id": 13,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
+        "Animation": {
+          "type": "dword",
+          "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
+        "Comment": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Delay": {
+          "type": "dword",
+          "value": 4294967295
+        },
+        "Quest": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "RepliesList": {
+          "type": "list",
+          "value": [
+            {
+              "__struct_id": 0,
+              "Active": {
+                "type": "resref",
+                "value": ""
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 22
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 0
+              }
+            }
+          ]
+        },
+        "Script": {
+          "type": "resref",
+          "value": ""
+        },
+        "Sound": {
+          "type": "resref",
+          "value": ""
+        },
+        "Speaker": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Text": {
+          "type": "cexolocstring",
+          "value": {
+            "id": 50292
+          }
+        }
+      },
+      {
+        "__struct_id": 14,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
+        "Animation": {
+          "type": "dword",
+          "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
+        "Comment": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Delay": {
+          "type": "dword",
+          "value": 4294967295
+        },
+        "Quest": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "RepliesList": {
+          "type": "list",
+          "value": [
+            {
+              "__struct_id": 0,
+              "Active": {
+                "type": "resref",
+                "value": ""
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 23
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 0
+              }
+            }
+          ]
+        },
+        "Script": {
+          "type": "resref",
+          "value": ""
+        },
+        "Sound": {
+          "type": "resref",
+          "value": ""
+        },
+        "Speaker": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Text": {
+          "type": "cexolocstring",
+          "value": {
+            "id": 50295
+          }
+        }
+      },
+      {
+        "__struct_id": 15,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
+        "Animation": {
+          "type": "dword",
+          "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
+        "Comment": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Delay": {
+          "type": "dword",
+          "value": 0
+        },
+        "Quest": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "RepliesList": {
+          "type": "list",
+          "value": [
+            {
+              "__struct_id": 0,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intn"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 25
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 0
+              }
+            },
+            {
+              "__struct_id": 1,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intn"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 19
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            },
+            {
+              "__struct_id": 2,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intn"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 18
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            },
+            {
+              "__struct_id": 3,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intl"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 24
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 0
+              }
+            },
+            {
+              "__struct_id": 4,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intl"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 16
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            },
+            {
+              "__struct_id": 5,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intl"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 15
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            },
+            {
+              "__struct_id": 6,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intl"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 0
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            },
+            {
+              "__struct_id": 7,
+              "Active": {
+                "type": "resref",
+                "value": "nw_d2_intn"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 3
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            }
+          ]
+        },
+        "Script": {
+          "type": "resref",
+          "value": ""
+        },
+        "Sound": {
+          "type": "resref",
+          "value": ""
+        },
+        "Speaker": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Text": {
+          "type": "cexolocstring",
+          "value": {
+            "id": 50293
+          }
+        }
+      },
+      {
+        "__struct_id": 16,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
+        "Animation": {
+          "type": "dword",
+          "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
+        "Comment": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Delay": {
+          "type": "dword",
+          "value": 4294967295
+        },
+        "Quest": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "RepliesList": {
+          "type": "list",
+          "value": [
+            {
+              "__struct_id": 0,
+              "Active": {
+                "type": "resref",
+                "value": ""
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 26
               },
               "IsChild": {
                 "type": "byte",
@@ -1926,10 +2381,18 @@
         }
       },
       {
-        "__struct_id": 18,
+        "__struct_id": 17,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -1952,9 +2415,13 @@
                 "type": "resref",
                 "value": "nw_d2_intn"
               },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
               "Index": {
                 "type": "dword",
-                "value": 13
+                "value": 19
               },
               "IsChild": {
                 "type": "byte",
@@ -1971,9 +2438,13 @@
                 "type": "resref",
                 "value": "nw_d2_intn"
               },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
               "Index": {
                 "type": "dword",
-                "value": 14
+                "value": 18
               },
               "IsChild": {
                 "type": "byte",
@@ -1990,9 +2461,13 @@
                 "type": "resref",
                 "value": "nw_d2_intn"
               },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
               "Index": {
                 "type": "dword",
-                "value": 2
+                "value": 3
               },
               "IsChild": {
                 "type": "byte",
@@ -2008,6 +2483,10 @@
               "Active": {
                 "type": "resref",
                 "value": "nw_d2_intl"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
               },
               "Index": {
                 "type": "dword",
@@ -2028,9 +2507,13 @@
                 "type": "resref",
                 "value": "nw_d2_intl"
               },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
               "Index": {
                 "type": "dword",
-                "value": 17
+                "value": 15
               },
               "IsChild": {
                 "type": "byte",
@@ -2047,9 +2530,13 @@
                 "type": "resref",
                 "value": "nw_d2_intl"
               },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
               "Index": {
                 "type": "dword",
-                "value": 4
+                "value": 0
               },
               "IsChild": {
                 "type": "byte",
@@ -2082,10 +2569,18 @@
         }
       },
       {
-        "__struct_id": 19,
+        "__struct_id": 18,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -2093,7 +2588,7 @@
         },
         "Delay": {
           "type": "dword",
-          "value": 0
+          "value": 4294967295
         },
         "Quest": {
           "type": "cexostring",
@@ -2108,9 +2603,13 @@
                 "type": "resref",
                 "value": "nw_d2_intn"
               },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
               "Index": {
                 "type": "dword",
-                "value": 6
+                "value": 14
               },
               "IsChild": {
                 "type": "byte",
@@ -2126,6 +2625,10 @@
               "Active": {
                 "type": "resref",
                 "value": "nw_d2_intl"
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
               },
               "Index": {
                 "type": "dword",
@@ -2146,9 +2649,13 @@
                 "type": "resref",
                 "value": "nw_d2_intn"
               },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
               "Index": {
                 "type": "dword",
-                "value": 12
+                "value": 3
               },
               "IsChild": {
                 "type": "byte",
@@ -2165,85 +2672,13 @@
                 "type": "resref",
                 "value": "nw_d2_intl"
               },
-              "Index": {
-                "type": "dword",
-                "value": 15
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            },
-            {
-              "__struct_id": 4,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intn"
+              "ConditionParams": {
+                "type": "list",
+                "value": []
               },
               "Index": {
                 "type": "dword",
-                "value": 14
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            },
-            {
-              "__struct_id": 5,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intl"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 17
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            },
-            {
-              "__struct_id": 6,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intn"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 2
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            },
-            {
-              "__struct_id": 7,
-              "Active": {
-                "type": "resref",
-                "value": "nw_d2_intl"
-              },
-              "Index": {
-                "type": "dword",
-                "value": 4
+                "value": 0
               },
               "IsChild": {
                 "type": "byte",
@@ -2271,7 +2706,56 @@
         "Text": {
           "type": "cexolocstring",
           "value": {
-            "id": 50300
+            "id": 50283
+          }
+        }
+      },
+      {
+        "__struct_id": 19,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
+        "Animation": {
+          "type": "dword",
+          "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
+        "Comment": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Delay": {
+          "type": "dword",
+          "value": 4294967295
+        },
+        "Quest": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "RepliesList": {
+          "type": "list",
+          "value": []
+        },
+        "Script": {
+          "type": "resref",
+          "value": ""
+        },
+        "Sound": {
+          "type": "resref",
+          "value": ""
+        },
+        "Speaker": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Text": {
+          "type": "cexolocstring",
+          "value": {
+            "id": 50296
           }
         }
       }
@@ -2279,16 +2763,28 @@
   },
   "NumWords": {
     "type": "dword",
-    "value": 757
+    "value": 756
+  },
+  "PreventZoomIn": {
+    "type": "byte",
+    "value": 0
   },
   "ReplyList": {
     "type": "list",
     "value": [
       {
         "__struct_id": 0,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -2307,229 +2803,13 @@
                 "type": "resref",
                 "value": ""
               },
-              "Index": {
-                "type": "dword",
-                "value": 3
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            }
-          ]
-        },
-        "Quest": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Script": {
-          "type": "resref",
-          "value": ""
-        },
-        "Sound": {
-          "type": "resref",
-          "value": ""
-        },
-        "Text": {
-          "type": "cexolocstring",
-          "value": {
-            "id": 50257
-          }
-        }
-      },
-      {
-        "__struct_id": 1,
-        "Animation": {
-          "type": "dword",
-          "value": 0
-        },
-        "Comment": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Delay": {
-          "type": "dword",
-          "value": 4294967295
-        },
-        "EntriesList": {
-          "type": "list",
-          "value": [
-            {
-              "__struct_id": 0,
-              "Active": {
-                "type": "resref",
-                "value": ""
+              "ConditionParams": {
+                "type": "list",
+                "value": []
               },
               "Index": {
                 "type": "dword",
-                "value": 3
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            }
-          ]
-        },
-        "Quest": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Script": {
-          "type": "resref",
-          "value": ""
-        },
-        "Sound": {
-          "type": "resref",
-          "value": ""
-        },
-        "Text": {
-          "type": "cexolocstring",
-          "value": {
-            "id": 50258
-          }
-        }
-      },
-      {
-        "__struct_id": 2,
-        "Animation": {
-          "type": "dword",
-          "value": 0
-        },
-        "Comment": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Delay": {
-          "type": "dword",
-          "value": 4294967295
-        },
-        "EntriesList": {
-          "type": "list",
-          "value": [
-            {
-              "__struct_id": 0,
-              "Active": {
-                "type": "resref",
-                "value": ""
-              },
-              "Index": {
-                "type": "dword",
-                "value": 5
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            }
-          ]
-        },
-        "Quest": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Script": {
-          "type": "resref",
-          "value": ""
-        },
-        "Sound": {
-          "type": "resref",
-          "value": ""
-        },
-        "Text": {
-          "type": "cexolocstring",
-          "value": {
-            "id": 50259
-          }
-        }
-      },
-      {
-        "__struct_id": 3,
-        "Animation": {
-          "type": "dword",
-          "value": 0
-        },
-        "Comment": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Delay": {
-          "type": "dword",
-          "value": 4294967295
-        },
-        "EntriesList": {
-          "type": "list",
-          "value": [
-            {
-              "__struct_id": 0,
-              "Active": {
-                "type": "resref",
-                "value": ""
-              },
-              "Index": {
-                "type": "dword",
-                "value": 3
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            }
-          ]
-        },
-        "Quest": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Script": {
-          "type": "resref",
-          "value": ""
-        },
-        "Sound": {
-          "type": "resref",
-          "value": ""
-        },
-        "Text": {
-          "type": "cexolocstring",
-          "value": {
-            "id": 50260
-          }
-        }
-      },
-      {
-        "__struct_id": 4,
-        "Animation": {
-          "type": "dword",
-          "value": 0
-        },
-        "Comment": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Delay": {
-          "type": "dword",
-          "value": 4294967295
-        },
-        "EntriesList": {
-          "type": "list",
-          "value": [
-            {
-              "__struct_id": 0,
-              "Active": {
-                "type": "resref",
-                "value": ""
-              },
-              "Index": {
-                "type": "dword",
-                "value": 5
+                "value": 2
               },
               "IsChild": {
                 "type": "byte",
@@ -2562,10 +2842,18 @@
         }
       },
       {
-        "__struct_id": 5,
+        "__struct_id": 1,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -2583,6 +2871,10 @@
               "Active": {
                 "type": "resref",
                 "value": ""
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
               },
               "Index": {
                 "type": "dword",
@@ -2619,10 +2911,18 @@
         }
       },
       {
-        "__struct_id": 6,
+        "__struct_id": 2,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -2641,9 +2941,13 @@
                 "type": "resref",
                 "value": ""
               },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
               "Index": {
                 "type": "dword",
-                "value": 7
+                "value": 3
               },
               "IsChild": {
                 "type": "byte",
@@ -2671,15 +2975,287 @@
         "Text": {
           "type": "cexolocstring",
           "value": {
-            "id": 50263
+            "id": 50258
+          }
+        }
+      },
+      {
+        "__struct_id": 3,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
+        "Animation": {
+          "type": "dword",
+          "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
+        "Comment": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Delay": {
+          "type": "dword",
+          "value": 4294967295
+        },
+        "EntriesList": {
+          "type": "list",
+          "value": [
+            {
+              "__struct_id": 0,
+              "Active": {
+                "type": "resref",
+                "value": ""
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 2
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 0
+              }
+            }
+          ]
+        },
+        "Quest": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Script": {
+          "type": "resref",
+          "value": ""
+        },
+        "Sound": {
+          "type": "resref",
+          "value": ""
+        },
+        "Text": {
+          "type": "cexolocstring",
+          "value": {
+            "id": 50259
+          }
+        }
+      },
+      {
+        "__struct_id": 4,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
+        "Animation": {
+          "type": "dword",
+          "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
+        "Comment": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Delay": {
+          "type": "dword",
+          "value": 4294967295
+        },
+        "EntriesList": {
+          "type": "list",
+          "value": [
+            {
+              "__struct_id": 0,
+              "Active": {
+                "type": "resref",
+                "value": ""
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 3
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 0
+              }
+            }
+          ]
+        },
+        "Quest": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Script": {
+          "type": "resref",
+          "value": ""
+        },
+        "Sound": {
+          "type": "resref",
+          "value": ""
+        },
+        "Text": {
+          "type": "cexolocstring",
+          "value": {
+            "id": 50260
+          }
+        }
+      },
+      {
+        "__struct_id": 5,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
+        "Animation": {
+          "type": "dword",
+          "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
+        "Comment": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Delay": {
+          "type": "dword",
+          "value": 4294967295
+        },
+        "EntriesList": {
+          "type": "list",
+          "value": [
+            {
+              "__struct_id": 0,
+              "Active": {
+                "type": "resref",
+                "value": ""
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 4
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            }
+          ]
+        },
+        "Quest": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Script": {
+          "type": "resref",
+          "value": ""
+        },
+        "Sound": {
+          "type": "resref",
+          "value": ""
+        },
+        "Text": {
+          "type": "cexolocstring",
+          "value": {
+            "id": 50278
+          }
+        }
+      },
+      {
+        "__struct_id": 6,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
+        "Animation": {
+          "type": "dword",
+          "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
+        "Comment": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Delay": {
+          "type": "dword",
+          "value": 4294967295
+        },
+        "EntriesList": {
+          "type": "list",
+          "value": [
+            {
+              "__struct_id": 0,
+              "Active": {
+                "type": "resref",
+                "value": ""
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 4
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 0
+              }
+            }
+          ]
+        },
+        "Quest": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Script": {
+          "type": "resref",
+          "value": ""
+        },
+        "Sound": {
+          "type": "resref",
+          "value": ""
+        },
+        "Text": {
+          "type": "cexolocstring",
+          "value": {
+            "id": 50277
           }
         }
       },
       {
         "__struct_id": 7,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -2698,9 +3274,13 @@
                 "type": "resref",
                 "value": ""
               },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
               "Index": {
                 "type": "dword",
-                "value": 9
+                "value": 5
               },
               "IsChild": {
                 "type": "byte",
@@ -2728,15 +3308,23 @@
         "Text": {
           "type": "cexolocstring",
           "value": {
-            "id": 50264
+            "id": 50276
           }
         }
       },
       {
         "__struct_id": 8,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -2755,9 +3343,13 @@
                 "type": "resref",
                 "value": ""
               },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
               "Index": {
                 "type": "dword",
-                "value": 6
+                "value": 5
               },
               "IsChild": {
                 "type": "byte",
@@ -2781,15 +3373,23 @@
         "Text": {
           "type": "cexolocstring",
           "value": {
-            "id": 50265
+            "id": 50275
           }
         }
       },
       {
         "__struct_id": 9,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -2808,115 +3408,13 @@
                 "type": "resref",
                 "value": ""
               },
-              "Index": {
-                "type": "dword",
-                "value": 7
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            }
-          ]
-        },
-        "Quest": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Script": {
-          "type": "resref",
-          "value": ""
-        },
-        "Sound": {
-          "type": "resref",
-          "value": ""
-        },
-        "Text": {
-          "type": "cexolocstring",
-          "value": {
-            "id": 50266
-          }
-        }
-      },
-      {
-        "__struct_id": 10,
-        "Animation": {
-          "type": "dword",
-          "value": 0
-        },
-        "Comment": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Delay": {
-          "type": "dword",
-          "value": 4294967295
-        },
-        "EntriesList": {
-          "type": "list",
-          "value": [
-            {
-              "__struct_id": 0,
-              "Active": {
-                "type": "resref",
-                "value": ""
+              "ConditionParams": {
+                "type": "list",
+                "value": []
               },
               "Index": {
                 "type": "dword",
-                "value": 9
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            }
-          ]
-        },
-        "Quest": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Script": {
-          "type": "resref",
-          "value": ""
-        },
-        "Sound": {
-          "type": "resref",
-          "value": ""
-        },
-        "Text": {
-          "type": "cexolocstring",
-          "value": {
-            "id": 50267
-          }
-        }
-      },
-      {
-        "__struct_id": 11,
-        "Animation": {
-          "type": "dword",
-          "value": 0
-        },
-        "Comment": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Delay": {
-          "type": "dword",
-          "value": 4294967295
-        },
-        "EntriesList": {
-          "type": "list",
-          "value": [
-            {
-              "__struct_id": 0,
-              "Active": {
-                "type": "resref",
-                "value": ""
-              },
-              "Index": {
-                "type": "dword",
-                "value": 6
+                "value": 10
               },
               "IsChild": {
                 "type": "byte",
@@ -2949,10 +3447,18 @@
         }
       },
       {
-        "__struct_id": 12,
+        "__struct_id": 10,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -2971,9 +3477,13 @@
                 "type": "resref",
                 "value": ""
               },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
               "Index": {
                 "type": "dword",
-                "value": 11
+                "value": 6
               },
               "IsChild": {
                 "type": "byte",
@@ -2997,15 +3507,151 @@
         "Text": {
           "type": "cexolocstring",
           "value": {
-            "id": 50269
+            "id": 50267
+          }
+        }
+      },
+      {
+        "__struct_id": 11,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
+        "Animation": {
+          "type": "dword",
+          "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
+        "Comment": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Delay": {
+          "type": "dword",
+          "value": 4294967295
+        },
+        "EntriesList": {
+          "type": "list",
+          "value": [
+            {
+              "__struct_id": 0,
+              "Active": {
+                "type": "resref",
+                "value": ""
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 7
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 0
+              }
+            }
+          ]
+        },
+        "Quest": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Script": {
+          "type": "resref",
+          "value": ""
+        },
+        "Sound": {
+          "type": "resref",
+          "value": ""
+        },
+        "Text": {
+          "type": "cexolocstring",
+          "value": {}
+        }
+      },
+      {
+        "__struct_id": 12,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
+        "Animation": {
+          "type": "dword",
+          "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
+        "Comment": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Delay": {
+          "type": "dword",
+          "value": 4294967295
+        },
+        "EntriesList": {
+          "type": "list",
+          "value": [
+            {
+              "__struct_id": 0,
+              "Active": {
+                "type": "resref",
+                "value": ""
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 8
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 0
+              }
+            }
+          ]
+        },
+        "Quest": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Script": {
+          "type": "resref",
+          "value": ""
+        },
+        "Sound": {
+          "type": "resref",
+          "value": ""
+        },
+        "Text": {
+          "type": "cexolocstring",
+          "value": {
+            "id": 50266
           }
         }
       },
       {
         "__struct_id": 13,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -3024,58 +3670,9 @@
                 "type": "resref",
                 "value": ""
               },
-              "Index": {
-                "type": "dword",
-                "value": 13
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            }
-          ]
-        },
-        "Quest": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Script": {
-          "type": "resref",
-          "value": ""
-        },
-        "Sound": {
-          "type": "resref",
-          "value": ""
-        },
-        "Text": {
-          "type": "cexolocstring",
-          "value": {
-            "id": 50270
-          }
-        }
-      },
-      {
-        "__struct_id": 14,
-        "Animation": {
-          "type": "dword",
-          "value": 0
-        },
-        "Comment": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Delay": {
-          "type": "dword",
-          "value": 4294967295
-        },
-        "EntriesList": {
-          "type": "list",
-          "value": [
-            {
-              "__struct_id": 0,
-              "Active": {
-                "type": "resref",
-                "value": ""
+              "ConditionParams": {
+                "type": "list",
+                "value": []
               },
               "Index": {
                 "type": "dword",
@@ -3083,11 +3680,70 @@
               },
               "IsChild": {
                 "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
+                "value": 0
+              }
+            }
+          ]
+        },
+        "Quest": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Script": {
+          "type": "resref",
+          "value": ""
+        },
+        "Sound": {
+          "type": "resref",
+          "value": ""
+        },
+        "Text": {
+          "type": "cexolocstring",
+          "value": {}
+        }
+      },
+      {
+        "__struct_id": 14,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
+        "Animation": {
+          "type": "dword",
+          "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
+        "Comment": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Delay": {
+          "type": "dword",
+          "value": 4294967295
+        },
+        "EntriesList": {
+          "type": "list",
+          "value": [
+            {
+              "__struct_id": 0,
+              "Active": {
+                "type": "resref",
                 "value": ""
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 10
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 0
               }
             }
           ]
@@ -3107,15 +3763,23 @@
         "Text": {
           "type": "cexolocstring",
           "value": {
-            "id": 50271
+            "id": 50265
           }
         }
       },
       {
         "__struct_id": 15,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -3134,9 +3798,13 @@
                 "type": "resref",
                 "value": ""
               },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
               "Index": {
                 "type": "dword",
-                "value": 11
+                "value": 6
               },
               "IsChild": {
                 "type": "byte",
@@ -3164,15 +3832,23 @@
         "Text": {
           "type": "cexolocstring",
           "value": {
-            "id": 50272
+            "id": 50274
           }
         }
       },
       {
         "__struct_id": 16,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -3191,9 +3867,13 @@
                 "type": "resref",
                 "value": ""
               },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
               "Index": {
                 "type": "dword",
-                "value": 13
+                "value": 11
               },
               "IsChild": {
                 "type": "byte",
@@ -3227,9 +3907,17 @@
       },
       {
         "__struct_id": 17,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -3248,9 +3936,13 @@
                 "type": "resref",
                 "value": ""
               },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
               "Index": {
                 "type": "dword",
-                "value": 9
+                "value": 13
               },
               "IsChild": {
                 "type": "byte",
@@ -3278,15 +3970,23 @@
         "Text": {
           "type": "cexolocstring",
           "value": {
-            "id": 50274
+            "id": 50272
           }
         }
       },
       {
         "__struct_id": 18,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -3305,13 +4005,21 @@
                 "type": "resref",
                 "value": ""
               },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
               "Index": {
                 "type": "dword",
-                "value": 8
+                "value": 6
               },
               "IsChild": {
                 "type": "byte",
-                "value": 0
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
               }
             }
           ]
@@ -3330,14 +4038,24 @@
         },
         "Text": {
           "type": "cexolocstring",
-          "value": {}
+          "value": {
+            "id": 50271
+          }
         }
       },
       {
         "__struct_id": 19,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -3356,9 +4074,13 @@
                 "type": "resref",
                 "value": ""
               },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
               "Index": {
                 "type": "dword",
-                "value": 10
+                "value": 11
               },
               "IsChild": {
                 "type": "byte",
@@ -3381,14 +4103,24 @@
         },
         "Text": {
           "type": "cexolocstring",
-          "value": {}
+          "value": {
+            "id": 50270
+          }
         }
       },
       {
         "__struct_id": 20,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -3406,6 +4138,10 @@
               "Active": {
                 "type": "resref",
                 "value": ""
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
               },
               "Index": {
                 "type": "dword",
@@ -3437,9 +4173,17 @@
       },
       {
         "__struct_id": 21,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -3457,6 +4201,75 @@
               "Active": {
                 "type": "resref",
                 "value": ""
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 13
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 0
+              }
+            }
+          ]
+        },
+        "Quest": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Script": {
+          "type": "resref",
+          "value": ""
+        },
+        "Sound": {
+          "type": "resref",
+          "value": ""
+        },
+        "Text": {
+          "type": "cexolocstring",
+          "value": {
+            "id": 50269
+          }
+        }
+      },
+      {
+        "__struct_id": 22,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
+        "Animation": {
+          "type": "dword",
+          "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
+        "Comment": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Delay": {
+          "type": "dword",
+          "value": 4294967295
+        },
+        "EntriesList": {
+          "type": "list",
+          "value": [
+            {
+              "__struct_id": 0,
+              "Active": {
+                "type": "resref",
+                "value": ""
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
               },
               "Index": {
                 "type": "dword",
@@ -3487,10 +4300,18 @@
         }
       },
       {
-        "__struct_id": 22,
+        "__struct_id": 23,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -3509,9 +4330,13 @@
                 "type": "resref",
                 "value": ""
               },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
               "Index": {
                 "type": "dword",
-                "value": 4
+                "value": 15
               },
               "IsChild": {
                 "type": "byte",
@@ -3534,73 +4359,22 @@
         },
         "Text": {
           "type": "cexolocstring",
-          "value": {
-            "id": 50275
-          }
-        }
-      },
-      {
-        "__struct_id": 23,
-        "Animation": {
-          "type": "dword",
-          "value": 0
-        },
-        "Comment": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Delay": {
-          "type": "dword",
-          "value": 4294967295
-        },
-        "EntriesList": {
-          "type": "list",
-          "value": [
-            {
-              "__struct_id": 0,
-              "Active": {
-                "type": "resref",
-                "value": ""
-              },
-              "Index": {
-                "type": "dword",
-                "value": 4
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            }
-          ]
-        },
-        "Quest": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Script": {
-          "type": "resref",
-          "value": ""
-        },
-        "Sound": {
-          "type": "resref",
-          "value": ""
-        },
-        "Text": {
-          "type": "cexolocstring",
-          "value": {
-            "id": 50276
-          }
+          "value": {}
         }
       },
       {
         "__struct_id": 24,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -3618,173 +4392,14 @@
               "Active": {
                 "type": "resref",
                 "value": ""
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
               },
               "Index": {
                 "type": "dword",
                 "value": 16
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            }
-          ]
-        },
-        "Quest": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Script": {
-          "type": "resref",
-          "value": ""
-        },
-        "Sound": {
-          "type": "resref",
-          "value": ""
-        },
-        "Text": {
-          "type": "cexolocstring",
-          "value": {
-            "id": 50277
-          }
-        }
-      },
-      {
-        "__struct_id": 25,
-        "Animation": {
-          "type": "dword",
-          "value": 0
-        },
-        "Comment": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Delay": {
-          "type": "dword",
-          "value": 4294967295
-        },
-        "EntriesList": {
-          "type": "list",
-          "value": [
-            {
-              "__struct_id": 0,
-              "Active": {
-                "type": "resref",
-                "value": ""
-              },
-              "Index": {
-                "type": "dword",
-                "value": 16
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 1
-              },
-              "LinkComment": {
-                "type": "cexostring",
-                "value": ""
-              }
-            }
-          ]
-        },
-        "Quest": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Script": {
-          "type": "resref",
-          "value": ""
-        },
-        "Sound": {
-          "type": "resref",
-          "value": ""
-        },
-        "Text": {
-          "type": "cexolocstring",
-          "value": {
-            "id": 50278
-          }
-        }
-      },
-      {
-        "__struct_id": 26,
-        "Animation": {
-          "type": "dword",
-          "value": 0
-        },
-        "Comment": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Delay": {
-          "type": "dword",
-          "value": 4294967295
-        },
-        "EntriesList": {
-          "type": "list",
-          "value": [
-            {
-              "__struct_id": 0,
-              "Active": {
-                "type": "resref",
-                "value": ""
-              },
-              "Index": {
-                "type": "dword",
-                "value": 17
-              },
-              "IsChild": {
-                "type": "byte",
-                "value": 0
-              }
-            }
-          ]
-        },
-        "Quest": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Script": {
-          "type": "resref",
-          "value": ""
-        },
-        "Sound": {
-          "type": "resref",
-          "value": ""
-        },
-        "Text": {
-          "type": "cexolocstring",
-          "value": {
-            "id": 50279
-          }
-        }
-      },
-      {
-        "__struct_id": 27,
-        "Animation": {
-          "type": "dword",
-          "value": 0
-        },
-        "Comment": {
-          "type": "cexostring",
-          "value": ""
-        },
-        "Delay": {
-          "type": "dword",
-          "value": 4294967295
-        },
-        "EntriesList": {
-          "type": "list",
-          "value": [
-            {
-              "__struct_id": 0,
-              "Active": {
-                "type": "resref",
-                "value": ""
-              },
-              "Index": {
-                "type": "dword",
-                "value": 17
               },
               "IsChild": {
                 "type": "byte",
@@ -3817,10 +4432,18 @@
         }
       },
       {
-        "__struct_id": 28,
+        "__struct_id": 25,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -3839,9 +4462,78 @@
                 "type": "resref",
                 "value": ""
               },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
               "Index": {
                 "type": "dword",
-                "value": 18
+                "value": 16
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 0
+              }
+            }
+          ]
+        },
+        "Quest": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Script": {
+          "type": "resref",
+          "value": ""
+        },
+        "Sound": {
+          "type": "resref",
+          "value": ""
+        },
+        "Text": {
+          "type": "cexolocstring",
+          "value": {
+            "id": 50279
+          }
+        }
+      },
+      {
+        "__struct_id": 26,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
+        "Animation": {
+          "type": "dword",
+          "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
+        "Comment": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Delay": {
+          "type": "dword",
+          "value": 4294967295
+        },
+        "EntriesList": {
+          "type": "list",
+          "value": [
+            {
+              "__struct_id": 0,
+              "Active": {
+                "type": "resref",
+                "value": ""
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 17
               },
               "IsChild": {
                 "type": "byte",
@@ -3868,10 +4560,18 @@
         }
       },
       {
-        "__struct_id": 29,
+        "__struct_id": 27,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
         "Animation": {
           "type": "dword",
           "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
         },
         "Comment": {
           "type": "cexostring",
@@ -3890,13 +4590,21 @@
                 "type": "resref",
                 "value": ""
               },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
               "Index": {
                 "type": "dword",
-                "value": 19
+                "value": 6
               },
               "IsChild": {
                 "type": "byte",
-                "value": 0
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
               }
             }
           ]
@@ -3915,7 +4623,147 @@
         },
         "Text": {
           "type": "cexolocstring",
-          "value": {}
+          "value": {
+            "id": 50264
+          }
+        }
+      },
+      {
+        "__struct_id": 28,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
+        "Animation": {
+          "type": "dword",
+          "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
+        "Comment": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Delay": {
+          "type": "dword",
+          "value": 4294967295
+        },
+        "EntriesList": {
+          "type": "list",
+          "value": [
+            {
+              "__struct_id": 0,
+              "Active": {
+                "type": "resref",
+                "value": ""
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 8
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            }
+          ]
+        },
+        "Quest": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Script": {
+          "type": "resref",
+          "value": ""
+        },
+        "Sound": {
+          "type": "resref",
+          "value": ""
+        },
+        "Text": {
+          "type": "cexolocstring",
+          "value": {
+            "id": 50263
+          }
+        }
+      },
+      {
+        "__struct_id": 29,
+        "ActionParams": {
+          "type": "list",
+          "value": []
+        },
+        "Animation": {
+          "type": "dword",
+          "value": 0
+        },
+        "AnimLoop": {
+          "type": "byte",
+          "value": 1
+        },
+        "Comment": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Delay": {
+          "type": "dword",
+          "value": 4294967295
+        },
+        "EntriesList": {
+          "type": "list",
+          "value": [
+            {
+              "__struct_id": 0,
+              "Active": {
+                "type": "resref",
+                "value": ""
+              },
+              "ConditionParams": {
+                "type": "list",
+                "value": []
+              },
+              "Index": {
+                "type": "dword",
+                "value": 3
+              },
+              "IsChild": {
+                "type": "byte",
+                "value": 1
+              },
+              "LinkComment": {
+                "type": "cexostring",
+                "value": ""
+              }
+            }
+          ]
+        },
+        "Quest": {
+          "type": "cexostring",
+          "value": ""
+        },
+        "Script": {
+          "type": "resref",
+          "value": ""
+        },
+        "Sound": {
+          "type": "resref",
+          "value": ""
+        },
+        "Text": {
+          "type": "cexolocstring",
+          "value": {
+            "id": 50257
+          }
         }
       }
     ]
@@ -3929,9 +4777,13 @@
           "type": "resref",
           "value": "m0q00plot"
         },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
+        },
         "Index": {
           "type": "dword",
-          "value": 15
+          "value": 19
         }
       },
       {
@@ -3940,9 +4792,13 @@
           "type": "resref",
           "value": "m0q01a04friesgk5"
         },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
+        },
         "Index": {
           "type": "dword",
-          "value": 2
+          "value": 18
         }
       },
       {
@@ -3951,9 +4807,13 @@
           "type": "resref",
           "value": "m0q01a07ansesgk3"
         },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
+        },
         "Index": {
           "type": "dword",
-          "value": 0
+          "value": 1
         }
       },
       {
@@ -3962,9 +4822,13 @@
           "type": "resref",
           "value": ""
         },
+        "ConditionParams": {
+          "type": "list",
+          "value": []
+        },
         "Index": {
           "type": "dword",
-          "value": 1
+          "value": 0
         }
       }
     ]
