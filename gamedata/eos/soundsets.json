@@ -2,11 +2,11 @@
   "Extensions": [],
   "Items": [
     {
-      "ID": "b7fd3988-828e-471c-a854-0a6ef0cdca90",
-      "Index": -1,
+      "ID": "bd059642-fdd8-4888-aa18-473762165e73",
+      "Index": 0,
       "Overrides": "d1683a98-edcb-8cf9-6729-944004e747fa",
       "Disabled": false,
-      "Hint": "Renamed Human, Male, Desert Warrior. Made into player soundset (is Ali Ibn-Musud in SOU)",
+      "Hint": "Renamed Human, Male, Desert Warrior. Made into player soundset (is Ali Ibn-Musud in SOU) Copy",
       "ScriptConstant": "",
       "SourceLabel": "Assam",
       "ExtensionValues": {},
@@ -1075,11 +1075,11 @@
       ]
     },
     {
-      "ID": "f38fe4a4-48d2-4ea2-b8f8-b6c2012e6abe",
-      "Index": -1,
+      "ID": "99cc84cd-c88a-4517-9dc4-92d93fa12da9",
+      "Index": 0,
       "Overrides": "1d00d36a-590b-f287-5d96-044786738de1",
       "Disabled": false,
-      "Hint": "Renamed, is Katriana in the OC, made into complete soundset.",
+      "Hint": "Renamed: Katriana. Made into complete PC soundset. Copy",
       "ScriptConstant": "",
       "SourceLabel": "Katriana",
       "ExtensionValues": {},
@@ -1729,11 +1729,11 @@
       ]
     },
     {
-      "ID": "64ff43e0-32ba-4f21-8b28-5b0c871014e9",
-      "Index": -1,
+      "ID": "f270de0f-d8f9-4da8-b537-ca546a7a7a13",
+      "Index": 0,
       "Overrides": "aeaaf0df-3877-0e57-0901-250d1d3d4df2",
       "Disabled": false,
-      "Hint": "Renamed Human, Male, Blackguard. Archmage Leomund, unused in SoU.",
+      "Hint": "Renamed Human, Male, Blackguard. Archmage Leomund, unused in SoU. Copy",
       "ScriptConstant": "",
       "SourceLabel": "Wizard",
       "ExtensionValues": {},
@@ -2823,11 +2823,11 @@
       ]
     },
     {
-      "ID": "c306be8a-95e5-42d6-b32a-a816411428e3",
-      "Index": -1,
+      "ID": "3a38fde4-6aca-42b6-87c6-91053cfc512e",
+      "Index": 0,
       "Overrides": "c6172301-8d7b-2109-66b9-a5b4d9b18064",
       "Disabled": false,
-      "Hint": "Renamed Elf, Female Noble made into player soundset (is unused Malthia Drammar from SoU)",
+      "Hint": "Renamed Elf, Female Noble, Made into player soundset (is unused Malthia Drammar from SoU) Copy",
       "ScriptConstant": "",
       "SourceLabel": "Malthia_Drammar",
       "ExtensionValues": {},
@@ -3980,11 +3980,11 @@
       ]
     },
     {
-      "ID": "08e86450-8869-4fdc-b416-2c6740407c38",
-      "Index": -1,
+      "ID": "499d77a7-cd08-4ae6-a117-14593c085284",
+      "Index": 0,
       "Overrides": "3f586f99-1064-442f-23ff-cdb413d1101e",
       "Disabled": false,
-      "Hint": "Sou: Mischa Waymeet",
+      "Hint": "Renamed: Mischa Waymeet. Completed and made into player soundset. Copy",
       "ScriptConstant": "",
       "SourceLabel": "Mischa_Waymeet",
       "ExtensionValues": {},
@@ -4165,6 +4165,56 @@
           "SoundFile": "vs_nx0mishf_help"
         },
         {
+          "Type": "ENEMIES",
+          "Text": {
+            "Index": null,
+            "EN": {
+              "M": "Look! Evil creatures to smite! Let\u0027s go attack!"
+            }
+          },
+          "SoundFile": "vs_nx0mishf_enmy"
+        },
+        {
+          "Type": "FLEE",
+          "Text": {
+            "Index": null,
+            "EN": {
+              "M": "Let us press onwards and die in glorious battle!"
+            }
+          },
+          "SoundFile": "vs_nx0mishf_flee"
+        },
+        {
+          "Type": "TAUNT",
+          "Text": {
+            "Index": null,
+            "EN": {
+              "M": "Dare you face me evil creature? I bet you don\u0027t!"
+            }
+          },
+          "SoundFile": "vs_nx0mishf_tant"
+        },
+        {
+          "Type": "GUARDME",
+          "Text": {
+            "Index": null,
+            "EN": {
+              "M": "Guard me as we fight, and I will do the same for you!"
+            }
+          },
+          "SoundFile": "vs_nx0mishf_gard"
+        },
+        {
+          "Type": "HOLD",
+          "Text": {
+            "Index": null,
+            "EN": {
+              "M": "Hold you ground!"
+            }
+          },
+          "SoundFile": "vs_nx0mishf_hold"
+        },
+        {
           "Type": "GATTACK1",
           "SoundFile": "vs_nx0mishf_atk1"
         },
@@ -4187,6 +4237,16 @@
         {
           "Type": "PAIN3",
           "SoundFile": "vs_nx0mishf_hit3"
+        },
+        {
+          "Type": "NEARDEATH",
+          "Text": {
+            "Index": null,
+            "EN": {
+              "M": "I can feel Mystra\u0027s arms reaching out to embrace me..."
+            }
+          },
+          "SoundFile": "vs_nx0mishf_dyin"
         },
         {
           "Type": "DEATH",
@@ -4212,6 +4272,156 @@
             }
           },
           "SoundFile": "vs_nx0mishf_dead"
+        },
+        {
+          "Type": "POISONED",
+          "Text": {
+            "Index": null,
+            "EN": {
+              "M": "Ohh...poison creeping throgh my veins."
+            }
+          },
+          "SoundFile": "vs_nx0mishf_sick"
+        },
+        {
+          "Type": "SPELLFAILED",
+          "Text": {
+            "Index": null,
+            "EN": {
+              "M": "Mystra must have not wanted that to work."
+            }
+          },
+          "SoundFile": "vs_nx0mishf_spel"
+        },
+        {
+          "Type": "WEAPONSUCKS",
+          "Text": {
+            "Index": null,
+            "EN": {
+              "M": "My sword may have failed me, but my faith remains strong!"
+            }
+          },
+          "SoundFile": "vs_nx0mishf_inff"
+        },
+        {
+          "Type": "FOLLOWME",
+          "Text": {
+            "Index": null,
+            "EN": {
+              "M": "Come! Follow me!"
+            }
+          },
+          "SoundFile": "vs_nx0mishf_foll"
+        },
+        {
+          "Type": "LOOKHERE",
+          "Text": {
+            "Index": null,
+            "EN": {
+              "M": "Look over here! Quickly."
+            }
+          },
+          "SoundFile": "vs_nx0mishf_look"
+        },
+        {
+          "Type": "GROUP",
+          "Text": {
+            "Index": null,
+            "EN": {
+              "M": "All of us should come together at once."
+            }
+          },
+          "SoundFile": "vs_nx0mishf_grup"
+        },
+        {
+          "Type": "MOVEOVER",
+          "Text": {
+            "Index": null,
+            "EN": {
+              "M": "Please move over, won\u0027t you?"
+            }
+          },
+          "SoundFile": "vs_nx0mishf_move"
+        },
+        {
+          "Type": "PICKLOCK",
+          "Text": {
+            "Index": null,
+            "EN": {
+              "M": "Hmm, this won\u0027t open, does anyone have a knock spell?"
+            }
+          },
+          "SoundFile": "vs_nx0mishf_pick"
+        },
+        {
+          "Type": "SEARCH",
+          "Text": {
+            "Index": null,
+            "EN": {
+              "M": "I don\u0027t see anything around, but maybe you might!"
+            }
+          },
+          "SoundFile": "vs_nx0mishf_srch"
+        },
+        {
+          "Type": "HIDE",
+          "Text": {
+            "Index": null,
+            "EN": {
+              "M": "Even though this seems to call for stealth, I think we should charge ahead!"
+            }
+          },
+          "SoundFile": "vs_nx0mishf_hide"
+        },
+        {
+          "Type": "CANDO",
+          "Text": {
+            "Index": null,
+            "EN": {
+              "M": "Of course I can do that."
+            }
+          },
+          "SoundFile": "vs_nx0mishf_can"
+        },
+        {
+          "Type": "CANTDO",
+          "Text": {
+            "Index": null,
+            "EN": {
+              "M": "Of course I can do that. Well, actually I can\u0027t, I\u0027m sorry."
+            }
+          },
+          "SoundFile": "vs_nx0mishf_cant"
+        },
+        {
+          "Type": "TASKCOMPLETE",
+          "Text": {
+            "Index": null,
+            "EN": {
+              "M": "I\u0027m finished."
+            }
+          },
+          "SoundFile": "vs_nx0mishf_done"
+        },
+        {
+          "Type": "ENCUMBERED",
+          "Text": {
+            "Index": null,
+            "EN": {
+              "M": "Ouch. This is as heavy as I imagine the weight of a guilty conscious would be."
+            }
+          },
+          "SoundFile": "vs_nx0mishf_encm"
+        },
+        {
+          "Type": "SELECTED",
+          "Text": {
+            "Index": null,
+            "EN": {
+              "M": "Yes?"
+            }
+          },
+          "SoundFile": "vs_nx0mishf_slct"
         },
         {
           "Type": "HELLO",
@@ -4290,6 +4500,36 @@
           "SoundFile": "vs_nx0mishf_no"
         },
         {
+          "Type": "STOP",
+          "Text": {
+            "Index": null,
+            "EN": {
+              "M": "Let\u0027s stop for a moment."
+            }
+          },
+          "SoundFile": "vs_nx0mishf_stop"
+        },
+        {
+          "Type": "REST",
+          "Text": {
+            "Index": null,
+            "EN": {
+              "M": "Can we stop for a while? I need to perform my devotions."
+            }
+          },
+          "SoundFile": "vs_nx0mishf_rest"
+        },
+        {
+          "Type": "BORED",
+          "Text": {
+            "Index": null,
+            "EN": {
+              "M": "Surely there\u0027s some evil out there we could be smiting."
+            }
+          },
+          "SoundFile": "vs_nx0mishf_bore"
+        },
+        {
           "Type": "GOODBYE",
           "Text": {
             "Index": 76304,
@@ -4315,8 +4555,28 @@
           "SoundFile": "vs_nx0mishf_bye"
         },
         {
+          "Type": "THANKS",
+          "Text": {
+            "Index": null,
+            "EN": {
+              "M": "May Mystra bless you for your kindness."
+            }
+          },
+          "SoundFile": "vs_nx0mishf_thnx"
+        },
+        {
           "Type": "LAUGH",
           "SoundFile": "vs_nx0mishf_haha"
+        },
+        {
+          "Type": "CUSS",
+          "Text": {
+            "Index": null,
+            "EN": {
+              "M": "May Mystra condemn it to the bleakest hell."
+            }
+          },
+          "SoundFile": "vs_nx0mishf_cuss"
         },
         {
           "Type": "CHEER",
@@ -4367,6 +4627,26 @@
             }
           },
           "SoundFile": "vs_nx0mishf_say"
+        },
+        {
+          "Type": "GOODIDEA",
+          "Text": {
+            "Index": null,
+            "EN": {
+              "M": "Yes! That\u0027s a splendid idea."
+            }
+          },
+          "SoundFile": "vs_nx0mishf_good"
+        },
+        {
+          "Type": "BADIDEA",
+          "Text": {
+            "Index": null,
+            "EN": {
+              "M": "Yes! That\u0027s a wonderful idea....I think!"
+            }
+          },
+          "SoundFile": "vs_nx0mishf_bad"
         },
         {
           "Type": "THREATEN",
