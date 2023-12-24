@@ -10,6 +10,9 @@
 //:: https://github.com/Finaldeath/overhaul
 //:://////////////////////////////////////////////
 
+// Constants include
+#include "op_i_constants"
+
 // Utility includes
 #include "utl_i_2da"
 #include "utl_i_associates"

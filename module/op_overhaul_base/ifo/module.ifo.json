@@ -22,7 +22,7 @@
   },
   "Mod_CustomTlk": {
     "type": "cexostring",
-    "value": ""
+    "value": "overhaul"
   },
   "Mod_CutSceneList": {
     "type": "list",
@@ -38,7 +38,9 @@
   },
   "Mod_Description": {
     "type": "cexolocstring",
-    "value": {}
+    "value": {
+      "0": ""
+    }
   },
   "Mod_DuskHour": {
     "type": "byte",
@@ -78,7 +80,15 @@
   },
   "Mod_HakList": {
     "type": "list",
-    "value": []
+    "value": [
+      {
+        "__struct_id": 8,
+        "Mod_Hak": {
+          "type": "cexostring",
+          "value": "overhaul"
+        }
+      }
+    ]
   },
   "Mod_IsSaveGame": {
     "type": "byte",
