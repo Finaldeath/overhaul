@@ -1,4 +1,981 @@
 {
   "Extensions": [],
-  "Items": []
+  "Items": [
+    {
+      "ID": "9c0d2bf2-3730-47bf-98d8-9db4b13f6a4a",
+      "Index": -1,
+      "Overrides": "f8501ad6-8581-de3d-c9a1-10731b886a96",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "AnimalEmpathy",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 269,
+        "EN": {
+          "M": "Animal Empathy"
+        },
+        "FR": {
+          "M": "Empathie avec les animaux"
+        },
+        "DE": {
+          "M": "Gef\u00FChl f\u00FCr Tiere"
+        },
+        "IT": {
+          "M": "Empatia Animale"
+        },
+        "ES": {
+          "M": "Empat\u00EDa animal"
+        },
+        "PL": {
+          "M": "Zrozumienie zwierz\u0105t"
+        }
+      },
+      "Description": {
+        "Index": 344,
+        "EN": {
+          "M": "Ability: Charisma.\nRequires Training: Yes.\nClasses: Druid and ranger.\n\nA successful check allows a character to charm or dominate certain creatures. \n\nCheck: Animals and dire animals have a DC of 15 \u002B the creature\u0027s hit die. For beasts and magical beasts, the DC is 19 \u002B the creature\u0027s hit die. If the check succeeds, the creature is dominated. This is considered a mind-affecting effect. You must be seen by the target to attempt to use this skill on them.\r\n\nSpecial: If the character fails their check by five or more, the creature will go hostile.\n\r\nUse: Select this skill and then select the target creature. Dominated creatures are commanded as if they were henchmen. The creature will remain dominated for one turn per level of the character using the skill.",
+          "F": "Ability: Charisma.\nRequires Training: Yes.\nClasses: Druid and ranger.\n\nA successful check allows a character to charm or dominate certain creatures.\n\nCheck: Animals and dire animals have a DC of 15 \u002B the creature\u0027s hit die. For beasts and magical beasts, the DC is 19 \u002B the creature\u0027s hit die. If the check succeeds, the creature is dominated.\nSpecial: If the character fails their check by five or more, the creature will go hostile.\nUse: Select this skill and then select the target creature. Dominated creatures are commanded as if they were henchmen. The creature will remain dominated for one turn per level of the character using the skill."
+        },
+        "FR": {
+          "M": "Caract\u00E9ristique : Charisme\nApprentissag : oui\nClasses : Druide et R\u00F4deur\n\nUn jet r\u00E9ussi permet \u00E0 un personnage de charmer ou de dominer certaines cr\u00E9atures.\n\nJet de comp\u00E9tence : pour les animaux et les animaux sanguinaires le DD est de 15 \u002B les d\u00E9s de vie de la cr\u00E9ature. Pour les b\u00EAtes et les b\u00EAtes magiques, le DD est de 19 \u002B les d\u00E9s de vie de la cr\u00E9ature. Si le jet est r\u00E9ussi, la cr\u00E9ature est domin\u00E9e.\nSp\u00E9cial : si le personnage rate son jet d\u0027au moins 5 points, la cr\u00E9ature devient hostile.\nUtilisation : s\u00E9lectionnez cette comp\u00E9tence puis s\u00E9lectionnez la cr\u00E9ature cible. Les cr\u00E9atures domin\u00E9es sont command\u00E9es comme s\u0027il s\u0027agissait de compagnons d\u0027armes. Une cr\u00E9ature reste domin\u00E9e pendant un round par niveau du personnage utilisant cette comp\u00E9tence."
+        },
+        "DE": {
+          "M": "Bezugsattribut: Charisma.\nUnge\u00FCbte Anwendung: Nein.\nKlassen: Druide und Waldl\u00E4ufer.\n\nMit einem erfolgreichen Fertigkeitswurf kann der Charakter bestimmte Kreaturen bezaubern oder beherrschen.\n\nWurf: Bei Tieren und Untieren betr\u00E4gt der SG 15 \u002B Trefferw\u00FCrfel des Tiers, bei Bestien und magischen Bestien 19 \u002B Trefferw\u00FCrfel. Bei einem erfolgreichen Fertigkeitswurf wird die Kreatur beherrscht.\nSpeziell: Wenn der Wurf um 5 oder mehr Punkte scheitert, wird die Kreatur auf jeden Fall dem Charakter gegen\u00FCber feindselig.\nGebrauch: W\u00E4hlt zuerst die Fertigkeit und dann das Ziel aus. Beherrschten Kreaturen k\u00F6nnt Ihr wie Gefolgsleuten Befehle erteilen. Die Wirkungsdauer der Fertigkeit betr\u00E4gt eine Runde je Charakterstufe."
+        },
+        "IT": {
+          "M": "Caratteristica: Carisma\nRichiede Addestramento: s\u00EC.\nClassi: druido e ranger.\n\nUna prova effettuata con successo permette a un personaggio di dominare o rendere soggette a charme alcune creature.\n\nProva: gli animali e gli animali crudeli hanno una CD pari a 15 \u002B il dado vita della creatura. Per le bestie e le bestie magiche la CD \u00E8 pari a 19 \u002B il dado vita della creatura. Se la prova \u00E8 effettuata con successo, la creatura \u00E8 dominata.\nSpeciale: se il personaggio fallisce la prova di cinque o pi\u00F9, la creatura diventa ostile.\nUso: seleziona l\u0027abilit\u00E0 e poi seleziona la creatura bersaglio. Le creature dominate vengono comandate come se fossero seguaci. La creatura rimane dominata per un round per livello del personaggio che ha usato l\u0027abilit\u00E0."
+        },
+        "ES": {
+          "M": "Caracter\u00EDstica: Carisma\nRequiere entrenamiento: S\u00ED.\nClases: Druida y explorador.\n\nUna prueba con \u00E9xito permite al personaje hechizar o dominar a ciertas criaturas.\n\nPrueba: Los animales y animales terribles tienen una CD de 20 \u002B los DG de la criatura. Para las bestias y bestias m\u00E1gicas, la CD es de 24 \u002B los DG de la criatura. Si la prueba tiene \u00E9xito, la criatura es hechizada; si la prueba supera la CD por seis o m\u00E1s, la criatura es dominada.\nEspecial: Si el personaje falla la prueba por cinco o m\u00E1s, la criatura se volver\u00E1 hostil.\nUso: Selecciona esta habilidad y despu\u00E9s elige a la criatura objetivo. A las criaturas dominadas se les da \u00F3rdenes como si fueran ayudantes. La criatura permanecer\u00E1 hechizada o dominada durante un asalto por nivel del personaje que use la habilidad."
+        },
+        "PL": {
+          "M": "Cecha: Charyzma.\nWymaga szkolenia: tak.\nKlasy: Druid i \u0141owca.\n\nUdany test pozwala postaci zauroczy\u0107 i kontrolowa\u0107 wybrane stworzenia.\n\nTest: zwierz\u0119ta i monstrualne zwierz\u0119ta maj\u0105 ST na poziomie 15 \u002B ilo\u015B\u0107 punkt\u00F3w \u017Cycia stworzenia. W przypadku potwor\u00F3w i magicznych potwor\u00F3w ST jest na poziomie 19 \u002B ilo\u015B\u0107 punkt\u00F3w \u017Cycia stworzenia. Udany test oznacza, \u017Ce stworzenie dostaje si\u0119 pod kontrol\u0119 postaci.\nUwagi: je\u015Bli test zawiedzie pi\u0119\u0107 razy lub wi\u0119cej, istota staje si\u0119 wrogo nastawione do postaci.\nU\u017Cycie: wybierz umiej\u0119tno\u015B\u0107, a nast\u0119pnie stworzenie, kt\u00F3re jest celem. Kontrolowane istoty staj\u0105 si\u0119 stronnikami postaci. Zwierz\u0119 zostaje pod kontrol\u0105 przez jedn\u0105 tur\u0119 na poziom postaci, kt\u00F3ra u\u017Cywa tej umiej\u0119tno\u015Bci."
+        }
+      },
+      "Icon": "isk_aniemp",
+      "CanUseUntrained": false,
+      "KeyAbility": "CHA",
+      "UseArmorPenalty": false,
+      "AllClassesCanUse": false,
+      "AIBehaviour": null,
+      "IsHostile": true,
+      "HideFromLevelUp": false
+    },
+    {
+      "ID": "a5b2f8c9-7757-48d9-8941-eb7188be2f59",
+      "Index": -1,
+      "Overrides": "5f367a99-4b78-d088-6182-705fcc2a1b1b",
+      "Disabled": false,
+      "Hint": "Now a static check",
+      "ScriptConstant": "",
+      "SourceLabel": "Appraise",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 2693,
+        "EN": {
+          "M": "Appraise"
+        },
+        "FR": {
+          "M": "Estimation"
+        },
+        "DE": {
+          "M": "Sch\u00E4tzen"
+        },
+        "IT": {
+          "M": "Valutare"
+        },
+        "ES": {
+          "M": "Tasaci\u00F3n"
+        },
+        "PL": {
+          "M": "Wycena"
+        }
+      },
+      "Description": {
+        "Index": 2694,
+        "EN": {
+          "M": "Ability: Intelligence.\nRequires Training: No.\nClasses: All.\n\nThe higher the character\u0027s skill the better the price received when selling or purchasing goods.\n\nCheck: The character checks their Appraise skill rank against the merchant\u0027s Appraise skill rank. If the merchants is higher, the characters pay up to 30% more for the goods in the store. If the characters is higher, they pay up to 30% less.\r\n\r\nSpecial: Merchants who are charmed get a -10 penalty on their Appraise skill rank, while merchants who are dominated get a -20 penalty on their Appraise skill rank.\r\n\r\nUse: Automatic in stores.",
+          "F": "Ability: Intelligence.\nRequires Training: No.\nClasses: All.\n\nThe higher the character\u0027s skill the better the price received when selling or purchasing goods.\n\nCheck: The character makes an opposed roll against the merchant\u0027s Appraise skill. If the merchant wins, the characters pay more for the goods in the store. If the character wins, they pay less. The first time the player interacts with a merchant dictates the prices in that store until their Appraise skill improves.\nUse: Automatic in stores."
+        },
+        "FR": {
+          "M": "Caract\u00E9ristique : Intelligence.\nEntra\u00EEnement requis : Non.\nClasses : Toutes.\n\nPlus le rang de comp\u00E9tence est \u00E9lev\u00E9 plus le b\u00E9n\u00E9ficiaire pourra obtenir un bon prix en vendant ou en achetant des marchandises.\n\nJet de comp\u00E9tence : le personnage effectue un jet oppos\u00E9 contre la comp\u00E9tence d\u0027Estimation du marchand. Si le marchand l\u0027emporte, le personnage devra payer plus. Si le personnage l\u0027emporte, il paiera moins. Les prix qu\u0027un personnage obtiendra chez un marchand d\u00E9pendent du premier jet jusqu\u0027\u00E0 ce qu\u0027il augmente son niveau dans cette comp\u00E9tence.\nUtilisation : automatique chez un marchand."
+        },
+        "DE": {
+          "M": "Bezugsattribut: Intelligenz\nUnge\u00FCbte Anwendung: Ja\nKlassen: Alle\n\nJe h\u00F6her der Fertigkeitswert des Charakters ist, desto bessere Preise erh\u00E4lt er beim Ver- und Einkauf von Waren.\n\nWurf: Der Charakter macht einen konkurrierenden Wurf gegen den Fertigkeitswert des H\u00E4ndlers auf Sch\u00E4tzen. Gewinnt der H\u00E4ndler, zahlt der Charakter einen \u00FCberh\u00F6hten Preis f\u00FCr die Waren im Gesch\u00E4ft. Gewinnt der Charakter, erh\u00E4lt er die Waren billiger. Dieser Wurf wird nur einmal pro H\u00E4ndler durchgef\u00FChrt. Steigt der Fertigkeitswert des Charakters auf Sch\u00E4tzen und spricht er erneut mit einem H\u00E4ndler, so wird der Wurf erneut durchgef\u00FChrt.\nAnwendung: Automatisch in jedem Gesch\u00E4ft."
+        },
+        "IT": {
+          "M": "Caratteristica: intelligenza.\nRichiede addestramento: no.\nClassi: tutte.\n\nPi\u00F9 alta \u00E8 l\u0027abilit\u00E0 del personaggio, migliore \u00E8 il prezzo che otterr\u00E0 vendendo o acquistando merce.\n\nProva: il personaggio effettua una prova contrapposta contro l\u0027abilit\u00E0 valutare del mercante. Se vince il mercante, il personaggio pagher\u00E0 di pi\u00F9 per la merce in vendita nel negozio. Se il personaggio vince, pagher\u00E0 di meno. La prima volta che il giocatore interagisce con un mercante viene definito il prezzo che verr\u00E0 praticato da quel negozio finch\u00E9 la sua abilit\u00E0 valutare non migliora.\nUso: automatico nei negozi."
+        },
+        "ES": {
+          "M": "Caracter\u00EDstica: Inteligencia\nRequiere entrenamiento: No.\nClases: Todas.\n\nCuanto m\u00E1s alta sea la habilidad del personaje, mejor precio obtendr\u00E1 al comprar o vender mercanc\u00EDas.\n\nPrueba: El personaje realiza una prueba enfrentada contra la habilidad de Tasaci\u00F3n del mercader. Si gana este \u00FAltimo, el personaje pagar\u00E1 m\u00E1s por las mercanc\u00EDas de la tienda. Si gana el personaje, pagar\u00E1 menos. La primera vez que un jugador se relacione con un mercader marcar\u00E1 el precio conseguido en la tienda hasta que se mejore la habilidad.\nUso: Autom\u00E1tica en tiendas."
+        },
+        "PL": {
+          "M": "Cecha: Inteligencja.\nWymaga szkolenia: nie.\nKlasy: wszystkie.\n\nIm wy\u017Cszy poziom tej umiej\u0119tno\u015Bci, tym lepsz\u0105 cen\u0119 otrzyma twoja posta\u0107 przy sprzedawaniu i kupowaniu r\u00F3\u017Cnych towar\u00F3w.\n\nTest: posta\u0107 wykonuje test por\u00F3wnawczy przeciwko umiej\u0119tno\u015Bci Wyceny kupca. Je\u017Celi zwyci\u0119\u017Cy kupiec, posta\u0107 b\u0119dzie musia\u0142a zap\u0142aci\u0107 wi\u0119cej. Je\u017Celi wygra posta\u0107, dost\u0119pne dla niej b\u0119d\u0105 ni\u017Csze ceny. Ceny w sklepie s\u0105 ustalane podczas pierwszej wizyty i nie zmieni\u0105 si\u0119, chyba \u017Ce zmieni si\u0119 poziom umiej\u0119tno\u015Bci Wyceny postaci gracza lub kupca.\nU\u017Cycie: Automatyczne w sklepach."
+        }
+      },
+      "Icon": "ife_x1app",
+      "CanUseUntrained": true,
+      "KeyAbility": "INT",
+      "UseArmorPenalty": false,
+      "AllClassesCanUse": true,
+      "AIBehaviour": null,
+      "IsHostile": false,
+      "HideFromLevelUp": false
+    },
+    {
+      "ID": "f4097cb6-a38d-4d16-acb6-81c996f61117",
+      "Index": -1,
+      "Overrides": "13549453-4c58-2deb-4496-5eecef2ab5d2",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Bluff",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8746,
+        "EN": {
+          "M": "Bluff"
+        },
+        "FR": {
+          "M": "Bluff"
+        },
+        "DE": {
+          "M": "Bluffen"
+        },
+        "IT": {
+          "M": "Raggirare"
+        },
+        "ES": {
+          "M": "Enga\u00F1ar"
+        },
+        "PL": {
+          "M": "Blef"
+        }
+      },
+      "Description": {
+        "Index": 8757,
+        "EN": {
+          "M": "Ability: Charisma\nRequires Training: No.\nClasses: All.\n\nThe character can make the outrageous or the untrue seem plausible. This skill encompasses acting, conning, fast talking, misdirection and misleading body language.\r\n\r\nSpecial: Only certain modules will use Bluff skill checks.\n\nUse: Selected during conversation",
+          "F": "Ability: Charisma\nRequires Training: No.\nClasses: All.\n\nThe character can make the outrageous or the untrue seem plausible. This skill encompasses acting, conning, fast talking, misdirection and misleading body language.\n\nUse: Selected"
+        },
+        "FR": {
+          "M": "Caract\u00E9ristique : Charisme\nEntra\u00EEnement requis : Non.\nClasses : Toutes.\n\nLe personnage peut rendre plausibles de grossiers mensonges et faire croire que ce qu\u0027il dit est la v\u00E9rit\u00E9. Cette comp\u00E9tence groupe le jeu d\u0027acteur, la persuasion orale et le langage du corps.\n\nUtilisation : doit \u00EAtre s\u00E9lectionn\u00E9"
+        },
+        "DE": {
+          "M": "Bezugsattribut: Charisma\nUnge\u00FCbte Anwendung: Ja\nKlassen: Alle\n\nDer Charakter kann selbst die unglaubw\u00FCrdigsten Aussagen glaubw\u00FCrdig vermitteln. Die Fertigkeit umfasst den Einsatz von Schauspielkunst, Betr\u00FCgerei, \u00DCberzeugung, Irref\u00FChrung und missverst\u00E4ndlicher K\u00F6rpersprache.\n\nAnwendung: Auswahl"
+        },
+        "IT": {
+          "M": "Abilit\u00E0: carisma.\nAddestramento: no.\nClassi: tutte.\n\nIl personaggio pu\u00F2 far sembrare plausibili cose palesemente false. Quest\u0027abilit\u00E0 si basa sul saper pilotare le proprie azioni, sulla parlantina sciolta e su un linguaggio del corpo disinvolto.\n\nUso: selezione."
+        },
+        "ES": {
+          "M": "Caracter\u00EDstica: Carisma\nRequiere entrenamiento: No\nClases: Todas\n\nEl personaje puede hacer que parezca plausible lo que es rid\u00EDculo o mentira. Esta habilidad incluye un poco de actuaci\u00F3n, cara dura, labia, desorientaci\u00F3n y lenguaje corporal enga\u00F1oso.\n\nUso: Seleccionada"
+        },
+        "PL": {
+          "M": "Cecha: Charyzma\nWymaga szkolenia: nie\nKlasy: wszystkie\nPotrafisz sprawi\u0107, \u017Ce co\u015B niewiarygodnego lub nieprawdziwego wydaje si\u0119 do przyj\u0119cia. Ta umiej\u0119tno\u015B\u0107 sk\u0142ada si\u0119 z aktorstwa, zwodzenia, gadaniny i myl\u0105cego j\u0119zyka cia\u0142a."
+        }
+      },
+      "Icon": "isk_x2bluff",
+      "CanUseUntrained": true,
+      "KeyAbility": "CHA",
+      "UseArmorPenalty": false,
+      "AllClassesCanUse": true,
+      "AIBehaviour": null,
+      "IsHostile": false,
+      "HideFromLevelUp": false
+    },
+    {
+      "ID": "52dc8da3-c117-487d-9b46-afb3bf040b27",
+      "Index": -1,
+      "Overrides": "8f5ada36-1da9-878a-9a9e-740d16aef989",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Concentration",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 270,
+        "EN": {
+          "M": "Concentration"
+        },
+        "FR": {
+          "M": "Concentration"
+        },
+        "DE": {
+          "M": "Konzentration"
+        },
+        "IT": {
+          "M": "Concentrazione"
+        },
+        "ES": {
+          "M": "Concentraci\u00F3n"
+        },
+        "PL": {
+          "M": "Koncentracja"
+        }
+      },
+      "Description": {
+        "Index": 345,
+        "EN": {
+          "M": "Ability: Constitution.\nRequires Training: No.\nClasses: All.\n\nConcentration checks are made whenever your character is distracted during the act of casting a spell. It is also used to avoid the effects of the Taunt skill.\n\nCheck: The DC to avoid casting failure is equal to 10 \u002B damage received \u002B spell level. The caster receives a -4 penalty to his check if casting within four meters of an enemy without the Combat Casting feat. The Taunt check is an opposed roll, see Taunt skill for details.\r\n\r\nSpecial: Defensive Casting mode can be activated at anytime to avoid triggering attacks of oportunity. This requires a concentration skill check at DC 15 \u002B spell level, with the same -4 if an enemy is within four meters without the Combat Casting feat. Usual attacks enemies make will cause a normal concentration check.\n\r\nUse: Automatic.",
+          "F": "Ability: Constitution.\nRequires Training: No.\nClasses: All.\n\nConcentration checks are made whenever your character is distracted during the act of casting a spell. It is also used to avoid the effects of the Taunt skill.\n\nCheck: The DC to avoid casting failure is equal to 10 \u002B damage received \u002B spell level. The caster receives a -4 penalty to his check if casting within three meters of an enemy.\nUse: Automatic."
+        },
+        "FR": {
+          "M": "Caract\u00E9ristique : Constitution.\nApprentissage : Non.\nClasses\u00A0: Toutes.\n\nLes jets de Concentration sont faits chaque fois que votre personnage est distrait en lan\u00E7ant un sort. Cela sert aussi \u00E0 \u00E9viter les effets de la comp\u00E9tence Raillerie.\n\nJet\u00A0: le DD pour \u00E9viter l\u2019\u00E9chec du sort est \u00E9gal \u00E0 10 \u002B d\u00E9g\u00E2ts re\u00E7us \u002B le niveau du sort. Le lanceur du sort re\u00E7oit une p\u00E9nalit\u00E9 de -4 \u00E0 son jet s\u2019il lance le sort \u00E0 moins de trois m\u00E8tres d\u2019un ennemi.\nUtilisation\u00A0: automatique"
+        },
+        "DE": {
+          "M": "Bezugsattribut: Konstitution.\nUnge\u00FCbte Anwendung: Ja.\nKlassen: Alle.\n\nKonzentrationsw\u00FCrfe werden immer dann notwendig, wenn der Charakter w\u00E4hrend eines Zaubervorgangs gest\u00F6rt wird. Man kann mit dieser Fertigkeit auch die Wirkung der Fertigkeit Provozieren abblocken.\n\nWurf: Der SG zum Vermeiden von Zauberpatzern liegt bei 10 \u002B erhaltener Schaden \u002B Zaubergrad. Der Zaubernde erh\u00E4lt -4 auf seinen Wurf, wenn er innerhalb von 3 m Abstand zu einem Gegner zaubert.\nGebrauch: Automatisch."
+        },
+        "IT": {
+          "M": "Caratteristica: costituzione.\nRichiede Addestramento: no.\nClassi: tutte.\n\nLe prove di Concentrazione vengono effettuate ogni volta che il personaggio viene distratto nel corso del lancio di un incantesimo. Viene anche utilizzata per evitare gli effetti dell\u0027abilit\u00E0 Dileggiare.\n\nProva: la CD per evitare il fallimento di un lancio \u00E8 pari a 10 \u002B i danni ricevuti \u002B il livello dell\u0027incantesimo. L\u0027incantatore riceve una penalit\u00E0 di -4 alla sua prova se lancia a meno di tre metri da un nemico.\nUso: automatico."
+        },
+        "ES": {
+          "M": "Caracter\u00EDstica: Constituci\u00F3n\nRequiere entrenamiento: No.\nClases: Todas.\n\nLas pruebas de Concentraci\u00F3n se realizan siempre que tu personaje es distra\u00EDdo mientras lanza un conjuro. Tambi\u00E9n se usan para evitar los efectos de la habilidad Hostigar.\n\nPrueba: La CD para evitar el fallo del lanzamiento es igual a 10 \u002B da\u00F1o sufrido \u002B nivel del conjuro. El lanzador sufre un penalizador \u20134 a su prueba si est\u00E1 lanzando el sortilegio a diez pies o menos de un enemigo.\nUso: Autom\u00E1tica."
+        },
+        "PL": {
+          "M": "Cecha: Kondycja.\nWymaga szkolenia: nie.\nKlasy: wszystkie.\n\nTest na koncentracj\u0119 wykonywany jest za ka\u017Cdym razem, gdy co\u015B przeszkodzi twojej postaci podczas rzucania czaru. Umiej\u0119tno\u015Bci tej u\u017Cywa si\u0119 tak\u017Ce, aby unikn\u0105\u0107 efekt\u00F3w dzia\u0142ania Prowokacji.\n\nTest: ST na unikni\u0119cie nieudanego rzucenia czaru r\u00F3wny jest 10 \u002B otrzymane obra\u017Cenia \u002B poziom czaru. Rzucaj\u0105cy czar wykonuje test z modyfikatorem -4 je\u015Bli znajduje si\u0119 w zasi\u0119gu trzech metr\u00F3w od przeciwnika.\nU\u017Cywanie: automatyczne."
+        }
+      },
+      "Icon": "isk_concen",
+      "CanUseUntrained": true,
+      "KeyAbility": "CON",
+      "UseArmorPenalty": false,
+      "AllClassesCanUse": true,
+      "AIBehaviour": null,
+      "IsHostile": false,
+      "HideFromLevelUp": false
+    },
+    {
+      "ID": "a972ff70-88a5-4db5-8cfb-2d3729c3bc9b",
+      "Index": -1,
+      "Overrides": "ce02d529-c081-c931-7f63-0bc2b49c63a0",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "CraftArmor",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8787,
+        "EN": {
+          "M": "Craft Armor"
+        },
+        "FR": {
+          "M": "Cr\u00E9ation d\u0027armure"
+        },
+        "DE": {
+          "M": "Handwerk (R\u00FCstungsschmied)"
+        },
+        "IT": {
+          "M": "Creare armature"
+        },
+        "ES": {
+          "M": "Fabricar armaduras"
+        },
+        "PL": {
+          "M": "Tworzenie pancerza"
+        }
+      },
+      "Description": {
+        "Index": 8788,
+        "EN": {
+          "M": "Ability: Intelligence\nRequires Training: No.\nClasses: All.\n\nThe character knows how to create most types of armor, shields and helmets from different materials. They can also alter the appearance of said items.\n\nHow to craft\nThe character first needs to create the components required for the item he wants to create from base materials (wood, leather, metal, etc).  This can be done by selecting the craft armor option in the material item\u0027s radial menu.\n\nEach item is constructed from two different components (a larger and a smaller one), that need to be assembled in order to finish crafting process.\n\nTo assemble the two components, use the craft armor option in the smaller component\u0027s radial menu and target the larger component with it. On a successful Craft Armor skill check, the new item will be created in the character\u0027s inventory.  Note that it is not possible to create magic items with your crafting skills.\r\n\r\nTo alter the appearance of a piece of armor equip it then use the radial menu item for Crafting Skills to change the appearance.\r\n\r\nFor further information about crafting, please refer to the in-game manual.",
+          "F": "Ability: Intelligence\nRequires Training: No.\nClasses: All.\n\nThe character knows how to create most types of armor, shields and helmets from different materials.\n\nHow to craft\nThe character first needs to create the components required for the item he wants to create from base materials (wood, leather, metal, etc).  This can be done by selecting the craft armor option in the material item\u0027s radial menu.\n\nEach item is constructed from two different components (a larger and a smaller one), that need to be assembled in order to finish crafting process.\n\nTo assemble the two components, use the craft armor option in the smaller component\u0027s radial menu and target the larger component with it. On a successful Craft Armor skill check, the new item will be created in the character\u0027s inventory.  Note that it is not possible to create magic items with your crafting skills. For further information about crafting, please refer to the manual.\n"
+        },
+        "FR": {
+          "M": "Caract\u00E9ristique : Intelligence\nEntra\u00EEnement requis : Non.\nClasses : Toutes.\n\nLe personnage sait fabriquer la plupart des armures, des boucliers et des heaumes avec diff\u00E9rentes mati\u00E8res.\n\nFabrication :\n\nLe personnage doit d\u0027abord fabriquer les composants requis pour l\u0027objet d\u00E9sir\u00E9 \u00E0 partir de mat\u00E9riaux de base (bois, cuir, m\u00E9tal, etc). Pour cela, il faut s\u00E9lectionner l\u0027option Cr\u00E9ation d\u0027armure dans le menu radial du mat\u00E9riau.\n\nPour terminer chaque objet, il faut assembler deux \u00E9l\u00E9ments (un grand et un petit).\n\n\nPour assembler les deux composants, utiliser l\u0027option Cr\u00E9ation d\u0027armure dans le menu radial du plus petit des deux \u00E9l\u00E9ments et prenez pour cible l\u0027\u00E9l\u00E9ment le plus gros. Avec un jet de comp\u00E9tence r\u00E9ussi, le nouvel objet sera cr\u00E9\u00E9 dans l\u0027inventaire du personnage. Notez qu\u0027il n\u0027est pas possible de cr\u00E9er des objets magiques avec les comp\u00E9tence artisanales. Pour plus d\u0027informations, consultez le manuel."
+        },
+        "DE": {
+          "M": "Bezugsattribut: Intelligenz\nUnge\u00FCbte Anwendung: Ja\nKlassen: Alle\n\nDer Charakter kann R\u00FCstungen aus den verschiedensten Materialien herstellen.\n\nWie man die Fertigkeit anwendet:\n\nDer Charakter muss zuerst die Zutaten f\u00FCr den Gegenstand herstellen, den er anfertigen will. Dazu braucht er Material wie Holz, Leder, Metall usw. Der Charakter w\u00E4hlt die Fertigkeit im Kreismen\u00FC aus, das auftaucht, wenn er mit Rechts auf den Gegenstand klickt.\n\nJeder Gegenstand wird aus zwei Zutaten gefertigt, und zwar einer kleinen und einer gro\u00DFen Zutat.\n\nSobald Ihr beide Zutaten, die f\u00FCr die Herstellung eines Gegenstandes erforderlich sind, in Eurem Besitzt habt, ruft Ihr das Kreismen\u00FC f\u00FCr die kleine Zutat auf. W\u00E4hlt dann die Fertigkeit aus und klickt anschlie\u00DFend auf die gro\u00DFe Zutat. Nach einem erfolgreichen Fertigkeitswurf taucht der hergestellte Gegenstand in Eurem Gep\u00E4ck auf. Es ist nicht m\u00F6glich auf diesem Weg magische Gegenst\u00E4nde herzustellen. Weitere Informationen \u00FCber das Herstellen von Gegenst\u00E4nden findet Ihr im Handbuch."
+        },
+        "IT": {
+          "M": "Abilit\u00E0: intelligenza.\nAddestramento: no.\nClassi: tutte.\n\nIl personaggio sa come creare buona parte delle armature, degli scudi e degli elmi, utilizzando diversi materiali.\n\nCome creare\nPer prima cosa il personaggio deve creare i componenti necessari partendo dal loro materiale di base (legno, pelle, metallo, eccetera). Puoi farlo selezionando l\u0027opzione Creare armature nel menu radiale dei materiali.\n\nTutti gli oggetti che puoi creare sono costituiti da due diversi componenti (uno grande e uno piccolo), che devono essere assemblati per completare il procedimento di creazione.\n\nPer assemblare i due componenti, devi usare l\u0027opzione Creare armature nel menu radiale di quello pi\u00F9 piccolo, selezionando come bersaglio il componente pi\u00F9 grande. Se superi la prova di abilit\u00E0 Creare armature, il nuovo oggetto viene posizionato nel tuo inventario. Tieni presente che non \u00E8 possibile creare oggetti magici utilizzando questa procedura. Per ulteriori informazioni a riguardo, fai riferimento al manuale di gioco."
+        },
+        "ES": {
+          "M": "Caracter\u00EDstica: Inteligencia\nRequiere entrenamiento: No\nClases: Todas\n\nEl personaje sabe fabricar todo tipo de armaduras, escudos y yelmos a partir de diferentes materiales.\n\nC\u00F3mo fabricar\nEl personaje primero tiene que crear los componentes necesarios para el objeto que quiera hacer a partir de materiales b\u00E1sicos (madera, cuero, metal, etc.). Esto se hace seleccionando la opci\u00F3n de fabricar armadura en el men\u00FA radial de materiales de objetos.\n\nCada objeto se construye a partir de dos componentes diferentes, uno grande y otro peque\u00F1o, que tienen que ensamblarse para finalizar el proceso de fabricaci\u00F3n.\n\nPara ensamblar los dos componentes, utiliza la opci\u00F3n de fabricar armadura en el m\u00E1s peque\u00F1o del men\u00FA radial y apunta con \u00E9l al componente m\u00E1s grande. Si la prueba de la habilidad Fabricar armaduras tiene \u00E9xito, el nuevo objeto se crear\u00E1 en el inventario del personaje. Ten en cuenta que no es posible hacer objetos m\u00E1gicos con las habilidades de creaci\u00F3n. Para obtener m\u00E1s informaci\u00F3n al respecto, consulta el manual."
+        },
+        "PL": {
+          "M": "Cecha: Inteligencja\nWymaga szkolenia: nie\nKlasy: wszystkie\n\nWiesz, jak wykona\u0107 podstawowe rodzaje pancerzy, tarcz i he\u0142m\u00F3w z r\u00F3\u017Cnych materia\u0142\u00F3w.\n\nJak zrobi\u0107 przedmiot\nNajpierw trzeba wykona\u0107 sk\u0142adniki z podstawowych materia\u0142\u00F3w (drewna, sk\u00F3ry, metali, itd.). Mo\u017Cna to zrobi\u0107, wybieraj\u0105c z okr\u0105g\u0142ego menu przedmiotu opcj\u0119 tworzenia pancerza.\n\nKa\u017Cdy przedmiot, kt\u00F3ry tworzysz, sk\u0142ada si\u0119 z dw\u00F3ch sk\u0142adnik\u00F3w (du\u017Cego i ma\u0142ego). Aby zrobi\u0107 przedmiot, oba sk\u0142adniki trzeba po\u0142\u0105czy\u0107.\n\nAby zmontowa\u0107 dwa sk\u0142adniki, musisz wybra\u0107 opcj\u0119 tworzenia pancerza z okr\u0105g\u0142ego menu mniejszego sk\u0142adnika i klikn\u0105\u0107 na wi\u0119kszym sk\u0142adniku. Je\u015Bli test tworzenia przedmiotu si\u0119 powiedzie, w twoim ekwipunku pojawi si\u0119 nowy przedmiot. Pami\u0119taj jednak, \u017Ce w ten spos\u00F3b nie mo\u017Cesz tworzy\u0107 magicznych przedmiot\u00F3w. Dok\u0142adniejsze informacje na temat tworzenia przedmiot\u00F3w znajduj\u0105 si\u0119 w instrukcji."
+        }
+      },
+      "Icon": "isk_x2carm",
+      "CanUseUntrained": true,
+      "KeyAbility": "INT",
+      "UseArmorPenalty": false,
+      "AllClassesCanUse": true,
+      "AIBehaviour": null,
+      "IsHostile": false,
+      "HideFromLevelUp": false
+    },
+    {
+      "ID": "b115a4f4-601a-44b1-850b-1f2ec0dacb98",
+      "Index": -1,
+      "Overrides": "94a6907f-26d2-2ae7-c5d6-fb4018083e72",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "CraftTrap",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 2697,
+        "EN": {
+          "M": "Craft Trap"
+        },
+        "FR": {
+          "M": "Fabrication de pi\u00E8ges"
+        },
+        "DE": {
+          "M": "Falle anfertigen"
+        },
+        "IT": {
+          "M": "Creare trappole"
+        },
+        "ES": {
+          "M": "Fabricar trampas"
+        },
+        "PL": {
+          "M": "Tworzenie pu\u0142apki"
+        }
+      },
+      "Description": {
+        "Index": 2698,
+        "EN": {
+          "M": "Ability: Intelligence.\nRequires Training: No.\nClasses: All.\n\nThe character using this skill can combine raw components to form various trap kits. There is a 10% chance on any failed skill roll that the components are lost, even though a trap was not crafted.\n\nCheck: The DC is determined by the type of trap being created. The more powerful the trap, the more difficult it is to build and the more components it requires.\n\r\nUse: Select Crafting Skills from the radial.\r\n\r\nFor further information about crafting, please refer to the in-game manual.",
+          "F": "Ability: Intelligence.\nRequires Training: No.\nClasses: All.\n\nThe character using this skill can combine raw components to form various trap kits. There is a 10% chance on any failed skill roll that the components are lost, even though a trap was not crafted.\n\nCheck: The DC is determined by the type of trap being created. The more powerful the trap, the more difficult it is to build and the more components it requires.\nUse: Selected."
+        },
+        "FR": {
+          "M": "Caract\u00E9ristique : Intelligence.\nEntra\u00EEnement requis : Non.\nClasses : Toutes.\n\nLe personnage qui utilise cette comp\u00E9tence peut fabriquer des pi\u00E8ges en combinant divers \u00E9l\u00E9ments. Il y a 10% de chances, en cas d\u0027\u00E9chec, que les composants soient d\u00E9truits m\u00EAme si le pi\u00E8ge n\u0027a pas \u00E9t\u00E9 fabriqu\u00E9.\n\nJet de comp\u00E9tence : le DD est d\u00E9termin\u00E9 par le type de pi\u00E8ge que l\u0027on veut fabriquer. Plus le pi\u00E8ge est puissant, plus il sera difficile \u00E0 fabriquer et plus il faudra de composants.\nUtilisation : si s\u00E9lectionn\u00E9"
+        },
+        "DE": {
+          "M": "Bezugsattribut: Intelligenz\nBen\u00F6tigt Ausbildung: Nein\nKlassen: Alle\n\nEin Charakter mit dieser Fertigkeit kann aus Rohmaterial verschiedene Fallen anfertigen. Bei einem gescheiterten Wurf besteht eine Chance von 10%, dass das Rohmaterial verbraucht wird, obwohl die Herstellung der Falle nicht funktioniert hat.\n\nWurf: Der SG wird durch die Art der Falle bestimmt, die der Charakter anfertigen will. Je gef\u00E4hrlicher die Falle ist, desto schwieriger ist der Wurf und desto mehr Komponenten werden ben\u00F6tigt.\nVerwendung: Muss ausgew\u00E4hlt werden"
+        },
+        "IT": {
+          "M": "Caratteristica: intelligenza.\nRichiede addestramento: no.\nClassi: tutte.\n\nQuando il personaggio usa questa abilit\u00E0, pu\u00F2 utilizzare degli strumenti grezzi per costruire vari arnesi per le trappole. Esiste una possibilit\u00E0 del 10% su ogni tiro fallito che gli strumenti grezzi vadano perduti anche se la trappola non viene costruita.\nProva: la CD \u00E8 stabilita in base al tipo di trappola che viene creato. Pi\u00F9 potente \u00E8 la trappola, pi\u00F9 difficile \u00E8 costruirla e pi\u00F9 strumenti sono necessari.\nUso: selezionato."
+        },
+        "ES": {
+          "M": "Caracter\u00EDstica: Inteligencia\nRequiere entrenamiento: No.\nClases: Todas.\n\nEl personaje que use esta habilidad puede combinar materias primas para realizar diversos juegos de trampas. Si falla la tirada de habilidad, hay un 10% de que pierda los componentes, aunque no se haya conseguido fabricar la trampa.\n\nPrueba: La CD se determina seg\u00FAn el tipo de trampa a crear. Cuanto m\u00E1s potente sea la trampa, m\u00E1s dif\u00EDcil ser\u00E1 construirla y m\u00E1s componentes requerir\u00E1.\nUso: Seleccionada."
+        },
+        "PL": {
+          "M": "Cecha: Inteligencja.\nWymaga szkolenia: Nie.\nKlasy:  Wszystkie.\n\nZa pomoc\u0105 tej umiej\u0119tno\u015Bci posta\u0107 mo\u017Ce po\u0142\u0105czy\u0107 r\u00F3\u017Cne przedmioty i wykona\u0107 ro\u017Cne rodzaje pu\u0142apek. Po nieudanym te\u015Bcie umiej\u0119tno\u015Bci istnieje 10% ryzyka, \u017Ce wszystkie cz\u0119\u015Bci stan\u0105 si\u0119 bezu\u017Cyteczne, nawet je\u015Bli nie uda\u0142o si\u0119 zrobi\u0107 pu\u0142apki.\n\nTest: Stopie\u0144 Trudno\u015Bci jest oceniany na podstawie rodzaju pu\u0142apki, kt\u00F3ra ma zosta\u0107 skonstruowana. Im pot\u0119\u017Cniejsza pu\u0142apka, tym trudniej jest j\u0105 wykona\u0107 i tym wi\u0119cej potrzeba cz\u0119\u015Bci.\nU\u017Cycie: Po wybraniu."
+        }
+      },
+      "Icon": "ife_x1crtrap",
+      "CanUseUntrained": true,
+      "KeyAbility": "INT",
+      "UseArmorPenalty": false,
+      "AllClassesCanUse": true,
+      "AIBehaviour": null,
+      "IsHostile": false,
+      "HideFromLevelUp": false
+    },
+    {
+      "ID": "8c5aec06-f2ac-4f41-b525-a070f9077cb1",
+      "Index": -1,
+      "Overrides": "adfd57ad-66c1-8e4b-7458-46d18b1b3abb",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "CraftWeapon",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8789,
+        "EN": {
+          "M": "Craft Weapon"
+        },
+        "FR": {
+          "M": "Cr\u00E9ation d\u0027arme"
+        },
+        "DE": {
+          "M": "Waffe anfertigen"
+        },
+        "IT": {
+          "M": "Creare armi"
+        },
+        "ES": {
+          "M": "Fabricar armas"
+        },
+        "PL": {
+          "M": "Tworzenie broni"
+        }
+      },
+      "Description": {
+        "Index": 8790,
+        "EN": {
+          "M": "Ability: Intelligence\nRequires Training: No.\nClasses: All.\n\nThe character knows how to create most types of weapons and ammunition from different materials.\n\nHow to craft\nThe character first needs to create the components required for the item he wants to create from base materials (wood, leather, metal, etc).  This can be done by selecting the craft weapon option in the material item\u0027s radial menu.\n\nEach weapon is constructed from two different components (a larger and a smaller one), that need to be assembled in order to finish crafting process.\n\nTo assemble the two components, use the craft weapon option in the smaller component\u0027s radial menu and target the larger component with it. On a successful Craft Weapon skill check, the new item will be created in the character\u0027s inventory.  Note that it is not possible to create magic items with your crafting skills.\r\n\r\nTo alter the appearance of a weapon, equip it then use the radial menu item for Crafting Skills to change the appearance.\r\n\r\nFor further information about crafting, please refer to the in-game manual.",
+          "F": "Ability: Intelligence\nRequires Training: No.\nClasses: All.\n\nThe character knows how to create most types of weapons and ammunition from different materials.\n\nHow to craft\nThe character first needs to create the components required for the item he wants to create from base materials (wood, leather, metal, etc).  This can be done by selecting the craft weapon option in the material item\u0027s radial menu.\n\nEach weapon is constructed from two different components (a larger and a smaller one), that need to be assembled in order to finish crafting process.\n\nTo assemble the two components, use the craft weapon option in the smaller component\u0027s radial menu and target the larger component with it. On a successful Craft Weapon skill check, the new item will be created in the character\u0027s inventory.  Note that it is not possible to create magic items with your crafting skills. For further information about crafting, please refer to the manual."
+        },
+        "FR": {
+          "M": "Caract\u00E9ristique : Intelligence\nEntra\u00EEnement requis : Non.\nClasses : Toutes.\n\nLe personnage sait fabriquer la plupart des armes et des munitions avec diff\u00E9rentes mati\u00E8res.\n\nFabrication :\nLe personnage doit d\u0027abord fabriquer les composants requis pour l\u0027objet d\u00E9sir\u00E9 \u00E0 partir de mat\u00E9riaux de base (bois, cuir, m\u00E9tal, etc). Pour cela, il faut s\u00E9lectionner l\u0027option Cr\u00E9ation d\u0027arme dans le menu radial du mat\u00E9riau.\n\nPour terminer chaque objet, il faut assembler deux \u00E9l\u00E9ments (un grand et un petit).\n\n\nPour assembler les deux composants, utiliser l\u0027option Cr\u00E9ation d\u0027arme dans le menu radial du plus petit des deux \u00E9l\u00E9ments et prenez pour cible l\u0027\u00E9l\u00E9ment le plus gros. Avec un jet de comp\u00E9tence r\u00E9ussi, le nouvel objet sera cr\u00E9\u00E9 dans l\u0027inventaire du personnage. Notez qu\u0027il n\u0027est pas possible de cr\u00E9er des objets magiques avec les comp\u00E9tence artisanales. Pour plus d\u0027informations, consultez le manuel."
+        },
+        "DE": {
+          "M": "Bezugsattribut: Intelligenz\nUnge\u00FCbte Anwendung: Ja\nKlassen: Alle\n\nDer Charakter kann fast alle im Spiel vorkommenden Waffen und Munition aus den verschiedensten Materialien herstellen.\n\nWie man die Fertigkeit anwendet:\n\nDer Charakter muss zuerst die Zutaten f\u00FCr den Gegenstand herstellen, den er anfertigen will. Dazu braucht er Material wie Holz, Leder, Metall usw. Der Charakter w\u00E4hlt die Fertigkeit im Kreismen\u00FC aus, das auftaucht, wenn er mit Rechts auf den Gegenstand klickt.\n\nJeder Gegenstand wird aus zwei Zutaten gefertigt und zwar einer kleinen und einer gro\u00DFen Zutat.\n\nSobald Ihr beide Zutaten, die f\u00FCr die Herstellung eines Gegenstandes erforderlich sind, in Eurem Besitz habt, ruft Ihr das Kreismen\u00FC f\u00FCr die kleine Zutat auf. W\u00E4hlt dann die Fertigkeit aus und klickt anschlie\u00DFend auf die gro\u00DFe Zutat. Nach einem erfolgreichen Fertigkeitswurf taucht der hergestellte Gegenstand in Eurem Gep\u00E4ck auf. Es ist nicht m\u00F6glich, auf diesem Weg magische Gegenst\u00E4nde herzustellen. Weitere Informationen \u00FCber das Herstellen von Gegenst\u00E4nden findet Ihr im Handbuch."
+        },
+        "IT": {
+          "M": "Abilit\u00E0: intelligenza.\nAddestramento: no.\nClassi: tutte.\n\nIl personaggio sa come creare buona parte delle armi e dei proiettili utilizzando diversi materiali.\n\nCome creare\nPer prima cosa il personaggio deve creare i componenti necessari partendo dal loro materiale di base (legno, pelle, metallo, eccetera). Puoi farlo selezionando l\u0027opzione Creare armi nel menu radiale dei materiali.\n\nTutte le armi che puoi creare sono costituite da due diversi componenti (uno grande e uno piccolo), che devono essere assemblati per completare il procedimento di creazione.\n\nPer assemblare i due componenti, devi usare l\u0027opzione Creare armi nel menu radiale di quello pi\u00F9 piccolo, selezionando come bersaglio il componente pi\u00F9 grande. Se superi la prova di abilit\u00E0 Creare armi, il nuovo oggetto viene posizionato nel tuo inventario.\nTieni presente che non \u00E8 possibile creare oggetti magici utilizzando questa procedura. Per ulteriori informazioni a riguardo, fai riferimento al manuale di gioco."
+        },
+        "ES": {
+          "M": "Caracter\u00EDstica: Inteligencia\nRequiere entrenamiento: No\nClases: Todas\n\nEl personaje sabe crear todo tipo de armas y munici\u00F3n a partir de diferentes materiales.\n\nC\u00F3mo fabricar\nEl personaje primero tiene que crear los componentes necesarios para el objeto que quiera hacer a partir de materiales b\u00E1sicos (madera, cuero, metal, etc.). Esto se hace seleccionando la opci\u00F3n de fabricar arma en el men\u00FA radial de materiales de objetos.\n\nCada arma se construye a partir de dos componentes diferentes, uno grande y otro peque\u00F1o, que tienen que ensamblarse para finalizar el proceso de fabricaci\u00F3n.\n\nPara ensamblar los dos componentes, utiliza la opci\u00F3n de fabricar arma en el m\u00E1s peque\u00F1o del men\u00FA radial y apunta con \u00E9l al componente m\u00E1s grande. Si la prueba de la habilidad Fabricar armas tiene \u00E9xito, el nuevo objeto se crear\u00E1 en el inventario del personaje. Ten en cuenta que no es posible hacer objetos m\u00E1gicos con las habilidades de creaci\u00F3n. Para obtener m\u00E1s informaci\u00F3n al respecto, consulta el manual."
+        },
+        "PL": {
+          "M": "Cecha: Inteligencja\nWymaga szkolenia: nie\nKlasy: wszystkie\n\nWiesz, jak wykona\u0107 podstawowe rodzaje broni i pocisk\u00F3w z r\u00F3\u017Cnych materia\u0142\u00F3w.\n\nJak zrobi\u0107 przedmiot\nNajpierw trzeba wykona\u0107 sk\u0142adniki z podstawowych materia\u0142\u00F3w (drewna, sk\u00F3ry, metali, itd.). Mo\u017Cna to zrobi\u0107, wybieraj\u0105c z okr\u0105g\u0142ego menu przedmiotu opcj\u0119 tworzenia broni.\n\nKa\u017Cdy przedmiot, kt\u00F3ry tworzysz, sk\u0142ada si\u0119 z dw\u00F3ch sk\u0142adnik\u00F3w (du\u017Cego i ma\u0142ego). Aby zrobi\u0107 przedmiot, oba sk\u0142adniki trzeba po\u0142\u0105czy\u0107.\n\nAby zmontowa\u0107 dwa sk\u0142adniki, musisz wybra\u0107 opcj\u0119 tworzenia pancerza z okr\u0105g\u0142ego menu mniejszego sk\u0142adnika i klikn\u0105\u0107 na wi\u0119kszym sk\u0142adniku. Je\u015Bli test tworzenia przedmiotu si\u0119 powiedzie, w twoim ekwipunku pojawi si\u0119 nowy przedmiot. Pami\u0119taj jednak, \u017Ce w ten spos\u00F3b nie mo\u017Cesz tworzy\u0107 magicznych przedmiot\u00F3w. Dok\u0142adniejsze informacje na temat tworzenia przedmiot\u00F3w znajduj\u0105 si\u0119 w instrukcji."
+        }
+      },
+      "Icon": "isk_x2cweap",
+      "CanUseUntrained": true,
+      "KeyAbility": "INT",
+      "UseArmorPenalty": false,
+      "AllClassesCanUse": true,
+      "AIBehaviour": null,
+      "IsHostile": false,
+      "HideFromLevelUp": false
+    },
+    {
+      "ID": "48b18f61-cacc-4443-8540-93c02b23709d",
+      "Index": -1,
+      "Overrides": "4c810424-2252-2441-3e36-352cefd09c33",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "DisableTrap",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 271,
+        "EN": {
+          "M": "Disable Trap"
+        },
+        "FR": {
+          "M": "D\u00E9samorcer pi\u00E8ges"
+        },
+        "DE": {
+          "M": "Fallen entsch\u00E4rfen"
+        },
+        "IT": {
+          "M": "Disattivare Trappole"
+        },
+        "ES": {
+          "M": "Inutilizar trampas"
+        },
+        "PL": {
+          "M": "Rozbrajanie pu\u0142apek"
+        }
+      },
+      "Description": {
+        "Index": 346,
+        "EN": {
+          "M": "Ability: Intelligence.\nRequires Training: Yes.\nClasses: All.\n\nThis skill allows the character to perform a variety of actions on a trap.\n\nCheck: There are four progressively difficult actions that a character may perform on a trap; base DC is determined by the difficulty rating of the trap, modified by the action being performed.\n- Assessing a trap to determine its difficulty modifies the DC by -7.\n- Flagging a trap to make it visible to the rest of the party modifies the DC by -5.\n- Recovering a trap raises the trap DC by \u002B10. Recovered traps count as stolen for the purposes of selling them.\n- Disarming a trap has no effect on the trap DC.\r\n\nSpecial: A rogue is the only class capable of disarming traps with a DC of greater than 35 (any class may examine, flag, or recover these more difficult traps however). With 5 or more ranks in the Set Trap skill a character gets a \u002B2 synergy bonus on Disable Trap checks.\r\n\r\nSpectacular Failure: When disarming or recovering a trap, a spectacular failure results in the trap immediately going off.\r\n\r\nYou automatically take 20 out of combat while using this skill.\r\n\r\nUse: Assess, Flag, Recover, and Disarm are radial menu options off of a detected trap.",
+          "F": "Ability: Intelligence.\nRequires Training: Yes.\nClasses: All.\n\nThis skill allows the character to perform a variety of actions on a trap.\n\nCheck: There are four progressively difficult actions that a character may perform on a trap; base DC is determined by the difficulty rating of the trap, modified by the action being performed.\n- Assessing a trap to determine its difficulty modifies the DC by -7.\n- Flagging a trap to make it visible to the rest of the party modifies the DC by -5.\n- Recovering a trap raises the trap DC by \u002B10.\n- Disarming a trap has no effect on the trap DC.\n\nSpecial: A rogue is the only class capable of disarming traps with a DC of 35 or greater. With 5 or more ranks in the Set Trap skill a character gets a \u002B2 synergy bonus on Disable Trap checks.\nSpectacular Failure: When disarming or recovering a trap, a spectacular failure results in the trap immediately going off.\nUse: Assess, Flag, Recover, and Disarm are radial menu options off of a detected trap."
+        },
+        "FR": {
+          "M": "Caract\u00E9ristique : Intelligence\nApprentissage : oui\nClasses : toutes\n\nCette comp\u00E9tence permet au personnage d\u2019effectuer plusieurs actions sur un pi\u00E8ge.\n\nJet : Il y a quatre actions (de plus en plus difficiles) qu\u2019un personnage peut entreprendre sur un pi\u00E8ge ; le DD de base est d\u00E9termin\u00E9 par la difficult\u00E9 du pi\u00E8ge, modifi\u00E9 par l\u2019action entreprise.\n- Etudier le pi\u00E8ge pour d\u00E9terminer sa difficult\u00E9 modifie le DD de -7.\n- Signaler un pi\u00E8ge pour le rendre visible au reste du groupe modifie le DD de -5.\n- R\u00E9cup\u00E9rer un pi\u00E8ge augmente le DD de \u002B10.\n- D\u00E9samorcer un pi\u00E8ge n\u2019a aucun effet sur le DD.\n\nSp\u00E9cial : le Roublard est la seule classe capable de d\u00E9sarmer des pi\u00E8ges ayant un DD de 35 ou plus. Avec 5 rangs ou plus en Pose de pi\u00E8ge, un personnage obtient un bonus de synergie de \u002B2 sur les jets de D\u00E9sarmer pi\u00E8ges.\nEchec spectaculaire\u00A0: en d\u00E9sarmant ou en r\u00E9cup\u00E9rant un pi\u00E8ge, un \u00E9chec spectaculaire d\u00E9clenche imm\u00E9diatement le pi\u00E8ge.\nUtilisation : Etudier, Signaler, R\u00E9cup\u00E9rer et D\u00E9samorcer sont des options radiales \u00E0 partir d\u2019un pi\u00E8ge d\u00E9tect\u00E9."
+        },
+        "DE": {
+          "M": "Bezugsattribut: Intelligenz.\nUnge\u00FCbte Anwendung: Nein.\nKlassen: Alle.\n\nDie Fertigkeit erm\u00F6glicht es dem Charakter, auf viererlei Weise mit einer Falle umzugehen.\n\nWurf: Es gibt vier Handlungen von zunehmendem Schwierigkeitsgrad, die ein Charakter an einer Falle durchf\u00FChren kann. Der Grund-SG wird durch den Schwierigkeitswert der Falle bestimmt und von der ausgef\u00FChrten Handlung modifiziert.\n- Das Bewerten einer Falle, um ihre Schwierigkeit zu erkennen, senkt den SG um -7.\n- Das Anzeigen einer Falle, um sie f\u00FCr den Rest der Gruppe sichtbar zu machen, senkt den SG um -5.\n- Das Ausbauen einer Falle erh\u00F6ht den SG um \u002B10.\n- Das Entsch\u00E4rfen einer Falle wirkt sich nicht weiter auf den SG aus.\n\nSpeziell: Nur ein Schurke kann Fallen mit einem SG von 35 oder h\u00F6her entsch\u00E4rfen. Mit 5 oder mehr R\u00E4ngen in Fallen stellen erh\u00E4lt der Charakter einen Kombinationsbonus \u002B2 auf Fallen entsch\u00E4rfen.\nSpektakul\u00E4rer Fehlschlag: Beim Entsch\u00E4rfen oder Ausbauen einer Falle wird die Falle bei einem spektakul\u00E4ren Fehlschlag sofort ausgel\u00F6st.\nGebrauch: Eine Falle einsch\u00E4tzen, anzeigen, ausbauen und entsch\u00E4rfen sind Optionen in einem Kreismen\u00FC, das von der Falle ausgehend angezeigt wird.\n"
+        },
+        "IT": {
+          "M": "Caratteristica: Intelligenza.\nRichiede Addestramento: s\u00EC.\nClassi: tutte.\n\nQuesta abilit\u00E0 permette al personaggio di effettuare varie azioni su di una trappola.\n\nProva: esistono quattro azioni a difficolt\u00E0 progressivamente superiore che un personaggio pu\u00F2 effettuare su una trappola; la CD base \u00E8 determinata dal grado di difficolt\u00E0 della trappola, modificato dall\u0027azione che si intende eseguire.\n- Esaminare una trappola per determinarne la sua difficolt\u00E0 modifica la CD di -7.\n- Rendere visibile una trappola al resto del gruppo modifica la CD di -5.\n- Recuperare una trappola innalza la CD di \u002B10.\n- Disattivare una trappola non ha effetto sulla CD della trappola.\n\nSpeciale: un ladro \u00E8 l\u0027unica classe in grado di disattivare le trappole con un CD di 35 o maggiore. Con 5 o pi\u00F9 gradi nell\u0027abilit\u00E0 Piazzare Trappole il personaggio ottiene un bonus di sinergia \u002B2 alle prove di Disattivare Trappole.\nFallimento Spettacolare: quando si disarma o si recupera una trappola, un fallimento spettacolare provoca l\u0027immediata attivazione della trappola.\nUso: Esaminare, Rendere Visibile, Recuperare e Disattivare sono le opzioni selezionabili dal menu di una trappola individuata."
+        },
+        "ES": {
+          "M": "Caracter\u00EDstica: Inteligencia.\nRequiere entrenamiento: S\u00ED.\nClases: Todas.\n\nEsta habilidad permite al personaje realizar diversas acciones con una trampa.\n\nPrueba: Hay cuatro acciones de dificultad progresiva que un personaje puede realizar con una trampa; la CD base es determinada por el valor de dificultad de la trampa, modificado por la acci\u00F3n que se vaya a realizar.\n- Evaluar una trampa para determinar su dificultad modifica la CD en \u20137.\n- Marcar una trampa para que sea visible para el resto del grupo modifica la CD en \u20135.\n- Recobrar una trampa incrementa la CD de la misma en \u002B10.\n- Desactivar una trampa no tiene efecto en la CD.\n\nEspecial: La del p\u00EDcaro es la \u00FAnica clase capaz de desactivar trampas con una CD de 35 \u00F3 m\u00E1s. Con 5 rangos o m\u00E1s en Poner trampas, el personaje obtiene un bonificador \u002B2 de sinergia a las pruebas de Inutilizar trampa.\nFallo espectacular: Cuando se produce un fallo espectacular al desactivar o recobrar una trampa, \u00E9sta se dispara inmediatamente.\nUso: Evaluar, marcar, recobrar y desactivar son las opciones del men\u00FA radial que surgen de una trampa detectada."
+        },
+        "PL": {
+          "M": "Cecha: Inteligencja.\nWymaga szkolenia: tak.\nKlasy: wszystkie.\n\nUmiej\u0119tno\u015B\u0107 ta umo\u017Cliwia postaci wykonywanie r\u00F3\u017Cnych dzia\u0142a\u0144 zwi\u0105zanych z pu\u0142apkami.\n\nTest: istniej\u0105 cztery czynno\u015Bci o wzrastaj\u0105cym stopniu trudno\u015Bci, kt\u00F3re posta\u0107 mo\u017Ce wykona\u0107 na pu\u0142apce; bazowy ST zale\u017Cy od stopnia trudno\u015Bci pu\u0142apki oraz od podj\u0119tej czynno\u015Bci.\n- Ocena stopnia trudno\u015B\u0107 pu\u0142apki modyfikuje ST o -7.\n- Oznaczenie pu\u0142apki tak, by by\u0142a widoczna dla reszty dru\u017Cyny modyfikuje ST o -5.\n- Ponowne nastawienie pu\u0142apki podnosi ST pu\u0142apki o \u002B10.\n- Rozbrojenie pu\u0142apki nie wp\u0142ywa na jej ST.\n\nUwagi: \u0141otrzyk jest jedyn\u0105 klas\u0105 zdoln\u0105 do rozbrojenia pu\u0142apki, kt\u00F3ra ma ST na poziomie 35 b\u0105d\u017A wi\u0119kszym. Posta\u0107 posiadaj\u0105ca umiej\u0119tno\u015B\u0107 zak\u0142adania pu\u0142apek na poziomie co najmniej 5, otrzymuje dodatkowe \u002B2 punkty do test\u00F3w rozbrajania pu\u0142apek.\nFumbel: fumbel podczas rozbrajania b\u0105d\u017A nastawiania pu\u0142apki oznacza jej natychmiastowe zadzia\u0142anie.\nU\u017Cywanie: ocena, oznaczenie, nastawienie i rozbrojenie s\u0105 opcjami menu otaczaj\u0105cego wykryt\u0105 pu\u0142apk\u0119."
+        }
+      },
+      "Icon": "isk_distrap",
+      "CanUseUntrained": false,
+      "KeyAbility": "INT",
+      "UseArmorPenalty": false,
+      "AllClassesCanUse": true,
+      "AIBehaviour": null,
+      "IsHostile": false,
+      "HideFromLevelUp": false
+    },
+    {
+      "ID": "c648523a-c3d5-4e28-839b-5a79650e4a4d",
+      "Index": -1,
+      "Overrides": "2adb1a1f-bbe2-3395-a28c-9ea0aaadd86a",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Discipline",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 343,
+        "EN": {
+          "M": "Discipline"
+        },
+        "FR": {
+          "M": "Discipline"
+        },
+        "DE": {
+          "M": "Disziplin"
+        },
+        "IT": {
+          "M": "Disciplina"
+        },
+        "ES": {
+          "M": "Disciplina"
+        },
+        "PL": {
+          "M": "Dyscyplina"
+        }
+      },
+      "Description": {
+        "Index": 347,
+        "EN": {
+          "M": "Ability: Strength.\nRequires Training: No.\nClasses: All.\n\nA successful check allows the character to resist any combat feat (Disarm, Called Shot, or Knockdown).\n\nCheck: The DC is equal to the attacker\u0027s attack roll.\r\n\nUse: Automatic.",
+          "F": "Ability: Strength.\nRequires Training: No.\nClasses: All.\n\nA successful check allows the character to resist any combat feat (Disarm, Called Shot, or Knockdown).\n\nCheck: The DC is equal to the attacker\u0027s attack roll.\nUse: Automatic."
+        },
+        "FR": {
+          "M": "Caract\u00E9ristique : Force.\nApprentissage : Non.\nClasses : Toutes.\n\nUn jet r\u00E9ussi permet au personnage de r\u00E9sister \u00E0 tous les dons de combat (D\u00E9sarmement, Coup ajust\u00E9 ou Renversement).\n\nJet\u00A0: le DD est \u00E9gal au jet d\u2019attaque de l\u2019adversaire.\nUtilisation\u00A0: automatique."
+        },
+        "DE": {
+          "M": "Bezugsattribut: St\u00E4rke.\nUnge\u00FCbte Anwendung: Ja.\nKlassen: Alle.\n\nEin erfolgreicher Wurf erlaubt es dem Charakter, jedem Kampftalent (Entwaffnen, Gezielter Schlag oder Niederwerfen) zu widerstehen.\n\nWurf: Der SG entspricht dem Angriffswurf des Angreifers.\nGebrauch: Automatisch."
+        },
+        "IT": {
+          "M": "Caratteristica: forza.\nRichiede Addestramento: no.\nClassi: tutte.\n\nUna prova effettuata con successo permette al personaggio di resistere a qualsiasi talento di combattimento (Disarmare, Colpo Mirato o Buttare a Terra).\n\nProva: la CD \u00E8 pari al tiro per colpire dell\u0027aggressore.\nUso: automatico."
+        },
+        "ES": {
+          "M": "Caracter\u00EDstica: Fuerza.\nRequiere entrenamiento: No.\nClases: Todas.\n\nUna prueba con \u00E9xito permite al personaje resistirse a cualquier dote de combate (Derribo, Desarmar o Disparo localizado).\n\nPrueba: La CD es igual a la tirada de ataque del atacante.\nUso: Autom\u00E1tica."
+        },
+        "PL": {
+          "M": "Cecha: Si\u0142a.\nWymaga szkolenia: nie.\nKlasy: wszystkie.\n\nUdany test podczas walki uodparnia posta\u0107 na dzia\u0142anie bojowych atut\u00F3w (rozbrojenie, zwichni\u0119cie, powalenie).\n\nTest: ST jest r\u00F3wny rzutowi na atak przeciwnika.\nU\u017Cywanie: automatyczne."
+        }
+      },
+      "Icon": "isk_discipline",
+      "CanUseUntrained": true,
+      "KeyAbility": "STR",
+      "UseArmorPenalty": false,
+      "AllClassesCanUse": true,
+      "AIBehaviour": null,
+      "IsHostile": false,
+      "HideFromLevelUp": false
+    },
+    {
+      "ID": "ef421cb6-d3a9-4ad2-8de7-16493a0478da",
+      "Index": -1,
+      "Overrides": "0ff5d5fd-df46-9949-1bae-24f3077807c6",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Heal",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 273,
+        "EN": {
+          "M": "Heal"
+        },
+        "FR": {
+          "M": "Premiers secours"
+        },
+        "DE": {
+          "M": "Heilen"
+        },
+        "IT": {
+          "M": "Guarire"
+        },
+        "ES": {
+          "M": "Sanar"
+        },
+        "PL": {
+          "M": "Leczenie"
+        }
+      },
+      "Description": {
+        "Index": 349,
+        "EN": {
+          "M": "Ability: Wisdom.\nRequires Training: No.\nClasses: All.\n\nWith this skill a character can use a healing kit to cure wounds and heal poisons and diseases.\r\n\r\nWhile performing a heal action in combat you are considered flat-footed and easier to hit in combat, but you do not provoke an attack of opportunity.\n\nCheck: To heal poisons and diseases, the healer must make a successful check against their DC. If he is successful, the target is cured of that poison or disease.\r\n\r\nRegardless of if the target suffers from poison or disease they are cured a number of HP equal to the skill roll, plus all modifiers. This also removes all wounding effects from the target, and if they are dying but not dead they will stabalise.\r\n\r\nUse: Use healing kit on a wounded creature.",
+          "F": "Ability: Wisdom.\nRequires Training: No.\nClasses: All.\n\nWith this skill a character can use a healing kit to cure wounds and heal poisons and diseases.\n\nCheck: To heal poisons and diseases, the healer must make a successful check against their DC. If he is successful, the target is healed and is cured a number of HP equal to the skill roll, plus all modifiers. If the target suffers from no poisons or diseases, it is still cured of damage.\nUse: Use healing kit on a wounded creature."
+        },
+        "FR": {
+          "M": "Caract\u00E9ristique : Sagesse..\nApprentissage : Non.\nClasses : Toutes.\n\nAvec cette comp\u00E9tence, un personnage peut utiliser une trousse de premiers secours pour soigner les blessures, les maladies et les empoisonnements.\n\nJet\u00A0: pour soigner les empoisonnements et les maladies, le soigneur doit r\u00E9ussir un jet contre leur DD. S\u2019il r\u00E9ussit, la cible est gu\u00E9rie et r\u00E9cup\u00E8re un nombre de pv \u00E9gal au jet plus tous les modificateurs. Si la cible ne souffre d\u2019aucun empoisonnement ou maladie, elle r\u00E9cup\u00E8re quand m\u00EAme des points de vie.\nUtilisation\u00A0: utiliser une trousse de premiers secours sur une cr\u00E9ature bless\u00E9e."
+        },
+        "DE": {
+          "M": "Bezugsattribut: Weisheit.\nUnge\u00FCbte Anwendung: Ja.\nKlassen: Alle.\n\nDie Fertigkeit erm\u00F6glicht es einem Charakter, eine Heilertasche zu benutzen, um Wunden zu heilen und Auswirkungen von Giften und Krankheiten zu bek\u00E4mpfen.\n\nWurf: Um Vergiftungen und Krankheiten zu heilen, muss dem Charakter ein Wurf gegen den jeweiligen SG gelingen. Bei Erfolg gesundet das Ziel und erh\u00E4lt zudem Trefferpunkte in H\u00F6he des W\u00FCrfelergebnisses (inklusive aller Modifikatoren) zur\u00FCck. Wenn das Ziel weder vergiftet noch krank ist, erh\u00E4lt es trotzdem die Trefferpunkte zur\u00FCck.\nGebrauch: Heilertasche auf verwundetes Wesen anwenden."
+        },
+        "IT": {
+          "M": "Caratteristica: Saggezza.\nRichiede Addestramento: no.\nClassi: tutte.\n\nCon questa abilit\u00E0 un personaggio pu\u00F2 usare una borsa del guaritore e curare ferite, veleni e malattie.\n\nProva: per curare veleni e malattie, il guaritore deve effettuare con successo una prova contro la loro CD. Se la prova riesce, il bersaglio \u00E8 guarito e recupera un numero di PF pari al risultato della prova, pi\u00F9 tutti i modificatori. Se il bersaglio non \u00E8 afflitto da veleni o malattie, viene comunque curato dai danni.\nUso: si utilizza una borsa del guaritore su una creatura ferita."
+        },
+        "ES": {
+          "M": "Caracter\u00EDstica: Sabidur\u00EDa\nRequiere entrenamiento: No.\nClases: Todas.\n\nCon esta habilidad, un personaje puede utilizar material de curandero para curar heridas, venenos y enfermedades.\n\nPrueba: Para curar venenos y enfermedades, el sanador debe superar una prueba contra la CD de los mismos. Si tiene \u00E9xito, el objetivo es curado y recupera un n\u00FAmero de pg igual a la tirada de habilidad, m\u00E1s todos los modificadores. Si el objetivo no est\u00E1 envenenado ni enfermo, seguir\u00E1 recuper\u00E1ndose del da\u00F1o.\nUso: Usa el material de curandero en una criatura herida."
+        },
+        "PL": {
+          "M": "Cecha: M\u0105dro\u015B\u0107.\nWymaga szkolenia: tak.\nKlasy: wszystkie.\n\nPosta\u0107 posiadaj\u0105ca t\u0119 umiej\u0119tno\u015B\u0107 potrafi przy pomocy zestawu leczniczego leczy\u0107 rany, zatrucia i choroby.\n\nTest: aby wyleczy\u0107 zatrucie lub chorob\u0119, uzdrowiciel musi wykona\u0107 udany test na ich ST. Sukces oznacza, \u017Ce leczony obiekt odzyskuje tyle punkt\u00F3w \u017Cycia, ile wynosi\u0142 rzut na umiej\u0119tno\u015B\u0107, plus wszystkie modyfikacje. Aby obiekt m\u00F3g\u0142 by\u0107 uleczony, nie musi cierpie\u0107 na zatrucie lub by\u0107 chory.\nU\u017Cycie: U\u017Cyj zestaw leczniczy na zranionym stworzeniu."
+        }
+      },
+      "Icon": "isk_heal",
+      "CanUseUntrained": true,
+      "KeyAbility": "WIS",
+      "UseArmorPenalty": false,
+      "AllClassesCanUse": true,
+      "AIBehaviour": null,
+      "IsHostile": false,
+      "HideFromLevelUp": false
+    },
+    {
+      "ID": "b757fb75-9d31-4f90-b4f8-3ae6c5da03b2",
+      "Index": -1,
+      "Overrides": "76e8ea0a-a7d0-5d03-618b-69b42f61bc8d",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Lore",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 276,
+        "EN": {
+          "M": "Lore"
+        },
+        "FR": {
+          "M": "Savoir"
+        },
+        "DE": {
+          "M": "Sagenkunde"
+        },
+        "IT": {
+          "M": "Conoscenze"
+        },
+        "ES": {
+          "M": "Saber popular"
+        },
+        "PL": {
+          "M": "Wiedza"
+        }
+      },
+      "Description": {
+        "Index": 352,
+        "EN": {
+          "M": "Ability: Intelligence.\nRequires Training: No.\nClasses: All.\n\nLore allows a character to identify unknown magic items.\n\nCheck: A check against an unidentified item\u0027s value to determine magical properties that the item may possess.\r\n\nSpecial: Bards and Harper Scouts are able to identify items more easily than other classes and add their class level to their lore skill. Various spells and items can also give a character a bonus to their lore skill.\n\r\nUse: Automatic every time the character examines an item.",
+          "F": "Ability: Intelligence.\nRequires Training: No.\nClasses: All.\n\nLore allows a character to identify unknown magic items.\n\nCheck: A roll against an unidentified item\u0027s value to determine magical properties that the item may possess.\nSpecial: Bards are able to identify items more easily than other classes. Various spells and items can also give a character a bonus to their lore skill.\nUse: Automatic every time the character examines an item."
+        },
+        "FR": {
+          "M": "Caract\u00E9ristique : Intelligence.\nApprentissage : Non.\nClasses\u00A0: Toutes.\n\nSavoir permet \u00E0 un personnage d\u2019identifier des objets magiques inconnus.\n\nJet : un jet contre la valeur d\u2019un objet inconnu pour d\u00E9terminer les propri\u00E9t\u00E9s magiques qu\u2019il peut poss\u00E9der.\nSp\u00E9cial\u00A0: les Bardes sont capables d\u2019identifier les objets plus facilement que les autres classes. Diff\u00E9rents sorts et objets peuvent \u00E9galement donner \u00E0 un personnage un bonus \u00E0 sa comp\u00E9tence de Savoir.\nUtilisation\u00A0: automatique chaque fois qu\u2019un personnage examine un objet."
+        },
+        "DE": {
+          "M": "Bezugsattribut: Intelligenz.\nUnge\u00FCbte Anwendung: Ja.\nKlassen: Alle.\n\nSagenkunde erm\u00F6glicht einem Charakter das Identifizieren unbekannter magischer Gegenst\u00E4nde.\n\nWurf: Ein Wurf gegen den Wert eines unidentifizierten\nGegenstandes, um die magischen Eigenschaften dieses Gegenstandes festzustellen.\nSpeziell: Barden k\u00F6nnen Gegenst\u00E4nde einfacher\nidentifizieren als Angeh\u00F6rige anderer Klassen. Diverse\nZauber und Gegenst\u00E4nde k\u00F6nnen einem Charakter zudem einen Bonus auf ihren Sagenkunde-Wert geben.\nGebrauch: Automatisch, wann immer ein Charakter einen Gegenstand untersucht."
+        },
+        "IT": {
+          "M": "Caratteristica: Intelligenza.\nRichiede Addestramento: no.\nClassi: tutte.\n\nConoscenze permette a un personaggio di identificare oggetti magici sconosciuti.\n\nProva: un tiro contro il valore di un oggetto magico non identificato per determinare eventuali propriet\u00E0 magiche che potrebbe contenere.\nSpeciale: i bardi sono in grado di identificare gli oggetti con pi\u00F9 facilit\u00E0 rispetto alle altre classi. Vari incantesimi e oggetti possono conferire al personaggio anche un bonus alla sua abilit\u00E0 Conoscenze.\nUso: automatico ogni volta che il personaggio esamina un oggetto."
+        },
+        "ES": {
+          "M": "Caracter\u00EDstica: Inteligencia\nRequiere entrenamiento: No.\nClases: Todas.\n\nSaber popular permite al personaje identificar objetos m\u00E1gicos desconocidos.\n\nPrueba: Una tirada contra el valor del objeto no identificado para determinar las propiedades m\u00E1gicas que posea.\nEspecial: Los bardos son capaces de identificar objetos m\u00E1s f\u00E1cilmente que otras clases. Diversos conjuros y objetos pueden otorgar al personaje un bonificador a su habilidad de Saber popular.\nUso: Autom\u00E1tica cada vez que el personaje examine un objeto."
+        },
+        "PL": {
+          "M": "Cecha: Inteligencja.\nWymaga szkolenia: nie.\nKlasy: wszystkie.\n\nWiedza umo\u017Cliwia postaci zidentyfikowanie nieznanego magicznego przedmiotu.\n\nTest: rzut przeciwko warto\u015Bci nieznanego przedmiotu, kt\u00F3ra zale\u017Cy od jego magicznych w\u0142a\u015Bciwo\u015Bci.\nUwagi: Bardowie rozpoznaj\u0105 nieznane przedmioty \u0142atwiej ni\u017C inne klasy. R\u00F3wnie\u017C r\u00F3\u017Cne czary i przedmioty posiadane przez posta\u0107 wspomagaj\u0105 t\u0119 umiej\u0119tno\u015B\u0107.\nU\u017Cycie: automatycznie za ka\u017Cdym razem, gdy posta\u0107 ogl\u0105da przedmiot."
+        }
+      },
+      "Icon": "isk_lore",
+      "CanUseUntrained": true,
+      "KeyAbility": "INT",
+      "UseArmorPenalty": false,
+      "AllClassesCanUse": true,
+      "AIBehaviour": null,
+      "IsHostile": false,
+      "HideFromLevelUp": false
+    },
+    {
+      "ID": "51065198-832d-429e-96fe-1b5e3ed4a906",
+      "Index": -1,
+      "Overrides": "b049c299-a764-8be9-4816-d4deec648de4",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "OpenLock",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 278,
+        "EN": {
+          "M": "Open Lock"
+        },
+        "FR": {
+          "M": "Crochetage"
+        },
+        "DE": {
+          "M": "Schl\u00F6sser \u00F6ffnen"
+        },
+        "IT": {
+          "M": "Scassinare Serrature"
+        },
+        "ES": {
+          "M": "Abrir cerraduras"
+        },
+        "PL": {
+          "M": "Otwieranie zamk\u00F3w"
+        }
+      },
+      "Description": {
+        "Index": 354,
+        "EN": {
+          "M": "Ability: Dexterity.\nRequires Training: Yes.\nClasses: All.\n\nThis skill allows the character to open locked doors and containers.\r\n\r\nYou automatically take 20 out of combat while using this skill.\n\nCheck: The DC is determined by the lock\u0027s difficulty rating. A successful check opens the lock.\r\n\nSpecial: Thieves tools can be used to provide bonuses to a character\u0027s Open Lock attempt, but are destroyed in the attempt whether succesful or not.\n\r\nUse: Select the skill and then target a locked object.",
+          "F": "Ability: Dexterity.\nRequires Training: Yes.\nClasses: All.\n\nThis skill allows the character to enter locked rooms and open locked containers.\n\nCheck: The DC is determined by the lock\u0027s difficulty rating. A successful check opens the lock.\nSpecial: Thieves tools can be used to provide bonuses to a character\u0027s Open Lock attempt, but are destroyed in the attempt whether succesful or not.\nUse: Select the skill and then target a locked object."
+        },
+        "FR": {
+          "M": "Caract\u00E9ristique : Dext\u00E9rit\u00E9\nApprentissage : oui\nClasses : toutes\n\nCette comp\u00E9tence permet au personnage d\u2019entrer dans des pi\u00E8ces ferm\u00E9es \u00E0 clef ou d\u2019ouvrir des meubles verrouill\u00E9s.\n\nJet\u00A0: le DD est d\u00E9termin\u00E9 par la complexit\u00E9 de la serrure. Un jet r\u00E9ussi ouvre le verrou.\nSp\u00E9cial\u00A0: les outils de voleur peuvent \u00EAtre utilis\u00E9s pour donner un bonus \u00E0 la tentative de Crochetage du personnage, mais sont d\u00E9truits que la tentative r\u00E9ussisse ou non.\nUtilisation\u00A0: s\u00E9lectionnez la comp\u00E9tence puis prenez pour cible un objet verrouill\u00E9."
+        },
+        "DE": {
+          "M": "Bezugsattribut: Geschicklichkeit.\nUnge\u00FCbte Anwendung: Nein.\nKlassen: Alle.\n\nDie Fertigkeit erlaubt es dem Charakter, abgeschlossene R\u00E4ume zu betreten und verschlossene Beh\u00E4ltnisse zu \u00F6ffnen.\n\nWurf: Der SG wird vom Schwierigkeitswert des Schlosses bestimmt. Ein erfolgreicher Wurf \u00F6ffnet das Schloss.\nSpeziell: Diebeswerkzeug gibt einem Charakter einen Bonus auf den Versuch, Schl\u00F6sser zu \u00F6ffnen, geht aber auf jeden Fall beim Versuch des \u00D6ffnens kaputt, egal ob er erfolgreich ist oder nicht.\nGebrauch: Fertigkeit ausw\u00E4hlen und ein verschlossenes Objekt als Ziel bestimmen."
+        },
+        "IT": {
+          "M": "Caratteristica: Destrezza.\nRichiede Addestramento: s\u00EC.\nClassi: tutte.\n\nQuesta abilit\u00E0 permette al personaggio di entrare nelle stanze chiuse a chiave e di aprire contenitori dotati di serrature.\n\nProva: la CD \u00E8 determinata in base al grado di difficolt\u00E0 della serratura; una prova effettuata con successo \u00E8 in grado di aprirla.\nSpeciale: utilizzando gli arnesi da scasso si ottengono dei bonus quando il personaggio tenta di Scassinare Serrature, ma questi vengono comunque distrutti.\nUso: seleziona l\u0027abilit\u00E0 e poi scegli come bersaglio un oggetto chiuso a chiave."
+        },
+        "ES": {
+          "M": "Caracter\u00EDstica: Destreza\nRequiere entrenamiento: S\u00ED.\nClases: Todas.\n\nEsta habilidad permite al personaje entrar en habitaciones cerradas y abrir recipientes cerrados.\n\nPrueba: La CD est\u00E1 determinada por el valor de dificultad de la cerradura. Una prueba con \u00E9xito la abrir\u00E1.\nEspecial: Las herramientas de ladr\u00F3n se pueden usar para conseguir un bonificador a Abrir cerraduras, pero quedan destruidas en el intento, se tenga \u00E9xito o no.\nUso: Selecciona la habilidad y despu\u00E9s apunta a un objeto cerrado."
+        },
+        "PL": {
+          "M": "Cecha: Zr\u0119czno\u015B\u0107.\nWymaga szkolenia: tak.\nKlasy: wszystkie.\n\nTa umiej\u0119tno\u015B\u0107 umo\u017Cliwia postaci wchodzenie do zamkni\u0119tych pomieszcze\u0144 i otwieranie zamkni\u0119tych skrzy\u0144.\n\nTest: ST zale\u017Cy od stopnia trudno\u015Bci zamka. Udany test oznacza otwarcie zamka.\nUwagi: narz\u0119dzia u\u017Cywane przez Z\u0142odziei mog\u0105 by\u0107 pomocne i podnie\u015B\u0107 poziom umiej\u0119tno\u015Bci otwierania zamk\u00F3w postaci, lecz ulegaj\u0105 zniszczeniu niezale\u017Cnie od tego, czy pr\u00F3ba si\u0119 powiod\u0142a, czy nie.\nU\u017Cycie: wybierz umiej\u0119tno\u015B\u0107 i wska\u017C zamkni\u0119ty obiekt."
+        }
+      },
+      "Icon": "isk_olock",
+      "CanUseUntrained": false,
+      "KeyAbility": "DEX",
+      "UseArmorPenalty": false,
+      "AllClassesCanUse": true,
+      "AIBehaviour": null,
+      "IsHostile": false,
+      "HideFromLevelUp": false
+    },
+    {
+      "ID": "910cbcac-adb9-4303-b823-059c0e59c326",
+      "Index": -1,
+      "Overrides": "2edc8148-6a76-dcf1-7334-257bc06cfebf",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Parry",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 279,
+        "EN": {
+          "M": "Parry"
+        },
+        "FR": {
+          "M": "Parade"
+        },
+        "DE": {
+          "M": "Parieren"
+        },
+        "IT": {
+          "M": "Parata"
+        },
+        "ES": {
+          "M": "Parada"
+        },
+        "PL": {
+          "M": "Parowanie"
+        }
+      },
+      "Description": {
+        "Index": 355,
+        "EN": {
+          "M": "Ability: Dexterity.\nRequires Training: No.\nClasses: All.\n\nParry allows the character to block incoming melee attacks and make spectacular counterattacks.\n\nCheck: The DC is the modified attack roll of the incoming blow. A successful Parry check means that the attack does not damage the parrying character. A character may only parry a number of attacks per round equal to the number of attacks per round available to the character (maximum 3).\n\r\nSpecial: If the parry is successful and the difference between the roll and the DC is ten points or greater, a counterattack occurs. A counterattack is a free attack made by the parrying character, starting at his full attack bonus, against the parried opponent.\n\r\nUse: Select the Parry mode. The character will remain in parry mode until the mode is exited. It is considered a combat mode and cannot be enabled with other combat modes (such as Power Attack).",
+          "F": "Ability: Dexterity.\nRequires Training: No.\nClasses: All.\n\nParry allows the character to block incoming attacks and make spectacular counterattacks.\n\nCheck: The DC is the modified attack roll of the incoming blow. A successful Parry check means that the attack does not damage the parrying character. A character may only parry a number of attacks per round equal to the number of attacks per round available to the character.\nSpecial: If the parry is successful and the difference between the roll and the DC is ten points or greater, a counterattack occurs. A counterattack is a free attack made by the parrying character, at his full attack bonus, against the parried opponent.\nUse: Select the Parry mode. The character will remain in parry mode until the mode is exited."
+        },
+        "FR": {
+          "M": "Caract\u00E9ristique : Dext\u00E9rit\u00E9.\nApprentissage : Non.\nClasses : Toutes.\n\nParade permet au personnage de bloquer des attaques qui le visent et d\u0027op\u00E9rer des contre-attaques spectaculaires.\n\nJet\u00A0: le DD est le jet d\u2019attaque modifi\u00E9 du coup qui arrive. Un jet de Parade r\u00E9ussi signifie que l\u2019attaque ne blesse pas le personnage qui pare. Un personnage ne peut parer qu\u2019un nombre d\u2019attaques par round \u00E9gal au nombre d\u2019attaques par round qu\u2019il pourrait porter.\nSp\u00E9cial\u00A0: si la parade r\u00E9ussit et que la diff\u00E9rence entre le jet et le DD est de dix ou plus, une contre-attaque a lieu. Une contre-attaque est une attaque gratuite port\u00E9e par celui qui a par\u00E9, avec son bonus d\u2019attaque complet, contre l\u2019adversaire qu\u2019il vient de parer.\nUtilisation\u00A0: s\u00E9lectionnez le mode Parade. Le personnage restera en mode Parade jusqu\u2019\u00E0 ce que le joueur en sorte."
+        },
+        "DE": {
+          "M": "Bezugsattribut: Geschicklichkeit.\nUnge\u00FCbte Anwendung: Ja.\nKlassen: Alle.\n\nParieren erlaubt dem Charakter, gegnerische Angriffe abzublocken und spektakul\u00E4re Gegenangriffe zu starten.\n\nWurf: Der SG ist der modifizierte Angriffswurf des kommenden Schlages. Ein erfolgreicher Wurf f\u00FCr Parieren bedeutet, dass der Charakter durch den Treffer keinen Schaden nimmt. Ein Charakter kann pro Runde nur so viele Angriffe parieren, wie er selbst Angriffe hat.\nSpeziell: Ist die Parade erfolgreich und liegt das Ergebnis des Wurfs mindestens 10 \u00FCber dem des Angriffswurfs, kann der Charakter einen Gegenangriff starten. Ein Gegenangriff ist ein freier Angriff des parierenden Charakters mit seinem vollen Angriffsbonus gegen den gerade parierten Gegner.\nGebrauch: Parieren ausw\u00E4hlen. Der Charakter pariert so lange, bis eine andere Wahl getroffen wird."
+        },
+        "IT": {
+          "M": "Caratteristica: Destrezza.\nRichiede Addestramento: no.\nClassi: tutte.\n\nParata permette al personaggio di bloccare gli attacchi in arrivo e di compiere contrattacchi spettacolari.\n\nProva: la CD \u00E8 il tiro per colpire modificato del colpo in arrivo. Una prova di Parata effettuata con successo significa che l\u0027attacco non infligge danni al personaggio in parata. Un personaggio pu\u00F2 parare solo un numero di attacchi per round pari al proprio numero di attacchi disponibili.\nSpeciale: se la parata riesce e la differenza tra il tiro e la CD \u00E8 di dieci o pi\u00F9 punti, si verifica un contrattacco. Un contrattacco \u00E8 un attacco gratuito compiuto dal personaggio in parata, al suo bonus di attacco completo, contro l\u0027avversario su cui \u00E8 stata compiuta la parata.\nUso: seleziona la modalit\u00E0 Parata. Il personaggio rimarr\u00E0 in modalit\u00E0 di parata finch\u00E9 non si abbandona questa modalit\u00E0."
+        },
+        "ES": {
+          "M": "Caracter\u00EDstica: Destreza\nRequiere entrenamiento: No.\nClases: Todas.\n\nParada permite al personaje bloquear un ataque y realizar espectaculares contraataques.\n\nPrueba: La CD es igual a la tirada de ataque modificada del golpe a detener. Una prueba de Parada con \u00E9xito significa que el ataque no inflige da\u00F1o a quien lo detiene. Un personaje s\u00F3lo puede parar una cantidad de ataques por asalto igual a su n\u00FAmero de ataques por asalto.\nEspecial: Si la parada tiene \u00E9xito y la diferencia entre la tirada y la CD es de diez puntos o m\u00E1s, se produce un contraataque. Un contraataque es un ataque gratuito realizado por el personaje que ha parado, con su bonificador de ataque completo, contra el adversario al que ha detenido.\nUso: Selecciona el modo Parada. El personaje permanecer\u00E1 en ese modo hasta que sea cancelado."
+        },
+        "PL": {
+          "M": "Cecha: Zr\u0119czno\u015B\u0107.\nWymaga szkolenia: nie.\nKlasy: wszystkie.\n\nParowanie pozwala postaci na odpieranie uderze\u0144 i wyprowadzanie efektownych kontratak\u00F3w.\n\nTest: ST jest zmodyfikowanym rzutem na atak wykonywany przez przeciwnika. Udany test na parowanie oznacza, \u017Ce atak zosta\u0142 odparty. Posta\u0107 podczas jednej rundy mo\u017Ce parowa\u0107 ilo\u015B\u0107 uderze\u0144 r\u00F3wn\u0105 liczbie posiadanych przez ni\u0105 atak\u00F3w na rund\u0119.\nUwagi: je\u015Bli parowanie zako\u0144czy\u0142o si\u0119 sukcesem, a r\u00F3\u017Cnica mi\u0119dzy rzutem a ST wynosi dziesi\u0119\u0107 b\u0105d\u017A wi\u0119cej punkt\u00F3w, nast\u0119puje kontratak. Kontratak jest dodatkowym atakiem wykonywanym ze wszystkimi premiami, skierowanym przeciw paruj\u0105cemu przeciwnikowi.\nU\u017Cycie: Wybierz tryb parowania. Posta\u0107 pozostanie w tym trybie, a\u017C do wy\u0142\u0105czenia go."
+        }
+      },
+      "Icon": "isk_parry",
+      "CanUseUntrained": true,
+      "KeyAbility": "DEX",
+      "UseArmorPenalty": true,
+      "AllClassesCanUse": true,
+      "AIBehaviour": null,
+      "IsHostile": false,
+      "HideFromLevelUp": false
+    },
+    {
+      "ID": "9bc82445-393f-4f7a-87be-58f00a39f037",
+      "Index": -1,
+      "Overrides": "6a0c921d-73c6-4e7e-c24d-7c3b2873e527",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Spellcraft",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 286,
+        "EN": {
+          "M": "Spellcraft"
+        },
+        "FR": {
+          "M": "Connaissance des sorts"
+        },
+        "DE": {
+          "M": "Zauberkunde"
+        },
+        "IT": {
+          "M": "Sapienza Magica"
+        },
+        "ES": {
+          "M": "Conocimiento de conjuros"
+        },
+        "PL": {
+          "M": "Czaroznawstwo"
+        }
+      },
+      "Description": {
+        "Index": 362,
+        "EN": {
+          "M": "Ability: Intelligence.\nRequires Training: Yes.\nClasses: All.\n\nSpellcraft is used to identify spells and to perform counterspells.\n\nCheck: A successful check means that the character has identified a spell being cast by an opponent. The DC of this check is equal to 15 \u002B spell level. The character also gains a \u002B1 bonus for every 5 ranks in this skill (including skill bonus feats, and magical effects) to all saving throws against spells and abilities (although not persistent spells like Acid Fog).\r\n\nSpecial: A specialist wizard gets a \u002B2 bonus when dealing with a spell from his specialized school. As well, a successful Spellcraft check is required before your character can attempt to counterspell. The specialist wizard suffers a -5 penalty when dealing with a spell or effect from a prohibited school.\r\n\nUse: Spellcraft checks are automatic whenever a spell is cast nearby.",
+          "F": "Ability: Intelligence.\nRequires Training: Yes.\nClasses: All.\n\nSpellcraft is used to identify spells and to perform counterspells.\n\nCheck: A successful check means that the character has identified a spell being cast by an opponent. The DC of this check is equal to 15 \u002B spell level. The character also gains a \u002B1 bonus for every 5 ranks in this skill to all saving throws against spells.\nSpecial: A specialist wizard gets a \u002B2 bonus when dealing with a spell from his specialized school. As well, a successful Spellcraft check is required before your character can attempt to counterspell. The specialist wizard suffers a -5 penalty when dealing with a spell or effect from a prohibited school.\nUse: Spellcraft checks are automatic whenever a spell is cast nearby."
+        },
+        "FR": {
+          "M": "Caract\u00E9ristique : Intelligence\nApprentissage : oui\nClasses\u00A0: toutes\n\nConnaissance des sorts est utilis\u00E9e pour identifier des sorts et lancer des contresorts.\n\nJet\u00A0: un jet r\u00E9ussi signifie que le personnage a identifi\u00E9 le sort lanc\u00E9 par un adversaire. Le DD de ce jet est \u00E9gal \u00E0 15 \u002B niveau du sort. Le personnage gagne aussi un bonus de \u002B1 pour chaque tranche de 5 rangs de cette comp\u00E9tence pour toutes ses sauvegardes contre les sorts.\nSp\u00E9cial\u00A0: un Magicien sp\u00E9cialis\u00E9 gagne un bonus de \u002B2 quand il a affaire \u00E0 un sort venant de sa propre sp\u00E9cialisation. Un jet r\u00E9ussi de Connaissance des sorts est \u00E9galement n\u00E9cessaire avant que votre personnage puisse faire un contresort. Les Magiciens sp\u00E9cialis\u00E9s subissent un malus de -5 quand ils ont affaire \u00E0 un sort ou effet d\u2019une \u00E9cole interdite.\nUtilisation\u00A0: les jets de Connaissance des sorts sont automatiques d\u00E8s qu\u2019un sort est lanc\u00E9 \u00E0 proximit\u00E9."
+        },
+        "DE": {
+          "M": "Bezugsattribut: Intelligenz.\nUnge\u00FCbte Anwendung: Nein.\nKlassen: Alle.\n\nZauberkunde wird zur Identifizierung von Zaubern sowie zum Durchf\u00FChren von Gegenzaubern genutzt.\n\nWurf: Ein erfolgreicher Wurf bedeutet, dass der Charakter einen von einem Gegner gewirkten Zauber erkannt hat. Der SG dieses Wurfes liegt bei 15 \u002B Zaubergrad. Pro 5 R\u00E4nge in der Fertigkeit erh\u00E4lt der Charakter zudem \u002B1 auf Rettungsw\u00FCrfe gegen Zauber.\nSpeziell: Ein Magiespezialist erh\u00E4lt einen Bonus \u002B2, wenn es sich um einen Zauber der Schule handelt, auf die er spezialisiert ist. Bevor der Charakter einen Gegenzauber versuchen kann, muss ihm zudem ein Wurf f\u00FCr Zauberkunde gelingen. Der Magiespezialist erleidet einen Malus -5, wenn es sich um einen Zauber oder Effekt aus einer verbotenen Schule handelt.\nGebrauch: Automatisch, wenn in der N\u00E4he ein Zauber gewirkt wird."
+        },
+        "IT": {
+          "M": "Caratteristica: Intelligenza.\nRichiede Addestramento: s\u00EC.\nClassi: tutte.\n\nSapienza Magica viene usato per identificare incantesimi e per effettuare controincantesimi.\n\nProva: una prova effettuata con successo implica che il personaggio ha identificato un incantesimo lanciato da un avversario. La CD della prova \u00E8 pari a 15 \u002B il livello dell\u0027incantesimo. Il personaggio ottiene anche un bonus di \u002B1 per ogni 5 gradi posseduti nell\u0027abilit\u00E0 a tutti i tiri salvezza contro gli incantesimi.\nSpeciale: un mago specialista ottiene un bonus di \u002B2 quando deve affrontare un incantesimo della sua scuola di specializzazione. Allo stesso modo, una prova riuscita di Sapienza Magica \u00E8 necessaria affinch\u00E9 il personaggio possa tentare un controincantesimo. Un mago specialista subisce una penalit\u00E0 di -5 quando affronta un incantesimo o un effetto di una scuola proibita.\nUso: le prove di Sapienza Magica sono automatiche quando nelle vicinanze viene lanciato un incantesimo."
+        },
+        "ES": {
+          "M": "Caracter\u00EDstica: Inteligencia\nRequiere entrenamiento: S\u00ED.\nClases: Todas.\n\nConocimiento de conjuros se utiliza para identificar sortilegios y realizar contraconjuros.\n\nPrueba: Una prueba con \u00E9xito significa que el personaje ha identificado el conjuro que est\u00E1 lanzando un oponente. La CD de esta prueba es igual a 15 \u002B nivel del conjuro. El personaje tambi\u00E9n obtiene un bonificador \u002B1 por cada cinco rangos en esta habilidad a todos los tiros de salvaci\u00F3n contra conjuros.\nEspecial: Un mago especialista obtiene un bonificador \u002B2 cuando se trata de un conjuro de su escuela de especializaci\u00F3n. Sin embargo, es necesaria una prueba con \u00E9xito de Conocimiento de conjuros antes de poder intentar un contraconjuro. Un mago especialista sufre un penalizador \u20135 cuando se trata de conjuros o efectos de una escuela prohibida.\nUso: Conocimiento de conjuros es autom\u00E1tica siempre que se lanza un sortilegio cerca."
+        },
+        "PL": {
+          "M": "Cecha: Inteligencja.\nWymaga szkolenia: tak.\nKlasy: wszystkie.\n\nCzaroznawstwo s\u0142u\u017Cy do identyfikacji czar\u00F3w i rzucania kontrzakl\u0119\u0107.\n\nTest: udany test oznacza, \u017Ce posta\u0107 rozpoznaje czar rzucany przez przeciwnika. ST tego testu jest r\u00F3wne 15 \u002B poziom czaru. Posta\u0107 dostaje tak\u017Ce \u002B1 dodatkowy punkt na ka\u017Cde 5 poziom\u00F3w tej umiej\u0119tno\u015Bci do wszystkich rzut\u00F3w obronnych na czary.\nUwagi: czarodziej specjalista zyskuje \u002B2 dodatkowe punkty w kontakcie z czarem z jego szko\u0142y. Udany test na czaroznawstwo jest wymagany tak\u017Ce przed ka\u017Cd\u0105 pr\u00F3b\u0105 rzucenia przeciwzakl\u0119cia przez tw\u0105 posta\u0107. Czarodziej specjalista otrzymuje -5 punkt\u00F3w karnych, gdy zajmuje si\u0119 czarem lub efektem z zakazanej dla niego szko\u0142y.\nU\u017Cycie: test na czaroznawstwo wykonywany jest automatycznie, gdy w pobli\u017Cu rzucany jest czar."
+        }
+      },
+      "Icon": "isk_spellcraft",
+      "CanUseUntrained": false,
+      "KeyAbility": "INT",
+      "UseArmorPenalty": false,
+      "AllClassesCanUse": true,
+      "AIBehaviour": null,
+      "IsHostile": false,
+      "HideFromLevelUp": false
+    },
+    {
+      "ID": "a6d1ae05-192b-4dbd-a380-643cb520c78e",
+      "Index": -1,
+      "Overrides": "90559de3-88ef-2f7c-b3f8-6c015c1e9c4a",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Taunt",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 342,
+        "EN": {
+          "M": "Taunt"
+        },
+        "FR": {
+          "M": "Raillerie"
+        },
+        "DE": {
+          "M": "Provozieren"
+        },
+        "IT": {
+          "M": "Dileggiare"
+        },
+        "ES": {
+          "M": "Hostigar"
+        },
+        "PL": {
+          "M": "Prowokacja"
+        }
+      },
+      "Description": {
+        "Index": 366,
+        "EN": {
+          "M": "Ability: Charisma.\nRequires Training: No.\nClasses: All.\n\nTaunt is used to provoke an enemy into dropping his guard for a short time.\r\n\r\nWhile performing a taunt you are considered flat-footed and easier to hit in combat, but you do not provoke an attack of opportunity.. You cannot taunt when in stealth mode or if you are invisible to the target.\n\nCheck: The DC is a concentration check made by the target against the character\u0027s Taunt skill roll. It is considered an attack. If the taunt is successful, the opponent suffers an Armor Class penalty equal to the difference between the taunt roll and the defender\u0027s roll (to a max of a -6 penalty) for 5 rounds. The target will also suffer a 30% chance of spell failure, if they don\u0027t resist the taunt.\r\n\nSpecial: Taunt penalties are not cumulative, a creature can only be taunted once.\r\n\nUse: Select skill and then target creature.",
+          "F": "Ability: Charisma.\nRequires Training: No.\nClasses: All.\n\nTaunt is used to provoke an enemy into dropping his guard for a short time.\n\nCheck: The DC is a concentration check made by the target against the character\u0027s Taunt skill roll. It is considered an attack. If the taunt is successful, the opponent suffers an Armor Class penalty equal to the difference between the taunt roll and the defender\u0027s roll (to a max of a -6 penalty) for 5 rounds. The target will also suffer a 30% chance of spell failure, if they don\u0027t resist the taunt.\nSpecial: Taunt penalties are not cumulative.\nUse: Select skill and then target creature."
+        },
+        "FR": {
+          "M": "Caract\u00E9ristique : Charisme.\nApprentissage : Non.\nClasses : Toutes.\n\nRaillerie est utilis\u00E9 pour provoquer un ennemi et lui faire baisser sa garde un instant.\n\nJet\u00A0: le DD est un jet de Concentration effectu\u00E9 par la cible contre le jet de Raillerie du personnage. Cette action est consid\u00E9r\u00E9e comme une attaque. Si l\u0027action r\u00E9ussit, l\u2019adversaire subit une p\u00E9nalit\u00E9 \u00E0 sa CA \u00E9gale \u00E0 la diff\u00E9rence entre le jet de raillerie et le jet du d\u00E9fenseur (p\u00E9nalit\u00E9 maximale de -6) pendant 5 rounds. La victime a \u00E9galement 30% de chances d\u0027\u00E9chouer \u00E0 l\u0027incantation de ses sorts si elle subit les effets de Raillerie.\nSp\u00E9cial\u00A0: les p\u00E9nalit\u00E9s de Raillerie ne sont pas cumulatives.\nUtilisation\u00A0: s\u00E9lectionner la comp\u00E9tence puis la cr\u00E9ature vis\u00E9e."
+        },
+        "DE": {
+          "M": "Bezugsattribut: Charisma.\nUnge\u00FCbte Anwendung: Ja.\nKlassen: Alle.\n\nProvozieren wird benutzt, um einen Gegner zu veranlassen, f\u00FCr kurze Zeit unaufmerksam zu werden.\n\nWurf: Provozieren erfordert einen konkurrierenden Wurf gegen einen Wurf f\u00FCr Konzentration des Gegners. Es gilt als Angriff. Ist das Provozieren erfolgreich, erleidet der Gegner f\u00FCr f\u00FCnf Runden einen Malus auf seine RK, welcher der Differenz zwischen dem Fertigkeitswurf f\u00FCr Provozieren und dem Wurf des Verteidigers entspricht (allerdings kann der Malus maximal -6 betragen). Das Ziel hat eine um 30% h\u00F6here Chance auf Zauberpatzer, wenn es der Provokation nicht widersteht.\nSpeziell: Mali durch mehrfaches Anwenden von Provozieren addieren sich nicht.\nGebrauch: Fertigkeit ausw\u00E4hlen und Ziel bestimmen."
+        },
+        "IT": {
+          "M": "Caratteristica: Carisma\nRichede Addestramento: no.\nClassi: tutte.\n\nDileggiare viene usato per provocare un nemico e spingerlo ad abbassare la guardia per un breve periodo di tempo.\n\nProva: la CD \u00E8 una prova di concentrazione eseguita dal bersaglio contro un tiro sull\u0027abilit\u00E0 Dileggiare del personaggio. \u00C8 considerata un attacco. Se Dileggiare ha successo, l\u0027avversario subisce una penalit\u00E0 alla Classe Armatura pari alla differenza tra il tiro di Dileggiare e il tiro del difensore (fino a un massimo di una penalit\u00E0 -6) per 5 round. Il bersaglio subisce anche una probabilit\u00E0 del 30% di fallimento degli incantesimi se non resiste al dileggio.\nSpeciale: le penalit\u00E0 di Dileggiare non sono cumulative.\nUso: selezionare l\u0027abilit\u00E0 e poi la creatura bersaglio."
+        },
+        "ES": {
+          "M": "Caracter\u00EDstica: Carisma\nRequiere entrenamiento: No.\nClases: Todas.\n\nHostigar se utiliza para provocar que un enemigo baje la guardia durante un breve periodo de tiempo.\n\nPrueba: La CD es una prueba de Concentraci\u00F3n realizada por el objetivo contra la tirada de la habilidad Hostigar del personaje (esto se considera un ataque). Si el hostigamiento tiene \u00E9xito, el adversario sufre durante 5 asaltos un penalizador a la CA igual a la diferencia entre la prueba de Hostigar y la tirada del defensor (hasta un penalizador m\u00E1ximo de \u20136). Si no resiste el hostigamiento, el objetivo tambi\u00E9n sufrir\u00E1 un 30% de probabilidad de fallo de conjuro.\nEspecial: Los penalizadores de Hostigar no son acumulativos.\nUso: Selecciona esta habilidad y despu\u00E9s a la criatura objetivo."
+        },
+        "PL": {
+          "M": "Cecha: Charyzma.\nWymaga szkolenia: nie.\nKlasy: wszystkie.\n\nProwokacja pozwala sk\u0142oni\u0107 przeciwnika do opuszczenia na moment gardy.\n\nTest: ST jest testem na koncentracj\u0119 wykonywanym przez obiekt prowokacji przeciwko testowi na umiej\u0119tno\u015B\u0107 prowokacji posiadan\u0105 przez posta\u0107. Prowokacja jest traktowana jako atak. Udana prowokacja oznacza, \u017Ce przeciwnik otrzymuje kary do Klasy Pancerza r\u00F3wne r\u00F3\u017Cnicy mi\u0119dzy rzutem na prowokacj\u0119 i rzutem wykonanym przez broni\u0105cego si\u0119 (maksymalnie -6 punkt\u00F3w karnych) na okres 5 rund. Obiekt prowokacji ma tak\u017Ce 30% szans na nieudane zakl\u0119cie, je\u015Bli tylko zosta\u0142 sprowokowany.\nUwagi: punkty karne powsta\u0142e w wyniku prowokacji nie kumuluj\u0105 si\u0119.\nU\u017Cycie: wybierz umiej\u0119tno\u015B\u0107 i wska\u017C cel."
+        }
+      },
+      "Icon": "isk_taunt",
+      "CanUseUntrained": true,
+      "KeyAbility": "CHA",
+      "UseArmorPenalty": false,
+      "AllClassesCanUse": true,
+      "AIBehaviour": null,
+      "IsHostile": true,
+      "HideFromLevelUp": false
+    },
+    {
+      "ID": "f811ede0-eb33-4618-9fb4-a2ecb3341ada",
+      "Index": -1,
+      "Overrides": "bc8edc23-978c-821e-e1b2-2220da28f119",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Tumble",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 2695,
+        "EN": {
+          "M": "Tumble"
+        },
+        "FR": {
+          "M": "Acrobatie"
+        },
+        "DE": {
+          "M": "Turnen"
+        },
+        "IT": {
+          "M": "Acrobazia"
+        },
+        "ES": {
+          "M": "Piruetas"
+        },
+        "PL": {
+          "M": "Upadanie"
+        }
+      },
+      "Description": {
+        "Index": 2696,
+        "EN": {
+          "M": "Ability: Dexterity.\nRequires Training: Yes.\nClasses: All.\n\nThe character with high tumbling is able to roll away from attacks during combat, positioning themselves safely at all times. Anytime the character might receive an attack of opportunity for moving past enemies, they will automatically attempt a tumble check against a DC of 15. If successful the attack is avoided.\n\r\nCheck: DC 15 to avoid attack of opportunity while moving.\r\n\r\nSpecial: For every five base ranks in this skill (not including any feat or skill bonuses, magical or otherwise) the character\u0027s armor class is also improved by \u002B1 Dodge AC.\r\n\nUse: Automatic.",
+          "F": "Ability: Dexterity.\nRequires Training: Yes.\nClasses: All.\n\nThe character with high tumbling is able to roll away from attacks during combat, positioning themselves safely at all times. Anytime the character might receive an attack of opportunity for moving past enemies, they will automatically attempt a tumble check against a DC of 15. If successful the attack is avoided. For every five ranks in this skill (not including Dexterity bonus) the character\u0027s armor class is also improved by \u002B1.\nCheck: DC 15 to avoid attack of opportunity while moving.\nUse: Automatic."
+        },
+        "FR": {
+          "M": "Caract\u00E9ristique : Dext\u00E9rit\u00E9\nEntra\u00EEnement requis : oui\nClasses : toutes\n\nUn personnage ma\u00EEtrisant cette comp\u00E9tence peut \u00E9viter des attaques au cours d\u0027un combat en se positionnant toujours \u00E0 l\u0027abri. A chaque fois qu\u0027un personnage peut subir une attaque d\u0027opportunit\u00E9 pour s\u0027\u00EAtre d\u00E9plac\u00E9 \u00E0 port\u00E9e d\u0027un adversaire, il effectue automatiquement un jet d\u0027Acrobatie contre un DD de 15. Si ce jet est r\u00E9ussi, l\u0027attaque est \u00E9vit\u00E9e. Tous les cinq rangs dans cette comp\u00E9tence (sans compter le bonus de Dext\u00E9rit\u00E9), la CA du personnage est augment\u00E9e de \u002B1.\nJet de comp\u00E9tence : DD 15 pour \u00E9viter l\u0027attaque d\u0027opportunit\u00E9 en se d\u00E9pla\u00E7ant.\nUtilisation : automatique"
+        },
+        "DE": {
+          "M": "Bezugsattribut: Geschicklichkeit\nUnge\u00FCbte Anwendung: Nein\nKlassen: Alle\n\nEin Charakter mit einem hohen Fertigkeitswert in Turnen kann sich im Kampf unter Angriffen wegducken und sich eine sichere Position suchen. Jedes Mal, wenn jemand einen Gelegenheitsangriff gegen einen Charakter durchf\u00FChrt, der \u00FCber die Fertigkeit Turnen verf\u00FCgt, macht dieser automatisch einen Fertigkeitswurf (SG 15). Bei Erfolg entgeht der Charakter dem Angriff. Alle f\u00FCnf Fertigkeitsr\u00E4nge (der Geschicklichkeitsbonus wird nicht mitgerechnet) erh\u00E4lt der Charakter \u002B1 auf seine RK.\nWurf: SG 15, um Gelegenheitsangriffen zu entgehen, die durch eine Bewegung des Charakters provoziert werden.\nVerwendung: Automatisch"
+        },
+        "IT": {
+          "M": "Caratteristica: destrezza.\nRichiede addestramento: s\u00EC.\nClassi: tutte.\n\nI personaggi dotati di un alto valore in questa abilit\u00E0 sono in grado di rotolare via nel corso del combattimento, ricollocandosi sempre in posizione sicura. Ogni volta che un personaggio subisce un attacco di opportunit\u00E0 per avere tentato di passare oltre un nemico, questi tenter\u00E0 automaticamente di superare una prova di acrobazia a CD 15. Se la supera, l\u0027attacco \u00E8 evitato. Ogni cinque gradi in questa abilit\u00E0 (escluso il modificatore di destrezza) la CA del personaggio sale di \u002B1.\nProva: CD 15 per evitare attacchi di opportunit\u00E0 quando ci si muove.\nUso: automatico."
+        },
+        "ES": {
+          "M": "Caracter\u00EDstica: Destreza.\nRequiere entrenamiento: S\u00ED.\nClases: Todas.\n\nEl personaje que sabe hacer piruetas es capaz de zafarse de los ataques con cabriolas y volteretas y ponerse a salvo en todo momento. Siempre que sufra un ataque de oportunidad por pasar al lado de enemigos, intentar\u00E1 autom\u00E1ticamente una prueba de Piruetas con CD 15. Si la supera, evitar\u00E1 tal ataque. Por cada cinco rangos en esta habilidad (sin incluir el bonificador de Destreza), la CA del personaje tambi\u00E9n mejora en \u002B1.\nPrueba: CD 15 para evitar el ataque de oportunidad al moverse.\nUso: Autom\u00E1tica."
+        },
+        "PL": {
+          "M": "Cecha: Zr\u0119czno\u015B\u0107.\nWymaga treningu: Tak.\nKlasy: Wszystkie.\n\nPosta\u0107 posiadaj\u0105ca umiej\u0119tno\u015B\u0107 Upadania na wysokim poziomie potrafi zwinnie unika\u0107 atak\u00F3w, zawsze trafiaj\u0105c na bezpieczne miejsce. Za ka\u017Cdym razem, gdy przeciwnicy maj\u0105 okazj\u0119 do ataku, posta\u0107 b\u0119dzie musia\u0142a wykona\u0107 test Upadania o ST 15. Je\u017Celi jej si\u0119 uda, uniknie ataku. Ponadto za ka\u017Cde pi\u0119\u0107 poziom\u00F3w tej umiej\u0119tno\u015Bci (nie licz\u0105c premii za Zr\u0119czno\u015B\u0107) posta\u0107 otrzymuje premi\u0119 \u002B1 do KP.\nTest: gdy posta\u0107 si\u0119 porusza i przeciwnicy maj\u0105 okazj\u0119 do ataku, nale\u017Cy wykona\u0107 test Upadania o ST 15, aby go unikn\u0105\u0107.\nU\u017Cycie: Automatyczne."
+        }
+      },
+      "Icon": "ife_x1tum",
+      "CanUseUntrained": false,
+      "KeyAbility": "DEX",
+      "UseArmorPenalty": true,
+      "AllClassesCanUse": true,
+      "AIBehaviour": null,
+      "IsHostile": false,
+      "HideFromLevelUp": false
+    }
+  ]
 }
