@@ -1,4 +1,806 @@
 {
   "Extensions": [],
-  "Items": []
+  "Items": [
+    {
+      "ID": "d825c897-fa24-45c1-864b-78d6ca2b2f93",
+      "Index": -1,
+      "Overrides": "e7c01ef6-a945-d67e-550e-6549fe1c6e7b",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Halfling",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 1988,
+        "EN": {
+          "M": "Halfling"
+        },
+        "FR": {
+          "M": "Halfelin"
+        },
+        "DE": {
+          "M": "Halbling"
+        },
+        "IT": {
+          "M": "Halfling"
+        },
+        "ES": {
+          "M": "Mediano"
+        },
+        "PL": {
+          "M": "Nizio\u0142ek"
+        }
+      },
+      "RaceModel": "A",
+      "EnvironmentMap": "default",
+      "BloodColor": "R",
+      "ModelType": "P",
+      "CanHaveWings": false,
+      "CanHaveTails": false,
+      "WeaponScale": 0.75,
+      "WingTailScale": 1,
+      "HelmetScaleMale": 0.7,
+      "HelmetScaleFemale": 0.65,
+      "MovementRate": "NORM",
+      "WalkAnimationDistance": 1.04,
+      "RunAnimationDistance": 2.08,
+      "PersonalSpaceRadius": 0.25,
+      "CreaturePersonalSpaceRadius": 0.3,
+      "CameraHeight": 1.5,
+      "HitDistance": 0.25,
+      "PreferredAttackDistance": 1.1,
+      "TargetHeight": "H",
+      "AbortAttackAnimationOnParry": true,
+      "HasLegs": true,
+      "HasArms": true,
+      "Portrait": "",
+      "SizeCategory": "Small",
+      "PerceptionRange": "Medium",
+      "FootstepSound": "Normal",
+      "AppearanceSoundset": {
+        "ID": "27f22a30-8364-517b-bc5a-ca64523d6b04",
+        "Label": "Humanoid_Normal"
+      },
+      "HeadTracking": true,
+      "HorizontalHeadTrackingRange": 60,
+      "VerticalHeadTrackingRange": 30,
+      "ModelHeadNodeName": "head_g",
+      "BodyBag": "Pouch",
+      "Targetable": true
+    },
+    {
+      "ID": "ae6d399c-fb2b-43de-a668-3fd6ac9c00fe",
+      "Index": -1,
+      "Overrides": "3de31ac2-ee61-ae5e-3472-19c87b59e439",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Halfling_mounted_f",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 110908,
+        "EN": {
+          "M": "Halfling mounted, Female"
+        },
+        "FR": {
+          "M": "Halfelin mont\u00E9, Femme"
+        },
+        "DE": {
+          "M": "Halbling, beritten, weiblich"
+        },
+        "IT": {
+          "M": "Halfling a cavallo, Femmina"
+        },
+        "ES": {
+          "M": "Mediana montada"
+        },
+        "PL": {
+          "M": "Konny nizio\u0142ek, kobieta"
+        }
+      },
+      "RaceModel": "A",
+      "EnvironmentMap": "default",
+      "BloodColor": "R",
+      "ModelType": "P",
+      "CanHaveWings": false,
+      "CanHaveTails": false,
+      "WeaponScale": 0.75,
+      "WingTailScale": 0.632,
+      "HelmetScaleMale": 0.7,
+      "HelmetScaleFemale": 0.65,
+      "MovementRate": "FAST",
+      "WalkAnimationDistance": 1.82,
+      "RunAnimationDistance": 2.7,
+      "PersonalSpaceRadius": 0.6,
+      "CreaturePersonalSpaceRadius": 1.2,
+      "CameraHeight": 1.5,
+      "HitDistance": 1,
+      "PreferredAttackDistance": 2.3,
+      "TargetHeight": "H",
+      "AbortAttackAnimationOnParry": true,
+      "HasLegs": true,
+      "HasArms": true,
+      "Portrait": "",
+      "SizeCategory": "Small",
+      "PerceptionRange": "Medium",
+      "FootstepSound": "Horse",
+      "AppearanceSoundset": {
+        "ID": "27f22a30-8364-517b-bc5a-ca64523d6b04",
+        "Label": "Humanoid_Normal"
+      },
+      "HeadTracking": true,
+      "HorizontalHeadTrackingRange": 60,
+      "VerticalHeadTrackingRange": 30,
+      "ModelHeadNodeName": "head_g",
+      "BodyBag": "Pouch",
+      "Targetable": true
+    },
+    {
+      "ID": "c0028979-11f1-4f65-a878-12cea1c5e99d",
+      "Index": -1,
+      "Overrides": "abe052f3-42c3-3041-3d52-f3066b197005",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Halfling_mounted",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 110909,
+        "EN": {
+          "M": "Halfling mounted, Male"
+        },
+        "FR": {
+          "M": "Halfelin mont\u00E9, Homme"
+        },
+        "DE": {
+          "M": "Halbling, beritten, m\u00E4nnlich"
+        },
+        "IT": {
+          "M": "Halfling a cavallo, Maschio"
+        },
+        "ES": {
+          "M": "Mediano montado"
+        },
+        "PL": {
+          "M": "Konny nizio\u0142ek, m\u0119\u017Cczyzna"
+        }
+      },
+      "RaceModel": "A",
+      "EnvironmentMap": "default",
+      "BloodColor": "R",
+      "ModelType": "P",
+      "CanHaveWings": false,
+      "CanHaveTails": false,
+      "WeaponScale": 0.75,
+      "WingTailScale": 0.65,
+      "HelmetScaleMale": 0.7,
+      "HelmetScaleFemale": 0.65,
+      "MovementRate": "FAST",
+      "WalkAnimationDistance": 1.82,
+      "RunAnimationDistance": 2.7,
+      "PersonalSpaceRadius": 0.6,
+      "CreaturePersonalSpaceRadius": 1.2,
+      "CameraHeight": 1.5,
+      "HitDistance": 1,
+      "PreferredAttackDistance": 2.3,
+      "TargetHeight": "H",
+      "AbortAttackAnimationOnParry": true,
+      "HasLegs": true,
+      "HasArms": true,
+      "Portrait": "",
+      "SizeCategory": "Small",
+      "PerceptionRange": "Medium",
+      "FootstepSound": "Horse",
+      "AppearanceSoundset": {
+        "ID": "27f22a30-8364-517b-bc5a-ca64523d6b04",
+        "Label": "Humanoid_Normal"
+      },
+      "HeadTracking": true,
+      "HorizontalHeadTrackingRange": 60,
+      "VerticalHeadTrackingRange": 30,
+      "ModelHeadNodeName": "head_g",
+      "BodyBag": "Pouch",
+      "Targetable": true
+    },
+    {
+      "ID": "315afdb5-fe34-42bc-a0fe-8544add72112",
+      "Index": -1,
+      "Overrides": "4c84e211-d46f-517d-d645-34d696b284fa",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Golem_Bone",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 2009,
+        "EN": {
+          "M": "Golem, Bone"
+        },
+        "FR": {
+          "M": "Golem d\u0027os"
+        },
+        "DE": {
+          "M": "Golem, Knochen-"
+        },
+        "IT": {
+          "M": "Golem d\u0027Ossa"
+        },
+        "ES": {
+          "M": "G\u00F3lem de hueso"
+        },
+        "PL": {
+          "M": "Golem, ko\u015Bciany"
+        }
+      },
+      "RaceModel": "c_golbone",
+      "EnvironmentMap": "default",
+      "BloodColor": "W",
+      "ModelType": "S",
+      "CanHaveWings": false,
+      "CanHaveTails": false,
+      "WeaponScale": 1,
+      "WingTailScale": 1,
+      "HelmetScaleMale": 1,
+      "HelmetScaleFemale": 1,
+      "MovementRate": "SLOW",
+      "WalkAnimationDistance": 2,
+      "RunAnimationDistance": 3.2,
+      "PersonalSpaceRadius": 0.4,
+      "CreaturePersonalSpaceRadius": 1.4,
+      "CameraHeight": 1,
+      "HitDistance": 0.4,
+      "PreferredAttackDistance": 2.7,
+      "TargetHeight": "H",
+      "AbortAttackAnimationOnParry": true,
+      "HasLegs": true,
+      "HasArms": true,
+      "Portrait": "po_GolBone",
+      "SizeCategory": "Large",
+      "PerceptionRange": "Medium",
+      "FootstepSound": "Large",
+      "AppearanceSoundset": {
+        "ID": "f59cdb72-b264-e1d9-a1d1-91eb62df528e",
+        "Label": "Bone_Golem"
+      },
+      "HeadTracking": false,
+      "HorizontalHeadTrackingRange": 60,
+      "VerticalHeadTrackingRange": 30,
+      "ModelHeadNodeName": "Ettin_Largehead",
+      "BodyBag": "Bones",
+      "Targetable": true
+    },
+    {
+      "ID": "4218f80f-f15d-4181-9e8a-a2d0df1de4b3",
+      "Index": -1,
+      "Overrides": "c3b60dc1-0fad-cdab-c2eb-40d721c347de",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Drider_Female",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 3063,
+        "EN": {
+          "M": "Drider, Female",
+          "F": "Drider"
+        },
+        "FR": {
+          "M": "Drider"
+        },
+        "DE": {
+          "M": "Drinne"
+        },
+        "IT": {
+          "M": "Drider"
+        },
+        "ES": {
+          "M": "Dra\u00F1a"
+        },
+        "PL": {
+          "M": "Kosarz"
+        }
+      },
+      "RaceModel": "c_driderfem",
+      "EnvironmentMap": "",
+      "BloodColor": "G",
+      "ModelType": "L",
+      "CanHaveWings": false,
+      "CanHaveTails": false,
+      "WeaponScale": 1,
+      "WingTailScale": 1,
+      "HelmetScaleMale": 1,
+      "HelmetScaleFemale": 1,
+      "MovementRate": "NORM",
+      "WalkAnimationDistance": 1.8,
+      "RunAnimationDistance": 2.6,
+      "PersonalSpaceRadius": 0.7,
+      "CreaturePersonalSpaceRadius": 0.7,
+      "CameraHeight": 1,
+      "HitDistance": 0.9,
+      "PreferredAttackDistance": 2.5,
+      "TargetHeight": "H",
+      "AbortAttackAnimationOnParry": true,
+      "HasLegs": true,
+      "HasArms": true,
+      "Portrait": "po_drider",
+      "SizeCategory": "Large",
+      "PerceptionRange": "Medium",
+      "FootstepSound": "Spider",
+      "AppearanceSoundset": {
+        "ID": "547c78cf-35fe-bd5a-8d97-2b633a7e9261",
+        "Label": "Beetles_Spiders"
+      },
+      "HeadTracking": false,
+      "HorizontalHeadTrackingRange": 60,
+      "VerticalHeadTrackingRange": 30,
+      "ModelHeadNodeName": "head_g",
+      "BodyBag": "Default",
+      "Targetable": true
+    },
+    {
+      "ID": "5287c89f-096a-4dee-ad25-9897c3df9f01",
+      "Index": -1,
+      "Overrides": "651667f4-62ee-bbda-bf43-c24570a0594b",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Drider",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 3063,
+        "EN": {
+          "M": "Drider, Male",
+          "F": "Drider"
+        },
+        "FR": {
+          "M": "Drider"
+        },
+        "DE": {
+          "M": "Drinne"
+        },
+        "IT": {
+          "M": "Drider"
+        },
+        "ES": {
+          "M": "Dra\u00F1a"
+        },
+        "PL": {
+          "M": "Kosarz"
+        }
+      },
+      "RaceModel": "c_drider",
+      "EnvironmentMap": "",
+      "BloodColor": "G",
+      "ModelType": "L",
+      "CanHaveWings": false,
+      "CanHaveTails": false,
+      "WeaponScale": 1,
+      "WingTailScale": 1,
+      "HelmetScaleMale": 1,
+      "HelmetScaleFemale": 1,
+      "MovementRate": "NORM",
+      "WalkAnimationDistance": 1.8,
+      "RunAnimationDistance": 2.6,
+      "PersonalSpaceRadius": 0.7,
+      "CreaturePersonalSpaceRadius": 0.7,
+      "CameraHeight": 1,
+      "HitDistance": 0.9,
+      "PreferredAttackDistance": 2.5,
+      "TargetHeight": "H",
+      "AbortAttackAnimationOnParry": true,
+      "HasLegs": true,
+      "HasArms": true,
+      "Portrait": "po_drider",
+      "SizeCategory": "Large",
+      "PerceptionRange": "Medium",
+      "FootstepSound": "Spider",
+      "AppearanceSoundset": {
+        "ID": "547c78cf-35fe-bd5a-8d97-2b633a7e9261",
+        "Label": "Beetles_Spiders"
+      },
+      "HeadTracking": false,
+      "HorizontalHeadTrackingRange": 60,
+      "VerticalHeadTrackingRange": 30,
+      "ModelHeadNodeName": "head_g",
+      "BodyBag": "Default",
+      "Targetable": true
+    },
+    {
+      "ID": "b560c73f-5b07-4466-b325-e1b83f669329",
+      "Index": -1,
+      "Overrides": "ccddf041-3c65-80fc-2d5b-2e385aedb532",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "objectFlameSmall",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 5794,
+        "EN": {
+          "M": "Placeable - Flame",
+          "F": "Flame"
+        },
+        "FR": {
+          "M": "Flammes"
+        },
+        "DE": {
+          "M": "Flamme"
+        },
+        "IT": {
+          "M": "Fiamma"
+        },
+        "ES": {
+          "M": "Llama"
+        },
+        "PL": {
+          "M": "P\u0142omie\u0144"
+        }
+      },
+      "RaceModel": "PLC_T06",
+      "EnvironmentMap": "",
+      "BloodColor": "N",
+      "ModelType": "S",
+      "CanHaveWings": false,
+      "CanHaveTails": false,
+      "WeaponScale": 1,
+      "WingTailScale": 1,
+      "HelmetScaleMale": 1.15,
+      "HelmetScaleFemale": 0.95,
+      "MovementRate": "VSLOW",
+      "WalkAnimationDistance": 1,
+      "RunAnimationDistance": 3,
+      "PersonalSpaceRadius": 0.01,
+      "CreaturePersonalSpaceRadius": 0.01,
+      "CameraHeight": 1,
+      "HitDistance": 0.1,
+      "PreferredAttackDistance": 0.1,
+      "TargetHeight": "H",
+      "AbortAttackAnimationOnParry": false,
+      "HasLegs": false,
+      "HasArms": false,
+      "Portrait": "",
+      "SizeCategory": "Tiny",
+      "PerceptionRange": "Medium",
+      "FootstepSound": "Normal",
+      "AppearanceSoundset": null,
+      "HeadTracking": true,
+      "HorizontalHeadTrackingRange": 60,
+      "VerticalHeadTrackingRange": 30,
+      "ModelHeadNodeName": "impact",
+      "BodyBag": "Default",
+      "Targetable": true
+    },
+    {
+      "ID": "d1c8b1af-5fe9-4dda-8731-f9d2ca4dff51",
+      "Index": -1,
+      "Overrides": "37f2d56d-5b38-44af-02d3-b2b1bd8852ba",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "objectFlameMedium",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 5793,
+        "EN": {
+          "M": "Placeable - Flame",
+          "F": "Flame"
+        },
+        "FR": {
+          "M": "Flammes"
+        },
+        "DE": {
+          "M": "Flamme"
+        },
+        "IT": {
+          "M": "Fiamma"
+        },
+        "ES": {
+          "M": "Llama"
+        },
+        "PL": {
+          "M": "P\u0142omie\u0144"
+        }
+      },
+      "RaceModel": "PLC_T05",
+      "EnvironmentMap": "",
+      "BloodColor": "N",
+      "ModelType": "S",
+      "CanHaveWings": false,
+      "CanHaveTails": false,
+      "WeaponScale": 1,
+      "WingTailScale": 1,
+      "HelmetScaleMale": 1.15,
+      "HelmetScaleFemale": 0.95,
+      "MovementRate": "VSLOW",
+      "WalkAnimationDistance": 1,
+      "RunAnimationDistance": 3,
+      "PersonalSpaceRadius": 0.01,
+      "CreaturePersonalSpaceRadius": 0.01,
+      "CameraHeight": 1,
+      "HitDistance": 0.1,
+      "PreferredAttackDistance": 0.1,
+      "TargetHeight": "H",
+      "AbortAttackAnimationOnParry": false,
+      "HasLegs": false,
+      "HasArms": false,
+      "Portrait": "",
+      "SizeCategory": "Tiny",
+      "PerceptionRange": "Medium",
+      "FootstepSound": "Normal",
+      "AppearanceSoundset": null,
+      "HeadTracking": true,
+      "HorizontalHeadTrackingRange": 60,
+      "VerticalHeadTrackingRange": 30,
+      "ModelHeadNodeName": "impact",
+      "BodyBag": "Default",
+      "Targetable": true
+    },
+    {
+      "ID": "3c5a7e04-48f1-450b-bc99-4c75f7ee09b2",
+      "Index": -1,
+      "Overrides": "0a6d4121-b8e5-d143-1f78-1edafa0cd720",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "objectFlameLarge",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 5792,
+        "EN": {
+          "M": "Placeable - Flame",
+          "F": "Flame"
+        },
+        "FR": {
+          "M": "Flammes"
+        },
+        "DE": {
+          "M": "Flamme"
+        },
+        "IT": {
+          "M": "Fiamma"
+        },
+        "ES": {
+          "M": "Llama"
+        },
+        "PL": {
+          "M": "P\u0142omie\u0144"
+        }
+      },
+      "RaceModel": "PLC_T04",
+      "EnvironmentMap": "",
+      "BloodColor": "N",
+      "ModelType": "S",
+      "CanHaveWings": false,
+      "CanHaveTails": false,
+      "WeaponScale": 1,
+      "WingTailScale": 1,
+      "HelmetScaleMale": 1.15,
+      "HelmetScaleFemale": 0.95,
+      "MovementRate": "VSLOW",
+      "WalkAnimationDistance": 1,
+      "RunAnimationDistance": 3,
+      "PersonalSpaceRadius": 0.01,
+      "CreaturePersonalSpaceRadius": 0.01,
+      "CameraHeight": 1,
+      "HitDistance": 0.1,
+      "PreferredAttackDistance": 0.1,
+      "TargetHeight": "H",
+      "AbortAttackAnimationOnParry": false,
+      "HasLegs": false,
+      "HasArms": false,
+      "Portrait": "",
+      "SizeCategory": "Tiny",
+      "PerceptionRange": "Medium",
+      "FootstepSound": "Normal",
+      "AppearanceSoundset": null,
+      "HeadTracking": true,
+      "HorizontalHeadTrackingRange": 60,
+      "VerticalHeadTrackingRange": 30,
+      "ModelHeadNodeName": "impact",
+      "BodyBag": "Default",
+      "Targetable": true
+    },
+    {
+      "ID": "c929af41-269f-4068-a460-17fdc312dc09",
+      "Index": -1,
+      "Overrides": "a937b967-22be-bfac-98bb-32e887168432",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Golem_Adamantium",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 3078,
+        "EN": {
+          "M": "Golem, Adamantium",
+          "F": "Golem,  Adamantium"
+        },
+        "FR": {
+          "M": "Golem, Adamantite"
+        },
+        "DE": {
+          "M": "Golem, Adamantit"
+        },
+        "IT": {
+          "M": "Golem, adamantino"
+        },
+        "ES": {
+          "M": "G\u00F3lem de adamantita"
+        },
+        "PL": {
+          "M": "Golem, Adamantowy"
+        }
+      },
+      "RaceModel": "c_golada",
+      "EnvironmentMap": "default",
+      "BloodColor": "W",
+      "ModelType": "L",
+      "CanHaveWings": false,
+      "CanHaveTails": false,
+      "WeaponScale": 2.1,
+      "WingTailScale": 1,
+      "HelmetScaleMale": 1,
+      "HelmetScaleFemale": 1,
+      "MovementRate": "SLOW",
+      "WalkAnimationDistance": 2.5,
+      "RunAnimationDistance": 5,
+      "PersonalSpaceRadius": 0.6,
+      "CreaturePersonalSpaceRadius": 1.6,
+      "CameraHeight": 1,
+      "HitDistance": 1,
+      "PreferredAttackDistance": 1.9,
+      "TargetHeight": "H",
+      "AbortAttackAnimationOnParry": true,
+      "HasLegs": true,
+      "HasArms": true,
+      "Portrait": "po_golada",
+      "SizeCategory": "Large",
+      "PerceptionRange": "Medium",
+      "FootstepSound": "Large",
+      "AppearanceSoundset": {
+        "ID": "36e7257b-4afc-4528-ef35-4d356fdd194f",
+        "Label": "Metl_Golem"
+      },
+      "HeadTracking": true,
+      "HorizontalHeadTrackingRange": 60,
+      "VerticalHeadTrackingRange": 30,
+      "ModelHeadNodeName": "IroGolem_head",
+      "BodyBag": "Treasure",
+      "Targetable": true
+    },
+    {
+      "ID": "b1aa78c6-a8e6-4ff1-a332-aea95fab3567",
+      "Index": -1,
+      "Overrides": "61f41ab0-8bc5-47fc-816d-867a26a18b1c",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Invisible_Human_Male",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 63758,
+        "EN": {
+          "M": "Null Human"
+        },
+        "FR": {
+          "M": "N\u00E9ant humain"
+        },
+        "DE": {
+          "M": "Null-Mensch"
+        },
+        "IT": {
+          "M": "Nessun Umano"
+        },
+        "ES": {
+          "M": "Humano virtual"
+        },
+        "PL": {
+          "M": "Nieistniej\u0105cy cz\u0142owiek"
+        }
+      },
+      "RaceModel": "c_invsguy",
+      "EnvironmentMap": "default",
+      "BloodColor": "W",
+      "ModelType": "F",
+      "CanHaveWings": false,
+      "CanHaveTails": false,
+      "WeaponScale": 1,
+      "WingTailScale": 1,
+      "HelmetScaleMale": 1.05,
+      "HelmetScaleFemale": 0.85,
+      "MovementRate": "NORM",
+      "WalkAnimationDistance": 1.6,
+      "RunAnimationDistance": 3.2,
+      "PersonalSpaceRadius": 0.3,
+      "CreaturePersonalSpaceRadius": 0.5,
+      "CameraHeight": 1,
+      "HitDistance": 0.3,
+      "PreferredAttackDistance": 1.7,
+      "TargetHeight": "H",
+      "AbortAttackAnimationOnParry": true,
+      "HasLegs": true,
+      "HasArms": true,
+      "Portrait": "po_hu_m_99",
+      "SizeCategory": "Medium",
+      "PerceptionRange": "Medium",
+      "FootstepSound": "None",
+      "AppearanceSoundset": {
+        "ID": "27f22a30-8364-517b-bc5a-ca64523d6b04",
+        "Label": "Humanoid_Normal"
+      },
+      "HeadTracking": false,
+      "HorizontalHeadTrackingRange": 60,
+      "VerticalHeadTrackingRange": 30,
+      "ModelHeadNodeName": "head_g",
+      "BodyBag": "Pouch",
+      "Targetable": false
+    },
+    {
+      "ID": "f9599d91-a894-4613-b19f-34351aaeb068",
+      "Index": -1,
+      "Overrides": "17ce4d55-76ef-5745-2ad2-047ceed2016f",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Golem_Demonflesh",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 83366,
+        "EN": {
+          "M": "Golem, Demonflesh"
+        },
+        "FR": {
+          "M": "Golem d\u00E9moniaque"
+        },
+        "DE": {
+          "M": "D\u00E4monischer Fleischgolem"
+        },
+        "IT": {
+          "M": "Golem di carne demoniaca"
+        },
+        "ES": {
+          "M": "Golem, Demonio de la Carne"
+        },
+        "PL": {
+          "M": "Golem z cia\u0142a demona"
+        }
+      },
+      "RaceModel": "c_GolDem",
+      "EnvironmentMap": "",
+      "BloodColor": "R",
+      "ModelType": "L",
+      "CanHaveWings": false,
+      "CanHaveTails": false,
+      "WeaponScale": 2.3,
+      "WingTailScale": 1,
+      "HelmetScaleMale": 1,
+      "HelmetScaleFemale": 1,
+      "MovementRate": "NORM",
+      "WalkAnimationDistance": 2.7,
+      "RunAnimationDistance": 3.5,
+      "PersonalSpaceRadius": 0.3,
+      "CreaturePersonalSpaceRadius": 0.7,
+      "CameraHeight": 1,
+      "HitDistance": 0.3,
+      "PreferredAttackDistance": 1.8,
+      "TargetHeight": "H",
+      "AbortAttackAnimationOnParry": true,
+      "HasLegs": true,
+      "HasArms": true,
+      "Portrait": "po_GolDem",
+      "SizeCategory": "Large",
+      "PerceptionRange": "Medium",
+      "FootstepSound": "Large",
+      "AppearanceSoundset": {
+        "ID": "27f22a30-8364-517b-bc5a-ca64523d6b04",
+        "Label": "Humanoid_Normal"
+      },
+      "HeadTracking": true,
+      "HorizontalHeadTrackingRange": 60,
+      "VerticalHeadTrackingRange": 30,
+      "ModelHeadNodeName": "head_g",
+      "BodyBag": "Pouch",
+      "Targetable": true
+    }
+  ]
 }
