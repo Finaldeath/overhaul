@@ -572,6 +572,115 @@
       ]
     },
     {
+      "ID": "82bbadc2-a7e9-43cf-b2ca-08a8b5503e07",
+      "Index": -1,
+      "Overrides": "db4cb225-238f-c6f4-5ac9-2afd9bb0abad",
+      "Disabled": false,
+      "Hint": "No item targeting",
+      "ScriptConstant": "",
+      "SourceLabel": "BARBARIAN_RAGE",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 1062,
+        "EN": {
+          "M": "Barbarian Rage",
+          "F": "Barbarian Rage (1x per day)"
+        },
+        "FR": {
+          "M": "Rage (1x par jour)"
+        },
+        "DE": {
+          "M": "Barbarischer Kampfrausch (1x pro Tag)"
+        },
+        "IT": {
+          "M": "Ira Barbarica (1x al giorno)"
+        },
+        "ES": {
+          "M": "Furia B\u00E1rbara (1/d\u00EDa)"
+        },
+        "PL": {
+          "M": "Barbarzy\u0144ca: Sza\u0142 (raz dziennie)"
+        }
+      },
+      "Description": {
+        "Index": null
+      },
+      "AlternativeCastMessage": {
+        "Index": 53207,
+        "EN": {
+          "M": "\u003CCUSTOM0\u003E enters rage."
+        },
+        "FR": {
+          "M": "\u003CCUSTOM0\u003E entre en rage."
+        },
+        "DE": {
+          "M": "\u003CCUSTOM0\u003E ger\u00E4t in einen Kampfrausch."
+        },
+        "IT": {
+          "M": "\u003CCUSTOM0\u003E cade in preda all\u0027ira."
+        },
+        "ES": {
+          "M": "\u003CCUSTOM0\u003E entra en estado de furia."
+        },
+        "PL": {
+          "M": "\u003CCUSTOM0\u003E wpada w sza\u0142."
+        }
+      },
+      "Icon": "ife_rage",
+      "School": "G",
+      "Range": "P",
+      "Components": [
+        "S"
+      ],
+      "AvailableMetaMagic": [],
+      "TargetTypes": [
+        "Self"
+      ],
+      "ImpactScript": "NW_S1_BarbRage",
+      "InnateLevel": 1,
+      "ConjurationTime": 500,
+      "ConjuringAnimation": "Head",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": null,
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": null,
+      "ConjurationMaleSound": null,
+      "ConjurationFemaleSound": null,
+      "CastingAnimation": "Out",
+      "CastTime": 500,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": null,
+      "ProjectileSound": null,
+      "ProjectileOrientation": null,
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "TalentPersistentAoe",
+      "ParentSpell": null,
+      "Type": "Feat",
+      "UseConcentration": false,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
       "ID": "534fbdb6-9707-41d1-b501-2a18e653d448",
       "Index": 517,
       "Overrides": "6f2c3b44-4a5f-a889-3278-2371bcd83e1f",
@@ -11942,6 +12051,122 @@
       "TargetSizeX": null,
       "TargetSizeY": null,
       "TargetingFlags": []
+    },
+    {
+      "ID": "f1929581-a262-4101-b330-c18dd296dad2",
+      "Index": -1,
+      "Overrides": "7941ec19-7c85-ef23-a8c6-696f9188124b",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "TYMORAS_SMILE",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 2949,
+        "EN": {
+          "M": "Tymora\u0027s Smile"
+        },
+        "FR": {
+          "M": "Sourire de Tymora"
+        },
+        "DE": {
+          "M": "Tymoras L\u00E4cheln"
+        },
+        "IT": {
+          "M": "Sorriso di Tymora"
+        },
+        "ES": {
+          "M": "Sonrisa de Tymora"
+        },
+        "PL": {
+          "M": "U\u015Bmiech Tymory"
+        }
+      },
+      "Description": {
+        "Index": 2680,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Harper Scout level 3.\nSpecifics: Once per day, the harper or a target receives a \u002B2 saving throw bonus on all saving throws for 5 turns. The bonus increases by 1 every 3 additional Harper Scout levels.\nUse: Selected.",
+          "F": "Caster Level(s): Bard 3, Wizard / Sorcerer 3\nInnate Level: 3\nSchool: Illusion\nDescriptor(s):\nComponent(s): Verbal\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 round / level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nThe target gains 50% concealment, displacing the caster\u0027s image several feet to the side, similar to the abilities of a displacer beast."
+        },
+        "FR": {
+          "M": "Niveau : Barde 3, Magicien / Ensorceleur 3\nNiveau inn\u00E9 : 3\nEcole : Illusion\nCat\u00E9gorie(s) :\nComposante(s) : verbale\nPort\u00E9e : contact\nZone d\u2019effet / cible : 1 cr\u00E9ature\nDur\u00E9e : 1 round/niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : aucun\nR\u00E9sistance \u00E0 la magie : non\n\nLa cible b\u00E9n\u00E9ficie d\u0027une couverture de 50%, d\u00E9pla\u00E7ant l\u2019image du lanceur de sort de quelques m\u00E8tres sur le c\u00F4t\u00E9, ceci imite le pouvoir naturel de la b\u00EAte \u00E9clipsante."
+        },
+        "DE": {
+          "M": "Grad: BAR 3, MAG/HXM 3\nKalkulationsgrad: 3\nSchule: Illusion\nKategorie:\nKomponenten: V\nReichweite: Ber\u00FChrung\nWirkungsbereich/Ziel: 1 Ziel\nWirkungsdauer: 1 Runde/Stufe\nGegenzauber:\nRettungswurf: Nein\nZauberresistenz: Nein\n\nDas Ziel erh\u00E4lt 50% Tarnung. Der Zauber dupliziert sozusagen die angeborene F\u00E4higkeit einer T\u00E4uschungsbestie."
+        },
+        "IT": {
+          "M": "Livello(i) dell\u0027incantatore: bardo 3, mago / stregone 3\nLivello innato: 3\nScuola: illusione\nDescrittore(i):\nComponente(i): verbale\nRaggio d\u0027azione: contatto\nArea d\u0027effetto / bersaglio: singolo\nDurata: 1 round per livello\nControincantesimi addizionali:\nTiro salvezza: nessuno\nResistenza agli incantesimi: no\n\nIl bersaglio ottiene un occultamento del 50%, distorcendo l\u0027immagine dell\u0027incantatore di qualche metro, grazie alle capacit\u00E0 di quest\u0027ultimo di emulare le capacit\u00E0 naturali di una belva distorcente."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Bardo 3, Hechicero / Mago 3\nNivel innato: 3\nEscuela: Ilusi\u00F3n\nDescriptores:\nComponentes: Verbal, Som\u00E1tico\nAlcance: Toque\n\u00C1rea de efecto / Objetivo: Individual\nDuraci\u00F3n: 1 asalto / nivel\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Ninguno\nResistencia a conjuros: No\n\nEl objetivo obtiene un 50% de ocultaci\u00F3n al desplazarse la imagen del lanzador varios pies a un lado, de forma parecida a las aptitudes de una bestia tr\u00E9mula."
+        },
+        "PL": {
+          "M": "Poziom czaruj\u0105cego: Bard 3, Czarodziej / Czarownik 3\nPoziom wrodzony: 3\nSzko\u0142a: Iluzje\nIdentyfikator(y):\nKomponent(y): Werbalny\nZasi\u0119g: Dotyk\nObszar dzia\u0142ania / Cel: Pojedynczy\nCzas trwania: 1 runda / poziom\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Brak\nOdporno\u015B\u0107 na czary: Nie\n\nIstota chroniona tym czarem uzyskuje 50% os\u0142on\u0119, gdy\u017C obraz rzucaj\u0105cego przesuwa si\u0119 o kilka metr\u00F3w w bok - podobnie jak ma to miejsce w wypadku przenikaj\u0105cej bestii."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null,
+        "EN": {
+          "M": "\u003CCUSTOM0\u003E blesses with Tymora\u0027s Smile."
+        }
+      },
+      "Icon": "ife_x1htym",
+      "School": "E",
+      "Range": "T",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [],
+      "TargetTypes": [
+        "Self",
+        "Creature"
+      ],
+      "ImpactScript": "x0_s2_HarpSmile",
+      "InnateLevel": 0,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_smhanodd01",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mehanodd01",
+      "ConjurationMaleSound": "vs_chant_ench_lm",
+      "ConjurationFemaleSound": "vs_chant_ench_lf",
+      "CastingAnimation": "Touch",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": null,
+      "ProjectileSound": null,
+      "ProjectileOrientation": null,
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyEnhancementSingle",
+      "ParentSpell": null,
+      "Type": "Feat",
+      "UseConcentration": false,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": [
+        "HelpsAllies"
+      ]
     },
     {
       "ID": "b21fbb38-00c5-4001-9541-18b92c965166",
