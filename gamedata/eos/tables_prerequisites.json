@@ -1,4 +1,106 @@
 {
   "Extensions": [],
-  "Items": []
+  "Items": [
+    {
+      "ID": "b3d15b57-c929-4386-a3b2-dfa86b3c50d6",
+      "Name": "CLS_PRES_SHOU",
+      "Hint": "Copy",
+      "Overrides": null,
+      "Items": [
+        {
+          "SourceLabel": "Hide",
+          "RequirementType": "VAR",
+          "Param1Class": null,
+          "Param1Feat": null,
+          "Param1Race": null,
+          "Param1Skill": null,
+          "Param1String": "OP_CLASSSHOU",
+          "Param1Int": null,
+          "Param1Save": null,
+          "RequirementParam2": 0
+        },
+        {
+          "SourceLabel": "Cleave",
+          "RequirementType": "BAB",
+          "Param1Class": null,
+          "Param1Feat": null,
+          "Param1Race": null,
+          "Param1Skill": null,
+          "Param1String": null,
+          "Param1Int": 3,
+          "Param1Save": null,
+          "RequirementParam2": null
+        },
+        {
+          "SourceLabel": "Base_Attack",
+          "RequirementType": "SKILL",
+          "Param1Class": null,
+          "Param1Feat": null,
+          "Param1Race": null,
+          "Param1Skill": {
+            "ID": "bc8edc23-978c-821e-e1b2-2220da28f119",
+            "Label": "Tumble"
+          },
+          "Param1String": null,
+          "Param1Int": null,
+          "Param1Save": null,
+          "RequirementParam2": 8
+        },
+        {
+          "SourceLabel": "ScriptVar",
+          "RequirementType": "SAVE",
+          "Param1Class": null,
+          "Param1Feat": null,
+          "Param1Race": null,
+          "Param1Skill": null,
+          "Param1String": null,
+          "Param1Int": null,
+          "Param1Save": 2,
+          "RequirementParam2": 2
+        },
+        {
+          "RequirementType": "FEAT",
+          "Param1Class": null,
+          "Param1Feat": {
+            "ID": "514eb90a-0918-8cef-ed08-d37dfcd2e756",
+            "Label": "Improved Unarmed Strike"
+          },
+          "Param1Race": null,
+          "Param1Skill": null,
+          "Param1String": null,
+          "Param1Int": null,
+          "Param1Save": null,
+          "RequirementParam2": null
+        },
+        {
+          "RequirementType": "FEAT",
+          "Param1Class": null,
+          "Param1Feat": {
+            "ID": "97684ceb-b5f6-891c-29b8-cffe9a312439",
+            "Label": "Weapon Focus (unarmed strike)"
+          },
+          "Param1Race": null,
+          "Param1Skill": null,
+          "Param1String": null,
+          "Param1Int": null,
+          "Param1Save": null,
+          "RequirementParam2": null
+        },
+        {
+          "RequirementType": "FEAT",
+          "Param1Class": null,
+          "Param1Feat": {
+            "ID": "ca7df8b4-1276-ea7f-4194-f9cd8036c814",
+            "Label": "Dodge"
+          },
+          "Param1Race": null,
+          "Param1Skill": null,
+          "Param1String": null,
+          "Param1Int": null,
+          "Param1Save": null,
+          "RequirementParam2": null
+        }
+      ]
+    }
+  ]
 }

@@ -894,7 +894,7 @@
         "ID": "4c1628f2-548d-6f21-375f-dc751b98745b",
         "Label": "CLS_PRES_HARPER"
       },
-      "MaxLevel": 5,
+      "MaxLevel": 40,
       "MulticlassXPPenalty": false,
       "ArcaneCasterLevelMod": 0,
       "DivineCasterLevelMod": 0,
@@ -1119,19 +1119,34 @@
       "Icon": "ir_monk",
       "HitDie": 10,
       "SkillPointsPerLevel": 2,
-      "AttackBonusTable": null,
-      "Feats": null,
-      "SavingThrows": null,
-      "Skills": null,
-      "BonusFeats": null,
+      "AttackBonusTable": {
+        "ID": "5359145c-3ebc-e9fa-50ea-e0e6332bb02f",
+        "Label": "CLS_ATK_1"
+      },
+      "Feats": {
+        "ID": "687f0cd4-5361-44e0-9b96-22ad16abae41",
+        "Label": "CLS_FEAT_SHOU"
+      },
+      "SavingThrows": {
+        "ID": "89a75e08-1600-0f23-6b37-bca137924806",
+        "Label": "CLS_SAVTHR_WILD"
+      },
+      "Skills": {
+        "ID": "f036ddda-b311-47ef-abbb-fbb413650887",
+        "Label": "CLS_SKILL_SHOU"
+      },
+      "BonusFeats": {
+        "ID": "2dd9e9b2-3a4c-47e4-bf21-8f7f1691bfb8",
+        "Label": "CLS_BFEAT_SHOU"
+      },
       "SpellSlots": null,
       "KnownSpells": null,
       "Playable": true,
       "IsSpellCaster": false,
-      "RecommendedStr": 10,
+      "RecommendedStr": 14,
       "RecommendedDex": 10,
       "RecommendedCon": 10,
-      "RecommendedWis": 10,
+      "RecommendedWis": 15,
       "RecommendedInt": 10,
       "RecommendedCha": 10,
       "PrimaryAbility": "WIS",
@@ -1146,13 +1161,19 @@
         "NeutralEvil",
         "ChaoticEvil"
       ],
-      "Requirements": null,
+      "Requirements": {
+        "ID": "b3d15b57-c929-4386-a3b2-dfa86b3c50d6",
+        "Label": "CLS_PRES_SHOU"
+      },
       "MaxLevel": 40,
       "MulticlassXPPenalty": false,
       "ArcaneCasterLevelMod": 0,
       "DivineCasterLevelMod": 0,
-      "PreEpicMaxLevel": 5,
-      "DefaultPackage": null,
+      "PreEpicMaxLevel": 10,
+      "DefaultPackage": {
+        "ID": "a7b7b461-fa14-f229-cfdf-d5b9986265af",
+        "Label": "Default Monk"
+      },
       "StatGainTable": null,
       "MemorizesSpells": true,
       "SpellbookRestricted": true,

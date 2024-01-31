@@ -774,24 +774,6 @@
         },
         {
           "Feat": {
-            "ID": "1f21e728-3ed8-e1f4-9c22-c9efe66908fb",
-            "Label": "Automatic Quicken Spell II"
-          },
-          "FeatList": "GeneralFeat",
-          "GrantedOnLevel": -1,
-          "Menu": "NoMenuEntry"
-        },
-        {
-          "Feat": {
-            "ID": "08c32fdd-4fa3-b007-3bff-e261174653a8",
-            "Label": "Automatic Quicken Spell III"
-          },
-          "FeatList": "GeneralFeat",
-          "GrantedOnLevel": -1,
-          "Menu": "NoMenuEntry"
-        },
-        {
-          "Feat": {
             "ID": "2d148b06-50de-ed61-d626-6caaa13feff4",
             "Label": "Automatic Silent Spell I"
           },
@@ -801,44 +783,8 @@
         },
         {
           "Feat": {
-            "ID": "79e0b10e-f3b1-6cb9-474b-a9064bd8b34d",
-            "Label": "Automatic Silent Spell II"
-          },
-          "FeatList": "GeneralFeat",
-          "GrantedOnLevel": -1,
-          "Menu": "NoMenuEntry"
-        },
-        {
-          "Feat": {
-            "ID": "91d1f505-410d-7b72-5d70-dbfa0957978e",
-            "Label": "Automatic Silent Spell III"
-          },
-          "FeatList": "GeneralFeat",
-          "GrantedOnLevel": -1,
-          "Menu": "NoMenuEntry"
-        },
-        {
-          "Feat": {
             "ID": "8f579aa7-33db-8dbd-9880-66ab79945fa6",
             "Label": "Automatic Still Spell I"
-          },
-          "FeatList": "GeneralFeat",
-          "GrantedOnLevel": -1,
-          "Menu": "NoMenuEntry"
-        },
-        {
-          "Feat": {
-            "ID": "836027e0-c319-5e31-4cad-0d5082425704",
-            "Label": "Automatic Still Spell II"
-          },
-          "FeatList": "GeneralFeat",
-          "GrantedOnLevel": -1,
-          "Menu": "NoMenuEntry"
-        },
-        {
-          "Feat": {
-            "ID": "4b06bf9e-73b8-5fc4-4006-5f4de5b96ce3",
-            "Label": "Automatic Still Spell III"
           },
           "FeatList": "GeneralFeat",
           "GrantedOnLevel": -1,
@@ -1208,6 +1154,1613 @@
           "Feat": {
             "ID": "956b604a-357e-b99a-6aa3-3d11a9e04cea",
             "Label": "Extra Music"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        }
+      ]
+    },
+    {
+      "ID": "687f0cd4-5361-44e0-9b96-22ad16abae41",
+      "Name": "CLS_FEAT_SHOU",
+      "Hint": "Shou Disciple",
+      "Overrides": null,
+      "Items": [
+        {
+          "SourceLabel": "ImpStrike",
+          "Feat": {
+            "ID": "f1d58449-76c9-1a69-1b75-7323f9083f83",
+            "Label": "Martial Flurry (any)"
+          },
+          "FeatList": "AutomaticallyGranted",
+          "GrantedOnLevel": 5,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FlurryofBlows",
+          "Feat": {
+            "ID": "e77c1a02-08df-9dc6-2d3c-7602ed3d3519",
+            "Label": "Dodge Bonus \u002B 3"
+          },
+          "FeatList": "AutomaticallyGranted",
+          "GrantedOnLevel": 4,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "Evasion",
+          "Feat": {
+            "ID": "b2f21cc0-286a-2ecd-9c30-60cdc7465af4",
+            "Label": "Martial Flurry (light)"
+          },
+          "FeatList": "AutomaticallyGranted",
+          "GrantedOnLevel": 3,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "Cleave",
+          "Feat": {
+            "ID": "c4f2cce8-d9d0-3d9b-a29a-da84b11ea90c",
+            "Label": "Dodge Bonus \u002B 2"
+          },
+          "FeatList": "AutomaticallyGranted",
+          "GrantedOnLevel": 2,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "DefArrow",
+          "Feat": {
+            "ID": "7e5b4c9f-a7a2-32c9-1383-9947789c6e00",
+            "Label": "Deflect Arrows"
+          },
+          "FeatList": "AutomaticallyGranted",
+          "GrantedOnLevel": 2,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "StillMind",
+          "Feat": {
+            "ID": "142bede8-dee8-b1dd-598d-43eafb1cbf32",
+            "Label": "Weapon Proficiency (monk)"
+          },
+          "FeatList": "AutomaticallyGranted",
+          "GrantedOnLevel": 1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "PurityofBody",
+          "Feat": {
+            "ID": "0c9d914b-6786-02c1-19c5-d83fba02377d",
+            "Label": "Weapon Proficiency (martial)"
+          },
+          "FeatList": "AutomaticallyGranted",
+          "GrantedOnLevel": 1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_MONK",
+          "Feat": {
+            "ID": "f8fbc1b8-75d1-f5dd-18e4-7539b0ded9a5",
+            "Label": "Epic Monk"
+          },
+          "FeatList": "AutomaticallyGranted",
+          "GrantedOnLevel": 11,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "PLAYER_TOOL_01",
+          "Feat": {
+            "ID": "feb8f82a-fe37-6bae-ed8a-ac9bf27d5c87",
+            "Label": "Player Tool 1"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": 99,
+          "Menu": "ClassRadialMenu"
+        },
+        {
+          "SourceLabel": "PLAYER_TOOL_02",
+          "Feat": {
+            "ID": "183ae608-4c0b-49bf-4c28-bc50ec0f096f",
+            "Label": "Player Tool 2"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": 99,
+          "Menu": "ClassRadialMenu"
+        },
+        {
+          "SourceLabel": "PLAYER_TOOL_03",
+          "Feat": {
+            "ID": "1c035e89-1ed8-b6bc-0eb9-d249a81385a8",
+            "Label": "Player Tool 3"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": 99,
+          "Menu": "ClassRadialMenu"
+        },
+        {
+          "SourceLabel": "PLAYER_TOOL_04",
+          "Feat": {
+            "ID": "e3e8d062-17bd-53e5-e054-fb7149bd9863",
+            "Label": "Player Tool 4"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": 99,
+          "Menu": "ClassRadialMenu"
+        },
+        {
+          "SourceLabel": "PLAYER_TOOL_05",
+          "Feat": {
+            "ID": "0e94de45-9ec0-768c-898d-60c89ecf9b70",
+            "Label": "Player Tool 5"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": 99,
+          "Menu": "ClassRadialMenu"
+        },
+        {
+          "SourceLabel": "PLAYER_TOOL_06",
+          "Feat": {
+            "ID": "b264fbea-612e-d01a-770b-ef4fc4fc9001",
+            "Label": "Player Tool 6"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": 99,
+          "Menu": "ClassRadialMenu"
+        },
+        {
+          "SourceLabel": "PLAYER_TOOL_07",
+          "Feat": {
+            "ID": "af9e6ec2-2298-f223-569c-bd7880badfed",
+            "Label": "Player Tool 7"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": 99,
+          "Menu": "ClassRadialMenu"
+        },
+        {
+          "SourceLabel": "PLAYER_TOOL_08",
+          "Feat": {
+            "ID": "7eb5d19e-ddb1-e78e-e8f5-61ccb86498e5",
+            "Label": "Player Tool 8"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": 99,
+          "Menu": "ClassRadialMenu"
+        },
+        {
+          "SourceLabel": "PLAYER_TOOL_09",
+          "Feat": {
+            "ID": "ba1595d0-c128-1557-f82b-1390de83335e",
+            "Label": "Player Tool 9"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": 99,
+          "Menu": "ClassRadialMenu"
+        },
+        {
+          "SourceLabel": "PLAYER_TOOL_10",
+          "Feat": {
+            "ID": "411f1202-6c29-457b-340e-224ca77b0a3c",
+            "Label": "Player Tool 10"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": 99,
+          "Menu": "ClassRadialMenu"
+        },
+        {
+          "SourceLabel": "WeapProfEx",
+          "Feat": {
+            "ID": "31fedca1-51d5-750f-66b6-f7a12859a83b",
+            "Label": "Weapon Proficiency (exotic)"
+          },
+          "FeatList": "GeneralFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "WeapProfSim",
+          "Feat": {
+            "ID": "1094bb51-88b6-a8b2-ab6f-81987ea0f4c5",
+            "Label": "Weapon Proficiency (simple)"
+          },
+          "FeatList": "GeneralFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "TwoWeap",
+          "Feat": {
+            "ID": "bd387bfd-cac0-def2-f67b-41b11499fb65",
+            "Label": "Two-Weapon Fighting"
+          },
+          "FeatList": "GeneralFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "Ambidex",
+          "Feat": {
+            "ID": "fe399d6d-acaf-f588-a29a-52a8680a8bc5",
+            "Label": "Ambidexterity"
+          },
+          "FeatList": "GeneralFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ARMOR_SKIN",
+          "Feat": {
+            "ID": "f33a7460-63e8-b158-b2c8-0549cd2dee40",
+            "Label": "Armor Skin"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_DAMAGE_REDUCTION_3",
+          "Feat": {
+            "ID": "c93ee0eb-d645-32c3-9782-5f7b76cf83ee",
+            "Label": "Epic Damage Reduction I"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_DAMAGE_REDUCTION_6",
+          "Feat": {
+            "ID": "58b2c168-efc6-5b8b-801e-07dbc19c573c",
+            "Label": "Epic Damage Reduction II"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_DAMAGE_REDUCTION_9",
+          "Feat": {
+            "ID": "cfc1120c-10a4-e8e9-a650-a00dd5c57057",
+            "Label": "Epic Damage Reduction III"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_COLD_1",
+          "Feat": {
+            "ID": "f599a3e8-318b-1325-b30a-4373a199a411",
+            "Label": "Energy Resistance, Cold I"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_COLD_2",
+          "Feat": {
+            "ID": "a2e420b5-b8f8-738f-2f2c-818da4eb05ea",
+            "Label": "Energy Resistance, Cold II"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_COLD_3",
+          "Feat": {
+            "ID": "ba7d3a41-e3f3-ea9d-a8bf-659f7af3b382",
+            "Label": "Energy Resistance, Cold III"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_COLD_4",
+          "Feat": {
+            "ID": "6d85cf3a-6553-6dda-6ab7-df8ee194649e",
+            "Label": "Energy Resistance, Cold IV"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_COLD_5",
+          "Feat": {
+            "ID": "aa6c3386-6cf5-de8c-de89-d73d601ff73f",
+            "Label": "Energy Resistance, Cold V"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_COLD_6",
+          "Feat": {
+            "ID": "b724d2f9-e153-34f2-d4cd-a05c5f383e5d",
+            "Label": "Energy Resistance, Cold VI"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_COLD_7",
+          "Feat": {
+            "ID": "7e517b74-1473-0769-c407-c78a0426297e",
+            "Label": "Energy Resistance, Cold VII"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_COLD_8",
+          "Feat": {
+            "ID": "3d43e4d3-cfc4-fdb0-975b-bbe81050b481",
+            "Label": "Energy Resistance, Cold VIII"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_COLD_9",
+          "Feat": {
+            "ID": "6c90cbf7-b940-5e52-820b-10023af41feb",
+            "Label": "Energy Resistance, Cold IX"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_COLD_10",
+          "Feat": {
+            "ID": "a9fefdf5-3b4f-0ead-7104-051cd31d71e0",
+            "Label": "Energy Resistance, Cold X"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_ACID_1",
+          "Feat": {
+            "ID": "96c190b4-a4e4-53dc-4082-68919a276e0b",
+            "Label": "Energy Resistance, Acid I"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_ACID_2",
+          "Feat": {
+            "ID": "df8a263d-f40a-84e0-8206-6ee45c47b264",
+            "Label": "Energy Resistance, Acid II"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_ACID_3",
+          "Feat": {
+            "ID": "bd84be12-a6ab-c13f-dbb5-b528aea050b3",
+            "Label": "Energy Resistance, Acid III"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_ACID_4",
+          "Feat": {
+            "ID": "4ece41b5-62ad-cf09-3ad1-c04426bf9e78",
+            "Label": "Energy Resistance, Acid IV"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_ACID_5",
+          "Feat": {
+            "ID": "a3f9cc62-964d-bfd1-27c3-466da94ea08e",
+            "Label": "Energy Resistance, Acid V"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_ACID_6",
+          "Feat": {
+            "ID": "dd7d3ab5-3a60-7e6d-a9c5-212441bc6891",
+            "Label": "Energy Resistance, Acid VI"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_ACID_7",
+          "Feat": {
+            "ID": "f4ad487b-215f-2d05-a45e-6ab3815869c3",
+            "Label": "Energy Resistance, Acid VII"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_ACID_8",
+          "Feat": {
+            "ID": "4b3b0ce7-ceda-5705-a5db-4d08b6004fa1",
+            "Label": "Energy Resistance, Acid VIII"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_ACID_9",
+          "Feat": {
+            "ID": "24408b9b-f166-8b93-fd0f-92cdd7dd96aa",
+            "Label": "Energy Resistance, Acid IX"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_ACID_10",
+          "Feat": {
+            "ID": "a0265670-9af2-3173-2583-bc2e81b7cdef",
+            "Label": "Energy Resistance, Acid X"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_FIRE_1",
+          "Feat": {
+            "ID": "2dd39e24-3681-2082-f11e-06e0a445afe3",
+            "Label": "Energy Resistance, Fire I"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_FIRE_2",
+          "Feat": {
+            "ID": "e29735d2-a45c-6648-e394-068f759e90a0",
+            "Label": "Energy Resistance, Fire II"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_FIRE_3",
+          "Feat": {
+            "ID": "07606095-634c-c85a-a112-1a5b7f07fb27",
+            "Label": "Energy Resistance, Fire III"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_FIRE_4",
+          "Feat": {
+            "ID": "4a825273-2ac4-7b99-0a02-d7c6c316a760",
+            "Label": "Energy Resistance, Fire IV"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_FIRE_5",
+          "Feat": {
+            "ID": "96ef03ab-9c62-3790-12ac-f1d4dd403ffa",
+            "Label": "Energy Resistance, Fire V"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_FIRE_6",
+          "Feat": {
+            "ID": "c50aaf26-dc2a-ac92-44bc-d3b89bf96a4f",
+            "Label": "Energy Resistance, Fire VI"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_FIRE_7",
+          "Feat": {
+            "ID": "107f99af-e244-fd51-d7fa-c0d79ad56eee",
+            "Label": "Energy Resistance, Fire VII"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_FIRE_8",
+          "Feat": {
+            "ID": "fba9d74c-d449-5b85-979c-2cf4af5dc39a",
+            "Label": "Energy Resistance, Fire VIII"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_FIRE_9",
+          "Feat": {
+            "ID": "b46fca6a-6802-0efc-1a96-856cd017ece0",
+            "Label": "Energy Resistance, Fire IX"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_FIRE_10",
+          "Feat": {
+            "ID": "2c670ca2-33ef-b1e2-3366-33bcea1d8b83",
+            "Label": "Energy Resistance, Fire X"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_ELECTRICAL_1",
+          "Feat": {
+            "ID": "b3f3f7b0-770a-5176-f395-f8e24684c293",
+            "Label": "Energy Resistance, Electrical I"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_ELECTRICAL_2",
+          "Feat": {
+            "ID": "ee64b04a-cbe8-b5c8-87a6-d63e61cc9620",
+            "Label": "Energy Resistance, Electrical II"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_ELECTRICAL_3",
+          "Feat": {
+            "ID": "89faccef-1d1b-fb40-e567-e72b496b27c4",
+            "Label": "Energy Resistance, Electrical III"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_ELECTRICAL_4",
+          "Feat": {
+            "ID": "bfea8f18-1145-0d40-1778-4af00ca302a1",
+            "Label": "Energy Resistance, Electrical IV"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_ELECTRICAL_5",
+          "Feat": {
+            "ID": "68f84882-472c-0e93-ad60-7266227cd37d",
+            "Label": "Energy Resistance, Electrical V"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_ELECTRICAL_6",
+          "Feat": {
+            "ID": "63498299-0b3f-bb07-936a-0eb3a17eab0f",
+            "Label": "Energy Resistance, Electrical VI"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_ELECTRICAL_7",
+          "Feat": {
+            "ID": "fb1dbc07-01f0-4df7-5916-000890f7e2ca",
+            "Label": "Energy Resistance, Electrical VII"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_ELECTRICAL_8",
+          "Feat": {
+            "ID": "fdddd5e4-ea29-e0c8-74b1-6e9f07959e66",
+            "Label": "Energy Resistance, Electrical VIII"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_ELECTRICAL_9",
+          "Feat": {
+            "ID": "826e028a-3729-5c41-3f17-8af3df1e22d4",
+            "Label": "Energy Resistance, Electrical IX"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_ELECTRICAL_10",
+          "Feat": {
+            "ID": "00dcf1cd-4037-0c15-91c2-f9fef8ed8e32",
+            "Label": "Energy Resistance, Electrical X"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_SONIC_1",
+          "Feat": {
+            "ID": "da39e183-122c-82db-69ee-ed34293a7841",
+            "Label": "Energy Resistance, Sonic I"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_SONIC_2",
+          "Feat": {
+            "ID": "db41abe2-1d3d-39e1-af39-d38100ded8d2",
+            "Label": "Energy Resistance, Sonic II"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_SONIC_3",
+          "Feat": {
+            "ID": "cbbdd873-f1ce-15a8-ccb8-7fa51b408d72",
+            "Label": "Energy Resistance, Sonic III"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_SONIC_4",
+          "Feat": {
+            "ID": "7f1da1c8-28e6-e496-aba5-a1185d0f7335",
+            "Label": "Energy Resistance, Sonic IV"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_SONIC_5",
+          "Feat": {
+            "ID": "9e64a0c8-e423-234e-fde8-ca9c4d35bc53",
+            "Label": "Energy Resistance, Sonic V"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_SONIC_6",
+          "Feat": {
+            "ID": "ee29c57a-e229-dce4-eb2b-d127b83357d3",
+            "Label": "Energy Resistance, Sonic VI"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_SONIC_7",
+          "Feat": {
+            "ID": "63e27a0d-fb8d-7a0d-bed1-a5c5276ddaf9",
+            "Label": "Energy Resistance, Sonic VII"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_SONIC_8",
+          "Feat": {
+            "ID": "376ffe15-01d9-2399-fecc-8c314b886e40",
+            "Label": "Energy Resistance, Sonic VIII"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_SONIC_9",
+          "Feat": {
+            "ID": "da74e95e-88b2-e410-baee-3e85ac76e215",
+            "Label": "Energy Resistance, Sonic IX"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_ENERGY_RESISTANCE_SONIC_10",
+          "Feat": {
+            "ID": "0448e16b-4935-af6d-b7d2-d3ca5adfdaed",
+            "Label": "Energy Resistance, Sonic X"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_IMPROVED_KI_STRIKE_4",
+          "Feat": {
+            "ID": "69e76e16-e9b1-6aa1-f73e-6602cf847db2",
+            "Label": "Improved Ki Strike \u002B4"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_IMPROVED_KI_STRIKE_5",
+          "Feat": {
+            "ID": "cc40b11a-996f-a4b1-d0f1-399ec2e260d0",
+            "Label": "Improved Ki Strike \u002B5"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_IMPROVED_SPELL_RESISTANCE_1",
+          "Feat": {
+            "ID": "4468ed20-758f-f4f8-713c-75b56123e9c1",
+            "Label": "Improved Spell Resistance I"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_IMPROVED_SPELL_RESISTANCE_2",
+          "Feat": {
+            "ID": "336624d2-cb90-c3ba-eb13-19dbda5667a6",
+            "Label": "Improved Spell Resistance II"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_IMPROVED_SPELL_RESISTANCE_3",
+          "Feat": {
+            "ID": "0ff59be8-c967-a67a-89a9-d639513b54c0",
+            "Label": "Improved Spell Resistance III"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_IMPROVED_SPELL_RESISTANCE_4",
+          "Feat": {
+            "ID": "413347fa-770b-f2fb-e3b1-37df72a4f3d6",
+            "Label": "Improved Spell Resistance IV"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_IMPROVED_SPELL_RESISTANCE_5",
+          "Feat": {
+            "ID": "3cc34997-c039-2695-3b13-175e3a8aecf8",
+            "Label": "Improved Spell Resistance V"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_IMPROVED_SPELL_RESISTANCE_6",
+          "Feat": {
+            "ID": "24d25a24-6583-eada-5873-f53df820bdb8",
+            "Label": "Improved Spell Resistance VI"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_IMPROVED_SPELL_RESISTANCE_7",
+          "Feat": {
+            "ID": "4175b97e-6f6a-b8a1-a54d-56ed1bd48102",
+            "Label": "Improved Spell Resistance VII"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_IMPROVED_SPELL_RESISTANCE_8",
+          "Feat": {
+            "ID": "17e0b38c-de28-5de3-ecc5-19be13019367",
+            "Label": "Improved Spell Resistance VIII"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_IMPROVED_SPELL_RESISTANCE_9",
+          "Feat": {
+            "ID": "d9c7cbfa-95bc-def9-17c1-b6ec2a4a8689",
+            "Label": "Improved Spell Resistance IX"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_IMPROVED_SPELL_RESISTANCE_10",
+          "Feat": {
+            "ID": "0744d5e4-f657-e930-2f9e-8a2cfbcbb876",
+            "Label": "Improved Spell Resistance X"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_SELF_CONCEALMENT_10",
+          "Feat": {
+            "ID": "e05ee862-020f-7a08-49d9-21d2fbeb96b9",
+            "Label": "Self-Concealment I"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_SELF_CONCEALMENT_20",
+          "Feat": {
+            "ID": "1b1cc8f5-2a19-533b-a647-d94c749551be",
+            "Label": "Self-Concealment II"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_SELF_CONCEALMENT_30",
+          "Feat": {
+            "ID": "8c4be807-54dd-5900-7ef8-a2e99fcca20b",
+            "Label": "Self-Concealment III"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_SELF_CONCEALMENT_40",
+          "Feat": {
+            "ID": "7419fa1a-a67c-c662-b066-326dda7a759e",
+            "Label": "Self-Concealment IV"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_SELF_CONCEALMENT_50",
+          "Feat": {
+            "ID": "0d55c584-31b8-d9f4-f95a-145ebfc1fc03",
+            "Label": "Self-Concealment V"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_TOUGHNESS_1",
+          "Feat": {
+            "ID": "dcfecfce-ec77-6b4a-393b-7084822908b3",
+            "Label": "Epic Toughness I"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_TOUGHNESS_2",
+          "Feat": {
+            "ID": "98e656e4-6949-de83-346e-39b354a5d7e5",
+            "Label": "Epic Toughness II"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_TOUGHNESS_3",
+          "Feat": {
+            "ID": "0f53a9ba-8849-243e-5137-1672daac25d8",
+            "Label": "Epic Toughness III"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_TOUGHNESS_4",
+          "Feat": {
+            "ID": "4747139c-c4c4-9186-cfe5-02ad3869fd9b",
+            "Label": "Epic Toughness IV"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_TOUGHNESS_5",
+          "Feat": {
+            "ID": "22a283af-4ed4-a71e-a3a6-53beaa140d3b",
+            "Label": "Epic Toughness V"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_TOUGHNESS_6",
+          "Feat": {
+            "ID": "4a4561bc-6747-4e4f-a579-4052cf5c9d8d",
+            "Label": "Epic Toughness VI"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_TOUGHNESS_7",
+          "Feat": {
+            "ID": "4db750dd-b6e8-8693-2baa-d4627e755868",
+            "Label": "Epic Toughness VII"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_TOUGHNESS_8",
+          "Feat": {
+            "ID": "135ce952-5e07-833d-0cc5-696a571fc180",
+            "Label": "Epic Toughness VIII"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_TOUGHNESS_9",
+          "Feat": {
+            "ID": "cfa77107-748d-c2dc-0b0e-1b74aeff2493",
+            "Label": "Epic Toughness IX"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_TOUGHNESS_10",
+          "Feat": {
+            "ID": "aacae2a6-06a9-baeb-353e-09bda5d932fe",
+            "Label": "Epic Toughness X"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_IMPROVED_STUNNING_FIST_1",
+          "Feat": {
+            "ID": "097a3655-909d-43d0-83dd-5266b48cae03",
+            "Label": "Improved Stunning Fist I"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_IMPROVED_STUNNING_FIST_2",
+          "Feat": {
+            "ID": "19ca26c4-2f34-aa8a-b42b-31e16c21e223",
+            "Label": "Improved Stunning Fist II"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_IMPROVED_STUNNING_FIST_3",
+          "Feat": {
+            "ID": "d9900f9c-6b67-8d79-22f1-85fc63b4a230",
+            "Label": "Improved Stunning Fist III"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_IMPROVED_STUNNING_FIST_4",
+          "Feat": {
+            "ID": "eb13215c-16f3-1a2a-5770-71641e1aa13d",
+            "Label": "Improved Stunning Fist IV"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_IMPROVED_STUNNING_FIST_5",
+          "Feat": {
+            "ID": "30b899b6-88f7-192f-aef7-ee7bacca9a7d",
+            "Label": "Improved Stunning Fist V"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_IMPROVED_STUNNING_FIST_6",
+          "Feat": {
+            "ID": "8852cebc-eb0a-a9cf-96e1-7f3b7ac012b2",
+            "Label": "Improved Stunning Fist VI"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_IMPROVED_STUNNING_FIST_7",
+          "Feat": {
+            "ID": "cd7883e6-d09a-d037-d27e-08a84ed76abe",
+            "Label": "Improved Stunning Fist VII"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_IMPROVED_STUNNING_FIST_8",
+          "Feat": {
+            "ID": "86415b40-c622-6ceb-ff25-9d1426af50f8",
+            "Label": "Improved Stunning Fist VIII"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_IMPROVED_STUNNING_FIST_9",
+          "Feat": {
+            "ID": "25dc93ba-ae1a-73b4-7792-65080464c7dc",
+            "Label": "Improved Stunning Fist IX"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_IMPROVED_STUNNING_FIST_10",
+          "Feat": {
+            "ID": "d18807b9-6532-33d0-554d-0cd10abdd040",
+            "Label": "Improved Stunning Fist X"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "SourceLabel": "FEAT_EPIC_BLINDING_SPEED",
+          "Feat": {
+            "ID": "de6d93f4-28e2-2cf4-d6bb-4ee13d5f3d73",
+            "Label": "Blinding Speed"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "ClassRadialMenu"
+        },
+        {
+          "Feat": {
+            "ID": "7e5b4c9f-a7a2-32c9-1383-9947789c6e00",
+            "Label": "Deflect Arrows"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "b3aec895-427e-25e1-c443-121e3f8aded6",
+            "Label": "Expertise"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "e003f558-f640-7897-c768-bdbbb9582058",
+            "Label": "Improved Expertise"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "5c6482a5-1e01-813c-33af-e0a8ca7fdb3e",
+            "Label": "Improved Initiative"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "c0fd788e-1c5c-d3d5-5528-743a78e916d8",
+            "Label": "Knockdown"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "cf97d1e9-cb97-53cd-ecea-283bd74e024e",
+            "Label": "Improved Knockdown"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "fcf76704-bce0-6a87-d4dd-c1f2e5a33649",
+            "Label": "Mobility"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "113da58a-966a-2396-258d-94b302acfe93",
+            "Label": "Power Attack"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "bbb75039-a818-efc6-914b-67a963ba2847",
+            "Label": "Improved Power Attack"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "3231ef65-5203-972b-c967-d10a672cfb2d",
+            "Label": "Spring Attack"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "b34acf31-898b-147e-6f83-1a60540840fd",
+            "Label": "Weapon Finesse"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "2b10ba4e-d30e-736f-a5fb-569285599825",
+            "Label": "Weapon Specialization (bastard sword)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "6b951b0b-e10c-b9ad-5193-92dc1d5ea85f",
+            "Label": "Weapon Specialization (battleaxe)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "d635bfc6-e01e-a464-05f3-f5f4a4345879",
+            "Label": "Weapon Specialization (club)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "c818bcca-37c6-427c-00f6-ee9f2a7c31dc",
+            "Label": "Weapon Specialization (dagger)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "a6257f6d-c905-24fa-79ab-c9d0b5c01375",
+            "Label": "Weapon Specialization (dart)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "de22a48f-4dd0-131e-da5b-fd8aae604bd5",
+            "Label": "Weapon Specialization (dire mace)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "29d7180e-7e37-f82e-8d42-7be5e68b7211",
+            "Label": "Weapon Specialization (double axe)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "11646424-ac33-34e0-e368-aac4d8920b91",
+            "Label": "Weapon Specialization (dwarven waraxe)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "f20c87e6-a922-2aad-2f77-6a686b24b247",
+            "Label": "Weapon Specialization (greataxe)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "e12d8d80-7d8c-c402-c604-4d7d7eb4040c",
+            "Label": "Weapon Specialization (greatsword)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "a49950dc-a993-0bec-6d36-4420e4cf08a1",
+            "Label": "Weapon Specialization (halberd)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "95af8137-b25f-3a10-2134-b54bc48b09a7",
+            "Label": "Weapon Specialization (handaxe)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "f5c03a1a-6c00-e89f-4330-75ef06436783",
+            "Label": "Weapon Specialization (heavy crossbow)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "df22411f-11ae-4ce9-1b8b-1bb171d7ce0b",
+            "Label": "Weapon Specialization (heavy flail)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "5630a7c0-5133-af1f-f1b9-8a1de21114ce",
+            "Label": "Weapon Specialization (kama)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "e9437a02-4d4f-e910-606a-92c39c5f887a",
+            "Label": "Weapon Specialization (katana)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "9b59673a-379b-81cb-c088-448e6b6ac8fa",
+            "Label": "Weapon Specialization (kukri)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "35840663-b9d7-117a-7ade-01b5f828367f",
+            "Label": "Weapon Specialization (light crossbow)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "53f4117b-e727-b888-df80-3374bdb6576c",
+            "Label": "Weapon Specialization (light flail)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "90d79751-e59d-7f82-db80-4c379f4093cb",
+            "Label": "Weapon Specialization (light hammer)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "9618b333-1572-6d68-126c-de3e51985920",
+            "Label": "Weapon Specialization (longbow)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "b9fadabc-6344-49c8-ee22-1fcaca092e51",
+            "Label": "Weapon Specialization (longsword)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "7ecd319f-a786-e292-bbc6-fe0f4971e7f9",
+            "Label": "Weapon Specialization (mace)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "e9609dab-07cc-134e-c88d-917dcc64e477",
+            "Label": "Weapon Specialization (morningstar)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "cdb0bd39-30fa-e75e-f5cb-7976d32079e2",
+            "Label": "Weapon Specialization (quarterstaff)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "d6ca2a94-71a3-192a-8d07-1749555bbe61",
+            "Label": "Weapon Specialization (rapier)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "bfff7f4b-74de-b94f-fbd4-2ee2bdd431f9",
+            "Label": "Weapon Specialization (scimitar)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "1d9fa0d6-a64e-ac6c-c4f3-d40ff45de681",
+            "Label": "Weapon Specialization (scythe)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "96de80ca-f237-33e2-fb44-43baf2f706ab",
+            "Label": "Weapon Specialization (short sword)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "70a68a9a-0e50-1757-3343-6aa638d22f3a",
+            "Label": "Weapon Specialization (shortbow)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "ce7f9ef6-d57d-e588-376d-91c68a784603",
+            "Label": "Weapon Specialization (shuriken)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "a599dc11-94ef-9ebe-f00c-48713a281191",
+            "Label": "Weapon Specialization (sickle)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "36c0e827-636e-945b-7473-e1c534e05c3b",
+            "Label": "Weapon Specialization (sling)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "00e023be-09ee-ff25-7886-9c900d0f3cd5",
+            "Label": "Weapon Specialization (spear)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "e90a2c0c-1cb1-3695-7ffe-0960d1d30590",
+            "Label": "Weapon Specialization (throwing axe)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "cfb8bad8-7904-4edc-f43e-e077530a6ce6",
+            "Label": "Weapon Specialization (trident)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "8faed14d-e551-c1a0-74df-1c31555088ab",
+            "Label": "Weapon Specialization (two-bladed sword)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "68aa5c9e-c51b-4902-f119-261d0c48a1d8",
+            "Label": "Weapon Specialization (unarmed strike)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "d24787df-cb02-d84b-18ee-b60a6fc35818",
+            "Label": "Weapon Specialization (warhammer)"
+          },
+          "FeatList": "GeneralFeatOrBonusFeat",
+          "GrantedOnLevel": -1,
+          "Menu": "NoMenuEntry"
+        },
+        {
+          "Feat": {
+            "ID": "1168ad87-5006-d713-c284-f83192c54d25",
+            "Label": "Weapon Specialization (whip)"
           },
           "FeatList": "GeneralFeatOrBonusFeat",
           "GrantedOnLevel": -1,
