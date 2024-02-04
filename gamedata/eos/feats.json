@@ -14896,7 +14896,8 @@
       "Description": {
         "Index": 2940,
         "EN": {
-          "M": "Type of Feat: Class\nPrerequisite: Shadowdancer level 1.\nSpecifics: The shadowdancer is able to use the Hide skill even while being observed. Note: This ability will not always be successful in the frenzy of combat -- but disengaging from the enemy before attempting to hide in plain sight will succeed.\nUse: Automatic."
+          "M": "Type of Feat: Class\nPrerequisite: Shadowdancer level 1.\nSpecifics: The shadowdancer is able to use the Hide skill even while being observed. Note: This ability will not always be successful in the frenzy of combat -- but disengaging from the enemy before attempting to hide in plain sight will succeed.\nUse: Automatic. Can only be activated every 6 seconds.",
+          "F": "Type of Feat: Class\nPrerequisite: Shadowdancer level 1.\nSpecifics: The shadowdancer is able to use the Hide skill even while being observed. Note: This ability will not always be successful in the frenzy of combat -- but disengaging from the enemy before attempting to hide in plain sight will succeed.\nUse: Automatic."
         },
         "FR": {
           "M": "Type de don : Classe\nCondition : Ma\u00EEtre des ombres niveau 1\nFonctionnement : le Ma\u00EEtre des ombres peut utiliser sa comp\u00E9tence dissimulation m\u00EAme s\u0027il est observ\u00E9.\nNote : cette capacit\u00E9 ne marchera pas toujours en plein milieu d\u0027un combat. Il faut que le personnage se d\u00E9sengage avant de tenter de se cacher.\nUtilisation : automatique"
@@ -26495,6 +26496,97 @@
       "MinFortitudeSave": null,
       "RequiresEpic": false,
       "UseActionQueue": false
+    },
+    {
+      "ID": "5d9dcc05-1c1c-46e6-afc6-4afe63eadbcb",
+      "Index": -1,
+      "Overrides": "8e11bf04-5ca1-404d-96a4-6366f78ea870",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Sap",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 421,
+        "EN": {
+          "M": "Sap"
+        },
+        "FR": {
+          "M": "Matraquage"
+        },
+        "DE": {
+          "M": "Niederschlagen"
+        },
+        "IT": {
+          "M": "Tramortire"
+        },
+        "ES": {
+          "M": "Cachiporra"
+        },
+        "PL": {
+          "M": "Og\u0142uszenie"
+        }
+      },
+      "Description": {
+        "Index": 422,
+        "EN": {
+          "M": "Type of Feat: General\nPrerequisite: Base Attack Bonus \u002B1, Called Shot.\nRequired for: Stunning Fist.\nSpecifics: A character with this feat is able to make a special stun attack in melee. He makes an attack roll with a -4 penalty, and if the hit successfully deals damage the defender must make a Discipline check with a DC equal to the attacker\u0027s attack roll. If the defender fails, he or she is dazed for 12 seconds.\nUse: Selected."
+        },
+        "FR": {
+          "M": "Type de don : G\u00E9n\u00E9ral\nConditions\u00A0: Bonus de base \u00E0 l\u0027attaque \u002B1, Coup ajust\u00E9\nN\u00E9cessaire pour\u00A0: Uppercut\nFonctionnement\u00A0: un personnage ma\u00EEtrisant ce don pourra porter une attaque sp\u00E9ciale assommante au corps \u00E0 corps. Il fait ses jets d\u2019attaque avec une p\u00E9nalit\u00E9 de -4, et si l\u2019attaque fait des d\u00E9g\u00E2ts, le d\u00E9fenseur doit faire un jet de Discipline contre un DD \u00E9gal au jet d\u2019attaque de son assaillant. Si le d\u00E9fenseur \u00E9choue, il reste \u00E9tourdi pendant 12 secondes.\nUtilisation\u00A0: si s\u00E9lectionn\u00E9"
+        },
+        "DE": {
+          "M": "Art des Talents: Allgemein\nVoraussetzung: Grund-Angriffsbonus \u002B1, Gezielter Schlag.\nErforderlich f\u00FCr: Bet\u00E4ubender Schlag.\nEin Charakter mit diesem Talent kann im Nahkampf einen besonderen, bet\u00E4ubenden Angriff ausf\u00FChren. Er macht einen Angriffswurf -4. Wenn der Treffer Schaden macht, muss der Gegner einen Wurf f\u00FCr Disziplin schaffen, dessen SG so hoch wie der Angriffswurf des Angreifers ist. Wenn der Verteidiger es nicht schafft, ist er f\u00FCr 12 Sekunden benommen.\nGebrauch: Ausw\u00E4hlen."
+        },
+        "IT": {
+          "M": "Tipo di Talento: generale\nPrerequisito: bonus di Attacco Base \u002B1, Colpo Mirato.\nNecessario per: Pugno Stordente.\nDettagli: un personaggio dotato di questo talento \u00E8 in grado di compiere un attacco stordente speciale in mischia. Effettua un tiro per colpire, con una penalit\u00E0 di -4, e se il colpo riesce a infliggere danni, il difensore deve effettuare una prova di Disciplina a una CD pari al tiro per colpire dell\u0027aggressore. Se il difensore fallisce, \u00E8 frastornato per 12 secondi.\nUso: selezionato."
+        },
+        "ES": {
+          "M": "Tipo de dote: General\nPrerrequisito: Ataque base \u002B1, Disparo localizado.\nNecesaria para: Pu\u00F1etazo aturdidor.\nDetalles: Un personaje con esta dote es capaz de realizar un ataque aturdidor especial en combate cuerpo a cuerpo. \u00C9ste efect\u00FAa una tirada de ataque con un penalizador \u20134 y, si inflige da\u00F1o, el defensor debe realizar una prueba de Disciplina con una CD igual al resultado de ese ataque. Si el defensor falla, queda aturdido durante 12 segundos.\nUso: Seleccionada."
+        },
+        "PL": {
+          "M": "Rodzaj atutu: og\u00F3lny.\nWymagania: podstawowy atak \u002B1, Precyzyjne trafienie.\nWymagany do Og\u0142uszaj\u0105cej pi\u0119\u015Bci.\nOpis: posta\u0107 posiadaj\u0105ca ten atut potrafi wykona\u0107 w walce specjalny atak og\u0142uszaj\u0105cy. Przeprowadza go z kar\u0105 -4 do trafienia, ale je\u015Bli trafi, to powoduje normalne obra\u017Cenia, a trafiony musi wykona\u0107 test Dyscypliny o stopniu trudno\u015Bci r\u00F3wnym rzutowi ataku. Je\u015Bli go nie zda, b\u0119dzie przez 12 sekund og\u0142uszony,\nU\u017Cywanie: po wybraniu."
+        }
+      },
+      "Icon": "ife_sap",
+      "MinAttackBonus": 1,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": 100,
+      "RequiredFeat1": {
+        "ID": "921f2810-5903-c90a-9985-f4cfe0195147",
+        "Label": "Called Shot"
+      },
+      "RequiredFeat2": null,
+      "UseableByAllClasses": true,
+      "Category": "TalentHarmfulMelee",
+      "OnUseEffect": null,
+      "SuccessorFeat": null,
+      "CRModifier": 1,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "CombatActive",
+      "IsHostile": true,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": true
     }
   ]
 }
