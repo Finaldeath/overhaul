@@ -26222,6 +26222,279 @@
       "MinFortitudeSave": null,
       "RequiresEpic": false,
       "UseActionQueue": true
+    },
+    {
+      "ID": "f5adb98c-f96c-4164-b289-51b8c72277aa",
+      "Index": -1,
+      "Overrides": "e65bcef9-834e-14ef-9565-e80835ecbe87",
+      "Disabled": false,
+      "Hint": "Purple Dragon Knight",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_PDK_FEAR",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 111718,
+        "EN": {
+          "M": "Fear"
+        },
+        "FR": {
+          "M": "Terreur"
+        },
+        "DE": {
+          "M": "Furcht"
+        },
+        "IT": {
+          "M": "Paura"
+        },
+        "ES": {
+          "M": "Miedo"
+        },
+        "PL": {
+          "M": "Strach"
+        }
+      },
+      "Description": {
+        "Index": 111719,
+        "EN": {
+          "M": "Type of Feat: Class.\nPrerequisite: Purple Dragon Knight level 3.\nSpecifics: Once per day, the Purple Dragon Knight may cast the Fear spell with a caster level equal to his character level.\nUse: Selected."
+        },
+        "FR": {
+          "M": "Type de Don : classe\nCondition : Chevalier Dragon Pourpre niveau 3.\nSp\u00E9cial: Une fois par jour, un Chevalier Dragon Pourpre peut lancer le sort Terreur avec un niveau de lanceur \u00E9gal au niveau de son personnage.\nUtilisation : si s\u00E9lectionn\u00E9."
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse.\nVoraussetzung: Ritter des Purpurdrachen Stufe 3.\nVorteile: Einmal am Tag kann der Ritter des Pupurdrachen den Zauber Furcht wirken, mit der Zauberstufe entsprechend seiner Charakterstufe.\nGebrauch: Ausw\u00E4hlen"
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe.\nPrerequisiti: Cavaliere del Draghi Purpurei livello 3.\nDescrizione: una volta al giorno, il Cavaliere dei Draghi Purpurei pu\u00F2 lanciare l\u0027incantesimo paura del livello pari al suo livello personaggio.\nUso: selezionato."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase.\nPrerrequisito: Caballero/Dama Drag\u00F3n P\u00FArpura de nivel 3.\nDetalles: Una vez al d\u00EDa, el caballero Drag\u00F3n P\u00FArpura puede lanzar el conjuro Miedo usando como nivel de lanzador su nivel de personaje.\nUso: Seleccionada."
+        },
+        "PL": {
+          "M": "Rodzaj atutu: Klasowy\nWymagania: Rycerz Purpurowych Smok\u00F3w 3. poziomu.\nOpis: Raz dziennie Rycerz Purpurowych Smok\u00F3w mo\u017Ce rzuci\u0107 zakl\u0119cie Strach z poziomem czaruj\u0105cego r\u00F3wnym jego poziomowi postaci.\nU\u017Cycie: R\u0119czne."
+        }
+      },
+      "Icon": "ife_x3_pdkfear",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": {
+        "ID": "4ff9a88d-2d90-38f8-9b07-3c4867faf495",
+        "Label": "Fear"
+      },
+      "SuccessorFeat": null,
+      "CRModifier": 1,
+      "UsesPerDay": 1,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "b7122f72-e719-4daa-9419-25e609724af0",
+      "Index": -1,
+      "Overrides": "e61e877a-68d7-8b2e-4025-31c09f05aa65",
+      "Disabled": false,
+      "Hint": "Purple Dragon Knight",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_PDK_STAND",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 111722,
+        "EN": {
+          "M": "Final Stand"
+        },
+        "FR": {
+          "M": "R\u00E9sistance Ultime"
+        },
+        "DE": {
+          "M": "Letzter Widerstand"
+        },
+        "IT": {
+          "M": "Difesa finale"
+        },
+        "ES": {
+          "M": "\u00DAltimo esfuerzo"
+        },
+        "PL": {
+          "M": "Ostatni bastion"
+        }
+      },
+      "Description": {
+        "Index": 111723,
+        "EN": {
+          "M": "Type of Feat: Class.\nPrerequisite: Purple Dragon Knight level 5.\nSpecifics: Once per day, the Purple Dragon Knight can inspire his troops to a heroic effort. Each ally in the area gains 2d10 hitpoints. This ability can affect a number of people equal to his Purple Dragon Knight level \u002B Charisma modifier, and lasts for the same number of rounds.\nUse: Selected."
+        },
+        "FR": {
+          "M": "Type de Don : Classe\nCondition : Chevalier Dragon Pourpre niveau 5\nSp\u00E9cial: Une fois par jour, un Chevalier Dragon Pourpre peut inspirer ses troupes \u00E0 faire un effort h\u00E9ro\u00EFque. Chacun de ses alli\u00E9s de la zone gagne 2d10 points de vie. Ce don peut affecter un nombre de personnes \u00E9gal \u00E0 son niveau en Chevalier Dragon Pourpre \u002B modificateur de Charisme, et dure le m\u00EAme nombre de rounds.\nUtilisation : si s\u00E9lectionn\u00E9."
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse.\nVoraussetzung: Ritter des Purpurdrachen Stufe 5.\nVorteile: Einmal am Tag kann ein Ritter des Purpurdrachen seine Truppen zu gewaltigen Anstrengungen anspornen. Jeder Verb\u00FCndete im Gebiet erh\u00E4lt zus\u00E4tzliche 2w10 Trefferpunkte. Die Fertigkeit betrifft eine Anzahl Spieler, entsprechend der Stufe des Ritters \u002B seinem Charisma Modifikator und h\u00E4lt ebenso viele Runden an.\nGebrauch: Ausw\u00E4hlen."
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe.\nPrerequisiti: Cavaliere del Draghi Purpurei livello 5.\nDescrizione: una volta al giorno, il Cavaliere dei Draghi Purpurei pu\u00F2 inspirare le sue truppe ad un\u0027impresa eroica. Tutti gli alleati nell\u0027area guadagnano 2d10 PF. Questa abilit\u00E0 ha effetto su un numero di persone pari al livello del Cavaliere del Drago Purpureo \u002B bonus al carisma, e dura per un numero di round uguale.\nUso: selezionato."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase.\nPrerrequisito: Caballero/Dama Drag\u00F3n P\u00FArpura de nivel 5.\nDetalles: Una vez al d\u00EDa, el caballero Drag\u00F3n P\u00FArpura puede inspirar a sus tropas para que lleven a cabo un esfuerzo heroico. Todos los aliados en el area de efecto obtienen 2d10 puntos de golpe. Esta aptitud puede afectar a un n\u00FAmero de criaturas igual a su nivel de caballero Drag\u00F3n P\u00FArpura \u002B su modificador de Carisma, y dura esa misma cantidad de asaltos.\nUso: Seleccionada."
+        },
+        "PL": {
+          "M": "Rodzaj atutu: Klasowy\nWymagania: Rycerz Purpurowych Smok\u00F3w 5. poziomu.\nOpis: Raz dziennie Rycerz Purpurowych Smok\u00F3w mo\u017Ce zainspirowa\u0107 wojska do heroicznego wysi\u0142ku - ka\u017Cdy sojusznik w okolicy zyskuje 2k10 PW. Umiej\u0119tno\u015B\u0107 wp\u0142ywa na liczb\u0119 os\u00F3b r\u00F3wn\u0105 poziomowi Rycerza Purpurowych Smok\u00F3w \u002B modyfikator z charyzmy i trwa tyle\u017C rund.\nU\u017Cycie: R\u0119czne."
+        }
+      },
+      "Icon": "ife_x3_pdkstand",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": {
+        "ID": "fe64de4c-7f00-c22b-fa5d-1bf5009e709a",
+        "Label": "Final Stand"
+      },
+      "SuccessorFeat": null,
+      "CRModifier": 1,
+      "UsesPerDay": 1,
+      "MasterFeat": null,
+      "TargetSelf": true,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "e21ecac7-f709-4c40-a733-6910b1a9f257",
+      "Index": -1,
+      "Overrides": "32d2584b-c98c-cdf1-79fd-524365e78674",
+      "Disabled": false,
+      "Hint": "Purple Dragon Knight",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_PDK_SHIELD",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 111716,
+        "EN": {
+          "M": "Heroic Shield"
+        },
+        "FR": {
+          "M": "Ecu h\u00E9ro\u00EFque"
+        },
+        "DE": {
+          "M": "Heldenhafter Schutz"
+        },
+        "IT": {
+          "M": "Scudo eroico"
+        },
+        "ES": {
+          "M": "Escudo heroico"
+        },
+        "PL": {
+          "M": "Heroiczna tarcza"
+        }
+      },
+      "Description": {
+        "Index": 111717,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Purple Dragon Knight level 1.\nSpecifics: You may aid an ally, giving them a \u002B4 bonus to their armour class for one round.\nUse: Selected."
+        },
+        "FR": {
+          "M": "Type de Don : classe\nCondition : Chevalier Dragon Pourpre niveau 1\nSp\u00E9cial: Vous pouvez aider un alli\u00E9, en lui donnant un bonus de \u002B4 \u00E0 sa classe d\u0027armure pour un round.\nUtilisation : si s\u00E9lectionn\u00E9."
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse.\nVoraussetzung: Ritter des Purpurdrachen Stufe 1.\nVorteile: Ritter des Purpurdrachen k\u00F6nnen einem Verb\u00FCndeten helfen, indem sie ihm f\u00FCr eine Runde einen Bonus von \u002B4 auf die R\u00FCstungsklasse verleihen.\nGebrauch: Ausw\u00E4hlen"
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe.\nPrerequisiti: Cavaliere del Draghi Purpurei livello 1.\nDescrizione: puoi aiutare un alleato, dandogli un bonus \u002B4 alla sua classe armatura per un round.\nUso: selezionato."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Caballero/Dama Drag\u00F3n P\u00FArpura de nivel 1.\nDetalles: Puedes ayudar a un aliado concedi\u00E9ndole un bonificador \u002B4 a la clase de armadura durante un asalto.\nUso: Seleccionada."
+        },
+        "PL": {
+          "M": "Rodzaj atutu: Klasowy\nWymagania: Rycerz Purpurowych Smok\u00F3w 1. poziomu.\nOpis: Mo\u017Cesz wspom\u00F3c sojusznika, daj\u0105c mu na jedn\u0105 rund\u0119 premi\u0119 \u002B4 do KP.\nU\u017Cycie: R\u0119czne."
+        }
+      },
+      "Icon": "ife_x3_pdkhshld",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": {
+        "ID": "b5f016de-5aef-feca-0ecf-70ac166a8bef",
+        "Label": "Heroic Shield"
+      },
+      "SuccessorFeat": null,
+      "CRModifier": 1,
+      "UsesPerDay": -1,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": false
     }
   ]
 }
