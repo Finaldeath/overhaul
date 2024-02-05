@@ -2,41 +2,44 @@
   "Extensions": [],
   "Items": [
     {
-      "ID": "f772e0c6-15ff-43fa-8134-54ea06abe3c0",
+      "ID": "d217766a-d0f0-4055-930c-b7eca3527d76",
       "Index": -1,
-      "Overrides": "76fd6eb1-ed34-f67f-b024-c3e388d90527",
+      "Overrides": "b95111f9-1a9b-2843-04b3-eb1f6ac372f9",
       "Disabled": false,
-      "Hint": "Tenser\u0027s Transformation",
+      "Hint": "Elemental Shape",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
-      "Name": "Tensers Transformation",
+      "Name": "Air Elemental",
       "Appearance": {
-        "ID": "f8a47526-05b1-4d3e-04c1-6d8261dbbc3b",
-        "Label": "Doom Knight"
+        "ID": "e038edd0-040f-6b96-fda1-418745f71a37",
+        "Label": "Elemental, Air"
       },
       "RacialType": {
-        "ID": "2125558d-86ff-2eea-65fd-b2a36259dd19",
-        "Label": "Undead"
+        "ID": "c04f4387-1c09-8283-3e19-ca71801b8bd4",
+        "Label": "Elemental"
       },
       "Portrait": null,
-      "PortraitResRef": "po_DoomKght",
-      "CreatureWeapon1": "",
-      "CreatureWeapon2": "",
-      "CreatureWeapon3": "",
-      "HideItem": "NW_IT_CREITEM005",
-      "MainHandItem": "NW_WSWMLS013",
-      "Strength": 20,
-      "Constitution": 20,
-      "Dexterity": 20,
-      "NaturalACBonus": 4,
+      "PortraitResRef": "po_Air",
+      "CreatureWeapon1": "NW_IT_CREWPB016",
+      "CreatureWeapon2": "NW_IT_CREWPB016",
+      "CreatureWeapon3": "NW_IT_CREWPB016",
+      "HideItem": "NW_IT_CREITEMEL8",
+      "MainHandItem": "",
+      "Strength": 19,
+      "Constitution": 19,
+      "Dexterity": 30,
+      "NaturalACBonus": 10,
       "HPBonus": null,
-      "Spell1": null,
+      "Spell1": {
+        "ID": "5daef3fd-76ff-2ab9-5641-f64a89d916c7",
+        "Label": "Pulse, Air Elemental Whirlwind"
+      },
       "Spell2": null,
       "Spell3": null,
       "MergeWeapon": false,
       "MergeAccessories": false,
-      "MergeArmor": false
+      "MergeArmor": true
     },
     {
       "ID": "b197a2c9-5c8c-4071-bf3e-525a1c16ddd9",
@@ -187,6 +190,43 @@
       "MergeArmor": true
     },
     {
+      "ID": "7915bcab-a261-469c-87b6-99174309f1a6",
+      "Index": -1,
+      "Overrides": "43c55625-0c3b-f786-6cb0-7c46b5017c1f",
+      "Disabled": false,
+      "Hint": "Wild Shape",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": "Brown Bear",
+      "Appearance": {
+        "ID": "f58e6091-c733-2e2f-687c-fe76671c4b82",
+        "Label": "Bear, Dire"
+      },
+      "RacialType": {
+        "ID": "5b875c33-4482-f1be-af00-243e2010727c",
+        "Label": "Animal"
+      },
+      "Portrait": null,
+      "PortraitResRef": "po_BearDire",
+      "CreatureWeapon1": "NW_IT_CREWPSP010",
+      "CreatureWeapon2": "NW_IT_CREWPSP010",
+      "CreatureWeapon3": "NW_IT_CREWPS010",
+      "HideItem": "x2_it_emptyskin",
+      "MainHandItem": "",
+      "Strength": 31,
+      "Constitution": 19,
+      "Dexterity": 13,
+      "NaturalACBonus": 5,
+      "HPBonus": 40,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": true
+    },
+    {
       "ID": "5c30f414-0bc6-4960-a15f-8b2dca1bb758",
       "Index": -1,
       "Overrides": "cf9e6e13-41ec-af14-61e4-98ca89841d32",
@@ -298,43 +338,6 @@
       "MergeArmor": true
     },
     {
-      "ID": "7915bcab-a261-469c-87b6-99174309f1a6",
-      "Index": -1,
-      "Overrides": "43c55625-0c3b-f786-6cb0-7c46b5017c1f",
-      "Disabled": false,
-      "Hint": "Wild Shape",
-      "ScriptConstant": "",
-      "SourceLabel": "",
-      "ExtensionValues": {},
-      "Name": "Brown Bear",
-      "Appearance": {
-        "ID": "f58e6091-c733-2e2f-687c-fe76671c4b82",
-        "Label": "Bear, Dire"
-      },
-      "RacialType": {
-        "ID": "5b875c33-4482-f1be-af00-243e2010727c",
-        "Label": "Animal"
-      },
-      "Portrait": null,
-      "PortraitResRef": "po_BearDire",
-      "CreatureWeapon1": "NW_IT_CREWPSP010",
-      "CreatureWeapon2": "NW_IT_CREWPSP010",
-      "CreatureWeapon3": "NW_IT_CREWPS010",
-      "HideItem": "x2_it_emptyskin",
-      "MainHandItem": "",
-      "Strength": 31,
-      "Constitution": 19,
-      "Dexterity": 13,
-      "NaturalACBonus": 5,
-      "HPBonus": 40,
-      "Spell1": null,
-      "Spell2": null,
-      "Spell3": null,
-      "MergeWeapon": false,
-      "MergeAccessories": false,
-      "MergeArmor": true
-    },
-    {
       "ID": "6143cff3-3827-4d0f-8875-d4a1e0362cca",
       "Index": -1,
       "Overrides": "345cdf4a-0a90-4ad9-a73d-7aea82553e0b",
@@ -402,6 +405,83 @@
       "NaturalACBonus": 8,
       "HPBonus": 30,
       "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": true
+    },
+    {
+      "ID": "fa0afdec-f28f-480f-b69c-c99419cb6cf5",
+      "Index": -1,
+      "Overrides": "6f3303e3-d0ac-cf77-1ca3-8e14e10aa5cd",
+      "Disabled": false,
+      "Hint": "Elemental Shape",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": "Earth Elemental",
+      "Appearance": {
+        "ID": "f1f6b2a6-5bab-63c4-58e2-7f4e64e70b63",
+        "Label": "Elemental, Earth"
+      },
+      "RacialType": {
+        "ID": "c04f4387-1c09-8283-3e19-ca71801b8bd4",
+        "Label": "Elemental"
+      },
+      "Portrait": null,
+      "PortraitResRef": "po_Earth",
+      "CreatureWeapon1": "NW_IT_CREWPB017",
+      "CreatureWeapon2": "NW_IT_CREWPB017",
+      "CreatureWeapon3": "NW_IT_CREWPB017",
+      "HideItem": "NW_IT_CREITEMEL8",
+      "MainHandItem": "",
+      "Strength": 30,
+      "Constitution": 22,
+      "Dexterity": 10,
+      "NaturalACBonus": 7,
+      "HPBonus": null,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": true
+    },
+    {
+      "ID": "be7d2f91-2eb5-46b3-a6a3-6c19bbe6d368",
+      "Index": -1,
+      "Overrides": "1ff6fd83-0aa4-de0f-bb35-1fd9bccbf681",
+      "Disabled": false,
+      "Hint": "Elemental Shape",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": "Eldear Water Elemental",
+      "Appearance": {
+        "ID": "0be6da30-3c7e-cd64-f11a-c3c32f803c9e",
+        "Label": "Elemental, Water Elder"
+      },
+      "RacialType": {
+        "ID": "c04f4387-1c09-8283-3e19-ca71801b8bd4",
+        "Label": "Elemental"
+      },
+      "Portrait": null,
+      "PortraitResRef": "po_WaterEld",
+      "CreatureWeapon1": "NW_IT_CREWPB017",
+      "CreatureWeapon2": "NW_IT_CREWPB017",
+      "CreatureWeapon3": "NW_IT_CREWPB017",
+      "HideItem": "NW_IT_CREITEMEL4",
+      "MainHandItem": "",
+      "Strength": 29,
+      "Constitution": 23,
+      "Dexterity": 22,
+      "NaturalACBonus": 10,
+      "HPBonus": null,
+      "Spell1": {
+        "ID": "e3192749-2dff-6623-5753-8c73b00717e6",
+        "Label": "Pulse, Water Elemental Drown"
+      },
       "Spell2": null,
       "Spell3": null,
       "MergeWeapon": false,
@@ -523,39 +603,36 @@
       "MergeArmor": true
     },
     {
-      "ID": "be7d2f91-2eb5-46b3-a6a3-6c19bbe6d368",
+      "ID": "4029557a-e4ee-42cf-ad73-a915d408f35c",
       "Index": -1,
-      "Overrides": "1ff6fd83-0aa4-de0f-bb35-1fd9bccbf681",
+      "Overrides": "dca9c8df-e963-c5f4-4edb-edb0514f8a9a",
       "Disabled": false,
       "Hint": "Elemental Shape",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
-      "Name": "Eldear Water Elemental",
+      "Name": "Fire Elemental",
       "Appearance": {
-        "ID": "0be6da30-3c7e-cd64-f11a-c3c32f803c9e",
-        "Label": "Elemental, Water Elder"
+        "ID": "e574a39d-7323-f6de-06ee-9621b758d417",
+        "Label": "Elemental, Fire"
       },
       "RacialType": {
         "ID": "c04f4387-1c09-8283-3e19-ca71801b8bd4",
         "Label": "Elemental"
       },
       "Portrait": null,
-      "PortraitResRef": "po_WaterEld",
-      "CreatureWeapon1": "NW_IT_CREWPB017",
-      "CreatureWeapon2": "NW_IT_CREWPB017",
-      "CreatureWeapon3": "NW_IT_CREWPB017",
-      "HideItem": "NW_IT_CREITEMEL4",
+      "PortraitResRef": "po_Fire",
+      "CreatureWeapon1": "NW_IT_CREWPB018",
+      "CreatureWeapon2": "NW_IT_CREWPB018",
+      "CreatureWeapon3": "NW_IT_CREWPB018",
+      "HideItem": "NW_IT_CREITEMEL9",
       "MainHandItem": "",
-      "Strength": 29,
-      "Constitution": 23,
-      "Dexterity": 22,
-      "NaturalACBonus": 10,
+      "Strength": 19,
+      "Constitution": 26,
+      "Dexterity": 19,
+      "NaturalACBonus": 5,
       "HPBonus": null,
-      "Spell1": {
-        "ID": "e3192749-2dff-6623-5753-8c73b00717e6",
-        "Label": "Pulse, Water Elemental Drown"
-      },
+      "Spell1": null,
       "Spell2": null,
       "Spell3": null,
       "MergeWeapon": false,
@@ -635,160 +712,6 @@
       "MergeWeapon": false,
       "MergeAccessories": false,
       "MergeArmor": false
-    },
-    {
-      "ID": "d217766a-d0f0-4055-930c-b7eca3527d76",
-      "Index": -1,
-      "Overrides": "b95111f9-1a9b-2843-04b3-eb1f6ac372f9",
-      "Disabled": false,
-      "Hint": "Elemental Shape",
-      "ScriptConstant": "",
-      "SourceLabel": "",
-      "ExtensionValues": {},
-      "Name": "Air Elemental",
-      "Appearance": {
-        "ID": "e038edd0-040f-6b96-fda1-418745f71a37",
-        "Label": "Elemental, Air"
-      },
-      "RacialType": {
-        "ID": "c04f4387-1c09-8283-3e19-ca71801b8bd4",
-        "Label": "Elemental"
-      },
-      "Portrait": null,
-      "PortraitResRef": "po_Air",
-      "CreatureWeapon1": "NW_IT_CREWPB016",
-      "CreatureWeapon2": "NW_IT_CREWPB016",
-      "CreatureWeapon3": "NW_IT_CREWPB016",
-      "HideItem": "NW_IT_CREITEMEL8",
-      "MainHandItem": "",
-      "Strength": 19,
-      "Constitution": 19,
-      "Dexterity": 30,
-      "NaturalACBonus": 10,
-      "HPBonus": null,
-      "Spell1": {
-        "ID": "5daef3fd-76ff-2ab9-5641-f64a89d916c7",
-        "Label": "Pulse, Air Elemental Whirlwind"
-      },
-      "Spell2": null,
-      "Spell3": null,
-      "MergeWeapon": false,
-      "MergeAccessories": false,
-      "MergeArmor": true
-    },
-    {
-      "ID": "fa0afdec-f28f-480f-b69c-c99419cb6cf5",
-      "Index": -1,
-      "Overrides": "6f3303e3-d0ac-cf77-1ca3-8e14e10aa5cd",
-      "Disabled": false,
-      "Hint": "Elemental Shape",
-      "ScriptConstant": "",
-      "SourceLabel": "",
-      "ExtensionValues": {},
-      "Name": "Earth Elemental",
-      "Appearance": {
-        "ID": "f1f6b2a6-5bab-63c4-58e2-7f4e64e70b63",
-        "Label": "Elemental, Earth"
-      },
-      "RacialType": {
-        "ID": "c04f4387-1c09-8283-3e19-ca71801b8bd4",
-        "Label": "Elemental"
-      },
-      "Portrait": null,
-      "PortraitResRef": "po_Earth",
-      "CreatureWeapon1": "NW_IT_CREWPB017",
-      "CreatureWeapon2": "NW_IT_CREWPB017",
-      "CreatureWeapon3": "NW_IT_CREWPB017",
-      "HideItem": "NW_IT_CREITEMEL8",
-      "MainHandItem": "",
-      "Strength": 30,
-      "Constitution": 22,
-      "Dexterity": 10,
-      "NaturalACBonus": 7,
-      "HPBonus": null,
-      "Spell1": null,
-      "Spell2": null,
-      "Spell3": null,
-      "MergeWeapon": false,
-      "MergeAccessories": false,
-      "MergeArmor": true
-    },
-    {
-      "ID": "4029557a-e4ee-42cf-ad73-a915d408f35c",
-      "Index": -1,
-      "Overrides": "dca9c8df-e963-c5f4-4edb-edb0514f8a9a",
-      "Disabled": false,
-      "Hint": "Elemental Shape",
-      "ScriptConstant": "",
-      "SourceLabel": "",
-      "ExtensionValues": {},
-      "Name": "Fire Elemental",
-      "Appearance": {
-        "ID": "e574a39d-7323-f6de-06ee-9621b758d417",
-        "Label": "Elemental, Fire"
-      },
-      "RacialType": {
-        "ID": "c04f4387-1c09-8283-3e19-ca71801b8bd4",
-        "Label": "Elemental"
-      },
-      "Portrait": null,
-      "PortraitResRef": "po_Fire",
-      "CreatureWeapon1": "NW_IT_CREWPB018",
-      "CreatureWeapon2": "NW_IT_CREWPB018",
-      "CreatureWeapon3": "NW_IT_CREWPB018",
-      "HideItem": "NW_IT_CREITEMEL9",
-      "MainHandItem": "",
-      "Strength": 19,
-      "Constitution": 26,
-      "Dexterity": 19,
-      "NaturalACBonus": 5,
-      "HPBonus": null,
-      "Spell1": null,
-      "Spell2": null,
-      "Spell3": null,
-      "MergeWeapon": false,
-      "MergeAccessories": false,
-      "MergeArmor": true
-    },
-    {
-      "ID": "351573e7-e55d-4a6a-8c32-8d006f09ebf9",
-      "Index": -1,
-      "Overrides": "48438835-96f5-8dd3-e630-49615d43fded",
-      "Disabled": false,
-      "Hint": "Elemental Shape",
-      "ScriptConstant": "",
-      "SourceLabel": "",
-      "ExtensionValues": {},
-      "Name": "Water Elemental",
-      "Appearance": {
-        "ID": "0f870be6-11ac-35fc-057a-f5653b561d2f",
-        "Label": "Elemental, Water"
-      },
-      "RacialType": {
-        "ID": "c04f4387-1c09-8283-3e19-ca71801b8bd4",
-        "Label": "Elemental"
-      },
-      "Portrait": null,
-      "PortraitResRef": "po_Water",
-      "CreatureWeapon1": "NW_IT_CREWPB017",
-      "CreatureWeapon2": "NW_IT_CREWPB017",
-      "CreatureWeapon3": "NW_IT_CREWPB017",
-      "HideItem": "NW_IT_CREITEMELA",
-      "MainHandItem": "",
-      "Strength": 25,
-      "Constitution": 19,
-      "Dexterity": 22,
-      "NaturalACBonus": 10,
-      "HPBonus": null,
-      "Spell1": {
-        "ID": "e3192749-2dff-6623-5753-8c73b00717e6",
-        "Label": "Pulse, Water Elemental Drown"
-      },
-      "Spell2": null,
-      "Spell3": null,
-      "MergeWeapon": false,
-      "MergeAccessories": false,
-      "MergeArmor": true
     },
     {
       "ID": "026d45a4-c178-431e-987b-99145567ecd4",
@@ -939,6 +862,43 @@
       "MergeArmor": false
     },
     {
+      "ID": "f772e0c6-15ff-43fa-8134-54ea06abe3c0",
+      "Index": -1,
+      "Overrides": "76fd6eb1-ed34-f67f-b024-c3e388d90527",
+      "Disabled": false,
+      "Hint": "Tenser\u0027s Transformation",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": "Tensers Transformation",
+      "Appearance": {
+        "ID": "f8a47526-05b1-4d3e-04c1-6d8261dbbc3b",
+        "Label": "Doom Knight"
+      },
+      "RacialType": {
+        "ID": "2125558d-86ff-2eea-65fd-b2a36259dd19",
+        "Label": "Undead"
+      },
+      "Portrait": null,
+      "PortraitResRef": "po_DoomKght",
+      "CreatureWeapon1": "",
+      "CreatureWeapon2": "",
+      "CreatureWeapon3": "",
+      "HideItem": "NW_IT_CREITEM005",
+      "MainHandItem": "NW_WSWMLS013",
+      "Strength": 20,
+      "Constitution": 20,
+      "Dexterity": 20,
+      "NaturalACBonus": 4,
+      "HPBonus": null,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": false
+    },
+    {
       "ID": "bae7c62c-4ae0-43a8-bb07-2900bfd81480",
       "Index": -1,
       "Overrides": "705108d1-2a7d-00f5-22c7-e0287cc68a0a",
@@ -1011,6 +971,46 @@
       "MergeWeapon": false,
       "MergeAccessories": false,
       "MergeArmor": false
+    },
+    {
+      "ID": "351573e7-e55d-4a6a-8c32-8d006f09ebf9",
+      "Index": -1,
+      "Overrides": "48438835-96f5-8dd3-e630-49615d43fded",
+      "Disabled": false,
+      "Hint": "Elemental Shape",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": "Water Elemental",
+      "Appearance": {
+        "ID": "0f870be6-11ac-35fc-057a-f5653b561d2f",
+        "Label": "Elemental, Water"
+      },
+      "RacialType": {
+        "ID": "c04f4387-1c09-8283-3e19-ca71801b8bd4",
+        "Label": "Elemental"
+      },
+      "Portrait": null,
+      "PortraitResRef": "po_Water",
+      "CreatureWeapon1": "NW_IT_CREWPB017",
+      "CreatureWeapon2": "NW_IT_CREWPB017",
+      "CreatureWeapon3": "NW_IT_CREWPB017",
+      "HideItem": "NW_IT_CREITEMELA",
+      "MainHandItem": "",
+      "Strength": 25,
+      "Constitution": 19,
+      "Dexterity": 22,
+      "NaturalACBonus": 10,
+      "HPBonus": null,
+      "Spell1": {
+        "ID": "e3192749-2dff-6623-5753-8c73b00717e6",
+        "Label": "Pulse, Water Elemental Drown"
+      },
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": true
     },
     {
       "ID": "b6736cbb-971c-4b25-b953-3f6b3f11da45",
