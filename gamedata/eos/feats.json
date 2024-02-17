@@ -122,7 +122,8 @@
       "Description": {
         "Index": 6021,
         "EN": {
-          "M": "Type of Feat: Class\nPrerequisite: Druid level 1 or ranger level 6.\nSpecifics: An animal companion may be summoned once per day, until killed or unsummoned.\nUse: Selected."
+          "M": "Type of Feat: Class\nPrerequisite: Druid level 1 or ranger level 6.\nSpecifics: An animal companion may be summoned once per day, until killed or unsummoned. The power of the animal companion is based on the total of all classes that can summon an animal companion.\nUse: Selected.",
+          "F": "Type of Feat: Class\nPrerequisite: Druid level 1 or ranger level 6.\nSpecifics: An animal companion may be summoned once per day, until killed or unsummoned.\nUse: Selected."
         },
         "FR": {
           "M": "Type de don : Classe\nCondition : Druide niveau 1 ou R\u00F4deur niveau 6\nFonctionnement\u00A0: un compagnon animal peut \u00EAtre appel\u00E9 une fois par jour, jusqu\u2019\u00E0 ce qu\u2019il soit tu\u00E9 ou renvoy\u00E9.\nUtilisation\u00A0: si s\u00E9lectionn\u00E9"
@@ -4548,6 +4549,95 @@
       "UseActionQueue": true
     },
     {
+      "ID": "a66084cc-d04d-4222-bdfa-72a37dd836a1",
+      "Index": -1,
+      "Overrides": "4dca3d1c-6510-3e6c-a2cf-ec807689b4c1",
+      "Disabled": false,
+      "Hint": "\u002B3 to both checks",
+      "ScriptConstant": "",
+      "SourceLabel": "Blooded",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 2755,
+        "EN": {
+          "M": "Blooded"
+        },
+        "FR": {
+          "M": "Sanguin"
+        },
+        "DE": {
+          "M": "K\u00E4mpfernatur"
+        },
+        "IT": {
+          "M": "Occhi aperti"
+        },
+        "ES": {
+          "M": "Curtido"
+        },
+        "PL": {
+          "M": "Krwawy"
+        }
+      },
+      "Description": {
+        "Index": 2756,
+        "EN": {
+          "M": "Type of Feat: General\nPrerequisite: Can only take this feat at 1st-level.\nSpecifics: Character gains a \u002B3 bonus on Initiative and a \u002B3 bonus on Spot checks.\nUse: Automatic.",
+          "F": "Type of Feat: General\nPrerequisite: Can only take this feat at 1st-level.\nSpecifics: Character gains a \u002B2 bonus on Initiative and a \u002B2 bonus on Spot checks.\nUse: Automatic."
+        },
+        "FR": {
+          "M": "Type de don : G\u00E9n\u00E9ral\nCondition : ne peut \u00EAtre s\u00E9lectionn\u00E9 qu\u0027au niveau 1\nFonctionnement : le personnage a un bonus de \u002B2 \u00E0 l\u0027initiative et \u00E0 ses jets de D\u00E9tection.\nUtilisation : automatique"
+        },
+        "DE": {
+          "M": "Art des Talents: Allgemein\nVoraussetzung: Talent kann nur auf der 1. Stufe gew\u00E4hlt werden.\nVorteil: Der Charakter erh\u00E4lt \u002B2 auf W\u00FCrfe f\u00FCr Initiative und Entdecken.\nGebrauch: Automatisch"
+        },
+        "IT": {
+          "M": "Tipo di talento: generale\nPrerequisiti: \u00E8 possibile scegliere questo talento solo al 1\u00B0 livello.\nDettagli: il personaggio ottiene un bonus di \u002B2 all\u0027iniziativa e alle prove di osservare.\nUso: automatico."
+        },
+        "ES": {
+          "M": "Tipo de dote: General\nPrerrequisito: Esta dote solo se puede escoger a 1er. nivel.\nDetalles: El personaje gana un bonificador \u002B2 a iniciativa y a las pruebas de Avistar.\nUso: Autom\u00E1tica."
+        },
+        "PL": {
+          "M": "Rodzaj atutu: Og\u00F3lny\nWymagania: Atut ten mo\u017Cna wybra\u0107 tylko na pierwszym poziomie.\nOpis: Posta\u0107 otrzymuje premi\u0119 \u002B2 do test\u00F3w Inicjatywy i Spostrzegawczo\u015Bci.\nU\u017Cycie: Automatyczne."
+        }
+      },
+      "Icon": "ife_x1blood",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "UseableByAllClasses": true,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": null,
+      "CRModifier": 0.5,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "Other",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": 1,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": true
+    },
+    {
       "ID": "0f6aa40c-1377-4a40-a066-c0b0c24ad388",
       "Index": -1,
       "Overrides": "4a36fe49-7b4c-efec-dfbe-2e6a63976f23",
@@ -5074,6 +5164,94 @@
       "OnUseEffect": null,
       "SuccessorFeat": null,
       "CRModifier": 0.5,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "a1bd7c31-f322-4e16-baac-bd3f6a89488d",
+      "Index": -1,
+      "Overrides": "52b03499-cd7b-6c53-1943-60adb615d8b7",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "darkvision",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 1962,
+        "EN": {
+          "M": "Darkvision"
+        },
+        "FR": {
+          "M": "Vision dans le noir"
+        },
+        "DE": {
+          "M": "Dunkelsicht"
+        },
+        "IT": {
+          "M": "Scurovisione"
+        },
+        "ES": {
+          "M": "Visi\u00F3n en la oscuridad"
+        },
+        "PL": {
+          "M": "Widzenie w ciemno\u015Bci"
+        }
+      },
+      "Description": {
+        "Index": 6046,
+        "EN": {
+          "M": "Type of Feat: Race\nPrerequisite: Dwarf, half-orc or shadowdancer level 2, pale master level 3 or red dragon disciple level 10.\nSpecifics: This feat grants the ability to see in the dark.\nUse: Automatic."
+        },
+        "FR": {
+          "M": "Type de don : Race\nCondition : nain, demi-orque, Ma\u00EEtre des ombres niveau 2, Ma\u00EEtre bl\u00EAme niveau 3 ou Disciple du dragon rouge niveau 10..\nFonctionnement : ce don permet de voir dans le noir.\nUtilisation : automatique"
+        },
+        "DE": {
+          "M": "Art des Talents: Volk/Klasse\nVoraussetzung: Halb-Ork, Zwerg oder Bleicher Meister der 3. Stufe; J\u00FCnger der Roten Drachen der 10. Stufe; Schattent\u00E4nzer der 2. Stufe.\nVorteil: Mit diesem Talent kann man im Dunkeln sehen.\nGebrauch: Automatisch."
+        },
+        "IT": {
+          "M": "Tipo di talento: razziale\nPrerequisiti: nano o mezzorco o ombra danzante di livello 2, signore pallido di livello 3 o discepolo del drago rosso di livello 10.\nDescrizione: questo talento conferisce la capacit\u00E0 di vedere al buio.\nUso: automatico."
+        },
+        "ES": {
+          "M": "Tipo de dote: Raza\nPrerrequisito: Enano, semiorco, danzar\u00EDn sombr\u00EDo de nivel 2\u00BA, maestro de la lividez de nivel 3\u00BA o disc\u00EDpulo del drag\u00F3n rojo de nivel 10\u00BA.\nDetalles: Esta dote otorga la aptitud de ver en la oscuridad.\nUso: Autom\u00E1tica."
+        },
+        "PL": {
+          "M": "Rodzaj atutu: Rasowy\nWymagania: Krasnolud, p\u00F3\u0142ork lub Tancerz cienia poziom 2, Blady mistrz poziom 3 lub Ucze\u0144 czerwonego smoka poziom 10.\nOpis: Ten atut pozwala widzie\u0107 w ciemno\u015Bciach.\nU\u017Cywanie: Automatyczne."
+        }
+      },
+      "Icon": "ife_darkvis",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": null,
+      "CRModifier": 0.2,
       "UsesPerDay": null,
       "MasterFeat": null,
       "TargetSelf": false,
@@ -5985,6 +6163,95 @@
       "RequiredSkill2": null,
       "RequiredSkill2Minimum": null,
       "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "5f648459-594b-4a5a-8ffc-f1b3659e5d0f",
+      "Index": -1,
+      "Overrides": "8f75c282-c837-006b-cb91-b38094129546",
+      "Disabled": false,
+      "Hint": "1d8 damage",
+      "ScriptConstant": "",
+      "SourceLabel": "DirtyFighting",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 2803,
+        "EN": {
+          "M": "Dirty Fighting"
+        },
+        "FR": {
+          "M": "Coups vicieux"
+        },
+        "DE": {
+          "M": "Schmutzige Tricks"
+        },
+        "IT": {
+          "M": "Combattimento scorretto"
+        },
+        "ES": {
+          "M": "Lucha callejera"
+        },
+        "PL": {
+          "M": "Nieczysta Walka"
+        }
+      },
+      "Description": {
+        "Index": 2804,
+        "EN": {
+          "M": "Type of Feat: General\nPrerequisite: Base attack bonus \u002B2.\nSpecifics: The character knows brutal and effective fighting tactics. By sacrificing all other attacks during the round, the character can elect to perform a dirty fighting move that will deal an extra 1d8 points of damage. This mode cannot be used with power attack or other combat modes.\nUse: Combat Mode.",
+          "F": "Type of Feat: General\nPrerequisite: Base attack bonus \u002B2.\nSpecifics: The character knows brutal and effective fighting tactics. By sacrificing all other attacks during the round, the character can elect to perform a dirty fighting move that will deal an extra 1d4 points of damage. This mode cannot be used with power attack.\nUse: Combat Mode."
+        },
+        "FR": {
+          "M": "Type de don : G\u00E9n\u00E9ral\nCondition : Bonus \u00E0 l\u0027attaque de base de \u002B2\nFonctionnement : le personnage conna\u00EEt des techniques de combat brutales et efficaces. En sacrifiant toutes ses autres attaques du round, il peut effectuer un Coup vicieux qui inflige 1d4 points de d\u00E9g\u00E2ts suppl\u00E9mentaires. On ne peut utiliser ce don avec Attaque en puissance.\nUtilisation : mode de combat"
+        },
+        "DE": {
+          "M": "Art des Talents: Allgemein\nVoraussetzung: Grund-Angriffsbonus \u002B2 oder besser\nVorteil: Der Charakter beherrscht brutale und effiziente Taktiken. Um Schmutzige Tricks einzusetzen, muss der Charakter auf alle Angriffe bis auf einen verzichten. Bei Erfolg verursacht er \u002B1W4 SP. Der Modus kann nicht gemeinsam mit Heftiger Angriff verwendet werden.\nGebrauch: Kampfmodus"
+        },
+        "IT": {
+          "M": "Tipo di talento: generale\nPrerequisiti: bonus di attacco base \u002B2.\nDettagli: il personaggio conosce alcune tattiche di combattimento brutali ma efficaci. Sacrificando tutte gli altri attacchi di quel round, il personaggio pu\u00F2 effettuare una mossa di combattimento scorretto, che infligger\u00E0 1d4 danni aggiuntivi. Questa modalit\u00E0 non pu\u00F2 essere utilizzata con il talento attacco poderoso.\nUso: modalit\u00E0 di combattimento."
+        },
+        "ES": {
+          "M": "Tipo de dote: General\nPrerrequisito: Ataque base \u002B2.\nDetalles: El personaje conoce t\u00E1cticas de lucha sucias y eficaces. Si sacrifica todos los dem\u00E1s ataques durante el asalto, podr\u00E1 optar por llevar a cabo un movimiento de Lucha callejera que infligir\u00E1 1d4 puntos de da\u00F1o adicionales. Este modo no puede utilizarse con Ataque poderoso.\nUso: Modo Combate."
+        },
+        "PL": {
+          "M": "Rodzaj atutu: Og\u00F3lny\nWymagania: Premia do podstawowego ataku \u002B2.\nOpis: Posta\u0107 zna nieczyste, ale skuteczne sposoby walki. Po\u015Bwi\u0119caj\u0105c wszystkie dodatkowe ataki w rundzie, posta\u0107 mo\u017Ce zdecydowa\u0107 si\u0119 na przeprowadzenie nieczystego ruchu, dzi\u0119ki czemu atak zada dodatkowe 1k4 pkt obra\u017Ce\u0144. Z tego atutu nie mo\u017Cna korzysta\u0107 w po\u0142\u0105czeniu z Pot\u0119\u017Cnym Atakiem.\nU\u017Cycie: Tryb walki."
+        }
+      },
+      "Icon": "ife_x1dirfig",
+      "MinAttackBonus": 2,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "UseableByAllClasses": true,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": null,
+      "CRModifier": 1,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "CombatActive",
       "IsHostile": false,
       "MinLevel": null,
       "MinLevelClass": null,
@@ -9284,7 +9551,8 @@
       "Description": {
         "Index": 83532,
         "EN": {
-          "M": "Powerful, primal forces dominate nature and now you have become the epic druid, capable of harnessing them. You have become a mighty symbol of the natural world and the balance demands that you use your great powers responsibly.\n\nHit Die: d8\nSkill Points at Each Additional Level: 4\u002B Int Modifier\nBonus Feats:  The epic druid gains a bonus feat every four levels after 20th\n\nEpic Druid Bonus Feats List:\nAutomatic Quicken Spell, Automatic Silent Spell, Automatic Still Spell,  Dragon Shape, Energy Resistance, Epic Spell Focus, Epic Spell Penetration, Great Wisdom, Improved Combat Casting,"
+          "M": "Powerful, primal forces dominate nature and now you have become the epic druid, capable of harnessing them. You have become a mighty symbol of the natural world and the balance demands that you use your great powers responsibly.\n\nHit Die: d8\nSkill Points at Each Additional Level: 4\u002B Int Modifier\nBonus Feats:  The epic druid gains a bonus feat every four levels after 20th\n\nEpic Druid Bonus Feats List:\nAutomatic Quicken Spell, Automatic Silent Spell, Automatic Still Spell,  Dragon Shape, Energy Resistance, Epic Spell Focus, Epic Spell Penetration, Great Wisdom, Improved Combat Casting.",
+          "F": "Powerful, primal forces dominate nature and now you have become the epic druid, capable of harnessing them. You have become a mighty symbol of the natural world and the balance demands that you use your great powers responsibly.\n\nHit Die: d8\nSkill Points at Each Additional Level: 4\u002B Int Modifier\nBonus Feats:  The epic druid gains a bonus feat every four levels after 20th\n\nEpic Druid Bonus Feats List:\nAutomatic Quicken Spell, Automatic Silent Spell, Automatic Still Spell,  Dragon Shape, Energy Resistance, Epic Spell Focus, Epic Spell Penetration, Great Wisdom, Improved Combat Casting,"
         },
         "FR": {
           "M": "La nature est domin\u00E9e par des forces primaires et puissantes que vous pouvez d\u00E9sormais ma\u00EEtriser en tant que druide \u00E9pique. Vous \u00EAtes devenu le symbole de la nature et l\u0027\u00E9quilibre exige que vous usiez avec responsabilit\u00E9 de vos grandes facult\u00E9s.\n\nD\u00E9 de vie : d8\nPoints de comp\u00E9tence \u00E0 chaque niveau : 4\u002B Modificateur d\u0027Intelligence\nDons suppl\u00E9mentaires :  Le druide \u00E9pique gagne un don suppl\u00E9mentaire tous les quatre niveaux apr\u00E8s le 20\u00E8me.\n\nListe des dons suppl\u00E9mentaires du druide \u00E9pique :\nIncantation rapide automatique, Incantation silencieuse automatique, Incantation statique automatique, Forme de dragon, R\u00E9sistance aux \u00E9nergies destructives, Ecole renforc\u00E9e \u00E9pique, Efficacit\u00E9 des sorts accrue \u00E9pique, Sagesse surhumaine, Science de la magie de guerre."
@@ -23801,7 +24069,8 @@
       "Description": {
         "Index": 6093,
         "EN": {
-          "M": "Type of Feat: Class\nPrerequisite: Wizard or sorcerer level 1.\nSpecifics: A character with this feat may summon a familiar once per day. If the familiar dies, the character suffers 1d6 damage, but may summon the familiar again on the following day.\nUse: Selected."
+          "M": "Type of Feat: Class\nPrerequisite: Wizard or sorcerer level 1.\nSpecifics: A character with this feat may summon a familiar once per day. If the familiar dies, the character suffers 1d6 damage, but may summon the familiar again on the following day. The power of the familiar is based on the total sum of class levels that can summon familiars.\nUse: Selected.",
+          "F": "Type of Feat: Class\nPrerequisite: Wizard or sorcerer level 1.\nSpecifics: A character with this feat may summon a familiar once per day. If the familiar dies, the character suffers 1d6 damage, but may summon the familiar again on the following day.\nUse: Selected."
         },
         "FR": {
           "M": "Type de don : Classe\nCondition : Magicien / Ensorceleur niveau 1\nFonctionnement\u00A0: un personnage ma\u00EEtrisant ce don peut invoquer un familier une fois par jour. Si le familier meurt, le personnage encaisse 1d6 points de d\u00E9g\u00E2ts, mais peut l\u2019invoquer de nouveau le lendemain.\nUtilisation\u00A0: si s\u00E9lectionn\u00E9"
@@ -24315,6 +24584,94 @@
       "MaxLevel": null,
       "MinFortitudeSave": null,
       "RequiresEpic": true,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "35e54d9b-920d-47e6-920f-6508694ca679",
+      "Index": -1,
+      "Overrides": "629b11d0-381d-7161-5af9-d96feb84c010",
+      "Disabled": false,
+      "Hint": "\u002B3 on both",
+      "ScriptConstant": "",
+      "SourceLabel": "Thug",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 2794,
+        "EN": {
+          "M": "Thug"
+        },
+        "FR": {
+          "M": "Brute"
+        },
+        "DE": {
+          "M": "Schl\u00E4ger"
+        },
+        "IT": {
+          "M": "Sicario"
+        },
+        "ES": {
+          "M": "Mat\u00F3n"
+        },
+        "PL": {
+          "M": "Zbir"
+        }
+      },
+      "Description": {
+        "Index": 2795,
+        "EN": {
+          "M": "Type of Feat: General\nPrerequisite: None.\nSpecifics: Character gains a \u002B2 bonus on Initiative checks and a \u002B2 bonus on Persuade checks.\nUse: Automatic."
+        },
+        "FR": {
+          "M": "Type de don : G\u00E9n\u00E9ral\nCondition : aucune\nFonctionnement : le personnage a un bonus de \u002B2 \u00E0 ses jets d\u0027Initiative et \u00E0 ses jets de Persuasion.\nUtilisation : automatique"
+        },
+        "DE": {
+          "M": "Art des Talents: Allgemein\nVoraussetzung: Talent kann nur auf der 1. Stufe gew\u00E4hlt werden.\nVorteil: Der Charakter erh\u00E4lt \u002B2 auf W\u00FCrfe f\u00FCr Initiative und \u00DCberreden.\nGebrauch: Automatisch"
+        },
+        "IT": {
+          "M": "Tipo di talento: generale\nPrerequisiti: nessuno.\nDettagli: il personaggio ottiene un bonus di \u002B2 alle prove di iniziativa e un bonus di \u002B2 alle prove di persuadere.\nUso: automatico."
+        },
+        "ES": {
+          "M": "Tipo de dote: General\nPrerrequisito: Ninguno.\nDetalles: El personaje gana un bonificador \u002B2 a las pruebas de Iniciativa y a las de Persuadir.\nUso: Autom\u00E1tica."
+        },
+        "PL": {
+          "M": "Rodzaj atutu: Og\u00F3lny\nWymagania: Brak.\nOpis: Posta\u0107 otrzymuje premi\u0119 \u002B2 do test\u00F3w Inicjatywy i \u002B2 do Perswazji.\nU\u017Cycie: Automatyczne."
+        }
+      },
+      "Icon": "ife_x1thug",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "UseableByAllClasses": true,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": null,
+      "CRModifier": 0.5,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "Other",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
       "UseActionQueue": true
     },
     {
@@ -26568,360 +26925,6 @@
       "OnUseEffect": null,
       "SuccessorFeat": null,
       "CRModifier": 0.5,
-      "UsesPerDay": null,
-      "MasterFeat": null,
-      "TargetSelf": false,
-      "RequiredFeatSelection1": null,
-      "RequiredFeatSelection2": null,
-      "RequiredFeatSelection3": null,
-      "RequiredFeatSelection4": null,
-      "RequiredFeatSelection5": null,
-      "RequiredSkill1": null,
-      "RequiredSkill1Minimum": null,
-      "RequiredSkill2": null,
-      "RequiredSkill2Minimum": null,
-      "ToolsetCategory": "ClassOrRacial",
-      "IsHostile": false,
-      "MinLevel": null,
-      "MinLevelClass": null,
-      "MaxLevel": null,
-      "MinFortitudeSave": null,
-      "RequiresEpic": false,
-      "UseActionQueue": true
-    },
-    {
-      "ID": "35e54d9b-920d-47e6-920f-6508694ca679",
-      "Index": -1,
-      "Overrides": "629b11d0-381d-7161-5af9-d96feb84c010",
-      "Disabled": false,
-      "Hint": "\u002B3 on both",
-      "ScriptConstant": "",
-      "SourceLabel": "Thug",
-      "ExtensionValues": {},
-      "Name": {
-        "Index": 2794,
-        "EN": {
-          "M": "Thug"
-        },
-        "FR": {
-          "M": "Brute"
-        },
-        "DE": {
-          "M": "Schl\u00E4ger"
-        },
-        "IT": {
-          "M": "Sicario"
-        },
-        "ES": {
-          "M": "Mat\u00F3n"
-        },
-        "PL": {
-          "M": "Zbir"
-        }
-      },
-      "Description": {
-        "Index": 2795,
-        "EN": {
-          "M": "Type of Feat: General\nPrerequisite: None.\nSpecifics: Character gains a \u002B2 bonus on Initiative checks and a \u002B2 bonus on Persuade checks.\nUse: Automatic."
-        },
-        "FR": {
-          "M": "Type de don : G\u00E9n\u00E9ral\nCondition : aucune\nFonctionnement : le personnage a un bonus de \u002B2 \u00E0 ses jets d\u0027Initiative et \u00E0 ses jets de Persuasion.\nUtilisation : automatique"
-        },
-        "DE": {
-          "M": "Art des Talents: Allgemein\nVoraussetzung: Talent kann nur auf der 1. Stufe gew\u00E4hlt werden.\nVorteil: Der Charakter erh\u00E4lt \u002B2 auf W\u00FCrfe f\u00FCr Initiative und \u00DCberreden.\nGebrauch: Automatisch"
-        },
-        "IT": {
-          "M": "Tipo di talento: generale\nPrerequisiti: nessuno.\nDettagli: il personaggio ottiene un bonus di \u002B2 alle prove di iniziativa e un bonus di \u002B2 alle prove di persuadere.\nUso: automatico."
-        },
-        "ES": {
-          "M": "Tipo de dote: General\nPrerrequisito: Ninguno.\nDetalles: El personaje gana un bonificador \u002B2 a las pruebas de Iniciativa y a las de Persuadir.\nUso: Autom\u00E1tica."
-        },
-        "PL": {
-          "M": "Rodzaj atutu: Og\u00F3lny\nWymagania: Brak.\nOpis: Posta\u0107 otrzymuje premi\u0119 \u002B2 do test\u00F3w Inicjatywy i \u002B2 do Perswazji.\nU\u017Cycie: Automatyczne."
-        }
-      },
-      "Icon": "ife_x1thug",
-      "MinAttackBonus": null,
-      "MinStr": null,
-      "MinDex": null,
-      "MinInt": null,
-      "MinWis": null,
-      "MinCon": null,
-      "MinCha": null,
-      "MinSpellLevel": null,
-      "RequiredFeat1": null,
-      "RequiredFeat2": null,
-      "UseableByAllClasses": true,
-      "Category": null,
-      "OnUseEffect": null,
-      "SuccessorFeat": null,
-      "CRModifier": 0.5,
-      "UsesPerDay": null,
-      "MasterFeat": null,
-      "TargetSelf": false,
-      "RequiredFeatSelection1": null,
-      "RequiredFeatSelection2": null,
-      "RequiredFeatSelection3": null,
-      "RequiredFeatSelection4": null,
-      "RequiredFeatSelection5": null,
-      "RequiredSkill1": null,
-      "RequiredSkill1Minimum": null,
-      "RequiredSkill2": null,
-      "RequiredSkill2Minimum": null,
-      "ToolsetCategory": "Other",
-      "IsHostile": false,
-      "MinLevel": null,
-      "MinLevelClass": null,
-      "MaxLevel": null,
-      "MinFortitudeSave": null,
-      "RequiresEpic": false,
-      "UseActionQueue": true
-    },
-    {
-      "ID": "a66084cc-d04d-4222-bdfa-72a37dd836a1",
-      "Index": -1,
-      "Overrides": "4dca3d1c-6510-3e6c-a2cf-ec807689b4c1",
-      "Disabled": false,
-      "Hint": "\u002B3 to both checks",
-      "ScriptConstant": "",
-      "SourceLabel": "Blooded",
-      "ExtensionValues": {},
-      "Name": {
-        "Index": 2755,
-        "EN": {
-          "M": "Blooded"
-        },
-        "FR": {
-          "M": "Sanguin"
-        },
-        "DE": {
-          "M": "K\u00E4mpfernatur"
-        },
-        "IT": {
-          "M": "Occhi aperti"
-        },
-        "ES": {
-          "M": "Curtido"
-        },
-        "PL": {
-          "M": "Krwawy"
-        }
-      },
-      "Description": {
-        "Index": 2756,
-        "EN": {
-          "M": "Type of Feat: General\nPrerequisite: Can only take this feat at 1st-level.\nSpecifics: Character gains a \u002B3 bonus on Initiative and a \u002B3 bonus on Spot checks.\nUse: Automatic.",
-          "F": "Type of Feat: General\nPrerequisite: Can only take this feat at 1st-level.\nSpecifics: Character gains a \u002B2 bonus on Initiative and a \u002B2 bonus on Spot checks.\nUse: Automatic."
-        },
-        "FR": {
-          "M": "Type de don : G\u00E9n\u00E9ral\nCondition : ne peut \u00EAtre s\u00E9lectionn\u00E9 qu\u0027au niveau 1\nFonctionnement : le personnage a un bonus de \u002B2 \u00E0 l\u0027initiative et \u00E0 ses jets de D\u00E9tection.\nUtilisation : automatique"
-        },
-        "DE": {
-          "M": "Art des Talents: Allgemein\nVoraussetzung: Talent kann nur auf der 1. Stufe gew\u00E4hlt werden.\nVorteil: Der Charakter erh\u00E4lt \u002B2 auf W\u00FCrfe f\u00FCr Initiative und Entdecken.\nGebrauch: Automatisch"
-        },
-        "IT": {
-          "M": "Tipo di talento: generale\nPrerequisiti: \u00E8 possibile scegliere questo talento solo al 1\u00B0 livello.\nDettagli: il personaggio ottiene un bonus di \u002B2 all\u0027iniziativa e alle prove di osservare.\nUso: automatico."
-        },
-        "ES": {
-          "M": "Tipo de dote: General\nPrerrequisito: Esta dote solo se puede escoger a 1er. nivel.\nDetalles: El personaje gana un bonificador \u002B2 a iniciativa y a las pruebas de Avistar.\nUso: Autom\u00E1tica."
-        },
-        "PL": {
-          "M": "Rodzaj atutu: Og\u00F3lny\nWymagania: Atut ten mo\u017Cna wybra\u0107 tylko na pierwszym poziomie.\nOpis: Posta\u0107 otrzymuje premi\u0119 \u002B2 do test\u00F3w Inicjatywy i Spostrzegawczo\u015Bci.\nU\u017Cycie: Automatyczne."
-        }
-      },
-      "Icon": "ife_x1blood",
-      "MinAttackBonus": null,
-      "MinStr": null,
-      "MinDex": null,
-      "MinInt": null,
-      "MinWis": null,
-      "MinCon": null,
-      "MinCha": null,
-      "MinSpellLevel": null,
-      "RequiredFeat1": null,
-      "RequiredFeat2": null,
-      "UseableByAllClasses": true,
-      "Category": null,
-      "OnUseEffect": null,
-      "SuccessorFeat": null,
-      "CRModifier": 0.5,
-      "UsesPerDay": null,
-      "MasterFeat": null,
-      "TargetSelf": false,
-      "RequiredFeatSelection1": null,
-      "RequiredFeatSelection2": null,
-      "RequiredFeatSelection3": null,
-      "RequiredFeatSelection4": null,
-      "RequiredFeatSelection5": null,
-      "RequiredSkill1": null,
-      "RequiredSkill1Minimum": null,
-      "RequiredSkill2": null,
-      "RequiredSkill2Minimum": null,
-      "ToolsetCategory": "Other",
-      "IsHostile": false,
-      "MinLevel": null,
-      "MinLevelClass": null,
-      "MaxLevel": 1,
-      "MinFortitudeSave": null,
-      "RequiresEpic": false,
-      "UseActionQueue": true
-    },
-    {
-      "ID": "5f648459-594b-4a5a-8ffc-f1b3659e5d0f",
-      "Index": -1,
-      "Overrides": "8f75c282-c837-006b-cb91-b38094129546",
-      "Disabled": false,
-      "Hint": "1d8 damage",
-      "ScriptConstant": "",
-      "SourceLabel": "DirtyFighting",
-      "ExtensionValues": {},
-      "Name": {
-        "Index": 2803,
-        "EN": {
-          "M": "Dirty Fighting"
-        },
-        "FR": {
-          "M": "Coups vicieux"
-        },
-        "DE": {
-          "M": "Schmutzige Tricks"
-        },
-        "IT": {
-          "M": "Combattimento scorretto"
-        },
-        "ES": {
-          "M": "Lucha callejera"
-        },
-        "PL": {
-          "M": "Nieczysta Walka"
-        }
-      },
-      "Description": {
-        "Index": 2804,
-        "EN": {
-          "M": "Type of Feat: General\nPrerequisite: Base attack bonus \u002B2.\nSpecifics: The character knows brutal and effective fighting tactics. By sacrificing all other attacks during the round, the character can elect to perform a dirty fighting move that will deal an extra 1d8 points of damage. This mode cannot be used with power attack.\nUse: Combat Mode.",
-          "F": "Type of Feat: General\nPrerequisite: Base attack bonus \u002B2.\nSpecifics: The character knows brutal and effective fighting tactics. By sacrificing all other attacks during the round, the character can elect to perform a dirty fighting move that will deal an extra 1d4 points of damage. This mode cannot be used with power attack.\nUse: Combat Mode."
-        },
-        "FR": {
-          "M": "Type de don : G\u00E9n\u00E9ral\nCondition : Bonus \u00E0 l\u0027attaque de base de \u002B2\nFonctionnement : le personnage conna\u00EEt des techniques de combat brutales et efficaces. En sacrifiant toutes ses autres attaques du round, il peut effectuer un Coup vicieux qui inflige 1d4 points de d\u00E9g\u00E2ts suppl\u00E9mentaires. On ne peut utiliser ce don avec Attaque en puissance.\nUtilisation : mode de combat"
-        },
-        "DE": {
-          "M": "Art des Talents: Allgemein\nVoraussetzung: Grund-Angriffsbonus \u002B2 oder besser\nVorteil: Der Charakter beherrscht brutale und effiziente Taktiken. Um Schmutzige Tricks einzusetzen, muss der Charakter auf alle Angriffe bis auf einen verzichten. Bei Erfolg verursacht er \u002B1W4 SP. Der Modus kann nicht gemeinsam mit Heftiger Angriff verwendet werden.\nGebrauch: Kampfmodus"
-        },
-        "IT": {
-          "M": "Tipo di talento: generale\nPrerequisiti: bonus di attacco base \u002B2.\nDettagli: il personaggio conosce alcune tattiche di combattimento brutali ma efficaci. Sacrificando tutte gli altri attacchi di quel round, il personaggio pu\u00F2 effettuare una mossa di combattimento scorretto, che infligger\u00E0 1d4 danni aggiuntivi. Questa modalit\u00E0 non pu\u00F2 essere utilizzata con il talento attacco poderoso.\nUso: modalit\u00E0 di combattimento."
-        },
-        "ES": {
-          "M": "Tipo de dote: General\nPrerrequisito: Ataque base \u002B2.\nDetalles: El personaje conoce t\u00E1cticas de lucha sucias y eficaces. Si sacrifica todos los dem\u00E1s ataques durante el asalto, podr\u00E1 optar por llevar a cabo un movimiento de Lucha callejera que infligir\u00E1 1d4 puntos de da\u00F1o adicionales. Este modo no puede utilizarse con Ataque poderoso.\nUso: Modo Combate."
-        },
-        "PL": {
-          "M": "Rodzaj atutu: Og\u00F3lny\nWymagania: Premia do podstawowego ataku \u002B2.\nOpis: Posta\u0107 zna nieczyste, ale skuteczne sposoby walki. Po\u015Bwi\u0119caj\u0105c wszystkie dodatkowe ataki w rundzie, posta\u0107 mo\u017Ce zdecydowa\u0107 si\u0119 na przeprowadzenie nieczystego ruchu, dzi\u0119ki czemu atak zada dodatkowe 1k4 pkt obra\u017Ce\u0144. Z tego atutu nie mo\u017Cna korzysta\u0107 w po\u0142\u0105czeniu z Pot\u0119\u017Cnym Atakiem.\nU\u017Cycie: Tryb walki."
-        }
-      },
-      "Icon": "ife_x1dirfig",
-      "MinAttackBonus": 2,
-      "MinStr": null,
-      "MinDex": null,
-      "MinInt": null,
-      "MinWis": null,
-      "MinCon": null,
-      "MinCha": null,
-      "MinSpellLevel": null,
-      "RequiredFeat1": null,
-      "RequiredFeat2": null,
-      "UseableByAllClasses": true,
-      "Category": null,
-      "OnUseEffect": null,
-      "SuccessorFeat": null,
-      "CRModifier": 1,
-      "UsesPerDay": null,
-      "MasterFeat": null,
-      "TargetSelf": false,
-      "RequiredFeatSelection1": null,
-      "RequiredFeatSelection2": null,
-      "RequiredFeatSelection3": null,
-      "RequiredFeatSelection4": null,
-      "RequiredFeatSelection5": null,
-      "RequiredSkill1": null,
-      "RequiredSkill1Minimum": null,
-      "RequiredSkill2": null,
-      "RequiredSkill2Minimum": null,
-      "ToolsetCategory": "CombatActive",
-      "IsHostile": false,
-      "MinLevel": null,
-      "MinLevelClass": null,
-      "MaxLevel": null,
-      "MinFortitudeSave": null,
-      "RequiresEpic": false,
-      "UseActionQueue": true
-    },
-    {
-      "ID": "a1bd7c31-f322-4e16-baac-bd3f6a89488d",
-      "Index": -1,
-      "Overrides": "52b03499-cd7b-6c53-1943-60adb615d8b7",
-      "Disabled": false,
-      "Hint": "",
-      "ScriptConstant": "",
-      "SourceLabel": "darkvision",
-      "ExtensionValues": {},
-      "Name": {
-        "Index": 1962,
-        "EN": {
-          "M": "Darkvision"
-        },
-        "FR": {
-          "M": "Vision dans le noir"
-        },
-        "DE": {
-          "M": "Dunkelsicht"
-        },
-        "IT": {
-          "M": "Scurovisione"
-        },
-        "ES": {
-          "M": "Visi\u00F3n en la oscuridad"
-        },
-        "PL": {
-          "M": "Widzenie w ciemno\u015Bci"
-        }
-      },
-      "Description": {
-        "Index": 6046,
-        "EN": {
-          "M": "Type of Feat: Race\nPrerequisite: Dwarf, half-orc or shadowdancer level 2, pale master level 3 or red dragon disciple level 10.\nSpecifics: This feat grants the ability to see in the dark.\nUse: Automatic."
-        },
-        "FR": {
-          "M": "Type de don : Race\nCondition : nain, demi-orque, Ma\u00EEtre des ombres niveau 2, Ma\u00EEtre bl\u00EAme niveau 3 ou Disciple du dragon rouge niveau 10..\nFonctionnement : ce don permet de voir dans le noir.\nUtilisation : automatique"
-        },
-        "DE": {
-          "M": "Art des Talents: Volk/Klasse\nVoraussetzung: Halb-Ork, Zwerg oder Bleicher Meister der 3. Stufe; J\u00FCnger der Roten Drachen der 10. Stufe; Schattent\u00E4nzer der 2. Stufe.\nVorteil: Mit diesem Talent kann man im Dunkeln sehen.\nGebrauch: Automatisch."
-        },
-        "IT": {
-          "M": "Tipo di talento: razziale\nPrerequisiti: nano o mezzorco o ombra danzante di livello 2, signore pallido di livello 3 o discepolo del drago rosso di livello 10.\nDescrizione: questo talento conferisce la capacit\u00E0 di vedere al buio.\nUso: automatico."
-        },
-        "ES": {
-          "M": "Tipo de dote: Raza\nPrerrequisito: Enano, semiorco, danzar\u00EDn sombr\u00EDo de nivel 2\u00BA, maestro de la lividez de nivel 3\u00BA o disc\u00EDpulo del drag\u00F3n rojo de nivel 10\u00BA.\nDetalles: Esta dote otorga la aptitud de ver en la oscuridad.\nUso: Autom\u00E1tica."
-        },
-        "PL": {
-          "M": "Rodzaj atutu: Rasowy\nWymagania: Krasnolud, p\u00F3\u0142ork lub Tancerz cienia poziom 2, Blady mistrz poziom 3 lub Ucze\u0144 czerwonego smoka poziom 10.\nOpis: Ten atut pozwala widzie\u0107 w ciemno\u015Bciach.\nU\u017Cywanie: Automatyczne."
-        }
-      },
-      "Icon": "ife_darkvis",
-      "MinAttackBonus": null,
-      "MinStr": null,
-      "MinDex": null,
-      "MinInt": null,
-      "MinWis": null,
-      "MinCon": null,
-      "MinCha": null,
-      "MinSpellLevel": null,
-      "RequiredFeat1": null,
-      "RequiredFeat2": null,
-      "UseableByAllClasses": false,
-      "Category": null,
-      "OnUseEffect": null,
-      "SuccessorFeat": null,
-      "CRModifier": 0.2,
       "UsesPerDay": null,
       "MasterFeat": null,
       "TargetSelf": false,
