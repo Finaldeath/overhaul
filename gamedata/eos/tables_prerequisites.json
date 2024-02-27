@@ -101,6 +101,113 @@
           "RequirementParam2": null
         }
       ]
+    },
+    {
+      "ID": "ba8b1c7f-3b84-441d-8012-a7cfc9303c52",
+      "Name": "CLS_PRES_PDK",
+      "Hint": "",
+      "Overrides": "24985e08-7696-e7de-ba40-aa3c29184fff",
+      "Items": [
+        {
+          "SourceLabel": "Base_Attack",
+          "RequirementType": "BAB",
+          "Param1Class": null,
+          "Param1Feat": null,
+          "Param1Race": null,
+          "Param1Skill": null,
+          "Param1String": null,
+          "Param1Int": 4,
+          "Param1Save": null,
+          "RequirementParam2": null
+        },
+        {
+          "SourceLabel": "Listen",
+          "RequirementType": "SKILL",
+          "Param1Class": null,
+          "Param1Feat": null,
+          "Param1Race": null,
+          "Param1Skill": {
+            "ID": "6ec2d4b5-75fb-0912-f511-6d793e2def6d",
+            "Label": "Listen"
+          },
+          "Param1String": null,
+          "Param1Int": null,
+          "Param1Save": null,
+          "RequirementParam2": 2
+        },
+        {
+          "SourceLabel": "Spot",
+          "RequirementType": "SKILL",
+          "Param1Class": null,
+          "Param1Feat": null,
+          "Param1Race": null,
+          "Param1Skill": {
+            "ID": "6d58eede-a740-d080-5779-573bbfaaeffb",
+            "Label": "Spot"
+          },
+          "Param1String": null,
+          "Param1Int": null,
+          "Param1Save": null,
+          "RequirementParam2": 2
+        },
+        {
+          "SourceLabel": "Intimidate",
+          "RequirementType": "SKILL",
+          "Param1Class": null,
+          "Param1Feat": null,
+          "Param1Race": null,
+          "Param1Skill": {
+            "ID": "a9bb5dcf-0600-b558-61b6-39d51656fcad",
+            "Label": "Intimidate"
+          },
+          "Param1String": null,
+          "Param1Int": null,
+          "Param1Save": null,
+          "RequirementParam2": 1
+        },
+        {
+          "SourceLabel": "ScriptVar",
+          "RequirementType": "VAR",
+          "Param1Class": null,
+          "Param1Feat": null,
+          "Param1Race": null,
+          "Param1Skill": null,
+          "Param1String": "DLA_AllowPDK",
+          "Param1Int": null,
+          "Param1Save": null,
+          "RequirementParam2": 0
+        },
+        {
+          "SourceLabel": "MountedCom",
+          "RequirementType": "FEAT",
+          "Param1Class": null,
+          "Param1Feat": {
+            "ID": "c1f33609-149c-cacd-1bcb-f0a1baee9018",
+            "Label": "Mounted Combat"
+          },
+          "Param1Race": null,
+          "Param1Skill": null,
+          "Param1String": null,
+          "Param1Int": null,
+          "Param1Save": null,
+          "RequirementParam2": null
+        },
+        {
+          "SourceLabel": "Ride",
+          "RequirementType": "SKILL",
+          "Param1Class": null,
+          "Param1Feat": null,
+          "Param1Race": null,
+          "Param1Skill": {
+            "ID": "a597bf21-1720-44ec-7ad7-8815f2a7922a",
+            "Label": "Ride"
+          },
+          "Param1String": null,
+          "Param1Int": null,
+          "Param1Save": null,
+          "RequirementParam2": 2
+        }
+      ]
     }
   ]
 }
