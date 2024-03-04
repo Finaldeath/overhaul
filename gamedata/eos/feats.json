@@ -18380,6 +18380,100 @@
       "UseActionQueue": false
     },
     {
+      "ID": "4071129e-58c7-4678-b7cd-2da4ceed895f",
+      "Index": -1,
+      "Overrides": "c0f31855-a5bc-7f5d-2c4e-d93ebb7a27a9",
+      "Disabled": false,
+      "Hint": "Barbarian",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_MIGHTY_RAGE",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8659,
+        "EN": {
+          "M": "Mighty Rage"
+        },
+        "FR": {
+          "M": "Rage puissante"
+        },
+        "DE": {
+          "M": "M\u00E4chtiger Kampfrausch"
+        },
+        "IT": {
+          "M": "Furia possente"
+        },
+        "ES": {
+          "M": "Rabia poderosa"
+        },
+        "PL": {
+          "M": "Pot\u0119\u017Cny sza\u0142"
+        }
+      },
+      "Description": {
+        "Index": 8660,
+        "EN": {
+          "M": "Type of Feat: General\nPrerequisite: 21st level, Strength 21\u002B, Constitution 21\u002B and Greater Rage.\nSpecifics: When the character rages, they gain \u002B8 to Strength and Constitution and a \u002B4 morale bonus to Will saves. These bonuses replace the normal rage bonuses.\nUse: Combat Mode."
+        },
+        "FR": {
+          "M": "Type de don : g\u00E9n\u00E9ral\nConditions : 21\u00E8me niveau, Force 21\u002B, Constitution 21\u002B et Rage de grand berserker.\nConditions : Quand le personange se met en col\u00E8re, il gagne \u002B8 en Force et en Constitution ainsi qu\u0027un bonus de moral de \u002B4 \u00E0 ses jets de Volont\u00E9. Ces bonus remplacent les bonus normaux dus \u00E0 la rage.\nUtilisation : combat."
+        },
+        "DE": {
+          "M": "Art des Talents: Allgemein\nVoraussetzung: 21. Stufe, F\u00E4higkeit M\u00E4chtiger Kampfrausch (d. h. Barbar der mindestens 15. Stufe), Konstitution 21\u002B, St\u00E4rke 21\u002B.\nVorteil: Wenn der Charakter im Kampfrausch ist, erh\u00E4lt er \u002B8 auf St\u00E4rke und Konstitution sowie einen Moralbonus \u002B4 auf Willensw\u00FCrfe. Die Boni ersetzen die normalen Boni im Kampfrausch.\nGebrauch: Kampfmodus."
+        },
+        "IT": {
+          "M": "Tipo di talento: generico.\nPrerequisiti: livello 21, Furia superiore, forza 21\u002B, costituzione 21\u002B.\nDescrizione: quando il personaggio si infuria, ottiene \u002B8 a forza e costituzione e \u002B4 al bonus morale nei tiri salvezza di volont\u00E0. Questi bonus vanno a sostituire i normali bonus della furia.\nUso: modalit\u00E0 di combattimento."
+        },
+        "ES": {
+          "M": "Tipo de dote: General\nPrerrequisito: Nivel 21\u00BA, Fuerza 21\u002B, Constituci\u00F3n 21\u002B y Furia mayor.\nDetalles: Cuando el personaje entra en rabia, recibe un bonificador \u002B8 a la Fuerza y a la Constituci\u00F3n, as\u00ED como un bonificador \u002B4 de moral a los tiros de salvaci\u00F3n de Voluntad. Estos bonificadores sustituyen a los normales por rabia.\nUso: Modo Combate."
+        },
+        "PL": {
+          "M": "Rodzaj Atutu: og\u00F3lny\nWymagania: 21. poziom, Si\u0142a 21\u002B, Kondycja 21\u002B, Wi\u0119kszy Sza\u0142.\nOpis: Kiedy posta\u0107 wpada w sza\u0142, uzyskuje \u002B8 do Si\u0142y i Kondycji oraz premi\u0119 \u002B4 za morale do rzut\u00F3w na Si\u0142\u0119 Woli. Te premie zast\u0119puj\u0105 normalne korzy\u015Bci z sza\u0142u.\nU\u017Cywanie: w trybie walki."
+        }
+      },
+      "Icon": "ife_x2mightrage",
+      "MinAttackBonus": null,
+      "MinStr": 21,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": 21,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": {
+        "ID": "36fbdf37-d69c-d916-3bd6-808a6ccfc593",
+        "Label": "Greater Rage"
+      },
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": {
+        "ID": "bb063461-9302-add6-7882-4d8631acf0e7",
+        "Label": "Mighty Rage"
+      },
+      "SuccessorFeat": null,
+      "CRModifier": 1,
+      "UsesPerDay": 3,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": true,
+      "UseActionQueue": true
+    },
+    {
       "ID": "778ac11f-b9c0-4c56-9019-aa99bfe883b6",
       "Index": -1,
       "Overrides": "a1a0c543-e587-5c35-7711-0064df219c58",
@@ -24623,7 +24717,7 @@
       "Index": -1,
       "Overrides": "623f7ceb-af15-f171-e953-9047cce64e20",
       "Disabled": false,
-      "Hint": "Barbarian",
+      "Hint": "Barbarian (Fixed needs Epic Barb, wording)",
       "ScriptConstant": "",
       "SourceLabel": "FEAT_EPIC_TERRIFYING_RAGE",
       "ExtensionValues": {},
@@ -24651,7 +24745,8 @@
       "Description": {
         "Index": 83582,
         "EN": {
-          "M": "Type of Feat: General\nPrerequisite: Epic Barbarian, Intimidate 25 ranks.\nSpecifics:  While the barbarian is raging, any enemy that comes close to him must make a Will save opposed by the barbarian\u0027s Intimidate check or becomes panicked for 1d6 rounds. Opponents with up to twice the barbarian\u0027s Hit Dice will not flee but will receive a -2 penalty to attack and saving throw rolls. Creatures with more then 2x the barbarian\u0027s Hit Dice are not affected by the rage.\nUse: Automatic while in rage\n"
+          "M": "Type of Feat: General\nPrerequisite: Epic Barbarian, Intimidate 25 ranks.\nSpecifics:  While the barbarian is raging, any enemy that comes close to him must make a Will save opposed by the barbarian\u0027s Intimidate check or becomes panicked for 1d6 rounds. Opponents with up to twice the barbarian\u0027s Hit Dice will not flee but will receive a -2 penalty to attack and saving throw rolls. Creatures with at least 2x the barbarian\u0027s Hit Dice are not affected by the rage.\nUse: Automatic while in rage\n",
+          "F": "Type of Feat: General\nPrerequisite: Epic Barbarian, Intimidate 25 ranks.\nSpecifics:  While the barbarian is raging, any enemy that comes close to him must make a Will save opposed by the barbarian\u0027s Intimidate check or becomes panicked for 1d6 rounds. Opponents with up to twice the barbarian\u0027s Hit Dice will not flee but will receive a -2 penalty to attack and saving throw rolls. Creatures with more then 2x the barbarian\u0027s Hit Dice are not affected by the rage.\nUse: Automatic while in rage\n"
         },
         "FR": {
           "M": "Type de don : g\u00E9n\u00E9ral\nConditions : Barbare \u00E9pique, Intimidation rang 25.\nFonctionnement : Quand le barbare est en \u00E9tat de rage, tout ennemi qui s\u0027approche de lui doit effectuer un jet de Volont\u00E9 contre celui du jet d\u0027Intimidation du barbare. S\u0027il \u00E9choue, il panique pendant 1d6 rounds. Les adversaires ayant jusqu\u0027\u00E0 deux fois plus de D\u00E9s de vie que le barbare ne fuiront pas mais subiront une p\u00E9nalit\u00E9 de -2 \u00E0 leurs jets d\u0027attaque et de sauvegarde. Les cr\u00E9atures ayant plus de deux fois le nombre de d\u00E9s de vie du barbare ne sont pas affect\u00E9es.\nUtilisation : Automatique avec rage."
@@ -24679,8 +24774,8 @@
       "MinCha": null,
       "MinSpellLevel": null,
       "RequiredFeat1": {
-        "ID": "d1e17863-246a-f89b-11c9-5b769bd2ec8b",
-        "Label": "Greater Rage (4x per day)"
+        "ID": "bc82d9e3-3dd8-dfc4-a05c-e703eb4e5fe1",
+        "Label": "Epic Barbarian"
       },
       "RequiredFeat2": null,
       "UseableByAllClasses": false,
@@ -24805,7 +24900,7 @@
       "Index": -1,
       "Overrides": "a08cde65-14f0-864d-76eb-e9db83a65bcf",
       "Disabled": false,
-      "Hint": "Barbarian",
+      "Hint": "Barbarian (Fixed needs Epic Barb and wording)",
       "ScriptConstant": "",
       "SourceLabel": "FEAT_EPIC_THUNDERING_RAGE",
       "ExtensionValues": {},
@@ -24833,7 +24928,8 @@
       "Description": {
         "Index": 83569,
         "EN": {
-          "M": "Type of Feat: General\nPrerequisite: Epic Barbarian, Strength 25.\nSpecifics:  Any weapon the barbarian wields while in a rage does an additional 2d6 points of damage on a critical hit. There is a 50% chance for a creature hit by one of the barbarian\u0027s weapons to deafened for 3 rounds.\nUse: Automatic"
+          "M": "Type of Feat: General\nPrerequisite: Epic Barbarian, Strength 25.\nSpecifics:  Any weapon the barbarian wields while starting a rage does an additional 2d6 points of damage on a critical hit. There is a 25% chance for a creature hit by the barbarian\u0027s primary weapon to deafened for 3 rounds.\nUse: Automatic",
+          "F": "Type of Feat: General\nPrerequisite: Epic Barbarian, Strength 25.\nSpecifics:  Any weapon the barbarian wields while in a rage does an additional 2d6 points of damage on a critical hit. There is a 50% chance for a creature hit by one of the barbarian\u0027s weapons to deafened for 3 rounds.\nUse: Automatic"
         },
         "FR": {
           "M": "Type de don : g\u00E9n\u00E9ral\nConditions : Barbare \u00E9pique, Force 25\u002B.\nFonctionnement : Quelle que que soit l\u0027arme que le barbare utilise quand il est en \u00E9tat de rage, il inflige 2d6 points de d\u00E9g\u00E2ts suppl\u00E9mentaires en cas d\u0027attaque critique. De plus, une cr\u00E9ature touch\u00E9e par l\u0027arme du barbare a 50% de chance de rester sourde pendant 3 rounds.\nUtilisation : Automatique."
@@ -24861,8 +24957,8 @@
       "MinCha": null,
       "MinSpellLevel": null,
       "RequiredFeat1": {
-        "ID": "d1e17863-246a-f89b-11c9-5b769bd2ec8b",
-        "Label": "Greater Rage (4x per day)"
+        "ID": "bc82d9e3-3dd8-dfc4-a05c-e703eb4e5fe1",
+        "Label": "Epic Barbarian"
       },
       "RequiredFeat2": null,
       "UseableByAllClasses": false,
