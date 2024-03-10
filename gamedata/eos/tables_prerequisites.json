@@ -14,7 +14,7 @@
           "Param1Feat": null,
           "Param1Race": null,
           "Param1Skill": null,
-          "Param1String": "OP_CLASSSHOU",
+          "Param1String": "OP_DISABLE_CLASS_SHOU_DISCIPLE",
           "Param1Int": null,
           "Param1Save": null,
           "RequirementParam2": 0
@@ -172,7 +172,7 @@
           "Param1Feat": null,
           "Param1Race": null,
           "Param1Skill": null,
-          "Param1String": "DLA_AllowPDK",
+          "Param1String": "OP_DISABLE_CLASS_PURPLE_DRAGON_KNIGHT",
           "Param1Int": null,
           "Param1Save": null,
           "RequirementParam2": 0
@@ -206,6 +206,78 @@
           "Param1Int": null,
           "Param1Save": null,
           "RequirementParam2": 2
+        }
+      ]
+    },
+    {
+      "ID": "bb81e77e-8593-436f-9483-087e35bfca7e",
+      "Name": "CLS_PRES_EYEGRU",
+      "Hint": "Eye of Gruumsh",
+      "Overrides": null,
+      "Items": [
+        {
+          "RequirementType": "RACE",
+          "Param1Class": null,
+          "Param1Feat": null,
+          "Param1Race": {
+            "ID": "ab689466-09ce-5694-4748-09023002d874",
+            "Label": "Half-Orc"
+          },
+          "Param1Skill": null,
+          "Param1String": null,
+          "Param1Int": null,
+          "Param1Save": null,
+          "RequirementParam2": null
+        },
+        {
+          "RequirementType": "FEAT",
+          "Param1Class": null,
+          "Param1Feat": {
+            "ID": "31fedca1-51d5-750f-66b6-f7a12859a83b",
+            "Label": "Weapon Proficiency (exotic)"
+          },
+          "Param1Race": null,
+          "Param1Skill": null,
+          "Param1String": null,
+          "Param1Int": null,
+          "Param1Save": null,
+          "RequirementParam2": null
+        },
+        {
+          "RequirementType": "FEAT",
+          "Param1Class": null,
+          "Param1Feat": {
+            "ID": "11f84601-c8c8-9410-8bf3-4b3474541980",
+            "Label": "Weapon Focus (double axe)"
+          },
+          "Param1Race": null,
+          "Param1Skill": null,
+          "Param1String": null,
+          "Param1Int": null,
+          "Param1Save": null,
+          "RequirementParam2": null
+        },
+        {
+          "RequirementType": "BAB",
+          "Param1Class": null,
+          "Param1Feat": null,
+          "Param1Race": null,
+          "Param1Skill": null,
+          "Param1String": null,
+          "Param1Int": 6,
+          "Param1Save": null,
+          "RequirementParam2": null
+        },
+        {
+          "RequirementType": "VAR",
+          "Param1Class": null,
+          "Param1Feat": null,
+          "Param1Race": null,
+          "Param1Skill": null,
+          "Param1String": "OP_DISABLE_CLASS_EYE_OF_GRUUMSH",
+          "Param1Int": null,
+          "Param1Save": null,
+          "RequirementParam2": 0
         }
       ]
     }

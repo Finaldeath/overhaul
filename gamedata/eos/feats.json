@@ -4148,7 +4148,10 @@
       "RequiredFeat2": null,
       "UseableByAllClasses": false,
       "Category": "HarmfulRanged",
-      "OnUseEffect": null,
+      "OnUseEffect": {
+        "ID": "0661452a-8e76-47cf-b0cb-17bec1936b06",
+        "Label": "Blinding Spittle"
+      },
       "SuccessorFeat": {
         "ID": "2b0823f9-feda-a9b0-11d2-11cb79d9ef61",
         "Label": "Blinding Spittle"
@@ -8349,7 +8352,7 @@
       "Index": -1,
       "Overrides": "7a517dfb-6932-34da-9f99-08ceac385485",
       "Disabled": false,
-      "Hint": "",
+      "Hint": "Epic Feat",
       "ScriptConstant": "",
       "SourceLabel": "FEAT_EPIC_WILD_SHAPE_DRAGON",
       "ExtensionValues": {},
@@ -8377,7 +8380,8 @@
       "Description": {
         "Index": 8668,
         "EN": {
-          "M": "Type of Feat: Epic\nPrerequisite: 21st level, Wisdom 30\u002B and Wild Shape 6x/day.\nSpecifics: The character may use wild shape to change into a dragon. The transformation has a duration of 1 hour per class level.\nUse: Selected, after selecting, the character must choose what type of dragon they will appear as."
+          "M": "Type of Feat: Epic\nPrerequisite: 21st level, Wisdom 30\u002B and Wild Shape 6x/day.\nSpecifics: The character may use wild shape to change into a dragon up to three times per day. The transformation is permanent until cancelled.\nUse: Selected, after selecting, the character must choose what type of dragon they will appear as.",
+          "F": "Type of Feat: Epic\nPrerequisite: 21st level, Wisdom 30\u002B and Wild Shape 6x/day.\nSpecifics: The character may use wild shape to change into a dragon. The transformation has a duration of 1 hour per class level.\nUse: Selected, after selecting, the character must choose what type of dragon they will appear as."
         },
         "FR": {
           "M": "Type de don : Epique\nConditions : 21\u00E8me niveau, Sagesse 30\u002B et Forme animale 6x/jour.\nFonctionnement : Le personnage peut utiliser Forme animale pour se transformer en dragon. La tarnsformation dure 1 heure par niveau de la classe.\nUtilisation : doit \u00EAtre s\u00E9lectionn\u00E9 puis le personnage doit d\u00E9terminer le type de dragon dont il souhaite adopter la forme."
@@ -8432,7 +8436,7 @@
       "RequiredSkill1Minimum": null,
       "RequiredSkill2": null,
       "RequiredSkill2Minimum": null,
-      "ToolsetCategory": "Other",
+      "ToolsetCategory": "ClassOrRacial",
       "IsHostile": false,
       "MinLevel": null,
       "MinLevelClass": null,
@@ -8797,6 +8801,1900 @@
       "UsesPerDay": 2,
       "MasterFeat": null,
       "TargetSelf": true,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "b8d1626a-6059-44a1-891d-f9ff2fd3c8a5",
+      "Index": -1,
+      "Overrides": "a68200de-5f0c-6b7c-d39f-3bafba93af51",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_PRESTIGE_ENCHANT_ARROW_1",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8679,
+        "EN": {
+          "M": "Enchant Arrow I"
+        },
+        "FR": {
+          "M": "Fl\u00E8che magique I"
+        },
+        "DE": {
+          "M": "Pfeil verzaubern \u002B1"
+        },
+        "IT": {
+          "M": "Freccia incantata I"
+        },
+        "ES": {
+          "M": "Encantar flecha I"
+        },
+        "PL": {
+          "M": "Zakl\u0119cie Strza\u0142y I"
+        }
+      },
+      "Description": {
+        "Index": 8680,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1. This enchantment stacks with your weapon and arrow enchantments for attack roll and damage purposes, but only the highest enchantment from your bow or this ability is used to penetrate damage reduction. \nUse: Automatic.",
+          "F": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1.\nUse: Automatic."
+        },
+        "FR": {
+          "M": "Type de don : Classe\nCondition : Archer-mage\nFonctionnement : avec ce don, toute fl\u00E8che tir\u00E9e par l\u0027Archer-mage b\u00E9n\u00E9ficie d\u0027un enchantement de \u002B1. Ce bonus ne s\u0027applique qu\u0027\u00E0 l\u0027Archer-mage. Tous les deux niveaux suppl\u00E9mentaires apr\u00E8s le 1er, l\u0027enchantement est augment\u00E9 de \u002B1.\nUtilisation : automatique"
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse\nVoraussetzung: Arkaner Bogensch\u00FCtze.\nVorteil: Jeder Pfeil, den der Arkane Bogensch\u00FCtze verschie\u00DFt, wird automatisch wie ein Pfeil \u002B1 behandelt. Der Bonus gilt nur f\u00FCr den Arkanen Bogensch\u00FCtzen. F\u00FCr je zwei Stufen nach der 1. Stufe erh\u00F6ht sich der Bonus um \u002B1.\nGebrauch: Automatisch."
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe\nPrerequisito: arciere arcano\nDescrizione: grazie a questo talento, ogni freccia incoccata e scagliata da un arciere arcano acquisisce un bonus di potenziamento \u002B1. Tale bonus funziona solo per l\u0027arciere arcano. Ogni due livelli come arciere arcano oltre il livello 1, l\u0027incantamento aumenta di \u002B1.\nUso: automatico."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Arquero arcano.\nDetalles: Con esta dote, cualquier flecha que el arquero arcano cargue y dispare obtendr\u00E1 un bonificador \u002B1 de mejora. Este bonificador solo vale para el arquero arcano. Por cada dos niveles que tenga por encima del primero, la mejora aumentar\u00E1 un \u002B1.\nUso: Autom\u00E1tica."
+        },
+        "PL": {
+          "M": "Rodzaj atutu: Klasowy\nWymagania: Mistyczny \u0141ucznik.\nOpis: Za spraw\u0105 tego atutu ka\u017Cda strza\u0142a, kt\u00F3r\u0105 wystrzeli Mistyczny \u0141ucznik, otrzymuje premi\u0119 \u002B1 za ulepszenia. Premia ta obowi\u0105zuje tylko dla Mistycznego \u0141ucznika. Na ka\u017Cde dwa poziomy Mistycznego \u0141ucznika powy\u017Cej poziomu 1. premia zwi\u0119ksza si\u0119 o 1.\nU\u017Cycie: Automatyczne."
+        }
+      },
+      "Icon": "ife_x1encharr",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": {
+        "ID": "9b477516-28a7-f1ae-5f7e-6879a2f2d2a3",
+        "Label": "Enchant Arrow II"
+      },
+      "CRModifier": 0.5,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "a2d4175c-43ac-4304-9d35-50250986b1c8",
+      "Index": -1,
+      "Overrides": "9b477516-28a7-f1ae-5f7e-6879a2f2d2a3",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_PRESTIGE_ENCHANT_ARROW_2",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8681,
+        "EN": {
+          "M": "Enchant Arrow II"
+        },
+        "FR": {
+          "M": "Fl\u00E8che magique II"
+        },
+        "DE": {
+          "M": "Pfeil verzaubern \u002B2"
+        },
+        "IT": {
+          "M": "Freccia incantata II"
+        },
+        "ES": {
+          "M": "Encantar flecha II"
+        },
+        "PL": {
+          "M": "Zakl\u0119cie Strza\u0142y II"
+        }
+      },
+      "Description": {
+        "Index": 8680,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1. This enchantment stacks with your weapon and arrow enchantments for attack roll and damage purposes, but only the highest enchantment from your bow or this ability is used to penetrate damage reduction. \nUse: Automatic.",
+          "F": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1.\nUse: Automatic."
+        },
+        "FR": {
+          "M": "Type de don : Classe\nCondition : Archer-mage\nFonctionnement : avec ce don, toute fl\u00E8che tir\u00E9e par l\u0027Archer-mage b\u00E9n\u00E9ficie d\u0027un enchantement de \u002B1. Ce bonus ne s\u0027applique qu\u0027\u00E0 l\u0027Archer-mage. Tous les deux niveaux suppl\u00E9mentaires apr\u00E8s le 1er, l\u0027enchantement est augment\u00E9 de \u002B1.\nUtilisation : automatique"
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse\nVoraussetzung: Arkaner Bogensch\u00FCtze.\nVorteil: Jeder Pfeil, den der Arkane Bogensch\u00FCtze verschie\u00DFt, wird automatisch wie ein Pfeil \u002B1 behandelt. Der Bonus gilt nur f\u00FCr den Arkanen Bogensch\u00FCtzen. F\u00FCr je zwei Stufen nach der 1. Stufe erh\u00F6ht sich der Bonus um \u002B1.\nGebrauch: Automatisch."
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe\nPrerequisito: arciere arcano\nDescrizione: grazie a questo talento, ogni freccia incoccata e scagliata da un arciere arcano acquisisce un bonus di potenziamento \u002B1. Tale bonus funziona solo per l\u0027arciere arcano. Ogni due livelli come arciere arcano oltre il livello 1, l\u0027incantamento aumenta di \u002B1.\nUso: automatico."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Arquero arcano.\nDetalles: Con esta dote, cualquier flecha que el arquero arcano cargue y dispare obtendr\u00E1 un bonificador \u002B1 de mejora. Este bonificador solo vale para el arquero arcano. Por cada dos niveles que tenga por encima del primero, la mejora aumentar\u00E1 un \u002B1.\nUso: Autom\u00E1tica."
+        },
+        "PL": {
+          "M": "Rodzaj atutu: Klasowy\nWymagania: Mistyczny \u0141ucznik.\nOpis: Za spraw\u0105 tego atutu ka\u017Cda strza\u0142a, kt\u00F3r\u0105 wystrzeli Mistyczny \u0141ucznik, otrzymuje premi\u0119 \u002B1 za ulepszenia. Premia ta obowi\u0105zuje tylko dla Mistycznego \u0141ucznika. Na ka\u017Cde dwa poziomy Mistycznego \u0141ucznika powy\u017Cej poziomu 1. premia zwi\u0119ksza si\u0119 o 1.\nU\u017Cycie: Automatyczne."
+        }
+      },
+      "Icon": "ife_x1encharr",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": {
+        "ID": "a68200de-5f0c-6b7c-d39f-3bafba93af51",
+        "Label": "Enchant Arrow I"
+      },
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": {
+        "ID": "bd81f159-9d16-0ace-a63f-9c868b864489",
+        "Label": "Enchant Arrow III"
+      },
+      "CRModifier": 0.5,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "f954c024-0314-401d-b212-a2e436984a79",
+      "Index": -1,
+      "Overrides": "bd81f159-9d16-0ace-a63f-9c868b864489",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_PRESTIGE_ENCHANT_ARROW_3",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8682,
+        "EN": {
+          "M": "Enchant Arrow III"
+        },
+        "FR": {
+          "M": "Fl\u00E8che magique III"
+        },
+        "DE": {
+          "M": "Pfeil verzaubern \u002B3"
+        },
+        "IT": {
+          "M": "Freccia incantata III"
+        },
+        "ES": {
+          "M": "Encantar flecha III"
+        },
+        "PL": {
+          "M": "Zakl\u0119cie Strza\u0142y III"
+        }
+      },
+      "Description": {
+        "Index": 8680,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1. This enchantment stacks with your weapon and arrow enchantments for attack roll and damage purposes, but only the highest enchantment from your bow or this ability is used to penetrate damage reduction. \nUse: Automatic.",
+          "F": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1.\nUse: Automatic."
+        },
+        "FR": {
+          "M": "Type de don : Classe\nCondition : Archer-mage\nFonctionnement : avec ce don, toute fl\u00E8che tir\u00E9e par l\u0027Archer-mage b\u00E9n\u00E9ficie d\u0027un enchantement de \u002B1. Ce bonus ne s\u0027applique qu\u0027\u00E0 l\u0027Archer-mage. Tous les deux niveaux suppl\u00E9mentaires apr\u00E8s le 1er, l\u0027enchantement est augment\u00E9 de \u002B1.\nUtilisation : automatique"
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse\nVoraussetzung: Arkaner Bogensch\u00FCtze.\nVorteil: Jeder Pfeil, den der Arkane Bogensch\u00FCtze verschie\u00DFt, wird automatisch wie ein Pfeil \u002B1 behandelt. Der Bonus gilt nur f\u00FCr den Arkanen Bogensch\u00FCtzen. F\u00FCr je zwei Stufen nach der 1. Stufe erh\u00F6ht sich der Bonus um \u002B1.\nGebrauch: Automatisch."
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe\nPrerequisito: arciere arcano\nDescrizione: grazie a questo talento, ogni freccia incoccata e scagliata da un arciere arcano acquisisce un bonus di potenziamento \u002B1. Tale bonus funziona solo per l\u0027arciere arcano. Ogni due livelli come arciere arcano oltre il livello 1, l\u0027incantamento aumenta di \u002B1.\nUso: automatico."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Arquero arcano.\nDetalles: Con esta dote, cualquier flecha que el arquero arcano cargue y dispare obtendr\u00E1 un bonificador \u002B1 de mejora. Este bonificador solo vale para el arquero arcano. Por cada dos niveles que tenga por encima del primero, la mejora aumentar\u00E1 un \u002B1.\nUso: Autom\u00E1tica."
+        },
+        "PL": {
+          "M": "Rodzaj atutu: Klasowy\nWymagania: Mistyczny \u0141ucznik.\nOpis: Za spraw\u0105 tego atutu ka\u017Cda strza\u0142a, kt\u00F3r\u0105 wystrzeli Mistyczny \u0141ucznik, otrzymuje premi\u0119 \u002B1 za ulepszenia. Premia ta obowi\u0105zuje tylko dla Mistycznego \u0141ucznika. Na ka\u017Cde dwa poziomy Mistycznego \u0141ucznika powy\u017Cej poziomu 1. premia zwi\u0119ksza si\u0119 o 1.\nU\u017Cycie: Automatyczne."
+        }
+      },
+      "Icon": "ife_x1encharr",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": {
+        "ID": "9b477516-28a7-f1ae-5f7e-6879a2f2d2a3",
+        "Label": "Enchant Arrow II"
+      },
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": {
+        "ID": "889e8fb8-a109-9ee4-1efa-d4157b4330ed",
+        "Label": "Enchant Arrow IV"
+      },
+      "CRModifier": 0.5,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "6c773964-e053-4923-887e-852c2d88c8ab",
+      "Index": -1,
+      "Overrides": "889e8fb8-a109-9ee4-1efa-d4157b4330ed",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_PRESTIGE_ENCHANT_ARROW_4",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8683,
+        "EN": {
+          "M": "Enchant Arrow IV"
+        },
+        "FR": {
+          "M": "Fl\u00E8che magique IV"
+        },
+        "DE": {
+          "M": "Pfeil verzaubern \u002B4"
+        },
+        "IT": {
+          "M": "Freccia incantata IV"
+        },
+        "ES": {
+          "M": "Encantar flecha IV"
+        },
+        "PL": {
+          "M": "Zakl\u0119cie Strza\u0142y IV"
+        }
+      },
+      "Description": {
+        "Index": 8680,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1. This enchantment stacks with your weapon and arrow enchantments for attack roll and damage purposes, but only the highest enchantment from your bow or this ability is used to penetrate damage reduction. \nUse: Automatic.",
+          "F": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1.\nUse: Automatic."
+        },
+        "FR": {
+          "M": "Type de don : Classe\nCondition : Archer-mage\nFonctionnement : avec ce don, toute fl\u00E8che tir\u00E9e par l\u0027Archer-mage b\u00E9n\u00E9ficie d\u0027un enchantement de \u002B1. Ce bonus ne s\u0027applique qu\u0027\u00E0 l\u0027Archer-mage. Tous les deux niveaux suppl\u00E9mentaires apr\u00E8s le 1er, l\u0027enchantement est augment\u00E9 de \u002B1.\nUtilisation : automatique"
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse\nVoraussetzung: Arkaner Bogensch\u00FCtze.\nVorteil: Jeder Pfeil, den der Arkane Bogensch\u00FCtze verschie\u00DFt, wird automatisch wie ein Pfeil \u002B1 behandelt. Der Bonus gilt nur f\u00FCr den Arkanen Bogensch\u00FCtzen. F\u00FCr je zwei Stufen nach der 1. Stufe erh\u00F6ht sich der Bonus um \u002B1.\nGebrauch: Automatisch."
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe\nPrerequisito: arciere arcano\nDescrizione: grazie a questo talento, ogni freccia incoccata e scagliata da un arciere arcano acquisisce un bonus di potenziamento \u002B1. Tale bonus funziona solo per l\u0027arciere arcano. Ogni due livelli come arciere arcano oltre il livello 1, l\u0027incantamento aumenta di \u002B1.\nUso: automatico."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Arquero arcano.\nDetalles: Con esta dote, cualquier flecha que el arquero arcano cargue y dispare obtendr\u00E1 un bonificador \u002B1 de mejora. Este bonificador solo vale para el arquero arcano. Por cada dos niveles que tenga por encima del primero, la mejora aumentar\u00E1 un \u002B1.\nUso: Autom\u00E1tica."
+        },
+        "PL": {
+          "M": "Rodzaj atutu: Klasowy\nWymagania: Mistyczny \u0141ucznik.\nOpis: Za spraw\u0105 tego atutu ka\u017Cda strza\u0142a, kt\u00F3r\u0105 wystrzeli Mistyczny \u0141ucznik, otrzymuje premi\u0119 \u002B1 za ulepszenia. Premia ta obowi\u0105zuje tylko dla Mistycznego \u0141ucznika. Na ka\u017Cde dwa poziomy Mistycznego \u0141ucznika powy\u017Cej poziomu 1. premia zwi\u0119ksza si\u0119 o 1.\nU\u017Cycie: Automatyczne."
+        }
+      },
+      "Icon": "ife_x1encharr",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": {
+        "ID": "bd81f159-9d16-0ace-a63f-9c868b864489",
+        "Label": "Enchant Arrow III"
+      },
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": {
+        "ID": "74749cea-7a18-1c43-269c-1fe19d9a140c",
+        "Label": "Enchant Arrow V"
+      },
+      "CRModifier": 0.5,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "c2a020c5-ff8f-42dd-95b3-133c51d77402",
+      "Index": -1,
+      "Overrides": "8b249ab9-bf02-0d33-355b-a5c1f735d287",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_PRESTIGE_ENCHANT_ARROW_9",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 83846,
+        "EN": {
+          "M": "Enchant Arrow IX"
+        },
+        "FR": {
+          "M": "Fl\u00E8che magique IX"
+        },
+        "DE": {
+          "M": "Pfeil verzaubern IX"
+        },
+        "IT": {
+          "M": "Incanta freccia IX"
+        },
+        "ES": {
+          "M": "Encantar flecha IX"
+        },
+        "PL": {
+          "M": "Zakl\u0119cie strza\u0142y IX"
+        }
+      },
+      "Description": {
+        "Index": 8680,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1. This enchantment stacks with your weapon and arrow enchantments for attack roll and damage purposes, but only the highest enchantment from your bow or this ability is used to penetrate damage reduction. \nUse: Automatic.",
+          "F": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1.\nUse: Automatic."
+        },
+        "FR": {
+          "M": "Type de don : Classe\nCondition : Archer-mage\nFonctionnement : avec ce don, toute fl\u00E8che tir\u00E9e par l\u0027Archer-mage b\u00E9n\u00E9ficie d\u0027un enchantement de \u002B1. Ce bonus ne s\u0027applique qu\u0027\u00E0 l\u0027Archer-mage. Tous les deux niveaux suppl\u00E9mentaires apr\u00E8s le 1er, l\u0027enchantement est augment\u00E9 de \u002B1.\nUtilisation : automatique"
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse\nVoraussetzung: Arkaner Bogensch\u00FCtze.\nVorteil: Jeder Pfeil, den der Arkane Bogensch\u00FCtze verschie\u00DFt, wird automatisch wie ein Pfeil \u002B1 behandelt. Der Bonus gilt nur f\u00FCr den Arkanen Bogensch\u00FCtzen. F\u00FCr je zwei Stufen nach der 1. Stufe erh\u00F6ht sich der Bonus um \u002B1.\nGebrauch: Automatisch."
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe\nPrerequisito: arciere arcano\nDescrizione: grazie a questo talento, ogni freccia incoccata e scagliata da un arciere arcano acquisisce un bonus di potenziamento \u002B1. Tale bonus funziona solo per l\u0027arciere arcano. Ogni due livelli come arciere arcano oltre il livello 1, l\u0027incantamento aumenta di \u002B1.\nUso: automatico."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Arquero arcano.\nDetalles: Con esta dote, cualquier flecha que el arquero arcano cargue y dispare obtendr\u00E1 un bonificador \u002B1 de mejora. Este bonificador solo vale para el arquero arcano. Por cada dos niveles que tenga por encima del primero, la mejora aumentar\u00E1 un \u002B1.\nUso: Autom\u00E1tica."
+        },
+        "PL": {
+          "M": "Rodzaj atutu: Klasowy\nWymagania: Mistyczny \u0141ucznik.\nOpis: Za spraw\u0105 tego atutu ka\u017Cda strza\u0142a, kt\u00F3r\u0105 wystrzeli Mistyczny \u0141ucznik, otrzymuje premi\u0119 \u002B1 za ulepszenia. Premia ta obowi\u0105zuje tylko dla Mistycznego \u0141ucznika. Na ka\u017Cde dwa poziomy Mistycznego \u0141ucznika powy\u017Cej poziomu 1. premia zwi\u0119ksza si\u0119 o 1.\nU\u017Cycie: Automatyczne."
+        }
+      },
+      "Icon": "ife_x1encharr",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": {
+        "ID": "38c5ef9e-b966-41f3-bdb1-ee95736cb679",
+        "Label": "Enchant Arrow VIII"
+      },
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": {
+        "ID": "01190473-5535-de23-adb4-9e838f7fb3e2",
+        "Label": "Enchant Arrow X"
+      },
+      "CRModifier": 0.5,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "46a1ac4e-2f30-4f65-a328-85d3f93bc41e",
+      "Index": -1,
+      "Overrides": "74749cea-7a18-1c43-269c-1fe19d9a140c",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_PRESTIGE_ENCHANT_ARROW_5",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8684,
+        "EN": {
+          "M": "Enchant Arrow V"
+        },
+        "FR": {
+          "M": "Fl\u00E8che magique V"
+        },
+        "DE": {
+          "M": "Pfeil verzaubern \u002B5"
+        },
+        "IT": {
+          "M": "Freccia incantata V"
+        },
+        "ES": {
+          "M": "Encantar flecha V"
+        },
+        "PL": {
+          "M": "Zakl\u0119cie Strza\u0142y V"
+        }
+      },
+      "Description": {
+        "Index": 8680,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1. This enchantment stacks with your weapon and arrow enchantments for attack roll and damage purposes, but only the highest enchantment from your bow or this ability is used to penetrate damage reduction. \nUse: Automatic.",
+          "F": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1.\nUse: Automatic."
+        },
+        "FR": {
+          "M": "Type de don : Classe\nCondition : Archer-mage\nFonctionnement : avec ce don, toute fl\u00E8che tir\u00E9e par l\u0027Archer-mage b\u00E9n\u00E9ficie d\u0027un enchantement de \u002B1. Ce bonus ne s\u0027applique qu\u0027\u00E0 l\u0027Archer-mage. Tous les deux niveaux suppl\u00E9mentaires apr\u00E8s le 1er, l\u0027enchantement est augment\u00E9 de \u002B1.\nUtilisation : automatique"
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse\nVoraussetzung: Arkaner Bogensch\u00FCtze.\nVorteil: Jeder Pfeil, den der Arkane Bogensch\u00FCtze verschie\u00DFt, wird automatisch wie ein Pfeil \u002B1 behandelt. Der Bonus gilt nur f\u00FCr den Arkanen Bogensch\u00FCtzen. F\u00FCr je zwei Stufen nach der 1. Stufe erh\u00F6ht sich der Bonus um \u002B1.\nGebrauch: Automatisch."
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe\nPrerequisito: arciere arcano\nDescrizione: grazie a questo talento, ogni freccia incoccata e scagliata da un arciere arcano acquisisce un bonus di potenziamento \u002B1. Tale bonus funziona solo per l\u0027arciere arcano. Ogni due livelli come arciere arcano oltre il livello 1, l\u0027incantamento aumenta di \u002B1.\nUso: automatico."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Arquero arcano.\nDetalles: Con esta dote, cualquier flecha que el arquero arcano cargue y dispare obtendr\u00E1 un bonificador \u002B1 de mejora. Este bonificador solo vale para el arquero arcano. Por cada dos niveles que tenga por encima del primero, la mejora aumentar\u00E1 un \u002B1.\nUso: Autom\u00E1tica."
+        },
+        "PL": {
+          "M": "Rodzaj atutu: Klasowy\nWymagania: Mistyczny \u0141ucznik.\nOpis: Za spraw\u0105 tego atutu ka\u017Cda strza\u0142a, kt\u00F3r\u0105 wystrzeli Mistyczny \u0141ucznik, otrzymuje premi\u0119 \u002B1 za ulepszenia. Premia ta obowi\u0105zuje tylko dla Mistycznego \u0141ucznika. Na ka\u017Cde dwa poziomy Mistycznego \u0141ucznika powy\u017Cej poziomu 1. premia zwi\u0119ksza si\u0119 o 1.\nU\u017Cycie: Automatyczne."
+        }
+      },
+      "Icon": "ife_x1encharr",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": {
+        "ID": "889e8fb8-a109-9ee4-1efa-d4157b4330ed",
+        "Label": "Enchant Arrow IV"
+      },
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": {
+        "ID": "c9d11812-8d94-6272-12b8-35157298ae08",
+        "Label": "Enchant Arrow VI"
+      },
+      "CRModifier": 0.5,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "ede632e1-f09e-46db-a273-5e97bdc366a9",
+      "Index": -1,
+      "Overrides": "c9d11812-8d94-6272-12b8-35157298ae08",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_PRESTIGE_ENCHANT_ARROW_6",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 83843,
+        "EN": {
+          "M": "Enchant Arrow VI"
+        },
+        "FR": {
+          "M": "Fl\u00E8che magique VI"
+        },
+        "DE": {
+          "M": "Pfeil verzaubern VI"
+        },
+        "IT": {
+          "M": "Incanta freccia VI"
+        },
+        "ES": {
+          "M": "Encantar flecha VI"
+        },
+        "PL": {
+          "M": "Zakl\u0119cie strza\u0142y VI"
+        }
+      },
+      "Description": {
+        "Index": 8680,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1. This enchantment stacks with your weapon and arrow enchantments for attack roll and damage purposes, but only the highest enchantment from your bow or this ability is used to penetrate damage reduction. \nUse: Automatic.",
+          "F": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1.\nUse: Automatic."
+        },
+        "FR": {
+          "M": "Type de don : Classe\nCondition : Archer-mage\nFonctionnement : avec ce don, toute fl\u00E8che tir\u00E9e par l\u0027Archer-mage b\u00E9n\u00E9ficie d\u0027un enchantement de \u002B1. Ce bonus ne s\u0027applique qu\u0027\u00E0 l\u0027Archer-mage. Tous les deux niveaux suppl\u00E9mentaires apr\u00E8s le 1er, l\u0027enchantement est augment\u00E9 de \u002B1.\nUtilisation : automatique"
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse\nVoraussetzung: Arkaner Bogensch\u00FCtze.\nVorteil: Jeder Pfeil, den der Arkane Bogensch\u00FCtze verschie\u00DFt, wird automatisch wie ein Pfeil \u002B1 behandelt. Der Bonus gilt nur f\u00FCr den Arkanen Bogensch\u00FCtzen. F\u00FCr je zwei Stufen nach der 1. Stufe erh\u00F6ht sich der Bonus um \u002B1.\nGebrauch: Automatisch."
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe\nPrerequisito: arciere arcano\nDescrizione: grazie a questo talento, ogni freccia incoccata e scagliata da un arciere arcano acquisisce un bonus di potenziamento \u002B1. Tale bonus funziona solo per l\u0027arciere arcano. Ogni due livelli come arciere arcano oltre il livello 1, l\u0027incantamento aumenta di \u002B1.\nUso: automatico."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Arquero arcano.\nDetalles: Con esta dote, cualquier flecha que el arquero arcano cargue y dispare obtendr\u00E1 un bonificador \u002B1 de mejora. Este bonificador solo vale para el arquero arcano. Por cada dos niveles que tenga por encima del primero, la mejora aumentar\u00E1 un \u002B1.\nUso: Autom\u00E1tica."
+        },
+        "PL": {
+          "M": "Rodzaj atutu: Klasowy\nWymagania: Mistyczny \u0141ucznik.\nOpis: Za spraw\u0105 tego atutu ka\u017Cda strza\u0142a, kt\u00F3r\u0105 wystrzeli Mistyczny \u0141ucznik, otrzymuje premi\u0119 \u002B1 za ulepszenia. Premia ta obowi\u0105zuje tylko dla Mistycznego \u0141ucznika. Na ka\u017Cde dwa poziomy Mistycznego \u0141ucznika powy\u017Cej poziomu 1. premia zwi\u0119ksza si\u0119 o 1.\nU\u017Cycie: Automatyczne."
+        }
+      },
+      "Icon": "ife_x1encharr",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": {
+        "ID": "74749cea-7a18-1c43-269c-1fe19d9a140c",
+        "Label": "Enchant Arrow V"
+      },
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": {
+        "ID": "9825bbda-d26e-a030-afd6-8db8be771eeb",
+        "Label": "Enchant Arrow VII"
+      },
+      "CRModifier": 0.5,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "1721e453-4d1b-4bb5-8e02-cd542289ac66",
+      "Index": -1,
+      "Overrides": "9825bbda-d26e-a030-afd6-8db8be771eeb",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_PRESTIGE_ENCHANT_ARROW_7",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 83844,
+        "EN": {
+          "M": "Enchant Arrow VII"
+        },
+        "FR": {
+          "M": "Fl\u00E8che magique VII"
+        },
+        "DE": {
+          "M": "Pfeil verzaubern VII"
+        },
+        "IT": {
+          "M": "Incanta freccia VII"
+        },
+        "ES": {
+          "M": "Encantar flecha VII"
+        },
+        "PL": {
+          "M": "Zakl\u0119cie strza\u0142y VII"
+        }
+      },
+      "Description": {
+        "Index": 8680,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1. This enchantment stacks with your weapon and arrow enchantments for attack roll and damage purposes, but only the highest enchantment from your bow or this ability is used to penetrate damage reduction. \nUse: Automatic.",
+          "F": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1.\nUse: Automatic."
+        },
+        "FR": {
+          "M": "Type de don : Classe\nCondition : Archer-mage\nFonctionnement : avec ce don, toute fl\u00E8che tir\u00E9e par l\u0027Archer-mage b\u00E9n\u00E9ficie d\u0027un enchantement de \u002B1. Ce bonus ne s\u0027applique qu\u0027\u00E0 l\u0027Archer-mage. Tous les deux niveaux suppl\u00E9mentaires apr\u00E8s le 1er, l\u0027enchantement est augment\u00E9 de \u002B1.\nUtilisation : automatique"
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse\nVoraussetzung: Arkaner Bogensch\u00FCtze.\nVorteil: Jeder Pfeil, den der Arkane Bogensch\u00FCtze verschie\u00DFt, wird automatisch wie ein Pfeil \u002B1 behandelt. Der Bonus gilt nur f\u00FCr den Arkanen Bogensch\u00FCtzen. F\u00FCr je zwei Stufen nach der 1. Stufe erh\u00F6ht sich der Bonus um \u002B1.\nGebrauch: Automatisch."
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe\nPrerequisito: arciere arcano\nDescrizione: grazie a questo talento, ogni freccia incoccata e scagliata da un arciere arcano acquisisce un bonus di potenziamento \u002B1. Tale bonus funziona solo per l\u0027arciere arcano. Ogni due livelli come arciere arcano oltre il livello 1, l\u0027incantamento aumenta di \u002B1.\nUso: automatico."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Arquero arcano.\nDetalles: Con esta dote, cualquier flecha que el arquero arcano cargue y dispare obtendr\u00E1 un bonificador \u002B1 de mejora. Este bonificador solo vale para el arquero arcano. Por cada dos niveles que tenga por encima del primero, la mejora aumentar\u00E1 un \u002B1.\nUso: Autom\u00E1tica."
+        },
+        "PL": {
+          "M": "Rodzaj atutu: Klasowy\nWymagania: Mistyczny \u0141ucznik.\nOpis: Za spraw\u0105 tego atutu ka\u017Cda strza\u0142a, kt\u00F3r\u0105 wystrzeli Mistyczny \u0141ucznik, otrzymuje premi\u0119 \u002B1 za ulepszenia. Premia ta obowi\u0105zuje tylko dla Mistycznego \u0141ucznika. Na ka\u017Cde dwa poziomy Mistycznego \u0141ucznika powy\u017Cej poziomu 1. premia zwi\u0119ksza si\u0119 o 1.\nU\u017Cycie: Automatyczne."
+        }
+      },
+      "Icon": "ife_x1encharr",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": {
+        "ID": "c9d11812-8d94-6272-12b8-35157298ae08",
+        "Label": "Enchant Arrow VI"
+      },
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": {
+        "ID": "38c5ef9e-b966-41f3-bdb1-ee95736cb679",
+        "Label": "Enchant Arrow VIII"
+      },
+      "CRModifier": 0.5,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "e801b3f2-27be-4fa2-bed9-26c3a8f0fb46",
+      "Index": -1,
+      "Overrides": "38c5ef9e-b966-41f3-bdb1-ee95736cb679",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_PRESTIGE_ENCHANT_ARROW_8",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 83845,
+        "EN": {
+          "M": "Enchant Arrow VIII"
+        },
+        "FR": {
+          "M": "Fl\u00E8che magique VIII"
+        },
+        "DE": {
+          "M": "Pfeil verzaubern VIII"
+        },
+        "IT": {
+          "M": "Incanta freccia VIII"
+        },
+        "ES": {
+          "M": "Encantar flecha VIII"
+        },
+        "PL": {
+          "M": "Zakl\u0119cie strza\u0142y VIII"
+        }
+      },
+      "Description": {
+        "Index": 8680,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1. This enchantment stacks with your weapon and arrow enchantments for attack roll and damage purposes, but only the highest enchantment from your bow or this ability is used to penetrate damage reduction. \nUse: Automatic.",
+          "F": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1.\nUse: Automatic."
+        },
+        "FR": {
+          "M": "Type de don : Classe\nCondition : Archer-mage\nFonctionnement : avec ce don, toute fl\u00E8che tir\u00E9e par l\u0027Archer-mage b\u00E9n\u00E9ficie d\u0027un enchantement de \u002B1. Ce bonus ne s\u0027applique qu\u0027\u00E0 l\u0027Archer-mage. Tous les deux niveaux suppl\u00E9mentaires apr\u00E8s le 1er, l\u0027enchantement est augment\u00E9 de \u002B1.\nUtilisation : automatique"
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse\nVoraussetzung: Arkaner Bogensch\u00FCtze.\nVorteil: Jeder Pfeil, den der Arkane Bogensch\u00FCtze verschie\u00DFt, wird automatisch wie ein Pfeil \u002B1 behandelt. Der Bonus gilt nur f\u00FCr den Arkanen Bogensch\u00FCtzen. F\u00FCr je zwei Stufen nach der 1. Stufe erh\u00F6ht sich der Bonus um \u002B1.\nGebrauch: Automatisch."
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe\nPrerequisito: arciere arcano\nDescrizione: grazie a questo talento, ogni freccia incoccata e scagliata da un arciere arcano acquisisce un bonus di potenziamento \u002B1. Tale bonus funziona solo per l\u0027arciere arcano. Ogni due livelli come arciere arcano oltre il livello 1, l\u0027incantamento aumenta di \u002B1.\nUso: automatico."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Arquero arcano.\nDetalles: Con esta dote, cualquier flecha que el arquero arcano cargue y dispare obtendr\u00E1 un bonificador \u002B1 de mejora. Este bonificador solo vale para el arquero arcano. Por cada dos niveles que tenga por encima del primero, la mejora aumentar\u00E1 un \u002B1.\nUso: Autom\u00E1tica."
+        },
+        "PL": {
+          "M": "Rodzaj atutu: Klasowy\nWymagania: Mistyczny \u0141ucznik.\nOpis: Za spraw\u0105 tego atutu ka\u017Cda strza\u0142a, kt\u00F3r\u0105 wystrzeli Mistyczny \u0141ucznik, otrzymuje premi\u0119 \u002B1 za ulepszenia. Premia ta obowi\u0105zuje tylko dla Mistycznego \u0141ucznika. Na ka\u017Cde dwa poziomy Mistycznego \u0141ucznika powy\u017Cej poziomu 1. premia zwi\u0119ksza si\u0119 o 1.\nU\u017Cycie: Automatyczne."
+        }
+      },
+      "Icon": "ife_x1encharr",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": {
+        "ID": "9825bbda-d26e-a030-afd6-8db8be771eeb",
+        "Label": "Enchant Arrow VII"
+      },
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": {
+        "ID": "8b249ab9-bf02-0d33-355b-a5c1f735d287",
+        "Label": "Enchant Arrow IX"
+      },
+      "CRModifier": 0.5,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "75378b6b-611f-4770-9fbb-2476d20b6bd7",
+      "Index": -1,
+      "Overrides": "01190473-5535-de23-adb4-9e838f7fb3e2",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_PRESTIGE_ENCHANT_ARROW_10",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 83847,
+        "EN": {
+          "M": "Enchant Arrow X"
+        },
+        "FR": {
+          "M": "Fl\u00E8che magique X"
+        },
+        "DE": {
+          "M": "Pfeil verzaubern X"
+        },
+        "IT": {
+          "M": "Incanta freccia X"
+        },
+        "ES": {
+          "M": "Encantar flecha X"
+        },
+        "PL": {
+          "M": "Zakl\u0119cie strza\u0142y X"
+        }
+      },
+      "Description": {
+        "Index": 8680,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1. This enchantment stacks with your weapon and arrow enchantments for attack roll and damage purposes, but only the highest enchantment from your bow or this ability is used to penetrate damage reduction. \nUse: Automatic.",
+          "F": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1.\nUse: Automatic."
+        },
+        "FR": {
+          "M": "Type de don : Classe\nCondition : Archer-mage\nFonctionnement : avec ce don, toute fl\u00E8che tir\u00E9e par l\u0027Archer-mage b\u00E9n\u00E9ficie d\u0027un enchantement de \u002B1. Ce bonus ne s\u0027applique qu\u0027\u00E0 l\u0027Archer-mage. Tous les deux niveaux suppl\u00E9mentaires apr\u00E8s le 1er, l\u0027enchantement est augment\u00E9 de \u002B1.\nUtilisation : automatique"
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse\nVoraussetzung: Arkaner Bogensch\u00FCtze.\nVorteil: Jeder Pfeil, den der Arkane Bogensch\u00FCtze verschie\u00DFt, wird automatisch wie ein Pfeil \u002B1 behandelt. Der Bonus gilt nur f\u00FCr den Arkanen Bogensch\u00FCtzen. F\u00FCr je zwei Stufen nach der 1. Stufe erh\u00F6ht sich der Bonus um \u002B1.\nGebrauch: Automatisch."
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe\nPrerequisito: arciere arcano\nDescrizione: grazie a questo talento, ogni freccia incoccata e scagliata da un arciere arcano acquisisce un bonus di potenziamento \u002B1. Tale bonus funziona solo per l\u0027arciere arcano. Ogni due livelli come arciere arcano oltre il livello 1, l\u0027incantamento aumenta di \u002B1.\nUso: automatico."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Arquero arcano.\nDetalles: Con esta dote, cualquier flecha que el arquero arcano cargue y dispare obtendr\u00E1 un bonificador \u002B1 de mejora. Este bonificador solo vale para el arquero arcano. Por cada dos niveles que tenga por encima del primero, la mejora aumentar\u00E1 un \u002B1.\nUso: Autom\u00E1tica."
+        },
+        "PL": {
+          "M": "Rodzaj atutu: Klasowy\nWymagania: Mistyczny \u0141ucznik.\nOpis: Za spraw\u0105 tego atutu ka\u017Cda strza\u0142a, kt\u00F3r\u0105 wystrzeli Mistyczny \u0141ucznik, otrzymuje premi\u0119 \u002B1 za ulepszenia. Premia ta obowi\u0105zuje tylko dla Mistycznego \u0141ucznika. Na ka\u017Cde dwa poziomy Mistycznego \u0141ucznika powy\u017Cej poziomu 1. premia zwi\u0119ksza si\u0119 o 1.\nU\u017Cycie: Automatyczne."
+        }
+      },
+      "Icon": "ife_x1encharr",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": {
+        "ID": "8b249ab9-bf02-0d33-355b-a5c1f735d287",
+        "Label": "Enchant Arrow IX"
+      },
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": {
+        "ID": "e9f74f9d-ecfe-ab4b-e2ad-f987827f3ade",
+        "Label": "Enchant Arrow XI"
+      },
+      "CRModifier": 0.5,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "e887ad36-fc6e-4ad9-99e0-d4d47cf51763",
+      "Index": -1,
+      "Overrides": "e9f74f9d-ecfe-ab4b-e2ad-f987827f3ade",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_PRESTIGE_ENCHANT_ARROW_11",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 83870,
+        "EN": {
+          "M": "Enchant Arrow XI"
+        },
+        "FR": {
+          "M": "Fl\u00E8che magique XI"
+        },
+        "DE": {
+          "M": "Pfeil verzaubern XI"
+        },
+        "IT": {
+          "M": "Incanta freccia XI"
+        },
+        "ES": {
+          "M": "Encantar flecha XI"
+        },
+        "PL": {
+          "M": "Zakl\u0119cie strza\u0142y XI"
+        }
+      },
+      "Description": {
+        "Index": 8680,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1. This enchantment stacks with your weapon and arrow enchantments for attack roll and damage purposes, but only the highest enchantment from your bow or this ability is used to penetrate damage reduction. \nUse: Automatic.",
+          "F": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1.\nUse: Automatic."
+        },
+        "FR": {
+          "M": "Type de don : Classe\nCondition : Archer-mage\nFonctionnement : avec ce don, toute fl\u00E8che tir\u00E9e par l\u0027Archer-mage b\u00E9n\u00E9ficie d\u0027un enchantement de \u002B1. Ce bonus ne s\u0027applique qu\u0027\u00E0 l\u0027Archer-mage. Tous les deux niveaux suppl\u00E9mentaires apr\u00E8s le 1er, l\u0027enchantement est augment\u00E9 de \u002B1.\nUtilisation : automatique"
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse\nVoraussetzung: Arkaner Bogensch\u00FCtze.\nVorteil: Jeder Pfeil, den der Arkane Bogensch\u00FCtze verschie\u00DFt, wird automatisch wie ein Pfeil \u002B1 behandelt. Der Bonus gilt nur f\u00FCr den Arkanen Bogensch\u00FCtzen. F\u00FCr je zwei Stufen nach der 1. Stufe erh\u00F6ht sich der Bonus um \u002B1.\nGebrauch: Automatisch."
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe\nPrerequisito: arciere arcano\nDescrizione: grazie a questo talento, ogni freccia incoccata e scagliata da un arciere arcano acquisisce un bonus di potenziamento \u002B1. Tale bonus funziona solo per l\u0027arciere arcano. Ogni due livelli come arciere arcano oltre il livello 1, l\u0027incantamento aumenta di \u002B1.\nUso: automatico."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Arquero arcano.\nDetalles: Con esta dote, cualquier flecha que el arquero arcano cargue y dispare obtendr\u00E1 un bonificador \u002B1 de mejora. Este bonificador solo vale para el arquero arcano. Por cada dos niveles que tenga por encima del primero, la mejora aumentar\u00E1 un \u002B1.\nUso: Autom\u00E1tica."
+        },
+        "PL": {
+          "M": "Rodzaj atutu: Klasowy\nWymagania: Mistyczny \u0141ucznik.\nOpis: Za spraw\u0105 tego atutu ka\u017Cda strza\u0142a, kt\u00F3r\u0105 wystrzeli Mistyczny \u0141ucznik, otrzymuje premi\u0119 \u002B1 za ulepszenia. Premia ta obowi\u0105zuje tylko dla Mistycznego \u0141ucznika. Na ka\u017Cde dwa poziomy Mistycznego \u0141ucznika powy\u017Cej poziomu 1. premia zwi\u0119ksza si\u0119 o 1.\nU\u017Cycie: Automatyczne."
+        }
+      },
+      "Icon": "ife_x1encharr",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": {
+        "ID": "01190473-5535-de23-adb4-9e838f7fb3e2",
+        "Label": "Enchant Arrow X"
+      },
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": {
+        "ID": "e55a56e7-dd73-92bf-2aaf-6e986ea8ee50",
+        "Label": "Enchant Arrow XII"
+      },
+      "CRModifier": 0.5,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "11fbf6cd-d6a9-42b8-8198-cbb36f01df85",
+      "Index": -1,
+      "Overrides": "e55a56e7-dd73-92bf-2aaf-6e986ea8ee50",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_PRESTIGE_ENCHANT_ARROW_12",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 83871,
+        "EN": {
+          "M": "Enchant Arrow XII"
+        },
+        "FR": {
+          "M": "Fl\u00E8che magique XII"
+        },
+        "DE": {
+          "M": "Pfeil verzaubern XII"
+        },
+        "IT": {
+          "M": "Incanta freccia XII"
+        },
+        "ES": {
+          "M": "Encantar flecha XII"
+        },
+        "PL": {
+          "M": "Zakl\u0119cie strza\u0142y XII"
+        }
+      },
+      "Description": {
+        "Index": 8680,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1. This enchantment stacks with your weapon and arrow enchantments for attack roll and damage purposes, but only the highest enchantment from your bow or this ability is used to penetrate damage reduction. \nUse: Automatic.",
+          "F": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1.\nUse: Automatic."
+        },
+        "FR": {
+          "M": "Type de don : Classe\nCondition : Archer-mage\nFonctionnement : avec ce don, toute fl\u00E8che tir\u00E9e par l\u0027Archer-mage b\u00E9n\u00E9ficie d\u0027un enchantement de \u002B1. Ce bonus ne s\u0027applique qu\u0027\u00E0 l\u0027Archer-mage. Tous les deux niveaux suppl\u00E9mentaires apr\u00E8s le 1er, l\u0027enchantement est augment\u00E9 de \u002B1.\nUtilisation : automatique"
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse\nVoraussetzung: Arkaner Bogensch\u00FCtze.\nVorteil: Jeder Pfeil, den der Arkane Bogensch\u00FCtze verschie\u00DFt, wird automatisch wie ein Pfeil \u002B1 behandelt. Der Bonus gilt nur f\u00FCr den Arkanen Bogensch\u00FCtzen. F\u00FCr je zwei Stufen nach der 1. Stufe erh\u00F6ht sich der Bonus um \u002B1.\nGebrauch: Automatisch."
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe\nPrerequisito: arciere arcano\nDescrizione: grazie a questo talento, ogni freccia incoccata e scagliata da un arciere arcano acquisisce un bonus di potenziamento \u002B1. Tale bonus funziona solo per l\u0027arciere arcano. Ogni due livelli come arciere arcano oltre il livello 1, l\u0027incantamento aumenta di \u002B1.\nUso: automatico."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Arquero arcano.\nDetalles: Con esta dote, cualquier flecha que el arquero arcano cargue y dispare obtendr\u00E1 un bonificador \u002B1 de mejora. Este bonificador solo vale para el arquero arcano. Por cada dos niveles que tenga por encima del primero, la mejora aumentar\u00E1 un \u002B1.\nUso: Autom\u00E1tica."
+        },
+        "PL": {
+          "M": "Rodzaj atutu: Klasowy\nWymagania: Mistyczny \u0141ucznik.\nOpis: Za spraw\u0105 tego atutu ka\u017Cda strza\u0142a, kt\u00F3r\u0105 wystrzeli Mistyczny \u0141ucznik, otrzymuje premi\u0119 \u002B1 za ulepszenia. Premia ta obowi\u0105zuje tylko dla Mistycznego \u0141ucznika. Na ka\u017Cde dwa poziomy Mistycznego \u0141ucznika powy\u017Cej poziomu 1. premia zwi\u0119ksza si\u0119 o 1.\nU\u017Cycie: Automatyczne."
+        }
+      },
+      "Icon": "ife_x1encharr",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": {
+        "ID": "e9f74f9d-ecfe-ab4b-e2ad-f987827f3ade",
+        "Label": "Enchant Arrow XI"
+      },
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": {
+        "ID": "5fa8538b-8f6d-7795-a0e2-27598d28e12f",
+        "Label": "Enchant Arrow XIII"
+      },
+      "CRModifier": 0.5,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "c85cd61b-8931-4186-93de-cc8bc9aa17b5",
+      "Index": -1,
+      "Overrides": "5fa8538b-8f6d-7795-a0e2-27598d28e12f",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_PRESTIGE_ENCHANT_ARROW_13",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 83872,
+        "EN": {
+          "M": "Enchant Arrow XIII"
+        },
+        "FR": {
+          "M": "Fl\u00E8che magique XIII"
+        },
+        "DE": {
+          "M": "Pfeil verzaubern XIII"
+        },
+        "IT": {
+          "M": "Incanta freccia XIII"
+        },
+        "ES": {
+          "M": "Encantar flecha XIII"
+        },
+        "PL": {
+          "M": "Zakl\u0119cie strza\u0142y XIII"
+        }
+      },
+      "Description": {
+        "Index": 8680,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1. This enchantment stacks with your weapon and arrow enchantments for attack roll and damage purposes, but only the highest enchantment from your bow or this ability is used to penetrate damage reduction. \nUse: Automatic.",
+          "F": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1.\nUse: Automatic."
+        },
+        "FR": {
+          "M": "Type de don : Classe\nCondition : Archer-mage\nFonctionnement : avec ce don, toute fl\u00E8che tir\u00E9e par l\u0027Archer-mage b\u00E9n\u00E9ficie d\u0027un enchantement de \u002B1. Ce bonus ne s\u0027applique qu\u0027\u00E0 l\u0027Archer-mage. Tous les deux niveaux suppl\u00E9mentaires apr\u00E8s le 1er, l\u0027enchantement est augment\u00E9 de \u002B1.\nUtilisation : automatique"
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse\nVoraussetzung: Arkaner Bogensch\u00FCtze.\nVorteil: Jeder Pfeil, den der Arkane Bogensch\u00FCtze verschie\u00DFt, wird automatisch wie ein Pfeil \u002B1 behandelt. Der Bonus gilt nur f\u00FCr den Arkanen Bogensch\u00FCtzen. F\u00FCr je zwei Stufen nach der 1. Stufe erh\u00F6ht sich der Bonus um \u002B1.\nGebrauch: Automatisch."
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe\nPrerequisito: arciere arcano\nDescrizione: grazie a questo talento, ogni freccia incoccata e scagliata da un arciere arcano acquisisce un bonus di potenziamento \u002B1. Tale bonus funziona solo per l\u0027arciere arcano. Ogni due livelli come arciere arcano oltre il livello 1, l\u0027incantamento aumenta di \u002B1.\nUso: automatico."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Arquero arcano.\nDetalles: Con esta dote, cualquier flecha que el arquero arcano cargue y dispare obtendr\u00E1 un bonificador \u002B1 de mejora. Este bonificador solo vale para el arquero arcano. Por cada dos niveles que tenga por encima del primero, la mejora aumentar\u00E1 un \u002B1.\nUso: Autom\u00E1tica."
+        },
+        "PL": {
+          "M": "Rodzaj atutu: Klasowy\nWymagania: Mistyczny \u0141ucznik.\nOpis: Za spraw\u0105 tego atutu ka\u017Cda strza\u0142a, kt\u00F3r\u0105 wystrzeli Mistyczny \u0141ucznik, otrzymuje premi\u0119 \u002B1 za ulepszenia. Premia ta obowi\u0105zuje tylko dla Mistycznego \u0141ucznika. Na ka\u017Cde dwa poziomy Mistycznego \u0141ucznika powy\u017Cej poziomu 1. premia zwi\u0119ksza si\u0119 o 1.\nU\u017Cycie: Automatyczne."
+        }
+      },
+      "Icon": "ife_x1encharr",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": {
+        "ID": "e55a56e7-dd73-92bf-2aaf-6e986ea8ee50",
+        "Label": "Enchant Arrow XII"
+      },
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": {
+        "ID": "ddf97769-d2c2-b2e2-0893-e8b35fc549ec",
+        "Label": "Enchant Arrow XIV"
+      },
+      "CRModifier": 0.5,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "f171c381-77db-411d-8b63-2c8bb8a08180",
+      "Index": -1,
+      "Overrides": "ddf97769-d2c2-b2e2-0893-e8b35fc549ec",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_PRESTIGE_ENCHANT_ARROW_14",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 83873,
+        "EN": {
+          "M": "Enchant Arrow XIV"
+        },
+        "FR": {
+          "M": "Fl\u00E8che magique XIV"
+        },
+        "DE": {
+          "M": "Pfeil verzaubern XIV"
+        },
+        "IT": {
+          "M": "Incanta freccia XIV"
+        },
+        "ES": {
+          "M": "Encantar flecha XIV"
+        },
+        "PL": {
+          "M": "Zakl\u0119cie strza\u0142y XIV"
+        }
+      },
+      "Description": {
+        "Index": 8680,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1. This enchantment stacks with your weapon and arrow enchantments for attack roll and damage purposes, but only the highest enchantment from your bow or this ability is used to penetrate damage reduction. \nUse: Automatic.",
+          "F": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1.\nUse: Automatic."
+        },
+        "FR": {
+          "M": "Type de don : Classe\nCondition : Archer-mage\nFonctionnement : avec ce don, toute fl\u00E8che tir\u00E9e par l\u0027Archer-mage b\u00E9n\u00E9ficie d\u0027un enchantement de \u002B1. Ce bonus ne s\u0027applique qu\u0027\u00E0 l\u0027Archer-mage. Tous les deux niveaux suppl\u00E9mentaires apr\u00E8s le 1er, l\u0027enchantement est augment\u00E9 de \u002B1.\nUtilisation : automatique"
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse\nVoraussetzung: Arkaner Bogensch\u00FCtze.\nVorteil: Jeder Pfeil, den der Arkane Bogensch\u00FCtze verschie\u00DFt, wird automatisch wie ein Pfeil \u002B1 behandelt. Der Bonus gilt nur f\u00FCr den Arkanen Bogensch\u00FCtzen. F\u00FCr je zwei Stufen nach der 1. Stufe erh\u00F6ht sich der Bonus um \u002B1.\nGebrauch: Automatisch."
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe\nPrerequisito: arciere arcano\nDescrizione: grazie a questo talento, ogni freccia incoccata e scagliata da un arciere arcano acquisisce un bonus di potenziamento \u002B1. Tale bonus funziona solo per l\u0027arciere arcano. Ogni due livelli come arciere arcano oltre il livello 1, l\u0027incantamento aumenta di \u002B1.\nUso: automatico."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Arquero arcano.\nDetalles: Con esta dote, cualquier flecha que el arquero arcano cargue y dispare obtendr\u00E1 un bonificador \u002B1 de mejora. Este bonificador solo vale para el arquero arcano. Por cada dos niveles que tenga por encima del primero, la mejora aumentar\u00E1 un \u002B1.\nUso: Autom\u00E1tica."
+        },
+        "PL": {
+          "M": "Rodzaj atutu: Klasowy\nWymagania: Mistyczny \u0141ucznik.\nOpis: Za spraw\u0105 tego atutu ka\u017Cda strza\u0142a, kt\u00F3r\u0105 wystrzeli Mistyczny \u0141ucznik, otrzymuje premi\u0119 \u002B1 za ulepszenia. Premia ta obowi\u0105zuje tylko dla Mistycznego \u0141ucznika. Na ka\u017Cde dwa poziomy Mistycznego \u0141ucznika powy\u017Cej poziomu 1. premia zwi\u0119ksza si\u0119 o 1.\nU\u017Cycie: Automatyczne."
+        }
+      },
+      "Icon": "ife_x1encharr",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": {
+        "ID": "5fa8538b-8f6d-7795-a0e2-27598d28e12f",
+        "Label": "Enchant Arrow XIII"
+      },
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": {
+        "ID": "e9b553a8-0573-c9b2-61f0-73febe4581f3",
+        "Label": "Enchant Arrow XV"
+      },
+      "CRModifier": 0.5,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "08e5cfa1-3ab7-415b-a986-348d33195ffb",
+      "Index": -1,
+      "Overrides": "3dc29093-b271-57a0-7da3-ae6f4b52f889",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_PRESTIGE_ENCHANT_ARROW_19",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 83879,
+        "EN": {
+          "M": "Enchant Arrow XIX"
+        },
+        "FR": {
+          "M": "Fl\u00E8che magique XIX"
+        },
+        "DE": {
+          "M": "Pfeil verzaubern XIX"
+        },
+        "IT": {
+          "M": "Incanta freccia XIX"
+        },
+        "ES": {
+          "M": "Encantar flecha XIX"
+        },
+        "PL": {
+          "M": "Zakl\u0119cie strza\u0142y XIX"
+        }
+      },
+      "Description": {
+        "Index": 8680,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1. This enchantment stacks with your weapon and arrow enchantments for attack roll and damage purposes, but only the highest enchantment from your bow or this ability is used to penetrate damage reduction. \nUse: Automatic.",
+          "F": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1.\nUse: Automatic."
+        },
+        "FR": {
+          "M": "Type de don : Classe\nCondition : Archer-mage\nFonctionnement : avec ce don, toute fl\u00E8che tir\u00E9e par l\u0027Archer-mage b\u00E9n\u00E9ficie d\u0027un enchantement de \u002B1. Ce bonus ne s\u0027applique qu\u0027\u00E0 l\u0027Archer-mage. Tous les deux niveaux suppl\u00E9mentaires apr\u00E8s le 1er, l\u0027enchantement est augment\u00E9 de \u002B1.\nUtilisation : automatique"
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse\nVoraussetzung: Arkaner Bogensch\u00FCtze.\nVorteil: Jeder Pfeil, den der Arkane Bogensch\u00FCtze verschie\u00DFt, wird automatisch wie ein Pfeil \u002B1 behandelt. Der Bonus gilt nur f\u00FCr den Arkanen Bogensch\u00FCtzen. F\u00FCr je zwei Stufen nach der 1. Stufe erh\u00F6ht sich der Bonus um \u002B1.\nGebrauch: Automatisch."
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe\nPrerequisito: arciere arcano\nDescrizione: grazie a questo talento, ogni freccia incoccata e scagliata da un arciere arcano acquisisce un bonus di potenziamento \u002B1. Tale bonus funziona solo per l\u0027arciere arcano. Ogni due livelli come arciere arcano oltre il livello 1, l\u0027incantamento aumenta di \u002B1.\nUso: automatico."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Arquero arcano.\nDetalles: Con esta dote, cualquier flecha que el arquero arcano cargue y dispare obtendr\u00E1 un bonificador \u002B1 de mejora. Este bonificador solo vale para el arquero arcano. Por cada dos niveles que tenga por encima del primero, la mejora aumentar\u00E1 un \u002B1.\nUso: Autom\u00E1tica."
+        },
+        "PL": {
+          "M": "Rodzaj atutu: Klasowy\nWymagania: Mistyczny \u0141ucznik.\nOpis: Za spraw\u0105 tego atutu ka\u017Cda strza\u0142a, kt\u00F3r\u0105 wystrzeli Mistyczny \u0141ucznik, otrzymuje premi\u0119 \u002B1 za ulepszenia. Premia ta obowi\u0105zuje tylko dla Mistycznego \u0141ucznika. Na ka\u017Cde dwa poziomy Mistycznego \u0141ucznika powy\u017Cej poziomu 1. premia zwi\u0119ksza si\u0119 o 1.\nU\u017Cycie: Automatyczne."
+        }
+      },
+      "Icon": "ife_x1encharr",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": {
+        "ID": "8fe21686-8ade-7f4f-95b5-7d248103ff41",
+        "Label": "Enchant Arrow XVIII"
+      },
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": {
+        "ID": "e31f33a3-f796-c925-54f6-c94a3ec5f435",
+        "Label": "Enchant Arrow XX"
+      },
+      "CRModifier": 0.5,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "c3307cd7-0a7d-4b10-920a-9241f63da6a1",
+      "Index": -1,
+      "Overrides": "e9b553a8-0573-c9b2-61f0-73febe4581f3",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_PRESTIGE_ENCHANT_ARROW_15",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 83874,
+        "EN": {
+          "M": "Enchant Arrow XV"
+        },
+        "FR": {
+          "M": "Fl\u00E8che magique XV"
+        },
+        "DE": {
+          "M": "Pfeil verzaubern XV"
+        },
+        "IT": {
+          "M": "Incanta freccia XV"
+        },
+        "ES": {
+          "M": "Encantar flecha XV"
+        },
+        "PL": {
+          "M": "Zakl\u0119cie strza\u0142y XV"
+        }
+      },
+      "Description": {
+        "Index": 8680,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1. This enchantment stacks with your weapon and arrow enchantments for attack roll and damage purposes, but only the highest enchantment from your bow or this ability is used to penetrate damage reduction. \nUse: Automatic.",
+          "F": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1.\nUse: Automatic."
+        },
+        "FR": {
+          "M": "Type de don : Classe\nCondition : Archer-mage\nFonctionnement : avec ce don, toute fl\u00E8che tir\u00E9e par l\u0027Archer-mage b\u00E9n\u00E9ficie d\u0027un enchantement de \u002B1. Ce bonus ne s\u0027applique qu\u0027\u00E0 l\u0027Archer-mage. Tous les deux niveaux suppl\u00E9mentaires apr\u00E8s le 1er, l\u0027enchantement est augment\u00E9 de \u002B1.\nUtilisation : automatique"
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse\nVoraussetzung: Arkaner Bogensch\u00FCtze.\nVorteil: Jeder Pfeil, den der Arkane Bogensch\u00FCtze verschie\u00DFt, wird automatisch wie ein Pfeil \u002B1 behandelt. Der Bonus gilt nur f\u00FCr den Arkanen Bogensch\u00FCtzen. F\u00FCr je zwei Stufen nach der 1. Stufe erh\u00F6ht sich der Bonus um \u002B1.\nGebrauch: Automatisch."
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe\nPrerequisito: arciere arcano\nDescrizione: grazie a questo talento, ogni freccia incoccata e scagliata da un arciere arcano acquisisce un bonus di potenziamento \u002B1. Tale bonus funziona solo per l\u0027arciere arcano. Ogni due livelli come arciere arcano oltre il livello 1, l\u0027incantamento aumenta di \u002B1.\nUso: automatico."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Arquero arcano.\nDetalles: Con esta dote, cualquier flecha que el arquero arcano cargue y dispare obtendr\u00E1 un bonificador \u002B1 de mejora. Este bonificador solo vale para el arquero arcano. Por cada dos niveles que tenga por encima del primero, la mejora aumentar\u00E1 un \u002B1.\nUso: Autom\u00E1tica."
+        },
+        "PL": {
+          "M": "Rodzaj atutu: Klasowy\nWymagania: Mistyczny \u0141ucznik.\nOpis: Za spraw\u0105 tego atutu ka\u017Cda strza\u0142a, kt\u00F3r\u0105 wystrzeli Mistyczny \u0141ucznik, otrzymuje premi\u0119 \u002B1 za ulepszenia. Premia ta obowi\u0105zuje tylko dla Mistycznego \u0141ucznika. Na ka\u017Cde dwa poziomy Mistycznego \u0141ucznika powy\u017Cej poziomu 1. premia zwi\u0119ksza si\u0119 o 1.\nU\u017Cycie: Automatyczne."
+        }
+      },
+      "Icon": "ife_x1encharr",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": {
+        "ID": "ddf97769-d2c2-b2e2-0893-e8b35fc549ec",
+        "Label": "Enchant Arrow XIV"
+      },
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": {
+        "ID": "0304f0ae-6569-3566-fac8-00ea1844f7c7",
+        "Label": "Enchant Arrow XVI"
+      },
+      "CRModifier": 0.5,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "dfce9cb5-365c-49fa-a0b4-1d99cbf64cde",
+      "Index": -1,
+      "Overrides": "0304f0ae-6569-3566-fac8-00ea1844f7c7",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_PRESTIGE_ENCHANT_ARROW_16",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 83875,
+        "EN": {
+          "M": "Enchant Arrow XVI"
+        },
+        "FR": {
+          "M": "Fl\u00E8che magique XVI"
+        },
+        "DE": {
+          "M": "Pfeil verzaubern XVI"
+        },
+        "IT": {
+          "M": "Incanta freccia XVI"
+        },
+        "ES": {
+          "M": "Encantar flecha XVI"
+        },
+        "PL": {
+          "M": "Zakl\u0119cie strza\u0142y XVI"
+        }
+      },
+      "Description": {
+        "Index": 8680,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1. This enchantment stacks with your weapon and arrow enchantments for attack roll and damage purposes, but only the highest enchantment from your bow or this ability is used to penetrate damage reduction. \nUse: Automatic.",
+          "F": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1.\nUse: Automatic."
+        },
+        "FR": {
+          "M": "Type de don : Classe\nCondition : Archer-mage\nFonctionnement : avec ce don, toute fl\u00E8che tir\u00E9e par l\u0027Archer-mage b\u00E9n\u00E9ficie d\u0027un enchantement de \u002B1. Ce bonus ne s\u0027applique qu\u0027\u00E0 l\u0027Archer-mage. Tous les deux niveaux suppl\u00E9mentaires apr\u00E8s le 1er, l\u0027enchantement est augment\u00E9 de \u002B1.\nUtilisation : automatique"
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse\nVoraussetzung: Arkaner Bogensch\u00FCtze.\nVorteil: Jeder Pfeil, den der Arkane Bogensch\u00FCtze verschie\u00DFt, wird automatisch wie ein Pfeil \u002B1 behandelt. Der Bonus gilt nur f\u00FCr den Arkanen Bogensch\u00FCtzen. F\u00FCr je zwei Stufen nach der 1. Stufe erh\u00F6ht sich der Bonus um \u002B1.\nGebrauch: Automatisch."
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe\nPrerequisito: arciere arcano\nDescrizione: grazie a questo talento, ogni freccia incoccata e scagliata da un arciere arcano acquisisce un bonus di potenziamento \u002B1. Tale bonus funziona solo per l\u0027arciere arcano. Ogni due livelli come arciere arcano oltre il livello 1, l\u0027incantamento aumenta di \u002B1.\nUso: automatico."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Arquero arcano.\nDetalles: Con esta dote, cualquier flecha que el arquero arcano cargue y dispare obtendr\u00E1 un bonificador \u002B1 de mejora. Este bonificador solo vale para el arquero arcano. Por cada dos niveles que tenga por encima del primero, la mejora aumentar\u00E1 un \u002B1.\nUso: Autom\u00E1tica."
+        },
+        "PL": {
+          "M": "Rodzaj atutu: Klasowy\nWymagania: Mistyczny \u0141ucznik.\nOpis: Za spraw\u0105 tego atutu ka\u017Cda strza\u0142a, kt\u00F3r\u0105 wystrzeli Mistyczny \u0141ucznik, otrzymuje premi\u0119 \u002B1 za ulepszenia. Premia ta obowi\u0105zuje tylko dla Mistycznego \u0141ucznika. Na ka\u017Cde dwa poziomy Mistycznego \u0141ucznika powy\u017Cej poziomu 1. premia zwi\u0119ksza si\u0119 o 1.\nU\u017Cycie: Automatyczne."
+        }
+      },
+      "Icon": "ife_x1encharr",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": {
+        "ID": "e9b553a8-0573-c9b2-61f0-73febe4581f3",
+        "Label": "Enchant Arrow XV"
+      },
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": {
+        "ID": "28bfbb60-a991-3f6b-03a4-701e6969ecae",
+        "Label": "Enchant Arrow XVII"
+      },
+      "CRModifier": 0.5,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "63d5c948-5ed2-4f31-94f8-672b0aaf07d6",
+      "Index": -1,
+      "Overrides": "28bfbb60-a991-3f6b-03a4-701e6969ecae",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_PRESTIGE_ENCHANT_ARROW_17",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 83876,
+        "EN": {
+          "M": "Enchant Arrow XVII"
+        },
+        "FR": {
+          "M": "Fl\u00E8che magique XVII"
+        },
+        "DE": {
+          "M": "Pfeil verzaubern XVII"
+        },
+        "IT": {
+          "M": "Incanta freccia XVII"
+        },
+        "ES": {
+          "M": "Encantar flecha XVII"
+        },
+        "PL": {
+          "M": "Zakl\u0119cie strza\u0142y XVII"
+        }
+      },
+      "Description": {
+        "Index": 8680,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1. This enchantment stacks with your weapon and arrow enchantments for attack roll and damage purposes, but only the highest enchantment from your bow or this ability is used to penetrate damage reduction. \nUse: Automatic.",
+          "F": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1.\nUse: Automatic."
+        },
+        "FR": {
+          "M": "Type de don : Classe\nCondition : Archer-mage\nFonctionnement : avec ce don, toute fl\u00E8che tir\u00E9e par l\u0027Archer-mage b\u00E9n\u00E9ficie d\u0027un enchantement de \u002B1. Ce bonus ne s\u0027applique qu\u0027\u00E0 l\u0027Archer-mage. Tous les deux niveaux suppl\u00E9mentaires apr\u00E8s le 1er, l\u0027enchantement est augment\u00E9 de \u002B1.\nUtilisation : automatique"
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse\nVoraussetzung: Arkaner Bogensch\u00FCtze.\nVorteil: Jeder Pfeil, den der Arkane Bogensch\u00FCtze verschie\u00DFt, wird automatisch wie ein Pfeil \u002B1 behandelt. Der Bonus gilt nur f\u00FCr den Arkanen Bogensch\u00FCtzen. F\u00FCr je zwei Stufen nach der 1. Stufe erh\u00F6ht sich der Bonus um \u002B1.\nGebrauch: Automatisch."
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe\nPrerequisito: arciere arcano\nDescrizione: grazie a questo talento, ogni freccia incoccata e scagliata da un arciere arcano acquisisce un bonus di potenziamento \u002B1. Tale bonus funziona solo per l\u0027arciere arcano. Ogni due livelli come arciere arcano oltre il livello 1, l\u0027incantamento aumenta di \u002B1.\nUso: automatico."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Arquero arcano.\nDetalles: Con esta dote, cualquier flecha que el arquero arcano cargue y dispare obtendr\u00E1 un bonificador \u002B1 de mejora. Este bonificador solo vale para el arquero arcano. Por cada dos niveles que tenga por encima del primero, la mejora aumentar\u00E1 un \u002B1.\nUso: Autom\u00E1tica."
+        },
+        "PL": {
+          "M": "Rodzaj atutu: Klasowy\nWymagania: Mistyczny \u0141ucznik.\nOpis: Za spraw\u0105 tego atutu ka\u017Cda strza\u0142a, kt\u00F3r\u0105 wystrzeli Mistyczny \u0141ucznik, otrzymuje premi\u0119 \u002B1 za ulepszenia. Premia ta obowi\u0105zuje tylko dla Mistycznego \u0141ucznika. Na ka\u017Cde dwa poziomy Mistycznego \u0141ucznika powy\u017Cej poziomu 1. premia zwi\u0119ksza si\u0119 o 1.\nU\u017Cycie: Automatyczne."
+        }
+      },
+      "Icon": "ife_x1encharr",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": {
+        "ID": "0304f0ae-6569-3566-fac8-00ea1844f7c7",
+        "Label": "Enchant Arrow XVI"
+      },
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": {
+        "ID": "8fe21686-8ade-7f4f-95b5-7d248103ff41",
+        "Label": "Enchant Arrow XVIII"
+      },
+      "CRModifier": 0.5,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "e0a9f05d-9b9c-4c51-bbc4-bc9fdff733a6",
+      "Index": -1,
+      "Overrides": "8fe21686-8ade-7f4f-95b5-7d248103ff41",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_PRESTIGE_ENCHANT_ARROW_18",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 83878,
+        "EN": {
+          "M": "Enchant Arrow XVIII"
+        },
+        "FR": {
+          "M": "Fl\u00E8che magique XVIII"
+        },
+        "DE": {
+          "M": "Pfeil verzaubern XVIII"
+        },
+        "IT": {
+          "M": "Incanta freccia XVIII"
+        },
+        "ES": {
+          "M": "Encantar flecha XVIII"
+        },
+        "PL": {
+          "M": "Zakl\u0119cie strza\u0142y XVII"
+        }
+      },
+      "Description": {
+        "Index": 8680,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1. This enchantment stacks with your weapon and arrow enchantments for attack roll and damage purposes, but only the highest enchantment from your bow or this ability is used to penetrate damage reduction. \nUse: Automatic.",
+          "F": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1.\nUse: Automatic."
+        },
+        "FR": {
+          "M": "Type de don : Classe\nCondition : Archer-mage\nFonctionnement : avec ce don, toute fl\u00E8che tir\u00E9e par l\u0027Archer-mage b\u00E9n\u00E9ficie d\u0027un enchantement de \u002B1. Ce bonus ne s\u0027applique qu\u0027\u00E0 l\u0027Archer-mage. Tous les deux niveaux suppl\u00E9mentaires apr\u00E8s le 1er, l\u0027enchantement est augment\u00E9 de \u002B1.\nUtilisation : automatique"
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse\nVoraussetzung: Arkaner Bogensch\u00FCtze.\nVorteil: Jeder Pfeil, den der Arkane Bogensch\u00FCtze verschie\u00DFt, wird automatisch wie ein Pfeil \u002B1 behandelt. Der Bonus gilt nur f\u00FCr den Arkanen Bogensch\u00FCtzen. F\u00FCr je zwei Stufen nach der 1. Stufe erh\u00F6ht sich der Bonus um \u002B1.\nGebrauch: Automatisch."
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe\nPrerequisito: arciere arcano\nDescrizione: grazie a questo talento, ogni freccia incoccata e scagliata da un arciere arcano acquisisce un bonus di potenziamento \u002B1. Tale bonus funziona solo per l\u0027arciere arcano. Ogni due livelli come arciere arcano oltre il livello 1, l\u0027incantamento aumenta di \u002B1.\nUso: automatico."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Arquero arcano.\nDetalles: Con esta dote, cualquier flecha que el arquero arcano cargue y dispare obtendr\u00E1 un bonificador \u002B1 de mejora. Este bonificador solo vale para el arquero arcano. Por cada dos niveles que tenga por encima del primero, la mejora aumentar\u00E1 un \u002B1.\nUso: Autom\u00E1tica."
+        },
+        "PL": {
+          "M": "Rodzaj atutu: Klasowy\nWymagania: Mistyczny \u0141ucznik.\nOpis: Za spraw\u0105 tego atutu ka\u017Cda strza\u0142a, kt\u00F3r\u0105 wystrzeli Mistyczny \u0141ucznik, otrzymuje premi\u0119 \u002B1 za ulepszenia. Premia ta obowi\u0105zuje tylko dla Mistycznego \u0141ucznika. Na ka\u017Cde dwa poziomy Mistycznego \u0141ucznika powy\u017Cej poziomu 1. premia zwi\u0119ksza si\u0119 o 1.\nU\u017Cycie: Automatyczne."
+        }
+      },
+      "Icon": "ife_x1encharr",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": {
+        "ID": "28bfbb60-a991-3f6b-03a4-701e6969ecae",
+        "Label": "Enchant Arrow XVII"
+      },
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": {
+        "ID": "3dc29093-b271-57a0-7da3-ae6f4b52f889",
+        "Label": "Enchant Arrow XIX"
+      },
+      "CRModifier": 0.5,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "2208795c-877b-4a03-ad4e-212bf325e209",
+      "Index": -1,
+      "Overrides": "e31f33a3-f796-c925-54f6-c94a3ec5f435",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_PRESTIGE_ENCHANT_ARROW_20",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 83880,
+        "EN": {
+          "M": "Enchant Arrow XX"
+        },
+        "FR": {
+          "M": "Fl\u00E8che magique XX"
+        },
+        "DE": {
+          "M": "Pfeil verzaubern XX"
+        },
+        "IT": {
+          "M": "Incanta freccia XX"
+        },
+        "ES": {
+          "M": "Encantar flecha XX"
+        },
+        "PL": {
+          "M": "Zakl\u0119cie strza\u0142y XX"
+        }
+      },
+      "Description": {
+        "Index": 8680,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1. This enchantment stacks with your weapon and arrow enchantments for attack roll and damage purposes, but only the highest enchantment from your bow or this ability is used to penetrate damage reduction. \nUse: Automatic.",
+          "F": "Type of Feat: Class\nPrerequisite: Arcane Archer.\nSpecifics: With this feat, every arrow an Arcane Archer nocks and lets fly gets a \u002B1 enhancement bonus. This bonus only works for the Arcane Archer. For every two levels of Arcane Archer past 1st, the enhancement goes up by \u002B1.\nUse: Automatic."
+        },
+        "FR": {
+          "M": "Type de don : Classe\nCondition : Archer-mage\nFonctionnement : avec ce don, toute fl\u00E8che tir\u00E9e par l\u0027Archer-mage b\u00E9n\u00E9ficie d\u0027un enchantement de \u002B1. Ce bonus ne s\u0027applique qu\u0027\u00E0 l\u0027Archer-mage. Tous les deux niveaux suppl\u00E9mentaires apr\u00E8s le 1er, l\u0027enchantement est augment\u00E9 de \u002B1.\nUtilisation : automatique"
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse\nVoraussetzung: Arkaner Bogensch\u00FCtze.\nVorteil: Jeder Pfeil, den der Arkane Bogensch\u00FCtze verschie\u00DFt, wird automatisch wie ein Pfeil \u002B1 behandelt. Der Bonus gilt nur f\u00FCr den Arkanen Bogensch\u00FCtzen. F\u00FCr je zwei Stufen nach der 1. Stufe erh\u00F6ht sich der Bonus um \u002B1.\nGebrauch: Automatisch."
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe\nPrerequisito: arciere arcano\nDescrizione: grazie a questo talento, ogni freccia incoccata e scagliata da un arciere arcano acquisisce un bonus di potenziamento \u002B1. Tale bonus funziona solo per l\u0027arciere arcano. Ogni due livelli come arciere arcano oltre il livello 1, l\u0027incantamento aumenta di \u002B1.\nUso: automatico."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Arquero arcano.\nDetalles: Con esta dote, cualquier flecha que el arquero arcano cargue y dispare obtendr\u00E1 un bonificador \u002B1 de mejora. Este bonificador solo vale para el arquero arcano. Por cada dos niveles que tenga por encima del primero, la mejora aumentar\u00E1 un \u002B1.\nUso: Autom\u00E1tica."
+        },
+        "PL": {
+          "M": "Rodzaj atutu: Klasowy\nWymagania: Mistyczny \u0141ucznik.\nOpis: Za spraw\u0105 tego atutu ka\u017Cda strza\u0142a, kt\u00F3r\u0105 wystrzeli Mistyczny \u0141ucznik, otrzymuje premi\u0119 \u002B1 za ulepszenia. Premia ta obowi\u0105zuje tylko dla Mistycznego \u0141ucznika. Na ka\u017Cde dwa poziomy Mistycznego \u0141ucznika powy\u017Cej poziomu 1. premia zwi\u0119ksza si\u0119 o 1.\nU\u017Cycie: Automatyczne."
+        }
+      },
+      "Icon": "ife_x1encharr",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": {
+        "ID": "3dc29093-b271-57a0-7da3-ae6f4b52f889",
+        "Label": "Enchant Arrow XIX"
+      },
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": null,
+      "CRModifier": 0.5,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
       "RequiredFeatSelection1": null,
       "RequiredFeatSelection2": null,
       "RequiredFeatSelection3": null,
@@ -10927,6 +12825,66 @@
         }
       },
       "Icon": "ife_x2epshiftr",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": null,
+      "CRModifier": 0,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": true,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "aa08a105-98f1-4249-86aa-3d1e4ea7b5bc",
+      "Index": 4,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Epic Shou Disciple",
+          "F": "New Feat"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Your martial artist abilities have allowed you to reach unprecedented levels of ability.\n\nHit Die: d10\nSkill Points at Each Additional Level: 2 \u002B Int Modifier.\nBonus Feats: The epic shou disciples gains a bonus feat every two levels, at levels 12, 14, 16, etc.\n\nEpic Shou Disciple Bonus Feats List (these are in addition to the regular bonus feat list shou disciples get above):\nArmor Skin, Blinding Speed, Damage Reduction, Energy Resistance, Epic Toughness, Improved Ki Strike, Improved Spell Resistance, Improved Stunning Fist, Self-Concealment.",
+          "F": "Your worship to Gruumsh has given you the ultimate toughness and unbridled rage that knows no bounds.\r\n \r\nHit Die: d12.\r\nSkill Points at Each Additional Level: 2 \u002B Int Modifier.\r\nBonus Feats: The epic eye of Gruumsh gains a bonus feat every four levels after 10th.\r\nSpecial:\r\n Ritual Scarring: an additional \u002B1 per 3 levels.\r\n Rage: Additional uses every 4 levels (12, 16, 20 etc.). Note the Eye of Gruumsh does not automatically get Greater Rage nor count as a Epic Barbarian for consideration of certain Epic feats.\r\n \r\nEpic Eye of Gruumsh Bonus Feats List:\r\nArmor Skin, Damage Reduction, Devastating Critical, Epic Toughness, Epic Prowess, Epic Weapon Focus, Mighty Rage, Overwhelming Critical, Superior Initiative, Terrifying Rage, Thundering Rage."
+        }
+      },
+      "Icon": "ir_monk",
       "MinAttackBonus": null,
       "MinStr": null,
       "MinDex": null,
@@ -13616,7 +15574,7 @@
       "RequiredSkill1Minimum": null,
       "RequiredSkill2": null,
       "RequiredSkill2Minimum": null,
-      "ToolsetCategory": "Other",
+      "ToolsetCategory": "ClassOrRacial",
       "IsHostile": false,
       "MinLevel": null,
       "MinLevelClass": null,
@@ -27365,66 +29323,6 @@
       "MaxLevel": null,
       "MinFortitudeSave": null,
       "RequiresEpic": false,
-      "UseActionQueue": true
-    },
-    {
-      "ID": "aa08a105-98f1-4249-86aa-3d1e4ea7b5bc",
-      "Index": 4,
-      "Overrides": null,
-      "Disabled": false,
-      "Hint": "",
-      "ScriptConstant": "",
-      "SourceLabel": "",
-      "ExtensionValues": {},
-      "Name": {
-        "Index": null,
-        "EN": {
-          "M": "Epic Shou Disciple",
-          "F": "New Feat"
-        }
-      },
-      "Description": {
-        "Index": null,
-        "EN": {
-          "M": "Your martial artist abilities have allowed you to reach unprecedented levels of ability.\n\nHit Die: d10\nSkill Points at Each Additional Level: 2 \u002B Int Modifier.\nBonus Feats: The epic shou disciples gains a bonus feat every two levels, at levels 12, 14, 16, etc.\n\nEpic Shou Disciple Bonus Feats List (these are in addition to the regular bonus feat list shou disciples get above):\nArmor Skin, Blinding Speed, Damage Reduction, Energy Resistance, Epic Toughness, Improved Ki Strike, Improved Spell Resistance, Improved Stunning Fist, Self-Concealment.",
-          "F": "Your worship to Gruumsh has given you the ultimate toughness and unbridled rage that knows no bounds.\r\n \r\nHit Die: d12.\r\nSkill Points at Each Additional Level: 2 \u002B Int Modifier.\r\nBonus Feats: The epic eye of Gruumsh gains a bonus feat every four levels after 10th.\r\nSpecial:\r\n Ritual Scarring: an additional \u002B1 per 3 levels.\r\n Rage: Additional uses every 4 levels (12, 16, 20 etc.). Note the Eye of Gruumsh does not automatically get Greater Rage nor count as a Epic Barbarian for consideration of certain Epic feats.\r\n \r\nEpic Eye of Gruumsh Bonus Feats List:\r\nArmor Skin, Damage Reduction, Devastating Critical, Epic Toughness, Epic Prowess, Epic Weapon Focus, Mighty Rage, Overwhelming Critical, Superior Initiative, Terrifying Rage, Thundering Rage."
-        }
-      },
-      "Icon": "ir_monk",
-      "MinAttackBonus": null,
-      "MinStr": null,
-      "MinDex": null,
-      "MinInt": null,
-      "MinWis": null,
-      "MinCon": null,
-      "MinCha": null,
-      "MinSpellLevel": null,
-      "RequiredFeat1": null,
-      "RequiredFeat2": null,
-      "UseableByAllClasses": false,
-      "Category": null,
-      "OnUseEffect": null,
-      "SuccessorFeat": null,
-      "CRModifier": 0,
-      "UsesPerDay": null,
-      "MasterFeat": null,
-      "TargetSelf": false,
-      "RequiredFeatSelection1": null,
-      "RequiredFeatSelection2": null,
-      "RequiredFeatSelection3": null,
-      "RequiredFeatSelection4": null,
-      "RequiredFeatSelection5": null,
-      "RequiredSkill1": null,
-      "RequiredSkill1Minimum": null,
-      "RequiredSkill2": null,
-      "RequiredSkill2Minimum": null,
-      "ToolsetCategory": "ClassOrRacial",
-      "IsHostile": false,
-      "MinLevel": null,
-      "MinLevelClass": null,
-      "MaxLevel": null,
-      "MinFortitudeSave": null,
-      "RequiresEpic": true,
       "UseActionQueue": true
     }
   ]
