@@ -4273,7 +4273,7 @@
       "Description": {
         "Index": 3795,
         "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 2, Bard 2\nInnate Level: 2\nSchool: Evocation\nDescriptor(s): Gas (Poison)\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Huge\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: Fortitude\nSpell Resistance: Yes\n\nThe caster blows forth a cloud of noxious air. Creatures in the area of effect are stunned and blinded for 1d6 rounds unless they save vs poison.",
+          "M": "Caster Level(s): Wizard / Sorcerer 2, Bard 2\nInnate Level: 2\nSchool: Conjuration\nDescriptor(s): Gas (Poison)\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Huge\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: Fortitude\nSpell Resistance: Yes\n\nThe caster blows forth a cloud of noxious air. Creatures in the area of effect are stunned and blinded for 1d6 rounds unless they save vs poison.",
           "F": "Caster Level(s): Wizard / Sorcerer 2, Bard 2\nInnate Level: 2\nSchool: Evocation\nDescriptor(s): Gas\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Huge\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: Fortitude\nSpell Resistance: Yes\n\nThe caster blows forth a cloud of noxious air. Enemies in the area of effect are stunned and blinded for 1d6 rounds."
         },
         "FR": {
@@ -4296,7 +4296,7 @@
         "Index": null
       },
       "Icon": "is_x2cldbwld",
-      "School": "V",
+      "School": "C",
       "Range": "S",
       "Components": [
         "V",
@@ -5916,15 +5916,16 @@
       "ID": "cbcbcfa9-62b8-4ce6-96d2-fd95901e56d0",
       "Index": -1,
       "Overrides": "2ff54bc7-d4d1-57dd-a754-f6abe21be737",
-      "Disabled": false,
-      "Hint": "Shifter version needs removing replace with base darkness",
+      "Disabled": true,
+      "Hint": "Darkness Shifter version",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
       "Name": {
         "Index": 786,
         "EN": {
-          "M": "Darkness"
+          "M": "Disabled",
+          "F": "Darkness"
         },
         "FR": {
           "M": "T\u00E9n\u00E8bres"
@@ -12566,7 +12567,7 @@
       "Description": {
         "Index": 6542,
         "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 4\nInnate Level: 4\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Large, 1d4 Tentacles, \u002B 1 / Caster Level (maximum 20)\nDuration: 1 Round / 2 Levels\nAdditional Counter Spells:\nSave: Fortitude Special\nSpell Resistance: No\n\nA field of thick, 10 feet long rubbery tentacles rises from the ground. Each is capable of grappling any creatures in the area doing 1d6\u002B4 points bludgeoning damage (as if a \u002B2 weapon). If successful, the target must then make a Fortitude saving throw or become paralyzed by the grappling tentacle. The tentacles are randomly spread out over the area of effect allowing no more than half of the tentacles to reach a single target in any given round. The inability of the tentacles to target small creatures makes all small creatures completely immune to the spells effects.\r\n\r\nGrapple attacks are done on an opposed check: 1d20 \u002B caster level (to a maximum of 20) \u002B 4 (tentacle\u0027s strength modifier) \u002B 4 (tentacle\u0027s size modifier) versus 1d20 \u002B targets base attack bonus \u002B strength modifier \u002B size modifier.",
+          "M": "Caster Level(s): Wizard / Sorcerer 4\nInnate Level: 4\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Large, 1d4 Tentacles, \u002B 1 / Caster Level (maximum 20)\nDuration: 1 Round / 2 Levels\nAdditional Counter Spells:\nSave: Fortitude Special\nSpell Resistance: No\n\nA field of thick, 10 feet long rubbery tentacles rises from the ground. Each is capable of grappling any creatures in the area doing 1d6\u002B4 points bludgeoning damage (as if a \u002B2 weapon). If successful, the target must then make a Fortitude saving throw or become paralyzed by the grappling tentacle. The tentacles are randomly spread out over the area of effect allowing no more than half of the tentacles to reach a single target in any given round. The inability of the tentacles to target small creatures makes all small creatures completely immune to the spells effects.\r\n\r\nGrapple checks are made with an opposed roll; caster: 1d20 \u002B caster level (to a maximum of 20) \u002B 4 (tentacle\u0027s strength modifier) \u002B 4 (tentacle\u0027 size modifier) vs. target: 1d20 \u002B base attack bonus \u002B strength modifier \u002B size modifier.",
           "F": "Caster Level(s): Wizard / Sorcerer 4\nInnate Level: 4\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Large, 1d4 Tentacles, \u002B 1 / Caster Level (maximum 20)\nDuration: 1 Round / 2 Levels\nAdditional Counter Spells:\nSave: Fortitude Special\nSpell Resistance: No\n\nA field of thick, 10 feet long rubbery tentacles rises from the ground.  Each is capable of grappling a target doing 1d6\u002B4 points bludgeoning damage. If successful, the target must then make a Fortitude saving throw or become paralyzed by the grappling tentacle. The tentacles are randomly spread out over the area of effect allowing no more than half of the tentacles to reach a single target in any given round. The inability of the tentacles to target small creatures makes all small creatures completely immune to the spells effects.\n"
         },
         "FR": {
@@ -37888,6 +37889,1443 @@
         "HarmsEnemies",
         "HarmsAllies"
       ]
+    },
+    {
+      "ID": "a4f9cb56-e543-4e67-a871-ec11b58c8e13",
+      "Index": -1,
+      "Overrides": "f0b42aa5-aead-0a2f-0414-6b887a2d14e9",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Ball_Lightning",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 3853,
+        "EN": {
+          "M": "Ball Lightning"
+        },
+        "FR": {
+          "M": "Boule de foudre"
+        },
+        "DE": {
+          "M": "Blitzkugeln"
+        },
+        "IT": {
+          "M": "Fulmine globulare"
+        },
+        "ES": {
+          "M": "Bola relampagueante"
+        },
+        "PL": {
+          "M": "Kula B\u0142yskawic"
+        }
+      },
+      "Description": {
+        "Index": 3854,
+        "EN": {
+          "M": "Caster Level(s): Wizard / Sorcerer 5\nInnate Level: 5\nSchool: Evocation\nDescriptor(s): Electricity\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Gargantuan\nDuration: Instantaneous\nAdditional Counter Spells:\nSave: Reflex 1/2\nSpell Resistance: Yes\n\nYou create a of ball of lightning for each each enemy in the targeted area of effect. The damage of the ball is 1d6 per level to a maximum of 15d6.",
+          "F": "Caster Level(s): Wizard / Sorcerer 5\nInnate Level: 5\nSchool: Evocation\nDescriptor(s): Electricity\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Single\nDuration: Instantaneous\nAdditional Counter Spells:\nSave: Reflex 1/2\nSpell Resistance: Yes\n\nYou create a ball of lightning that strikes your target. The damage of the ball is 1d6 per level to a maximum of 15d6."
+        },
+        "FR": {
+          "M": "Niveau : Magicien / Ensorceleur 5\nNiveau inn\u00E9 : 5\nEcole : Evocation\nCat\u00E9gorie(s) : \u00E9lectricit\u00E9\nComposante(s) : verbale, gestuelle\nPort\u00E9e : instantan\u00E9e\nZone d\u0027effet / cible : une seule\nDur\u00E9e : instantan\u00E9e\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : R\u00E9flexe, 1/2\nR\u00E9sistance \u00E0 la magie : oui\n\nVous cr\u00E9ez une sph\u00E8re d\u0027\u00E9clair qui frappe la cible d\u00E9sign\u00E9e et lui inflige 1d6 points de d\u00E9g\u00E2ts par niveau (maximum 15d6)."
+        },
+        "DE": {
+          "M": "Grad: HXM/MAG 5\nKalkulationsgrad: 5\nSchule: Hervorrufung\nKategorie: Elektrizit\u00E4t\nKomponenten: V, G\nReichweite: Mittel\nWirkungsbereich/Ziel: 1 Kreatur\nWirkungsdauer: Augenblicklich\nGegenzauber:\nRettungswurf: Reflex, halbiert\nZauberresistenz: Ja\n\nIhr erschafft eine Blitzkugel, die bei einem Ziel einschl\u00E4gt und 1W6 SP pro Zauberstufe verursacht (maximal 15W6)."
+        },
+        "IT": {
+          "M": "Livello dell\u2019incantatore: mago/stregone 5\nLivello innato: 5\nScuola: Invocazione\nDescrittore: elettricit\u00E0\nComponenti: verbale, somatica\nRaggio d\u0027azione: medio\nArea d\u0027effetto/bersaglio: singolo\nDurata: istantaneo\nControincantesimi addizionali:\nTiro salvezza: riflessi dimezza\nResistenza agli incantesimi: s\u00EC\n\nCrei un fulmine globulare che colpisce il tuo bersaglio. Il danno provocato \u00E8 pari a 1d6 per livello, fino a un massimo di 15d6."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Hechicero / Mago 5\nNivel innato: 5\nEscuela: Evocaci\u00F3n\nDescriptores: Electricidad\nComponentes: Verbal, Som\u00E1tico\nAlcance: Intermedio\n\u00C1rea de efecto / Objetivo: Individual\nDuraci\u00F3n: Instant\u00E1neo\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Reflejos 1/2\nResistencia a conjuros: S\u00ED\n\nCreas una bola de rayos que impacta en el objetivo. El da\u00F1o de la bola es 1d6 por nivel, hasta un m\u00E1ximo de 15d6."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Czarodziej/Czarownik 5\nPoziom wrodzony: 5\nSzko\u0142a: Wywo\u0142ywanie\nIdentyfikator(y): Elektryczno\u015B\u0107\nKomponent(y): Werbalny, Somatyczny\nZasi\u0119g: \u015Aredni\nObszar dzia\u0142ania / Cel: Pojedynczy\nCzas trwania: Natychmiastowy\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Refleks po\u0142owa\nOdporno\u015B\u0107 na czary: Tak\n\nCzar tworzy kul\u0119 b\u0142yskawic, kt\u00F3ra uderza w cel. Kula zadaje 1k6 obra\u017Ce\u0144 na poziom rzucaj\u0105cego, maksymalnie 15k6."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_x2balllghtng",
+      "School": "V",
+      "Range": "M",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Empower",
+        "Maximize",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Creature",
+        "Item",
+        "Door",
+        "Placeable"
+      ],
+      "ImpactScript": "X2_S0_BallLghtng",
+      "InnateLevel": 5,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_mehanelec03",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mehanelec03",
+      "ConjurationMaleSound": "vs_chant_evoc_lm",
+      "ConjurationFemaleSound": "vs_chant_evoc_lf",
+      "CastingAnimation": "Out",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": "vca_outsonic",
+      "CastingGroundEffect": null,
+      "CastingSound": "sca_outsonic",
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": "spr_ectoelec01",
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "HarmfulAoeDiscriminant",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": "Sphere",
+      "TargetSizeX": 8.33,
+      "TargetSizeY": null,
+      "TargetingFlags": [
+        "HarmsEnemies"
+      ]
+    },
+    {
+      "ID": "f44ed5f0-2d6b-4fa7-aea8-d3e1d9597c5c",
+      "Index": -1,
+      "Overrides": "e019b7fb-e5ae-0dd0-0e64-77808b2b25c6",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Bigbys_Clenched_Fist",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 2686,
+        "EN": {
+          "M": "Bigby\u0027s Clenched Fist"
+        },
+        "FR": {
+          "M": "Poing de Bigby"
+        },
+        "DE": {
+          "M": "Bigbys Geballte Faust"
+        },
+        "IT": {
+          "M": "Pugno serrato di Bigby"
+        },
+        "ES": {
+          "M": "Pu\u00F1o cerrado de Bigby"
+        },
+        "PL": {
+          "M": "Zaci\u015Bni\u0119ta D\u0142o\u0144 Bigby\u2019ego"
+        }
+      },
+      "Description": {
+        "Index": 2691,
+        "EN": {
+          "M": "Caster Level(s): Wizard / Sorcerer 8\nInnate Level: 8\nSchool: Evocation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Single\nDuration: 1 round / level\nAdditional Counter Spells:\nSave: Fortitude\nSpell Resistance: Yes\n\nA giant hand appears and attacks the target, once each round for the duration of the spell. Each hit causes 1d8\u002B11 points of blungeoning damage to the target and if they fail their saving throw they are stunned for that round as well.\r\n\r\nAttacks are made at d20 \u002B caster ability modifier \u002B caster level \u002B 11 (hand strength modifier) -1 (hand large size modifier) vs. target armor class. ",
+          "F": "Caster Level(s): Wizard / Sorcerer 8\nInnate Level: 8\nSchool: Evocation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Single\nDuration: 1 round / level\nAdditional Counter Spells:\nSave: Fortitude\nSpell Resistance: Yes\n\nA giant hand appears and attacks the target, once each round for the duration of the spell. Each hit causes 1d8\u002B11 points of damage to the target and if they fail their saving throw they are stunned for that round as well."
+        },
+        "FR": {
+          "M": "Niveau : Magicien / Ensorceleur 8\nNiveau inn\u00E9 : 8\nEcole : Evocation\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : longue\nZone d\u2019effet / cible : 1 cr\u00E9ature\nDur\u00E9e : 1 round/niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : Vigueur\nR\u00E9sistance \u00E0 la magie : oui\n\nUne main g\u00E9ante appara\u00EEt et attaque la cible une fois par round pendant toute la dur\u00E9e du sort. Chaque attaque inflige 1d8\u002B12 points de d\u00E9g\u00E2ts. Si la cible rate un jet de Vigueur, elle est sonn\u00E9e pour le round."
+        },
+        "DE": {
+          "M": "Grad: MAG/HXM 8\nKalkulationsgrad: 8\nSchule: Hervorrufung\nKategorie:\nKomponenten: V, G\nReichweite: Lang\nWirkungsbereich/Ziel: 1 Ziel\nWirkungsdauer: 1 Runde/Stufe\nGegenzauber:\nRettungswurf: Z\u00E4higkeit\nZauberresistenz: Ja\n\nEine riesige Hand taucht \u00FCber dem Ziel auf und greift es w\u00E4hrend der Wirkungsdauer des Zaubers einmal pro Runde an. Bei einem Treffer erleidet das Ziel 1W8\u002B11 SP und muss einen Z\u00E4higkeitswurf schaffen. Scheitert es, ist es f\u00FCr diese Runde bet\u00E4ubt."
+        },
+        "IT": {
+          "M": "Livello(i) dell\u0027incantatore: mago/stregone 8\nLivello innato: 8\nScuola: invocazione\nDescrittore(i):\nComponente(i): verbale, somatica\nRaggio d\u0027azione: lungo\nArea d\u0027effetto/Bersaglio: singolo\nDurata: 1 round/livello\nControincantesimi addizionali:\nTiro salvezza: tempra\nResistenza agli incantesimi: s\u00EC\n\nUna mano gigante si materializza e attacca il bersaglio, una volta per round, per tutta la durata dell\u0027incantesimo. Ogni colpo andato a segno infligge 1d8\u002B11 danni al bersaglio, e se questi non supera il suo tiro salvezza, rimane anche stordito per quel round."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Hechicero/Mago 8\nNivel innato: 8\nEscuela: Evocaci\u00F3n\nDescriptores:\nComponentes: Verbal, Som\u00E1tico\nAlcance: Largo\n\u00C1rea de efecto / Objetivo: Individual\nDuraci\u00F3n: 1 asalto/nivel\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Fortaleza\nResistencia a conjuros: S\u00ED\n\nUna mano gigante aparece y ataca al objetivo una vez por asalto que dure el conjuro. Cada golpe inflige 1d8\u002B11 puntos de da\u00F1o a los objetivos que, en caso de fallar la salvaci\u00F3n, tambi\u00E9n quedar\u00E1n aturdidos ese asalto."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Czarodziej/Czarownik 8\nPoziom wrodzony: 8\nSzko\u0142a: Wywo\u0142ywanie\nIdentyfikator(y):\nKomponent(y): Werbalny, Somatyczny\nZasi\u0119g: Daleki\nObszar dzia\u0142ania / Cel: Pojedynczy\nCzas trwania: 1 runda / poziom\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Brak\nOdporno\u015B\u0107 na czary: Tak\n\nOlbrzymia d\u0142o\u0144 pojawia si\u0119 i atakuje cel, jeden raz w ka\u017Cdej rundzie. Ka\u017Cde trafienie zadaje 1k8\u002B11 obra\u017Ce\u0144 i og\u0142usza cel na jedn\u0105 rund\u0119, je\u015Bli nie powiedzie si\u0119 mu rzut obronny."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_x1bigby4",
+      "School": "V",
+      "Range": "L",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Empower",
+        "Extend",
+        "Maximize",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Creature",
+        "Item",
+        "Door",
+        "Placeable"
+      ],
+      "ImpactScript": "x0_s0_bigby4",
+      "InnateLevel": 8,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_mehanacid03",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mehanacid03",
+      "ConjurationMaleSound": "vs_chant_conj_hm",
+      "ConjurationFemaleSound": "vs_chant_conj_hf",
+      "CastingAnimation": "Out",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": true,
+      "ProjectileModel": "vpr_bigby_c",
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": "spr_aroacid",
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "HarmfulRanged",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": true,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": true,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "290357d1-9047-4fed-9519-bd18146c58cc",
+      "Index": -1,
+      "Overrides": "112a3211-1c10-d64e-82e1-6762a916a9a5",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Bigbys_Crushing_Hand",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 2687,
+        "EN": {
+          "M": "Bigby\u0027s Crushing Hand"
+        },
+        "FR": {
+          "M": "Main broyeuse de Bigby"
+        },
+        "DE": {
+          "M": "Bigbys Zerdr\u00FCckende Hand"
+        },
+        "IT": {
+          "M": "Mano stritolatrice di Bigby"
+        },
+        "ES": {
+          "M": "Mano aplastante de Bigby"
+        },
+        "PL": {
+          "M": "Mia\u017Cd\u017C\u0105ca D\u0142o\u0144 Bigby\u2019ego"
+        }
+      },
+      "Description": {
+        "Index": 2692,
+        "EN": {
+          "M": "Caster Level(s): Wizard / Sorcerer 9\nInnate Level: 9\nSchool: Evocation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Single\nDuration: 1 round / level\nAdditional Counter Spells:\nSave: Fortitude\nSpell Resistance: Yes\n\nA giant hand appears and attacks the target. If it hits and succeeds in a grapple check, the target is held fast for the duration of the spell and suffers 2d6\u002B12 points of damage each round.\r\n\r\nAttacks are made at d20 \u002B caster ability modifier \u002B caster level \u002B 12 (hand strength modifier) -1 (hand large size modifier) vs. target armor class. \r\n\r\nGrapple checks are made with an opposed roll; caster: 1d20 \u002B caster ability modifier \u002B caster level \u002B 12 (hand strength modifier) \u002B 4 (hand size modifier) vs. target: 1d20 \u002B base attack bonus \u002B strength modifier \u002B size modifier.",
+          "F": "Caster Level(s): Wizard / Sorcerer 9\nInnate Level: 9\nSchool: Evocation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Single\nDuration: 1 round / level\nAdditional Counter Spells:\nSave: Fortitude\nSpell Resistance: Yes\n\nA giant hand appears and attacks the target. If it hits and succeeds in a grapple check, the target is held fast for the duration of the spell and suffers 2d6\u002B12 points of damage each round."
+        },
+        "FR": {
+          "M": "Niveau : Magicien / Ensorceleur 9\nNiveau inn\u00E9 : 9\nEcole : Evocation\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : longue\nZone d\u2019effet / cible : 1 cr\u00E9ature\nDur\u00E9e : 1 round/niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : Vigueur\nR\u00E9sistance \u00E0 la magie : oui\n\nUne main g\u00E9ante appara\u00EEt et attaque la cible. Si elle touche et qu\u0027elle r\u00E9ussit un jet de lutte, sa victime sera immobilis\u00E9e pendant toute la dur\u00E9e du sort et subira 2d6\u002B12 points de d\u00E9g\u00E2ts par round."
+        },
+        "DE": {
+          "M": "Grad: MAG/HXM 9\nKalkulationsgrad: 9\nSchule: Hervorrufung\nKategorie:\nKomponenten: V, G\nReichweite: Lang\nWirkungsbereich/Ziel: 1 Ziel\nWirkungsdauer: 1 Runde/Stufe\nGegenzauber:\nRettungswurf: Z\u00E4higkeit\nZauberresistenz: Ja\n\nEine riesige Hand taucht auf und greift das Ziel an. Wenn die Hand trifft und bei einem Ringkampfwurf erfolgreich ist, h\u00E4lt sie das Opfer f\u00FCr die Wirkungsdauer fest und richtet dabei pro Runde 2W6\u002B12 SP an."
+        },
+        "IT": {
+          "M": "Livello(i) dell\u0027incantatore: mago / stregone 9\nLivello innato: 9\nScuola: invocazione\nDescrittore(i):\nComponente(i): verbale, somatica\nRaggio d\u0027azione: lungo\nArea d\u0027effetto / bersaglio: singolo\nDurata: 1 round per livello\nControincantesimi addizionali:\nTiro salvezza: tempra\nResistenza agli incantesimi: s\u00EC\n\nUna mano gigante si materializza e attacca il bersaglio. Se l\u0027attacco della mano va a segno e supera una prova di lottare, l\u0027avversario \u00E8 bloccato per tutta la durata dell\u0027incantesimo e subisce 2d6\u002B12 danni a ogni round."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Hechicero/Mago 9\nNivel innato: 9\nEscuela: Evocaci\u00F3n\nDescriptores:\nComponentes: Verbal, Som\u00E1tico\nAlcance: Largo\n\u00C1rea de efecto / Objetivo: Individual\nDuraci\u00F3n: 1 asalto/nivel\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Fortaleza\nResistencia a conjuros: S\u00ED\n\nUna mano gigante aparece y ataca al objetivo. Si lo alcanza y tiene \u00E9xito en una prueba de presa, el oponente quedar\u00E1 aprisionado en ella mientras dure el conjuro y sufrir\u00E1 2d6\u002B12 puntos de da\u00F1o por asalto."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Czarodziej/Czarownik 9\nPoziom wrodzony: 9\nSzko\u0142a: Wywo\u0142ywanie\nIdentyfikator(y):\nKomponent(y): Werbalny, Somatyczny\nZasi\u0119g: Daleki\nObszar dzia\u0142ania / Cel: Pojedynczy\nCzas trwania: 1 runda / poziom\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Brak\nOdporno\u015B\u0107 na czary: Tak\n\nOlbrzymia d\u0142o\u0144 pojawia si\u0119 i atakuje cel. Je\u015Bli d\u0142o\u0144 trafi i uda jej si\u0119 test na z\u0142apanie, ofiara b\u0119dzie schwytana przez czas dzia\u0142ania czaru, a d\u0142o\u0144 b\u0119dzie j\u0105 zgniata\u0107, zadaj\u0105c co rund\u0119 2k6\u002B12 obra\u017Ce\u0144."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_x1bigby5",
+      "School": "V",
+      "Range": "L",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Empower",
+        "Extend",
+        "Maximize",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Creature",
+        "Item",
+        "Door",
+        "Placeable"
+      ],
+      "ImpactScript": "x0_s0_bigby5",
+      "InnateLevel": 9,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_mehanacid03",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mehanacid03",
+      "ConjurationMaleSound": "vs_chant_conj_hm",
+      "ConjurationFemaleSound": "vs_chant_conj_hf",
+      "CastingAnimation": "Out",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": true,
+      "ProjectileModel": "vpr_bigby_o",
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": "spr_aroacid",
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "HarmfulRanged",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": true,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": true,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "d9baf9b7-a907-4ea1-a7fc-810060d3f9dc",
+      "Index": -1,
+      "Overrides": "08c2ca68-70c0-2ffe-79bd-d1b6a5124a3c",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Bigbys_Forceful_Hand",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 2684,
+        "EN": {
+          "M": "Bigby\u0027s Forceful Hand"
+        },
+        "FR": {
+          "M": "Main imp\u00E9rieuse de Bigby"
+        },
+        "DE": {
+          "M": "Bigbys Kr\u00E4ftige Hand"
+        },
+        "IT": {
+          "M": "Mano possente di Bigby"
+        },
+        "ES": {
+          "M": "Mano forzuda de Bigby"
+        },
+        "PL": {
+          "M": "Mocarna D\u0142o\u0144 Bigby\u2019ego"
+        }
+      },
+      "Description": {
+        "Index": 2689,
+        "EN": {
+          "M": "Caster Level(s): Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Evocation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Single\nDuration: 1 round / level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: Yes\n\nA giant hand appears and attempts to bull rush one target. The hand gains a \u002B14 bonus on the Strength check. A target that is bull rushed is knocked down and is dazed for the duration of the spell.\r\n\r\nBull rush checks are made with an opposed roll; caster: 1d20 \u002B 14 (hand strength modifier) vs. target: 1d20 \u002B strength modifier \u002B size modifier.",
+          "F": "Caster Level(s): Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Evocation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Single\nDuration: 1 round / level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: Yes\n\nA giant hand appears and attempts to bull rush one target. The hand gains a \u002B14 bonus on the Strength check. A target that is bull rushed is knocked down and is dazed for the duration of the spell."
+        },
+        "FR": {
+          "M": "Niveau : Magicien / Ensorceleur 6\nNiveau inn\u00E9 : 6\nEcole : Evocation\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : longue\nZone d\u2019effet / cible : 1 cr\u00E9ature\nDur\u00E9e : 1 round/niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : aucun\nR\u00E9sistance \u00E0 la magie : oui\n\nUne main g\u00E9ante appara\u00EEt et tente de frapper une cible comme lors d\u0027une Charge \u00E0 mains nues. La main b\u00E9n\u00E9ficie d\u0027un bonus de \u002B14 \u00E0 son jet de Force. La victime subit 1d8 points de d\u00E9g\u00E2ts et elle est sonn\u00E9e pendant toute la dur\u00E9e du sort."
+        },
+        "DE": {
+          "M": "Grad: MAG/HXM 6\nKalkulationsgrad: 6\nSchule: Hervorrufung\nKategorie:\nKomponenten: V, G\nReichweite: Lang\nWirkungsbereich/Ziel: 1 Ziel\nWirkungsdauer: 1 Runde/Stufe\nGegenzauber:\nRettungswurf: Nein\nZauberresistenz: Ja\n\nEine riesige Hand taucht auf und macht einen Ansturm auf ein Ziel. Die Hand erh\u00E4lt \u002B14 auf ihren St\u00E4rkewurf. Wenn der Ansturm erfolgreich ist, wird das Ziel zu Boden geworfen und ist f\u00FCr die Wirkungsdauer des Zaubers benommen."
+        },
+        "IT": {
+          "M": "Livello(i) dell\u0027incantatore: mago/stregone 6\nLivello innato: 6\nScuola: invocazione\nDescrittore(i):\nComponente(i): verbale, somatica\nRaggio d\u0027azione: lungo\nArea d\u0027effetto/Bersaglio: singolo\nDurata: 1 round/livello\nControincantesimi addizionali:\nTiro salvezza: nessuno\nResistenza agli incantesimi: s\u00EC\n\nUna mano gigante si materializza e tenta di effettuare una spinta su 1 bersaglio. La mano ottiene un bonus di \u002B14 alla prova di forza. Un personaggio spinto viene gettato a terra e rimane frastornato per la durata dell\u0027incantesimo."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Hechicero/Mago 6\nNivel innato: 6\nEscuela: Evocaci\u00F3n\nDescriptores:\nComponentes: Verbal, Som\u00E1tico\nAlcance: Largo\n\u00C1rea de efecto / Objetivo: Individual\nDuraci\u00F3n: 1 asalto/nivel\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Ninguno\nResistencia a conjuros: S\u00ED\n\nAparece una mano gigante que intenta empujar a un objetivo. La mano recibe un bonificador \u002B14 a la prueba de Fuerza. El objetivo es abatido y queda atontado mientras dure el conjuro."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Czarodziej/Czarownik 6\nPoziom wrodzony: 6\nSzko\u0142a: Wywo\u0142ywanie\nIdentyfikator(y):\nKomponent(y): Werbalny, Somatyczny\nZasi\u0119g: Daleki\nObszar dzia\u0142ania / Cel: Pojedynczy\nCzas trwania: 1 runda / poziom\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Brak\nOdporno\u015B\u0107 na czary: Tak\n\nOlbrzymia d\u0142o\u0144 pojawia si\u0119 przed celem i stara si\u0119 go staranowa\u0107. D\u0142o\u0144 otrzymuje premi\u0119 \u002B14 do testu Si\u0142y. Przewr\u00F3cona ofiara jest oszo\u0142omiona przez czas dzia\u0142ania czaru."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_x1bigby2",
+      "School": "V",
+      "Range": "L",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Creature",
+        "Item",
+        "Door",
+        "Placeable"
+      ],
+      "ImpactScript": "x0_s0_bigby2",
+      "InnateLevel": 6,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_mehanacid03",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mehanacid02",
+      "ConjurationMaleSound": "vs_chant_conj_lm",
+      "ConjurationFemaleSound": "vs_chant_conj_lf",
+      "CastingAnimation": "Out",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": true,
+      "ProjectileModel": "vpr_bigby_c",
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": "spr_aroacid",
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "HarmfulRanged",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": true,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": true,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "0d552dec-1856-4a99-acfd-8eb234ca0410",
+      "Index": -1,
+      "Overrides": "34981af4-f549-b832-05bd-11d70051782b",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Bigbys_Grasping_Hand",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 2685,
+        "EN": {
+          "M": "Bigby\u0027s Grasping Hand"
+        },
+        "FR": {
+          "M": "Poigne de Bigby"
+        },
+        "DE": {
+          "M": "Bigbys Zugreifende Hand"
+        },
+        "IT": {
+          "M": "Mano stringente di Bigby"
+        },
+        "ES": {
+          "M": "Mano aferradora de Bigby"
+        },
+        "PL": {
+          "M": "Chwytaj\u0105ca D\u0142o\u0144 Bigby\u2019ego"
+        }
+      },
+      "Description": {
+        "Index": 2690,
+        "EN": {
+          "M": "Caster Level(s): Wizard / Sorcerer 7\nInnate Level: 7\nSchool: Evocation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Single\nDuration: 1 round / level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: Yes\n\nA giant hand appears and attacks the target. If the hand hits and succeeds in a grapple check the opponent will be held for the duration of the spell.\r\n\r\nAttacks are made at d20 \u002B caster ability modifier \u002B caster level \u002B 10 (hand strength modifier) -1 (hand large size modifier) vs. target armor class. \r\n\r\nGrapple checks are made with an opposed roll; caster: 1d20 \u002B caster ability modifier \u002B caster level \u002B 10 (hand strength modifier) \u002B 4 (hand size modifier) vs. target: 1d20 \u002B base attack bonus \u002B strength modifier \u002B size modifier.",
+          "F": "Caster Level(s): Wizard / Sorcerer 7\nInnate Level: 7\nSchool: Evocation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Single\nDuration: 1 round / level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: Yes\n\nA giant hand appears and attacks the target. If the hand hits and succeeds in a grapple check the opponent will be held for the duration of the spell."
+        },
+        "FR": {
+          "M": "Niveau : Magicien / Ensorceleur 7\nNiveau inn\u00E9 : 7\nEcole : Evocation\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : longue\nZone d\u2019effet / cible : 1 cr\u00E9ature\nDur\u00E9e : 1 round/niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : aucun\nR\u00E9sistance \u00E0 la magie : oui\n\nUne main g\u00E9ante appara\u00EEt devant la cible et l\u0027attaque. Si elle touche et qu\u0027elle r\u00E9ussit un jet de lutte, sa victime sera immobilis\u00E9e pendant toute la dur\u00E9e du sort."
+        },
+        "DE": {
+          "M": "Grad: MAG/HXM 7\nKalkulationsgrad: 7\nSchule: Hervorrufung\nKategorie:\nKomponenten: V, G\nReichweite: Lang\nWirkungsbereich/Ziel: 1 Ziel\nWirkungsdauer: 1 Runde/Stufe\nGegenzauber:\nRettungswurf: Nein\nZauberresistenz: Ja\n\nEine riesige Hand taucht \u00FCber dem Ziel auf und versucht, es zu packen. Wenn die Hand trifft und bei einem Ringkampfwurf erfolgreich ist, wird das Opfer f\u00FCr die Wirkungsdauer festgehalten."
+        },
+        "IT": {
+          "M": "Livello(i) dell\u0027incantatore: mago / stregone 7\nLivello innato: 7\nScuola: invocazione\nDescrittore(i):\nComponente(i): verbale, somatica\nRaggio d\u0027azione: lungo\nArea d\u0027effetto / bersaglio: singolo\nDurata: 1 round per livello\nControincantesimi addizionali:\nTiro salvezza: nessuno\nResistenza agli incantesimi: s\u00EC\n\nUna mano gigante si materializza e attacca il bersaglio. Se l\u0027attacco della mano va a segno e supera una prova di lotta, l\u0027avversario \u00E8 bloccato per tutta la durata dell\u0027incantesimo."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Hechicero/Mago 7\nNivel innato: 7\nEscuela: Evocaci\u00F3n\nDescriptores:\nComponentes: Verbal, Som\u00E1tico\nAlcance: Largo\n\u00C1rea de efecto / Objetivo: Individual\nDuraci\u00F3n: 1 asalto/nivel\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Ninguno\nResistencia a conjuros: S\u00ED\n\nUna mano gigante aparece y ataca al objetivo. Si lo alcanza y tiene \u00E9xito en una prueba de presa, el oponente quedar\u00E1 aprisionado en ella mientras dure el conjuro."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Czarodziej/Czarownik 7\nPoziom wrodzony: 7\nSzko\u0142a: Wywo\u0142ywanie\nIdentyfikator(y):\nKomponent(y): Werbalny, Somatyczny\nZasi\u0119g: Daleki\nObszar dzia\u0142ania / Cel: Pojedynczy\nCzas trwania: 1 runda / poziom\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Brak\nOdporno\u015B\u0107 na czary: Tak\n\nOlbrzymia d\u0142o\u0144 pojawia si\u0119 i atakuje cel. Je\u015Bli trafi i uda jej si\u0119 test na z\u0142apanie, ofiara b\u0119dzie schwytana przez czas dzia\u0142ania czaru."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_x1bigby3",
+      "School": "V",
+      "Range": "L",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Creature",
+        "Item",
+        "Door",
+        "Placeable"
+      ],
+      "ImpactScript": "x0_s0_bigby3",
+      "InnateLevel": 7,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_mehanacid03",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mehanacid03",
+      "ConjurationMaleSound": "vs_chant_conj_hm",
+      "ConjurationFemaleSound": "vs_chant_conj_hf",
+      "CastingAnimation": "Out",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": true,
+      "ProjectileModel": "vpr_bigby_o",
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": "spr_aroacid",
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "HarmfulRanged",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": true,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": true,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "8d58c605-f6e6-4e42-9b6a-b1c7947bb648",
+      "Index": -1,
+      "Overrides": "af2a1dd4-9af6-9dba-0838-ee9317548819",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Bigbys_Interposing_Hand",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 2683,
+        "EN": {
+          "M": "Bigby\u0027s Interposing Hand"
+        },
+        "FR": {
+          "M": "Main interpos\u00E9e de Bigby"
+        },
+        "DE": {
+          "M": "Bigbys Behindernde Hand"
+        },
+        "IT": {
+          "M": "Mano interposta di Bigby"
+        },
+        "ES": {
+          "M": "Mano interpuesta de Bigby"
+        },
+        "PL": {
+          "M": "Rozdzielaj\u0105ca D\u0142o\u0144 Bigby\u2019ego"
+        }
+      },
+      "Description": {
+        "Index": 2688,
+        "EN": {
+          "M": "Caster Level(s): Wizard / Sorcerer 5\nInnate Level: 5\nSchool: Evocation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Single\nDuration: 1 round / level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: Yes\n\nA giant hand appears over the target, making it difficult for him to attack. He receives a -10 penalty to all attack rolls for the duration of the spell."
+        },
+        "FR": {
+          "M": "Niveau : Magicien / Ensorceleur 5\nNiveau inn\u00E9 : 5\nEcole : Evocation\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : longue\nZone d\u2019effet / cible : 1 cr\u00E9ature\nDur\u00E9e : 1 round/niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : aucun\nR\u00E9sistance \u00E0 la magie : oui\n\nUne main g\u00E9ante appara\u00EEt devant la cible, qui est alors g\u00EAn\u00E9e pour attaquer. Elle subit une p\u00E9nalit\u00E9 de -10 \u00E0 ses jets d\u0027attaque pendant toute la dur\u00E9e du sort."
+        },
+        "DE": {
+          "M": "Grad: MAG/HXM 5\nKalkulationsgrad: 5\nSchule: Hervorrufung\nKategorie:\nKomponenten: V, G\nReichweite: Lang\nWirkungsbereich/Ziel: 1 Ziel\nWirkungsdauer: 1 Runde/Stufe\nGegenzauber:\nRettungswurf: Nein\nZauberresistenz: Ja\n\nEine riesige Hand taucht \u00FCber dem Ziel auf und tut alles, um es bei seinen Angriffen zu behindern. Das Ziel erh\u00E4lt w\u00E4hrend der Wirkungsdauer -10 auf Angriffsw\u00FCrfe."
+        },
+        "IT": {
+          "M": "Livello(i) dell\u0027incantatore: mago / stregone 5\nLivello innato: 5\nScuola: invocazione\nDescrittore(i):\nComponente(i): verbale, somatica\nRaggio d\u0027azione: lungo\nArea d\u0027effetto / bersaglio: singolo\nDurata: 1 round per livello\nControincantesimi addizionali:\nTiro salvezza: nessuno\nResistenza agli incantesimi: s\u00EC\n\nUna mano gigante si materializza attorno al bersaglio, rendendogli difficile ogni attacco. Il bersaglio subisce una penalit\u00E0 di -10 a tutti i tiri per colpire per la durata dell\u0027incantesimo."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Hechicero/Mago 5\nNivel innato: 5\nEscuela: Evocaci\u00F3n\nDescriptores:\nComponentes: Verbal, Som\u00E1tico\nAlcance: Largo\n\u00C1rea de efecto / Objetivo: Individual\nDuraci\u00F3n: 1 asalto/nivel\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Ninguno\nResistencia a conjuros: S\u00ED\n\nUna mano gigante aparece encima del objetivo y hace que le resulte m\u00E1s dif\u00EDcil atacar. Este sufre un penalizador \u201310 a todas las tiradas de ataque mientras dure el conjuro."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Czarodziej/Czarownik 5\nPoziom wrodzony: 5\nSzko\u0142a: Wywo\u0142ywanie\nIdentyfikator(y):\nKomponent(y): Werbalny, Somatyczny\nZasi\u0119g: Daleki\nObszar dzia\u0142ania / Cel: Pojedynczy\nCzas trwania: 1 runda / poziom\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Brak\nOdporno\u015B\u0107 na czary: Tak\n\nOlbrzymia d\u0142o\u0144 pojawia si\u0119 nad celem, utrudniaj\u0105c mu atakowanie. Istota blokowana w ten spos\u00F3b otrzymuje modyfikator \u201310 do rzut\u00F3w ataku, dop\u00F3ki dzia\u0142a ten czar."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_x1bigby1",
+      "School": "V",
+      "Range": "L",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Creature",
+        "Item",
+        "Door",
+        "Placeable"
+      ],
+      "ImpactScript": "x0_s0_bigby1",
+      "InnateLevel": 5,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_mehanacid03",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mehanacid03",
+      "ConjurationMaleSound": "vs_chant_conj_lm",
+      "ConjurationFemaleSound": "vs_chant_conj_lf",
+      "CastingAnimation": "Out",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": true,
+      "ProjectileModel": "vpr_bigby_o",
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": "spr_aroacid",
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "HarmfulRanged",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": true,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": true,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "ecad1397-df89-4209-ad71-a20bf422ee71",
+      "Index": -1,
+      "Overrides": "1d5548c2-b03e-f728-b471-5e06c3729ded",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Blade_Barrier",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 755,
+        "EN": {
+          "M": "Blade Barrier"
+        },
+        "FR": {
+          "M": "Barri\u00E8re de lames"
+        },
+        "DE": {
+          "M": "Klingenbarriere"
+        },
+        "IT": {
+          "M": "Barriera di Lame"
+        },
+        "ES": {
+          "M": "Barrera de cuchillas"
+        },
+        "PL": {
+          "M": "Bariera z Ostrzy"
+        }
+      },
+      "Description": {
+        "Index": 6101,
+        "EN": {
+          "M": "Caster Level(s): Cleric 6\nInnate Level: 6\nSchool: Evocation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Wall 30 ft Long\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: Reflex 1/2\nSpell Resistance: Yes\n\nBlade Barrier brings into being a 30-ft long and 3-ft wide wall of stabbing blades. All those passing through the wall take 1d6 points of damage per caster level."
+        },
+        "FR": {
+          "M": "Niveau : Pr\u00EAtre 6\nNiveau inn\u00E9 : 6\nEcole : Evocation\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : moyenne\nZone d\u0027effet / cible : mur de 10 m\u00E8tres de long\nDur\u00E9e : 1 round/niveau\nContre-sorts suppl\u00E9mentaires :\nJet de sauvegarde : R\u00E9flexes, diminue\nR\u00E9sistance \u00E0 la magie : oui\n\nBarri\u00E8re de lames mat\u00E9rialise un mur de lames de 10 m\u00E8tres de long sur 1 m\u00E8tre de large. Tous ceux qui passent au travers subissent 1d6 points de d\u00E9g\u00E2ts par niveau du lanceur."
+        },
+        "DE": {
+          "M": "Grad: KLE 6\nKalkulationsgrad: 6\nSchule: Hervorrufung\nKategorie:\nKomponenten: V, G\nReichweite: Mittel\nWirkungsbereich/Ziel: Mauer, 9 m L\u00E4nge\nWirkungsdauer: 1 Runde/Stufe\nGegenzauber:\nRettungswurf: Reflex, halber Schaden\nZauberresistenz: Ja\n\nDer Zauber erschafft eine 9 m lange und 90 cm starke Wand aus wirbelnden Klingen. Alle Kreaturen, die den Wirkungsbereich durchqueren, erleiden 1W6 SP je Zauberstufe."
+        },
+        "IT": {
+          "M": "Livello(i) dell\u0027incantatore: chierico 6\nLivello innato: 6\nScuola: invocazione\nDescrittore(i):\nComponente(i): verbale, somatica\nRaggio d\u0027azione: medio\nArea d\u0027effetto / bersaglio: muro lungo 9 m\nDurata: 1 round per livello\nControincantesimi addizionali:\nTiro salvezza: riflessi dimezza\nResistenza agli incantesimi: s\u00EC\n\nBarriera di lame crea un muro di lame penetranti lungo 9 m e largo 90 cm. Tutti coloro che attraversano il muro subiscono 1d6 danni per livello dell\u0027incantatore."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Cl\u00E9rigo 6\nNivel innato: 6\nEscuela: Evocaci\u00F3n\nDescriptores:\nComponentes: Verbal, Som\u00E1tico\nAlcance: Intermedio\n\u00C1rea de efecto / Objetivo: Muro de 30 pies de longitud\nDuraci\u00F3n: 1 asalto/nivel\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Reflejos 1/2\nResistencia a conjuros: S\u00ED\n\nBarrera de cuchillas forma un muro de 30 pies de largo por 3 de ancho de afiladas cuchillas. Todo el que pase a trav\u00E9s del muro sufrir\u00E1 1d6 puntos de da\u00F1o por nivel de lanzador."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Kap\u0142an 6\nPoziom wrodzony: 6\nSzko\u0142a: Wywo\u0142ywanie\nIdentyfikator(y):\nKomponent(y): Werbalny, Somatyczny\nZasi\u0119g: \u015Aredni\nObszar dzia\u0142ania / Cel: \u015Aciana o d\u0142ugo\u015Bci 10 metr\u00F3w\nCzas trwania: 1 runda / poziom\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Refleks, zmniejsza obra\u017Cenia\nOdporno\u015B\u0107 na czary: Tak\n\nBariera z Ostrzy tworzy d\u0142ug\u0105 na 10 metr\u00F3w i szerok\u0105 na metr \u015Bcian\u0119 wiruj\u0105cych ostrzy. Wszyscy, kt\u00F3rzy przechodz\u0105 przez Barier\u0119, otrzymuj\u0105 1k6 obra\u017Ce\u0144 na poziom kap\u0142ana."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_bladebar",
+      "School": "V",
+      "Range": "M",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Empower",
+        "Extend",
+        "Maximize",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Creature",
+        "Area",
+        "Item",
+        "Placeable"
+      ],
+      "ImpactScript": "NW_S0_BladeBar",
+      "InnateLevel": 6,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_mehanevil02",
+      "ConjurationGroundEffect": "vco_lgrinevil01",
+      "ConjurationSound": "sco_lgrinevil01",
+      "ConjurationMaleSound": "vs_chant_evoc_hm",
+      "ConjurationFemaleSound": "vs_chant_evoc_hf",
+      "CastingAnimation": "Area",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": true,
+      "ProjectileModel": "vpr_los",
+      "ProjectileType": "Accelerating",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": "spr_los",
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "HarmfulAoeIndiscriminant",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": true,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": true,
+      "TargetShape": "Rectangle",
+      "TargetSizeX": 1,
+      "TargetSizeY": 10,
+      "TargetingFlags": [
+        "HarmsEnemies",
+        "HarmsAllies"
+      ]
+    },
+    {
+      "ID": "2ffc8ecf-4dfd-4ac9-9f91-19cb1a6cb02d",
+      "Index": -1,
+      "Overrides": "b5e820f6-8fd4-bfb5-0cef-78da0aab7360",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Call_Lightning",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 761,
+        "EN": {
+          "M": "Call Lightning"
+        },
+        "FR": {
+          "M": "Appel de la foudre"
+        },
+        "DE": {
+          "M": "Blitze herbeirufen"
+        },
+        "IT": {
+          "M": "Invocare il Fulmine"
+        },
+        "ES": {
+          "M": "Llamar al rel\u00E1mpago"
+        },
+        "PL": {
+          "M": "Wezwanie B\u0142yskawic"
+        }
+      },
+      "Description": {
+        "Index": 6107,
+        "EN": {
+          "M": "Caster Level(s): Druid 3\nInnate Level: 3\nSchool: Evocation\nDescriptor(s): Electricity\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Large\nDuration: Instant\nAdditional Counter Spells:\nSave: Reflex 1/2\nSpell Resistance: Yes\n\nAll enemies within the area of effect take 1d6 points of electrical damage per caster level, to a maximum of 10d6.",
+          "F": "Caster Level(s): Druid 3\nInnate Level: 3\nSchool: Evocation\nDescriptor(s): Electricity\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Large\nDuration: Instant\nAdditional Counter Spells:\nSave: Reflex 1/2\nSpell Resistance: Yes\n\nAll enemies within the area of effect  take 1d6 points of electrical damage per caster level, to a maximum of 10d6."
+        },
+        "FR": {
+          "M": "Niveau : Druide 3\nNiveau inn\u00E9 : 3\nEcole : Evocation\nCat\u00E9gorie(s) : \u00E9lectricit\u00E9\nComposante(s) : verbale, gestuelle\nPort\u00E9e : longue\nZone d\u0027effet / cible : grande\nDur\u00E9e : instantan\u00E9e\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : R\u00E9flexes 1/2\nR\u00E9sistance \u00E0 la magie : oui\n\nTous les ennemis dans la zone d\u0027effet subissent 1d6 points de d\u00E9g\u00E2ts d\u0027Electricit\u00E9 par niveau du lanceur de sorts, jusqu\u0027\u00E0 un maximum de 10d6."
+        },
+        "DE": {
+          "M": "Grad: DRU 3\nKalkulationsgrad: 3\nSchule: Hervorrufung\nKategorie: Elektrizit\u00E4t\nKomponenten: V, G\nReichweite: Lang\nWirkungsbereich/Ziel: Gro\u00DF\nWirkungsdauer: Augenblicklich\nGegenzauber:\nRettungswurf: Reflex, halbiert\nZauberresistenz: Ja\n\nAlle Feinde im Wirkungsbereich erleiden 1W6 SP je Zauberstufe, bis zu einem Maximum von 10W6 SP."
+        },
+        "IT": {
+          "M": "Livello(i) dell\u0027incantatore: Druido 3\nLivello Innato: 3\nScuola: Invocazione\nDescrittore(i): Elettricit\u00E0\nComponente(i): Verbale, Somatica\nRaggio d\u0027azione: Lungo\nArea d\u0027effetto / Bersaglio: Grande\nDurata: Istantanea\nControincantesimi addizionali:\nTiro salvezza: Riflessi dimezza\nResistenza agli incantesimi: S\u00EC\n\nTutti i nemici all\u0027interno dell\u0027area d\u0027effetto subiscono 1d6 danni da elettricit\u00E0 per livello dell\u2019incantatore, fino a un massimo di 10d6."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Druida 3\nNivel innato: 3\nEscuela: Evocaci\u00F3n\nDescriptores: Electricidad\nComponentes: Verbal, Som\u00E1tico\nAlcance: Largo\n\u00C1rea de efecto / Objetivo: Grande\nDuraci\u00F3n: Instant\u00E1neo\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Reflejos 1/2\nResistencia a conjuros: S\u00ED\n\nTodos los enemigos dentro del \u00E1rea de efecto sufren 1d6 puntos de da\u00F1o el\u00E9ctrico por nivel de lanzador, hasta un m\u00E1ximo de 10d6."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Druid 3\nPoziom wrodzony: 3\nSzko\u0142a: Wywo\u0142ywanie\nIdentyfikator(y): Elektryczno\u015B\u0107\nKomponent(y): Werbalny, Somatyczny\nZasi\u0119g: Daleki\nObszar dzia\u0142ania / Cel: Du\u017Cy\nCzas trwania: natychmiastowy\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Refleks po\u0142owa\nOdporno\u015B\u0107 na czary: Tak\n\nWszyscy wrogowie na obszarze dzia\u0142ania czaru otrzymuj\u0105 1k6 obra\u017Ce\u0144 na poziom druida, maksymalnie 10k6."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_calllightn",
+      "School": "V",
+      "Range": "L",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Empower",
+        "Maximize",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Creature",
+        "Area",
+        "Item",
+        "Door",
+        "Placeable"
+      ],
+      "ImpactScript": "NW_S0_CallLghtn",
+      "InnateLevel": 3,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Head",
+      "ConjurationHeadEffect": "vco_mehedelec01",
+      "ConjurationHandEffect": null,
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mehedelec01",
+      "ConjurationMaleSound": "vs_chant_evoc_lm",
+      "ConjurationFemaleSound": "vs_chant_evoc_lf",
+      "CastingAnimation": "Up",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": null,
+      "ProjectileOrientation": null,
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "HarmfulAoeDiscriminant",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": "Sphere",
+      "TargetSizeX": 6.67,
+      "TargetSizeY": null,
+      "TargetingFlags": [
+        "HarmsEnemies"
+      ]
+    },
+    {
+      "ID": "2aecf93b-9923-459c-a537-a3a31b83d6f0",
+      "Index": -1,
+      "Overrides": "d8f20151-15d4-31d7-17c0-cfb9435db50f",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Chain_Lightning",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 764,
+        "EN": {
+          "M": "Chain Lightning"
+        },
+        "FR": {
+          "M": "Eclair multiple"
+        },
+        "DE": {
+          "M": "Kugelblitz"
+        },
+        "IT": {
+          "M": "Catena di Fulmini"
+        },
+        "ES": {
+          "M": "Rel\u00E1mpago zigzagueante"
+        },
+        "PL": {
+          "M": "Wy\u0142adowanie \u0141a\u0144cuchowe"
+        }
+      },
+      "Description": {
+        "Index": 6110,
+        "EN": {
+          "M": "Caster Level(s): Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Evocation\nDescriptor(s): Electricity\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Colossal, 1 Target / Level\nDuration: Instant\nAdditional Counter Spells:\nSave: Reflex 1/2\nSpell Resistance: Yes\n\nA bolt of electricity arcs through the caster\u0027s enemies for 1d6 points of electrical damage per caster level, up to a maximum of 20d6 points of damage to the initial target and half that amount to all secondary targets."
+        },
+        "FR": {
+          "M": "Niveau : Magicien / Ensorceleur 6\nNiveau inn\u00E9 : 6\nEcole : Evocation\nCat\u00E9gorie(s) : \u00E9lectricit\u00E9\nComposante(s) : verbale, gestuelle\nPort\u00E9e : longue\nZone d\u0027effet / cible : 1 cible/niveau\nDur\u00E9e : instantan\u00E9e\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : R\u00E9flexes, 1/2\nR\u00E9sistance \u00E0 la magie : oui\n\nUn \u00E9clair se propage sur tous les ennemis du lanceur en infligeant 1d6 points de d\u00E9g\u00E2ts d\u0027Electricit\u00E9 par niveau du lanceur, jusqu\u0027\u00E0 un maximum de 20d6 points de d\u00E9g\u00E2ts \u00E0 la cible initiale et la moiti\u00E9 aux cibles secondaires."
+        },
+        "DE": {
+          "M": "Grad: MAG/HXM 6\nKalkulationsgrad: 6\nSchule: Hervorrufung\nKategorie: Elektrizit\u00E4t\nKomponenten: V, G\nReichweite: Lang\nWirkungsbereich/Ziel: Kolossal, 1 Ziel/Stufe\nWirkungsdauer: Augenblicklich\nGegenzauber:\nRettungswurf: Reflex, halbiert\nZauberresistenz: Ja\n\nEin Blitz trifft das ausgew\u00E4hlte Ziel und springt von dort auf andere Feinde im Wirkungsbereich \u00FCber. Der Blitz verursacht 1W6 SP pro Zauberstufe mit einem Maximum von 20W6 SP beim ersten Ziel. Die anderen Ziele erleiden halben Schaden."
+        },
+        "IT": {
+          "M": "Livello(i) dell\u0027incantatore: Mago / Stregone 6\nLivello innato: 6\nScuola: Invocazione\nDescrittore(i): Elettricit\u00E0\nComponente(i): Verbale, Somatica\nRaggio d\u0027azione: Lungo\nArea d\u0027effetto / Bersaglio: Colossale, 1 Bersaglio per Livello\nDurata: Istantanea\nControincantesimi addizionali:\nTiro salvezza: Riflessi dimezza\nResistenza agli incantesimi: S\u00EC\n\nUna scarica di elettricit\u00E0 si sprigiona trapassando i nemici dell\u0027incantatore e infliggendo 1d6 danni elettrici per livello dell\u0027incantatore, fino a un massimo di 20d6 danni al bersaglio iniziale e la met\u00E0 a tutti i bersagli secondari."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Hechicero / Mago 6\nNivel innato: 6\nEscuela: Evocaci\u00F3n\nDescriptores: Electricidad\nComponentes: Verbal, Som\u00E1tico\nAlcance: Largo\n\u00C1rea de efecto / Objetivo: Colosal, 1 objetivo / nivel\nDuraci\u00F3n: Instant\u00E1neo\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Reflejos 1/2\nResistencia a conjuros: S\u00ED\n\nUn rayo de electricidad que se arquea hacia los enemigos del lanzador infligiendo 1d6 puntos de da\u00F1o el\u00E9ctrico por nivel de lanzador, hasta un m\u00E1ximo de 20d6 de da\u00F1o al objetivo inicial y la mitad de esa cantidad a los objetivos secundarios."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Czarodziej / Czarownik 6\nPoziom wrodzony: 6\nSzko\u0142a: Wywo\u0142ywanie\nIdentyfikator(y): Elektryczno\u015B\u0107\nKomponent(y): Werbalny, Somatyczny\nZasi\u0119g: Daleki\nObszar dzia\u0142ania / Cel: Olbrzymi, 1 Cel / poziom\nCzas trwania: natychmiastowy\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Refleks po\u0142owa\nOdporno\u015B\u0107 na czary: Tak\n\nPocisk elektryczno\u015Bci przeskakuje po wrogach czarodzieja, zadaj\u0105c 1k6 obra\u017Ce\u0144 na poziom, a\u017C do maksymalnie 20k6. Pe\u0142ne obra\u017Cenia otrzymuje pierwsza ofiara. Ofiary, na kt\u00F3re przeskocz\u0105 wy\u0142adowania elektryczne, otrzymuj\u0105 o po\u0142ow\u0119 mniej obra\u017Ce\u0144."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_chlightn",
+      "School": "V",
+      "Range": "L",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Empower",
+        "Maximize",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Creature",
+        "Item",
+        "Door",
+        "Placeable"
+      ],
+      "ImpactScript": "NW_S0_ChLightn",
+      "InnateLevel": 6,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_mebalelec01",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mebalelec01",
+      "ConjurationMaleSound": "vs_chant_evoc_hm",
+      "ConjurationFemaleSound": "vs_chant_evoc_hf",
+      "CastingAnimation": "Area",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": "Linked",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": null,
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "HarmfulAoeDiscriminant",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": "Sphere",
+      "TargetSizeX": 10,
+      "TargetSizeY": null,
+      "TargetingFlags": [
+        "HarmsEnemies"
+      ]
+    },
+    {
+      "ID": "c2a04ab9-283f-459d-ae58-478cb7651957",
+      "Index": -1,
+      "Overrides": "5f4365f1-5733-df92-e6d8-72499c87a745",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Combust",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 3859,
+        "EN": {
+          "M": "Combust"
+        },
+        "FR": {
+          "M": "Combustion"
+        },
+        "DE": {
+          "M": "Entz\u00FCnden"
+        },
+        "IT": {
+          "M": "Combustione"
+        },
+        "ES": {
+          "M": "Incendiar"
+        },
+        "PL": {
+          "M": "Podpalenie"
+        }
+      },
+      "Description": {
+        "Index": 3860,
+        "EN": {
+          "M": "Caster Level(s): Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Evocation\nDescriptor(s): Fire\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: One creature\nDuration: 10 rounds \u002B1 / Level\nAdditional Counter Spells:\nSave: Reflex partial\nSpell Resistance: Yes\n\nThis spell makes a creature burst into flame. The initial eruption of flame causes 2d6 fire damage \u002B1 point per caster level (maximum \u002B10) with no saving throw. Further, the creature must make a Reflex save or catch fire taking a further 1d6 \u002B1 point per caster level (maximum \u002B10) points of damage. This will continue until the Reflex save is made or the duration expires.",
+          "F": "Caster Level(s): Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Evocation\nDescriptor(s): Fire\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: One creature\nDuration: Instantaneous\nAdditional Counter Spells:\nSave: Reflex partial\nSpell Resistance: Yes\n\nThis spell makes a creature burst into flame. The initial eruption of flame causes 2d6 fire damage \u002B1 point per caster level (maximum \u002B10) with no saving throw. Further, the creature must make a Reflex save or catch fire taking a further 1d6 points of damage. This will continue until the Reflex save is made."
+        },
+        "FR": {
+          "M": "Niveau : Magicien / Ensorceleur 2\nNiveau inn\u00E9 : 2\nEcole : Evocation\nCat\u00E9gorie(s) : feu\nComposante(s) : verbale, gestuelle\nPort\u00E9e : contact\nZone d\u0027effet / cible : une cr\u00E9ature\nDur\u00E9e : instantan\u00E9e\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : R\u00E9flexe, partiel\nR\u00E9sistance \u00E0 la magie : oui\n\nCe sort enflamme une cr\u00E9ature. Quand elle prend feu elle subit 2d6 points de d\u00E9g\u00E2ts \u002B 1 point par niveau du lanceur de sorts (maximum \u002B10) sans jet de sauvegarde. De plus la cr\u00E9ature doit effectuer un jet de R\u00E9flexes ou prendre feu et subir 1d6 points de d\u00E9g\u00E2ts suppl\u00E9mentaires et cela tant que le jet de R\u00E9flexes ne sera pas r\u00E9ussi."
+        },
+        "DE": {
+          "M": "Grad: HXM/MAG 2\nKalkulationsgrad: 2\nSchule: Hervorrufung\nKategorie: Feuer\nKomponenten: V, G\nReichweite: Ber\u00FChrung\nWirkungsbereich/Ziel: Eine Kreatur\nWirkungsdauer: Augenblicklich\nGegenzauber:\nRettungswurf: Reflex, teilweise\nZauberresistenz: Ja\n\nEin Flammenschlag verursacht 2W6 Punkte Feuerschaden \u002B1 pro Zauberstufe (maximal \u002B10). Das Opfer erh\u00E4lt keinen Rettungswurf gegen den Schaden. Es muss allerdings einen Reflexwurf schaffen, um nicht in Brand zu geraten und weitere 1W6 Punkte Feuerschaden zu erleiden. Das Opfer erleidet diesen Schaden in jeder folgenden Runde, bis ihm ein Reflexwurf gelingt."
+        },
+        "IT": {
+          "M": "Livello dell\u2019incantatore: mago/stregone 2\nLivello innato: 2\nScuola: Invocazione\nDescrittore: fuoco\nComponenti: verbale, somatica\nRaggio d\u0027azione: tocco\nArea d\u0027effetto/bersaglio: una creatura\nDurata: istantaneo\nControincantesimi addizionali:\nTiro salvezza: riflessi parziale\nResistenza agli incantesimi: s\u00EC\n\nQuesto incantesimo d\u00E0 fuoco a una creatura: la fiammata iniziale provoca 2d6 danni da fuoco \u002B1 punto per livello dell\u0027incantatore (massimo \u002B10), senza tiro salvezza. Inoltre, la creatura deve effettuare un tiro salvezza di riflessi, oppure prende fuoco subendo altri 1d6 punti danno: questo continua fino a quando il tiro salvezza di riflessi ha successo."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Hechicero / Mago 2\nNivel innato: 2\nEscuela: Evocaci\u00F3n\nDescriptores: Fuego\nComponentes: Verbal, Som\u00E1tico\nAlcance: Toque\n\u00C1rea de efecto / Objetivo: Una criatura\nDuraci\u00F3n: Instant\u00E1neo\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Reflejos parcial\nResistencia a conjuros: S\u00ED\n\nEste conjuro hace que una criatura sea alimento de las llamas. La erupci\u00F3n inicial de llamas inflige 2d6 puntos de da\u00F1o por fuego, \u002B1 por nivel de lanzador (hasta un m\u00E1ximo de \u002B10), sin posibilidad de tiro de salvaci\u00F3n. Adem\u00E1s, la criatura debe superar una salvaci\u00F3n de Reflejos o el fuego prender\u00E1, infligiendo 1d6 puntos de da\u00F1o. Esto continuar\u00E1 hasta que se consiga el tiro de salvaci\u00F3n de Reflejos."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Czarodziej/Czarownik 2\nPoziom wrodzony: 2\nSzko\u0142a: Wywo\u0142ywanie\nIdentyfikator(y): Ogie\u0144\nKomponent(y): Werbalny, Somatyczny\nZasi\u0119g: Dotyk\nObszar dzia\u0142ania / Cel: Jedna istota\nCzas trwania: Natychmiastowy\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Refleks cz\u0119\u015Bciowo\nOdporno\u015B\u0107 na czary: Tak\n\nCzar sprawia, \u017Ce ofiara staje w p\u0142omieniach. Pocz\u0105tkowo zadaje 2k6 obra\u017Ce\u0144 od ognia, \u002B1 na poziom rzucaj\u0105cego (maksymalnie \u002B10). Potem ofiara musi wykona\u0107 rzut obronny na Refleks, aby unikn\u0105\u0107 podpalenia, kt\u00F3re powoduje dodatkowe 1k6 obra\u017Ce\u0144 co rund\u0119, dop\u00F3ki ofiara nie zda rzutu na Refleks."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_x2combust",
+      "School": "V",
+      "Range": "T",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Empower",
+        "Maximize",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Creature",
+        "Item",
+        "Placeable"
+      ],
+      "ImpactScript": "X2_S0_Combust",
+      "InnateLevel": 2,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_mehanfire02",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mehanfire02",
+      "ConjurationMaleSound": "vs_chant_evoc_lm",
+      "ConjurationFemaleSound": "vs_chant_evoc_lf",
+      "CastingAnimation": "Touch",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": null,
+      "ProjectileSound": null,
+      "ProjectileOrientation": null,
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "HarmfulTouch",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "a577c14d-5c72-427f-81e8-8d2166dc53e5",
+      "Index": -1,
+      "Overrides": "90564d32-7d63-f43d-1c22-27e5197598f6",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Cone_of_Cold",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 775,
+        "EN": {
+          "M": "Cone of Cold"
+        },
+        "FR": {
+          "M": "C\u00F4ne de froid"
+        },
+        "DE": {
+          "M": "K\u00E4ltekegel"
+        },
+        "IT": {
+          "M": "Cono di Freddo"
+        },
+        "ES": {
+          "M": "Cono de fr\u00EDo"
+        },
+        "PL": {
+          "M": "Sto\u017Cek Zimna"
+        }
+      },
+      "Description": {
+        "Index": 6121,
+        "EN": {
+          "M": "Caster Level(s): Wizard / Sorcerer 5\nInnate Level: 5\nSchool: Evocation\nDescriptor(s): Cold\nComponent(s): Verbal, Somatic\nRange: Cone, 30ft\nArea of Effect / Target: Spell Cone\nDuration: Instant\nAdditional Counter Spells:\nSave: Reflex 1/2\nSpell Resistance: Yes\n\nA cone of frost and snow shoots forth from the caster\u0027s hands, doing 1d6 points of cold damage per caster level to all those within the area of effect, to a maximum of 15d6."
+        },
+        "FR": {
+          "M": "Niveau : Magicien / Ensorceleur 5\nNiveau inn\u00E9 : 5\nEcole : Evocation\nCat\u00E9gorie(s) : froid\nComposante(s) : verbale, gestuelle\nPort\u00E9e : c\u00F4ne, 10 m\u00E8tres\nZone d\u0027effet / cible : c\u00F4ne\nDur\u00E9e : instantan\u00E9e\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : R\u00E9flexes, 1/2\nR\u00E9sistance \u00E0 la magie : oui\n\nUn c\u00F4ne de froid et de neige jaillit des mains du lanceur en infligeant 1d6 points de d\u00E9g\u00E2ts de froid par niveau du lanceur \u00E0 tous ceux qui se trouvent dans la zone d\u0027effet. Ce sort ne peut infliger plus de 15d6 points de d\u00E9g\u00E2ts."
+        },
+        "DE": {
+          "M": "Grad: MAG/HXM 5\nKalkulationsgrad: 5\nSchule: Hervorrufung\nKategorie: K\u00E4lte\nKomponenten: V, G\nReichweite: Kegel, 9 m\nWirkungsbereich/Ziel: Kegel\nWirkungsdauer: Augenblicklich\nGegenzauber:\nRettungswurf: Reflex, halbiert\nZauberresistenz: Ja\n\nAus den H\u00E4nden des Magieanwenders schie\u00DFt ein Kegel aus eisiger K\u00E4lte und Schnee, der je Zauberstufe 1W6 Punkte K\u00E4lteschaden bei allen Kreaturen im Wirkungsbereich verursacht. Der Maximalschaden betr\u00E4gt 15W6 SP."
+        },
+        "IT": {
+          "M": "Livello(i) dell\u0027incantatore: Mago / Stregone 5\nLivello innato: 5\nScuola: Invocazione\nDescrittore(i): Freddo\nComponente(i): Verbale, Somatica\nRaggio d\u0027azione: Cono, 9 m\nArea d\u0027effetto / Bersaglio: Cono d\u0027incantesimo\nDurata: Istantanea\nControincantesimi addizionali:\nTiro salvezza: Riflessi dimezza\nResistenza agli incantesimi: S\u00EC\n\nUn cono di gelo e neve erompe dalle mani dell\u0027incantatore, infliggendo 1d6 danni da freddo per livello dell\u0027incantatore a tutti coloro che si trovano entro l\u0027area d\u0027effetto, fino a un massimo di 15d6."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Hechicero / Mago 5\nNivel innato: 5\nEscuela: Evocaci\u00F3n\nDescriptores: Fr\u00EDo\nComponentes: Verbal, Som\u00E1tico\nAlcance: Cono, 30 pies\n\u00C1rea de efecto / Objetivo: Cono del conjuro\nDuraci\u00F3n: Instant\u00E1neo\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Reflejos 1/2\nResistencia a conjuros: S\u00ED\n\nUn cono de escarcha y nieve surge de las manos del lanzador, infligiendo 1d6 puntos de da\u00F1o por fr\u00EDo por nivel de lanzador a todos los que se encuentren en el \u00E1rea de efecto, hasta un m\u00E1ximo de 15d6."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Czarodziej / Czarownik 5\nPoziom wrodzony: 5\nSzko\u0142a: Wywo\u0142ywanie\nIdentyfikator(y): Ch\u0142\u00F3d\nKomponent(y): Werbalny, Somatyczny\nZasi\u0119g: Sto\u017Cek, 10 metr\u00F3w\nObszar dzia\u0142ania / Cel: Sto\u017Cek czaru\nCzas trwania: natychmiastowy\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Refleks po\u0142owa\nOdporno\u015B\u0107 na czary: Tak\n\nSto\u017Cek przenikliwego ch\u0142odu wystrzeliwuje z r\u0105k czarodzieja, zadaj\u0105c 1k6 obra\u017Ce\u0144 od zimna na poziom czarodzieja, maksymalnie 15k6. Obra\u017Cenia odnosz\u0105 wszystkie istoty z\u0142apane w obszar dzia\u0142ania Sto\u017Cka."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_conecold",
+      "School": "V",
+      "Range": "S",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Empower",
+        "Maximize",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Creature",
+        "Area",
+        "Item",
+        "Door",
+        "Placeable"
+      ],
+      "ImpactScript": "NW_S0_ConeCold",
+      "InnateLevel": 5,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": "vco_swar3blue",
+      "ConjurationHandEffect": null,
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_swar3blue",
+      "ConjurationMaleSound": "vs_chant_evoc_hm",
+      "ConjurationFemaleSound": "vs_chant_evoc_hf",
+      "CastingAnimation": "Out",
+      "CastTime": 1700,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": "var_conecold",
+      "CastingGroundEffect": null,
+      "CastingSound": "sar_conecold",
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": null,
+      "ProjectileSound": null,
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "HarmfulAoeIndiscriminant",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": true,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": true,
+      "TargetShape": "Cone",
+      "TargetSizeX": 11,
+      "TargetSizeY": null,
+      "TargetingFlags": [
+        "HarmsEnemies",
+        "HarmsAllies",
+        "IgnoresSelf",
+        "OriginOnSelf"
+      ]
+    },
+    {
+      "ID": "bb9b0133-bb92-42eb-bfd3-8615bc050a38",
+      "Index": -1,
+      "Overrides": "0803ec55-c206-d84f-bdc0-e950867803f2",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Darkfire",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 3781,
+        "EN": {
+          "M": "Darkfire"
+        },
+        "FR": {
+          "M": "Flamme sombre"
+        },
+        "DE": {
+          "M": "Dunkelfeuer"
+        },
+        "IT": {
+          "M": "Fuoco oscuro"
+        },
+        "ES": {
+          "M": "Fuego oscuro"
+        },
+        "PL": {
+          "M": "Mroczny Ogie\u0144"
+        }
+      },
+      "Description": {
+        "Index": 3782,
+        "EN": {
+          "M": "Caster Level(s): Cleric 3\nInnate Level: 3\nSchool: Evocation\nDescriptor(s): Fire\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Creature, Melee Weapon\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nThis spell allows the caster to immolate a melee weapon. The weapon will do 1d6 \u002B1 per two caster levels (maximum of \u002B10) of fire damage on a successful hit. This damage is not affected by a critical hit roll however.\r\n\r\nThe caster can either target a specific melee weapon in his inventory or a creature to enchant the weapon the creature is wielding. Only melee weapons will be affected, not ranged weapons, creature claws or unarmed attacks.",
+          "F": "Caster Level(s): Cleric 3\nInnate Level: 3\nSchool: Evocation\nDescriptor(s): Fire\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Creature, Melee Weapon\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nThis spell allows the caster to immolate a non-magical weapon. The weapon will do 1d6  points of damage, \u002B1 per two caster levels (maximum of \u002B10) of fire damage. The caster can either target a specific melee weapon in his inventory or a creature to enchant the weapon the creature is wielding.\n"
+        },
+        "FR": {
+          "M": "Niveau : Pr\u00EAtre 3\nNiveau inn\u00E9 : 3\nEcole : Evocation\nCat\u00E9gorie(s) : feu\nComposante(s) : verbale, gestuelle\nPort\u00E9e : contact\nZone d\u0027effet / cible : cr\u00E9ature, armure de corps \u00E0 corps\nDur\u00E9e : 1 heure / niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : aucun\nR\u00E9sistance \u00E0 la magie : non\n\nCe sort permet d\u0027enflammer une arme non magique. L\u0027arme infligera 1d6 points de d\u00E9g\u00E2ts de feu suppl\u00E9mentaires \u002B1 point tous les deux niveaux du lanceur de sorts (maximum \u002B10). Le lanceur de sort peut prendre pour cible une arme de son inventaire ou une cr\u00E9ature pour enchanter l\u0027arme dont elle est \u00E9quip\u00E9e."
+        },
+        "DE": {
+          "M": "Grad: KLE 3\nKalkulationsgrad: 3\nSchule: Hervorrufung\nKategorie: Feuer\nKomponenten: V, G\nReichweite: Ber\u00FChrung\nWirkungsbereich/Ziel: Kreatur, Nahkampfwaffe\nWirkungsdauer: 1 Stunde pro Stufe\nGegenzauber:\nRettungswurf: Nein\nZauberresistenz: Nein\n\nDer Zauber umh\u00FCllt eine normale Waffe mit Flammen. Diese richtet \u002B1W6 Punkte Feuerschaden \u002B1 Punkt f\u00FCr je 2 Zauberstufen (maximal \u002B10) an. Ihr k\u00F6nnt den Zauber entweder direkt auf eine Waffe wirken oder auf eine Kreatur, die sich mit einer Waffe ausger\u00FCstet hat."
+        },
+        "IT": {
+          "M": "Livello dell\u2019incantatore: chierico 3\nLivello innato: 3\nScuola: Invocazione\nDescrittore: fuoco\nComponenti: verbale, somatica\nRaggio d\u0027azione: tocco\nArea d\u0027effetto/bersaglio: creatura, arma da mischia\nDurata: 1 ora/livello\nControincantesimi addizionali:\nTiro salvezza: nessuno\nResistenza agli incantesimi: no\n\nQuesta magia permette all\u0027incantatore di immolare un\u0027arma non magica, che provoca 1d6 punti danno da fuoco \u002B1 per ogni 2 livelli dell\u0027incantatore (massimo \u002B10). L\u0027incantatore pu\u00F2 lanciare l\u0027incantesimo su un\u0027arma da mischia particolare del suo inventario, oppure su una creatura per influenzare l\u0027arma che impugna quest\u0027ultima."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Cl\u00E9rigo 3\nNivel innato: 3\nEscuela: Evocaci\u00F3n\nDescriptores: Fuego\nComponentes: Verbal, Som\u00E1tico\nAlcance: Toque\n\u00C1rea de efecto / Objetivo: Criatura, arma de combate cuerpo a cuerpo\nDuraci\u00F3n: 1 hora / nivel\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Ninguno\nResistencia a conjuros: No\n\nEste conjuro le permite al lanzador inmolar un arma que no sea m\u00E1gica. El arma infligir\u00E1 1d6 puntos de da\u00F1o, \u002B1 de da\u00F1o por fuego por cada dos niveles del lanzador (hasta un m\u00E1ximo de \u002B10) El lanzador puede dirigir este conjuro a un arma de combate cuerpo a cuerpo espec\u00EDfica que tenga en el inventario o bien a una criatura, para encantar el arma que est\u00E9 empu\u00F1ando."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Kap\u0142an 3\nPoziom wrodzony: 3\nSzko\u0142a: Wywo\u0142ywanie\nIdentyfikator(y): Ogie\u0144\nKomponent(y): Werbalny, Somatyczny\nZasi\u0119g: Dotyk\nObszar dzia\u0142ania / Cel: Istota lub bro\u0144 do walki w zwarciu\nCzas trwania: 1 godzina/poziom\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Brak\nOdporno\u015B\u0107 na czary: Nie\n\nTen czar pozwala zapali\u0107 bro\u0144 niemagiczn\u0105. Tak zaczarowana bro\u0144 zadaje 1k6 obra\u017Ce\u0144 od ognia, \u002B1 na dwa poziomy rzucaj\u0105cego (maksymalnie \u002B10). Czar mo\u017Cna rzuci\u0107 na wybran\u0105 bro\u0144 z ekwipunku albo na istot\u0119, zaczarowuj\u0105c tym samym jej bro\u0144."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_x2darkfire",
+      "School": "V",
+      "Range": "T",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Creature",
+        "Item"
+      ],
+      "ImpactScript": "X2_S0_Darkfire",
+      "InnateLevel": 3,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_mehanfire02",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mehanfire02",
+      "ConjurationMaleSound": "vs_chant_ench_hm",
+      "ConjurationFemaleSound": "vs_chant_ench_lf",
+      "CastingAnimation": "Self",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": null,
+      "ProjectileSound": null,
+      "ProjectileOrientation": null,
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyEnhancementSingle",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
     }
   ]
 }
