@@ -15812,6 +15812,149 @@
       ]
     },
     {
+      "ID": "0253ce2f-d11f-455b-823a-1b73eb64659c",
+      "Index": -1,
+      "Overrides": "7e9bfc4e-62c6-5ad1-864f-d88e54e27942",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Dragon_Breath_Prismatic",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 84513,
+        "EN": {
+          "M": "Dragon Breath, Prismatic"
+        },
+        "FR": {
+          "M": "Souffle de dragon, prismatique"
+        },
+        "DE": {
+          "M": "Drachodem, Regenbogen"
+        },
+        "IT": {
+          "M": "Soffio di drago, prismatico"
+        },
+        "ES": {
+          "M": "Aliento de drag\u00F3n prism\u00E1tico"
+        },
+        "PL": {
+          "M": "Zioni\u0119cie smoka, pryzmatyczne"
+        }
+      },
+      "Description": {
+        "Index": 84515,
+        "EN": {
+          "M": "All creatures within the area of effect randomly experience 1 or 2 of the following effects:\n20 fire damage\n40 acid damage\n80 electrical damage\nStruck with Bebilith Venom poison\nParalyzed for 10 rounds\nConfused for 10 rounds\nStruck dead"
+        },
+        "FR": {
+          "M": "Toute cr\u00E9ature dans la zone d\u0027effet subit de mani\u00E8re al\u00E9atoire un ou deux des effets suivants :\n20 points de d\u00E9g\u00E2ts de feu\n40 points de d\u00E9g\u00E2ts d\u0027acide\n80 points de d\u00E9g\u00E2ts d\u0027\u00E9lectricit\u00E9\nAffect\u00E9e par du poison de B\u00E9bilithe\nParalys\u00E9e pendant 10 rounds\nConfuse pendant 10 rounds\nMorte"
+        },
+        "DE": {
+          "M": "Alle Kreaturen im Wirkungsbereich werden zuf\u00E4llig von einer oder zwei der folgenden Auswirkungen betroffen:\n20 Punkte Feuerschaden\n40 Punkte S\u00E4ureschaden\n80 Punkte Elektrizit\u00E4tsschaden\nVon Bebilithgift betroffen\nF\u00FCr 10 Runden gel\u00E4hmt\nF\u00FCr 10 Runden verwirrt\nTod"
+        },
+        "IT": {
+          "M": "Tutte le creature entro l\u0027area d\u0027effetto subiscono 1 o 2 dei seguenti effetti, a caso:\n20 danni da fuoco.\n40 danni da acido.\n80 danni da elettricit\u00E0.\nVeleno di bebilith.\nParalisi per 10 turni.\nConfusione per 10 turni.\nColpo mortale."
+        },
+        "ES": {
+          "M": "Todas las criaturas dentro del \u00E1rea de efecto experimentan aleatoriamente 1 \u00F3 2 de los siguientes efectos:\n20 puntos de da\u00F1o por fuego\n40 puntos de da\u00F1o por \u00E1cido\n80 puntos de da\u00F1o el\u00E9ctrico\nVeneno de b\u00E9bilith\nPar\u00E1lisis durante 10 asaltos\nConfusi\u00F3n durante 10 asaltos\nMuerte"
+        },
+        "PL": {
+          "M": "Wszystkie istoty na obszarze dzia\u0142ania odczuwaj\u0105 1 lub 2 efekty z poni\u017Cszej listy, wybrane losowo:\n20 obra\u017Ce\u0144 od ognia\n40 obra\u017Ce\u0144 od kwasu\n80 obra\u017Ce\u0144 od elektryczno\u015Bci\nPora\u017Cenie jadem Bebilitha\nParali\u017C na 10 rund\nDezorientacja na 10 rund\n\u015Amier\u0107 na miejscu"
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": 84514,
+        "EN": {
+          "M": "\u003CCUSTOM0\u003E breathes prismatic spray."
+        },
+        "FR": {
+          "M": "\u003CCUSTOM0\u003E souffle un rayon prismatique."
+        },
+        "DE": {
+          "M": "\u003CCUSTOM0\u003E setzt die Odemwaffe Regenbogenspiel ein."
+        },
+        "IT": {
+          "M": "\u003CCUSTOM0\u003E emette uno spruzzo prismatico."
+        },
+        "ES": {
+          "M": "\u003CCUSTOM0\u003E exhala una rociada prism\u00E1tica."
+        },
+        "PL": {
+          "M": "\u003CCUSTOM0\u003E zieje t\u0119czowymi kolorami."
+        }
+      },
+      "Icon": "is_prisspray",
+      "School": "V",
+      "Range": "S",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Empower",
+        "Extend",
+        "Maximize",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Creature",
+        "Area"
+      ],
+      "ImpactScript": "x2_s1_prisbreath",
+      "InnateLevel": 9,
+      "ConjurationTime": 2000,
+      "ConjuringAnimation": "Head",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": null,
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": null,
+      "ConjurationMaleSound": null,
+      "ConjurationFemaleSound": null,
+      "CastingAnimation": "Out",
+      "CastTime": 3000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": "var_conepris",
+      "CastingGroundEffect": null,
+      "CastingSound": "sar_conepris",
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": null,
+      "ProjectileSound": null,
+      "ProjectileOrientation": null,
+      "SubSpell1": {
+        "ID": "4d01b26a-b869-e163-717a-e5da3dcd5f32",
+        "Label": "Aid"
+      },
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "HarmfulAoeIndiscriminant",
+      "ParentSpell": null,
+      "Type": "CreaturePower",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": true,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": true,
+      "TargetShape": "Cone",
+      "TargetSizeX": 20,
+      "TargetSizeY": null,
+      "TargetingFlags": [
+        "HarmsEnemies",
+        "HarmsAllies",
+        "IgnoresSelf",
+        "OriginOnSelf"
+      ]
+    },
+    {
       "ID": "20284809-0a0d-46d6-92fd-fa46a1cc5413",
       "Index": -1,
       "Overrides": "3489843b-2595-96aa-4263-f8f51b92bfdf",
@@ -45622,122 +45765,100 @@
       ]
     },
     {
-      "ID": "0253ce2f-d11f-455b-823a-1b73eb64659c",
+      "ID": "06be29de-be73-4ec1-889f-471e497eaf4f",
       "Index": -1,
-      "Overrides": "7e9bfc4e-62c6-5ad1-864f-d88e54e27942",
+      "Overrides": "69447207-8083-8cc3-6c30-dc1db0344340",
       "Disabled": false,
       "Hint": "",
       "ScriptConstant": "",
-      "SourceLabel": "Dragon_Breath_Prismatic",
+      "SourceLabel": "Improved_Invisibility",
       "ExtensionValues": {},
       "Name": {
-        "Index": 84513,
+        "Index": 838,
         "EN": {
-          "M": "Dragon Breath, Prismatic"
+          "M": "Improved Invisibility"
         },
         "FR": {
-          "M": "Souffle de dragon, prismatique"
+          "M": "Invisibilit\u00E9 supr\u00EAme"
         },
         "DE": {
-          "M": "Drachodem, Regenbogen"
+          "M": "Erweiterte Unsichtbarkeit"
         },
         "IT": {
-          "M": "Soffio di drago, prismatico"
+          "M": "Invisibilit\u00E0 Migliorata"
         },
         "ES": {
-          "M": "Aliento de drag\u00F3n prism\u00E1tico"
+          "M": "Invisibilidad mejorada"
         },
         "PL": {
-          "M": "Zioni\u0119cie smoka, pryzmatyczne"
+          "M": "Ulepszona Niewidzialno\u015B\u0107"
         }
       },
       "Description": {
-        "Index": 84515,
+        "Index": 6185,
         "EN": {
-          "M": "All creatures within the area of effect randomly experience 1 or 2 of the following effects:\n20 fire damage\n40 acid damage\n80 electrical damage\nStruck with Bebilith Venom poison\nParalyzed for 10 rounds\nConfused for 10 rounds\nStruck dead"
+          "M": "Caster Level(s): Bard 4, Wizard / Sorcerer 4\nInnate Level: 4\nSchool: Illusion\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Turn / Level\nAdditional Counter Spells: Invisibility Purge\nSave: Harmless\nSpell Resistance: No\n\nThe target creature becomes invisible and impossible to detect using normal vision. After attacking or casting spells the target creature will become partially visible and detectable by enemies, but still retain a 50% cover bonus."
         },
         "FR": {
-          "M": "Toute cr\u00E9ature dans la zone d\u0027effet subit de mani\u00E8re al\u00E9atoire un ou deux des effets suivants :\n20 points de d\u00E9g\u00E2ts de feu\n40 points de d\u00E9g\u00E2ts d\u0027acide\n80 points de d\u00E9g\u00E2ts d\u0027\u00E9lectricit\u00E9\nAffect\u00E9e par du poison de B\u00E9bilithe\nParalys\u00E9e pendant 10 rounds\nConfuse pendant 10 rounds\nMorte"
+          "M": "Niveau : Barde 4, Magicien / Ensorceleur 4\nNiveau inn\u00E9 : 4\nEcole : Illusion\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : contact\nZone d\u0027Effet / Cible : 1\nDur\u00E9e : 1 tour/niveau\nContre-sorts suppl\u00E9mentaires : N\u00E9gation de l\u0027invisibilit\u00E9\nJet de sauvegarde : inoffensif\nR\u00E9sistance \u00E0 la magie : non\n\nLe b\u00E9n\u00E9ficiaire devient invisible et ne peut \u00EAtre d\u00E9tect\u00E9 normalement. Apr\u00E8s une attaque ou apr\u00E8s avoir lanc\u00E9 un sort, le b\u00E9n\u00E9ficiaire devient partiellement visible et peut donc \u00EAtre d\u00E9tect\u00E9 par des adversaires mais il b\u00E9n\u00E9ficie d\u0027un bonus de couverture de 50%."
         },
         "DE": {
-          "M": "Alle Kreaturen im Wirkungsbereich werden zuf\u00E4llig von einer oder zwei der folgenden Auswirkungen betroffen:\n20 Punkte Feuerschaden\n40 Punkte S\u00E4ureschaden\n80 Punkte Elektrizit\u00E4tsschaden\nVon Bebilithgift betroffen\nF\u00FCr 10 Runden gel\u00E4hmt\nF\u00FCr 10 Runden verwirrt\nTod"
+          "M": "Grad: BAR 4, MAG/HXM 4\nKalkulationsgrad: 4\nSchule: Illusion\nKategorie:\nKomponenten: V, G\nReichweite: Ber\u00FChrung\nWirkungsbereich/Ziel: 1 Kreatur\nWirkungsdauer: 1 Phase/Stufe\nGegenzauber: Unsichtbarkeit aufheben\nRettungswurf: Harmlos\nZauberresistenz: Nein\n\nDie Kreatur wird v\u00F6llig unsichtbar und kann durch normale Sicht nicht aufgesp\u00FCrt werden. Wenn die Kreatur angreift oder Zauber wirkt, wird sie teilweise sichtbar und ihr Standort kann von Feinden erkannt werden. Sie hat aber dennoch 50% Deckung."
         },
         "IT": {
-          "M": "Tutte le creature entro l\u0027area d\u0027effetto subiscono 1 o 2 dei seguenti effetti, a caso:\n20 danni da fuoco.\n40 danni da acido.\n80 danni da elettricit\u00E0.\nVeleno di bebilith.\nParalisi per 10 turni.\nConfusione per 10 turni.\nColpo mortale."
+          "M": "Livello(i) dell\u0027incantatore: Bardo 4, Mago/Stregone 4\nLivello innato: 4\nScuola: Illusione\nDescrittore(i):\nComponente(i): Verbale, Somatica\nRaggio d\u0027azione: Contatto\nArea d\u0027effetto / Bersaglio: Singolo\nDurata: 1 Turno per Livello\nControincantesimi addizionali: Epurare Invisibilit\u00E0\nTiro salvezza: Innocuo\nResistenza agli incantesimi: No\n\nLa creatura bersaglio diventa invisibile e impossibile da individuare tramite la normale visione. Dopo un attacco o il lancio di un incantesimo la creatura bersaglio diviene parzialmente visibile e individuabile dai nemici, ma ottiene comunque un bonus di copertura del 50%."
         },
         "ES": {
-          "M": "Todas las criaturas dentro del \u00E1rea de efecto experimentan aleatoriamente 1 \u00F3 2 de los siguientes efectos:\n20 puntos de da\u00F1o por fuego\n40 puntos de da\u00F1o por \u00E1cido\n80 puntos de da\u00F1o el\u00E9ctrico\nVeneno de b\u00E9bilith\nPar\u00E1lisis durante 10 asaltos\nConfusi\u00F3n durante 10 asaltos\nMuerte"
+          "M": "Nivel de lanzador: Bardo 4, Hechicero / Mago 4\nNivel innato: 4\nEscuela: Ilusi\u00F3n\nDescriptores:\nComponentes: Verbal, Som\u00E1tico\nAlcance: Toque\n\u00C1rea de efecto / Objetivo: Individual\nDuraci\u00F3n: 1 turno / nivel\nContraconjuros adicionales: Purgar invisibilidad\nTiro de salvaci\u00F3n: Inofensivo\nResistencia a conjuros: No\n\nLa criatura objetivo se vuelve invisible y es imposible detectarla usando la visi\u00F3n normal. Despu\u00E9s de atacar o lanzar conjuros, la criatura objetivo se vuelve parcialmente visible y detectable por los enemigos, pero sigue disponiendo de un bonificador del 50% de cobertura."
         },
         "PL": {
-          "M": "Wszystkie istoty na obszarze dzia\u0142ania odczuwaj\u0105 1 lub 2 efekty z poni\u017Cszej listy, wybrane losowo:\n20 obra\u017Ce\u0144 od ognia\n40 obra\u017Ce\u0144 od kwasu\n80 obra\u017Ce\u0144 od elektryczno\u015Bci\nPora\u017Cenie jadem Bebilitha\nParali\u017C na 10 rund\nDezorientacja na 10 rund\n\u015Amier\u0107 na miejscu"
+          "M": "Poziom(y) czaruj\u0105cego: Bard 4, Czarodziej / Czarownik 4\nPoziom wrodzony: 4\nSzko\u0142a: Iluzje\nIdentyfikator(y):\nKomponent(y): Werbalne, Somatyczne\nZasi\u0119g: Dotyk\nObszar dzia\u0142ania / Cel: Pojedynczy\nCzas trwania: 1 tura / poziom\nDodatkowe przeciwzakl\u0119cia: Ujawnienie Niewidzialnych\nRzut obronny: Czar nieszkodliwy\nOdporno\u015B\u0107 na czary: Nie\n\nIstota, na kt\u00F3r\u0105 rzucono to zakl\u0119cie, staje si\u0119 niewidzialna. Nie da si\u0119 jej wykry\u0107 normalnym wzrokiem. Po zaatakowaniu lub rzuceniu czaru istota staje si\u0119 ledwo zauwa\u017Calna, wi\u0119c wrogowie mog\u0105 j\u0105 wykry\u0107, ale nadal zachowuje 50% os\u0142on\u0119."
         }
       },
       "AlternativeCastMessage": {
-        "Index": 84514,
-        "EN": {
-          "M": "\u003CCUSTOM0\u003E breathes prismatic spray."
-        },
-        "FR": {
-          "M": "\u003CCUSTOM0\u003E souffle un rayon prismatique."
-        },
-        "DE": {
-          "M": "\u003CCUSTOM0\u003E setzt die Odemwaffe Regenbogenspiel ein."
-        },
-        "IT": {
-          "M": "\u003CCUSTOM0\u003E emette uno spruzzo prismatico."
-        },
-        "ES": {
-          "M": "\u003CCUSTOM0\u003E exhala una rociada prism\u00E1tica."
-        },
-        "PL": {
-          "M": "\u003CCUSTOM0\u003E zieje t\u0119czowymi kolorami."
-        }
+        "Index": null
       },
-      "Icon": "is_prisspray",
-      "School": "V",
-      "Range": "S",
+      "Icon": "is_imprinvis",
+      "School": "I",
+      "Range": "T",
       "Components": [
         "V",
         "S"
       ],
       "AvailableMetaMagic": [
-        "Empower",
         "Extend",
-        "Maximize",
         "Quicken",
         "Silent",
         "Still"
       ],
       "TargetTypes": [
+        "Self",
         "Creature",
-        "Area"
+        "Item"
       ],
-      "ImpactScript": "x2_s1_prisbreath",
-      "InnateLevel": 9,
-      "ConjurationTime": 2000,
-      "ConjuringAnimation": "Head",
+      "ImpactScript": "NW_S0_ImprInvis",
+      "InnateLevel": 4,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
       "ConjurationHeadEffect": null,
-      "ConjurationHandEffect": null,
+      "ConjurationHandEffect": "vco_mehanelec02",
       "ConjurationGroundEffect": null,
-      "ConjurationSound": null,
-      "ConjurationMaleSound": null,
-      "ConjurationFemaleSound": null,
-      "CastingAnimation": "Out",
-      "CastTime": 3000,
+      "ConjurationSound": "sco_mehanelec02",
+      "ConjurationMaleSound": "vs_chant_illu_hm",
+      "ConjurationFemaleSound": "vs_chant_illu_hf",
+      "CastingAnimation": "Touch",
+      "CastTime": 1000,
       "CastingHeadEffect": null,
-      "CastingHandEffect": "var_conepris",
+      "CastingHandEffect": null,
       "CastingGroundEffect": null,
-      "CastingSound": "sar_conepris",
+      "CastingSound": "sdr_invisible",
       "HasProjectile": false,
       "ProjectileModel": null,
       "ProjectileType": null,
       "ProjectileSpawnPoint": null,
       "ProjectileSound": null,
       "ProjectileOrientation": null,
-      "SubSpell1": {
-        "ID": "4d01b26a-b869-e163-717a-e5da3dcd5f32",
-        "Label": "Aid"
-      },
+      "SubSpell1": null,
       "SubSpell2": null,
       "SubSpell3": null,
       "SubSpell4": null,
@@ -45745,23 +45866,738 @@
       "SubSpell6": null,
       "SubSpell7": null,
       "SubSpell8": null,
-      "Category": "HarmfulAoeIndiscriminant",
+      "Category": "FriendlyEnhancementSingle",
       "ParentSpell": null,
-      "Type": "CreaturePower",
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": {
+        "ID": "95b7650b-07b3-4726-87dc-0d6525dfac49",
+        "Label": "Invisibility Purge"
+      },
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "39923df6-23ab-4d7b-bf85-5bc08ac336ae",
+      "Index": -1,
+      "Overrides": "cfed0926-87f0-f06d-9fb6-a040b05aaff8",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Invisibility_Sphere",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 842,
+        "EN": {
+          "M": "Invisibility Sphere"
+        },
+        "FR": {
+          "M": "Sph\u00E8re d\u0027invisibilit\u00E9"
+        },
+        "DE": {
+          "M": "Sph\u00E4re der Unsichtbarkeit"
+        },
+        "IT": {
+          "M": "Sfera di Invisibilit\u00E0"
+        },
+        "ES": {
+          "M": "Esfera de invisibilidad"
+        },
+        "PL": {
+          "M": "Kula Niewidzialno\u015Bci"
+        }
+      },
+      "Description": {
+        "Index": 6189,
+        "EN": {
+          "M": "Caster Level(s): Bard 3, Wizard / Sorcerer 3\nInnate Level: 3\nSchool: Illusion\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster, Large\nDuration: 1 Turn / Level\nAdditional Counter Spells: Invisibility Purge\nSave: Harmless\nSpell Resistance: No\n\nThe caster brings into being a zone of invisibility that travels with him for the duration of the spell. All allies within the spell\u0027s area of effect are rendered invisible. Those that leave the sphere are visible once more and returning to the area doesn\u0027t make them invisible again.",
+          "F": "Caster Level(s): Bard 3, Wizard / Sorcerer 3\nInnate Level: 3\nSchool: Illusion\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster, 15ft Radius\nDuration: 1 Turn / Level\nAdditional Counter Spells: Invisibility Purge\nSave: Harmless\nSpell Resistance: No\n\nThe caster brings into being a zone of invisibility that travels with him for the duration of the spell. All allies within the spell\u0027s area of effect are rendered invisible, but not to each other. Those that leave the sphere are visible once more."
+        },
+        "FR": {
+          "M": "Niveau : Barde 3, Magicien / Ensorceleur 3\nNiveau inn\u00E9 : 3\nEcole : Illusion\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : personnelle\nZone d\u0027effet / cible : lanceur, 5 m\u00E8tres de rayon\nDur\u00E9e : 1 tour/niveau\nContresorts suppl\u00E9mentaires : N\u00E9gation de l\u0027invisibilit\u00E9\nJet de sauvegarde : inoffensif\nR\u00E9sistance \u00E0 la magie : non\n\nLe lanceur cr\u00E9e une sph\u00E8re d\u0027invisibilit\u00E9 qui se d\u00E9place avec lui pendant toute la dur\u00E9e du sort. Tous ses alli\u00E9s dans la zone d\u0027effet sont invisibles mais ils se voient entre eux. Ceux qui quittent la sph\u00E8re redeviennent visibles."
+        },
+        "DE": {
+          "M": "Grad: BAR 3, MAG/HXM 3\nKalkulationsgrad: 3\nSchule: Illusion\nKategorie:\nKomponenten: V, G\nReichweite: Pers\u00F6nlich\nWirkungsbereich/Ziel: Der Magieanwender, 4,50 m Radius\nWirkungsdauer: 1 Phase/Stufe\nGegenzauber: Unsichtbarkeit aufheben\nRettungswurf: Harmlos\nZauberresistenz: Nein\n\nDer Magieanwender erschafft um sich herum eine bewegliche Zone der Unsichtbarkeit. Alle Verb\u00FCndeten innerhalb des Wirkungsbereichs werden Feinden gegen\u00FCber unsichtbar, k\u00F6nnen sich jedoch noch immer gegenseitig sehen. Verl\u00E4sst jemand den Wirkungsbereich, wird er augenblicklich sichtbar."
+        },
+        "IT": {
+          "M": "Livello(i) dell\u0027incantatore: Bardo 3, Mago / Stregone 3\nLivello innato: 3\nScuola: Illusione\nDescrittore(i):\nComponente(i): Verbale, Somatica\nRaggio d\u0027azione: Personale\nArea d\u0027effetto / Bersaglio: Incantatore, Raggio di 4,5 m\nDurata: 1 turno per livello\nControincantesimi addizionali: Epurare Invisibilit\u00E0\nTiro salvezza: Innocuo\nResistenza agli incantesimi: No\n\nL\u0027incantatore produce una zona di invisibilit\u00E0 che si sposta con lui per la durata dell\u0027incantesimo. Tutti gli alleati entro l\u0027area d\u0027effetto dell\u0027incantesimo vengono resi invisibili, ma non tra di loro. Quelli che escono dalla sfera sono di nuovo visibili."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Bardo 3, Hechicero / Mago 3\nNivel innato: 3\nEscuela: Ilusi\u00F3n\nDescriptores:\nComponentes: Verbal, Som\u00E1tico\nAlcance: Personal\n\u00C1rea de efecto / Objetivo: Lanzador, 15 pies de radio\nDuraci\u00F3n: 1 turno / nivel\nContraconjuros adicionales: Purgar invisibilidad\nTiro de salvaci\u00F3n: Inofensivo\nResistencia a conjuros: No\n\nEl lanzador crea una zona de invisibilidad que se mueve con \u00E9l mientras dure el conjuro. Todos los aliados dentro del \u00E1rea de efecto se vuelven invisibles, pero no entre s\u00ED. Los que abandonen la esfera se hacen visibles de nuevo."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Bard 3, Czarodziej / Czarownik 3\nPoziom wrodzony: 3\nSzko\u0142a: Iluzje\nIdentyfikator(y):\nKomponent(y): Werbalne, Somatyczne\nZasi\u0119g: Osobisty\nObszar dzia\u0142ania / Cel: Rzucaj\u0105cy, promie\u0144 5 metr\u00F3w\nCzas trwania: 1 tura / poziom\nDodatkowe przeciwzakl\u0119cia: Ujawnienie Niewidzialnych\nRzut obronny: Czar nieszkodliwy\nOdporno\u015B\u0107 na czary: Nie\n\nCzarodziej tworzy wok\u00F3\u0142 siebie stref\u0119 niewidzialno\u015Bci, kt\u00F3ra przemieszcza si\u0119 wraz z nim. Kula czyni niewidzialnymi tylko jego i jego towarzyszy. Osoby ukryte tym czarem mog\u0105 si\u0119 wzajemnie normalnie widzie\u0107. Kto opu\u015Bci Kul\u0119, staje si\u0119 widoczny."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_invsph",
+      "School": "I",
+      "Range": "P",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Item"
+      ],
+      "ImpactScript": "NW_S0_InvSph",
+      "InnateLevel": 3,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Head",
+      "ConjurationHeadEffect": "vco_smhanmind01",
+      "ConjurationHandEffect": null,
+      "ConjurationGroundEffect": "vco_lgsprelec01",
+      "ConjurationSound": "sco_lgsprelec01",
+      "ConjurationMaleSound": "vs_chant_illu_lm",
+      "ConjurationFemaleSound": "vs_chant_illu_lf",
+      "CastingAnimation": "Area",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": "sdr_invisible",
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": null,
+      "ProjectileSound": null,
+      "ProjectileOrientation": null,
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyEnhancementAoe",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": {
+        "ID": "95b7650b-07b3-4726-87dc-0d6525dfac49",
+        "Label": "Invisibility Purge"
+      },
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": "Sphere",
+      "TargetSizeX": 5,
+      "TargetSizeY": null,
+      "TargetingFlags": [
+        "HelpsAllies",
+        "OriginOnSelf"
+      ]
+    },
+    {
+      "ID": "2330b3a6-cbe1-40c2-88e6-857396085bf1",
+      "Index": -1,
+      "Overrides": "59506440-b663-c39b-f665-a172cdf978a4",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Mass_Blindness_and_Deafness",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 860,
+        "EN": {
+          "M": "Mass Blindness/Deafness"
+        },
+        "FR": {
+          "M": "C\u00E9cit\u00E9/surdit\u00E9 de groupe"
+        },
+        "DE": {
+          "M": "Massenblind- und Taubheit verursachen"
+        },
+        "IT": {
+          "M": "Cecit\u00E0/Sordit\u00E0 di Massa"
+        },
+        "ES": {
+          "M": "Ceguera/sordera de masas"
+        },
+        "PL": {
+          "M": "Grupowe O\u015Blepienie / G\u0142uchota"
+        }
+      },
+      "Description": {
+        "Index": 6207,
+        "EN": {
+          "M": "Caster Level(s): Wizard / Sorcerer 8\nInnate Level: 8\nSchool: Illusion\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Medium\nDuration: 1 Round / Level\nAdditional Counter Spells: Remove Blindness / Deafness\nSave: Fortitude Negates\nSpell Resistance: Yes\n\nAll enemies within a 10-ft radius are struck blind and deaf."
+        },
+        "FR": {
+          "M": "Niveau : Magicien / Ensorceleur 8\nNiveau inn\u00E9 : 8\nEcole : illusion\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : moyenne\nZone d\u0027effet / cible : moyenne\nDur\u00E9e : 1 round/niveau\nContresorts suppl\u00E9mentaires : C\u00E9cit\u00E9/Surdit\u00E9\nJet de sauvegarde : Vigueur, annule\nR\u00E9sistance \u00E0 la magie : oui\n\nTous les ennemis dans un rayon de 3 m\u00E8tres sont rendus sourds et aveugles."
+        },
+        "DE": {
+          "M": "Grad: MAG/HXM 8\nKalkulationsgrad: 8\nSchule: Illusion\nKategorie:\nKomponenten: V, G\nReichweite: Mittel\nWirkungsbereich/Ziel: Mittel\nWirkungsdauer: 1 Runde/Stufe\nGegenzauber: Blind- und Taubheit kurieren\nRettungswurf: Z\u00E4higkeit, keine Auswirkung\nZauberresistenz: Ja\n\nAlle Feinde in einem Radius von 3 m werden blind und taub."
+        },
+        "IT": {
+          "M": "Livello(i) dell\u0027incantatore: Mago / Stregone 8\nLivello innato: 8\nScuola: Illusione\nDescrittore(i):\nComponente(i): Verbale, Somatica\nRaggio d\u0027azione: Medio\nArea d\u0027effetto / Bersaglio: Medio\nDurata: 1 round per livello\nControincantesimi addizionali: Rimuovi Cecit\u00E0 / Sordit\u00E0\nTiro salvezza: Tempra nega\nResistenza agli incantesimi: S\u00EC\n\nTutti i nemici entro un raggio di 3 m vengono accecati e assordati."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Hechicero / Mago 8\nNivel innato: 8\nEscuela: Ilusi\u00F3n\nDescriptores:\nComponentes: Verbal, Som\u00E1tico\nAlcance: Intermedio\n\u00C1rea de efecto / Objetivo: Mediano\nDuraci\u00F3n: 1 asalto / nivel\nContraconjuros adicionales: Quitar ceguera / sordera\nTiro de salvaci\u00F3n: Fortaleza niega\nResistencia a conjuros: S\u00ED\n\nTodos los enemigos en un radio de 10 pies quedan ciegos y sordos."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Czarodziej / Czarownik 8\nPoziom wrodzony: 8\nSzko\u0142a: Iluzje\nIdentyfikator(y):\nKomponent(y): Werbalne, Somatyczne\nZasi\u0119g: \u015Aredni\nObszar dzia\u0142ania / Cel: \u015Aredni\nCzas trwania: 1 runda / poziom\nDodatkowe przeciwzakl\u0119cia: Usuni\u0119cie O\u015Blepienia / G\u0142uchoty\nRzut obronny: Wytrwa\u0142o\u015B\u0107, odpiera\nOdporno\u015B\u0107 na czary: Tak\n\nWszyscy wrogowie w promieniu 3 metr\u00F3w trac\u0105 wzrok i s\u0142uch."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_massbldf",
+      "School": "I",
+      "Range": "M",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Creature",
+        "Area",
+        "Item"
+      ],
+      "ImpactScript": "NW_S0_MassBlDf",
+      "InnateLevel": 8,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": null,
+      "ConjurationGroundEffect": "vco_lgrinodd01",
+      "ConjurationSound": "sco_lgrinodd01",
+      "ConjurationMaleSound": "vs_chant_illu_hm",
+      "ConjurationFemaleSound": "vs_chant_illu_hf",
+      "CastingAnimation": "Area",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": true,
+      "ProjectileModel": "vpr_los",
+      "ProjectileType": "Accelerating",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": "spr_los",
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "HarmfulAoeDiscriminant",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": true,
+      "CounterSpell1": {
+        "ID": "d68c5d8e-70fc-c784-df78-19dcabb0fdc9",
+        "Label": "Remove Blindness/Deafness"
+      },
+      "CounterSpell2": null,
+      "HasProjectileVisuals": true,
+      "TargetShape": "Sphere",
+      "TargetSizeX": 3.33,
+      "TargetSizeY": null,
+      "TargetingFlags": [
+        "HarmsEnemies"
+      ]
+    },
+    {
+      "ID": "06960e7c-0acf-4df0-a3d2-9ca180d6ad9a",
+      "Index": -1,
+      "Overrides": "f9e73df1-cb2f-5b88-f780-f8ef5a5faaab",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Phantasmal_Killer",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 877,
+        "EN": {
+          "M": "Phantasmal Killer"
+        },
+        "FR": {
+          "M": "Assassin imaginaire"
+        },
+        "DE": {
+          "M": "T\u00F6dliches Phantom"
+        },
+        "IT": {
+          "M": "Allucinazione Mortale"
+        },
+        "ES": {
+          "M": "Asesino fantasmal"
+        },
+        "PL": {
+          "M": "Widmowy Zab\u00F3jca"
+        }
+      },
+      "Description": {
+        "Index": 6500,
+        "EN": {
+          "M": "Caster Level(s): Wizard / Sorcerer 4\nInnate Level: 4\nSchool: Illusion\nDescriptor(s): Fear, Mind-Affecting\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells: True Seeing\nSave: Will and Fortitude\nSpell Resistance: Yes\n\nThe caster conjures an image of utmost horror to strike down a single creature. The target may attempt a Will save to disbelieve the spell, avoiding all ill effects. Failing that, the target then makes a Fortitude save to avoid instant death. A successful save still inflicts 3d6 points of magic damage.",
+          "F": "Caster Level(s): Wizard / Sorcerer 4\nInnate Level: 4\nSchool: Illusion\nDescriptor(s): Fear, Mind-Affecting\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells: True Seeing\nSave: Will and Fortitude\nSpell Resistance: Yes\n\nThe caster conjures an image of utmost horror to strike down a single creature. The target may attempt a Will save to disbelieve the spell, avoiding all ill effects. Failing that, the target then makes a Fortitude save to avoid instant death. A successful save still inflicts 3d6 points of damage."
+        },
+        "FR": {
+          "M": "Niveau : Magicien / Ensorceleur 4\nNiveau inn\u00E9 : 4\nEcole : Illusion\nCat\u00E9gorie(s) : terreur, mentale\nComposante(s) : verbale, gestuelle\nPort\u00E9e : moyenne\nZone d\u0027effet / cible : 1 cr\u00E9ature\nDur\u00E9e : instantan\u00E9e\nContresorts suppl\u00E9mentaires : Vision lucide\nJet de sauvegarde : Volont\u00E9 et Vigueur\nR\u00E9sistance \u00E0 la magie : oui\n\nLe lanceur invoque une illusion d\u0027horreur absolue contre une cible. Cette derni\u00E8re peut tenter un jet de Volont\u00E9 pour refuser de croire \u00E0 cette illusion et \u00E9viter ses effets. Si elle \u00E9choue, elle doit r\u00E9ussir un jet de Vigueur ou \u00EAtre tu\u00E9e instantan\u00E9ment. Si elle r\u00E9ussit son jet de sauvegarde, la victime subit tout de m\u00EAme 3d6 points de d\u00E9g\u00E2ts."
+        },
+        "DE": {
+          "M": "Grad: MAG/HXM 4\nKalkulationsgrad: 4\nSchule: Illusion\nKategorie: Furcht, Geistesbeeinflussung\nKomponenten: V, G\nReichweite: Mittel\nWirkungsbereich/Ziel: 1 Kreatur\nWirkungsdauer: Augenblicklich\nGegenzauber: Wahrer Blick\nRettungswurf: Willen und Z\u00E4higkeit\nZauberresistenz: Ja\n\nDer Magieanwender beschw\u00F6rt ein Abbild des absoluten Schreckens aus dem Unterbewusstsein einer Kreatur herauf. Wenn dem Ziel ein Willenswurf gelingt, erkennt es, dass das Abbild nicht real ist und vermeidet alle Auswirkungen des Zaubers. Scheitert der Willenswurf, muss das Opfer einen Z\u00E4higkeitswurf bestehen oder sterben. Selbst wenn der Z\u00E4higkeitswurf gelingt, erleidet das Opfer 3W6 Schadenspunkte."
+        },
+        "IT": {
+          "M": "Livello(i) dell\u0027incantatore: Mago / Stregone 4\nLivello innato: 4\nScuola: Illusione\nDescrittore(i): Paura, Influenza mentale\nComponente(i): Verbale, Somatica\nRaggio d\u0027azione: Medio\nArea d\u0027effetto / Bersaglio: Singolo\nDurata: Istantanea\nControincantesimi addizionali: Visione del Vero\nTiro salvezza: Volont\u00E0 e Tempra\nResistenza agli incantesimi: S\u00EC\n\nL\u0027incantatore evoca un\u0027immagine di assoluto terrore che colpisce una singola creatura. Il bersaglio pu\u00F2 tentare un tiro salvezza sulla Volont\u00E0 per smentire l\u0027incantesimo, evitando tutti gli effetti negativi. Se fallisce, il bersaglio effettua un tiro salvezza sulla Tempra per evitare una morte istantanea. Un tiro salvezza effettuato con successo infligge comunque 3d6 danni."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Hechicero / Mago 4\nNivel innato: 4\nEscuela: Ilusi\u00F3n\nDescriptores: Miedo, Enajenador\nComponentes: Verbal, Som\u00E1tico\nAlcance: Intermedio\n\u00C1rea de efecto / Objetivo: Individual\nDuraci\u00F3n: Instant\u00E1neo\nContraconjuros adicionales: Visi\u00F3n verdadera\nTiro de salvaci\u00F3n: Voluntad y Fortaleza\nResistencia a conjuros: S\u00ED\n\nEl lanzador conjura una imagen de horror extremo para abatir a una criatura. El objetivo puede intentar una salvaci\u00F3n de Voluntad para descreer el conjuro, evitando todos los efectos adversos. Si la falla, debe efectuar una salvaci\u00F3n de Fortaleza para no morir al instante. Aunque supere la salvaci\u00F3n sufre 3d6 puntos de da\u00F1o."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Czarodziej / Czarownik 4\nPoziom wrodzony: 4\nSzko\u0142a: Iluzje\nIdentyfikator(y): Strach, Mentalny\nKomponent(y): Werbalne, Somatyczne\nZasi\u0119g: \u015Aredni\nObszar dzia\u0142ania / Cel: Pojedynczy\nCzas trwania: Natychmiastowy\nDodatkowe przeciwzakl\u0119cia: Prawdziwe Widzenie\nRzut obronny: Si\u0142a Woli i Wytrwa\u0142o\u015B\u0107\nOdporno\u015B\u0107 na czary: Tak\n\nCzarodziej przyzywa obraz przera\u017Caj\u0105cej istoty, kt\u00F3ry rzuca si\u0119 na wybran\u0105 ofiar\u0119. Ofiara mo\u017Ce wykona\u0107 rzut obronny na Si\u0142\u0119 Woli, \u017Ceby rozpozna\u0107 fa\u0142szywo\u015B\u0107 tego wizerunku i unikn\u0105\u0107 efekt\u00F3w czaru. Je\u015Bli to si\u0119 nie uda, ofiara musi wykona\u0107 test na Wytrwa\u0142o\u015B\u0107, bo inaczej zginie. Nawet je\u015Bli rzut b\u0119dzie udany, ofiara Widmowego Zab\u00F3jcy otrzyma 3k6 obra\u017Ce\u0144."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_phankill",
+      "School": "I",
+      "Range": "M",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Empower",
+        "Maximize",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Creature",
+        "Item"
+      ],
+      "ImpactScript": "NW_S0_PhanKill",
+      "InnateLevel": 4,
+      "ConjurationTime": 900,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_wraith",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_wraith",
+      "ConjurationMaleSound": "vs_chant_illu_lm",
+      "ConjurationFemaleSound": "vs_chant_illu_lf",
+      "CastingAnimation": "Out",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": true,
+      "ProjectileModel": "vpr_wraith",
+      "ProjectileType": "Accelerating",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": "spr_wraith",
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "HarmfulRanged",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": true,
+      "CounterSpell1": {
+        "ID": "714b41be-ed82-7281-78ac-9678d1c9c2e7",
+        "Label": "True Seeing"
+      },
+      "CounterSpell2": null,
+      "HasProjectileVisuals": true,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "784eccef-c091-477e-b739-f1e62262eaa5",
+      "Index": -1,
+      "Overrides": "1d434867-b260-868a-a405-12c1f969dba1",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Shadow_Shield",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 910,
+        "EN": {
+          "M": "Shadow Shield"
+        },
+        "FR": {
+          "M": "Bouclier d\u0027ombre"
+        },
+        "DE": {
+          "M": "Schattenschild"
+        },
+        "IT": {
+          "M": "Scudo d\u0027Ombra"
+        },
+        "ES": {
+          "M": "Escudo sombr\u00EDo"
+        },
+        "PL": {
+          "M": "Tarcza Cieni"
+        }
+      },
+      "Description": {
+        "Index": 6253,
+        "EN": {
+          "M": "Caster Level(s): Wizard / Sorcerer 7\nInnate Level: 7\nSchool: Illusion\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Turn / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe caster is shrouded in a cloak of shadow that protects them with the following effects:\n\u002B5 natural AC bonus\n10 / \u002B3 Damage reduction\nImmunity to instant death effects\nImmunity to Necromancy spells\nImmunity to Negative Engergy Damage"
+        },
+        "FR": {
+          "M": "Niveau : Magicien / Ensorceleur 7\nNiveau inn\u00E9 :  7\nEcole : Illusion\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : personnelle\nZone d\u0027effet / cible : lanceur\nDur\u00E9e : 1 tour/niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : inoffensif\nR\u00E9sistance \u00E0 la magie : non\n\nLe lanceur est envelopp\u00E9 d\u0027un manteau d\u0027ombres qui le prot\u00E8ge et lui fait b\u00E9n\u00E9ficier des effets suivants :\nBonus de \u002B5 \u00E0 la CA naturelle\nR\u00E9duction des d\u00E9g\u00E2ts 10/\u002B3\nImmunit\u00E9 contre les effets de mort instantan\u00E9s\nImmunit\u00E9 contre les sorts de n\u00E9cromancie\nImmunit\u00E9 contre l\u2019\u00E9nergie n\u00E9gative"
+        },
+        "DE": {
+          "M": "Grad: MAG/HXM 7\nKalkulationsgrad: 7\nSchule: Illusion\nKategorie:\nKomponenten: V, G\nReichweite: Pers\u00F6nlich\nWirkungsbereich/Ziel: Der Magieanwender\nWirkungsdauer: 1 Phase/Stufe\nGegenzauber:\nRettungswurf: Harmlos\nZauberresistenz: Nein\n\nDer Magieanwender h\u00FCllt sich in einen Mantel aus Schatten, der ihn durch verschiedene Effekte sch\u00FCtzt:\nNat\u00FCrlicher R\u00FCstungsbonus \u002B5\nSchadensreduzierung 10/\u002B3\nImmunit\u00E4t gegen Effekte, die augenblicklichen Tod verursachen\nImmunit\u00E4t gegen Zauber der Schule Nekromantie\nImmunit\u00E4t gegen Schaden durch Negative Energie"
+        },
+        "IT": {
+          "M": "Livello(i) dell\u0027incantatore: Mago / Stregone 7\nLivello innato: 7\nScuola: Illusione\nDescrittore(i):\nComponente(i): Verbale, Somatica\nRaggio d\u0027azione: Personale\nArea d\u0027effetto / Bersaglio: Incantatore\nDurata: 1 turno per livello\nControincantesimi addizionali:\nTiro salvezza: Innocuo\nResistenza agli incantesimi: No\n\nL\u0027incantatore viene avvolto da un mantello d\u0027ombra che lo protegge con i seguenti effetti:\nbonus \u002B5 alla CA naturale\nriduzione del danno 10 / \u002B3\nImmunit\u00E0 agli effetti di morte istantanea\nImmunit\u00E0 agli incantesimi di Necromanzia\nImmunit\u00E0 al danno di energia negativa."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Hechicero / Mago 7\nNivel innato: 7\nEscuela: Ilusi\u00F3n\nDescriptores:\nComponentes: Verbal, Som\u00E1tico\nAlcance: Personal\n\u00C1rea de efecto / Objetivo: Lanzador\nDuraci\u00F3n: 1 turno / nivel\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Inofensivo\nResistencia a conjuros: No\n\nEl lanzador es rodeado por una capa de sombras que lo protege con los siguientes efectos:\nBonificador \u002B5 natural a la CA\nReducci\u00F3n del da\u00F1o 10/\u002B3\nInmunidad a los efectos de muerte instant\u00E1nea\nInmunidad a los conjuros de Nigromancia\nInmunidad al da\u00F1o por energ\u00EDa negativa"
+        },
+        "PL": {
+          "M": "Poziomy czaruj\u0105cego: Czarodziej / Czarownik 7\nPoziom wrodzony: 7\nSzko\u0142a: Iluzje\nIdentyfikator(y):\nKomponent(y): Werbalny, Somatyczny\nZasi\u0119g: Osobisty\nObszar dzia\u0142ania / Cel: Rzucaj\u0105cy\nCzas trwania: 1 runda / poziom\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Czar nieszkodliwy\nOdporno\u015B\u0107 na czary: Nie\n\nRzucaj\u0105cego spowija cienista opo\u0144cza, kt\u00F3ra daje mu nast\u0119puj\u0105ce korzy\u015Bci:\n\u002B5 do KP za pancerz naturalny\nOdporno\u015B\u0107 na obra\u017Cenia 10 / \u002B3\nOdporno\u015B\u0107 na efekty powoduj\u0105ce natychmiastow\u0105 \u015Bmier\u0107\nOdporno\u015B\u0107 na czary nekromancji\nOdporno\u015B\u0107 na obra\u017Cenia od energii negatywnej"
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_shadshld",
+      "School": "I",
+      "Range": "P",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Item"
+      ],
+      "ImpactScript": "NW_S0_ShadShld",
+      "InnateLevel": 7,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": null,
+      "ConjurationGroundEffect": "vco_lgrinodd01",
+      "ConjurationSound": "sco_lgrinodd01",
+      "ConjurationMaleSound": "vs_chant_illu_hm",
+      "ConjurationFemaleSound": "vs_chant_illu_hf",
+      "CastingAnimation": "Self",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": null,
+      "ProjectileSound": null,
+      "ProjectileOrientation": null,
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "TalentFriendlyProtectionSelf",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "0df27f3d-3461-473e-b605-f8b63b80a494",
+      "Index": -1,
+      "Overrides": "8990e281-7102-050d-cbe7-3d945f2396f3",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Silence",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 913,
+        "EN": {
+          "M": "Silence"
+        },
+        "FR": {
+          "M": "Silence"
+        },
+        "DE": {
+          "M": "Stille"
+        },
+        "IT": {
+          "M": "Silenzio"
+        },
+        "ES": {
+          "M": "Silencio"
+        },
+        "PL": {
+          "M": "Cisza"
+        }
+      },
+      "Description": {
+        "Index": 6256,
+        "EN": {
+          "M": "Caster Level(s): Bard 2, Cleric 2\nInnate Level: 2\nSchool: Illusion\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Large, Single\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: Will Negates\nSpell Resistance: Yes\n\nCreates a zone of silence around the target creature, preventing all within the area of effect from casting spells or using abilities with verbal components. Additionally those in the area gain a 100% increase in immunity to sonic damage. If cast on an ally, no saving throws or spell resistance checks are necessary.",
+          "F": "Caster Level(s): Bard 2, Cleric 2\nInnate Level: 2\nSchool: Illusion\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Large, Single\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: Will Negates\nSpell Resistance: Yes\n\nCreates a zone of silence around the target creature, preventing all within the area of effect from casting spells with verbal components. If cast on an ally, no saving throws or spell resistance checks are necessary."
+        },
+        "FR": {
+          "M": "Niveau : Barde 2, Pr\u00EAtre 2\nNiveau inn\u00E9 : 2\nEcole : Illusion\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : longue\nZone d\u0027effet / cible : grande, 1 cr\u00E9ature\nDur\u00E9e : 1 round/niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : Volont\u00E9, annule\nR\u00E9sistance \u00E0 la magie : oui\n\nCe sort cr\u00E9e une zone de silence autour de la cr\u00E9ature cibl\u00E9e, ce qui emp\u00EAche tous ceux qui se trouvent dans la zone de lancer des sorts avec une composante verbale. Si le sort est lanc\u00E9 sur un sujet volontaire, il n\u0027est pas n\u00E9cessaire d\u0027effectuer un jet de sauvegarde ou de prendre en compte la r\u00E9sistance \u00E0 la magie."
+        },
+        "DE": {
+          "M": "Grad: BAR 2, KLE 2\nKalkulationsgrad: 2\nSchule: Illusion\nKategorie:\nKomponenten: V, G\nReichweite: Lang\nWirkungsbereich/Ziel: 1 Kreatur, Gro\u00DF\nWirkungsdauer: 1 Runde/Stufe\nGegenzauber:\nRettungswurf: Willen, keine Wirkung\nZauberresistenz: Ja\n\nDer Zauber erschafft rund um die Zielkreatur ein Gebiet der Stille. In dem Wirkungsbereich k\u00F6nnen keine Zauber mit verbalen (V) Komponenten gewirkt werden. Wenn der Zauber auf einen Verb\u00FCndeten gewirkt wird, muss keine Zauberresistenz \u00FCberwunden werden, und das Ziel muss auch keinen Rettungswurf machen."
+        },
+        "IT": {
+          "M": "Livello(i) dell\u0027incantatore: bardo 2, chierico 2\nLivello innato: 2\nScuola: illusione\nDescrittore(i):\nComponente(i): verbale, somatica\nRaggio d\u0027azione: lungo\nArea d\u0027effetto / bersaglio: grande, singolo\nDurata: 1 round per livello\nControincantesimi addizionali:\nTiro salvezza: volont\u00E0 nega\nResistenza agli incantesimi: s\u00EC\n\nCrea una zona di silenzio attorno al bersaglio, impedendo a chiunque entro l\u0027area d\u0027effetto di lanciare incantesimi con componenti verbali. Se lanciato su un soggetto consenziente, non sono necessari tiri salvezza o prove di resistenza agli incantesimi."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Bardo 2, Cl\u00E9rigo 2\nNivel innato: 2\nEscuela: Ilusi\u00F3n\nDescriptores:\nComponentes: Verbal, Som\u00E1tico\nAlcance: Largo\n\u00C1rea de efecto / Objetivo: Grande, Individual\nDuraci\u00F3n: 1 asalto/nivel\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Voluntad niega\nResistencia a conjuros: S\u00ED\n\nCrea una zona de silencio alrededor de la criatura objetivo, evitando que todo el que se encuentre dentro del \u00E1rea de efecto pueda lanzar conjuros con componente Verbal. Si se lanza sobre un aliado, no es necesario efectuar tiro de salvaci\u00F3n ni prueba de resistencia a conjuros."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Bard 2, Kap\u0142an 2\nPoziom wrodzony: 2\nSzko\u0142a: Iluzje\nIdentyfikator(y):\nKomponent(y): Werbalne, Somatyczne\nZasi\u0119g: Daleki\nObszar dzia\u0142ania / Cel: Du\u017Cy\nCzas trwania: 1 runda / poziom\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Si\u0142a Woli odpiera\nOdporno\u015B\u0107 na czary: Tak\n\nTen czar tworzy stref\u0119 ciszy wok\u00F3\u0142 wybranej istoty, co uniemo\u017Cliwia rzucanie zakl\u0119\u0107 wymagaj\u0105cych werbalnych komponent\u00F3w. Je\u015Bli czar ten rzuca si\u0119 na osob\u0119, kt\u00F3ra si\u0119 mu nie opiera, nie trzeba wykonywa\u0107 rzut\u00F3w obronnych ani test\u00F3w odporno\u015Bci na czary."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_silence",
+      "School": "I",
+      "Range": "L",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Creature",
+        "Item"
+      ],
+      "ImpactScript": "NW_S0_Silence",
+      "InnateLevel": 2,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_smhanodd01",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mehanodd01",
+      "ConjurationMaleSound": "vs_chant_illu_lm",
+      "ConjurationFemaleSound": "vs_chant_illu_lf",
+      "CastingAnimation": "Up",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": null,
+      "ProjectileSound": null,
+      "ProjectileOrientation": null,
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": null,
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": "Sphere",
+      "TargetSizeX": 4,
+      "TargetSizeY": null,
+      "TargetingFlags": [
+        "HarmsEnemies",
+        "HarmsAllies"
+      ]
+    },
+    {
+      "ID": "f7e30625-0393-486e-8404-bee4b66cedc8",
+      "Index": -1,
+      "Overrides": "eea264a1-c572-5c45-92e3-512dfcc52ddb",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Weird",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 943,
+        "EN": {
+          "M": "Weird"
+        },
+        "FR": {
+          "M": "Ennemi subconscient"
+        },
+        "DE": {
+          "M": "Unheimliches Schicksal"
+        },
+        "IT": {
+          "M": "Fatale"
+        },
+        "ES": {
+          "M": "N\u00E9mesis inexorable"
+        },
+        "PL": {
+          "M": "Dziw"
+        }
+      },
+      "Description": {
+        "Index": 6524,
+        "EN": {
+          "M": "Caster Level(s): Wizard / Sorcerer 9\nInnate Level: 9\nSchool: Illusion\nDescriptor(s): Fear, Mind-Affecting\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Colossal\nDuration: Instant\nAdditional Counter Spells: True Seeing\nSave: Fortitude and Will\nSpell Resistance: Yes\n\nA horrible phantasm rises to stand before enemy creatures in the area of effect, causing them to make a Will save. If they fail, the phantasm touches them and they must now make a Fortitude saving throw. If this saving throw fails, the creature dies. Those who succeed the Fortitude save still take 3d6 points of damage. Creatures with less than 4 HD automatically die, without any saving throws. "
+        },
+        "FR": {
+          "M": "Niveau : Magicien / Ensorceleur 9\nNiveau inn\u00E9 : 9\nEcole : Illusion\nCat\u00E9gorie(s) : terreur, mentale\nComposante(s) : verbale, gestuelle\nPort\u00E9e : moyenne\nZone d\u0027effet / cible : colossale\nDur\u00E9e : instantan\u00E9e\nContresorts suppl\u00E9mentaires : Vision lucide\nJet de sauvegarde : Vigueur et Volont\u00E9\nR\u00E9sistance \u00E0 la magie : oui\n\nUn monstre fantasmatique se dresse devant les ennemis pr\u00E9sents dans la zone d\u0027effet et les oblige \u00E0 faire un jet de Volont\u00E9. S\u0027ils \u00E9chouent, le monstre fantasmatique les touche et ils doivent faire un jet de Vigueur. Les cr\u00E9atures qui ratent ce jet meurent. Celles qui le r\u00E9ussissent subissent 3d6 points de d\u00E9g\u00E2ts. Les cr\u00E9atures de moins de 4 d\u00E9s de vie meurent automatiquement, sans jet de sauvegarde."
+        },
+        "DE": {
+          "M": "Grad: MAG/HXM 9\nKalkulationsgrad: 9\nSchule: Illusion\nKategorie: Furcht, Geistesbeeinflussung\nKomponenten: V, G\nReichweite: Mittel\nWirkungsbereich/Ziel: Kolossal\nWirkungsdauer: Augenblicklich\nGegenzauber: Wahrer Blick\nRettungswurf: Z\u00E4higkeit und Willen\nZauberresistenz: Ja\n\nVor den Feinden im Wirkungsbereich erhebt sich ein Furcht erregendes Phantom. Jeder Feind im Wirkungsbereich muss einen Willenswurf schaffen. Wer scheitert, wird vom Phantom ber\u00FChrt und muss einen Z\u00E4higkeitswurf bestehen. Wer erneut scheitert, stirbt. Auch wenn man beim Z\u00E4higkeitswurf erfolgreich ist, erleidet man 3W6 SP. Kreaturen mit 4 TW oder weniger sterben automatisch. Ihnen steht \u00FCberhaupt kein Rettungswurf zu."
+        },
+        "IT": {
+          "M": "Livello(i) dell\u0027incantatore: mago / stregone 9\nLivello innato: 9\nScuola: illusione\nDescrittore(i): paura, influenza mentale\nComponente(i): verbale, somatica\nRaggio d\u0027azione: medio\nArea d\u0027effetto / bersaglio: colossale\nDurata: istantanea\nControincantesimi addizionali: visione del vero\nTiro salvezza: tempra e volont\u00E0\nResistenza agli incantesimi: s\u00EC\n\nUn\u0027allucinazione orribile sorge di fronte alle creature nemiche nell\u0027area d\u0027effetto, costringendole a superare un tiro salvezza sulla volont\u00E0. Se non lo superano, l\u0027allucinazione le tocca e le creature dovranno allora superare un tiro salvezza sulla tempra. Se anche questo tiro salvezza viene fallito, la creatura muore. Coloro che superano il tiro salvezza sulla tempra subiscono 3d6 danni. Le creature con meno di 4 DV muoiono automaticamente, senza effettuare alcun tiro salvezza."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Hechicero/Mago 9\nNivel innato: 9\nEscuela: Ilusi\u00F3n\nDescriptores: Miedo, Enajenador\nComponentes: Verbal, Som\u00E1tico\nAlcance: Intermedio\n\u00C1rea de efecto / Objetivo: Colosal\nDuraci\u00F3n: Instant\u00E1neo\nContraconjuros adicionales: Visi\u00F3n verdadera\nTiro de salvaci\u00F3n: Fortaleza y Voluntad\nResistencia a conjuros: S\u00ED\n\nUna horrible fantasmagor\u00EDa surge ante las criaturas enemigas en el \u00E1rea de efecto, provocando que deban superar una salvaci\u00F3n de Voluntad o mueran. Aquellas que tengan \u00E9xito deber\u00E1n realizar una salvaci\u00F3n de Fortaleza o sufrir\u00E1n 3d6 puntos de da\u00F1o. Las criaturas con menos de 4 DG morir\u00E1n autom\u00E1ticamente, sin derecho a ning\u00FAn tipo de salvaci\u00F3n."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Czarodziej / Czarownik 9\nPoziom wrodzony: 9\nSzko\u0142a: Iluzje\nIdentyfikator(y): Strach, Mentalny\nKomponent(y): Werbalne, Somatyczne\nZasi\u0119g: \u015Aredni\nObszar dzia\u0142ania / Cel: Olbrzymi\nCzas trwania: Natychmiastowy\nDodatkowe przeciwzakl\u0119cia: Prawdziwe Widzenie\nRzut obronny: Wytrwa\u0142o\u015B\u0107 i Si\u0142a Woli\nOdporno\u015B\u0107 na czary: Tak\n\nPrzera\u017Caj\u0105ce widmo pojawia si\u0119 przed wrogami na obszarze dzia\u0142ania czaru. Ci, kt\u00F3rym nie uda si\u0119 rzut na Si\u0142\u0119 Woli, gin\u0105. Ci, kt\u00F3rym si\u0119 uda\u0142o, musz\u0105 wykona\u0107 test na Wytrwa\u0142o\u015B\u0107 albo otrzymaj\u0105 3k6 obra\u017Ce\u0144."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_weird",
+      "School": "I",
+      "Range": "S",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Empower",
+        "Maximize",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Creature",
+        "Area",
+        "Item"
+      ],
+      "ImpactScript": "NW_S0_Weird",
+      "InnateLevel": 9,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Head",
+      "ConjurationHeadEffect": "vco_mehanelec03",
+      "ConjurationHandEffect": null,
+      "ConjurationGroundEffect": "vco_lgupevil01",
+      "ConjurationSound": "sco_lgupevil01",
+      "ConjurationMaleSound": "vs_chant_illu_hm",
+      "ConjurationFemaleSound": "vs_chant_illu_hf",
+      "CastingAnimation": "Touch",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": true,
+      "ProjectileModel": "vpr_los",
+      "ProjectileType": "Accelerating",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": "spr_los",
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "HarmfulAoeDiscriminant",
+      "ParentSpell": null,
+      "Type": "Spell",
       "UseConcentration": true,
       "IsCastSpontaneously": false,
       "IsHostile": true,
       "CounterSpell1": null,
       "CounterSpell2": null,
       "HasProjectileVisuals": true,
-      "TargetShape": "Cone",
-      "TargetSizeX": 20,
+      "TargetShape": "Sphere",
+      "TargetSizeX": 10,
       "TargetSizeY": null,
       "TargetingFlags": [
-        "HarmsEnemies",
-        "HarmsAllies",
-        "IgnoresSelf",
-        "OriginOnSelf"
+        "HarmsEnemies"
       ]
     }
   ]
