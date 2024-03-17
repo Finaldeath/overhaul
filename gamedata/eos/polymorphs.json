@@ -10,7 +10,7 @@
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
-      "Name": "Air Elemental",
+      "Name": "Huge Air Elemental",
       "Appearance": {
         "ID": "e038edd0-040f-6b96-fda1-418745f71a37",
         "Label": "Elemental, Air"
@@ -198,7 +198,7 @@
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
-      "Name": "Brown Bear",
+      "Name": "Dire Bear",
       "Appearance": {
         "ID": "f58e6091-c733-2e2f-687c-fe76671c4b82",
         "Label": "Bear, Dire"
@@ -416,7 +416,7 @@
       "Index": -1,
       "Overrides": "dc93a456-bb9b-9362-761d-256c6705829f",
       "Disabled": false,
-      "Hint": "Shifter Greater Wildshape III ",
+      "Hint": "Shifter Greater Wildshape III",
       "ScriptConstant": "",
       "SourceLabel": "POLYMORPH_TYPE_DRIDER",
       "ExtensionValues": {},
@@ -595,7 +595,7 @@
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
-      "Name": "Earth Elemental",
+      "Name": "Huge Earth Elemental",
       "Appearance": {
         "ID": "f1f6b2a6-5bab-63c4-58e2-7f4e64e70b63",
         "Label": "Elemental, Earth"
@@ -632,7 +632,7 @@
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
-      "Name": "Eldear Water Elemental",
+      "Name": "Elder Water Elemental",
       "Appearance": {
         "ID": "0be6da30-3c7e-cd64-f11a-c3c32f803c9e",
         "Label": "Elemental, Water Elder"
@@ -786,7 +786,7 @@
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
-      "Name": "Fire Elemental",
+      "Name": "Huge Fire Elemental",
       "Appearance": {
         "ID": "e574a39d-7323-f6de-06ee-9621b758d417",
         "Label": "Elemental, Fire"
@@ -1041,7 +1041,7 @@
       "Index": -1,
       "Overrides": "76fd6eb1-ed34-f67f-b024-c3e388d90527",
       "Disabled": false,
-      "Hint": "Tenser\u0027s Transformation",
+      "Hint": "Tenser\u0027s Transformation (Previously Doom Knight)",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
@@ -1156,7 +1156,7 @@
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
-      "Name": "Water Elemental",
+      "Name": "Huge Water Elemental",
       "Appearance": {
         "ID": "0f870be6-11ac-35fc-057a-f5653b561d2f",
         "Label": "Elemental, Water"
@@ -1365,6 +1365,2665 @@
       "Dexterity": 14,
       "NaturalACBonus": null,
       "HPBonus": 40,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": false
+    },
+    {
+      "ID": "1cccaf0f-c040-4b70-b0dc-fd37800f0f00",
+      "Index": -1,
+      "Overrides": "de3cdaa1-0a20-0998-b297-3272aae934f7",
+      "Disabled": false,
+      "Hint": "Shifter Undead Shape",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_SPECTRE",
+      "ExtensionValues": {},
+      "Name": "Spectre",
+      "Appearance": {
+        "ID": "60f74aa2-6971-3068-eca9-745af887d327",
+        "Label": "Spectre"
+      },
+      "RacialType": {
+        "ID": "2125558d-86ff-2eea-65fd-b2a36259dd19",
+        "Label": "Undead"
+      },
+      "Portrait": {
+        "ID": "4af8a571-881d-8314-5103-1d67b2d7cdb4",
+        "Label": "Spectre_"
+      },
+      "PortraitResRef": "po_Spectre",
+      "CreatureWeapon1": "NW_IT_CREWPSP010",
+      "CreatureWeapon2": "NW_IT_CREWPSP010",
+      "CreatureWeapon3": "NW_IT_CREWPSP010",
+      "HideItem": "x2_it_spectrprop",
+      "MainHandItem": "",
+      "Strength": 16,
+      "Constitution": null,
+      "Dexterity": 22,
+      "NaturalACBonus": 15,
+      "HPBonus": 40,
+      "Spell1": {
+        "ID": "a9d15da9-35c3-f8f8-a26c-b91fb3caa6d5",
+        "Label": "Shadow attack"
+      },
+      "Spell2": {
+        "ID": "fd9ea0f9-e597-15b1-c6cc-6e09f5d76030",
+        "Label": "Invisibility"
+      },
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": true
+    },
+    {
+      "ID": "250ed6ff-c1e0-47ab-a89e-e2b9e9dfbefa",
+      "Index": -1,
+      "Overrides": "0cd6866e-b4c6-611d-652b-2cc30493a8ac",
+      "Disabled": false,
+      "Hint": "Shifter Undead Shape",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_VAMPIRE_FEMALE",
+      "ExtensionValues": {},
+      "Name": "Vampire, Female",
+      "Appearance": {
+        "ID": "5fa9b527-a741-1e16-4f43-2e73d09fd11f",
+        "Label": "Vampire, Female"
+      },
+      "RacialType": {
+        "ID": "2125558d-86ff-2eea-65fd-b2a36259dd19",
+        "Label": "Undead"
+      },
+      "Portrait": {
+        "ID": "53a4d726-9c26-fd25-8941-0077bf3a5c01",
+        "Label": "Vampire_f_"
+      },
+      "PortraitResRef": "po_vampire_f",
+      "CreatureWeapon1": "x2_it_crevampclw",
+      "CreatureWeapon2": "x2_it_crevampclw",
+      "CreatureWeapon3": "x2_it_cravampbit",
+      "HideItem": "NW_CREITEMVAM",
+      "MainHandItem": "",
+      "Strength": 18,
+      "Constitution": null,
+      "Dexterity": 20,
+      "NaturalACBonus": 13,
+      "HPBonus": 30,
+      "Spell1": {
+        "ID": "e2a4ede9-9fd4-225f-8f13-b62435a8b08b",
+        "Label": "Gaze, Dominate"
+      },
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": true,
+      "MergeArmor": true
+    },
+    {
+      "ID": "967c5060-3262-40ea-ada4-7940636a914c",
+      "Index": -1,
+      "Overrides": "09c9ed29-64dc-f083-8af9-4fa299c88359",
+      "Disabled": false,
+      "Hint": "Shifter Undead Shape",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_VAMPIRE_MALE",
+      "ExtensionValues": {},
+      "Name": "Vampire, Male",
+      "Appearance": {
+        "ID": "4aeb2642-4d01-de4c-4ed5-5983d01d7aca",
+        "Label": "Vampire, Male"
+      },
+      "RacialType": {
+        "ID": "2125558d-86ff-2eea-65fd-b2a36259dd19",
+        "Label": "Undead"
+      },
+      "Portrait": {
+        "ID": "056f4165-f341-9660-299e-b023e96f9a49",
+        "Label": "Vampire_m_"
+      },
+      "PortraitResRef": "po_vampire_m",
+      "CreatureWeapon1": "x2_it_crevampclw",
+      "CreatureWeapon2": "x2_it_crevampclw",
+      "CreatureWeapon3": "x2_it_cravampbit",
+      "HideItem": "NW_CREITEMVAM",
+      "MainHandItem": "",
+      "Strength": 18,
+      "Constitution": null,
+      "Dexterity": 20,
+      "NaturalACBonus": 13,
+      "HPBonus": 30,
+      "Spell1": {
+        "ID": "e2a4ede9-9fd4-225f-8f13-b62435a8b08b",
+        "Label": "Gaze, Dominate"
+      },
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": true,
+      "MergeArmor": true
+    },
+    {
+      "ID": "d0faf548-3f6d-473b-86ac-1176be282364",
+      "Index": -1,
+      "Overrides": "756092bb-dfaf-7b85-32e7-191e31c8327d",
+      "Disabled": false,
+      "Hint": "Shifter Humanoid Shape (was Kobold Assassin)",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_KOBOLD_ASSASSIN",
+      "ExtensionValues": {},
+      "Name": "Kobold Commando",
+      "Appearance": {
+        "ID": "ff2cd97d-edd3-6fb5-4119-2dbcbce0d521",
+        "Label": "Kobold A"
+      },
+      "RacialType": {
+        "ID": "31f5cef8-e324-3523-d574-a3b8008e1908",
+        "Label": "Reptilian"
+      },
+      "Portrait": {
+        "ID": "c54f8eac-7d6d-d0c8-7929-a6caac4bfd59",
+        "Label": "kobchiefa_"
+      },
+      "PortraitResRef": "po_kobchiefa",
+      "CreatureWeapon1": "",
+      "CreatureWeapon2": "",
+      "CreatureWeapon3": "",
+      "HideItem": "x2_it_koboldcomm",
+      "MainHandItem": "x2_it_crewpkobsw",
+      "Strength": null,
+      "Constitution": null,
+      "Dexterity": 22,
+      "NaturalACBonus": 10,
+      "HPBonus": 10,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": true,
+      "MergeAccessories": true,
+      "MergeArmor": true
+    },
+    {
+      "ID": "6718ce7a-6cee-475c-ab39-188115c7a374",
+      "Index": -1,
+      "Overrides": "9c747ec4-f679-69f3-8828-d6d15f46f5f1",
+      "Disabled": false,
+      "Hint": "Shifter Humanoid Shape (was Kobold Assassin)",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_KOBOLD_ASSASSIN_EPIC",
+      "ExtensionValues": {},
+      "Name": "Kobold Commando (Epic)",
+      "Appearance": {
+        "ID": "ff2cd97d-edd3-6fb5-4119-2dbcbce0d521",
+        "Label": "Kobold A"
+      },
+      "RacialType": {
+        "ID": "31f5cef8-e324-3523-d574-a3b8008e1908",
+        "Label": "Reptilian"
+      },
+      "Portrait": {
+        "ID": "58ec1a5e-ca27-1ccc-aa03-ad9dd1cf867c",
+        "Label": "kobchiefb_"
+      },
+      "PortraitResRef": "po_kobchiefb",
+      "CreatureWeapon1": "",
+      "CreatureWeapon2": "",
+      "CreatureWeapon3": "",
+      "HideItem": "x2_it_koboldcomm",
+      "MainHandItem": "x2_it_crewpkobs2",
+      "Strength": null,
+      "Constitution": null,
+      "Dexterity": 25,
+      "NaturalACBonus": 13,
+      "HPBonus": 70,
+      "Spell1": {
+        "ID": "fd9ea0f9-e597-15b1-c6cc-6e09f5d76030",
+        "Label": "Invisibility"
+      },
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": true,
+      "MergeAccessories": true,
+      "MergeArmor": true
+    },
+    {
+      "ID": "e5bfa59c-45b8-418a-8b1a-fbb6058cb43c",
+      "Index": -1,
+      "Overrides": "c6e2dcb0-8923-eaf9-1917-a363d6e256ba",
+      "Disabled": false,
+      "Hint": "Shifter Greater Wildshape III",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_MANTICORE",
+      "ExtensionValues": {},
+      "Name": "Manticore",
+      "Appearance": {
+        "ID": "9aa269a7-7cba-e9f5-667a-59740f0178a0",
+        "Label": "Manticore"
+      },
+      "RacialType": {
+        "ID": "942a0346-b1c2-6fd5-f85a-4d0ac8a09a41",
+        "Label": "Magical Beast"
+      },
+      "Portrait": {
+        "ID": "436b1088-02d2-e800-e895-20b8c6139bef",
+        "Label": "manticore_"
+      },
+      "PortraitResRef": "po_manticore",
+      "CreatureWeapon1": "nw_it_crewpsp006",
+      "CreatureWeapon2": "nw_it_crewpsp006",
+      "CreatureWeapon3": "nw_it_crewps010",
+      "HideItem": "x2_it_emptyskin",
+      "MainHandItem": "",
+      "Strength": 20,
+      "Constitution": 15,
+      "Dexterity": 19,
+      "NaturalACBonus": 7,
+      "HPBonus": 30,
+      "Spell1": {
+        "ID": "9a08d49c-3671-5d7c-a2ba-a3ed9db186b5",
+        "Label": "Manticore Spikes"
+      },
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": true
+    },
+    {
+      "ID": "b9302e5a-5f6b-4bcc-8776-0afa650eab62",
+      "Index": -1,
+      "Overrides": "01d86621-22be-36ea-625a-01b011aa30bd",
+      "Disabled": false,
+      "Hint": "Shifter Greater Wildshape III (Epic)",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_MANTICORE_EPIC",
+      "ExtensionValues": {},
+      "Name": "Manticore (Epic)",
+      "Appearance": {
+        "ID": "9aa269a7-7cba-e9f5-667a-59740f0178a0",
+        "Label": "Manticore"
+      },
+      "RacialType": {
+        "ID": "942a0346-b1c2-6fd5-f85a-4d0ac8a09a41",
+        "Label": "Magical Beast"
+      },
+      "Portrait": {
+        "ID": "436b1088-02d2-e800-e895-20b8c6139bef",
+        "Label": "manticore_"
+      },
+      "PortraitResRef": "po_manticore",
+      "CreatureWeapon1": "nw_it_crewpsp015",
+      "CreatureWeapon2": "nw_it_crewpsp015",
+      "CreatureWeapon3": "nw_it_crewps010",
+      "HideItem": "x2_it_creitmante",
+      "MainHandItem": "",
+      "Strength": 20,
+      "Constitution": null,
+      "Dexterity": 19,
+      "NaturalACBonus": 12,
+      "HPBonus": 60,
+      "Spell1": {
+        "ID": "9a08d49c-3671-5d7c-a2ba-a3ed9db186b5",
+        "Label": "Manticore Spikes"
+      },
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": true,
+      "MergeArmor": true
+    },
+    {
+      "ID": "924b315e-54dc-44eb-ba96-519af3c7be67",
+      "Index": -1,
+      "Overrides": "103e09a0-4d00-59ad-6278-8fb2911359ae",
+      "Disabled": false,
+      "Hint": "Shifter Greater Wildshape I",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_WYRMLING_BLACK",
+      "ExtensionValues": {},
+      "Name": "Wyrmling, Black",
+      "Appearance": {
+        "ID": "9d2c8417-6c9f-5c54-bb2f-dac132ff16a2",
+        "Label": "Wyrmling, Black"
+      },
+      "RacialType": {
+        "ID": "0464729f-d5fa-3fc9-3d3a-3b0259981b41",
+        "Label": "Dragon"
+      },
+      "Portrait": {
+        "ID": "ca74f392-dee9-7d12-21f4-4b7c914177c4",
+        "Label": "wyrmlblk_"
+      },
+      "PortraitResRef": "po_wyrmlblk",
+      "CreatureWeapon1": "nw_it_crewpsp002",
+      "CreatureWeapon2": "nw_it_crewpsp002",
+      "CreatureWeapon3": "nw_it_crewps002",
+      "HideItem": "x0_wyrmlhide_blk",
+      "MainHandItem": "",
+      "Strength": 15,
+      "Constitution": null,
+      "Dexterity": 17,
+      "NaturalACBonus": 5,
+      "HPBonus": 15,
+      "Spell1": {
+        "ID": "026d024d-e591-2034-80c5-5d9df649a415",
+        "Label": "Wyrmling Breath, Acid"
+      },
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": true,
+      "MergeArmor": true
+    },
+    {
+      "ID": "aa91a33c-b339-451a-98ef-61279e0cf706",
+      "Index": -1,
+      "Overrides": "03e7228a-93ae-4106-8d2c-fa445bbec0df",
+      "Disabled": false,
+      "Hint": "Shifter Greater Wildshape I",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_WYRMLING_BLUE",
+      "ExtensionValues": {},
+      "Name": "Wyrmling, Blue",
+      "Appearance": {
+        "ID": "ec00486b-b33a-088f-ddd6-310a7417eb8a",
+        "Label": "Wyrmling, Blue"
+      },
+      "RacialType": {
+        "ID": "0464729f-d5fa-3fc9-3d3a-3b0259981b41",
+        "Label": "Dragon"
+      },
+      "Portrait": {
+        "ID": "1860bae5-bf80-a68c-70d6-fd17bc2b9522",
+        "Label": "wyrmlblu_"
+      },
+      "PortraitResRef": "po_wyrmlblu",
+      "CreatureWeapon1": "nw_it_crewpsp026",
+      "CreatureWeapon2": "nw_it_crewpsp026",
+      "CreatureWeapon3": "nw_it_crewps005",
+      "HideItem": "x0_wyrmlhide_blu",
+      "MainHandItem": "",
+      "Strength": 15,
+      "Constitution": 15,
+      "Dexterity": null,
+      "NaturalACBonus": 5,
+      "HPBonus": 15,
+      "Spell1": {
+        "ID": "c89ad483-2c77-fe30-8515-cf50ecb1765c",
+        "Label": "Wyrmling Breath, Lightning"
+      },
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": true,
+      "MergeArmor": true
+    },
+    {
+      "ID": "987347b5-346c-480c-812c-e2a0cfedb17c",
+      "Index": -1,
+      "Overrides": "233a4272-f912-55e7-13db-749e5a0c7ce3",
+      "Disabled": false,
+      "Hint": "Shifter Greater Wildshape I",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_WYRMLING_GREEN",
+      "ExtensionValues": {},
+      "Name": "Wyrmling, Green",
+      "Appearance": {
+        "ID": "ee501ae1-3fec-af5e-9377-b2b3dc7d3008",
+        "Label": "Wyrmling, Green"
+      },
+      "RacialType": {
+        "ID": "0464729f-d5fa-3fc9-3d3a-3b0259981b41",
+        "Label": "Dragon"
+      },
+      "Portrait": {
+        "ID": "a87ae048-6bf4-8d51-ebe5-529c0f0bd098",
+        "Label": "wyrmlgrn_"
+      },
+      "PortraitResRef": "po_wyrmlgrn",
+      "CreatureWeapon1": "nw_it_crewpsp026",
+      "CreatureWeapon2": "nw_it_crewpsp026",
+      "CreatureWeapon3": "nw_it_crewps005",
+      "HideItem": "x0_wyrmlhide_grn",
+      "MainHandItem": "",
+      "Strength": 15,
+      "Constitution": 16,
+      "Dexterity": null,
+      "NaturalACBonus": 5,
+      "HPBonus": 15,
+      "Spell1": {
+        "ID": "5e0da74f-c4ec-170e-4326-d5a69585992a",
+        "Label": "Wyrmling Breath, Gas"
+      },
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": true,
+      "MergeArmor": true
+    },
+    {
+      "ID": "8fecea9e-55dc-4e51-bf61-55e49a8e7e77",
+      "Index": -1,
+      "Overrides": "fcd8373d-095f-d41b-e7a2-0e66f5a56e61",
+      "Disabled": false,
+      "Hint": "Shifter Greater Wildshape I",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_WYRMLING_RED",
+      "ExtensionValues": {},
+      "Name": "Wyrmling, Red",
+      "Appearance": {
+        "ID": "4377f4e7-8aa7-c3e5-6945-36cb17aadc7a",
+        "Label": "Wyrmling, Red"
+      },
+      "RacialType": {
+        "ID": "0464729f-d5fa-3fc9-3d3a-3b0259981b41",
+        "Label": "Dragon"
+      },
+      "Portrait": {
+        "ID": "91b72556-0a4c-7aac-b1a7-630d079fabc5",
+        "Label": "wyrmlred_"
+      },
+      "PortraitResRef": "po_wyrmlred",
+      "CreatureWeapon1": "nw_it_crewpsp005",
+      "CreatureWeapon2": "nw_it_crewpsp005",
+      "CreatureWeapon3": "nw_it_crewps010",
+      "HideItem": "x0_wyrmlhide_red",
+      "MainHandItem": "",
+      "Strength": 16,
+      "Constitution": 15,
+      "Dexterity": null,
+      "NaturalACBonus": 5,
+      "HPBonus": 15,
+      "Spell1": {
+        "ID": "786c0aa2-e256-9192-56c0-b074f48bd874",
+        "Label": "Wyrmling Breath, Fire"
+      },
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": true,
+      "MergeArmor": true
+    },
+    {
+      "ID": "420ef5a9-6182-4100-b33d-91b83accfb60",
+      "Index": -1,
+      "Overrides": "4df8636c-e2ee-a18b-12a4-309354b0a590",
+      "Disabled": false,
+      "Hint": "Shifter Greater Wildshape I",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_WYRMLING_WHITE",
+      "ExtensionValues": {},
+      "Name": "Wyrmling, White",
+      "Appearance": {
+        "ID": "04bbbca4-1233-fea0-b182-34c0a0bc9164",
+        "Label": "Wyrmling, White"
+      },
+      "RacialType": {
+        "ID": "0464729f-d5fa-3fc9-3d3a-3b0259981b41",
+        "Label": "Dragon"
+      },
+      "Portrait": {
+        "ID": "0f5ab506-a199-b3e4-1a63-7c267b79ae6a",
+        "Label": "wyrmlwht_"
+      },
+      "PortraitResRef": "po_wyrmlwht",
+      "CreatureWeapon1": "nw_it_crewpsp002",
+      "CreatureWeapon2": "nw_it_crewpsp002",
+      "CreatureWeapon3": "nw_it_crewps002",
+      "HideItem": "x0_wyrmlhide_wht",
+      "MainHandItem": "",
+      "Strength": 15,
+      "Constitution": null,
+      "Dexterity": 17,
+      "NaturalACBonus": 5,
+      "HPBonus": 15,
+      "Spell1": {
+        "ID": "9bf7eca3-8f61-671c-3e17-2af071a10bea",
+        "Label": "Wyrmling Breath, Cold"
+      },
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": true,
+      "MergeArmor": true
+    },
+    {
+      "ID": "879d7c19-0324-46b0-a598-5b4dcb3c3065",
+      "Index": -1,
+      "Overrides": "17074c19-8eff-1ab1-47a6-fa1e85630a99",
+      "Disabled": false,
+      "Hint": "Not used in spells",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_IMP",
+      "ExtensionValues": {},
+      "Name": "Imp",
+      "Appearance": {
+        "ID": "c6510e6e-87a8-4d7b-8e1f-45a19dfe0227",
+        "Label": "Imp"
+      },
+      "RacialType": {
+        "ID": "c1ab1ca8-6e1f-dcc2-9c4d-5d13c34f7f21",
+        "Label": "Outsider"
+      },
+      "Portrait": {
+        "ID": "5fa08c20-87f8-274a-1398-3dd301011b79",
+        "Label": "Imp_"
+      },
+      "PortraitResRef": "po_Imp",
+      "CreatureWeapon1": "NW_IT_CREWPSP026",
+      "CreatureWeapon2": "NW_IT_CREWPSP026",
+      "CreatureWeapon3": "NW_IT_CREWPP016",
+      "HideItem": "NW_IT_CREITEM029",
+      "MainHandItem": "",
+      "Strength": null,
+      "Constitution": null,
+      "Dexterity": null,
+      "NaturalACBonus": 3,
+      "HPBonus": null,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": false
+    },
+    {
+      "ID": "719bf3da-82bc-4712-a798-68c19dc6c097",
+      "Index": -1,
+      "Overrides": "5fe7b812-867e-5a31-b728-a62a4b6174fb",
+      "Disabled": false,
+      "Hint": "Not used in spells",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_QUASIT",
+      "ExtensionValues": {},
+      "Name": "Quasit",
+      "Appearance": {
+        "ID": "8b40fc25-d0ab-e45d-0a9d-a57e856bf100",
+        "Label": "Quasit"
+      },
+      "RacialType": {
+        "ID": "c1ab1ca8-6e1f-dcc2-9c4d-5d13c34f7f21",
+        "Label": "Outsider"
+      },
+      "Portrait": {
+        "ID": "3fb3d982-8b3a-6158-f1c0-cd3f55993082",
+        "Label": "DmQuasit_"
+      },
+      "PortraitResRef": "po_DmQuasit",
+      "CreatureWeapon1": "NW_IT_CREWPSP026",
+      "CreatureWeapon2": "NW_IT_CREWPSP026",
+      "CreatureWeapon3": "NW_IT_CREWPP016",
+      "HideItem": "NW_IT_CREITEM029",
+      "MainHandItem": "",
+      "Strength": null,
+      "Constitution": null,
+      "Dexterity": null,
+      "NaturalACBonus": 3,
+      "HPBonus": null,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": false
+    },
+    {
+      "ID": "10be7a44-f9f8-4dd8-b247-5be21b628685",
+      "Index": -1,
+      "Overrides": "9a33fdd3-4f48-ab23-4e69-00080941745c",
+      "Disabled": false,
+      "Hint": "Deck of Hazards: Avatar Polymorph",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_SUCCUBUS",
+      "ExtensionValues": {},
+      "Name": "Succubus",
+      "Appearance": {
+        "ID": "d6c81942-5ce8-ded6-71d9-5ae5dd011c63",
+        "Label": "Succubus"
+      },
+      "RacialType": {
+        "ID": "c1ab1ca8-6e1f-dcc2-9c4d-5d13c34f7f21",
+        "Label": "Outsider"
+      },
+      "Portrait": {
+        "ID": "4fad112a-3e9f-14e9-54d3-f2a34d5419f6",
+        "Label": "DmSucubus_"
+      },
+      "PortraitResRef": "po_DmSucubus",
+      "CreatureWeapon1": "NW_IT_CREWPSP002",
+      "CreatureWeapon2": "NW_IT_CREWPSP002",
+      "CreatureWeapon3": "NW_IT_CREWPSP002",
+      "HideItem": "NW_IT_CREITEM024",
+      "MainHandItem": "",
+      "Strength": null,
+      "Constitution": null,
+      "Dexterity": null,
+      "NaturalACBonus": 9,
+      "HPBonus": null,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": false
+    },
+    {
+      "ID": "e3f4ece7-48dc-4b49-a378-4bc1690403f0",
+      "Index": -1,
+      "Overrides": "bb90d972-8a09-8a08-fdef-92c40207063e",
+      "Disabled": false,
+      "Hint": "Dragon Shape Feat",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_ANCIENT_BLUE_DRAGON",
+      "ExtensionValues": {},
+      "Name": "Ancient Blue Dragon",
+      "Appearance": {
+        "ID": "586ed864-adf4-843a-b844-5a1b835f987e",
+        "Label": "Dragon, Blue"
+      },
+      "RacialType": {
+        "ID": "0464729f-d5fa-3fc9-3d3a-3b0259981b41",
+        "Label": "Dragon"
+      },
+      "Portrait": {
+        "ID": "bfe3e1e3-157d-51d2-9e48-b6bf18303923",
+        "Label": "DrgBlue_"
+      },
+      "PortraitResRef": "po_DrgBlue",
+      "CreatureWeapon1": "x2_it_epicdragcl",
+      "CreatureWeapon2": "x2_it_epicdragcl",
+      "CreatureWeapon3": "NW_IT_CREWPS017",
+      "HideItem": "NW_IT_CREITEMDRC",
+      "MainHandItem": "",
+      "Strength": 48,
+      "Constitution": 32,
+      "Dexterity": 36,
+      "NaturalACBonus": 20,
+      "HPBonus": 100,
+      "Spell1": {
+        "ID": "91bd21b9-1a6d-e4af-3627-e48d36122735",
+        "Label": "Dragon Breath, Lightning"
+      },
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": true
+    },
+    {
+      "ID": "1650120b-eb1b-4a36-9309-600ae200dce1",
+      "Index": -1,
+      "Overrides": "966c1d66-dbeb-bd38-8432-6711e4a24e7e",
+      "Disabled": false,
+      "Hint": "Dragon Shape Feat",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_ANCIENT_GREEN_DRAGON",
+      "ExtensionValues": {},
+      "Name": "Ancient Green Dragon",
+      "Appearance": {
+        "ID": "45a48908-8835-385d-ef81-8a82a08dd65f",
+        "Label": "Dragon, Green"
+      },
+      "RacialType": {
+        "ID": "0464729f-d5fa-3fc9-3d3a-3b0259981b41",
+        "Label": "Dragon"
+      },
+      "Portrait": {
+        "ID": "a26bc24a-d919-908a-372a-621e53bc59e7",
+        "Label": "DrgGreen_"
+      },
+      "PortraitResRef": "po_DrgGreen",
+      "CreatureWeapon1": "x2_it_epicdragcl",
+      "CreatureWeapon2": "x2_it_epicdragcl",
+      "CreatureWeapon3": "NW_IT_CREWPS017",
+      "HideItem": "NW_IT_CREITEMDRI",
+      "MainHandItem": "",
+      "Strength": 48,
+      "Constitution": 32,
+      "Dexterity": 36,
+      "NaturalACBonus": 20,
+      "HPBonus": 100,
+      "Spell1": {
+        "ID": "4bc925f7-1986-74a1-18ea-80ff65bccd25",
+        "Label": "Dragon Breath, Gas"
+      },
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": true
+    },
+    {
+      "ID": "9a996622-e1e9-409c-b81e-c4f643859744",
+      "Index": -1,
+      "Overrides": "897f3633-f323-47c9-5469-af47008e779a",
+      "Disabled": false,
+      "Hint": "Dragon Shape Feat",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_ANCIENT_RED_DRAGON",
+      "ExtensionValues": {},
+      "Name": "Ancient Red Dragon",
+      "Appearance": {
+        "ID": "c8c710b8-67db-8c29-2b50-efdf92dfb08d",
+        "Label": "Dragon, Red"
+      },
+      "RacialType": {
+        "ID": "0464729f-d5fa-3fc9-3d3a-3b0259981b41",
+        "Label": "Dragon"
+      },
+      "Portrait": {
+        "ID": "86d46631-9721-1628-2ccb-caf55c558699",
+        "Label": "DrgRed_"
+      },
+      "PortraitResRef": "po_DrgRed",
+      "CreatureWeapon1": "x2_it_epicdragcl",
+      "CreatureWeapon2": "x2_it_epicdragcl",
+      "CreatureWeapon3": "NW_IT_CREWPS017",
+      "HideItem": "NW_IT_CREITEMDRM",
+      "MainHandItem": "",
+      "Strength": 48,
+      "Constitution": 32,
+      "Dexterity": 36,
+      "NaturalACBonus": 20,
+      "HPBonus": 100,
+      "Spell1": {
+        "ID": "96467345-acfb-fcb7-d895-c2a37d2696dc",
+        "Label": "Dragon Breath, Fire"
+      },
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": true
+    },
+    {
+      "ID": "917fa43c-7130-493f-a0f6-4f95c6241063",
+      "Index": -1,
+      "Overrides": "212cee10-f2d7-c8d6-081d-baec91de2ed8",
+      "Disabled": false,
+      "Hint": "Shifter Outsider From",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_AZER_BOSS_FEMALE",
+      "ExtensionValues": {},
+      "Name": "Azer, Female",
+      "Appearance": {
+        "ID": "cc382236-72a2-bb1b-1ae8-9ef0becf47c6",
+        "Label": "Azer, Female"
+      },
+      "RacialType": {
+        "ID": "c1ab1ca8-6e1f-dcc2-9c4d-5d13c34f7f21",
+        "Label": "Outsider"
+      },
+      "Portrait": {
+        "ID": "446e54e1-39db-e3e9-0e00-07c20ec730c8",
+        "Label": "azergirl_"
+      },
+      "PortraitResRef": "po_azergirl",
+      "CreatureWeapon1": "",
+      "CreatureWeapon2": "",
+      "CreatureWeapon3": "",
+      "HideItem": "x2_it_creitem005",
+      "MainHandItem": "x2_it_crewmazera",
+      "Strength": 20,
+      "Constitution": 21,
+      "Dexterity": null,
+      "NaturalACBonus": 13,
+      "HPBonus": 50,
+      "Spell1": {
+        "ID": "ca35aafe-438e-270e-0d38-818a440e9b5a",
+        "Label": "Burning Hands"
+      },
+      "Spell2": {
+        "ID": "94a25e2c-bcec-2d55-6982-6e721655db8a",
+        "Label": "Fire Stream"
+      },
+      "Spell3": null,
+      "MergeWeapon": true,
+      "MergeAccessories": true,
+      "MergeArmor": true
+    },
+    {
+      "ID": "03f477a5-44ec-4f2a-802d-f587a0f91db3",
+      "Index": -1,
+      "Overrides": "9d427e2f-3426-4f16-5d42-a64d32a36af7",
+      "Disabled": false,
+      "Hint": "Shifter Outsider From",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_AZER_BOSS_MALE",
+      "ExtensionValues": {},
+      "Name": "Azer, Male",
+      "Appearance": {
+        "ID": "31b1eb57-3e2b-edfa-b034-df9230b85d24",
+        "Label": "Azer, Male"
+      },
+      "RacialType": {
+        "ID": "c1ab1ca8-6e1f-dcc2-9c4d-5d13c34f7f21",
+        "Label": "Outsider"
+      },
+      "Portrait": {
+        "ID": "a19b46dc-5458-c10f-389e-716896e7fab6",
+        "Label": "azerman_"
+      },
+      "PortraitResRef": "po_azerman",
+      "CreatureWeapon1": "",
+      "CreatureWeapon2": "",
+      "CreatureWeapon3": "",
+      "HideItem": "x2_it_creitem005",
+      "MainHandItem": "x2_it_crewmazera",
+      "Strength": 20,
+      "Constitution": 21,
+      "Dexterity": null,
+      "NaturalACBonus": 13,
+      "HPBonus": 50,
+      "Spell1": {
+        "ID": "ca35aafe-438e-270e-0d38-818a440e9b5a",
+        "Label": "Burning Hands"
+      },
+      "Spell2": {
+        "ID": "94a25e2c-bcec-2d55-6982-6e721655db8a",
+        "Label": "Fire Stream"
+      },
+      "Spell3": null,
+      "MergeWeapon": true,
+      "MergeAccessories": true,
+      "MergeArmor": true
+    },
+    {
+      "ID": "ca7f3e0e-9c92-4fbf-8446-6c6e7fd9194e",
+      "Index": -1,
+      "Overrides": "cfe82460-e73d-297d-7862-9cf404bfb46a",
+      "Disabled": false,
+      "Hint": "Shifter Greater Wildshape III",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_BASILISK",
+      "ExtensionValues": {},
+      "Name": "Basilisk",
+      "Appearance": {
+        "ID": "7d820460-a2d8-b2e8-cf2e-7beb23ecaeb3",
+        "Label": "Basilisk"
+      },
+      "RacialType": {
+        "ID": "942a0346-b1c2-6fd5-f85a-4d0ac8a09a41",
+        "Label": "Magical Beast"
+      },
+      "Portrait": {
+        "ID": "204df0f9-4f7f-1df3-8d14-a00896d1d332",
+        "Label": "basilisk_"
+      },
+      "PortraitResRef": "po_basilisk",
+      "CreatureWeapon1": "nw_it_crewps010",
+      "CreatureWeapon2": "nw_it_crewps010",
+      "CreatureWeapon3": "nw_it_crewps010",
+      "HideItem": "x2_it_emptyskin",
+      "MainHandItem": "",
+      "Strength": 16,
+      "Constitution": null,
+      "Dexterity": null,
+      "NaturalACBonus": 10,
+      "HPBonus": 30,
+      "Spell1": {
+        "ID": "ea81a363-6401-7574-8f1c-2c6381167a9d",
+        "Label": "Gaze, Petrification"
+      },
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": true
+    },
+    {
+      "ID": "780fc292-af0c-4c6b-b25d-e303b4ccd98e",
+      "Index": -1,
+      "Overrides": "da7639ea-7b03-ed7d-a053-e8542d315953",
+      "Disabled": false,
+      "Hint": "Shifter Greater Wildshape III",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_BASILISK_EPIC",
+      "ExtensionValues": {},
+      "Name": "Basilisk (Epic)",
+      "Appearance": {
+        "ID": "7d820460-a2d8-b2e8-cf2e-7beb23ecaeb3",
+        "Label": "Basilisk"
+      },
+      "RacialType": {
+        "ID": "942a0346-b1c2-6fd5-f85a-4d0ac8a09a41",
+        "Label": "Magical Beast"
+      },
+      "Portrait": {
+        "ID": "204df0f9-4f7f-1df3-8d14-a00896d1d332",
+        "Label": "basilisk_"
+      },
+      "PortraitResRef": "po_basilisk",
+      "CreatureWeapon1": "nw_it_crewps010",
+      "CreatureWeapon2": "nw_it_crewps010",
+      "CreatureWeapon3": "nw_it_crewps010",
+      "HideItem": "x2_it_emptyskin",
+      "MainHandItem": "",
+      "Strength": 17,
+      "Constitution": null,
+      "Dexterity": 17,
+      "NaturalACBonus": 10,
+      "HPBonus": 60,
+      "Spell1": {
+        "ID": "ea81a363-6401-7574-8f1c-2c6381167a9d",
+        "Label": "Gaze, Petrification"
+      },
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": true
+    },
+    {
+      "ID": "5cde6430-4283-4de5-b561-de6c07cda998",
+      "Index": -1,
+      "Overrides": "8e32e52f-cfb1-aca8-9643-5bfa73b71f6e",
+      "Disabled": false,
+      "Hint": "Unknown (Possibly was cut from Greater Wildshape III)",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_BEHOLDER",
+      "ExtensionValues": {},
+      "Name": "Beholder",
+      "Appearance": {
+        "ID": "769b4a5a-9f62-4118-e82f-8a4889879eba",
+        "Label": "Beholder"
+      },
+      "RacialType": {
+        "ID": "7b3a78dd-abaf-dcf2-5cec-467824d950bb",
+        "Label": "Aberration"
+      },
+      "Portrait": {
+        "ID": "a1b35b41-a4ec-9718-ae26-81eccbe7aefd",
+        "Label": "behold_"
+      },
+      "PortraitResRef": "po_behold",
+      "CreatureWeapon1": "nw_it_crewps003",
+      "CreatureWeapon2": "nw_it_crewps003",
+      "CreatureWeapon3": "nw_it_crewps003",
+      "HideItem": "x2_it_beholprops",
+      "MainHandItem": "",
+      "Strength": null,
+      "Constitution": null,
+      "Dexterity": null,
+      "NaturalACBonus": 8,
+      "HPBonus": 20,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": true,
+      "MergeArmor": true
+    },
+    {
+      "ID": "34d6439b-1720-401f-98e6-730d9b55d81b",
+      "Index": -1,
+      "Overrides": "76682093-d22d-3a4b-e616-92f2babfb778",
+      "Disabled": false,
+      "Hint": "Cutscene Only",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_BOAT",
+      "ExtensionValues": {},
+      "Name": "Boat",
+      "Appearance": {
+        "ID": "fe6d122c-31e3-a131-ec52-798dfc2a5c43",
+        "Label": "Drow Boat"
+      },
+      "RacialType": {
+        "ID": "c1ab1ca8-6e1f-dcc2-9c4d-5d13c34f7f21",
+        "Label": "Outsider"
+      },
+      "Portrait": null,
+      "PortraitResRef": "po_c_boathack",
+      "CreatureWeapon1": "",
+      "CreatureWeapon2": "",
+      "CreatureWeapon3": "",
+      "HideItem": "x2_it_emptyskin",
+      "MainHandItem": "",
+      "Strength": null,
+      "Constitution": null,
+      "Dexterity": null,
+      "NaturalACBonus": null,
+      "HPBonus": null,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": false
+    },
+    {
+      "ID": "5197e48e-6cd1-4c75-b178-623c01fbf4e1",
+      "Index": -1,
+      "Overrides": "b0fe2b9c-b4ec-2946-a0a9-7d86382ffb47",
+      "Disabled": false,
+      "Hint": "Unknown",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_BOY",
+      "ExtensionValues": {},
+      "Name": "Boy",
+      "Appearance": {
+        "ID": "23d6a27d-fd5f-7ab6-f91d-ca9c58d4fb90",
+        "Label": "Child, Male"
+      },
+      "RacialType": {
+        "ID": "d0e18be9-5133-c2a5-5fca-2eadf78b0bee",
+        "Label": "Human"
+      },
+      "Portrait": {
+        "ID": "01b4fad7-e299-2ca4-0e6e-bc71564eed77",
+        "Label": "kid_"
+      },
+      "PortraitResRef": "po_kid",
+      "CreatureWeapon1": "",
+      "CreatureWeapon2": "",
+      "CreatureWeapon3": "",
+      "HideItem": "x2_it_emptyskin",
+      "MainHandItem": "",
+      "Strength": 8,
+      "Constitution": null,
+      "Dexterity": null,
+      "NaturalACBonus": 0,
+      "HPBonus": null,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": true
+    },
+    {
+      "ID": "292bb29a-4e2e-45ce-ab8d-55ba3321eac6",
+      "Index": -1,
+      "Overrides": "9abfdbc0-cec1-2b38-81be-3314e8714d69",
+      "Disabled": false,
+      "Hint": "Unknown",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_GIRL",
+      "ExtensionValues": {},
+      "Name": "Girl",
+      "Appearance": {
+        "ID": "65224458-a378-ac14-d932-a80af56595f5",
+        "Label": "Child, Female"
+      },
+      "RacialType": {
+        "ID": "d0e18be9-5133-c2a5-5fca-2eadf78b0bee",
+        "Label": "Human"
+      },
+      "Portrait": {
+        "ID": "e6f34b36-e02f-983d-36c4-6c75690d30c7",
+        "Label": "girl_"
+      },
+      "PortraitResRef": "po_girl",
+      "CreatureWeapon1": "",
+      "CreatureWeapon2": "",
+      "CreatureWeapon3": "",
+      "HideItem": "x2_it_emptyskin",
+      "MainHandItem": "",
+      "Strength": 8,
+      "Constitution": null,
+      "Dexterity": null,
+      "NaturalACBonus": 0,
+      "HPBonus": null,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": true
+    },
+    {
+      "ID": "179f7ee5-92c2-4c12-a1fd-5f092c6e8b50",
+      "Index": -1,
+      "Overrides": "d526cd9b-423e-06f0-3680-ebd10792e90f",
+      "Disabled": false,
+      "Hint": "Deck of Hazards: Avatar Polymorph",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_CELESTIAL_AVENGER",
+      "ExtensionValues": {},
+      "Name": "Celestial Avenger",
+      "Appearance": {
+        "ID": "e1610fd9-0656-e7f8-c6fd-82c0f6104c3a",
+        "Label": "Celestial Avenger, Male"
+      },
+      "RacialType": {
+        "ID": "c1ab1ca8-6e1f-dcc2-9c4d-5d13c34f7f21",
+        "Label": "Outsider"
+      },
+      "Portrait": {
+        "ID": "3b89e50d-c54c-ad4c-b719-a206c016d608",
+        "Label": "Avenger_"
+      },
+      "PortraitResRef": "po_Avenger",
+      "CreatureWeapon1": "",
+      "CreatureWeapon2": "",
+      "CreatureWeapon3": "",
+      "HideItem": "NW_IT_CREITEM045",
+      "MainHandItem": "NW_WSWMLS013",
+      "Strength": 20,
+      "Constitution": 20,
+      "Dexterity": 20,
+      "NaturalACBonus": 4,
+      "HPBonus": null,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": false
+    },
+    {
+      "ID": "e2614efb-b5fd-443c-aaec-9a496e882af3",
+      "Index": -1,
+      "Overrides": "2c6c15c2-ac18-775d-5b15-11627dcf754e",
+      "Disabled": false,
+      "Hint": "Rod of Wonder",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_CHICKEN",
+      "ExtensionValues": {},
+      "Name": "Chicken",
+      "Appearance": {
+        "ID": "4a06d5a5-b6de-d35d-6003-56b5a280fcb1",
+        "Label": "Chicken"
+      },
+      "RacialType": {
+        "ID": "5b875c33-4482-f1be-af00-243e2010727c",
+        "Label": "Animal"
+      },
+      "Portrait": {
+        "ID": "38e53c58-8523-2790-6d09-fbfd6a636686",
+        "Label": "Chicken_"
+      },
+      "PortraitResRef": "po_Chicken",
+      "CreatureWeapon1": "NW_IT_CREWPS015",
+      "CreatureWeapon2": "NW_IT_CREWPS015",
+      "CreatureWeapon3": "NW_IT_CREWPS015",
+      "HideItem": "x2_it_emptyskin",
+      "MainHandItem": "",
+      "Strength": 3,
+      "Constitution": 8,
+      "Dexterity": 7,
+      "NaturalACBonus": 0,
+      "HPBonus": null,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": false
+    },
+    {
+      "ID": "1399d268-bb11-4a28-a10f-8dd077ea3e9a",
+      "Index": -1,
+      "Overrides": "a8971234-67b6-2b9d-6a50-8c137e6b6aa6",
+      "Disabled": false,
+      "Hint": "Unknown",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_COW",
+      "ExtensionValues": {},
+      "Name": "Cow",
+      "Appearance": {
+        "ID": "fd8a8855-ea8a-26c8-29b6-449e2e1671db",
+        "Label": "Cow"
+      },
+      "RacialType": {
+        "ID": "5b875c33-4482-f1be-af00-243e2010727c",
+        "Label": "Animal"
+      },
+      "Portrait": {
+        "ID": "1050f259-8069-8c09-2d57-70bf472f3baa",
+        "Label": "Cow_"
+      },
+      "PortraitResRef": "po_Cow",
+      "CreatureWeapon1": "",
+      "CreatureWeapon2": "",
+      "CreatureWeapon3": "NW_IT_CREWPP010",
+      "HideItem": "x2_it_emptyskin",
+      "MainHandItem": "",
+      "Strength": null,
+      "Constitution": null,
+      "Dexterity": null,
+      "NaturalACBonus": null,
+      "HPBonus": null,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": false
+    },
+    {
+      "ID": "e46c52bc-e674-429c-8ea9-29259c5b5cee",
+      "Index": -1,
+      "Overrides": "003175ef-0987-6fb8-83ca-7eb4a17c0a41",
+      "Disabled": false,
+      "Hint": "Shifter Outsider Shape",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_DEATHSLAAD",
+      "ExtensionValues": {},
+      "Name": "Death Slaad",
+      "Appearance": {
+        "ID": "615b84e1-a3fa-de80-8cf4-195bd70c87fd",
+        "Label": "Slaad, Death"
+      },
+      "RacialType": {
+        "ID": "c1ab1ca8-6e1f-dcc2-9c4d-5d13c34f7f21",
+        "Label": "Outsider"
+      },
+      "Portrait": {
+        "ID": "387ff98f-dadd-1115-e870-f88ca0f1dc3d",
+        "Label": "Slaaddth_"
+      },
+      "PortraitResRef": "po_slaaddth",
+      "CreatureWeapon1": "nw_it_crewpsp016",
+      "CreatureWeapon2": "nw_it_crewpsp016",
+      "CreatureWeapon3": "nw_it_crewps016",
+      "HideItem": "x2_it_shedthsldp",
+      "MainHandItem": "",
+      "Strength": 22,
+      "Constitution": 18,
+      "Dexterity": 19,
+      "NaturalACBonus": 16,
+      "HPBonus": 70,
+      "Spell1": {
+        "ID": "190c6b6c-7768-e0c1-c301-c14cc5eb52bb",
+        "Label": "Chaos Spittle"
+      },
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": true
+    },
+    {
+      "ID": "9fdd826a-f542-4c51-a73f-c9b97a7d3d47",
+      "Index": -1,
+      "Overrides": "9ecab7b5-7b6e-019b-19b4-9f420dbfd8d2",
+      "Disabled": false,
+      "Hint": "Shifter Construct Shape",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_DEMONFLESH_GOLEM",
+      "ExtensionValues": {},
+      "Name": "Demonflesh Golem",
+      "Appearance": {
+        "ID": "17ce4d55-76ef-5745-2ad2-047ceed2016f",
+        "Label": "Golem, Demonflesh"
+      },
+      "RacialType": {
+        "ID": "48d99b21-baef-c4ff-027c-82599dc850d4",
+        "Label": "Construct"
+      },
+      "Portrait": {
+        "ID": "55a4dbc7-f889-1513-5ff9-6ef2aec40816",
+        "Label": "goldem_"
+      },
+      "PortraitResRef": "po_GolDem",
+      "CreatureWeapon1": "nw_it_crewpb015",
+      "CreatureWeapon2": "nw_it_crewpb015",
+      "CreatureWeapon3": "nw_it_crewpsp015",
+      "HideItem": "x2_it_shdemoflsh",
+      "MainHandItem": "",
+      "Strength": 29,
+      "Constitution": null,
+      "Dexterity": null,
+      "NaturalACBonus": 13,
+      "HPBonus": 90,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": true
+    },
+    {
+      "ID": "03fb672e-d1a6-476c-80a0-6564b0f926fb",
+      "Index": -1,
+      "Overrides": "5dc2889a-098f-f4e0-c869-204dcbbf8589",
+      "Disabled": false,
+      "Hint": "Shifter Greater Wildshape IV",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_DIRETIGER",
+      "ExtensionValues": {},
+      "Name": "Dire Tiger",
+      "Appearance": {
+        "ID": "cf77ab5f-1de8-10fd-ddde-7ed5cd43657f",
+        "Label": "Cat, Dire Tiger"
+      },
+      "RacialType": {
+        "ID": "5b875c33-4482-f1be-af00-243e2010727c",
+        "Label": "Animal"
+      },
+      "Portrait": {
+        "ID": "cb5915d9-7dfc-c2c7-3662-1e8785b12314",
+        "Label": "diretiger_"
+      },
+      "PortraitResRef": "po_DireTiger",
+      "CreatureWeapon1": "nw_it_crewpsp006",
+      "CreatureWeapon2": "nw_it_crewpsp006",
+      "CreatureWeapon3": "nw_it_crewps015",
+      "HideItem": "x2_it_emptyskin",
+      "MainHandItem": "",
+      "Strength": 27,
+      "Constitution": 15,
+      "Dexterity": 17,
+      "NaturalACBonus": 8,
+      "HPBonus": 60,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": true
+    },
+    {
+      "ID": "0d3149a6-9aad-4bf0-a532-097f8bfd5da7",
+      "Index": -1,
+      "Overrides": "dc607354-9c0a-ba96-5f60-9ef396f5c97b",
+      "Disabled": false,
+      "Hint": "Unknown. Renamed from Dragonkin",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_DRAGONKIN",
+      "ExtensionValues": {},
+      "Name": "Pseudodragon",
+      "Appearance": {
+        "ID": "7b902104-869e-5a28-b11c-9a3f4343cd42",
+        "Label": "Pseudodragon"
+      },
+      "RacialType": {
+        "ID": "0464729f-d5fa-3fc9-3d3a-3b0259981b41",
+        "Label": "Dragon"
+      },
+      "Portrait": {
+        "ID": "8f3ade35-570f-a94e-11ed-a91ad79644fa",
+        "Label": "drgpseud_"
+      },
+      "PortraitResRef": "po_drgpseud",
+      "CreatureWeapon1": "",
+      "CreatureWeapon2": "",
+      "CreatureWeapon3": "X0_PSEUDO_STING",
+      "HideItem": "X0_PSEUDO_HIDE",
+      "MainHandItem": "",
+      "Strength": null,
+      "Constitution": null,
+      "Dexterity": null,
+      "NaturalACBonus": 5,
+      "HPBonus": 15,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": false
+    },
+    {
+      "ID": "76e53b42-f611-4676-b326-b356fc35a9fc",
+      "Index": -1,
+      "Overrides": "4794ff23-6d6b-86e6-b31f-e305eec83b47",
+      "Disabled": false,
+      "Hint": "Unknown",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_FROST_GIANT_FEMALE",
+      "ExtensionValues": {},
+      "Name": "Frost Giant, Female",
+      "Appearance": {
+        "ID": "bea5dc31-a6bf-a073-2288-f4c4250bd168",
+        "Label": "Giant, Frost (Female)"
+      },
+      "RacialType": {
+        "ID": "c3c1fa42-ab43-68cd-9f5d-fbf44b75b78c",
+        "Label": "Giant"
+      },
+      "Portrait": {
+        "ID": "c019f526-2928-d8ef-0481-420832861f95",
+        "Label": "uppsala_"
+      },
+      "PortraitResRef": "po_uppsala",
+      "CreatureWeapon1": "NW_IT_CREWPB017",
+      "CreatureWeapon2": "",
+      "CreatureWeapon3": "",
+      "HideItem": "nw_it_creitem026",
+      "MainHandItem": "NW_WSWMGS011",
+      "Strength": 29,
+      "Constitution": 21,
+      "Dexterity": 9,
+      "NaturalACBonus": 13,
+      "HPBonus": 100,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": false
+    },
+    {
+      "ID": "d28f59a2-87ad-4a94-b05f-1b62383850db",
+      "Index": -1,
+      "Overrides": "e5a1b184-d1e4-4748-6f8d-aeeffbee3e5b",
+      "Disabled": false,
+      "Hint": "Unknown",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_FROST_GIANT_MALE",
+      "ExtensionValues": {},
+      "Name": "Frost Giant, Male",
+      "Appearance": {
+        "ID": "e59782e3-a4ac-7530-dcd8-ccd202460b6a",
+        "Label": "Giant, Frost"
+      },
+      "RacialType": {
+        "ID": "c3c1fa42-ab43-68cd-9f5d-fbf44b75b78c",
+        "Label": "Giant"
+      },
+      "Portrait": {
+        "ID": "fa5db695-f3a8-dff0-f6fc-258a2069b99d",
+        "Label": "GntFrost_"
+      },
+      "PortraitResRef": "po_GntFrost",
+      "CreatureWeapon1": "NW_IT_CREWPB017",
+      "CreatureWeapon2": "",
+      "CreatureWeapon3": "",
+      "HideItem": "nw_it_creitem026",
+      "MainHandItem": "NW_WSWMGS011",
+      "Strength": 29,
+      "Constitution": 21,
+      "Dexterity": 9,
+      "NaturalACBonus": 13,
+      "HPBonus": 100,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": false
+    },
+    {
+      "ID": "b285e6bc-a032-4958-9417-1ffb6c72ce4e",
+      "Index": -1,
+      "Overrides": "ee9d649a-7b46-00ce-2dab-4b673c062e97",
+      "Disabled": false,
+      "Hint": "Shifter Greater Wildshape II",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_GARGOYLE",
+      "ExtensionValues": {},
+      "Name": "Gargoyle",
+      "Appearance": {
+        "ID": "81498826-9959-a7c8-1413-c35c83e8aa7f",
+        "Label": "Gargoyle"
+      },
+      "RacialType": {
+        "ID": "942a0346-b1c2-6fd5-f85a-4d0ac8a09a41",
+        "Label": "Magical Beast"
+      },
+      "Portrait": {
+        "ID": "365922c7-cbba-38b8-0bf7-2589ca2881a4",
+        "Label": "Gargoyle_"
+      },
+      "PortraitResRef": "po_Gargoyle",
+      "CreatureWeapon1": "nw_it_crewpsp026",
+      "CreatureWeapon2": "nw_it_crewpsp026",
+      "CreatureWeapon3": "nw_it_crewps005",
+      "HideItem": "nw_it_creitem030",
+      "MainHandItem": "",
+      "Strength": null,
+      "Constitution": 18,
+      "Dexterity": 18,
+      "NaturalACBonus": 8,
+      "HPBonus": 20,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": true,
+      "MergeArmor": true
+    },
+    {
+      "ID": "c3057c62-d6a7-4383-929a-1dd01666143b",
+      "Index": -1,
+      "Overrides": "90c1317f-37cd-a9cb-bfd3-3fa624e66d84",
+      "Disabled": false,
+      "Hint": "Shifter Greater Wildshape II",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_GARGOYLE_EPIC",
+      "ExtensionValues": {},
+      "Name": "Gargoyle (Epic)",
+      "Appearance": {
+        "ID": "81498826-9959-a7c8-1413-c35c83e8aa7f",
+        "Label": "Gargoyle"
+      },
+      "RacialType": {
+        "ID": "942a0346-b1c2-6fd5-f85a-4d0ac8a09a41",
+        "Label": "Magical Beast"
+      },
+      "Portrait": {
+        "ID": "365922c7-cbba-38b8-0bf7-2589ca2881a4",
+        "Label": "Gargoyle_"
+      },
+      "PortraitResRef": "po_Gargoyle",
+      "CreatureWeapon1": "nw_it_crewpsp010",
+      "CreatureWeapon2": "nw_it_crewpsp010",
+      "CreatureWeapon3": "nw_it_crewps005",
+      "HideItem": "x2_it_egargprop",
+      "MainHandItem": "",
+      "Strength": 20,
+      "Constitution": null,
+      "Dexterity": 20,
+      "NaturalACBonus": 12,
+      "HPBonus": 60,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": true,
+      "MergeArmor": true
+    },
+    {
+      "ID": "f4e9583f-22a2-41a4-9720-5865506b7f03",
+      "Index": -1,
+      "Overrides": "60db93d8-559d-6d53-0a33-e208b2e4b21f",
+      "Disabled": false,
+      "Hint": "Unknown. Fixed into a Mithril Golem, but likely unused? Could disable.",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_GOLEM_AUTOMATON",
+      "ExtensionValues": {},
+      "Name": "Automation Golem",
+      "Appearance": {
+        "ID": "b48cbc71-17f5-324c-3a57-9786e98344dc",
+        "Label": "Golem, Mithril"
+      },
+      "RacialType": {
+        "ID": "48d99b21-baef-c4ff-027c-82599dc850d4",
+        "Label": "Construct"
+      },
+      "Portrait": null,
+      "PortraitResRef": "po_golmit",
+      "CreatureWeapon1": "NW_IT_CREWPB017",
+      "CreatureWeapon2": "NW_IT_CREWPB017",
+      "CreatureWeapon3": "NW_IT_CREWPB017",
+      "HideItem": "x2_it_creitem009",
+      "MainHandItem": "",
+      "Strength": 30,
+      "Constitution": 22,
+      "Dexterity": 10,
+      "NaturalACBonus": 30,
+      "HPBonus": 200,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": false
+    },
+    {
+      "ID": "cb82e9f5-27b4-4fe7-87f3-15331aa163aa",
+      "Index": -1,
+      "Overrides": "bb19b0e2-a972-5e03-cd20-17f075144726",
+      "Disabled": false,
+      "Hint": "Shifter Greater Wildshape II",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_HARPY",
+      "ExtensionValues": {},
+      "Name": "Harpy",
+      "Appearance": {
+        "ID": "2c0b360e-6abb-626f-25b7-cae00dc1b630",
+        "Label": "Harpy"
+      },
+      "RacialType": {
+        "ID": "942a0346-b1c2-6fd5-f85a-4d0ac8a09a41",
+        "Label": "Magical Beast"
+      },
+      "Portrait": {
+        "ID": "39880494-0db6-ca6b-98c5-88c67c14d90d",
+        "Label": "harpy_"
+      },
+      "PortraitResRef": "po_harpy",
+      "CreatureWeapon1": "nw_it_crewpsp002",
+      "CreatureWeapon2": "nw_it_crewpsp002",
+      "CreatureWeapon3": "nw_it_crewpsp002",
+      "HideItem": "x2_it_emptyskin",
+      "MainHandItem": "",
+      "Strength": 18,
+      "Constitution": null,
+      "Dexterity": 18,
+      "NaturalACBonus": 8,
+      "HPBonus": 20,
+      "Spell1": {
+        "ID": "aa06088c-6977-f844-f2ba-8870dcc2b37a",
+        "Label": "Captivating Song"
+      },
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": true,
+      "MergeArmor": true
+    },
+    {
+      "ID": "d07c0c21-7015-417c-a3bf-277ebbe6ce33",
+      "Index": -1,
+      "Overrides": "88da1c63-a800-3f78-793a-b13677481d76",
+      "Disabled": false,
+      "Hint": "Shifter Greater Wildshape II",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_HARPY_EPIC",
+      "ExtensionValues": {},
+      "Name": "Harpy (Epic)",
+      "Appearance": {
+        "ID": "2c0b360e-6abb-626f-25b7-cae00dc1b630",
+        "Label": "Harpy"
+      },
+      "RacialType": {
+        "ID": "942a0346-b1c2-6fd5-f85a-4d0ac8a09a41",
+        "Label": "Magical Beast"
+      },
+      "Portrait": {
+        "ID": "39880494-0db6-ca6b-98c5-88c67c14d90d",
+        "Label": "harpy_"
+      },
+      "PortraitResRef": "po_harpy",
+      "CreatureWeapon1": "nw_it_crewpsp010",
+      "CreatureWeapon2": "nw_it_crewpsp010",
+      "CreatureWeapon3": "nw_it_crewpsp010",
+      "HideItem": "x2_it_emptyskin",
+      "MainHandItem": "",
+      "Strength": 20,
+      "Constitution": 20,
+      "Dexterity": null,
+      "NaturalACBonus": 11,
+      "HPBonus": 40,
+      "Spell1": {
+        "ID": "aa06088c-6977-f844-f2ba-8870dcc2b37a",
+        "Label": "Captivating Song"
+      },
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": true,
+      "MergeArmor": true
+    },
+    {
+      "ID": "5c5fae81-aba3-4090-b4a1-2c97e879b058",
+      "Index": -1,
+      "Overrides": "1d6fa6cd-2fc6-b515-ce5f-b61f5ddbdf42",
+      "Disabled": false,
+      "Hint": "SoU campaign only",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_HEURODIS",
+      "ExtensionValues": {},
+      "Name": "Heurodis",
+      "Appearance": {
+        "ID": "976dfef3-c6bf-b0d4-2585-4d7ea2bd56d0",
+        "Label": "Heurodis"
+      },
+      "RacialType": {
+        "ID": "2125558d-86ff-2eea-65fd-b2a36259dd19",
+        "Label": "Undead"
+      },
+      "Portrait": {
+        "ID": "282caa73-4403-4822-f5c8-2afc2e1bfb0a",
+        "Label": "heurolich_"
+      },
+      "PortraitResRef": "po_heurolich",
+      "CreatureWeapon1": "",
+      "CreatureWeapon2": "",
+      "CreatureWeapon3": "",
+      "HideItem": "x2_it_emptyskin",
+      "MainHandItem": "",
+      "Strength": 10,
+      "Constitution": 10,
+      "Dexterity": 10,
+      "NaturalACBonus": 10,
+      "HPBonus": null,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": false
+    },
+    {
+      "ID": "05dd8fc0-98f2-44d6-91fd-bbff1d3a7700",
+      "Index": -1,
+      "Overrides": "f3d62bcd-0ba7-36a2-c949-7bab8f664c8d",
+      "Disabled": false,
+      "Hint": "Shifter Construct Shape",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_IRON_GOLEM",
+      "ExtensionValues": {},
+      "Name": "Iron Golem (Shifter)",
+      "Appearance": {
+        "ID": "317f5445-b2e3-2ec8-24a0-d7664dccb9d0",
+        "Label": "Golem, Iron"
+      },
+      "RacialType": {
+        "ID": "48d99b21-baef-c4ff-027c-82599dc850d4",
+        "Label": "Construct"
+      },
+      "Portrait": {
+        "ID": "b289c02a-b489-6d79-4ea4-84ac01ee9bab",
+        "Label": "GolIron_"
+      },
+      "PortraitResRef": "po_goliron",
+      "CreatureWeapon1": "nw_it_crewpb017",
+      "CreatureWeapon2": "nw_it_crewpb017",
+      "CreatureWeapon3": "nw_it_crewpb017",
+      "HideItem": "x2_it_shirongolp",
+      "MainHandItem": "",
+      "Strength": 33,
+      "Constitution": null,
+      "Dexterity": null,
+      "NaturalACBonus": 15,
+      "HPBonus": 90,
+      "Spell1": {
+        "ID": "511c0f90-883c-fb90-2c60-f51405780cc9",
+        "Label": "Iron Golem Poison Gas"
+      },
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": true,
+      "MergeArmor": true
+    },
+    {
+      "ID": "9eadaeec-0ed9-49ee-afe6-7227383a15d2",
+      "Index": -1,
+      "Overrides": "8cadf399-e3b0-c1cb-7c17-49a4d0a573fd",
+      "Disabled": false,
+      "Hint": "SoU plot related",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_JNAH_GIANT_FEMALE",
+      "ExtensionValues": {},
+      "Name": "J\u0027Nah Froze Giant, Female",
+      "Appearance": {
+        "ID": "bea5dc31-a6bf-a073-2288-f4c4250bd168",
+        "Label": "Giant, Frost (Female)"
+      },
+      "RacialType": {
+        "ID": "c3c1fa42-ab43-68cd-9f5d-fbf44b75b78c",
+        "Label": "Giant"
+      },
+      "Portrait": {
+        "ID": "c019f526-2928-d8ef-0481-420832861f95",
+        "Label": "uppsala_"
+      },
+      "PortraitResRef": "po_uppsala",
+      "CreatureWeapon1": "NW_IT_CREWPB017",
+      "CreatureWeapon2": "NW_IT_CREWPB017",
+      "CreatureWeapon3": "NW_IT_CREWPB017",
+      "HideItem": "x1_it_frostghide",
+      "MainHandItem": "NW_WSWMGS011",
+      "Strength": 29,
+      "Constitution": 21,
+      "Dexterity": 9,
+      "NaturalACBonus": 13,
+      "HPBonus": 150,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": false
+    },
+    {
+      "ID": "a43d8859-3007-4048-907b-2726e92b976a",
+      "Index": -1,
+      "Overrides": "40a2d6cf-89c1-951b-515f-3a8d3e983fc6",
+      "Disabled": false,
+      "Hint": "SoU plot related",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_JNAH_GIANT_MALE",
+      "ExtensionValues": {},
+      "Name": "J\u0027Nah Froze Giant, Male",
+      "Appearance": {
+        "ID": "e59782e3-a4ac-7530-dcd8-ccd202460b6a",
+        "Label": "Giant, Frost"
+      },
+      "RacialType": {
+        "ID": "c3c1fa42-ab43-68cd-9f5d-fbf44b75b78c",
+        "Label": "Giant"
+      },
+      "Portrait": {
+        "ID": "fa5db695-f3a8-dff0-f6fc-258a2069b99d",
+        "Label": "GntFrost_"
+      },
+      "PortraitResRef": "po_GntFrost",
+      "CreatureWeapon1": "NW_IT_CREWPB017",
+      "CreatureWeapon2": "NW_IT_CREWPB017",
+      "CreatureWeapon3": "NW_IT_CREWPB017",
+      "HideItem": "x1_it_frostghide",
+      "MainHandItem": "NW_WSWMGS011",
+      "Strength": 29,
+      "Constitution": 21,
+      "Dexterity": 9,
+      "NaturalACBonus": 13,
+      "HPBonus": 150,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": false
+    },
+    {
+      "ID": "0ac7dadb-3d88-4440-86bd-90f0fa6fdc03",
+      "Index": -1,
+      "Overrides": "a0ec82ca-e497-64cb-7422-148fe5413f2a",
+      "Disabled": false,
+      "Hint": "Shifter Humanoid Shape",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_LIZARDFOLK",
+      "ExtensionValues": {},
+      "Name": "Lizardfolk Whipmaster",
+      "Appearance": {
+        "ID": "04024a60-a207-8632-4554-c2d5a64326eb",
+        "Label": "Lizardfolk A"
+      },
+      "RacialType": {
+        "ID": "31f5cef8-e324-3523-d574-a3b8008e1908",
+        "Label": "Reptilian"
+      },
+      "Portrait": null,
+      "PortraitResRef": "po_OldWarA",
+      "CreatureWeapon1": "",
+      "CreatureWeapon2": "",
+      "CreatureWeapon3": "",
+      "HideItem": "x2_it_crelizhid1",
+      "MainHandItem": "x2_it_crewpwhip",
+      "Strength": 16,
+      "Constitution": null,
+      "Dexterity": 20,
+      "NaturalACBonus": 9,
+      "HPBonus": 35,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": true,
+      "MergeAccessories": true,
+      "MergeArmor": true
+    },
+    {
+      "ID": "adc74779-8910-4bfc-a917-e9346c7e0759",
+      "Index": -1,
+      "Overrides": "07130353-ecda-61ec-f5ae-8d6d536f3a45",
+      "Disabled": false,
+      "Hint": "Shifter Humanoid Shape",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_LIZARDFOLK_EPIC",
+      "ExtensionValues": {},
+      "Name": "Lizardfolk Whipmaster",
+      "Appearance": {
+        "ID": "095bc6ff-dc37-1577-6644-e4d5ce582fd4",
+        "Label": "Lizardfolk, Warrior B"
+      },
+      "RacialType": {
+        "ID": "31f5cef8-e324-3523-d574-a3b8008e1908",
+        "Label": "Reptilian"
+      },
+      "Portrait": {
+        "ID": "b2983650-52f4-f4f2-4966-10a19c71316a",
+        "Label": "OldChiefB_"
+      },
+      "PortraitResRef": "po_OldChiefB",
+      "CreatureWeapon1": "",
+      "CreatureWeapon2": "",
+      "CreatureWeapon3": "",
+      "HideItem": "x2_it_crelizhid2",
+      "MainHandItem": "x2_it_crewpwhip2",
+      "Strength": 21,
+      "Constitution": null,
+      "Dexterity": 20,
+      "NaturalACBonus": 12,
+      "HPBonus": 75,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": true,
+      "MergeAccessories": true,
+      "MergeArmor": true
+    },
+    {
+      "ID": "740dff41-2774-40ce-b15e-2f285dfb30e5",
+      "Index": -1,
+      "Overrides": "35cd6837-f4ac-dd03-c3b2-6dfb1b2ee7f9",
+      "Disabled": false,
+      "Hint": "Shifter Greater Wildshape IV",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_MEDUSA",
+      "ExtensionValues": {},
+      "Name": "Medusa",
+      "Appearance": {
+        "ID": "6912cee0-ab8f-2d68-1c4f-82cba2228b7d",
+        "Label": "Medusa"
+      },
+      "RacialType": {
+        "ID": "c7c2b7ac-4544-0e66-f7b9-08f3dd04f3e4",
+        "Label": "Monstrous"
+      },
+      "Portrait": {
+        "ID": "231abfdf-99a6-b3cf-983f-22c876265ee6",
+        "Label": "medusa_"
+      },
+      "PortraitResRef": "po_medusa",
+      "CreatureWeapon1": "nw_it_crewpsp005",
+      "CreatureWeapon2": "nw_it_crewpsp005",
+      "CreatureWeapon3": "x0_medusa_snakes",
+      "HideItem": "x2_it_medusprop",
+      "MainHandItem": "",
+      "Strength": 19,
+      "Constitution": null,
+      "Dexterity": 19,
+      "NaturalACBonus": 10,
+      "HPBonus": 35,
+      "Spell1": {
+        "ID": "ea81a363-6401-7574-8f1c-2c6381167a9d",
+        "Label": "Gaze, Petrification"
+      },
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": true,
+      "MergeArmor": true
+    },
+    {
+      "ID": "ddda54fb-3947-4826-86fe-0633c170425c",
+      "Index": -1,
+      "Overrides": "60ebac84-6b45-2d55-92d2-f59e9e79f5de",
+      "Disabled": false,
+      "Hint": "Unknown",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_MIMIC",
+      "ExtensionValues": {},
+      "Name": "Mimic",
+      "Appearance": {
+        "ID": "40c1bf83-4058-44d2-79d3-ce08472c2ece",
+        "Label": "Mimic"
+      },
+      "RacialType": {
+        "ID": "48d99b21-baef-c4ff-027c-82599dc850d4",
+        "Label": "Construct"
+      },
+      "Portrait": {
+        "ID": "71e674f0-26bf-dc55-75cb-7e2d07c0f906",
+        "Label": "PLC_A08_"
+      },
+      "PortraitResRef": "po_plc_a08",
+      "CreatureWeapon1": "",
+      "CreatureWeapon2": "",
+      "CreatureWeapon3": "",
+      "HideItem": "x2_it_emptyskin",
+      "MainHandItem": "",
+      "Strength": null,
+      "Constitution": null,
+      "Dexterity": null,
+      "NaturalACBonus": 10,
+      "HPBonus": 50,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": false
+    },
+    {
+      "ID": "61070bf7-2478-4020-9810-1755ea037b7c",
+      "Index": -1,
+      "Overrides": "13432c5c-83e1-5c37-ed06-1aa68fc10675",
+      "Disabled": false,
+      "Hint": "Shifter Greater Wildshape IV",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_MINDFLAYER",
+      "ExtensionValues": {},
+      "Name": "Mindflayer",
+      "Appearance": {
+        "ID": "ee4b473d-ed05-9de4-53c7-bdc86ae262fe",
+        "Label": "Mindflayer"
+      },
+      "RacialType": {
+        "ID": "7b3a78dd-abaf-dcf2-5cec-467824d950bb",
+        "Label": "Aberration"
+      },
+      "Portrait": {
+        "ID": "8c57f7cd-e8e8-7da3-7161-c98329d80edc",
+        "Label": "mindflayer_"
+      },
+      "PortraitResRef": "po_mindflayer",
+      "CreatureWeapon1": "x2_it_crewpmflyt",
+      "CreatureWeapon2": "x2_it_crewpmflyt",
+      "CreatureWeapon3": "",
+      "HideItem": "x2_it_creitem006",
+      "MainHandItem": "",
+      "Strength": null,
+      "Constitution": null,
+      "Dexterity": 19,
+      "NaturalACBonus": 7,
+      "HPBonus": 30,
+      "Spell1": {
+        "ID": "9f376403-c0d7-75a7-9ea3-b51b66c867ca",
+        "Label": "Illithid Mind Blast"
+      },
+      "Spell2": {
+        "ID": "cc423047-ab96-66eb-1160-96a9f03394cf",
+        "Label": "Psionic Inertial Barrier"
+      },
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": true,
+      "MergeArmor": true
+    },
+    {
+      "ID": "ecf9e0c2-fe1a-4ae0-b8b7-9c4176aff38f",
+      "Index": -1,
+      "Overrides": "bd58b989-eceb-1065-b3a3-5476d30f77c5",
+      "Disabled": false,
+      "Hint": "Shifter Great Wildshape II",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_MINOTAUR",
+      "ExtensionValues": {},
+      "Name": "Minotaur",
+      "Appearance": {
+        "ID": "2642c183-bc42-f9e8-5b71-8151f5c27939",
+        "Label": "Minotaur"
+      },
+      "RacialType": {
+        "ID": "c7c2b7ac-4544-0e66-f7b9-08f3dd04f3e4",
+        "Label": "Monstrous"
+      },
+      "Portrait": {
+        "ID": "fb834a77-fd47-ac77-4b6c-8c719a75bca5",
+        "Label": "Minotaur_"
+      },
+      "PortraitResRef": "po_Minotaur",
+      "CreatureWeapon1": "",
+      "CreatureWeapon2": "",
+      "CreatureWeapon3": "",
+      "HideItem": "x2_it_emptyskin",
+      "MainHandItem": "nw_waxmbt002",
+      "Strength": 19,
+      "Constitution": 17,
+      "Dexterity": null,
+      "NaturalACBonus": 6,
+      "HPBonus": 25,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": true,
+      "MergeAccessories": true,
+      "MergeArmor": true
+    },
+    {
+      "ID": "2ee00a42-b1fd-4689-88c6-031610af43dd",
+      "Index": -1,
+      "Overrides": "607b9aaf-bce2-f417-3bd1-462da2b699a3",
+      "Disabled": false,
+      "Hint": "Shifter Greater Wildshape II",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_MINOTAUR_EPIC",
+      "ExtensionValues": {},
+      "Name": "Minotaur (Epic)",
+      "Appearance": {
+        "ID": "6ece1fe9-bb47-8d85-6cdb-bbe17ffe0995",
+        "Label": "Minotaur, Chieftain"
+      },
+      "RacialType": {
+        "ID": "c7c2b7ac-4544-0e66-f7b9-08f3dd04f3e4",
+        "Label": "Monstrous"
+      },
+      "Portrait": {
+        "ID": "fb834a77-fd47-ac77-4b6c-8c719a75bca5",
+        "Label": "Minotaur_"
+      },
+      "PortraitResRef": "po_Minotaur",
+      "CreatureWeapon1": "",
+      "CreatureWeapon2": "",
+      "CreatureWeapon3": "",
+      "HideItem": "x2_it_emptyskin",
+      "MainHandItem": "x2_it_minoaxe",
+      "Strength": 22,
+      "Constitution": 20,
+      "Dexterity": null,
+      "NaturalACBonus": 10,
+      "HPBonus": 50,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": true,
+      "MergeAccessories": true,
+      "MergeArmor": true
+    },
+    {
+      "ID": "aab1f296-9637-492b-ad09-8a261480bced",
+      "Index": -1,
+      "Overrides": "6fd9d3de-2c25-b811-012a-4c039812ec5d",
+      "Disabled": false,
+      "Hint": "Unknown (note: too high Natural AC bonus for the dodge cap)",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_MITHRAL_GOLEM",
+      "ExtensionValues": {},
+      "Name": "Mithral Golem",
+      "Appearance": {
+        "ID": "b48cbc71-17f5-324c-3a57-9786e98344dc",
+        "Label": "Golem, Mithril"
+      },
+      "RacialType": {
+        "ID": "48d99b21-baef-c4ff-027c-82599dc850d4",
+        "Label": "Construct"
+      },
+      "Portrait": {
+        "ID": "5542c415-f164-10b5-220c-ef5bf9f436cf",
+        "Label": "golmit_"
+      },
+      "PortraitResRef": "po_golmit",
+      "CreatureWeapon1": "",
+      "CreatureWeapon2": "",
+      "CreatureWeapon3": "x2_it_crewpb003",
+      "HideItem": "x2_it_cremigolsh",
+      "MainHandItem": "",
+      "Strength": 40,
+      "Constitution": null,
+      "Dexterity": null,
+      "NaturalACBonus": 30,
+      "HPBonus": 300,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": true
+    },
+    {
+      "ID": "165d9fc5-41af-4282-aa19-79f1bde737bf",
+      "Index": -1,
+      "Overrides": "3efeb9f9-d7b9-fe0e-ac53-de7f659e9b7a",
+      "Disabled": false,
+      "Hint": "Unknown. Fixed it a bit. No wepaons suggests appearance only/cutscene related.",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_MORPH_EARTH_ELEMENTAL",
+      "ExtensionValues": {},
+      "Name": "Morph Earth Elemental",
+      "Appearance": {
+        "ID": "9a7b699a-5db2-5bef-f69d-92a6d3c69f01",
+        "Label": "Elemental, Earth Elder"
+      },
+      "RacialType": {
+        "ID": "c04f4387-1c09-8283-3e19-ca71801b8bd4",
+        "Label": "Elemental"
+      },
+      "Portrait": {
+        "ID": "d2cf58eb-8389-1c18-ca31-672fc1188d47",
+        "Label": "Earth_Eld_"
+      },
+      "PortraitResRef": "po_EarthEld",
+      "CreatureWeapon1": "",
+      "CreatureWeapon2": "",
+      "CreatureWeapon3": "",
+      "HideItem": "x2_it_emptyskin",
+      "MainHandItem": "",
+      "Strength": 44,
+      "Constitution": 18,
+      "Dexterity": null,
+      "NaturalACBonus": null,
+      "HPBonus": null,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": false
+    },
+    {
+      "ID": "901ce87d-80ba-451b-b2a5-94523690498b",
+      "Index": -1,
+      "Overrides": "3c44e900-f234-4dea-3225-87fb7e277a5f",
+      "Disabled": false,
+      "Hint": "Unknown (maybe was for cutscenes before cutscene invisibility?)",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_NULL_HUMAN",
+      "ExtensionValues": {},
+      "Name": "Null Human",
+      "Appearance": {
+        "ID": "61f41ab0-8bc5-47fc-816d-867a26a18b1c",
+        "Label": "Null Human"
+      },
+      "RacialType": {
+        "ID": "0464729f-d5fa-3fc9-3d3a-3b0259981b41",
+        "Label": "Dragon"
+      },
+      "Portrait": {
+        "ID": "0f408ad2-25c8-53a1-9d47-6ad63ddc6216",
+        "Label": "hu_m_99_"
+      },
+      "PortraitResRef": "po_hu_m_99",
+      "CreatureWeapon1": "",
+      "CreatureWeapon2": "",
+      "CreatureWeapon3": "",
+      "HideItem": "x2_it_emptyskin",
+      "MainHandItem": "",
+      "Strength": null,
+      "Constitution": null,
+      "Dexterity": null,
+      "NaturalACBonus": 0,
+      "HPBonus": null,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": false
+    },
+    {
+      "ID": "340e3a0f-e5da-49b1-ad96-08fef5b62bcd",
+      "Index": -1,
+      "Overrides": "d4df4ff2-c339-16ef-f386-12952742a158",
+      "Disabled": false,
+      "Hint": "Unknown",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_PENGUIN",
+      "ExtensionValues": {},
+      "Name": "Penguin",
+      "Appearance": {
+        "ID": "bfa4971f-64ee-17ae-58d7-e999dffd9099",
+        "Label": "Penguin"
+      },
+      "RacialType": {
+        "ID": "5b875c33-4482-f1be-af00-243e2010727c",
+        "Label": "Animal"
+      },
+      "Portrait": {
+        "ID": "798ffb99-d50f-cbfb-0eed-22b8a4440418",
+        "Label": "a_penguin_"
+      },
+      "PortraitResRef": "po_a_penguin",
+      "CreatureWeapon1": "NW_IT_CREWPS015",
+      "CreatureWeapon2": "NW_IT_CREWPS015",
+      "CreatureWeapon3": "NW_IT_CREWPS015",
+      "HideItem": "x2_it_emptyskin",
+      "MainHandItem": "",
+      "Strength": null,
+      "Constitution": null,
+      "Dexterity": null,
+      "NaturalACBonus": null,
+      "HPBonus": null,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": false
+    },
+    {
+      "ID": "a8e69a88-8bd1-4647-abf6-f60c28a56593",
+      "Index": -1,
+      "Overrides": "fc2801ef-6379-7bd7-2892-dc99befeda14",
+      "Disabled": false,
+      "Hint": "Shifter Outsider Shape",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_RAKSHASA_FEMALE",
+      "ExtensionValues": {},
+      "Name": "Rakshasa, Female",
+      "Appearance": {
+        "ID": "6f071ff5-d5ac-c062-28f6-32d33d066470",
+        "Label": "Rakshasa, Female"
+      },
+      "RacialType": {
+        "ID": "c1ab1ca8-6e1f-dcc2-9c4d-5d13c34f7f21",
+        "Label": "Outsider"
+      },
+      "Portrait": {
+        "ID": "59199501-6ad2-641f-7517-618d48b7b09f",
+        "Label": "Rakshasa_f_"
+      },
+      "PortraitResRef": "po_Rakshasa_f",
+      "CreatureWeapon1": "",
+      "CreatureWeapon2": "",
+      "CreatureWeapon3": "nw_it_crewps005",
+      "HideItem": "x2_it_shraksprop",
+      "MainHandItem": "x2_it_rakstaff",
+      "Strength": 17,
+      "Constitution": null,
+      "Dexterity": 20,
+      "NaturalACBonus": 12,
+      "HPBonus": 30,
+      "Spell1": {
+        "ID": "e4e2be48-1ba3-47e6-29c8-3e7ad59954e5",
+        "Label": "Dispel Magic"
+      },
+      "Spell2": {
+        "ID": "c9d875e1-7b5a-eea4-7427-d6f9496d5f55",
+        "Label": "Ice Storm"
+      },
+      "Spell3": {
+        "ID": "a5286fa4-9cb8-fa87-86e1-bfc9bd88f0b2",
+        "Label": "Mestil\u0027s Acid Breath"
+      },
+      "MergeWeapon": true,
+      "MergeAccessories": true,
+      "MergeArmor": true
+    },
+    {
+      "ID": "78d10909-6a29-4b3c-a2e0-2091f422f365",
+      "Index": -1,
+      "Overrides": "96c53842-a165-8414-815b-1ca93457cb4d",
+      "Disabled": false,
+      "Hint": "Shifter Outsider Shape",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_RAKSHASA_MALE",
+      "ExtensionValues": {},
+      "Name": "Rakshasa, Male",
+      "Appearance": {
+        "ID": "9a4755b2-5031-7cd5-a209-3aac6cfb86ef",
+        "Label": "Rakshasa, Male"
+      },
+      "RacialType": {
+        "ID": "c1ab1ca8-6e1f-dcc2-9c4d-5d13c34f7f21",
+        "Label": "Outsider"
+      },
+      "Portrait": {
+        "ID": "12d3f643-b8a3-8dc2-4981-e73f838255ba",
+        "Label": "Rakshasa_"
+      },
+      "PortraitResRef": "po_Rakshasa",
+      "CreatureWeapon1": "",
+      "CreatureWeapon2": "",
+      "CreatureWeapon3": "nw_it_crewps005",
+      "HideItem": "x2_it_shraksprop",
+      "MainHandItem": "x2_it_rakstaff",
+      "Strength": 17,
+      "Constitution": null,
+      "Dexterity": 20,
+      "NaturalACBonus": 12,
+      "HPBonus": 30,
+      "Spell1": {
+        "ID": "e4e2be48-1ba3-47e6-29c8-3e7ad59954e5",
+        "Label": "Dispel Magic"
+      },
+      "Spell2": {
+        "ID": "c9d875e1-7b5a-eea4-7427-d6f9496d5f55",
+        "Label": "Ice Storm"
+      },
+      "Spell3": {
+        "ID": "a5286fa4-9cb8-fa87-86e1-bfc9bd88f0b2",
+        "Label": "Mestil\u0027s Acid Breath"
+      },
+      "MergeWeapon": true,
+      "MergeAccessories": true,
+      "MergeArmor": true
+    },
+    {
+      "ID": "0f9b9e5d-674c-4d0c-86f4-af464eedb8af",
+      "Index": -1,
+      "Overrides": "9d50e6f2-251f-6455-3e76-a2422a94cdc5",
+      "Disabled": false,
+      "Hint": "Shifter Undead Shape",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_RISEN_LORD",
+      "ExtensionValues": {},
+      "Name": "Risen Lord",
+      "Appearance": {
+        "ID": "5fcda5aa-e70f-4868-a9b7-ef7b3a51d8bc",
+        "Label": "Lich"
+      },
+      "RacialType": {
+        "ID": "2125558d-86ff-2eea-65fd-b2a36259dd19",
+        "Label": "Undead"
+      },
+      "Portrait": {
+        "ID": "5acd3233-de46-1956-26af-dac13fa8c346",
+        "Label": "Lich_"
+      },
+      "PortraitResRef": "po_Lich",
+      "CreatureWeapon1": "",
+      "CreatureWeapon2": "",
+      "CreatureWeapon3": "",
+      "HideItem": "x2_it_crearrlord",
+      "MainHandItem": "x2_it_crewpvscyt",
+      "Strength": 21,
+      "Constitution": 19,
+      "Dexterity": null,
+      "NaturalACBonus": 13,
+      "HPBonus": 60,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": true,
+      "MergeAccessories": true,
+      "MergeArmor": true
+    },
+    {
+      "ID": "ae0c30c9-a3f7-4a4b-9185-8874efebf169",
+      "Index": -1,
+      "Overrides": "3058c781-5b50-eecc-7fcf-9d966824157d",
+      "Disabled": false,
+      "Hint": "Shifter Construct Shape",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_STONE_GOLEM",
+      "ExtensionValues": {},
+      "Name": "Stone Golem",
+      "Appearance": {
+        "ID": "7fa3ce30-d5cb-e959-3741-0ec979971fcd",
+        "Label": "Golem, Stone"
+      },
+      "RacialType": {
+        "ID": "48d99b21-baef-c4ff-027c-82599dc850d4",
+        "Label": "Construct"
+      },
+      "Portrait": {
+        "ID": "97dbbc9b-76fc-2d00-0e63-8b224bc9314b",
+        "Label": "GolStone_"
+      },
+      "PortraitResRef": "po_GolStone",
+      "CreatureWeapon1": "nw_it_crewpb017",
+      "CreatureWeapon2": "nw_it_crewpb017",
+      "CreatureWeapon3": "nw_it_crewpb017",
+      "HideItem": "x2_it_shstogopro",
+      "MainHandItem": "",
+      "Strength": 31,
+      "Constitution": null,
+      "Dexterity": null,
+      "NaturalACBonus": 13,
+      "HPBonus": 90,
+      "Spell1": {
+        "ID": "4ce88a01-acde-ea35-7b32-74d87430e38c",
+        "Label": "Hurl Rocks"
+      },
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": true
+    },
+    {
+      "ID": "1b20b823-96bf-47f9-8061-2b022d317aa2",
+      "Index": -1,
+      "Overrides": "1437e1fc-d00a-fe48-3606-3f0539fa7f4f",
+      "Disabled": false,
+      "Hint": "Unknown",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_SUPER_CHICKEN",
+      "ExtensionValues": {},
+      "Name": "Super Chicken",
+      "Appearance": {
+        "ID": "4a06d5a5-b6de-d35d-6003-56b5a280fcb1",
+        "Label": "Chicken"
+      },
+      "RacialType": {
+        "ID": "5b875c33-4482-f1be-af00-243e2010727c",
+        "Label": "Animal"
+      },
+      "Portrait": {
+        "ID": "38e53c58-8523-2790-6d09-fbfd6a636686",
+        "Label": "Chicken_"
+      },
+      "PortraitResRef": "po_Chicken",
+      "CreatureWeapon1": "NW_IT_CREWPS015",
+      "CreatureWeapon2": "NW_IT_CREWPS015",
+      "CreatureWeapon3": "NW_IT_CREWPS015",
+      "HideItem": "x2_it_emptyskin",
+      "MainHandItem": "",
+      "Strength": 34,
+      "Constitution": null,
+      "Dexterity": null,
+      "NaturalACBonus": 0,
+      "HPBonus": null,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": false
+    },
+    {
+      "ID": "fb2e87b1-97eb-40ec-aa48-bd205b6452a8",
+      "Index": -1,
+      "Overrides": "9cf6c398-d28e-996a-eae7-cd5d49511c82",
+      "Disabled": false,
+      "Hint": "Deck of Hazards: Avatar Polymorph",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_VROCK",
+      "ExtensionValues": {},
+      "Name": "Vrock",
+      "Appearance": {
+        "ID": "97824dbd-426b-a700-1234-752cd41f1294",
+        "Label": "Vrock"
+      },
+      "RacialType": {
+        "ID": "c1ab1ca8-6e1f-dcc2-9c4d-5d13c34f7f21",
+        "Label": "Outsider"
+      },
+      "Portrait": {
+        "ID": "25f1933c-d7e2-b45a-694f-7ec3f35f22db",
+        "Label": "DmVrock_"
+      },
+      "PortraitResRef": "po_DmVrock",
+      "CreatureWeapon1": "NW_IT_CREWPSP010",
+      "CreatureWeapon2": "NW_IT_CREWPSP010",
+      "CreatureWeapon3": "NW_IT_CREWPS005",
+      "HideItem": "NW_IT_CREITEM021",
+      "MainHandItem": "",
+      "Strength": 20,
+      "Constitution": 17,
+      "Dexterity": 16,
+      "NaturalACBonus": 4,
+      "HPBonus": null,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": false
+    },
+    {
+      "ID": "78f26d77-8ce2-4b23-8d9f-5618d2b9af6f",
+      "Index": -1,
+      "Overrides": "2a6fae63-8990-53ad-1f14-c5389a38729d",
+      "Disabled": false,
+      "Hint": "Unknown",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_WINTER_WOLF",
+      "ExtensionValues": {},
+      "Name": "Winter Wolf",
+      "Appearance": {
+        "ID": "9d91a1ff-87ff-4f56-f907-d151b35cd673",
+        "Label": "Dog, Winter Wolf"
+      },
+      "RacialType": {
+        "ID": "5b875c33-4482-f1be-af00-243e2010727c",
+        "Label": "Animal"
+      },
+      "Portrait": {
+        "ID": "7f42364d-33a7-0914-9783-e36c442d8d26",
+        "Label": "WolfWint_"
+      },
+      "PortraitResRef": "po_WolfWint",
+      "CreatureWeapon1": "NW_IT_CREWPSP026",
+      "CreatureWeapon2": "NW_IT_CREWPSP026",
+      "CreatureWeapon3": "NW_IT_CREWPS002",
+      "HideItem": "x2_it_emptyskin",
+      "MainHandItem": "",
+      "Strength": 13,
+      "Constitution": 15,
+      "Dexterity": null,
+      "NaturalACBonus": null,
+      "HPBonus": 10,
+      "Spell1": null,
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": false,
+      "MergeArmor": true
+    },
+    {
+      "ID": "14e66be4-181b-42db-b08c-2ccbafd18f67",
+      "Index": -1,
+      "Overrides": "76e4cedb-e92b-559e-9f8b-b5d76e593257",
+      "Disabled": false,
+      "Hint": "Unknown",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_TYPE_WISP",
+      "ExtensionValues": {},
+      "Name": "Wisp",
+      "Appearance": {
+        "ID": "220bea0f-22f0-416f-9111-f4a6aa89186f",
+        "Label": "Will-O-Wisp"
+      },
+      "RacialType": {
+        "ID": "7b3a78dd-abaf-dcf2-5cec-467824d950bb",
+        "Label": "Aberration"
+      },
+      "Portrait": {
+        "ID": "93307d15-30a5-823e-0cb2-9d6c2ae3f4d8",
+        "Label": "WillOWisp_"
+      },
+      "PortraitResRef": "po_WillOWisp",
+      "CreatureWeapon1": "",
+      "CreatureWeapon2": "",
+      "CreatureWeapon3": "nw_it_crewpsp011",
+      "HideItem": "nw_it_creitem033",
+      "MainHandItem": "",
+      "Strength": 3,
+      "Constitution": 10,
+      "Dexterity": 29,
+      "NaturalACBonus": 4,
+      "HPBonus": 30,
+      "Spell1": {
+        "ID": "fd9ea0f9-e597-15b1-c6cc-6e09f5d76030",
+        "Label": "Invisibility"
+      },
+      "Spell2": null,
+      "Spell3": null,
+      "MergeWeapon": false,
+      "MergeAccessories": true,
+      "MergeArmor": true
+    },
+    {
+      "ID": "0382afe1-468c-4955-bc92-f24ea24f8a1c",
+      "Index": -1,
+      "Overrides": "104ffa4a-a419-3b87-a49c-731fdfc03e8e",
+      "Disabled": false,
+      "Hint": "Unknown (Possibly old Tensers Transformation but for females?)",
+      "ScriptConstant": "",
+      "SourceLabel": "POLYMORPH_YUANTI",
+      "ExtensionValues": {},
+      "Name": "Yuan-ti",
+      "Appearance": {
+        "ID": "b197d141-b012-6fbf-3c91-93d4c58ce3f2",
+        "Label": "Yuan-Ti, Priest"
+      },
+      "RacialType": {
+        "ID": "31f5cef8-e324-3523-d574-a3b8008e1908",
+        "Label": "Reptilian"
+      },
+      "Portrait": {
+        "ID": "1db59184-d6c8-17cf-f3a9-d126a5d82166",
+        "Label": "yuan_ti_"
+      },
+      "PortraitResRef": "po_yuan_ti",
+      "CreatureWeapon1": "NW_IT_CREWPB012",
+      "CreatureWeapon2": "NW_IT_CREWPB012",
+      "CreatureWeapon3": "NW_IT_CREWPB012",
+      "HideItem": "NW_IT_CREITEM006",
+      "MainHandItem": "",
+      "Strength": 20,
+      "Constitution": 20,
+      "Dexterity": 20,
+      "NaturalACBonus": 4,
+      "HPBonus": null,
       "Spell1": null,
       "Spell2": null,
       "Spell3": null,
