@@ -28083,7 +28083,7 @@
       "Description": {
         "Index": 6175,
         "EN": {
-          "M": "Caster Level(s): Bard 3, Wizard / Sorcerer 3\nInnate Level: 3\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Single\nDuration: 1 Round / Level\nAdditional Counter Spells: Slow\nSave: Harmless\nSpell Resistance: No\n\nThe target of this spell gains Haste which grants \u002B4 bonus to dodge AC, 1 extra action per round (allowing an additional attack or spell to be cast) and has their movement increased by 50%.",
+          "M": "Caster Level(s): Bard 3, Wizard / Sorcerer 3\nInnate Level: 3\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Single\nDuration: 1 Round / Level\nAdditional Counter Spells: Slow\nSave: Harmless\nSpell Resistance: No\n\nThe target of this spell gains Haste which grants \u002B4 bonus to dodge AC, 1 extra action per round (allowing an additional attack or spell to be cast) and has their movement increased by 50%.\r\n\r\nIf cast on a creature who is under the Slow effect then it supresses one instance of Slow.",
           "F": "Caster Level(s): Bard 3, Wizard / Sorcerer 3\nInnate Level: 3\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Single\nDuration: 1 Round / Level\nAdditional Counter Spells: Slow\nSave: Harmless\nSpell Resistance: No\n\nThe target of this spell gains, \u002B4 bonus to dodge AC, 1 extra action per round (allowing an additional attack or spell to be cast) and has their movement increased by 50%."
         },
         "FR": {
@@ -28638,6 +28638,123 @@
       "CounterSpell1": null,
       "CounterSpell2": null,
       "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "0b1f55ea-b449-4854-97dc-7a02162ce3ce",
+      "Index": -1,
+      "Overrides": "444eba77-0a8f-9d59-e903-f228a7da567c",
+      "Disabled": false,
+      "Hint": "Creature Power not sure if used",
+      "ScriptConstant": "",
+      "SourceLabel": "Hell_Inferno",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 84456,
+        "EN": {
+          "M": "Hell Inferno"
+        },
+        "FR": {
+          "M": "Enfer d\u00E9moniaque"
+        },
+        "DE": {
+          "M": "H\u00F6llenfeuersturm"
+        },
+        "IT": {
+          "M": "Inferno"
+        },
+        "ES": {
+          "M": "Llamas del Infierno"
+        },
+        "PL": {
+          "M": "Piekielne inferno"
+        }
+      },
+      "Description": {
+        "Index": 2374,
+        "EN": {
+          "M": "Innate Level: 9\nSchool: Transmutation\nDescriptor(s): Fire\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Single\nDuration: 1 Round / 2 Levels\nAdditional Counter Spells:\nSave: None\nSpell Resistance: Yes\n\r\nThe caster causes a target to ignite into flame. The target suffers a -4 penalty to attack and damage rolls, and twice each round the target will suffer 2d6 points of fire damage and 1d6 points of divine damage. ",
+          "F": "Caster Level(s): Druid 5\nInnate Level: 5\nSchool: Transmutation\nDescriptor(s): Fire\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Single\nDuration: 1 round / level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: Yes\n\nThe caster causes a target to ignite into flame. Each round the target will suffer 2d6 points of fire damage."
+        },
+        "FR": {
+          "M": "Niveau : Druide 5\nNiveau inn\u00E9 : 5\nEcole : Transmutation\nCat\u00E9gorie(s) : feu\nComposante(s) : verbale, gestuelle\nPort\u00E9e : courte\nZone d\u2019effet / cible : 1 cr\u00E9ature\nDur\u00E9e : 1 round / niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : aucun\nR\u00E9sistance \u00E0 la magie : oui\n\nLe lanceur de sorts met le feu \u00E0 une victime, qui subit 2d6 points de d\u00E9g\u00E2ts de Feu par round."
+        },
+        "DE": {
+          "M": "Grad: DRU 5\nKalkulationsgrad: 5\nSchule: Verwandlung\nKategorie: Feuer\nKomponenten: V, G\nReichweite: Kurz\nWirkungsbereich/Ziel: 1 Ziel\nWirkungsdauer: 1 Runde/Stufe\nGegenzauber:\nRettungswurf: Nein\nZauberresistenz: Ja\n\nDas Ziel beginnt zu brennen und erleidet in jeder Runde 2W6 Punkte Feuerschaden."
+        },
+        "IT": {
+          "M": "Livello(i) dell\u0027incantatore: druido 5\nLivello innato: 5\nScuola: trasmutazione\nDescrittore(i): fuoco\nComponente(i): verbale, somatica\nRaggio d\u0027azione: corto\nArea d\u0027effetto / bersaglio: singolo\nDurata: 1 round per livello\nControincantesimi addizionali:\nTiro salvezza: nessuno\nResistenza agli incantesimi: s\u00EC\n\nL\u0027incantatore pu\u00F2 far s\u00EC che un bersaglio prenda fuoco. A ogni round, il bersaglio subir\u00E0 2d6 danni da fuoco."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Druida 5\nNivel innato: 5\nEscuela: Transmutaci\u00F3n\nDescriptores: Fuego\nComponentes: Verbal, Som\u00E1tico\nAlcance: Corto\n\u00C1rea de efecto / Objetivo: Individual\nDuraci\u00F3n: 1 asalto/nivel\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Ninguno\nResistencia a conjuros: S\u00ED\n\nEl lanzador provoca que un objetivo estalle en llamas. Cada asalto el objetivo sufrir\u00E1 2d6 puntos de da\u00F1o por fuego."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Druid 5\nPoziom wrodzony: 5\nSzko\u0142a: Przemiany\nIdentyfikator(y): Ogie\u0144\nKomponent(y): Werbalny, Somatyczny\nZasi\u0119g: Kr\u00F3tki\nObszar dzia\u0142ania / Cel: Pojedynczy\nCzas trwania: 1 runda / poziom\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Brak\nOdporno\u015B\u0107 na czary: Tak\n\nRzucaj\u0105cy czar podpala cel. Ofiara co rund\u0119 otrzymuje 2k6 obra\u017Ce\u0144 od ognia."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_x1inferno",
+      "School": "T",
+      "Range": "S",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Empower",
+        "Extend",
+        "Maximize",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Creature"
+      ],
+      "ImpactScript": "x2_s0_HellInfern",
+      "InnateLevel": 9,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_smhanfire01",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mehanfire01",
+      "ConjurationMaleSound": "vs_chant_evoc_lm",
+      "ConjurationFemaleSound": "vs_chant_evoc_lf",
+      "CastingAnimation": "Out",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": "vpr_aroacid",
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": "spr_aroacid",
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "HarmfulRanged",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": true,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": true,
       "TargetShape": null,
       "TargetSizeX": null,
       "TargetSizeY": null,
@@ -30790,6 +30907,124 @@
       ]
     },
     {
+      "ID": "e70fee9f-4c53-4ef6-8d52-2852e26f480b",
+      "Index": -1,
+      "Overrides": "a2425212-faef-2320-4a84-cb605ab15cbf",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Inferno",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 2368,
+        "EN": {
+          "M": "Inferno"
+        },
+        "FR": {
+          "M": "Inferno"
+        },
+        "DE": {
+          "M": "Inferno"
+        },
+        "IT": {
+          "M": "Inferno"
+        },
+        "ES": {
+          "M": "Infierno"
+        },
+        "PL": {
+          "M": "Inferno"
+        }
+      },
+      "Description": {
+        "Index": 2374,
+        "EN": {
+          "M": "Caster Level(s): Druid 5\nInnate Level: 5\nSchool: Transmutation\nDescriptor(s): Fire\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Single\nDuration: 1 round / level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: Yes\n\nThe caster causes a target creature to ignite into flame. Each round the target will suffer 2d6 points of fire damage.",
+          "F": "Caster Level(s): Druid 5\nInnate Level: 5\nSchool: Transmutation\nDescriptor(s): Fire\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Single\nDuration: 1 round / level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: Yes\n\nThe caster causes a target to ignite into flame. Each round the target will suffer 2d6 points of fire damage."
+        },
+        "FR": {
+          "M": "Niveau : Druide 5\nNiveau inn\u00E9 : 5\nEcole : Transmutation\nCat\u00E9gorie(s) : feu\nComposante(s) : verbale, gestuelle\nPort\u00E9e : courte\nZone d\u2019effet / cible : 1 cr\u00E9ature\nDur\u00E9e : 1 round / niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : aucun\nR\u00E9sistance \u00E0 la magie : oui\n\nLe lanceur de sorts met le feu \u00E0 une victime, qui subit 2d6 points de d\u00E9g\u00E2ts de Feu par round."
+        },
+        "DE": {
+          "M": "Grad: DRU 5\nKalkulationsgrad: 5\nSchule: Verwandlung\nKategorie: Feuer\nKomponenten: V, G\nReichweite: Kurz\nWirkungsbereich/Ziel: 1 Ziel\nWirkungsdauer: 1 Runde/Stufe\nGegenzauber:\nRettungswurf: Nein\nZauberresistenz: Ja\n\nDas Ziel beginnt zu brennen und erleidet in jeder Runde 2W6 Punkte Feuerschaden."
+        },
+        "IT": {
+          "M": "Livello(i) dell\u0027incantatore: druido 5\nLivello innato: 5\nScuola: trasmutazione\nDescrittore(i): fuoco\nComponente(i): verbale, somatica\nRaggio d\u0027azione: corto\nArea d\u0027effetto / bersaglio: singolo\nDurata: 1 round per livello\nControincantesimi addizionali:\nTiro salvezza: nessuno\nResistenza agli incantesimi: s\u00EC\n\nL\u0027incantatore pu\u00F2 far s\u00EC che un bersaglio prenda fuoco. A ogni round, il bersaglio subir\u00E0 2d6 danni da fuoco."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Druida 5\nNivel innato: 5\nEscuela: Transmutaci\u00F3n\nDescriptores: Fuego\nComponentes: Verbal, Som\u00E1tico\nAlcance: Corto\n\u00C1rea de efecto / Objetivo: Individual\nDuraci\u00F3n: 1 asalto/nivel\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Ninguno\nResistencia a conjuros: S\u00ED\n\nEl lanzador provoca que un objetivo estalle en llamas. Cada asalto el objetivo sufrir\u00E1 2d6 puntos de da\u00F1o por fuego."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Druid 5\nPoziom wrodzony: 5\nSzko\u0142a: Przemiany\nIdentyfikator(y): Ogie\u0144\nKomponent(y): Werbalny, Somatyczny\nZasi\u0119g: Kr\u00F3tki\nObszar dzia\u0142ania / Cel: Pojedynczy\nCzas trwania: 1 runda / poziom\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Brak\nOdporno\u015B\u0107 na czary: Tak\n\nRzucaj\u0105cy czar podpala cel. Ofiara co rund\u0119 otrzymuje 2k6 obra\u017Ce\u0144 od ognia."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_x1inferno",
+      "School": "T",
+      "Range": "S",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Empower",
+        "Extend",
+        "Maximize",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Creature",
+        "Item"
+      ],
+      "ImpactScript": "x0_s0_inferno",
+      "InnateLevel": 5,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_smhanfire01",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mehanfire01",
+      "ConjurationMaleSound": "vs_chant_evoc_lm",
+      "ConjurationFemaleSound": "vs_chant_evoc_lf",
+      "CastingAnimation": "Out",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": "vpr_aroacid",
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": "spr_aroacid",
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "HarmfulRanged",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": true,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": true,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
       "ID": "9ddb71d7-9e5a-4cd0-b06c-3f81615adc85",
       "Index": -1,
       "Overrides": "90c5cf8b-3151-d713-35b5-793bb161b919",
@@ -32243,6 +32478,123 @@
       ]
     },
     {
+      "ID": "fbd5e64a-6af8-4b8d-a119-620de9ab2834",
+      "Index": -1,
+      "Overrides": "51e8c78e-6226-a25c-6424-ccbefe637334",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Keen_Edge",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 3757,
+        "EN": {
+          "M": "Keen Edge"
+        },
+        "FR": {
+          "M": "Aff\u00FBtage"
+        },
+        "DE": {
+          "M": "Sch\u00E4rfen"
+        },
+        "IT": {
+          "M": "Estremit\u00E0 affilata"
+        },
+        "ES": {
+          "M": "Afiladura"
+        },
+        "PL": {
+          "M": "Ostra Kraw\u0119d\u017A"
+        }
+      },
+      "Description": {
+        "Index": 3758,
+        "EN": {
+          "M": "Caster Level(s): Wizard / Sorcerer 3, Bard 3\nInnate Level: 3\nSchool: Transmutation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Creature or Slashing Weapon\nDuration: 10 Minutes / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nAdds the Keen property to the targeted slashing melee weapon, increasing its critical threat range. You can also target another creature to enchant its worn slashing melee weapon.",
+          "F": "Caster Level(s): Wizard / Sorcerer 3, Bard 3\nInnate Level: 3\nSchool: Transmutation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Creature or Slashing Weapon\nDuration: 10 Minutes / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nAdds the Keen property to the targeted slashing melee weapon, increasing its critical threat range."
+        },
+        "FR": {
+          "M": "Niveau : Magicien / Ensorceleur 3, Barde 3\nNiveau inn\u00E9 : 3\nEcole : Transmutation\nCat\u00E9gorie(s) : enchantement d\u0027arme\nComposante(s) : verbale, gestuelle\nPort\u00E9e : courte\nZone d\u0027effet / cible : cr\u00E9ature, arme tranchante\nDur\u00E9e : 10 minutes/ niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : aucun\nR\u00E9sistance \u00E0 la magie : non\n\nConf\u00E8re la propri\u00E9t\u00E9 \u0027ac\u00E9r\u00E9e\u0027 \u00E0 l\u0027arme de m\u00EAl\u00E9e tranchante d\u00E9sign\u00E9e, ce qui augmente son potentiel de critique."
+        },
+        "DE": {
+          "M": "Grad: BAR 3, HXM/MAG 3\nKalkulationsgrad: 3\nSchule: Verwandlung\nKategorie: Waffenverzauberung\nKomponenten: V, G\nReichweite: Kurz\nWirkungsbereich/Ziel: Kreatur oder Hiebwaffe\nWirkungsdauer: 10 Minuten pro Stufe\nGegenzauber:\nRettungswurf: Nein\nZauberresistenz: Nein\n\nDie Zielnahkampfwaffe erh\u00E4lt die Eigenschaft Scharf, wodurch sich ihre Bedrohungschance erh\u00F6ht."
+        },
+        "IT": {
+          "M": "Livello dell\u2019incantatore:mago/stregone 3, bardo 3\nLivello innato: 3\nScuola: Trasmutazione\nDescrittore: incantesimo su un\u0027arma\nComponenti: verbale, somatica\nRaggio d\u0027azione: breve\nArea d\u0027effetto/bersaglio: creatura, arma da taglio\nDurata: 10 minuti/livello\nControincantesimi addizionali:\nTiro salvezza: nessuno\nResistenza agli incantesimi: no\n\nAggiunge la propriet\u00E0 Affilata all\u0027arma da mischia da taglio scelta come bersaglio, aumentando la portata del suo colpo critico."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Hechicero / Mago 3, Bardo 3\nNivel innato: 3\nEscuela: Transmutaci\u00F3n\nDescriptores: Encantamiento de arma\nComponentes: Verbal, Som\u00E1tico\nAlcance: Corto\n\u00C1rea de efecto / Objetivo: Criatura o arma cortante\nDuraci\u00F3n: 10 minutos / nivel\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Ninguno\nResistencia a conjuros: No\n\nA\u00F1ade la propiedad \u0027Afilada\u0027 al arma mel\u00E9 cortante objetivo, aument\u00E1ndole as\u00ED el rango de amenaza de cr\u00EDtico."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Czarodziej/Czarownik 3, Bard 3\nPoziom wrodzony: 3\nSzko\u0142a: Przemiany\nIdentyfikator(y): Zakl\u0119cie broni\nKomponent(y): Werbalny, Somatyczny\nZasi\u0119g: Bliski\nObszar dzia\u0142ania / Cel: Istota lub bro\u0144 sieczna\nCzas trwania: 10 minut/poziom\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Brak\nOdporno\u015B\u0107 na czary: Nie\n\nCzar ten nadaje broni siecznej do walki wr\u0119cz w\u0142a\u015Bciwo\u015B\u0107: Ostra, przez co zwi\u0119ksza si\u0119 szansa trafienia krytycznego."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_x2keenedge",
+      "School": "T",
+      "Range": "T",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Creature",
+        "Item"
+      ],
+      "ImpactScript": "X2_S0_KeenEdge",
+      "InnateLevel": 3,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_atomgren",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_atomgren",
+      "ConjurationMaleSound": "vs_chant_ench_hm",
+      "ConjurationFemaleSound": "vs_chant_ench_lf",
+      "CastingAnimation": "Self",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": null,
+      "ProjectileSound": null,
+      "ProjectileOrientation": null,
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyEnhancementSingle",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
       "ID": "5bddd163-c542-48a4-b55c-07dea20d3111",
       "Index": 93,
       "Overrides": "b22de387-5ee6-5497-d32c-ec8c1314cc75",
@@ -32275,7 +32627,8 @@
       "Description": {
         "Index": 6190,
         "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal\nRange: Personal\nArea of Effect / Target: Colossal\nDuration: Instant\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nThis spell will unlock doors and containers sealed by conventional locks in a 150ft radius around the caster. Exceptionally complex locking mechanisms or magically sealed doors and containers are beyond the abilities of this spell."
+          "M": "Caster Level(s): Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal\nRange: Personal\nArea of Effect / Target: Single Locked Object\nDuration: Instant\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nThis spell will unlock doors and containers sealed by conventional locks. Exceptionally complex locking mechanisms or magically sealed doors and containers are beyond the abilities of this spell.",
+          "F": "Caster Level(s): Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal\nRange: Personal\nArea of Effect / Target: Colossal\nDuration: Instant\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nThis spell will unlock doors and containers sealed by conventional locks in a 150ft radius around the caster. Exceptionally complex locking mechanisms or magically sealed doors and containers are beyond the abilities of this spell."
         },
         "FR": {
           "M": "Niveau : Magicien / Ensorceleur 2\nNiveau inn\u00E9 : 2\nEcole : Transmutation\nCat\u00E9gorie(s) :\nComposante(s) : verbale\nPort\u00E9e : personnelle\nZone d\u0027effet / cible : extr\u00EAme\nDur\u00E9e : instantan\u00E9e\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : aucun\nR\u00E9sistance \u00E0 la magie : non\n\nCe sort d\u00E9verrouille les portes et les contenants ferm\u00E9s par des serrures normales dans un rayon de 50 m\u00E8tres autour du lanceur. Les m\u00E9canismes exceptionnellement complexes ou les portes et contenants ferm\u00E9s magiquement ne sont pas affect\u00E9s."
@@ -32307,8 +32660,9 @@
         "Silent"
       ],
       "TargetTypes": [
-        "Self",
-        "Item"
+        "Item",
+        "Door",
+        "Placeable"
       ],
       "ImpactScript": "NW_S0_Knock",
       "InnateLevel": 2,
@@ -32349,13 +32703,10 @@
       "CounterSpell1": null,
       "CounterSpell2": null,
       "HasProjectileVisuals": true,
-      "TargetShape": "Sphere",
-      "TargetSizeX": 50,
+      "TargetShape": null,
+      "TargetSizeX": null,
       "TargetSizeY": null,
-      "TargetingFlags": [
-        "HelpsAllies",
-        "OriginOnSelf"
-      ]
+      "TargetingFlags": []
     },
     {
       "ID": "a61c1a3b-894b-4ae9-b62b-7333fa0bb6ec",
@@ -34285,6 +34636,240 @@
       "TargetingFlags": []
     },
     {
+      "ID": "4829e444-cf6f-4320-b3ba-936e12d9e13f",
+      "Index": -1,
+      "Overrides": "a1d9c46f-c434-e3a5-ca9d-39f28f05a8ef",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Magic_Vestment",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 3771,
+        "EN": {
+          "M": "Magic Vestment"
+        },
+        "FR": {
+          "M": "Panoplie magique"
+        },
+        "DE": {
+          "M": "Magisches Schutzgewand"
+        },
+        "IT": {
+          "M": "Veste magica"
+        },
+        "ES": {
+          "M": "Vestidura m\u00E1gica"
+        },
+        "PL": {
+          "M": "Magiczna Szata"
+        }
+      },
+      "Description": {
+        "Index": 3772,
+        "EN": {
+          "M": "Caster Level(s): Cleric 3\nInnate Level: 3\nSchool: Transmutation\nDescriptor(s): Armor Enchantment\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Creature, Armor or Shield\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nYou empower the touched armor or shield with a \u002B1 AC bonus per 3 caster levels (maximum of \u002B5). You can also target another creature to enchant its armor, or if they are not wearing any armor, their shield.",
+          "F": "Caster Level(s): Cleric 3\nInnate Level: 3\nSchool: Transmutation\nDescriptor(s): Armor Enchantment\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Creature, Armor or Shield\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nYou empower the touched armor or shield with a \u002B1 AC bonus per 3 caster levels (maximum of \u002B5). "
+        },
+        "FR": {
+          "M": "Niveau : Pr\u00EAtre 3\nNiveau inn\u00E9 : 3\nEcole : Transmutation\nCat\u00E9gorie(s) : enchantement d\u0027armure\nComposante(s) : verbale, gestuelle\nPort\u00E9e : contact\nZone d\u0027effet / cible : cr\u00E9ature, armure ou bouclier\nDur\u00E9e : 1 heure / niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : aucun\nR\u00E9sistance \u00E0 la magie : non\n\nL\u0027armure ou le bouclier touch\u00E9 b\u00E9n\u00E9ficie d\u0027un bonus \u00E0 la CA de \u002B1 tous les 3 niveaux du lanceur de sorts (maximum \u002B5)."
+        },
+        "DE": {
+          "M": "Grad: KLE 3\nKalkulationsgrad: 3\nSchule: Verwandlung\nKategorie: R\u00FCstungsverzauberung\nKomponenten: V, G\nReichweite: Ber\u00FChrung\nWirkungsbereich/Ziel: Kreatur, R\u00FCstung oder Schild\nWirkungsdauer: 1 Stunde pro Stufe\nGegenzauber:\nRettungswurf: Nein\nZauberresistenz: Nein\n\nDie ber\u00FChrte R\u00FCstung oder der ber\u00FChrte Schild erh\u00E4lt einen Verbesserungsbonus \u002B1 auf die RK f\u00FCr je drei Zauberstufen (maximal \u002B5)."
+        },
+        "IT": {
+          "M": "Livello dell\u2019incantatore: chierico 3\nLivello innato: 3\nScuola: Trasmutazione\nDescrittore: incantesimo su una corazza\nComponenti: verbale, somatica\nRaggio d\u0027azione: tocco\nArea d\u0027effetto/bersaglio: creatura, corazza o scudo\nDurata: 1 ora/livello\nControincantesimi addizionali:\nTiro salvezza: nessuno\nResistenza agli incantesimi: no\n\nDoni all\u0027armatura o allo scudo che tocchi un bonus \u002B1 CA per ogni 3 livelli dell\u0027incantatore (massimo \u002B5)."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Cl\u00E9rigo 3\nNivel innato: 3\nEscuela: Transmutaci\u00F3n\nDescriptores: Encantamiento de armadura\nComponentes: Verbal, Som\u00E1tico\nAlcance: Toque\n\u00C1rea de efecto / Objetivo: Criatura, armadura o escudo\nDuraci\u00F3n: 1 hora / nivel\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Ninguno\nResistencia a conjuros: No\n\nLe otorgas al arma o escudo que toques un bonificador \u002B1 a la CA por cada 3 niveles de lanzador que tengas (hasta un m\u00E1ximo de \u002B5)."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Kap\u0142an 3\nPoziom wrodzony: 3\nSzko\u0142a: Przemiany\nIdentyfikator(y): Zakl\u0119cie zbroi\nKomponent(y): Werbalny, Somatyczny\nZasi\u0119g: Dotyk\nObszar dzia\u0142ania / Cel: Istota, zbroja lub tarcza\nCzas trwania: 1 godzina/poziom\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Brak\nOdporno\u015B\u0107 na czary: Nie\n\nCzar nadaje dotkni\u0119tej zbroi premi\u0119 do KP, w wysoko\u015Bci \u002B1 na trzy poziomy rzucaj\u0105cego (maksymalnie \u002B5)."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_x2magvest",
+      "School": "T",
+      "Range": "T",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Creature",
+        "Item"
+      ],
+      "ImpactScript": "X2_S0_MagcVest",
+      "InnateLevel": 3,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_smhanelec01",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mehanelec03",
+      "ConjurationMaleSound": "vs_chant_ench_hm",
+      "ConjurationFemaleSound": "vs_chant_ench_lf",
+      "CastingAnimation": "Self",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": null,
+      "ProjectileSound": null,
+      "ProjectileOrientation": null,
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyEnhancementSingle",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "bbd79a0f-8ca9-413c-b2e0-9b37dc1fad62",
+      "Index": -1,
+      "Overrides": "dd4cbaae-8b2c-13d2-d3e0-3ef5bb9538c4",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Magic_Weapon",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 3767,
+        "EN": {
+          "M": "Magic Weapon"
+        },
+        "FR": {
+          "M": "Arme magique"
+        },
+        "DE": {
+          "M": "Magische Waffe"
+        },
+        "IT": {
+          "M": "Arma magica"
+        },
+        "ES": {
+          "M": "Arma m\u00E1gica"
+        },
+        "PL": {
+          "M": "Magiczna Bro\u0144"
+        }
+      },
+      "Description": {
+        "Index": 3768,
+        "EN": {
+          "M": "Caster Level(s): Bard 1, Cleric 1, Paladin 1, Wizard / Sorcerer 1\nInnate Level: 1\nSchool: Transmutation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Melee Weapon or Creature\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nYou empower the touched melee weapon with a \u002B1 enhancement bonus. You can also target another creature to enchant its worn melee weapon.",
+          "F": "Caster Level(s): Bard 1, Cleric 1, Paladin 1, Wizard / Sorcerer 1\nInnate Level: 1\nSchool: Transmutation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Melee Weapon or Creature\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nYou empower the touched weapon with a \u002B1 enhancement bonus. "
+        },
+        "FR": {
+          "M": "Niveau : Barde 1, Pr\u00EAtre 1, Paladin 1, Magicien / Ensorceleur 1\nNiveau inn\u00E9 : 1\nEcole : Transmutation\nCat\u00E9gorie(s) : enchantement d\u0027arme\nComposante(s) : verbale, gestuelle\nPort\u00E9e : contact\nZone d\u0027effet / cible : cr\u00E9ature ou arme de corps \u00E0 corps\nDur\u00E9e : 1 heure / niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : aucun\nR\u00E9sistance \u00E0 la magie : non\n\nL\u0027arme touch\u00E9e b\u00E9n\u00E9ficie d\u0027un bonus d\u0027enchantement de \u002B1."
+        },
+        "DE": {
+          "M": "Grad: BAR 1, HXM/MAG 1, KLE 1, PAL 1\nKalkulationsgrad: 1\nSchule: Verwandlung\nKategorie: Waffenverzauberung\nKomponenten: V, G\nReichweite: Ber\u00FChrung\nWirkungsbereich/Ziel: Nahkampfwaffe oder Kreatur\nWirkungsdauer: 1 Stunde pro Stufe\nGegenzauber:\nRettungswurf: Nein\nZauberresistenz: Nein\n\nDie ber\u00FChrte Waffe erh\u00E4lt einen Verbesserungsbonus \u002B1."
+        },
+        "IT": {
+          "M": "Livello dell\u2019incantatore: bardo, chierico, paladino, mago/stregone 1\nLivello innato: 1\nScuola: Trasmutazione\nDescrittore: incantesimo su un\u0027arma\nComponenti: verbale, somatica\nRaggio d\u0027azione: tocco\nArea d\u0027effetto/bersaglio: arma da mischia o creatura\nDurata: 1 ora/livello\nControincantesimi addizionali:\nTiro salvezza: nessuno\nResistenza agli incantesimi: no\n\nL\u0027arma che tocchi riceve un bonus di potenziamento \u002B1."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Bardo 1, Cl\u00E9rigo 1, Hechicero / Mago 1, Palad\u00EDn 1\nNivel innato: 1\nEscuela: Transmutaci\u00F3n\nDescriptores: Encantamiento de arma\nComponentes: Verbal, Som\u00E1tico\nAlcance: Toque\n\u00C1rea de efecto / Objetivo: Criatura o arma de combate cuerpo a cuerpo\nDuraci\u00F3n: 1 hora / nivel\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Ninguno\nResistencia a conjuros: No\n\nLe otorgas al arma que toques un bonificador \u002B1 de mejora."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Bard 1, Kap\u0142an 1, Paladyn 1, Czarodziej/Czarownik 1\nPoziom wrodzony: 1\nSzko\u0142a: Przemiany\nIdentyfikator(y): Zakl\u0119cie broni\nKomponent(y): Werbalny, Somatyczny\nZasi\u0119g: Dotyk\nObszar dzia\u0142ania / Cel: Istota lub bro\u0144 do walki w zwarciu\nCzas trwania: 1 godzina/poziom\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Brak\nOdporno\u015B\u0107 na czary: Nie\n\nCzar nadaje dotkni\u0119tej broni premi\u0119 \u002B1 do umocnienia."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_x2magcweap",
+      "School": "T",
+      "Range": "T",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Creature",
+        "Item"
+      ],
+      "ImpactScript": "X2_S0_MagcWeap",
+      "InnateLevel": 1,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_atomred",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_atomred",
+      "ConjurationMaleSound": "vs_chant_ench_hm",
+      "ConjurationFemaleSound": "vs_chant_ench_lf",
+      "CastingAnimation": "Self",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": null,
+      "ProjectileSound": null,
+      "ProjectileOrientation": null,
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyEnhancementSingle",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
       "ID": "83a1967e-67c3-43d9-8cd7-4ba59f59a3b6",
       "Index": -1,
       "Overrides": "9a08d49c-3671-5d7c-a2ba-a3ed9db186b5",
@@ -34535,6 +35120,126 @@
       "TargetSizeY": null,
       "TargetingFlags": [
         "HarmsEnemies"
+      ]
+    },
+    {
+      "ID": "31f25184-0542-424d-bc19-eb6c42059abf",
+      "Index": -1,
+      "Overrides": "72b73453-4675-dcd6-478b-5a572b57291d",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Mass_Camoflage",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 2674,
+        "EN": {
+          "M": "Mass Camouflage"
+        },
+        "FR": {
+          "M": "Camouflage de masse"
+        },
+        "DE": {
+          "M": "Massenmimikry"
+        },
+        "IT": {
+          "M": "Mimetismo di massa"
+        },
+        "ES": {
+          "M": "Camuflar a las masas"
+        },
+        "PL": {
+          "M": "Grupowy Kamufla\u017C"
+        }
+      },
+      "Description": {
+        "Index": 2673,
+        "EN": {
+          "M": "Caster Level(s): Druid 4, Ranger 4\nInnate Level: 4\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Colossal\nDuration: 10 turns / level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nAll allies in the area of effect gain a \u002B10 bonus to their hide skill.",
+          "F": "Caster Level(s): Druid 4, Ranger 4\nInnate Level: 4\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Colossal\nDuration: 10 turns / level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nAll allies in the area of effect gain a \u002B10 bonus to their hide skill."
+        },
+        "FR": {
+          "M": "Niveau : Druide 4, R\u00F4deur 4\nNiveau inn\u00E9 : 4\nEcole : Transmutation\nCat\u00E9gorie(s) :\nComposante(s) : Verbale, Gestuelle\nPort\u00E9e : longue\nZone d\u0027effet / cible : colossale\nDur\u00E9e : 10 tours / niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : aucun\nR\u00E9sistance \u00E0 la magie : non\n\nTous les alli\u00E9s dans la zone d\u0027effet b\u00E9n\u00E9ficient d\u0027un bonus de Discr\u00E9tion de \u002B10."
+        },
+        "DE": {
+          "M": "Grad: DRU 4, WAL 4\nGrad (angeborene F\u00E4higkeit): 4\nSchule: Verwandlung\nKategorie:\nKomponenten: V, G\nReichweite: Lang\nWirkungsbereich/Ziel: Kolossal\nWirkungsdauer: 10 Runden/Stufe\nGegenzauber:\nRettungswurf: Nein\nZauberresistenz: Nein\n\nAlle Verb\u00FCndeten im Wirkungsbereich erhalten einen Bonus von \u002B10 auf ihre Fertigkeit Verstecken."
+        },
+        "IT": {
+          "M": "Livello(i) dell\u0027incantatore: druido 4, ranger 4\nLivello innato: 4\nScuola: trasmutazione\nDescrittore(i):\nComponente(i): verbale, somatica\nRaggio d\u0027azione: lungo\nArea d\u0027effetto / bersaglio: colossale\nDurata: 10 turni per livello\nControincantesimi addizionali:\nTiro salvezza: nessuno\nResistenza agli incantesimi: no\n\nTutti gli alleati nell\u0027area d\u0027effetto ottengono un bonus di \u002B10 alla loro abilit\u00E0 di nascondersi."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Druida 4, Explorador 4\nNivel innato: 4\nEscuela: Transmutaci\u00F3n\nDescriptores:\nComponentes: Verbal, Som\u00E1tico\nAlcance: Largo\n\u00C1rea de efecto / Objetivo: Colosal\nDuraci\u00F3n: 10 turnos/nivel\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Ninguno\nResistencia a conjuros: No\n\nTodos los aliados en el \u00E1rea de efecto obtienen un bonificador \u002B10 a su habilidad de Esconderse."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Druid 4, \u0141owca 4\nPoziom wrodzony: 4\nSzko\u0142a: Przemiany\nIdentyfikator(y):\nKomponent(y): Werbalny, Somatyczny\nZasi\u0119g: Daleki\nObszar dzia\u0142ania / Cel: Olbrzymi\nCzas trwania: 10 tur / poziom\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Brak\nOdporno\u015B\u0107 na czary: Nie\n\nWszyscy sojusznicy na obszarze dzia\u0142ania otrzymuj\u0105 premi\u0119 \u002B10 do umiej\u0119tno\u015Bci ukrywania si\u0119."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_x1mascamo",
+      "School": "T",
+      "Range": "M",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Creature",
+        "Area",
+        "Item"
+      ],
+      "ImpactScript": "x0_s0_masscamo",
+      "InnateLevel": 4,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_smhanholy01",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mehanholy01",
+      "ConjurationMaleSound": "vs_chant_ench_lm",
+      "ConjurationFemaleSound": "vs_chant_ench_lf",
+      "CastingAnimation": "Area",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": true,
+      "ProjectileModel": "vpr_los",
+      "ProjectileType": "Accelerating",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": "spr_los",
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyEnhancementAoe",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": true,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": true,
+      "TargetShape": "Sphere",
+      "TargetSizeX": 10,
+      "TargetSizeY": null,
+      "TargetingFlags": [
+        "HelpsAllies"
       ]
     },
     {
@@ -36080,6 +36785,242 @@
         "HarmsEnemies",
         "HarmsAllies",
         "SuppressWithTarget"
+      ]
+    },
+    {
+      "ID": "77021344-9f4d-4635-93f7-587eeb555a3b",
+      "Index": -1,
+      "Overrides": "6a50a887-2b53-0aa2-4cec-2e8b0ce57344",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Mordenkainens_Sword",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 873,
+        "EN": {
+          "M": "Mordenkainen\u0027s Sword"
+        },
+        "FR": {
+          "M": "Ep\u00E9e de Mordenkainen"
+        },
+        "DE": {
+          "M": "Mordenkainens Schwert"
+        },
+        "IT": {
+          "M": "Spada di Mordenkainen"
+        },
+        "ES": {
+          "M": "Espada de Mordenkainen"
+        },
+        "PL": {
+          "M": "Miecz Mordenkainena"
+        }
+      },
+      "Description": {
+        "Index": 6220,
+        "EN": {
+          "M": "Caster Level(s): Wizard / Sorcerer 7\nInnate Level: 7\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Point\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nThe caster summons a powerful, sword-wielding helmed horror that acts as a faithful and loyal servant."
+        },
+        "FR": {
+          "M": "Niveau : Magicien / Ensorceleur 7\nNiveau inn\u00E9 : 7\nEcole : Transmutation\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : courte\nZone d\u0027effet / cible : point d\u00E9sign\u00E9\nDur\u00E9e : 1 round/niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : aucun\nR\u00E9sistance \u00E0 la magie : non\n\nLe lanceur invoque une puissante horreur casqu\u00E9e dot\u00E9e d\u0027une \u00E9p\u00E9e qui le sert fid\u00E8lement."
+        },
+        "DE": {
+          "M": "Grad: MAG/HXM 7\nKalkulationsgrad: 7\nSchule: Verwandlung\nKategorie:\nKomponenten: V, G\nReichweite: Kurz\nWirkungsbereich/Ziel: Punkt\nWirkungsdauer: 1 Runde/Stufe\nGegenzauber:\nRettungswurf: Nein\nZauberresistenz: Nein\n\nDer Zauber beschw\u00F6rt einen m\u00E4chtigen, mit einem Schwert bewaffneten Helmschrecken, der dem Magieanwender treu dient."
+        },
+        "IT": {
+          "M": "Livello(i) dell\u0027incantatore: Mago / Stregone 7\nLivello innato: 7\nScuola: Trasmutazione\nDescrittore(i):\nComponente(i): Verbale, Somatica\nRaggio d\u0027azione: Corto\nArea d\u0027effetto / Bersaglio: Punto\nDurata: 1 round per livello\nControincantesimi addizionali:\nTiro salvezza: Nessuno\nResistenza agli incantesimi: No\n\nL\u0027incantatore evoca un potente orrore corazzato armato di spada che agisce da fedele e leale servitore."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Hechicero / Mago 7\nNivel innato: 7\nEscuela: Transmutaci\u00F3n\nDescriptores:\nComponentes: Verbal, Som\u00E1tico\nAlcance: Corto\n\u00C1rea de efecto / Objetivo: Punto\nDuraci\u00F3n: 1 asalto / nivel\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Ninguno\nResistencia a conjuros: No\n\nEl lanzador convoca a un poderoso horror acorazado, armado con una espada, que act\u00FAa como un fiel y leal sirviente."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Czarodziej / Czarownik 7\nPoziom wrodzony: 7\nSzko\u0142a: Przemiany\nIdentyfikator(y):\nKomponent(y): Werbalne, Somatyczne\nZasi\u0119g: Kr\u00F3tki\nObszar dzia\u0142ania / Cel: Punkt\nCzas trwania: 1 runda / poziom\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Brak\nOdporno\u015B\u0107 na czary: Nie\n\nTen czar przywo\u0142uje upiorn\u0105 istot\u0119 dzier\u017C\u0105c\u0105 miecz, kt\u00F3ra staje si\u0119 s\u0142ug\u0105 czarodzieja na czas dzia\u0142ania czaru."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_mordswrd",
+      "School": "T",
+      "Range": "S",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Area",
+        "Item"
+      ],
+      "ImpactScript": "NW_S0_MordSwrd",
+      "InnateLevel": 7,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_mehanodd03",
+      "ConjurationGroundEffect": "vco_lgupelec01",
+      "ConjurationSound": "sco_lgupelec01",
+      "ConjurationMaleSound": "vs_chant_ench_hm",
+      "ConjurationFemaleSound": "vs_chant_ench_hf",
+      "CastingAnimation": "Self",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": null,
+      "ProjectileSound": null,
+      "ProjectileOrientation": null,
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "TalentFriendlySummon",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "5e81faba-656f-43e9-826e-3efc393056fe",
+      "Index": -1,
+      "Overrides": "7b12c370-0082-96ce-e1bb-d87f2ba31289",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Natures_Balance",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 874,
+        "EN": {
+          "M": "Nature\u0027s Balance"
+        },
+        "FR": {
+          "M": "Equilibre de la nature"
+        },
+        "DE": {
+          "M": "Gleichgewicht der Natur"
+        },
+        "IT": {
+          "M": "Equilibrio della Natura"
+        },
+        "ES": {
+          "M": "Equilibrio de la naturaleza"
+        },
+        "PL": {
+          "M": "R\u00F3wnowaga Natury"
+        }
+      },
+      "Description": {
+        "Index": 6221,
+        "EN": {
+          "M": "Caster Level(s): Druid 8\nInnate Level: 8\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Large\nDuration: 1 Round / 3 Levels\nAdditional Counter Spells:\nSave: Will Negates\nSpell Resistance: No\n\nAll enemies within the area of effect have their spell resistance lowered by 1d4 for every 5 caster levels. All allies within the area of effect are healed for 3d8 Hit Points, \u002B1 point per caster level. Undead and constructs are not healed.",
+          "F": "Caster Level(s): Druid 8\nInnate Level: 8\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Large\nDuration: Instant\nAdditional Counter Spells:\nSave: Will Negates\nSpell Resistance: No\n\nAll enemies within the area of effect have their spell resistance lowered by 1d4 for every 5 caster levels. All allies within the area of effect are healed for 3d8 Hit Points, \u002B1 point per caster level."
+        },
+        "FR": {
+          "M": "Niveau : Druide 8\nNiveau inn\u00E9 : 8\nEcole : Transmutation\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : lanceur\nZone d\u0027effet / cible : grande\nDur\u00E9e : instantan\u00E9e\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : Volont\u00E9, annule\nR\u00E9sistance \u00E0 la magie : non\n\nTous les adversaires dans la zone d\u0027effet voient leur r\u00E9sistance \u00E0 la magie r\u00E9duite de 1d4 tous les 5 niveaux du lanceur. Tous les alli\u00E9s dans la zone d\u0027effet r\u00E9cup\u00E8rent 3d8 points de vie \u002B1 point par niveau du lanceur."
+        },
+        "DE": {
+          "M": "Grad: DRU 8\nKalkulationsgrad: 8\nSchule: Verwandlung\nKategorie:\nKomponenten: V, G\nReichweite: Pers\u00F6nlich\nWirkungsbereich/Ziel: Gro\u00DF\nWirkungsdauer: Augenblicklich\nGegenzauber:\nRettungswurf: Willen, keine Auswirkung\nZauberresistenz: Nein\n\nAlle Feinde im Wirkungsbereich verlieren f\u00FCr je 5 Zauberstufen 1W4 Punkte Zauberresistenz. Alle Verb\u00FCndeten im Wirkungsbereich werden um 3W8 Trefferpunkte \u002B 1 Trefferpunkt je Zauberstufe geheilt."
+        },
+        "IT": {
+          "M": "Livello(i) dell\u0027incantatore: druido 8\nLivello innato: 8\nScuola: trasmutazione\nDescrittore(i):\nComponente(i): verbale, somatica\nRaggio d\u0027azione: personale\nArea d\u0027effetto / bersaglio: grande\nDurata: istantanea\nControincantesimi addizionali:\nTiro salvezza: volont\u00E0 nega\nResistenza agli incantesimi: no\n\nTutti i nemici entro l\u0027area d\u0027effetto subiscono una riduzione della loro resistenza agli incantesimi di 1d4 per ogni 5 livelli dell\u0027incantatore. Tutti gli alleati entro l\u0027area d\u0027effetto vengono guariti di 3d8 punti ferita, \u002B1 punto ferita per livello dell\u0027incantatore."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Druida 8\nNivel innato: 8\nEscuela: Transmutaci\u00F3n\nDescriptores:\nComponentes: Verbal, Som\u00E1tico\nAlcance: Personal\n\u00C1rea de efecto / Objetivo: Grande\nDuraci\u00F3n: Instant\u00E1neo\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Voluntad niega\nResistencia a conjuros: No\n\nTodos los enemigos en el \u00E1rea de efecto ven su resistencia a conjuros reducida en 1d4 por cada 5 niveles de lanzador. Todos los aliados en el \u00E1rea de efecto recuperan 3d8 puntos de golpe, \u002B1 por nivel de lanzador."
+        },
+        "PL": {
+          "M": "Poziomy czaruj\u0105cego: Druid 8\nPoziom wrodzony: 8\nSzko\u0142a: Przemiany\nIdentyfikator(y):\nKomponent(y): Werbalny, Somatyczny\nZasi\u0119g: Osobisty\nObszar dzia\u0142ania / Cel: Du\u017Cy\nCzas trwania: Natychmiastowy\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Si\u0142a Woli neguje\nOdporno\u015B\u0107 na czary: Nie\n\nOdporno\u015B\u0107 na czary wszystkich wrog\u00F3w na obszarze dzia\u0142ania zakl\u0119cia spada o 1k4 na ka\u017Cde 5 poziom\u00F3w rzucaj\u0105cego. Wszyscy sojusznicy na obszarze dzia\u0142ania zostaj\u0105 wyleczeni z 3k8 punkt\u00F3w obra\u017Ce\u0144, \u002B1 punkt na poziom rzucaj\u0105cego."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_naturebal",
+      "School": "T",
+      "Range": "S",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Empower",
+        "Extend",
+        "Maximize",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Item"
+      ],
+      "ImpactScript": "NW_S0_NatureBal",
+      "InnateLevel": 8,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Head",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": null,
+      "ConjurationGroundEffect": "vco_lgupnatr01",
+      "ConjurationSound": "sco_lgupnatr01",
+      "ConjurationMaleSound": "vs_chant_ench_hm",
+      "ConjurationFemaleSound": "vs_chant_ench_hf",
+      "CastingAnimation": "Up",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": null,
+      "ProjectileSound": null,
+      "ProjectileOrientation": null,
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "HarmfulAoeDiscriminant",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": "Sphere",
+      "TargetSizeX": 5,
+      "TargetSizeY": null,
+      "TargetingFlags": [
+        "HarmsEnemies",
+        "HelpsAllies",
+        "OriginOnSelf"
       ]
     },
     {
@@ -38685,7 +39626,7 @@
       "Index": 390,
       "Overrides": "f5ce2890-fe6d-0f34-539b-6df47c5ccfb4",
       "Disabled": false,
-      "Hint": "Correct innate level",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
@@ -38767,7 +39708,7 @@
         "Label": "Polymorph Self"
       },
       "Type": "Spell",
-      "UseConcentration": false,
+      "UseConcentration": true,
       "IsCastSpontaneously": false,
       "IsHostile": false,
       "CounterSpell1": null,
@@ -38783,7 +39724,7 @@
       "Index": 387,
       "Overrides": "e0816a6e-2081-41f8-0cc9-c37ddc48983e",
       "Disabled": false,
-      "Hint": "Correct innate level",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
@@ -38865,7 +39806,7 @@
         "Label": "Polymorph Self"
       },
       "Type": "Spell",
-      "UseConcentration": false,
+      "UseConcentration": true,
       "IsCastSpontaneously": false,
       "IsHostile": false,
       "CounterSpell1": null,
@@ -38881,7 +39822,7 @@
       "Index": 388,
       "Overrides": "f1012d0a-1c56-7eab-45c6-817d80e0f1d5",
       "Disabled": false,
-      "Hint": "Correct innate level",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
@@ -38963,7 +39904,7 @@
         "Label": "Polymorph Self"
       },
       "Type": "Spell",
-      "UseConcentration": false,
+      "UseConcentration": true,
       "IsCastSpontaneously": false,
       "IsHostile": false,
       "CounterSpell1": null,
@@ -38979,7 +39920,7 @@
       "Index": 389,
       "Overrides": "7ee5cb6b-532b-b9a5-1a95-814f74cb3426",
       "Disabled": false,
-      "Hint": "Correct innate level",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
@@ -39061,7 +40002,7 @@
         "Label": "Polymorph Self"
       },
       "Type": "Spell",
-      "UseConcentration": false,
+      "UseConcentration": true,
       "IsCastSpontaneously": false,
       "IsHostile": false,
       "CounterSpell1": null,
@@ -39077,7 +40018,7 @@
       "Index": 391,
       "Overrides": "0b0b158e-9451-7d02-179a-961f0384da59",
       "Disabled": false,
-      "Hint": "Correct innate level",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
@@ -39159,7 +40100,7 @@
         "Label": "Polymorph Self"
       },
       "Type": "Spell",
-      "UseConcentration": false,
+      "UseConcentration": true,
       "IsCastSpontaneously": false,
       "IsHostile": false,
       "CounterSpell1": null,
@@ -53303,63 +54244,295 @@
       ]
     },
     {
-      "ID": "0b1f55ea-b449-4854-97dc-7a02162ce3ce",
+      "ID": "9c55dd16-8b6f-4174-980d-045d5949e985",
       "Index": -1,
-      "Overrides": "444eba77-0a8f-9d59-e903-f228a7da567c",
+      "Overrides": "c6d7b7c8-142a-ebcd-4229-2c3d187fc220",
       "Disabled": false,
-      "Hint": "Creature Power not sure if used",
+      "Hint": "",
       "ScriptConstant": "",
-      "SourceLabel": "Hell_Inferno",
+      "SourceLabel": "One_With_The_Land",
       "ExtensionValues": {},
       "Name": {
-        "Index": 84456,
+        "Index": 283,
         "EN": {
-          "M": "Hell Inferno"
+          "M": "One with the Land"
         },
         "FR": {
-          "M": "Enfer d\u00E9moniaque"
+          "M": "Union avec la terre"
         },
         "DE": {
-          "M": "H\u00F6llenfeuersturm"
+          "M": "Eins mit dem Land"
         },
         "IT": {
-          "M": "Inferno"
+          "M": "Tutt\u0027uno con la terra"
         },
         "ES": {
-          "M": "Llamas del Infierno"
+          "M": "Unirse a la tierra"
         },
         "PL": {
-          "M": "Piekielne inferno"
+          "M": "Jedno\u015B\u0107 z Ziemi\u0105"
         }
       },
       "Description": {
-        "Index": 2374,
+        "Index": 1011,
         "EN": {
-          "M": "Innate Level: 9\nSchool: Transmutation\nDescriptor(s): Fire\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Single\nDuration: 1 Round / 2 Levels\nAdditional Counter Spells:\nSave: None\nSpell Resistance: Yes\n\r\nThe caster causes a target to ignite into flame. The target suffers a -4 penalty to attack and damage rolls, and twice each round the target will suffer 2d6 points of fire damage and 1d6 points of divine damage. ",
-          "F": "Caster Level(s): Druid 5\nInnate Level: 5\nSchool: Transmutation\nDescriptor(s): Fire\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Single\nDuration: 1 round / level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: Yes\n\nThe caster causes a target to ignite into flame. Each round the target will suffer 2d6 points of fire damage."
+          "M": "Caster Level(s): Druid 2, Ranger 2\nInnate Level: 2\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe caster forges a strong link with nature, gaining a \u002B4 bonus to Animal Empathy, Hide, Move Silently, and Set Trap skills.",
+          "F": "Caster Level(s): Druid 2, Ranger 2\nInnate Level: 2\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 hour / level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nThe caster forges a strong link with nature, gaining a \u002B4 competence bonus to Animal Empathy, Hide, Move Silently, and Set Trap skills."
         },
         "FR": {
-          "M": "Niveau : Druide 5\nNiveau inn\u00E9 : 5\nEcole : Transmutation\nCat\u00E9gorie(s) : feu\nComposante(s) : verbale, gestuelle\nPort\u00E9e : courte\nZone d\u2019effet / cible : 1 cr\u00E9ature\nDur\u00E9e : 1 round / niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : aucun\nR\u00E9sistance \u00E0 la magie : oui\n\nLe lanceur de sorts met le feu \u00E0 une victime, qui subit 2d6 points de d\u00E9g\u00E2ts de Feu par round."
+          "M": "Niveau : Druide / R\u00F4deur 2\nNiveau inn\u00E9 : 2\nEcole : Transmutation\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : personnelle\nZone d\u2019effet / cible : lanceur\nDur\u00E9e : 1 heure / niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : aucun\nR\u00E9sistance \u00E0 la magie : non\n\nLe lanceur de sorts \u00E9tablit un lien avec la nature, qui lui permet de b\u00E9n\u00E9ficier d\u0027un bonus de \u002B3 dans les comp\u00E9tences suivantes : Empathie animale, Discr\u00E9tion, D\u00E9placement silencieux et Pose de pi\u00E8ges."
         },
         "DE": {
-          "M": "Grad: DRU 5\nKalkulationsgrad: 5\nSchule: Verwandlung\nKategorie: Feuer\nKomponenten: V, G\nReichweite: Kurz\nWirkungsbereich/Ziel: 1 Ziel\nWirkungsdauer: 1 Runde/Stufe\nGegenzauber:\nRettungswurf: Nein\nZauberresistenz: Ja\n\nDas Ziel beginnt zu brennen und erleidet in jeder Runde 2W6 Punkte Feuerschaden."
+          "M": "Grad: DRU 2, WAL 2\nKalkulationsgrad: 2\nSchule: Verwandlung\nKategorie:\nKomponenten: V, G\nReichweite: Pers\u00F6nlich\nWirkungsbereich/Ziel: Der Magieanwender\nWirkungsdauer: 1 Stunde/Stufe\nGegenzauber:\nRettungswurf: Nein\nZauberresistenz: Nein\n\nDer Magieanwender entwickelt ein m\u00E4chtiges Verst\u00E4ndnis f\u00FCr die Natur, wodurch er einen Kompetenzbonus von \u002B4 auf Gef\u00FChl f\u00FCr Tiere, Fallen stellen, Leise bewegen und Verstecken erh\u00E4lt."
         },
         "IT": {
-          "M": "Livello(i) dell\u0027incantatore: druido 5\nLivello innato: 5\nScuola: trasmutazione\nDescrittore(i): fuoco\nComponente(i): verbale, somatica\nRaggio d\u0027azione: corto\nArea d\u0027effetto / bersaglio: singolo\nDurata: 1 round per livello\nControincantesimi addizionali:\nTiro salvezza: nessuno\nResistenza agli incantesimi: s\u00EC\n\nL\u0027incantatore pu\u00F2 far s\u00EC che un bersaglio prenda fuoco. A ogni round, il bersaglio subir\u00E0 2d6 danni da fuoco."
+          "M": "Livello(i) dell\u0027incantatore: druido 2, ranger 2\nLivello innato: 2\nScuola: trasmutazione\nDescrittore(i):\nComponente(i): verbale, somatica\nRaggio d\u0027azione: personale\nArea d\u0027effetto/Bersaglio: incantatore\nDurata: 1 ora/livello\nControincantesimi addizionali:\nTiro salvezza: nessuno\nResistenza agli incantesimi: no\n\nL\u0027incantatore stringe un forte legame empatico con la natura, ottenendo un bonus di competenza \u002B4 alle abilit\u00E0 di empatia animale, nascondersi, muoversi silenziosamente e piazzare trappole."
         },
         "ES": {
-          "M": "Nivel de lanzador: Druida 5\nNivel innato: 5\nEscuela: Transmutaci\u00F3n\nDescriptores: Fuego\nComponentes: Verbal, Som\u00E1tico\nAlcance: Corto\n\u00C1rea de efecto / Objetivo: Individual\nDuraci\u00F3n: 1 asalto/nivel\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Ninguno\nResistencia a conjuros: S\u00ED\n\nEl lanzador provoca que un objetivo estalle en llamas. Cada asalto el objetivo sufrir\u00E1 2d6 puntos de da\u00F1o por fuego."
+          "M": "Nivel de lanzador: Druida 2, Explorador 2\nNivel innato: 2\nEscuela: Transmutaci\u00F3n\nDescriptores:\nComponentes: Verbal, Som\u00E1tico\nAlcance: Personal\n\u00C1rea de efecto / Objetivo: Lanzador\nDuraci\u00F3n: 1 hora/nivel\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Ninguno\nResistencia a conjuros: No\n\nEl lanzador forja un fuerte v\u00EDnculo con la naturaleza, obteniendo un bonificador \u002B4 de capacidad a las habilidades de Empat\u00EDa animal, Esconderse, Moverse sigilosamente y Poner trampas."
         },
         "PL": {
-          "M": "Poziom(y) czaruj\u0105cego: Druid 5\nPoziom wrodzony: 5\nSzko\u0142a: Przemiany\nIdentyfikator(y): Ogie\u0144\nKomponent(y): Werbalny, Somatyczny\nZasi\u0119g: Kr\u00F3tki\nObszar dzia\u0142ania / Cel: Pojedynczy\nCzas trwania: 1 runda / poziom\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Brak\nOdporno\u015B\u0107 na czary: Tak\n\nRzucaj\u0105cy czar podpala cel. Ofiara co rund\u0119 otrzymuje 2k6 obra\u017Ce\u0144 od ognia."
+          "M": "Poziom(y) czaruj\u0105cego: Druid 2, \u0141owca 2\nPoziom wrodzony: 2\nSzko\u0142a: Przemiany\nIdentyfikator(y): Brak\nKomponent(y): Werbalny, Somatyczny\nZasi\u0119g: Osobisty\nObszar dzia\u0142ania / Cel: Rzucaj\u0105cy czar\nCzas trwania: 1 godzina / poziom\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Brak\nOdporno\u015B\u0107 na czary: Nie\n\nRzucaj\u0105cy czar tworzy siln\u0105 wi\u0119\u017A z natur\u0105, kt\u00F3ra daje premi\u0119 \u002B4 do Zwierz\u0119cej Empatii, Ukrywania si\u0119, Skradania i Zak\u0142adania Pu\u0142apek."
         }
       },
       "AlternativeCastMessage": {
         "Index": null
       },
-      "Icon": "is_x1inferno",
+      "Icon": "is_x1onelan",
       "School": "T",
-      "Range": "S",
+      "Range": "P",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Item"
+      ],
+      "ImpactScript": "x0_s0_oneland",
+      "InnateLevel": 2,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Head",
+      "ConjurationHeadEffect": "vco_smhanholy01",
+      "ConjurationHandEffect": null,
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mehanholy01",
+      "ConjurationMaleSound": "vs_chant_evoc_lm",
+      "ConjurationFemaleSound": "vs_chant_evoc_lf",
+      "CastingAnimation": "Up",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": null,
+      "ProjectileSound": null,
+      "ProjectileOrientation": null,
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": null,
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "dc76fe09-8bd3-42f3-94f4-ca5f20f57aa3",
+      "Index": -1,
+      "Overrides": "9e08756c-6047-1bfd-cfa6-77e2f50be0a6",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Owls_Insight",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 1774,
+        "EN": {
+          "M": "Owl\u0027s Insight"
+        },
+        "FR": {
+          "M": "Sagesse du hibou"
+        },
+        "DE": {
+          "M": "Verst\u00E4ndnis der Eule"
+        },
+        "IT": {
+          "M": "Intuizione del gufo"
+        },
+        "ES": {
+          "M": "Perspicacia del b\u00FAho"
+        },
+        "PL": {
+          "M": "Dar Sowiej M\u0105dro\u015Bci"
+        }
+      },
+      "Description": {
+        "Index": 1819,
+        "EN": {
+          "M": "Caster Level(s): Druid 5\nInnate Level: 5\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe target creature gains an enhancement bonus to Wisdom equal to half the caster\u0027s level.",
+          "F": "Caster Level(s): Druid 5\nInnate Level: 2\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 hour / level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nThe target gains an enhancement bonus to Wisdom equal to half the caster\u0027s level."
+        },
+        "FR": {
+          "M": "Niveau : Druide 5\nNiveau inn\u00E9 : 2\nEcole : Transmutation\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : contact\nZone d\u2019effet / cible : 1 cr\u00E9ature\nDur\u00E9e : 1 heure/niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : aucun\nR\u00E9sistance \u00E0 la magie : non\n\nLe b\u00E9n\u00E9ficiaire gagne un bonus \u00E0 la Sagesse \u00E9gal \u00E0 la moiti\u00E9 du niveau du lanceur de sorts."
+        },
+        "DE": {
+          "M": "Grad: DRU 5\nKalkulationsgrad: 2\nSchule: Verwandlung\nKategorie:\nKomponenten: V, G\nReichweite: Ber\u00FChrung\nWirkungsbereich/Ziel: 1 Ziel\nWirkungsdauer: 1 Stunde/Stufe\nGegenzauber:\nRettungswurf: Nein\nZauberresistenz: Nein\n\nDas Ziel erh\u00E4lt einen Verbesserungsbonus auf Weisheit in H\u00F6he der halben Zauberstufe."
+        },
+        "IT": {
+          "M": "Livello(i) dell\u0027incantatore: druido 5\nLivello innato: 2\nScuola: trasmutazione\nDescrittore(i):\nComponente(i): verbale, somatica\nRaggio d\u0027azione: contatto\nArea d\u0027effetto / bersaglio: singolo\nDurata: 1 ora per livello\nControincantesimi addizionali:\nTiro salvezza: nessuno\nResistenza agli incantesimi: no\n\nIl bersaglio riceve un bonus di potenziamento alla saggezza pari a met\u00E0 del livello di incantatore."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Druida 5\nNivel innato: 2\nEscuela: Transmutaci\u00F3n\nDescriptores:\nComponentes: Verbal, Som\u00E1tico\nAlcance: Toque\n\u00C1rea de efecto / Objetivo: Individual\nDuraci\u00F3n: 1 hora/nivel\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Ninguno\nResistencia a conjuros: No\n\nEl objetivo gana un bonificador de mejora a la Sabidur\u00EDa igual a la mitad del nivel del lanzador."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Druid 5\nPoziom wrodzony: 2\nSzko\u0142a: Przemiany\nIdentyfikator(y):\nKomponent(y): Werbalny, Somatyczny\nZasi\u0119g: Dotyk\nObszar dzia\u0142ania / Cel: Pojedynczy\nCzas trwania: 1 godzina / poziom\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Brak\nOdporno\u015B\u0107 na czary: Nie\n\nCel otrzymuje premi\u0119 do M\u0105dro\u015Bci, r\u00F3wn\u0105 po\u0142owie poziomu rzucaj\u0105cego czar."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_x1owlins",
+      "School": "T",
+      "Range": "T",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Creature",
+        "Item"
+      ],
+      "ImpactScript": "x0_s0_owlins",
+      "InnateLevel": 5,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_smhanodd01",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mehanodd01",
+      "ConjurationMaleSound": "vs_chant_ench_lm",
+      "ConjurationFemaleSound": "vs_chant_ench_lf",
+      "CastingAnimation": "Touch",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": null,
+      "ProjectileSound": null,
+      "ProjectileOrientation": null,
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyEnhancementSingle",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "4245b686-1160-418d-a260-5b3e0e98fc32",
+      "Index": -1,
+      "Overrides": "8b0b17db-b3b2-6b60-e570-f52f499a578d",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Owls_Wisdom",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 5370,
+        "EN": {
+          "M": "Owl\u0027s Wisdom"
+        },
+        "FR": {
+          "M": "Sagesse du hibou"
+        },
+        "DE": {
+          "M": "Weisheit der Eule"
+        },
+        "IT": {
+          "M": "Saggezza del Gufo"
+        },
+        "ES": {
+          "M": "Sabidur\u00EDa de lechuza"
+        },
+        "PL": {
+          "M": "M\u0105dro\u015B\u0107 Sowy"
+        }
+      },
+      "Description": {
+        "Index": 6527,
+        "EN": {
+          "M": "Caster Level(s): Bard 2, Cleric 2, Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe target creature\u0027s Wisdom is increased by 1d4\u002B1."
+        },
+        "FR": {
+          "M": "Niveau : Barde 2, Pr\u00EAtre 2, Magicien / Ensorceleur 2\nNiveau inn\u00E9 : 2\nEcole : Transmutation\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : contact\nZone d\u0027effet / cible : 1 cr\u00E9ature\nDur\u00E9e : 1 heure/niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : inoffensif\nR\u00E9sistance \u00E0 la magie : non\n\nLa Sagesse du b\u00E9n\u00E9ficiaire est augment\u00E9e de 1d4\u002B1."
+        },
+        "DE": {
+          "M": "Grad: BAR 2, KLE 2, MAG/HXM 2\nKalkulationsgrad: 2\nSchule: Verwandlung\nKategorie:\nKomponenten: V, G\nReichweite: Ber\u00FChrung\nWirkungsbereich/Ziel: 1 Kreatur\nWirkungsdauer: 1 Stunde/Stufe\nGegenzauber:\nRettungswurf: Harmlos\nZauberresistenz: Nein\n\nDie Weisheit der Zielkreatur erh\u00F6ht sich um 1W4\u002B1 Punkte."
+        },
+        "IT": {
+          "M": "Livello(i) dell\u0027incantatore: Bardo 2, Chierico 2, Mago / Stregone 2\nLivello innato: 2\nScuola: Trasmutazione\nDescrittore(i):\nComponente(i): Verbale, Somatica\nRaggio d\u0027azione: Contatto\nArea d\u0027effetto / Bersaglio: Singolo\nDurata: 1 ora per livello\nControincantesimi addizionali:\nTiro salvezza: Innocuo\nResistenza agli incantesimi: No\n\nLa Saggezza del bersaglio aumenta di 1d4\u002B1."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Bardo 2, Cl\u00E9rigo 2, Hechicero / Mago 2\nNivel innato: 2\nEscuela: Transmutaci\u00F3n\nDescriptores:\nComponentes: Verbal, Som\u00E1tico\nAlcance: Toque\n\u00C1rea de efecto / Objetivo: Individual\nDuraci\u00F3n: 1 hora / nivel\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Inofensivo\nResistencia a conjuros: No\n\nLa Sabidur\u00EDa de la criatura objetivo aumenta en 1d4\u002B1."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Bard 2, Kap\u0142an 2, Czarodziej / Czarownik 2\nPoziom wrodzony: 2\nSzko\u0142a: Przemiany\nIdentyfikator(y):\nKomponent(y): Werbalne, Somatyczne\nZasi\u0119g: Dotyk\nObszar dzia\u0142ania / Cel: Pojedynczy\nCzas trwania: 1 godzina / poziom\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Czar nieszkodliwy\nOdporno\u015B\u0107 na czary: Nie\n\nM\u0105dro\u015B\u0107 osoby, na kt\u00F3r\u0105 rzucono ten czar, ro\u015Bnie tymczasowo o 1k4\u002B1."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_owlwis",
+      "School": "T",
+      "Range": "T",
       "Components": [
         "V",
         "S"
@@ -53373,29 +54546,150 @@
         "Still"
       ],
       "TargetTypes": [
-        "Creature"
+        "Self",
+        "Creature",
+        "Item"
       ],
-      "ImpactScript": "x2_s0_HellInfern",
-      "InnateLevel": 9,
+      "ImpactScript": "NW_S0_OwlWis",
+      "InnateLevel": 2,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
       "ConjurationHeadEffect": null,
-      "ConjurationHandEffect": "vco_smhanfire01",
+      "ConjurationHandEffect": "vco_smhanodd01",
       "ConjurationGroundEffect": null,
-      "ConjurationSound": "sco_mehanfire01",
-      "ConjurationMaleSound": "vs_chant_evoc_lm",
-      "ConjurationFemaleSound": "vs_chant_evoc_lf",
-      "CastingAnimation": "Out",
+      "ConjurationSound": "sco_mehanodd01",
+      "ConjurationMaleSound": "vs_chant_ench_lm",
+      "ConjurationFemaleSound": "vs_chant_ench_lf",
+      "CastingAnimation": "Touch",
       "CastTime": 1000,
       "CastingHeadEffect": null,
       "CastingHandEffect": null,
       "CastingGroundEffect": null,
       "CastingSound": null,
       "HasProjectile": false,
-      "ProjectileModel": "vpr_aroacid",
-      "ProjectileType": "Homing",
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": null,
+      "ProjectileSound": null,
+      "ProjectileOrientation": null,
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyEnhancementSingle",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "b7a7c6ee-126c-4f72-8d4d-6bba6f949072",
+      "Index": -1,
+      "Overrides": "6db25895-7736-5c08-3d03-cae614aa6755",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Quillfire",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 1773,
+        "EN": {
+          "M": "Quillfire"
+        },
+        "FR": {
+          "M": "Plume de feu"
+        },
+        "DE": {
+          "M": "Stachelfeuer"
+        },
+        "IT": {
+          "M": "Fuoco di aculei"
+        },
+        "ES": {
+          "M": "Espinas arrojadizas"
+        },
+        "PL": {
+          "M": "Ogniste Kolce"
+        }
+      },
+      "Description": {
+        "Index": 1814,
+        "EN": {
+          "M": "Caster Level(s): Druid 3\nInnate Level: 3\nSchool: Transmutation\nDescriptor(s): Poison\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells:\nSave: Fortitude Negates (poison only)\nSpell Resistance: No\n\nThe caster throws poisonous quills at a target, doing 1d8 points of damage (\u002B1 per 2 levels of the caster - max \u002B5), plus inflicting Scorpion Venom on the target if they fail a DC 18 Fortitude save.",
+          "F": "Caster Level(s): Druid 3\nInnate Level: 3\nSchool: Transmutation\nDescriptor(s): Poison\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells:\nSave: Fortitude Negates (poison only)\nSpell Resistance: No\n\nThe caster throws poisonous quills at a target, doing 1d8 points of damage (\u002B1 per 2 levels of the caster - max \u002B5), plus inflicting Scorpion Venom on the target if they fail a Fortitude save."
+        },
+        "FR": {
+          "M": "Niveau : Druide 3\nNiveau inn\u00E9 : 3\nEcole : Transmutation\nCat\u00E9gorie(s) : poison\nComposante(s) : verbale, gestuelle\nPort\u00E9e : courte\nZone d\u2019effet / cible : 1 cr\u00E9ature\nDur\u00E9e : instantan\u00E9e\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : Vigueur, annule (poison uniquement)\nR\u00E9sistance \u00E0 la magie : non\n\nLe lanceur de sorts projette des plumes empoisonn\u00E9es sur sa victime, infligeant 1d8 points de d\u00E9g\u00E2ts (\u002B1 tous les 2 niveaux du lanceur de sorts - max \u002B5) et lui faisant subir Venin du scorpion si elle ne r\u00E9ussit pas un jet de Vigueur."
+        },
+        "DE": {
+          "M": "Grad: DRU 3\nKalkulationsgrad: 3\nSchule: Verwandlung\nKategorie: Gift\nKomponenten: V, G\nReichweite: Kurz\nWirkungsbereich/Ziel: 1 Ziel\nWirkungsdauer: Augenblicklich\nGegenzauber:\nRettungswurf: Z\u00E4higkeit, keine Wirkung (nur gegen das Gift)\nZauberresistenz: Nein\n\nDer Magieanwender verschie\u00DFt Giftstacheln auf ein Ziel, die 1W8 SP \u002B 1 SP f\u00FCr je zwei Zauberstufen (maximal 1W8 \u002B 5 SP) anrichten. Wenn dem Ziel ein Z\u00E4higkeitswurf misslingt, wird es von den Auswirkungen des Skorpiongifts betroffen."
+        },
+        "IT": {
+          "M": "Livello(i) dell\u0027incantatore: druido 3\nLivello innato: 3\nScuola: trasmutazione\nDescrittore(i): veleno\nComponente(i): verbale, somatica\nRaggio d\u0027azione: corto\nArea d\u0027effetto/Bersaglio: singolo\nDurata: istantanea\nControincantesimi addizionali:\nTiro salvezza: tempra nega (solo veleno)\nResistenza agli incantesimi: no\n\nL\u0027incantatore lancia degli aculei velenosi verso un bersaglio, infliggendo 1d8 danni (\u002B1 ogni 2 livelli di incantatore, fino a un massimo di \u002B5), inoculando inoltre il veleno dello scorpione sul bersaglio."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Druida 3\nNivel innato: 3\nEscuela: Transmutaci\u00F3n\nDescriptores: Veneno\nComponentes: Verbal, Som\u00E1tico\nAlcance: Corto\n\u00C1rea de efecto / Objetivo: Individual\nDuraci\u00F3n: Instant\u00E1neo\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Fortaleza niega (s\u00F3lo veneno)\nResistencia a conjuros: No\n\nEl lanzador arroja p\u00FAas venenosas al objetivo, infligiendo 1d8 puntos de da\u00F1o (\u002B1 por cada 2 niveles del lanzador; m\u00E1x. \u002B5), adem\u00E1s de inocularle veneno de escorpi\u00F3n si falla la salvaci\u00F3n de Fortaleza."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Druid 3\nPoziom wrodzony: 3\nSzko\u0142a: Przemiany\nIdentyfikator(y): Trucizna\nKomponent(y): Werbalny, Somatyczny\nZasi\u0119g: Kr\u00F3tki\nObszar dzia\u0142ania / Cel: Pojedynczy\nCzas trwania: Natychmiastowy\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Wytrwa\u0142o\u015B\u0107 odpiera (tylko trucizn\u0119)\nOdporno\u015B\u0107 na czary: Nie\n\nRzucaj\u0105cy czar miota zatrutymi kolcami w cel, zadaj\u0105c 1k8 obra\u017Ce\u0144 (\u002B1 na dwa poziomy, maksymalnie \u002B5) oraz zatruwa ofiar\u0119 Jadem Skorpiona, je\u015Bli nie uda si\u0119 jej rzut obronny na Wytrwa\u0142o\u015B\u0107."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_x1quill",
+      "School": "T",
+      "Range": "S",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Empower",
+        "Maximize",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Creature",
+        "Item",
+        "Door",
+        "Placeable"
+      ],
+      "ImpactScript": "x0_s0_quillfire",
+      "InnateLevel": 3,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_mebalacid01",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mebalacid01",
+      "ConjurationMaleSound": "vs_chant_conj_hm",
+      "ConjurationFemaleSound": "vs_chant_conj_hf",
+      "CastingAnimation": "Out",
+      "CastTime": 1700,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": true,
+      "ProjectileModel": "vpr_shardice",
+      "ProjectileType": "Accelerating",
       "ProjectileSpawnPoint": "Hand",
-      "ProjectileSound": "spr_aroacid",
+      "ProjectileSound": "spr_ectoodd01",
       "ProjectileOrientation": "Path",
       "SubSpell1": null,
       "SubSpell2": null,
@@ -53414,6 +54708,1346 @@
       "CounterSpell1": null,
       "CounterSpell2": null,
       "HasProjectileVisuals": true,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "516d61fa-4181-47eb-9c5f-776757abcb55",
+      "Index": -1,
+      "Overrides": "826c76a8-be1a-9f32-6a87-e19966046ba1",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Shapechange",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 911,
+        "EN": {
+          "M": "Shapechange"
+        },
+        "FR": {
+          "M": "Changement de forme"
+        },
+        "DE": {
+          "M": "Gestaltwandel"
+        },
+        "IT": {
+          "M": "Trasformazione"
+        },
+        "ES": {
+          "M": "Cambiar de forma"
+        },
+        "PL": {
+          "M": "Zmiana postaci"
+        }
+      },
+      "Description": {
+        "Index": 6254,
+        "EN": {
+          "M": "Caster Level(s): Druid 9, Wizard / Sorcerer 9\nInnate Level: 9\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Turn / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe caster is temporarily transformed into one of several fearsome creatures of destruction. Possible forms include:\r\nRed Dragon\r\nFire Giant\r\nBalor\r\nDeath Slaad\r\nIron Golem",
+          "F": "Caster Level(s): Druid 9, Wizard / Sorcerer 9\nInnate Level: 9\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Turn / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe caster is temporarily transformed into one of several fearsome creatures of destruction. Possible forms include: Red Dragon, Fire Giant, Balor, Death Slaad, or Iron Golem."
+        },
+        "FR": {
+          "M": "Niveau : Druide 9, Magicien / Ensorceleur 9\nNiveau inn\u00E9 : 9\nEcole : Transmutation\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : personnelle\nZone d\u0027effet / cible : lanceur\nDur\u00E9e : 1 tour/niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : inoffensif\nR\u00E9sistance \u00E0 la magie : non\n\nLe lanceur se transforme temporairement en l\u0027une des cr\u00E9atures de destruction suivantes : dragon rouge, g\u00E9ant du feu, balor, slaad funeste ou golem de fer."
+        },
+        "DE": {
+          "M": "Grad: DRU 9, MAG/HXM 9\nKalkulationsgrad: 9\nSchule: Verwandlung\nKategorie:\nKomponenten: V, G\nReichweite: Pers\u00F6nlich\nWirkungsbereich/Ziel: Der Magieanwender\nWirkungsdauer: 1 Phase/Stufe\nGegenzauber:\nRettungswurf: Harmlos\nZauberresistenz: Nein\n\nDer Magieanwender nimmt vor\u00FCbergehend eine furchterregende Gestalt mit gro\u00DFer Zerst\u00F6rungskraft an. Er kann zwischen folgenden Formen w\u00E4hlen:\nRoter Drache\nFeuerriese\nBalor\nTodesslad\nEisengolem"
+        },
+        "IT": {
+          "M": "Livello(i) dell\u0027incantatore: Druido 9, Mago / Stregone 9\nLivello innato: 9\nScuola: Trasmutazione\nDescrittore(i):\nComponente(i): Verbale, Somatica\nRaggio d\u0027azione: Personale\nArea d\u0027effetto / Bersaglio: Incantatore\nDurata: 1 turno per livello\nControincantesimi addizionali:\nTiro salvezza: Innocuo\nResistenza agli incantesimi: No\n\nL\u0027incantatore viene temporaneamente trasformato in una spaventosa creatura di distruzione. Le forme possibili includono: Drago rosso, Gigante del Fuoco, Balor, Slaad della morte o Golem di ferro."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Druida 9, Hechicero / Mago 9\nNivel innato: 9\nEscuela: Transmutaci\u00F3n\nDescriptores:\nComponentes: Verbal, Som\u00E1tico\nAlcance: Personal\n\u00C1rea de efecto / Objetivo: Lanzador\nDuraci\u00F3n: 1 turno / nivel\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Inofensivo\nResistencia a conjuros: No\n\nEl lanzador es transformado temporalmente en una terrible criatura de destrucci\u00F3n. Entre las posibles formas se incluyen: drag\u00F3n rojo, gigante del fuego, b\u00E1lor, Slaad de la muerte o g\u00F3lem de hierro."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Druid 9, Czarodziej / Czarownik 9\nPoziom wrodzony: 9\nSzko\u0142a: Przemiany\nIdentyfikator(y):\nKomponent(y): Werbalne, Somatyczne\nZasi\u0119g: Osobisty\nObszar dzia\u0142ania / Cel: Rzucaj\u0105cy\nCzas trwania: 1 tura / poziom\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Czar nieszkodliwy\nOdporno\u015B\u0107 na czary: Nie\n\nCzarodziej zmienia si\u0119 w przera\u017Caj\u0105c\u0105 istot\u0119. Mo\u017Ce zamieni\u0107 si\u0119 w Czerwonego Smoka, Ognistego Olbrzyma, Balora, Slaada \u015Amierci lub \u017Belaznego Golema."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_shapechg",
+      "School": "T",
+      "Range": "P",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Item"
+      ],
+      "ImpactScript": "NW_S0_ShapeChg",
+      "InnateLevel": 9,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": null,
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": null,
+      "ConjurationMaleSound": "vs_chant_ench_hm",
+      "ConjurationFemaleSound": "vs_chant_ench_hf",
+      "CastingAnimation": "Out",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": null,
+      "ProjectileSound": null,
+      "ProjectileOrientation": null,
+      "SubSpell1": {
+        "ID": "51dcbf95-dd47-5812-1eab-5dd3752b8976",
+        "Label": "Shapechange, Red Dragon"
+      },
+      "SubSpell2": {
+        "ID": "07fe8861-a71b-9d47-283b-c27bfc794b31",
+        "Label": "Shapechange, Fire Giant"
+      },
+      "SubSpell3": {
+        "ID": "156bd1bf-92b3-8a45-bf35-c6e9588f8d37",
+        "Label": "Shapechange, Balor"
+      },
+      "SubSpell4": {
+        "ID": "696b6c8a-25c4-a3af-6e01-fc8b9fa42698",
+        "Label": "Shapechange, Death Slaad"
+      },
+      "SubSpell5": {
+        "ID": "a268abe1-5c7b-32bf-90c0-5fc7b1ad20f7",
+        "Label": "Shapechange, Iron Golem"
+      },
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": null,
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "3fc35087-21d0-4388-9d04-c635a992a0cd",
+      "Index": -1,
+      "Overrides": "156bd1bf-92b3-8a45-bf35-c6e9588f8d37",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Shapechange_BALOR",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8171,
+        "EN": {
+          "M": "Shapechange, Balor"
+        },
+        "FR": {
+          "M": "Changement de forme, Balor"
+        },
+        "DE": {
+          "M": "Gestaltwandel, Balor"
+        },
+        "IT": {
+          "M": "Trasformazione, Balor"
+        },
+        "ES": {
+          "M": "Cambiar de forma: b\u00E1lor"
+        },
+        "PL": {
+          "M": "Zmiana postaci, Balor"
+        }
+      },
+      "Description": {
+        "Index": null
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_shpbalor",
+      "School": "T",
+      "Range": "P",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Item"
+      ],
+      "ImpactScript": "NW_S0_ShapeChg",
+      "InnateLevel": 9,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Head",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": null,
+      "ConjurationGroundEffect": "vco_lgupnatr01",
+      "ConjurationSound": "sco_lgupnatr01",
+      "ConjurationMaleSound": "vs_chant_ench_hm",
+      "ConjurationFemaleSound": "vs_chant_ench_hf",
+      "CastingAnimation": "Out",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": null,
+      "ProjectileSound": null,
+      "ProjectileOrientation": null,
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": null,
+      "ParentSpell": {
+        "ID": "826c76a8-be1a-9f32-6a87-e19966046ba1",
+        "Label": "Shapechange"
+      },
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "9c8d9430-f67a-43db-a019-d943a14579e1",
+      "Index": -1,
+      "Overrides": "696b6c8a-25c4-a3af-6e01-fc8b9fa42698",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Shapechange_DEATH_SLAAD",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8172,
+        "EN": {
+          "M": "Shapechange, Death Slaad"
+        },
+        "FR": {
+          "M": "Changement de forme, slaad funeste"
+        },
+        "DE": {
+          "M": "Gestaltwandel, Todesslaad"
+        },
+        "IT": {
+          "M": "Trasformazione, Slaad della Morte"
+        },
+        "ES": {
+          "M": "Cambiar de forma: slaad de la muerte"
+        },
+        "PL": {
+          "M": "Zmiana postaci, Slaad \u015Amierci"
+        }
+      },
+      "Description": {
+        "Index": null
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_shpslaad",
+      "School": "T",
+      "Range": "P",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Item"
+      ],
+      "ImpactScript": "NW_S0_ShapeChg",
+      "InnateLevel": 9,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Head",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": null,
+      "ConjurationGroundEffect": "vco_lgupnatr01",
+      "ConjurationSound": "sco_lgupnatr01",
+      "ConjurationMaleSound": "vs_chant_ench_hm",
+      "ConjurationFemaleSound": "vs_chant_ench_hf",
+      "CastingAnimation": "Out",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": null,
+      "ProjectileSound": null,
+      "ProjectileOrientation": null,
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": null,
+      "ParentSpell": {
+        "ID": "826c76a8-be1a-9f32-6a87-e19966046ba1",
+        "Label": "Shapechange"
+      },
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "525259d6-91bd-47fe-9fda-2985ee967650",
+      "Index": -1,
+      "Overrides": "07fe8861-a71b-9d47-283b-c27bfc794b31",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Shapechange_FIRE_GIANT",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8170,
+        "EN": {
+          "M": "Shapechange, Fire Giant"
+        },
+        "FR": {
+          "M": "Changement de forme, g\u00E9ant du feu"
+        },
+        "DE": {
+          "M": "Gestaltwandel, Feuerriese"
+        },
+        "IT": {
+          "M": "Trasformazione, Gigante del Fuoco"
+        },
+        "ES": {
+          "M": "Cambiar de forma: gigante del fuego"
+        },
+        "PL": {
+          "M": "Zmiana postaci, Ognisty Olbrzym"
+        }
+      },
+      "Description": {
+        "Index": null
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_shpgiant",
+      "School": "T",
+      "Range": "P",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Item"
+      ],
+      "ImpactScript": "NW_S0_ShapeChg",
+      "InnateLevel": 9,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Head",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": null,
+      "ConjurationGroundEffect": "vco_lgupnatr01",
+      "ConjurationSound": "sco_lgupnatr01",
+      "ConjurationMaleSound": "vs_chant_ench_hm",
+      "ConjurationFemaleSound": "vs_chant_ench_hf",
+      "CastingAnimation": "Out",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": null,
+      "ProjectileSound": null,
+      "ProjectileOrientation": null,
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": null,
+      "ParentSpell": {
+        "ID": "826c76a8-be1a-9f32-6a87-e19966046ba1",
+        "Label": "Shapechange"
+      },
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "3a76e7b5-1296-4af6-a417-429e3ff9293a",
+      "Index": -1,
+      "Overrides": "a268abe1-5c7b-32bf-90c0-5fc7b1ad20f7",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Shapechange_IRON_GOLEM",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8173,
+        "EN": {
+          "M": "Shapechange, Iron Golem"
+        },
+        "FR": {
+          "M": "Changement de forme, golem de fer"
+        },
+        "DE": {
+          "M": "Gestaltwandel, Eisengolem"
+        },
+        "IT": {
+          "M": "Trasformazione, Golem di Ferro"
+        },
+        "ES": {
+          "M": "Cambiar de forma: g\u00F3lem de hierro"
+        },
+        "PL": {
+          "M": "Zmiana postaci, \u017Belazny Golem"
+        }
+      },
+      "Description": {
+        "Index": null
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_shpgolem",
+      "School": "T",
+      "Range": "P",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Item"
+      ],
+      "ImpactScript": "NW_S0_ShapeChg",
+      "InnateLevel": 9,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Head",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": null,
+      "ConjurationGroundEffect": "vco_lgupnatr01",
+      "ConjurationSound": "sco_lgupnatr01",
+      "ConjurationMaleSound": "vs_chant_ench_hm",
+      "ConjurationFemaleSound": "vs_chant_ench_hf",
+      "CastingAnimation": "Out",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": null,
+      "ProjectileSound": null,
+      "ProjectileOrientation": null,
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": null,
+      "ParentSpell": {
+        "ID": "826c76a8-be1a-9f32-6a87-e19966046ba1",
+        "Label": "Shapechange"
+      },
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "0c165c23-7c3d-4545-8b46-5133b5e0935b",
+      "Index": -1,
+      "Overrides": "51dcbf95-dd47-5812-1eab-5dd3752b8976",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Shapechange_RED_DRAGON",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8169,
+        "EN": {
+          "M": "Shapechange, Red Dragon"
+        },
+        "FR": {
+          "M": "Changement de forme, dragon rouge"
+        },
+        "DE": {
+          "M": "Gestaltwandel, Roter Drache"
+        },
+        "IT": {
+          "M": "Trasformazione, Drago Rosso"
+        },
+        "ES": {
+          "M": "Cambiar de forma: drag\u00F3n rojo"
+        },
+        "PL": {
+          "M": "Zmiana postaci, Czerwony Smok"
+        }
+      },
+      "Description": {
+        "Index": null
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_shpdragon",
+      "School": "T",
+      "Range": "P",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Item"
+      ],
+      "ImpactScript": "NW_S0_ShapeChg",
+      "InnateLevel": 9,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Head",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": null,
+      "ConjurationGroundEffect": "vco_lgupnatr01",
+      "ConjurationSound": "sco_lgupnatr01",
+      "ConjurationMaleSound": "vs_chant_ench_hm",
+      "ConjurationFemaleSound": "vs_chant_ench_hf",
+      "CastingAnimation": "Out",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": null,
+      "ProjectileSound": null,
+      "ProjectileOrientation": null,
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": null,
+      "ParentSpell": {
+        "ID": "826c76a8-be1a-9f32-6a87-e19966046ba1",
+        "Label": "Shapechange"
+      },
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "24245294-f758-4e74-951a-813b147fdce0",
+      "Index": -1,
+      "Overrides": "086de90d-e0e4-01f1-3d36-e1b3e9e8b138",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Slow",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 916,
+        "EN": {
+          "M": "Slow"
+        },
+        "FR": {
+          "M": "Lenteur"
+        },
+        "DE": {
+          "M": "Verlangsamen"
+        },
+        "IT": {
+          "M": "Lentezza"
+        },
+        "ES": {
+          "M": "Ralentizar"
+        },
+        "PL": {
+          "M": "Spowolnienie"
+        }
+      },
+      "Description": {
+        "Index": 6259,
+        "EN": {
+          "M": "Caster Level(s): Bard 3, Wizard / Sorcerer 3\nInnate Level: 3\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Colossal, 1 Creature / Level\nDuration: 1 Round / Level\nAdditional Counter Spells: Haste\nSave: Will Negates\nSpell Resistance: Yes\n\nAll enemy creatures within the area of effect have their movement lowered by 50% and can only make 1 primary attack per round (offhand and bonus attacks are not affected).\r\n\r\nIf cast on a creature who is under the Haste effect then it supresses one instance of Haste.",
+          "F": "Caster Level(s): Bard 3, Wizard / Sorcerer 3\nInnate Level: 3\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Colossal, 1 Creature / Level\nDuration: 1 Round / Level\nAdditional Counter Spells: Haste\nSave: Will Negates\nSpell Resistance: Yes\n\nAll enemy creatures within the area of effect have their movement lowered by 50% and lose a single attack per round."
+        },
+        "FR": {
+          "M": "Niveau : Barde 3, Magicien / Ensorceleur 3\nNiveau inn\u00E9 : 3\nEcole : Transmutation\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : courte\nZone d\u0027effet / cible : colossale, 1 cr\u00E9ature / niveau\nDur\u00E9e : 1 round/niveau\nContresorts suppl\u00E9mentaires : Rapidit\u00E9\nJet de sauvegarde : Volont\u00E9, annule\nR\u00E9sistance \u00E0 la magie : oui\n\nTous les adversaires dans la zone d\u0027effet voient leur vitesse de d\u00E9placement r\u00E9duite de 50 % et ils perdent une attaque par round."
+        },
+        "DE": {
+          "M": "Grad: BAR 3, MAG/HXM 3\nKalkulationsgrad: 3\nSchule: Verwandlung\nKategorie:\nKomponenten: V, G\nReichweite: Kurz\nWirkungsbereich/Ziel: Kolossal, 1 Kreatur/Stufe\nWirkungsdauer: 1 Runde/Stufe\nGegenzauber: Hast\nRettungswurf: Willen, keine Wirkung\nZauberresistenz: Ja\n\nFeindliche Kreaturen im Wirkungsbereich, die bei ihrem Willenswurf scheitern, verlieren einen Angriff je Runde und haben eine um 50% reduzierte Bewegungsrate."
+        },
+        "IT": {
+          "M": "Livello(i) dell\u0027incantatore: Bardo 3, Mago / Stregone 3\nLivello innato: 3\nScuola: Trasmutazione\nDescrittore(i):\nComponente(i): Verbale, Somatica\nRaggio d\u0027azione: Corto\nArea d\u0027effetto / Bersaglio: Colossale, 1 Creatura per Livello\nDurata: 1 round per livello\nControincantesimi addizionali: Velocit\u00E0\nTiro salvezza: Volont\u00E0 nega\nResistenza agli incantesimi: S\u00EC\n\nTutte le creature nemiche entro l\u0027area d\u0027effetto vedono il loro movimento diminuito del 50% e perdono un singolo attacco per round."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Bardo 3, Hechicero / Mago 3\nNivel innato: 3\nEscuela: Transmutaci\u00F3n\nDescriptores:\nComponentes: Verbal, Som\u00E1tico\nAlcance: Corto\n\u00C1rea de efecto / Objetivo: Colosal, 1 criatura / nivel\nDuraci\u00F3n: 1 asalto / nivel\nContraconjuros adicionales: Acelerar\nTiro de salvaci\u00F3n: Voluntad niega\nResistencia a conjuros: S\u00ED\n\nTodas las criaturas dentro del \u00E1rea de efecto ven su movimiento reducido en un 50% y pierden un ataque por asalto."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Bard 3, Czarodziej / Czarownik 3\nPoziom wrodzony: 3\nSzko\u0142a: Przemiany\nIdentyfikator(y):\nKomponent(y): Werbalne, Somatyczne\nZasi\u0119g: Kr\u00F3tki\nObszar dzia\u0142ania / Cel: Olbrzymi, 1 istota na poziom\nCzas trwania: 1 runda / poziom\nDodatkowe przeciwzakl\u0119cia: Przyspieszenie\nRzut obronny: Si\u0142a Woli odpiera\nOdporno\u015B\u0107 na czary: Tak\n\nWszyscy wrogowie na obszarze dzia\u0142ania zostaj\u0105 magicznie spowolnieni. Ich pr\u0119dko\u015B\u0107 ruchu zmniejsza si\u0119 o po\u0142ow\u0119, ponadto trac\u0105 1 atak co rund\u0119."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_slow",
+      "School": "T",
+      "Range": "S",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Creature",
+        "Area",
+        "Item"
+      ],
+      "ImpactScript": "NW_S0_Slow",
+      "InnateLevel": 3,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_mehannatr02",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mehannatr02",
+      "ConjurationMaleSound": "vs_chant_ench_lm",
+      "ConjurationFemaleSound": "vs_chant_ench_lf",
+      "CastingAnimation": "Out",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": true,
+      "ProjectileModel": "vpr_los",
+      "ProjectileType": "Accelerating",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": "spr_los",
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "HarmfulAoeDiscriminant",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": true,
+      "CounterSpell1": {
+        "ID": "6d25de04-4b2d-d28a-e2b1-15c1b0f75f4f",
+        "Label": "Haste"
+      },
+      "CounterSpell2": null,
+      "HasProjectileVisuals": true,
+      "TargetShape": "Sphere",
+      "TargetSizeX": 10,
+      "TargetSizeY": null,
+      "TargetingFlags": [
+        "HarmsEnemies"
+      ]
+    },
+    {
+      "ID": "c89ff8be-a32f-40ed-9384-e2a4a6067277",
+      "Index": -1,
+      "Overrides": "4b9c67b9-5c82-b612-aee6-1c5a2fcaa91b",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Spike_Growth",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 2671,
+        "EN": {
+          "M": "Spike Growth"
+        },
+        "FR": {
+          "M": "Croissance d\u0027\u00E9pines"
+        },
+        "DE": {
+          "M": "Dornenwuchs"
+        },
+        "IT": {
+          "M": "Crescita di spine"
+        },
+        "ES": {
+          "M": "Brotar de espinas"
+        },
+        "PL": {
+          "M": "G\u0105szcz Cierni"
+        }
+      },
+      "Description": {
+        "Index": 2672,
+        "EN": {
+          "M": "Caster Level(s): Druid 3\nInnate Level: 3\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Large\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: Reflex partial\nSpell Resistance: Yes\n\nCovers the terrain with small spikes. Any creature with legs will suffer 1d4 points of nonmagical piercing damage each round that they remain within the afflicted area. On a failed Reflex save these spikes can damage the victim\u0027s legs so that even once they are free of the spike growth, their movement rate is slowed by 30% for a day.\r\n\r\nThe movement speed decrease can be cured by any Cure or Heal spell as well as usual means.",
+          "F": "Caster Level(s): Druid 3\nInnate Level: 3\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Large\nDuration: 1 hour / level\nAdditional Counter Spells:\nSave: Reflex partial\nSpell Resistance: Yes\n\nCovers the terrain with small spikes. Any creature will suffer 1d4 points of damage each round that they remain within the afflicted area. These spikes can damage the victim\u0027s legs, so that even once they are free of the spike growth, their movement rate is slowed for a day."
+        },
+        "FR": {
+          "M": "Niveau : Druide 3\nNiveau inn\u00E9 : 3\nEcole : Transmutation\nCat\u00E9gorie(s) :\nComposante(s) : Verbale, Gestuelle\nPort\u00E9e : longue\nZone d\u0027effet / cible : grande\nDur\u00E9e : 1 heure/niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : R\u00E9flexes, partiel\nR\u00E9sistance \u00E0 la magie : oui\n\nCe sort couvre le terrain de petites pointes. Toute cr\u00E9ature subira 1d4 points de d\u00E9g\u00E2ts par round tant qu\u0027elle ne quittera pas la zone d\u0027effet. Ces pointes peuvent blesser les jambes d\u0027une victime, dont la vitesse de d\u00E9placement sera r\u00E9duite de moiti\u00E9 pendant une journ\u00E9e."
+        },
+        "DE": {
+          "M": "Grad: DRU 3\nKalkulationsgrad: 3\nSchule: Verwandlung\nKategorie:\nKomponenten: V, G\nReichweite: Lang\nWirkungsbereich/Ziel: Gro\u00DF\nWirkungsdauer: 1 Stunde/Stufe\nGegenzauber:\nRettungswurf: Reflex, teilweise\nZauberresistenz: Ja\n\nDer Wirkungsbereich wird von kleinen Dornen \u00FCberzogen. Jede Kreatur im Wirkungsbereich erleidet 1W4 SP je Runde. Die Dornen k\u00F6nnen den F\u00FCssen schwere Verletzungen zuf\u00FCgen, wodurch die betroffene Kreatur f\u00FCr einen Tag eine reduzierte Bewegungsrate hat, selbst nachdem sie den Wirkungsbereich verlassen hat."
+        },
+        "IT": {
+          "M": "Livello(i) dell\u0027incantatore: druido 3\nLivello innato: 3\nScuola: trasmutazione\nDescrittore(i):\nComponente(i): verbale, somatica\nRaggio d\u0027azione: lungo\nArea d\u0027effetto / bersaglio: grande\nDurata: 1 ora per livello\nControincantesimi addizionali:\nTiro salvezza: riflessi parziale\nResistenza agli incantesimi: s\u00EC\n\nIl terreno viene ricoperto da una distesa di spine. Tutte le creature subiscono 1d4 danni per ogni round in cui rimangono nell\u0027area. Le spine danneggiano le gambe delle vittime, quindi, anche una volta liberate dalla presa delle spine, la loro velocit\u00E0 di movimento viene rallentata per un giorno."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Druida 3\nNivel innato: 3\nEscuela: Transmutaci\u00F3n\nDescriptores:\nComponentes: Verbal, Som\u00E1tico\nAlcance: Largo\n\u00C1rea de efecto / Objetivo: Grande\nDuraci\u00F3n: 1 hora/nivel\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Reflejos parcial\nResistencia a conjuros: S\u00ED\n\nRecubre el terreno con peque\u00F1as espinas. Toda criatura que est\u00E9 en el \u00E1rea de efecto sufrir\u00E1 1d4 puntos de da\u00F1o cada asalto que permanezca en ella. Estas espinas da\u00F1an las piernas de las v\u00EDctimas, por lo que, una vez est\u00E9n libres del efecto, ver\u00E1n reducida su velocidad de movimiento durante un d\u00EDa."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Druid 3\nPoziom wrodzony: 3\nSzko\u0142a: Przemiany\nIdentyfikator(y):\nKomponent(y): Werbalny, Somatyczny\nZasi\u0119g: Daleki\nObszar dzia\u0142ania / Cel: Du\u017Cy\nCzas trwania: 1 godzina / poziom\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Refleks cz\u0119\u015Bciowo\nOdporno\u015B\u0107 na czary: Tak\n\nTen czar pokrywa teren ma\u0142ymi kolcami. Ka\u017Cda istota na obszarze dzia\u0142ania otrzymuje co rund\u0119 1k4 obra\u017Ce\u0144. Kolce mog\u0105 porani\u0107 nogi, wi\u0119c nawet kiedy ofiara czaru opu\u015Bci obszar jego dzia\u0142ania, szybko\u015B\u0107 jej poruszania zostanie zmniejszona na jeden dzie\u0144."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_x1spigro",
+      "School": "T",
+      "Range": "L",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Creature",
+        "Area",
+        "Item",
+        "Placeable"
+      ],
+      "ImpactScript": "x0_s0_spikegro",
+      "InnateLevel": 3,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_smhannatr01",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mehannatr01",
+      "ConjurationMaleSound": "vs_chant_ench_lm",
+      "ConjurationFemaleSound": "vs_chant_ench_lf",
+      "CastingAnimation": "Area",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": "vca_outnatr01",
+      "CastingGroundEffect": null,
+      "CastingSound": "sca_outnatr01",
+      "HasProjectile": true,
+      "ProjectileModel": "vpr_los",
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": "spr_los",
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "HarmfulAoeIndiscriminant",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": true,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": true,
+      "TargetShape": "Sphere",
+      "TargetSizeX": 5,
+      "TargetSizeY": null,
+      "TargetingFlags": [
+        "HarmsEnemies",
+        "HarmsAllies"
+      ]
+    },
+    {
+      "ID": "10982839-d912-4f81-9614-2ea7ce20021a",
+      "Index": -1,
+      "Overrides": "bb0f3a25-8d03-1c63-fbcc-5e7053068b81",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Stone_Bones",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 2767,
+        "EN": {
+          "M": "Stone Bones"
+        },
+        "FR": {
+          "M": "Os de pierre"
+        },
+        "DE": {
+          "M": "Steinknochen"
+        },
+        "IT": {
+          "M": "Ossa di pietra"
+        },
+        "ES": {
+          "M": "Huesos de piedra"
+        },
+        "PL": {
+          "M": "Kamienne Ko\u015Bci"
+        }
+      },
+      "Description": {
+        "Index": 2768,
+        "EN": {
+          "M": "Caster Level(s): Wizard / Sorcerer 2, Cleric 2\nInnate Level: 2\nSchool: Transmutation\nDescriptor(s): Magical Armor\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: One undead creature\nDuration: 10 Minutes / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nYou cause the target corporeal undead to gain a \u002B3 natural armor class bonus, due to the thickening of its bones.",
+          "F": "Caster Level(s): Wizard / Sorcerer 2, Cleric 2\nInnate Level: 2\nSchool: Transmutation\nDescriptor(s): Magical Armor\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: One undead creature\nDuration: 10 minutes / level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nYou cause the target undead to gain a \u002B3 natural armor class bonus, due to the thickening of its bones."
+        },
+        "FR": {
+          "M": "Niveau : Pr\u00EAtre 2, Magicien / Ensorceleur 2\nNiveau inn\u00E9 : 2\nEcole : Transmutation\nCat\u00E9gorie(s) : armure magique\nComposante(s) : verbale, gestuelle\nPort\u00E9e : contact\nZone d\u0027effet / cible : 1 cr\u00E9ature morte-vivante\nDur\u00E9e : 10 minutes / niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : inoffensif\nR\u00E9sistance \u00E0 la magie : non\n\nLes os du mort-vivant pris pour cible deviennent plus r\u00E9sistants et il b\u00E9n\u00E9ficie d\u0027un bonus de \u002B3 \u00E0 sa CA."
+        },
+        "DE": {
+          "M": "Grad: HXM/MAG 2, KLE 2\nKalkulationsgrad: 2\nSchule: Verwandlung\nKategorie: Magische R\u00FCstung\nKomponenten: V, G\nReichweite: Ber\u00FChrung\nWirkungsbereich/Ziel: Eine untote Kreatur\nWirkungsdauer: 10 Minuten pro Stufe\nGegenzauber:\nRettungswurf: Harmlos\nZauberresistenz: Nein\n\nBei dem Ziel muss es sich um einen Untoten handeln. Der Zauber h\u00E4rtet seine Knochen, wodurch er einen Nat\u00FCrlichen R\u00FCstungsbonus \u002B3 erh\u00E4lt."
+        },
+        "IT": {
+          "M": "Livello dell\u2019incantatore:chierico 2, mago/stregone 2\nLivello innato: 2\nScuola: Trasmutazione\nDescrittore: corazza magica\nComponenti: verbale, somatica\nRaggio d\u0027azione: contatto\nArea d\u0027effetto/bersaglio: una creatura non morta\nDurata: 10 minuti/livello\nControincantesimi addizionali:\nTiro salvezza: innocuo\nResistenza agli incantesimi: no\n\nIl bersaglio non morto ottiene \u002B3 al bonus di classe armatura naturale, grazie all\u0027irrobustimento delle sue ossa."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Cl\u00E9rigo 2, Hechicero / Mago 2\nNivel innato: 2\nEscuela: Transmutaci\u00F3n\nDescriptores: Armadura m\u00E1gica\nComponentes: Verbal, Som\u00E1tico\nAlcance: Toque\n\u00C1rea de efecto / Objetivo: Una criatura muerta viviente\nDuraci\u00F3n: 10 minutos / nivel\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Inofensivo\nResistencia a conjuros: No\n\nHaces que el objetivo, un muerto viviente, reciba un bonificador \u002B3 a la Clase de Armadura natural, gracias a que sus huesos se hacen m\u00E1s gruesos."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Kap\u0142an 2, Czarodziej/Czarownik 2\nPoziom wrodzony: 2\nSzko\u0142a: Przemiany\nIdentyfikator(y): Magiczna Zbroja\nKomponent(y): Werbalny, Somatyczny\nZasi\u0119g: Dotyk\nObszar dzia\u0142ania / Cel: Jeden nieumar\u0142y\nCzas trwania: 10 min/poziom\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Czar nieszkodliwy\nOdporno\u015B\u0107 na czary: Nie\n\nMo\u017Cesz zapewni\u0107 wybranemu nieumar\u0142emu premi\u0119 \u002B3 do naturalnego pancerza, pogrubiaj\u0105c jego ko\u015Bci."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_x2stnbones",
+      "School": "T",
+      "Range": "T",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Creature",
+        "Item",
+        "Placeable"
+      ],
+      "ImpactScript": "X2_S0_StnBones",
+      "InnateLevel": 2,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_smhannatr01",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_smhannatr01",
+      "ConjurationMaleSound": "vs_chant_ench_hm",
+      "ConjurationFemaleSound": "vs_chant_ench_lf",
+      "CastingAnimation": "Self",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": null,
+      "ProjectileSound": null,
+      "ProjectileOrientation": null,
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "TalentFriendlyProtectionSingle",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "53685b8e-8de4-418d-a37a-57b7c2b725a3",
+      "Index": -1,
+      "Overrides": "6fb92417-a153-930a-5bb0-3f1e779fcceb",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Tensers_Transformation",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 934,
+        "EN": {
+          "M": "Tenser\u0027s Transformation"
+        },
+        "FR": {
+          "M": "Transformation de Tenser"
+        },
+        "DE": {
+          "M": "Tensers Umwandlung"
+        },
+        "IT": {
+          "M": "Trasformazione di Tenser"
+        },
+        "ES": {
+          "M": "Transformaci\u00F3n de Tenser"
+        },
+        "PL": {
+          "M": "Przemiana Tensera"
+        }
+      },
+      "Description": {
+        "Index": 6516,
+        "EN": {
+          "M": "Caster Level(s): Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe caster becomes an engine of destruction, gaining 1d6 temporary hit points per caster level, a \u002B4 natural armor AC bonus, a \u002B2d4 Strength enchantment bonus, a \u002B2d4 Dexterity enchantment bonus, a \u002B1 attack bonus per two caster levels (which may give the character an extra attack), \u002B5 Fortitude saving throw bonus, and proficiency in all simple and martial weapons. The caster also is unable to cast spells, having 100% spell failure.",
+          "F": "Caster Level(s): Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe caster becomes an engine of destruction, gaining a \u002B1 attack bonus for every 2 caster levels, a \u002B4 natural armor AC bonus, 20 Strength, 22 Dexterity, 18 Constitution, \u002B5 to their Fortitude saving throws, and \u002B1d6 additional Hit Points per caster level."
+        },
+        "FR": {
+          "M": "Niveau : Magicien / Ensorceleur 6\nNiveau inn\u00E9 : 6\nEcole : Transmutation\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : personnelle\nZone d\u0027effet / cible : lanceur\nDur\u00E9e : 1 round/niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : inoffensif\nR\u00E9sistance \u00E0 la magie : non\n\nLe lanceur devient une v\u00E9ritable machine de destruction. Il b\u00E9n\u00E9ficie d\u0027un bonus suppl\u00E9mentaire de \u002B1 tous les 2 niveaux \u00E0 ses jets d\u0027attaque, d\u0027un bonus de Classe d\u0027Armure naturelle de \u002B4, 20 en Force, 22 en Dext\u00E9rit\u00E9, 18 en constitution,  d\u0027un bonus de \u002B5 \u00E0 ses jets de Vigueur et de \u002B1d6 points de vie par niveau."
+        },
+        "DE": {
+          "M": "Grad: MAG/HXM 6\nKalkulationsgrad: 6\nSchule: Verwandlung\nKategorie:\nKomponenten: V, G\nReichweite: Pers\u00F6nlich\nWirkungsbereich/Ziel: Der Magieanwender\nWirkungsdauer: 1 Runde/Stufe\nGegenzauber:\nRettungswurf: Harmlos\nZauberresistenz: Nein\n\nDer Magieanwender wird zu einer Kampfmaschine. Er erh\u00E4lt einen Angriffsbonus \u002B1 f\u00FCr je 2 Zauberstufen, Nat\u00FCrlichen R\u00FCstungsbonus \u002B4,  St\u00E4rke 20, Geschicklichkeit 22 und Konstitution 18 und \u002B1W6 Trefferpunkte pro Zauberstufe."
+        },
+        "IT": {
+          "M": "Livello(i) dell\u0027incantatore: mago / stregone 6\nLivello innato: 6\nScuola: trasmutazione\nDescrittore(i):\nComponente(i): verbale, somatica\nRaggio d\u0027azione: personale\nArea d\u0027effetto / bersaglio: incantatore\nDurata: 1 round per livello\nControincantesimi addizionali:\nTiro salvezza: innocuo\nResistenza agli incantesimi: no\n\nL\u0027incantatore diventa una macchina di distruzione, guadagnando un bonus \u002B1 per colpire per ogni 2 livelli dell\u0027incantatore, un bonus di armatura naturale alla CA \u002B4, 20 alla forza, 22 alla destrezza, 18 alla costituzione, \u002B5 ai tiri salvezza sulla tempra, e \u002B1d6 ulteriori punti ferita per livello dell\u0027incantatore."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Hechicero / Mago 6\nNivel innato: 6\nEscuela: Transmutaci\u00F3n\nDescriptores:\nComponentes: Verbal, Som\u00E1tico\nAlcance: Personal\n\u00C1rea de efecto / Objetivo: Lanzador\nDuraci\u00F3n: 1 asalto / nivel\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Inofensivo\nResistencia a conjuros: No\n\nEl lanzador se convierte en una m\u00E1quina de destrucci\u00F3n, obteniendo un bonificador \u002B1 al ataque por cada 2 niveles de lanzador, un bonificador \u002B4 de armadura natural a la CA, Fuerza 20, Destreza 22, Constituci\u00F3n 18, \u002B5 a la salvaci\u00F3n de Fortaleza y \u002B1d6 puntos de golpe adicionales por nivel de lanzador."
+        },
+        "PL": {
+          "M": "Poziomy czaruj\u0105cego: Czarodziej / Czarownik 6\nPoziom wrodzony: 6\nSzko\u0142a: Przemiany\nIdentyfikator(y):\nKomponent(y): Werbalny, Somatyczny\nZasi\u0119g: Osobisty\nObszar dzia\u0142ania / Cel: Rzucaj\u0105cy\nCzas trwania: 1 runda / poziom\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Czar nieszkodliwy\nOdporno\u015B\u0107 na czary: Nie\n\nCzarodziej zamienia si\u0119 w machin\u0119 zniszczenia. Zyskuje premi\u0119 \u002B1 na ka\u017Cde 2 poziomy do ataku, \u002B4 do KP za pancerz naturalny, Si\u0142\u0119 20, Zr\u0119czno\u015B\u0107 22, Kondycj\u0119 18, \u002B5 do rzut\u00F3w obronnych na Wytrwa\u0142o\u015B\u0107, a tak\u017Ce dodatkowe 1k6 Punkt\u00F3w Wytrzyma\u0142o\u015Bci na poziom."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_tenstrans",
+      "School": "T",
+      "Range": "P",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Empower",
+        "Extend",
+        "Maximize",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Item"
+      ],
+      "ImpactScript": "NW_S0_TensTrans",
+      "InnateLevel": 6,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Head",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": null,
+      "ConjurationGroundEffect": "vco_megrdodd01",
+      "ConjurationSound": "sco_megrdodd01",
+      "ConjurationMaleSound": "vs_chant_ench_hm",
+      "ConjurationFemaleSound": "vs_chant_ench_hf",
+      "CastingAnimation": "Self",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": null,
+      "ProjectileSound": null,
+      "ProjectileOrientation": null,
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyEnhancementSelf",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "5d80b4b2-10fe-4c92-9c0b-540beca8988f",
+      "Index": -1,
+      "Overrides": "d3b7fcbe-176a-dae8-2a05-d3142cc9bee9",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Time_Stop",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 935,
+        "EN": {
+          "M": "Time Stop"
+        },
+        "FR": {
+          "M": "Arr\u00EAt du temps"
+        },
+        "DE": {
+          "M": "Zeitstopp"
+        },
+        "IT": {
+          "M": "Fermare il Tempo"
+        },
+        "ES": {
+          "M": "Detener el Tiempo"
+        },
+        "PL": {
+          "M": "Zatrzymanie Czasu"
+        }
+      },
+      "Description": {
+        "Index": 6517,
+        "EN": {
+          "M": "Caster Level(s): Wizard / Sorcerer 9\nInnate Level: 9\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 9 seconds\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nThe caster is able to defy the sands of time, casting spells, moving about, and attacking normally while the rest of the world appears suspended, as if in stasis."
+        },
+        "FR": {
+          "M": "Niveau : Magicien / Ensorceleur 9\nNiveau inn\u00E9 : 9\nEcole : Transmutation\nCat\u00E9gorie(s) :\nComposante(s) : verbale\nPort\u00E9e : personnelle\nZone d\u0027effet / cible : lanceur\nDur\u00E9e : 9 secondes\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : aucun\nR\u00E9sistance \u00E0 la magie : non\n\nLe lanceur est capable de d\u00E9fier le temps, de lancer des sorts, de se d\u00E9placer et d\u0027attaquer alors que le temps cesse de s\u0027\u00E9couler pour le reste du monde."
+        },
+        "DE": {
+          "M": "Grad: MAG/HXM 9\nKalkulationsgrad: 9\nSchule: Verwandlung\nKategorie:\nKomponenten: V\nReichweite: Pers\u00F6nlich\nWirkungsbereich/Ziel: Der Magieanwender\nWirkungsdauer: 9 Sekunden\nGegenzauber:\nRettungswurf: Nein\nZauberresistenz: Nein\n\nDer Magieanwender kann dem unerbittlichen Verstr\u00F6men der Zeit trotzen. W\u00E4hrend der Wirkungsdauer scheint die ganze Welt bis auf den Magieanwender eingefroren zu sein. Er hingegen kann sich normal bewegen, angreifen und Zauber wirken."
+        },
+        "IT": {
+          "M": "Livello(i) dell\u0027incantatore: Mago / Stregone 9\nLivello innato: 9\nScuola: Trasmutazione\nDescrittore(i):\nComponente(i): Verbale\nRaggio d\u0027azione: Personale\nArea d\u0027effetto / Bersaglio: Incantatore\nDurata: 1d4 \u002B 1 round\nControincantesimi addizionali:\nTiro salvezza: Nessuno\nResistenza agli incantesimi: No\n\nL\u0027incantatore \u00E8 in grado di sfidare lo scorrere del tempo, lanciando incantesimi, spostandosi e attaccando normalmente mentre il resto del mondo appare sospeso, come in stasi."
+        },
+        "ES": {
+          "M": "Nivel(es) de lanzador: Hechicero / Mago 9\nNivel innato: 9\nEscuela: Transmutaci\u00F3n\nDescriptor(es):\nComponente(s): Verbal\nAlcance: Personal\n\u00C1rea de efecto / Objetivo: Lanzador\nDuraci\u00F3n: 9 segundos\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Ninguno\nResistencia a conjuros: No\n\nEl lanzador es capaz de desafiar a las arenas del tiempo, lanzando conjuros, movi\u00E9ndose y atacando normalmente mientras el resto del mundo parece suspendido, como si estuviera en \u00E9xtasis."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Czarodziej / Czarownik 9\nPoziom wrodzony: 9\nSzko\u0142a: Przemiany\nIdentyfikator(y):\nKomponent(y): Werbalne\nZasi\u0119g: Osobisty\nObszar dzia\u0142ania / Cel: Rzucaj\u0105cy\nCzas trwania: 9 sekund\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Brak\nOdporno\u015B\u0107 na czary: Nie\n\nCzarodziej mo\u017Ce wy\u015Blizn\u0105\u0107 si\u0119 z obj\u0119\u0107 czasu. Mo\u017Ce rzuca\u0107 czary, przemieszcza\u0107 si\u0119 i atakowa\u0107 normalnie, podczas gdy reszta \u015Bwiata jest zawieszona w bezruchu."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_timestop",
+      "School": "T",
+      "Range": "P",
+      "Components": [
+        "V"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Item"
+      ],
+      "ImpactScript": "NW_S0_TimeStop",
+      "InnateLevel": 9,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Head",
+      "ConjurationHeadEffect": "vco_mehanmind02",
+      "ConjurationHandEffect": null,
+      "ConjurationGroundEffect": "vco_lgsprnatr01",
+      "ConjurationSound": "sco_lgsprnatr01",
+      "ConjurationMaleSound": "vs_chant_ench_hm",
+      "ConjurationFemaleSound": "vs_chant_ench_hf",
+      "CastingAnimation": "Up",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": null,
+      "ProjectileSound": null,
+      "ProjectileOrientation": null,
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "HarmfulAoeDiscriminant",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "b14a336d-5b0a-4dc3-ba4b-04109d9c3ae5",
+      "Index": -1,
+      "Overrides": "4d492828-4735-e6a9-2968-e02a4bc1e057",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Virtue",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 939,
+        "EN": {
+          "M": "Virtue"
+        },
+        "FR": {
+          "M": "Stimulant"
+        },
+        "DE": {
+          "M": "Tugend"
+        },
+        "IT": {
+          "M": "Virt\u00F9"
+        },
+        "ES": {
+          "M": "Virtud"
+        },
+        "PL": {
+          "M": "Cnota"
+        }
+      },
+      "Description": {
+        "Index": 6520,
+        "EN": {
+          "M": "Caster Level(s): Cleric 0, Druid 0, Paladin 1\nInnate Level: 0\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Turn / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe target creature gains 1 temporary hit point above his maximum total."
+        },
+        "FR": {
+          "M": "Niveau : Pr\u00EAtre 0, Druide 0, Paladin 0\nNiveau inn\u00E9 : 0\nEcole : Transmutation\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : contact\nZone d\u0027effet / cible : 1 cr\u00E9ature\nDur\u00E9e : 1 tour/niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : inoffensif\nR\u00E9sistance \u00E0 la magie : non\n\nLa cible gagne temporairement 1 point de vie suppl\u00E9mentaire au-dessus de son maximum."
+        },
+        "DE": {
+          "M": "Grad: KLE 0, DRU 0, PAL 1\nKalkulationsgrad: 0\nSchule: Verwandlung\nKategorie:\nKomponenten: V, G\nReichweite: Ber\u00FChrung\nWirkungsbereich/Ziel: 1 Kreatur\nWirkungsdauer: 1 Phase/Stufe\nGegenzauber:\nRettungswurf: Harmlos\nZauberresistenz: Nein\n\nDie maximalen Trefferpunkte der ber\u00FChrten Kreatur erh\u00F6hen sich w\u00E4hrend der Wirkungsdauer um 1."
+        },
+        "IT": {
+          "M": "Livello(i) dell\u0027incantatore: Chierico 0, Druido 0, Paladino 1\nLivello innato: 0\nScuola: Trasmutazione\nDescrittore(i):\nComponente(i): Verbale, Somatica\nRaggio d\u0027azione: Contatto\nArea d\u0027effetto / Bersaglio: Singolo\nDurata: 1 turno per livello\nControincantesimi addizionali:\nTiro salvezza: Innocuo\nResistenza agli incantesimi: No\n\nIl bersaglio riceve 1 punto ferita temporaneo pi\u00F9 del suo totale massimo."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Cl\u00E9rigo 0, Druida 0, Palad\u00EDn 1\nNivel innato: 0\nEscuela: Transmutaci\u00F3n\nDescriptores:\nComponentes: Verbal, Som\u00E1tico\nAlcance: Toque\n\u00C1rea de efecto / Objetivo: Individual\nDuraci\u00F3n: 1 turno / nivel\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Inofensivo\nResistencia a conjuros: No\n\nLa criatura objetivo obtiene 1 punto de golpe temporal por encima de su m\u00E1ximo total."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Kap\u0142an 0, Druid 0, Paladyn 1\nPoziom wrodzony: 0\nSzko\u0142a: Przemiany\nIdentyfikator(y):\nKomponent(y): Werbalne, Somatyczne\nZasi\u0119g: Dotyk\nObszar dzia\u0142ania / Cel: Pojedynczy\nCzas trwania: 1 tura / poziom\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Czar nieszkodliwy\nOdporno\u015B\u0107 na czary: Nie\n\nDotkni\u0119ta istota zyskuje 1 tymczasowy Punkt Wytrzyma\u0142o\u015Bci."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_virtue",
+      "School": "T",
+      "Range": "T",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Creature",
+        "Item"
+      ],
+      "ImpactScript": "NW_S0_Virtue",
+      "InnateLevel": 0,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_smhanholy01",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mehanholy01",
+      "ConjurationMaleSound": "vs_chant_ench_hm",
+      "ConjurationFemaleSound": "vs_chant_ench_hf",
+      "CastingAnimation": "Touch",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": null,
+      "ProjectileSound": null,
+      "ProjectileOrientation": null,
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyEnhancementSingle",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
       "TargetShape": null,
       "TargetSizeX": null,
       "TargetSizeY": null,
