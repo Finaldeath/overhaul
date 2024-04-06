@@ -22372,7 +22372,8 @@
       "Description": {
         "Index": 6068,
         "EN": {
-          "M": "Type of Feat: Race\nPrerequisite: Halfling.\nSpecifics: This feat grants a \u002B1 attack bonus on attacks made with throwing weapons.\nUse: Automatic."
+          "M": "Type of Feat: Race\nPrerequisite: Halfling.\nSpecifics: This feat grants a \u002B1 attack bonus on attacks made with throwing weapons and slings.\nUse: Automatic.",
+          "F": "Type of Feat: Race\nPrerequisite: Halfling.\nSpecifics: This feat grants a \u002B1 attack bonus on attacks made with throwing weapons.\nUse: Automatic."
         },
         "FR": {
           "M": "Type de don : Race\nCondition : halfelin\nFonctionnement\u00A0: ce don accorde un bonus de \u002B1 aux jets d\u2019attaque faites avec des armes de jet.\nUtilisation\u00A0: automatique"
@@ -33372,7 +33373,8 @@
       "Description": {
         "Index": 6045,
         "EN": {
-          "M": "Type of Feat: Race\nPrerequisite: Dwarf.\nSpecifics: This feat grants a \u002B2 bonus on Search checks made in interior areas.\nUse: Automatic."
+          "M": "Type of Feat: Race\nPrerequisite: Dwarf.\nSpecifics: This feat grants a \u002B2 bonus on Search checks made in underground areas.\nUse: Automatic.",
+          "F": "Type of Feat: Race\nPrerequisite: Dwarf.\nSpecifics: This feat grants a \u002B2 bonus on Search checks made in interior areas.\nUse: Automatic."
         },
         "FR": {
           "M": "Type de don : Race\nCondition : nain\nFonctionnement\u00A0: ce don accorde un bonus de \u002B2 aux jets de Fouille faits en int\u00E9rieur.\nUtilisation\u00A0: automatique"
@@ -34098,7 +34100,7 @@
       "Description": {
         "Index": 83582,
         "EN": {
-          "M": "Type of Feat: General\nPrerequisite: Epic Barbarian, Intimidate 25 ranks.\nSpecifics:  While the barbarian is raging, any enemy that comes close to him must make a Will save opposed by the barbarian\u0027s Intimidate check or becomes panicked for 1d6 rounds. Opponents with up to twice the barbarian\u0027s Hit Dice will not flee but will receive a -2 penalty to attack and saving throw rolls. Creatures with at least 2x the barbarian\u0027s Hit Dice are not affected by the rage.\nUse: Automatic while in rage\n",
+          "M": "Type of Feat: General\nPrerequisite: Epic Barbarian, Intimidate 25 ranks.\nSpecifics:  While the barbarian is raging, any enemy that comes close to him must make a Will save opposed by the barbarian\u0027s Intimidate check or becomes panicked for 1d3 rounds. Opponents with up to twice the barbarian\u0027s Hit Dice will not flee but will receive a -2 penalty to attack and saving throw rolls. Creatures with at least twice the barbarian\u0027s Hit Dice are not affected by the rage.\nUse: Automatic while in rage",
           "F": "Type of Feat: General\nPrerequisite: Epic Barbarian, Intimidate 25 ranks.\nSpecifics:  While the barbarian is raging, any enemy that comes close to him must make a Will save opposed by the barbarian\u0027s Intimidate check or becomes panicked for 1d6 rounds. Opponents with up to twice the barbarian\u0027s Hit Dice will not flee but will receive a -2 penalty to attack and saving throw rolls. Creatures with more then 2x the barbarian\u0027s Hit Dice are not affected by the rage.\nUse: Automatic while in rage\n"
         },
         "FR": {
@@ -34281,7 +34283,7 @@
       "Description": {
         "Index": 83569,
         "EN": {
-          "M": "Type of Feat: General\nPrerequisite: Epic Barbarian, Strength 25.\nSpecifics:  Any weapon the barbarian wields while starting a rage does an additional 2d6 points of damage on a critical hit. There is a 25% chance for a creature hit by the barbarian\u0027s primary weapon to deafened for 3 rounds.\nUse: Automatic",
+          "M": "Type of Feat: General\nPrerequisite: Epic Barbarian, Strength 25.\nSpecifics:  Any weapon the barbarian wields while starting a rage does an additional 2d6 points of damage on a critical hit. There is a 25% chance for a creature hit by the barbarian\u0027s primary weapon to deafened for 3 rounds unless the target makes a DC 20 fortitude saving throw.\nUse: Automatic",
           "F": "Type of Feat: General\nPrerequisite: Epic Barbarian, Strength 25.\nSpecifics:  Any weapon the barbarian wields while in a rage does an additional 2d6 points of damage on a critical hit. There is a 50% chance for a creature hit by one of the barbarian\u0027s weapons to deafened for 3 rounds.\nUse: Automatic"
         },
         "FR": {
@@ -36615,6 +36617,1149 @@
       "MaxLevel": null,
       "MinFortitudeSave": null,
       "RequiresEpic": false,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "476f25da-2fed-4c11-9d99-16e870b47448",
+      "Index": -1,
+      "Overrides": "8d4382b4-9607-2b85-bdb6-4e772f9cd713",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_EPIC_DODGE",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8638,
+        "EN": {
+          "M": "Epic Dodge"
+        },
+        "FR": {
+          "M": "Esquive \u00E9pique"
+        },
+        "DE": {
+          "M": "Epische Reflexbewegung"
+        },
+        "IT": {
+          "M": "Schivare epico"
+        },
+        "ES": {
+          "M": "Esquiva \u00E9pica"
+        },
+        "PL": {
+          "M": "Epicki unik"
+        }
+      },
+      "Description": {
+        "Index": 8639,
+        "EN": {
+          "M": "Type of Feat: General\nPrerequisite: 21st level, Dexterity 25\u002B, Tumble 30 ranks, Improved Evasion and Defensive Roll.\nSpecifics: The character avoids the first attack each round.\nUse: Automatic.",
+          "F": "Type of Feat: General\nPrerequisite: 21st level, Dexterity 25\u002B, Dodge, Tumble 30 ranks, Improved Evasion and Defensive Roll.\nSpecifics: The character avoids the first attack each round.\nUse: Automatic."
+        },
+        "FR": {
+          "M": "Type de don : g\u00E9n\u00E9ral\nConditions : 21\u00E8me niveau, Dext\u00E9rit\u00E9 25\u002B, Esquive, rang 30 en Acrobatie, Esquive surnaturelle et Roul\u00E9-boul\u00E9.\nFonctionnement : A chaque round le personnage \u00E9vite la premi\u00E8re attaque.\nUtilisation : automatique."
+        },
+        "DE": {
+          "M": "Art des Talents: Allgemein\nVoraussetzung: 21. Stufe, Ausweichen, Verbessertes Entrinnen, 30 Fertigkeitsr\u00E4nge in Turnen, Geschicklichkeit 25\u002B.\nVorteil: Der Charakter entgeht automatisch jedem Schaden, den er vom ersten erfolgreichen Angriff in einer Runde erleiden w\u00FCrde.\nGebrauch: Automatisch."
+        },
+        "IT": {
+          "M": "Tipo di talento: generico.\nPrerequisiti: livello 21, Schivare, Evasione potenziata, Tiro difensivo, Acrobazia grado 30, destrezza 25\u002B.\nDescrizione: il personaggio evita tutti i danni subiti in seguito al primo attacco di ogni turno.\nUso: automatico."
+        },
+        "ES": {
+          "M": "Tipo de dote: General\nPrerrequisito: Nivel 21\u00BA, Destreza 25\u002B, Esquiva, Evasi\u00F3n mejorada, Rodar a la defensiva y 30 rangos en Piruetas.\nDetalles: El personaje evita el primer ataque en cada asalto.\nUso: Autom\u00E1tica."
+        },
+        "PL": {
+          "M": "Rodzaj Atutu: Og\u00F3lny\nWymagania: 21. poziom, Zr\u0119czno\u015B\u0107 25\u002B, Unik, Upadanie 30 punkt\u00F3w, Ulepszony odskok i Unik obronny.\nOpis: Posta\u0107 unika pierwszego ataku w ka\u017Cdej rundzie.\nU\u017Cywanie: automatyczne."
+        }
+      },
+      "Icon": "ife_x2epicdodge",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": 25,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": {
+        "ID": "88817dd0-70dd-6020-fd77-b51ef0f5243a",
+        "Label": "Improved Evasion"
+      },
+      "RequiredFeat2": {
+        "ID": "380b28aa-d295-b15c-ef74-570077376bf5",
+        "Label": "Defensive Roll"
+      },
+      "UseableByAllClasses": true,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": null,
+      "CRModifier": 0.5,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": {
+        "ID": "bc8edc23-978c-821e-e1b2-2220da28f119",
+        "Label": "Tumble"
+      },
+      "RequiredSkill1Minimum": 30,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "Defensive",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": true,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "72a6231c-9e27-4449-afbd-f9759c1e3eee",
+      "Index": -1,
+      "Overrides": "3a8efbb8-bb83-260f-b022-0e3bff315c1f",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_EXTRA_SMITING",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8782,
+        "EN": {
+          "M": "Extra Smiting"
+        },
+        "FR": {
+          "M": "Ch\u00E2timents suppl\u00E9mentaires"
+        },
+        "DE": {
+          "M": "Zus\u00E4tzliches Niederstrecken"
+        },
+        "IT": {
+          "M": "Punire extra"
+        },
+        "ES": {
+          "M": "Castigo incrementado"
+        },
+        "PL": {
+          "M": "Dodatkowe pora\u017Cenie"
+        }
+      },
+      "Description": {
+        "Index": 8783,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Smite Evil or Smite Good.\nSpecifics: This feat increases the smiting ability to 3 times per day.\nUse: Automatic",
+          "F": "Type of Feat: Class\nPrerequisite: Smite Evil or Smite Good.\nSpecifics: This feat increases the smiting ability to 3 times per day.\nUse: Selected"
+        },
+        "FR": {
+          "M": "Type de don : Classe.\nConditions : Ch\u00E2timent du mal ou du bien.\nFonctionnement : Ce don augmente \u00E0 3 fois par jour le nombre de ch\u00E2timents que l\u0027on peut effectuer.\nUtilisation : doit \u00EAtre s\u00E9lectionn\u00E9."
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse\nVoraussetzung: B\u00F6ses oder Gutes niederstrecken\nVorteil: Der Charakter kann seine F\u00E4higkeit Niederstrecken zus\u00E4tzlich dreimal t\u00E4glich einsetzen.\nGebrauch: Ausw\u00E4hlen."
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe.\nPrerequisiti: Punizione sacra o Punire il male.\nDescrizione: questo talento aumenta l\u0027abilit\u00E0 nei colpi a impatto, per 3 volte al giorno.\nUso: selezione."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Castigar al mal o al bien.\nDetalles: Esta dote aumenta la aptitud de castigo a tres veces por d\u00EDa.\nUso: Seleccionada."
+        },
+        "PL": {
+          "M": "Rodzaj Atutu: klasowy\nWymagania: Pora\u017Cenie Z\u0142a lub Pora\u017Cenie Dobra.\nOpis: Ten atut pozwala u\u017Cywa\u0107 zdolno\u015Bci Pora\u017Cenie 3 razy dziennie.\nU\u017Cywanie: automatyczne."
+        }
+      },
+      "Icon": "ife_x2extrsmit",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "UseableByAllClasses": true,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": null,
+      "CRModifier": 0.2,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": {
+        "ID": "c6b1fdd7-8287-6b66-1d03-5bab9cc67fd7",
+        "Label": "Smite Evil"
+      },
+      "RequiredFeatSelection2": {
+        "ID": "b0e7e20b-534c-0b8c-9ddf-51d5000d2991",
+        "Label": "Smite Good"
+      },
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "c6eae2f5-346c-4a07-9753-28f904fdd180",
+      "Index": -1,
+      "Overrides": "73272c24-5932-449d-cea6-358050ad05af",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_EPIC_GREAT_SMITING_1",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8597,
+        "EN": {
+          "M": "Great Smiting I"
+        },
+        "FR": {
+          "M": "Ch\u00E2timent supr\u00EAme I"
+        },
+        "DE": {
+          "M": "M\u00E4chtiges Niederstrecken I"
+        },
+        "IT": {
+          "M": "Grande punizione I"
+        },
+        "ES": {
+          "M": "Gran castigo I"
+        },
+        "PL": {
+          "M": "Wielkie pora\u017Cenie I"
+        }
+      },
+      "Description": {
+        "Index": 8598,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: 21st level, Charisma 25\u002B, Smite Good or Smite Evil.\nSpecifics: Whenever the character makes a successful smite attack, it adds two times the relevant class level (that can use smite) to damage. This feat may be taken multiple times, up to a maximum of 10 times - each time adding additional damage equal to the relevant class level to the smite attack.\nUse: Combat Mode.",
+          "F": "Type of Feat: Class\nPrerequisite: 21st level, Charisma 25\u002B, Smite Good or Smite Evil.\nSpecifics: Whenever the character makes a successful smite attack, it adds two times the characters level to damage. This feat may be taken multiple times, up to a maximum of 10 times - each time adding additional damage equal to the character\u0027s level to the smite attack.\nUse: Combat Mode."
+        },
+        "FR": {
+          "M": "Type de don : Classe\nConditions : 21\u00E8me niveau, Charisme 25\u002B, Ch\u00E2timent du mal ou Ch\u00E2timent du bien.\nFonctionnement : Quand le personnage r\u00E9ussit une attaque de ch\u00E2timent, il ajoute deux fois son niveau aux d\u00E9g\u00E2ts. Ce don peut \u00EAtre s\u00E9lectionn\u00E9 plusieurs fois et \u00E0 chaque fois le personnage ajoutera son niveau aux d\u00E9g\u00E2ts jusqu\u0027\u00E0 un maximum de 10 fois son niveau.\nUtilisation : combat."
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse\nVoraussetzung: 21. Stufe, Charisma 25\u002B, Gutes oder B\u00F6ses niederstrecken.\nVorteil: Wenn der Charakter einen erfolgreichen Angriff mit Niederstrecken macht, addiert er seine doppelte Charakterstufe zum Schaden. Das Talent kann mehrmals gew\u00E4hlt werden (bis zu zehnmal). Jedes Mal erh\u00F6ht sich der Multiplikator f\u00FCr den Schaden um \u002B1.\nGebrauch: Kampfmodus."
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe.\nPrerequisiti: livello 21, Carisma 25\u002B, Punizione sacra o Punire il male.\nDescrizione: ogni volta che il personaggio effettua un attacco con impatto riuscito, aggiunge danni per il doppio del proprio livello. \u00C8 possibile utilizzare pi\u00F9 volte questo talento, fino a un massimo di dieci: ogni volta, si aggiunge danno aggiuntivo uguale al livello del personaggio.\nUso: modalit\u00E0 di combattimento."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Nivel 21\u00BA, Carisma 25\u002B y Castigar al mal o al bien.\nDetalles: Siempre que el personaje consiga efectuar un ataque de castigo, sumar\u00E1 dos veces su nivel al da\u00F1o. Esta dote puede adquirirse varias veces, hasta un m\u00E1ximo de diez, y por cada vez adicional a\u00F1adir\u00E1 al ataque de castigo un da\u00F1o igual al nivel del personaje.\nUso: Modo Combate."
+        },
+        "PL": {
+          "M": "Rodzaj Atutu: klasowy\nWymagania: 21. poziom, Charyzma 25\u002B, Pora\u017Cenie Z\u0142a lub Pora\u017Cenie Dobra\nOpis: Kiedy postaci uda si\u0119 atak z pora\u017Ceniem, dodaje do obra\u017Ce\u0144 dwukrotno\u015B\u0107 swojego poziomu. Ten atut mo\u017Cna bra\u0107 kilkakrotnie, maksymalnie 10 razy. Ka\u017Cdy poziom atutu zwi\u0119ksza obra\u017Cenia od pora\u017Cenia o warto\u015B\u0107 r\u00F3wn\u0105 poziomowi postaci.\nU\u017Cywanie: w trybie walki."
+        }
+      },
+      "Icon": "ife_x2grsmt1",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": 25,
+      "MinSpellLevel": null,
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": {
+        "ID": "230f6e0a-0806-9252-b356-c3c8209e0889",
+        "Label": "Great Smiting II"
+      },
+      "CRModifier": 1,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": {
+        "ID": "b0e7e20b-534c-0b8c-9ddf-51d5000d2991",
+        "Label": "Smite Good"
+      },
+      "RequiredFeatSelection2": {
+        "ID": "c6b1fdd7-8287-6b66-1d03-5bab9cc67fd7",
+        "Label": "Smite Evil"
+      },
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": true,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "9c07df99-701f-4071-9888-ccda5c83c5e9",
+      "Index": -1,
+      "Overrides": "230f6e0a-0806-9252-b356-c3c8209e0889",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_EPIC_GREAT_SMITING_2",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8599,
+        "EN": {
+          "M": "Great Smiting II"
+        },
+        "FR": {
+          "M": "Ch\u00E2timent supr\u00EAme II"
+        },
+        "DE": {
+          "M": "M\u00E4chtiges Niederstrecken II"
+        },
+        "IT": {
+          "M": "Grande punizione II"
+        },
+        "ES": {
+          "M": "Gran castigo II"
+        },
+        "PL": {
+          "M": "Wielkie pora\u017Cenie II"
+        }
+      },
+      "Description": {
+        "Index": 8598,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: 21st level, Charisma 25\u002B, Smite Good or Smite Evil.\nSpecifics: Whenever the character makes a successful smite attack, it adds two times the relevant class level (that can use smite) to damage. This feat may be taken multiple times, up to a maximum of 10 times - each time adding additional damage equal to the relevant class level to the smite attack.\nUse: Combat Mode.",
+          "F": "Type of Feat: Class\nPrerequisite: 21st level, Charisma 25\u002B, Smite Good or Smite Evil.\nSpecifics: Whenever the character makes a successful smite attack, it adds two times the characters level to damage. This feat may be taken multiple times, up to a maximum of 10 times - each time adding additional damage equal to the character\u0027s level to the smite attack.\nUse: Combat Mode."
+        },
+        "FR": {
+          "M": "Type de don : Classe\nConditions : 21\u00E8me niveau, Charisme 25\u002B, Ch\u00E2timent du mal ou Ch\u00E2timent du bien.\nFonctionnement : Quand le personnage r\u00E9ussit une attaque de ch\u00E2timent, il ajoute deux fois son niveau aux d\u00E9g\u00E2ts. Ce don peut \u00EAtre s\u00E9lectionn\u00E9 plusieurs fois et \u00E0 chaque fois le personnage ajoutera son niveau aux d\u00E9g\u00E2ts jusqu\u0027\u00E0 un maximum de 10 fois son niveau.\nUtilisation : combat."
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse\nVoraussetzung: 21. Stufe, Charisma 25\u002B, Gutes oder B\u00F6ses niederstrecken.\nVorteil: Wenn der Charakter einen erfolgreichen Angriff mit Niederstrecken macht, addiert er seine doppelte Charakterstufe zum Schaden. Das Talent kann mehrmals gew\u00E4hlt werden (bis zu zehnmal). Jedes Mal erh\u00F6ht sich der Multiplikator f\u00FCr den Schaden um \u002B1.\nGebrauch: Kampfmodus."
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe.\nPrerequisiti: livello 21, Carisma 25\u002B, Punizione sacra o Punire il male.\nDescrizione: ogni volta che il personaggio effettua un attacco con impatto riuscito, aggiunge danni per il doppio del proprio livello. \u00C8 possibile utilizzare pi\u00F9 volte questo talento, fino a un massimo di dieci: ogni volta, si aggiunge danno aggiuntivo uguale al livello del personaggio.\nUso: modalit\u00E0 di combattimento."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Nivel 21\u00BA, Carisma 25\u002B y Castigar al mal o al bien.\nDetalles: Siempre que el personaje consiga efectuar un ataque de castigo, sumar\u00E1 dos veces su nivel al da\u00F1o. Esta dote puede adquirirse varias veces, hasta un m\u00E1ximo de diez, y por cada vez adicional a\u00F1adir\u00E1 al ataque de castigo un da\u00F1o igual al nivel del personaje.\nUso: Modo Combate."
+        },
+        "PL": {
+          "M": "Rodzaj Atutu: klasowy\nWymagania: 21. poziom, Charyzma 25\u002B, Pora\u017Cenie Z\u0142a lub Pora\u017Cenie Dobra\nOpis: Kiedy postaci uda si\u0119 atak z pora\u017Ceniem, dodaje do obra\u017Ce\u0144 dwukrotno\u015B\u0107 swojego poziomu. Ten atut mo\u017Cna bra\u0107 kilkakrotnie, maksymalnie 10 razy. Ka\u017Cdy poziom atutu zwi\u0119ksza obra\u017Cenia od pora\u017Cenia o warto\u015B\u0107 r\u00F3wn\u0105 poziomowi postaci.\nU\u017Cywanie: w trybie walki."
+        }
+      },
+      "Icon": "ife_x2grsmt1",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": 25,
+      "MinSpellLevel": null,
+      "RequiredFeat1": {
+        "ID": "73272c24-5932-449d-cea6-358050ad05af",
+        "Label": "Great Smiting I"
+      },
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": {
+        "ID": "e1b69248-999d-1ee3-cd25-0b3e44010027",
+        "Label": "Great Smiting III"
+      },
+      "CRModifier": 1,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": true,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "c8e8f723-8f82-4590-8a3d-226a1369f0c7",
+      "Index": -1,
+      "Overrides": "e1b69248-999d-1ee3-cd25-0b3e44010027",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_EPIC_GREAT_SMITING_3",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8600,
+        "EN": {
+          "M": "Great Smiting III"
+        },
+        "FR": {
+          "M": "Ch\u00E2timent supr\u00EAme III"
+        },
+        "DE": {
+          "M": "M\u00E4chtiges Niederstrecken III"
+        },
+        "IT": {
+          "M": "Grande punizione III"
+        },
+        "ES": {
+          "M": "Gran castigo III"
+        },
+        "PL": {
+          "M": "Wielkie pora\u017Cenie III"
+        }
+      },
+      "Description": {
+        "Index": 8598,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: 21st level, Charisma 25\u002B, Smite Good or Smite Evil.\nSpecifics: Whenever the character makes a successful smite attack, it adds two times the relevant class level (that can use smite) to damage. This feat may be taken multiple times, up to a maximum of 10 times - each time adding additional damage equal to the relevant class level to the smite attack.\nUse: Combat Mode.",
+          "F": "Type of Feat: Class\nPrerequisite: 21st level, Charisma 25\u002B, Smite Good or Smite Evil.\nSpecifics: Whenever the character makes a successful smite attack, it adds two times the characters level to damage. This feat may be taken multiple times, up to a maximum of 10 times - each time adding additional damage equal to the character\u0027s level to the smite attack.\nUse: Combat Mode."
+        },
+        "FR": {
+          "M": "Type de don : Classe\nConditions : 21\u00E8me niveau, Charisme 25\u002B, Ch\u00E2timent du mal ou Ch\u00E2timent du bien.\nFonctionnement : Quand le personnage r\u00E9ussit une attaque de ch\u00E2timent, il ajoute deux fois son niveau aux d\u00E9g\u00E2ts. Ce don peut \u00EAtre s\u00E9lectionn\u00E9 plusieurs fois et \u00E0 chaque fois le personnage ajoutera son niveau aux d\u00E9g\u00E2ts jusqu\u0027\u00E0 un maximum de 10 fois son niveau.\nUtilisation : combat."
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse\nVoraussetzung: 21. Stufe, Charisma 25\u002B, Gutes oder B\u00F6ses niederstrecken.\nVorteil: Wenn der Charakter einen erfolgreichen Angriff mit Niederstrecken macht, addiert er seine doppelte Charakterstufe zum Schaden. Das Talent kann mehrmals gew\u00E4hlt werden (bis zu zehnmal). Jedes Mal erh\u00F6ht sich der Multiplikator f\u00FCr den Schaden um \u002B1.\nGebrauch: Kampfmodus."
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe.\nPrerequisiti: livello 21, Carisma 25\u002B, Punizione sacra o Punire il male.\nDescrizione: ogni volta che il personaggio effettua un attacco con impatto riuscito, aggiunge danni per il doppio del proprio livello. \u00C8 possibile utilizzare pi\u00F9 volte questo talento, fino a un massimo di dieci: ogni volta, si aggiunge danno aggiuntivo uguale al livello del personaggio.\nUso: modalit\u00E0 di combattimento."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Nivel 21\u00BA, Carisma 25\u002B y Castigar al mal o al bien.\nDetalles: Siempre que el personaje consiga efectuar un ataque de castigo, sumar\u00E1 dos veces su nivel al da\u00F1o. Esta dote puede adquirirse varias veces, hasta un m\u00E1ximo de diez, y por cada vez adicional a\u00F1adir\u00E1 al ataque de castigo un da\u00F1o igual al nivel del personaje.\nUso: Modo Combate."
+        },
+        "PL": {
+          "M": "Rodzaj Atutu: klasowy\nWymagania: 21. poziom, Charyzma 25\u002B, Pora\u017Cenie Z\u0142a lub Pora\u017Cenie Dobra\nOpis: Kiedy postaci uda si\u0119 atak z pora\u017Ceniem, dodaje do obra\u017Ce\u0144 dwukrotno\u015B\u0107 swojego poziomu. Ten atut mo\u017Cna bra\u0107 kilkakrotnie, maksymalnie 10 razy. Ka\u017Cdy poziom atutu zwi\u0119ksza obra\u017Cenia od pora\u017Cenia o warto\u015B\u0107 r\u00F3wn\u0105 poziomowi postaci.\nU\u017Cywanie: w trybie walki."
+        }
+      },
+      "Icon": "ife_x2grsmt1",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": 25,
+      "MinSpellLevel": null,
+      "RequiredFeat1": {
+        "ID": "230f6e0a-0806-9252-b356-c3c8209e0889",
+        "Label": "Great Smiting II"
+      },
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": {
+        "ID": "0966180f-ad41-4994-25bb-93494b954936",
+        "Label": "Great Smiting IV"
+      },
+      "CRModifier": 1,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": true,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "bcfdd2b2-0ee7-41a9-8d3c-527c46bc19de",
+      "Index": -1,
+      "Overrides": "0966180f-ad41-4994-25bb-93494b954936",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_EPIC_GREAT_SMITING_4",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8601,
+        "EN": {
+          "M": "Great Smiting IV"
+        },
+        "FR": {
+          "M": "Ch\u00E2timent supr\u00EAme IV"
+        },
+        "DE": {
+          "M": "M\u00E4chtiges Niederstrecken IV"
+        },
+        "IT": {
+          "M": "Grande punizione IV"
+        },
+        "ES": {
+          "M": "Gran castigo IV"
+        },
+        "PL": {
+          "M": "Wielkie pora\u017Cenie IV"
+        }
+      },
+      "Description": {
+        "Index": 8598,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: 21st level, Charisma 25\u002B, Smite Good or Smite Evil.\nSpecifics: Whenever the character makes a successful smite attack, it adds two times the relevant class level (that can use smite) to damage. This feat may be taken multiple times, up to a maximum of 10 times - each time adding additional damage equal to the relevant class level to the smite attack.\nUse: Combat Mode.",
+          "F": "Type of Feat: Class\nPrerequisite: 21st level, Charisma 25\u002B, Smite Good or Smite Evil.\nSpecifics: Whenever the character makes a successful smite attack, it adds two times the characters level to damage. This feat may be taken multiple times, up to a maximum of 10 times - each time adding additional damage equal to the character\u0027s level to the smite attack.\nUse: Combat Mode."
+        },
+        "FR": {
+          "M": "Type de don : Classe\nConditions : 21\u00E8me niveau, Charisme 25\u002B, Ch\u00E2timent du mal ou Ch\u00E2timent du bien.\nFonctionnement : Quand le personnage r\u00E9ussit une attaque de ch\u00E2timent, il ajoute deux fois son niveau aux d\u00E9g\u00E2ts. Ce don peut \u00EAtre s\u00E9lectionn\u00E9 plusieurs fois et \u00E0 chaque fois le personnage ajoutera son niveau aux d\u00E9g\u00E2ts jusqu\u0027\u00E0 un maximum de 10 fois son niveau.\nUtilisation : combat."
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse\nVoraussetzung: 21. Stufe, Charisma 25\u002B, Gutes oder B\u00F6ses niederstrecken.\nVorteil: Wenn der Charakter einen erfolgreichen Angriff mit Niederstrecken macht, addiert er seine doppelte Charakterstufe zum Schaden. Das Talent kann mehrmals gew\u00E4hlt werden (bis zu zehnmal). Jedes Mal erh\u00F6ht sich der Multiplikator f\u00FCr den Schaden um \u002B1.\nGebrauch: Kampfmodus."
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe.\nPrerequisiti: livello 21, Carisma 25\u002B, Punizione sacra o Punire il male.\nDescrizione: ogni volta che il personaggio effettua un attacco con impatto riuscito, aggiunge danni per il doppio del proprio livello. \u00C8 possibile utilizzare pi\u00F9 volte questo talento, fino a un massimo di dieci: ogni volta, si aggiunge danno aggiuntivo uguale al livello del personaggio.\nUso: modalit\u00E0 di combattimento."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Nivel 21\u00BA, Carisma 25\u002B y Castigar al mal o al bien.\nDetalles: Siempre que el personaje consiga efectuar un ataque de castigo, sumar\u00E1 dos veces su nivel al da\u00F1o. Esta dote puede adquirirse varias veces, hasta un m\u00E1ximo de diez, y por cada vez adicional a\u00F1adir\u00E1 al ataque de castigo un da\u00F1o igual al nivel del personaje.\nUso: Modo Combate."
+        },
+        "PL": {
+          "M": "Rodzaj Atutu: klasowy\nWymagania: 21. poziom, Charyzma 25\u002B, Pora\u017Cenie Z\u0142a lub Pora\u017Cenie Dobra\nOpis: Kiedy postaci uda si\u0119 atak z pora\u017Ceniem, dodaje do obra\u017Ce\u0144 dwukrotno\u015B\u0107 swojego poziomu. Ten atut mo\u017Cna bra\u0107 kilkakrotnie, maksymalnie 10 razy. Ka\u017Cdy poziom atutu zwi\u0119ksza obra\u017Cenia od pora\u017Cenia o warto\u015B\u0107 r\u00F3wn\u0105 poziomowi postaci.\nU\u017Cywanie: w trybie walki."
+        }
+      },
+      "Icon": "ife_x2grsmt1",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": 25,
+      "MinSpellLevel": null,
+      "RequiredFeat1": {
+        "ID": "e1b69248-999d-1ee3-cd25-0b3e44010027",
+        "Label": "Great Smiting III"
+      },
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": {
+        "ID": "19907163-c7c1-dae6-d9c3-4b9fad3be914",
+        "Label": "Great Smiting V"
+      },
+      "CRModifier": 1,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": true,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "9da681bc-f1a3-4fe4-ab0b-0daec7a25ae1",
+      "Index": -1,
+      "Overrides": "4d9a2163-ba43-7351-93a6-10387f348dd3",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_EPIC_GREAT_SMITING_9",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8606,
+        "EN": {
+          "M": "Great Smiting IX"
+        },
+        "FR": {
+          "M": "Ch\u00E2timent supr\u00EAme IX"
+        },
+        "DE": {
+          "M": "M\u00E4chtiges Niederstrecken IX"
+        },
+        "IT": {
+          "M": "Grande punizione IX"
+        },
+        "ES": {
+          "M": "Gran castigo IX"
+        },
+        "PL": {
+          "M": "Wielkie pora\u017Cenie IX"
+        }
+      },
+      "Description": {
+        "Index": 8598,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: 21st level, Charisma 25\u002B, Smite Good or Smite Evil.\nSpecifics: Whenever the character makes a successful smite attack, it adds two times the relevant class level (that can use smite) to damage. This feat may be taken multiple times, up to a maximum of 10 times - each time adding additional damage equal to the relevant class level to the smite attack.\nUse: Combat Mode.",
+          "F": "Type of Feat: Class\nPrerequisite: 21st level, Charisma 25\u002B, Smite Good or Smite Evil.\nSpecifics: Whenever the character makes a successful smite attack, it adds two times the characters level to damage. This feat may be taken multiple times, up to a maximum of 10 times - each time adding additional damage equal to the character\u0027s level to the smite attack.\nUse: Combat Mode."
+        },
+        "FR": {
+          "M": "Type de don : Classe\nConditions : 21\u00E8me niveau, Charisme 25\u002B, Ch\u00E2timent du mal ou Ch\u00E2timent du bien.\nFonctionnement : Quand le personnage r\u00E9ussit une attaque de ch\u00E2timent, il ajoute deux fois son niveau aux d\u00E9g\u00E2ts. Ce don peut \u00EAtre s\u00E9lectionn\u00E9 plusieurs fois et \u00E0 chaque fois le personnage ajoutera son niveau aux d\u00E9g\u00E2ts jusqu\u0027\u00E0 un maximum de 10 fois son niveau.\nUtilisation : combat."
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse\nVoraussetzung: 21. Stufe, Charisma 25\u002B, Gutes oder B\u00F6ses niederstrecken.\nVorteil: Wenn der Charakter einen erfolgreichen Angriff mit Niederstrecken macht, addiert er seine doppelte Charakterstufe zum Schaden. Das Talent kann mehrmals gew\u00E4hlt werden (bis zu zehnmal). Jedes Mal erh\u00F6ht sich der Multiplikator f\u00FCr den Schaden um \u002B1.\nGebrauch: Kampfmodus."
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe.\nPrerequisiti: livello 21, Carisma 25\u002B, Punizione sacra o Punire il male.\nDescrizione: ogni volta che il personaggio effettua un attacco con impatto riuscito, aggiunge danni per il doppio del proprio livello. \u00C8 possibile utilizzare pi\u00F9 volte questo talento, fino a un massimo di dieci: ogni volta, si aggiunge danno aggiuntivo uguale al livello del personaggio.\nUso: modalit\u00E0 di combattimento."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Nivel 21\u00BA, Carisma 25\u002B y Castigar al mal o al bien.\nDetalles: Siempre que el personaje consiga efectuar un ataque de castigo, sumar\u00E1 dos veces su nivel al da\u00F1o. Esta dote puede adquirirse varias veces, hasta un m\u00E1ximo de diez, y por cada vez adicional a\u00F1adir\u00E1 al ataque de castigo un da\u00F1o igual al nivel del personaje.\nUso: Modo Combate."
+        },
+        "PL": {
+          "M": "Rodzaj Atutu: klasowy\nWymagania: 21. poziom, Charyzma 25\u002B, Pora\u017Cenie Z\u0142a lub Pora\u017Cenie Dobra\nOpis: Kiedy postaci uda si\u0119 atak z pora\u017Ceniem, dodaje do obra\u017Ce\u0144 dwukrotno\u015B\u0107 swojego poziomu. Ten atut mo\u017Cna bra\u0107 kilkakrotnie, maksymalnie 10 razy. Ka\u017Cdy poziom atutu zwi\u0119ksza obra\u017Cenia od pora\u017Cenia o warto\u015B\u0107 r\u00F3wn\u0105 poziomowi postaci.\nU\u017Cywanie: w trybie walki."
+        }
+      },
+      "Icon": "ife_x2grsmt1",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": 25,
+      "MinSpellLevel": null,
+      "RequiredFeat1": {
+        "ID": "e5739d97-7014-5bc1-81b6-382bfd6ee4be",
+        "Label": "Great Smiting VIII"
+      },
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": {
+        "ID": "5514ad01-0350-7dbc-a076-18f1edb62044",
+        "Label": "Great Smiting X"
+      },
+      "CRModifier": 1,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": true,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "32a37192-d098-40e1-a66e-3250d30587b6",
+      "Index": -1,
+      "Overrides": "19907163-c7c1-dae6-d9c3-4b9fad3be914",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_EPIC_GREAT_SMITING_5",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8602,
+        "EN": {
+          "M": "Great Smiting V"
+        },
+        "FR": {
+          "M": "Ch\u00E2timent supr\u00EAme V"
+        },
+        "DE": {
+          "M": "M\u00E4chtiges Niederstrecken V"
+        },
+        "IT": {
+          "M": "Grande punizione V"
+        },
+        "ES": {
+          "M": "Gran castigo V"
+        },
+        "PL": {
+          "M": "Wielkie pora\u017Cenie V"
+        }
+      },
+      "Description": {
+        "Index": 8598,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: 21st level, Charisma 25\u002B, Smite Good or Smite Evil.\nSpecifics: Whenever the character makes a successful smite attack, it adds two times the relevant class level (that can use smite) to damage. This feat may be taken multiple times, up to a maximum of 10 times - each time adding additional damage equal to the relevant class level to the smite attack.\nUse: Combat Mode.",
+          "F": "Type of Feat: Class\nPrerequisite: 21st level, Charisma 25\u002B, Smite Good or Smite Evil.\nSpecifics: Whenever the character makes a successful smite attack, it adds two times the characters level to damage. This feat may be taken multiple times, up to a maximum of 10 times - each time adding additional damage equal to the character\u0027s level to the smite attack.\nUse: Combat Mode."
+        },
+        "FR": {
+          "M": "Type de don : Classe\nConditions : 21\u00E8me niveau, Charisme 25\u002B, Ch\u00E2timent du mal ou Ch\u00E2timent du bien.\nFonctionnement : Quand le personnage r\u00E9ussit une attaque de ch\u00E2timent, il ajoute deux fois son niveau aux d\u00E9g\u00E2ts. Ce don peut \u00EAtre s\u00E9lectionn\u00E9 plusieurs fois et \u00E0 chaque fois le personnage ajoutera son niveau aux d\u00E9g\u00E2ts jusqu\u0027\u00E0 un maximum de 10 fois son niveau.\nUtilisation : combat."
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse\nVoraussetzung: 21. Stufe, Charisma 25\u002B, Gutes oder B\u00F6ses niederstrecken.\nVorteil: Wenn der Charakter einen erfolgreichen Angriff mit Niederstrecken macht, addiert er seine doppelte Charakterstufe zum Schaden. Das Talent kann mehrmals gew\u00E4hlt werden (bis zu zehnmal). Jedes Mal erh\u00F6ht sich der Multiplikator f\u00FCr den Schaden um \u002B1.\nGebrauch: Kampfmodus."
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe.\nPrerequisiti: livello 21, Carisma 25\u002B, Punizione sacra o Punire il male.\nDescrizione: ogni volta che il personaggio effettua un attacco con impatto riuscito, aggiunge danni per il doppio del proprio livello. \u00C8 possibile utilizzare pi\u00F9 volte questo talento, fino a un massimo di dieci: ogni volta, si aggiunge danno aggiuntivo uguale al livello del personaggio.\nUso: modalit\u00E0 di combattimento."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Nivel 21\u00BA, Carisma 25\u002B y Castigar al mal o al bien.\nDetalles: Siempre que el personaje consiga efectuar un ataque de castigo, sumar\u00E1 dos veces su nivel al da\u00F1o. Esta dote puede adquirirse varias veces, hasta un m\u00E1ximo de diez, y por cada vez adicional a\u00F1adir\u00E1 al ataque de castigo un da\u00F1o igual al nivel del personaje.\nUso: Modo Combate."
+        },
+        "PL": {
+          "M": "Rodzaj Atutu: klasowy\nWymagania: 21. poziom, Charyzma 25\u002B, Pora\u017Cenie Z\u0142a lub Pora\u017Cenie Dobra\nOpis: Kiedy postaci uda si\u0119 atak z pora\u017Ceniem, dodaje do obra\u017Ce\u0144 dwukrotno\u015B\u0107 swojego poziomu. Ten atut mo\u017Cna bra\u0107 kilkakrotnie, maksymalnie 10 razy. Ka\u017Cdy poziom atutu zwi\u0119ksza obra\u017Cenia od pora\u017Cenia o warto\u015B\u0107 r\u00F3wn\u0105 poziomowi postaci.\nU\u017Cywanie: w trybie walki."
+        }
+      },
+      "Icon": "ife_x2grsmt1",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": 25,
+      "MinSpellLevel": null,
+      "RequiredFeat1": {
+        "ID": "0966180f-ad41-4994-25bb-93494b954936",
+        "Label": "Great Smiting IV"
+      },
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": {
+        "ID": "6c8f0a2a-73e9-f992-b8df-4b16ce6bb621",
+        "Label": "Great Smiting VI"
+      },
+      "CRModifier": 1,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": true,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "c92e2011-1734-40da-9a58-d37a70b98bb8",
+      "Index": -1,
+      "Overrides": "6c8f0a2a-73e9-f992-b8df-4b16ce6bb621",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_EPIC_GREAT_SMITING_6",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8603,
+        "EN": {
+          "M": "Great Smiting VI"
+        },
+        "FR": {
+          "M": "Ch\u00E2timent supr\u00EAme VI"
+        },
+        "DE": {
+          "M": "M\u00E4chtiges Niederstrecken VI"
+        },
+        "IT": {
+          "M": "Grande punizione VI"
+        },
+        "ES": {
+          "M": "Gran castigo VI"
+        },
+        "PL": {
+          "M": "Wielkie pora\u017Cenie VI"
+        }
+      },
+      "Description": {
+        "Index": 8598,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: 21st level, Charisma 25\u002B, Smite Good or Smite Evil.\nSpecifics: Whenever the character makes a successful smite attack, it adds two times the relevant class level (that can use smite) to damage. This feat may be taken multiple times, up to a maximum of 10 times - each time adding additional damage equal to the relevant class level to the smite attack.\nUse: Combat Mode.",
+          "F": "Type of Feat: Class\nPrerequisite: 21st level, Charisma 25\u002B, Smite Good or Smite Evil.\nSpecifics: Whenever the character makes a successful smite attack, it adds two times the characters level to damage. This feat may be taken multiple times, up to a maximum of 10 times - each time adding additional damage equal to the character\u0027s level to the smite attack.\nUse: Combat Mode."
+        },
+        "FR": {
+          "M": "Type de don : Classe\nConditions : 21\u00E8me niveau, Charisme 25\u002B, Ch\u00E2timent du mal ou Ch\u00E2timent du bien.\nFonctionnement : Quand le personnage r\u00E9ussit une attaque de ch\u00E2timent, il ajoute deux fois son niveau aux d\u00E9g\u00E2ts. Ce don peut \u00EAtre s\u00E9lectionn\u00E9 plusieurs fois et \u00E0 chaque fois le personnage ajoutera son niveau aux d\u00E9g\u00E2ts jusqu\u0027\u00E0 un maximum de 10 fois son niveau.\nUtilisation : combat."
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse\nVoraussetzung: 21. Stufe, Charisma 25\u002B, Gutes oder B\u00F6ses niederstrecken.\nVorteil: Wenn der Charakter einen erfolgreichen Angriff mit Niederstrecken macht, addiert er seine doppelte Charakterstufe zum Schaden. Das Talent kann mehrmals gew\u00E4hlt werden (bis zu zehnmal). Jedes Mal erh\u00F6ht sich der Multiplikator f\u00FCr den Schaden um \u002B1.\nGebrauch: Kampfmodus."
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe.\nPrerequisiti: livello 21, Carisma 25\u002B, Punizione sacra o Punire il male.\nDescrizione: ogni volta che il personaggio effettua un attacco con impatto riuscito, aggiunge danni per il doppio del proprio livello. \u00C8 possibile utilizzare pi\u00F9 volte questo talento, fino a un massimo di dieci: ogni volta, si aggiunge danno aggiuntivo uguale al livello del personaggio.\nUso: modalit\u00E0 di combattimento."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Nivel 21\u00BA, Carisma 25\u002B y Castigar al mal o al bien.\nDetalles: Siempre que el personaje consiga efectuar un ataque de castigo, sumar\u00E1 dos veces su nivel al da\u00F1o. Esta dote puede adquirirse varias veces, hasta un m\u00E1ximo de diez, y por cada vez adicional a\u00F1adir\u00E1 al ataque de castigo un da\u00F1o igual al nivel del personaje.\nUso: Modo Combate."
+        },
+        "PL": {
+          "M": "Rodzaj Atutu: klasowy\nWymagania: 21. poziom, Charyzma 25\u002B, Pora\u017Cenie Z\u0142a lub Pora\u017Cenie Dobra\nOpis: Kiedy postaci uda si\u0119 atak z pora\u017Ceniem, dodaje do obra\u017Ce\u0144 dwukrotno\u015B\u0107 swojego poziomu. Ten atut mo\u017Cna bra\u0107 kilkakrotnie, maksymalnie 10 razy. Ka\u017Cdy poziom atutu zwi\u0119ksza obra\u017Cenia od pora\u017Cenia o warto\u015B\u0107 r\u00F3wn\u0105 poziomowi postaci.\nU\u017Cywanie: w trybie walki."
+        }
+      },
+      "Icon": "ife_x2grsmt1",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": 25,
+      "MinSpellLevel": null,
+      "RequiredFeat1": {
+        "ID": "19907163-c7c1-dae6-d9c3-4b9fad3be914",
+        "Label": "Great Smiting V"
+      },
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": {
+        "ID": "df93c4ec-3ea0-0d0a-6701-d778ebed5baf",
+        "Label": "Great Smiting VII"
+      },
+      "CRModifier": 1,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": true,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "d015e588-32aa-4073-9f94-f2335b11f3d0",
+      "Index": -1,
+      "Overrides": "df93c4ec-3ea0-0d0a-6701-d778ebed5baf",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_EPIC_GREAT_SMITING_7",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8604,
+        "EN": {
+          "M": "Great Smiting VII"
+        },
+        "FR": {
+          "M": "Ch\u00E2timent supr\u00EAme VII"
+        },
+        "DE": {
+          "M": "M\u00E4chtiges Niederstrecken VII"
+        },
+        "IT": {
+          "M": "Grande punizione VII"
+        },
+        "ES": {
+          "M": "Gran castigo VII"
+        },
+        "PL": {
+          "M": "Wielkie pora\u017Cenie VII"
+        }
+      },
+      "Description": {
+        "Index": 8598,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: 21st level, Charisma 25\u002B, Smite Good or Smite Evil.\nSpecifics: Whenever the character makes a successful smite attack, it adds two times the relevant class level (that can use smite) to damage. This feat may be taken multiple times, up to a maximum of 10 times - each time adding additional damage equal to the relevant class level to the smite attack.\nUse: Combat Mode.",
+          "F": "Type of Feat: Class\nPrerequisite: 21st level, Charisma 25\u002B, Smite Good or Smite Evil.\nSpecifics: Whenever the character makes a successful smite attack, it adds two times the characters level to damage. This feat may be taken multiple times, up to a maximum of 10 times - each time adding additional damage equal to the character\u0027s level to the smite attack.\nUse: Combat Mode."
+        },
+        "FR": {
+          "M": "Type de don : Classe\nConditions : 21\u00E8me niveau, Charisme 25\u002B, Ch\u00E2timent du mal ou Ch\u00E2timent du bien.\nFonctionnement : Quand le personnage r\u00E9ussit une attaque de ch\u00E2timent, il ajoute deux fois son niveau aux d\u00E9g\u00E2ts. Ce don peut \u00EAtre s\u00E9lectionn\u00E9 plusieurs fois et \u00E0 chaque fois le personnage ajoutera son niveau aux d\u00E9g\u00E2ts jusqu\u0027\u00E0 un maximum de 10 fois son niveau.\nUtilisation : combat."
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse\nVoraussetzung: 21. Stufe, Charisma 25\u002B, Gutes oder B\u00F6ses niederstrecken.\nVorteil: Wenn der Charakter einen erfolgreichen Angriff mit Niederstrecken macht, addiert er seine doppelte Charakterstufe zum Schaden. Das Talent kann mehrmals gew\u00E4hlt werden (bis zu zehnmal). Jedes Mal erh\u00F6ht sich der Multiplikator f\u00FCr den Schaden um \u002B1.\nGebrauch: Kampfmodus."
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe.\nPrerequisiti: livello 21, Carisma 25\u002B, Punizione sacra o Punire il male.\nDescrizione: ogni volta che il personaggio effettua un attacco con impatto riuscito, aggiunge danni per il doppio del proprio livello. \u00C8 possibile utilizzare pi\u00F9 volte questo talento, fino a un massimo di dieci: ogni volta, si aggiunge danno aggiuntivo uguale al livello del personaggio.\nUso: modalit\u00E0 di combattimento."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Nivel 21\u00BA, Carisma 25\u002B y Castigar al mal o al bien.\nDetalles: Siempre que el personaje consiga efectuar un ataque de castigo, sumar\u00E1 dos veces su nivel al da\u00F1o. Esta dote puede adquirirse varias veces, hasta un m\u00E1ximo de diez, y por cada vez adicional a\u00F1adir\u00E1 al ataque de castigo un da\u00F1o igual al nivel del personaje.\nUso: Modo Combate."
+        },
+        "PL": {
+          "M": "Rodzaj Atutu: klasowy\nWymagania: 21. poziom, Charyzma 25\u002B, Pora\u017Cenie Z\u0142a lub Pora\u017Cenie Dobra\nOpis: Kiedy postaci uda si\u0119 atak z pora\u017Ceniem, dodaje do obra\u017Ce\u0144 dwukrotno\u015B\u0107 swojego poziomu. Ten atut mo\u017Cna bra\u0107 kilkakrotnie, maksymalnie 10 razy. Ka\u017Cdy poziom atutu zwi\u0119ksza obra\u017Cenia od pora\u017Cenia o warto\u015B\u0107 r\u00F3wn\u0105 poziomowi postaci.\nU\u017Cywanie: w trybie walki."
+        }
+      },
+      "Icon": "ife_x2grsmt1",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": 25,
+      "MinSpellLevel": null,
+      "RequiredFeat1": {
+        "ID": "6c8f0a2a-73e9-f992-b8df-4b16ce6bb621",
+        "Label": "Great Smiting VI"
+      },
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": {
+        "ID": "e5739d97-7014-5bc1-81b6-382bfd6ee4be",
+        "Label": "Great Smiting VIII"
+      },
+      "CRModifier": 1,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": true,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "b749b8ae-ec06-4547-8e2c-9f0e01dcb44c",
+      "Index": -1,
+      "Overrides": "e5739d97-7014-5bc1-81b6-382bfd6ee4be",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_EPIC_GREAT_SMITING_8",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8605,
+        "EN": {
+          "M": "Great Smiting VIII"
+        },
+        "FR": {
+          "M": "Ch\u00E2timent supr\u00EAme VIII"
+        },
+        "DE": {
+          "M": "M\u00E4chtiges Niederstrecken VIII"
+        },
+        "IT": {
+          "M": "Grande punizione VIII"
+        },
+        "ES": {
+          "M": "Gran castigo VIII"
+        },
+        "PL": {
+          "M": "Wielkie pora\u017Cenie VIII"
+        }
+      },
+      "Description": {
+        "Index": 8598,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: 21st level, Charisma 25\u002B, Smite Good or Smite Evil.\nSpecifics: Whenever the character makes a successful smite attack, it adds two times the relevant class level (that can use smite) to damage. This feat may be taken multiple times, up to a maximum of 10 times - each time adding additional damage equal to the relevant class level to the smite attack.\nUse: Combat Mode.",
+          "F": "Type of Feat: Class\nPrerequisite: 21st level, Charisma 25\u002B, Smite Good or Smite Evil.\nSpecifics: Whenever the character makes a successful smite attack, it adds two times the characters level to damage. This feat may be taken multiple times, up to a maximum of 10 times - each time adding additional damage equal to the character\u0027s level to the smite attack.\nUse: Combat Mode."
+        },
+        "FR": {
+          "M": "Type de don : Classe\nConditions : 21\u00E8me niveau, Charisme 25\u002B, Ch\u00E2timent du mal ou Ch\u00E2timent du bien.\nFonctionnement : Quand le personnage r\u00E9ussit une attaque de ch\u00E2timent, il ajoute deux fois son niveau aux d\u00E9g\u00E2ts. Ce don peut \u00EAtre s\u00E9lectionn\u00E9 plusieurs fois et \u00E0 chaque fois le personnage ajoutera son niveau aux d\u00E9g\u00E2ts jusqu\u0027\u00E0 un maximum de 10 fois son niveau.\nUtilisation : combat."
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse\nVoraussetzung: 21. Stufe, Charisma 25\u002B, Gutes oder B\u00F6ses niederstrecken.\nVorteil: Wenn der Charakter einen erfolgreichen Angriff mit Niederstrecken macht, addiert er seine doppelte Charakterstufe zum Schaden. Das Talent kann mehrmals gew\u00E4hlt werden (bis zu zehnmal). Jedes Mal erh\u00F6ht sich der Multiplikator f\u00FCr den Schaden um \u002B1.\nGebrauch: Kampfmodus."
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe.\nPrerequisiti: livello 21, Carisma 25\u002B, Punizione sacra o Punire il male.\nDescrizione: ogni volta che il personaggio effettua un attacco con impatto riuscito, aggiunge danni per il doppio del proprio livello. \u00C8 possibile utilizzare pi\u00F9 volte questo talento, fino a un massimo di dieci: ogni volta, si aggiunge danno aggiuntivo uguale al livello del personaggio.\nUso: modalit\u00E0 di combattimento."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Nivel 21\u00BA, Carisma 25\u002B y Castigar al mal o al bien.\nDetalles: Siempre que el personaje consiga efectuar un ataque de castigo, sumar\u00E1 dos veces su nivel al da\u00F1o. Esta dote puede adquirirse varias veces, hasta un m\u00E1ximo de diez, y por cada vez adicional a\u00F1adir\u00E1 al ataque de castigo un da\u00F1o igual al nivel del personaje.\nUso: Modo Combate."
+        },
+        "PL": {
+          "M": "Rodzaj Atutu: klasowy\nWymagania: 21. poziom, Charyzma 25\u002B, Pora\u017Cenie Z\u0142a lub Pora\u017Cenie Dobra\nOpis: Kiedy postaci uda si\u0119 atak z pora\u017Ceniem, dodaje do obra\u017Ce\u0144 dwukrotno\u015B\u0107 swojego poziomu. Ten atut mo\u017Cna bra\u0107 kilkakrotnie, maksymalnie 10 razy. Ka\u017Cdy poziom atutu zwi\u0119ksza obra\u017Cenia od pora\u017Cenia o warto\u015B\u0107 r\u00F3wn\u0105 poziomowi postaci.\nU\u017Cywanie: w trybie walki."
+        }
+      },
+      "Icon": "ife_x2grsmt1",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": 25,
+      "MinSpellLevel": null,
+      "RequiredFeat1": {
+        "ID": "df93c4ec-3ea0-0d0a-6701-d778ebed5baf",
+        "Label": "Great Smiting VII"
+      },
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": {
+        "ID": "4d9a2163-ba43-7351-93a6-10387f348dd3",
+        "Label": "Great Smiting IX"
+      },
+      "CRModifier": 1,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": true,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "23251555-9f08-4c55-aa45-6fed53651d1d",
+      "Index": -1,
+      "Overrides": "5514ad01-0350-7dbc-a076-18f1edb62044",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_EPIC_GREAT_SMITING_10",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8607,
+        "EN": {
+          "M": "Great Smiting X"
+        },
+        "FR": {
+          "M": "Ch\u00E2timent supr\u00EAme X"
+        },
+        "DE": {
+          "M": "M\u00E4chtiges Niederstrecken X"
+        },
+        "IT": {
+          "M": "Grande punizione X"
+        },
+        "ES": {
+          "M": "Gran castigo X"
+        },
+        "PL": {
+          "M": "Wielkie pora\u017Cenie X"
+        }
+      },
+      "Description": {
+        "Index": 8598,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: 21st level, Charisma 25\u002B, Smite Good or Smite Evil.\nSpecifics: Whenever the character makes a successful smite attack, it adds two times the relevant class level (that can use smite) to damage. This feat may be taken multiple times, up to a maximum of 10 times - each time adding additional damage equal to the relevant class level to the smite attack.\nUse: Combat Mode.",
+          "F": "Type of Feat: Class\nPrerequisite: 21st level, Charisma 25\u002B, Smite Good or Smite Evil.\nSpecifics: Whenever the character makes a successful smite attack, it adds two times the characters level to damage. This feat may be taken multiple times, up to a maximum of 10 times - each time adding additional damage equal to the character\u0027s level to the smite attack.\nUse: Combat Mode."
+        },
+        "FR": {
+          "M": "Type de don : Classe\nConditions : 21\u00E8me niveau, Charisme 25\u002B, Ch\u00E2timent du mal ou Ch\u00E2timent du bien.\nFonctionnement : Quand le personnage r\u00E9ussit une attaque de ch\u00E2timent, il ajoute deux fois son niveau aux d\u00E9g\u00E2ts. Ce don peut \u00EAtre s\u00E9lectionn\u00E9 plusieurs fois et \u00E0 chaque fois le personnage ajoutera son niveau aux d\u00E9g\u00E2ts jusqu\u0027\u00E0 un maximum de 10 fois son niveau.\nUtilisation : combat."
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse\nVoraussetzung: 21. Stufe, Charisma 25\u002B, Gutes oder B\u00F6ses niederstrecken.\nVorteil: Wenn der Charakter einen erfolgreichen Angriff mit Niederstrecken macht, addiert er seine doppelte Charakterstufe zum Schaden. Das Talent kann mehrmals gew\u00E4hlt werden (bis zu zehnmal). Jedes Mal erh\u00F6ht sich der Multiplikator f\u00FCr den Schaden um \u002B1.\nGebrauch: Kampfmodus."
+        },
+        "IT": {
+          "M": "Tipo di talento: di classe.\nPrerequisiti: livello 21, Carisma 25\u002B, Punizione sacra o Punire il male.\nDescrizione: ogni volta che il personaggio effettua un attacco con impatto riuscito, aggiunge danni per il doppio del proprio livello. \u00C8 possibile utilizzare pi\u00F9 volte questo talento, fino a un massimo di dieci: ogni volta, si aggiunge danno aggiuntivo uguale al livello del personaggio.\nUso: modalit\u00E0 di combattimento."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Nivel 21\u00BA, Carisma 25\u002B y Castigar al mal o al bien.\nDetalles: Siempre que el personaje consiga efectuar un ataque de castigo, sumar\u00E1 dos veces su nivel al da\u00F1o. Esta dote puede adquirirse varias veces, hasta un m\u00E1ximo de diez, y por cada vez adicional a\u00F1adir\u00E1 al ataque de castigo un da\u00F1o igual al nivel del personaje.\nUso: Modo Combate."
+        },
+        "PL": {
+          "M": "Rodzaj Atutu: klasowy\nWymagania: 21. poziom, Charyzma 25\u002B, Pora\u017Cenie Z\u0142a lub Pora\u017Cenie Dobra\nOpis: Kiedy postaci uda si\u0119 atak z pora\u017Ceniem, dodaje do obra\u017Ce\u0144 dwukrotno\u015B\u0107 swojego poziomu. Ten atut mo\u017Cna bra\u0107 kilkakrotnie, maksymalnie 10 razy. Ka\u017Cdy poziom atutu zwi\u0119ksza obra\u017Cenia od pora\u017Cenia o warto\u015B\u0107 r\u00F3wn\u0105 poziomowi postaci.\nU\u017Cywanie: w trybie walki."
+        }
+      },
+      "Icon": "ife_x2grsmt1",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": 25,
+      "MinSpellLevel": null,
+      "RequiredFeat1": {
+        "ID": "4d9a2163-ba43-7351-93a6-10387f348dd3",
+        "Label": "Great Smiting IX"
+      },
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": null,
+      "SuccessorFeat": null,
+      "CRModifier": 1,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": true,
       "UseActionQueue": true
     }
   ]
