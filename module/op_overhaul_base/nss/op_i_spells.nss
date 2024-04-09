@@ -136,7 +136,7 @@ int DoSavingThrow(int nSavingThrow, object oTarget, int nDC, int nSaveType=SAVIN
             }
             if (nImmunityType != -1)
             {
-                SendImmunityFeedback(oCaster, oTarget, nImmunityType);
+                SendImmunityFeedback(oSaveVersus, oTarget, nImmunityType);
             }
         }
         DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
@@ -217,7 +217,7 @@ void SendImmunityFeedback(object oCaster, object oTarget, int nImmunityType)
     }
 
     // Replace <CUSTOM0> with the given named target
-    sMessage = RegExpReplace("<CUSTOM0>", GetStringByStrRef(nStrRef), sTarget, REGEXP_BASIC);
+    string sMessage = RegExpReplace("<CUSTOM0>", GetStringByStrRef(nStrRef), sTarget, REGEXP_BASIC);
 
     // Send the feedback
     if (GetIsObjectValid(oCaster)) SendMessageToPC(oCaster, sMessage);

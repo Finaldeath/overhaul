@@ -3,15 +3,19 @@
 //:: op_i_base.nss
 //:://////////////////////////////////////////////
 /*
-    Base include file for Overhaul.
+    Base include file for Overhaul. A one stop shop for including all
+    includes at once (either you're mad or you need absolutely everything)
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
 //:: https://github.com/Finaldeath/overhaul
 //:://////////////////////////////////////////////
 
-// Constants include
-#include "op_i_constants"
+// Eos constants include is generated from the Eos data
+#include "op_i_eosconstant"
+
+// Main Eos includes
+#include "op_i_spells"
 
 // Utility includes
 #include "utl_i_2da"
