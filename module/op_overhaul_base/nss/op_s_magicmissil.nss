@@ -43,10 +43,10 @@ void main()
         nMissiles = 5;
     }
 
-    if (GetSpellTargetValid(oCaster, oTarget, SPELL_TARGET_STANDARDHOSTILE))
+    if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
     {
         // Fire cast spell at event for the specified target
-        SignalSpellCastAt(oTarget, TRUE);
+        SignalSpellCastAt(oTarget, oCaster, TRUE);
 
         // Make SR Check
         if (!DoResistSpell(oCaster, oTarget, fDelay))
@@ -67,7 +67,7 @@ void main()
 
                 // Apply the MIRV and damage effect
                 DelayCommand(fTime, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDam, oTarget));
-                DelayCommand(fTime, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eVis, oTarget));
+                DelayCommand(fTime, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
                 DelayCommand(fDeltaTime, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eMissile, oTarget));
             }
         }

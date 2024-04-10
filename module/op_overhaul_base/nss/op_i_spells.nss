@@ -118,8 +118,8 @@ int GetDiceRoll(int nNumberOfDice, int nDiceSize, int nMetaMagic, int nBonus = 0
 // * nDurationType - The conversion used, rounds, turns (10 rounds) or hours
 float GetDuration(int nDuration, int nDurationType, int nMetaMagic);
 
-// Checks if the given target is valid to be targeted by oSource
-int GetSpellTargetValid(object oSource, object oTarget, int nTargetType);
+// Checks if the given target is valid to be targeted by oCaster
+int GetSpellTargetValid(object oTarget, object oCaster, int nTargetType);
 
 // Converts a SAVING_THROW_TYPE_* to an IMMUNITY_TYPE_* where these are checked for in the saving throw functions
 // else it will be IMMUNITY_TYPE_NONE (0)
@@ -136,8 +136,8 @@ void SendImmunityFeedback(object oCaster, object oTarget, int nImmunityType);
 // This allows the application of a random delay to effects based on time parameters passed in.
 float GetRandomDelay(float fMinimumTime = 0.4, float MaximumTime = 1.1);
 
-// This gets the delay for the given VFX else a default of target distance / 20
-float GetVisualEffectHitDelay(int nVFX, object oTarget, object oSource = OBJECT_SELF);
+// This gets the delay for the given programmed VFX (progfx) MIRV else a default of target distance / 20
+float GetVisualEffectHitDelay(int nVFX, object oTarget, object oSource);
 
 // Rewrites the effect stack to use the given properties (default values don't override the current ones)
 effect EffectChangeProperties(effect eEffect, int nSpellId = SPELL_INVALID, int nCasterLevel = 0, object oCreator = OBJECT_SELF);
@@ -149,7 +149,7 @@ void ApplySpellEffectToObject(int nDurationType, effect eEffect, object oTarget,
 void ApplySpellEffectAtLocation(int nDurationType, effect eEffect, location lTarget, float fDuration = 0.0);
 
 // Signals nSpellId (set globally) against oTarget
-void SignalSpellCastAt(object oTarget, int bHostile, object oCaster = OBJECT_SELF);
+void SignalSpellCastAt(object oTarget, object oCaster, int bHostile);
 
 // Debug the spell and variables
 void DebugSpell()
@@ -159,7 +159,7 @@ void DebugSpell()
                                           "] Caster: [" + GetName(oCaster) +
                                           "] Cast Item: [" + GetName(oCastItem) +
                                           "] Target: [" + GetName(oTarget) +
-                                          "] Save DC: [" + IntToString(nSaveDC) +
+                                          "] Save DC: [" + IntToString(nSpellSaveDC) +
                                           "] Caster Level: [" + IntToString(nCasterLevel) + "]");
 }
 
@@ -378,8 +378,8 @@ float GetDuration(int nDuration, int nDurationType, int nMetaMagic)
     return fDuration;
 }
 
-// Checks if the given target is valid to be targeted by oSource
-int GetSpellTargetValid(object oSource, object oTarget, int nTargetType)
+// Checks if the given target is valid to be targeted by oCaster
+int GetSpellTargetValid(object oTarget, object oCaster, int nTargetType)
 {
     // If dead, not a valid target
     if (GetIsDead(oTarget))
@@ -394,7 +394,7 @@ int GetSpellTargetValid(object oSource, object oTarget, int nTargetType)
         // This kind of spell will affect all friendlies and anyone in my party/faction, even if we are upset with each other currently.
         case SPELL_TARGET_ALLALLIES:
         {
-            if (GetIsReactionTypeFriendly(oTarget, oSource) || GetFactionEqual(oTarget, oSource))
+            if (GetIsReactionTypeFriendly(oTarget, oCaster) || GetFactionEqual(oTarget, oCaster))
             {
                 bReturnValue = TRUE;
             }
@@ -404,7 +404,7 @@ int GetSpellTargetValid(object oSource, object oTarget, int nTargetType)
         {
             // This has been rewritten. We do a simple check for the reaction type now.
             // Previously there was a lot of checks for henchmen, AOEs that PCs cast, etc.
-            if (!GetIsReactionTypeFriendly(oTarget, oSource))
+            if (!GetIsReactionTypeFriendly(oTarget, oCaster))
             {
                 bReturnValue = TRUE;
             }
@@ -413,7 +413,7 @@ int GetSpellTargetValid(object oSource, object oTarget, int nTargetType)
         // Only harms enemies, ever, such as Call Lightning
         case SPELL_TARGET_SELECTIVEHOSTILE:
         {
-            if (GetIsEnemy(oTarget, oSource))
+            if (GetIsEnemy(oTarget, oCaster))
             {
                 bReturnValue = TRUE;
             }
@@ -426,7 +426,7 @@ int GetSpellTargetValid(object oSource, object oTarget, int nTargetType)
 
 // Converts a SAVING_THROW_TYPE_* to an IMMUNITY_TYPE_* where these are checked for in the saving throw functions
 // else it will be IMMUNITY_TYPE_NONE (0)
-int GetImmuinityTypeFromSavingThrowType(int nSaveType)
+int GetImmunityTypeFromSavingThrowType(int nSaveType)
 {
     // Only certain saving throw types check immunities in WillSave, ReflexSave or FortitudeSave
     int nImmunityType = IMMUNITY_TYPE_NONE;
@@ -565,8 +565,8 @@ float GetRandomDelay(float fMinimumTime = 0.4, float MaximumTime = 1.1)
     }
 }
 
-// This gets the delay for the given VFX else a default of target distance / 20
-float GetVisualEffectHitDelay(int nVFX, object oTarget, object oSource = OBJECT_SELF)
+// This gets the delay for the given programmed VFX (progfx) MIRV else a default of target distance / 20
+float GetVisualEffectHitDelay(int nVFX, object oTarget, object oSource)
 {
     // Check if the VFX has a programmed effect
     int nProgrammedVFX = StringToInt(Get2DAString("visualeffects", "ProgFX_Impact", nVFX));
@@ -637,7 +637,7 @@ void ApplySpellEffectAtLocation(int nDurationType, effect eEffect, location lTar
 }
 
 // Signals nSpellId (set globally) against oTarget
-void SignalSpellCastAt(object oTarget, int bHostile, object oCaster = OBJECT_SELF)
+void SignalSpellCastAt(object oTarget, object oCaster, int bHostile)
 {
     SignalEvent(oTarget, EventSpellCastAt(oCaster, nSpellId));
 }
@@ -648,5 +648,5 @@ object oCastItem = GetSpellCastItem();
 object oTarget   = GetSpellTargetObject();
 location lTarget = GetSpellTargetLocationCalculated();
 int nSpellId     = GetSpellIdCalculated();
-int nSaveDC      = GetSpellSaveDCCalculated();
+int nSpellSaveDC = GetSpellSaveDCCalculated();
 int nCasterLevel = GetCasterLevelCalculated();
