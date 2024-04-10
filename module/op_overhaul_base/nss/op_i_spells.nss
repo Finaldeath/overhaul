@@ -49,6 +49,8 @@ const int SPELL_TARGET_ALLALLIES        = 1;  // Allies only
 const int SPELL_TARGET_STANDARDHOSTILE  = 2;  // Standard hostile - IE: Will hit allies in certain PvP
 const int SPELL_TARGET_SELECTIVEHOSTILE = 3;  // Selective hostile - IE: Will not hit allies
 
+const int SPELL_INVALID = -1;
+
 // Perform a saving throw roll.
 // Unlike MySavingThrow this will not "return failure in case of immunity" since, well, they're immune!
 // Instead they'll be immune and we'll send appropriate feedback messages.
@@ -88,6 +90,23 @@ int GetIsImmuneWithFeedback(object oCreature, int nImmunityType, object oVersus 
 // Provide some feedback formatted to the games method of showing immunity feedback
 // This doesn't cover every immunity type, only those the game usually feeds back on.
 void SendImmunityFeedback(object oCaster, object oTarget, int nImmunityType);
+
+// This allows the application of a random delay to effects based on time parameters passed in.
+float GetRandomDelay(float fMinimumTime = 0.4, float MaximumTime = 1.1);
+
+// This gets the delay for the given VFX else a default of target distance / 20
+float GetVisualEffectHitDelay(int nVFX, object oTarget, object oSource = OBJECT_SELF);
+
+// This calculates the spell save DC for the given spell adding in bonuses and penalties as required
+// For a AOE it uses the stored DC.
+int GetSpellSaveDCCalculated(object oCaster = OBJECT_SELF, int nSpellId = SPELL_INVALID);
+
+// This calculates the spell caster level for any additional bonuses due to feats or similar.
+// For a AOE it uses the stored caster level.
+int GetCasterLevelCalculated(object oCaster = OBJECT_SELF, int nSpellId = SPELL_INVALID);
+
+// Rewrites the effect stack to use the given properties (default values don't override the current ones)
+effect EffectChangeProperties(effect eEffect, int nSpellId = SPELL_INVALID, int nCasterLevel = 0, object oCreator = OBJECT_SELF);
 
 // Perform a saving throw roll.
 // Unlike MySavingThrow this will not "return failure in case of immunity" since, well, they're immune!
@@ -404,4 +423,115 @@ void SendImmunityFeedback(object oCaster, object oTarget, int nImmunityType)
     // Send the feedback
     if (GetIsObjectValid(oCaster)) SendMessageToPC(oCaster, sMessage);
     if (GetIsObjectValid(oTarget)) SendMessageToPC(oCaster, sMessage);
+}
+
+// This allows the application of a random delay to effects based on time parameters passed in.
+float GetRandomDelay(float fMinimumTime = 0.4, float MaximumTime = 1.1)
+{
+    float fRandom = MaximumTime - fMinimumTime;
+    if (fRandom < 0.0)
+    {
+        return 0.0;
+    }
+    else
+    {
+        int nRandom;
+        nRandom = FloatToInt(fRandom * 10.0);
+        nRandom = Random(nRandom) + 1;
+        fRandom = IntToFloat(nRandom);
+        fRandom /= 10.0;
+        return fRandom + fMinimumTime;
+    }
+}
+
+// This gets the delay for the given VFX else a default of target distance / 20
+float GetVisualEffectHitDelay(int nVFX, object oTarget, object oSource = OBJECT_SELF)
+{
+    // Check if the VFX has a programmed effect
+    int nProgrammedVFX = StringToInt(Get2DAString("spells", "ProgFX", nVFX));
+    if (nProgrammedVFX)
+    {
+        // Get the programmed VFX type, and if it's right we get the value else do default
+        int nType = StringToInt(Get2DAString("progfx", "Type", nProgrammedVFX));
+        if (nType == 10)
+        {
+            string sDelayType = Get2DAString("progfx", "Param5", nProgrammedVFX);
+
+            if (sDelayType == "log")
+            {
+                float fDist = GetDistanceBetween(oSource, oTarget);
+                return fDist / (3.0 * log(fDist) + 2.0);
+            }
+            else if (sDelayType == "linear")
+            {
+                float fDist = GetDistanceBetween(oSource, oTarget);
+                return fDist / 50.0;
+            }
+            else if (sDelayType == "linear2")
+            {
+                float fDist = GetDistanceBetween(oSource, oTarget);
+                return fDist / 25.0;
+            }
+        }
+        else if (nType == 11)
+        {
+            // Same as "log"
+            float fDist = GetDistanceBetween(oSource, oTarget);
+            return fDist / (3.0 * log(fDist) + 2.0);
+        }
+    }
+    // Default is distance / 20
+    return GetDistanceBetween(oSource, oTarget) / 20.0;
+}
+
+// This calculates the spell save DC for the given spell adding in bonuses and penalties as required
+// For a AOE it uses the stored DC on the AOE object then uses oCaster to change the value.
+int GetSpellSaveDCCalculated(object oCaster = OBJECT_SELF, int nSpellId = SPELL_INVALID)
+{
+    // If no spell Id input we retrieve it
+    if (nSpellId == SPELL_INVALID)
+    {
+        nSpellId = GetSpellId();
+    }
+
+    int nSpellSaveDC = GetSpellSaveDC();
+
+    // Modifications due to casters feats etc.
+
+    return nSpellSaveDC;
+}
+
+// This calculates the spell caster level for any additional bonuses due to feats or similar.
+// For a AOE pass in it as the oCaster, then it uses the stored caster level.
+int GetCasterLevelCalculated(object oCaster = OBJECT_SELF, int nSpellId = SPELL_INVALID)
+{
+    // If no spell Id input we retrieve it
+    if (nSpellId == SPELL_INVALID)
+    {
+        nSpellId = GetSpellId();
+    }
+
+    int nCasterLevel = GetCasterLevel(oCaster);
+
+    // Modifications due to casters feats etc.
+
+    return nCasterLevel;
+}
+
+// Rewrites the effect stack to use the given properties (default values don't override the current ones)
+effect EffectChangeProperties(effect eEffect, int nSpellId = SPELL_INVALID, int nCasterLevel = 0, object oCreator = OBJECT_SELF)
+{
+    if (nSpellId != SPELL_INVALID)
+    {
+        eEffect = SetEffectSpellId(eEffect, nSpellId);
+    }
+    if (nCasterLevel != 0)
+    {
+        eEffect = SetEffectCasterLevel(eEffect, nCasterLevel);
+    }
+    if (oCreator != OBJECT_SELF)
+    {
+        eEffect = SetEffectCreator(eEffect, oCreator);
+    }
+    return eEffect;
 }
