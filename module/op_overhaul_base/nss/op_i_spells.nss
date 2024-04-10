@@ -4,6 +4,28 @@
 //:://////////////////////////////////////////////
 /*
     Include file for Spells and Spell-like Abilities.
+
+    Note on spells impersonating other spells, eg: Shadow Conjuration type spells:
+    * You execute the spell script for say, Shadow Conjuration, this then uses ExecuteScript to call
+      the real spell script, but set the parameter SPELL_ID to be what you want the script to use.
+      The rest of the spells properties will use the GetSpellSaveDC etc. properly (ie it'll be illusion
+      spell school of a higher level).
+      Signal Event will use nSpellId which will be the original, meaning easier to work with AI and other
+      things, and the effects will be generated as if from the original ID for easier checking and removal.
+
+    The global variables for spells are:
+
+    oCaster - The caller of the script by default
+    oCastItem - The spell cast item, if any
+    oTarget - The target if any
+    LTarget - The target location (or location of oTarget if valid)
+    nSpellId - the SPELL_* cast
+    nSpellSaveDC - the Spell Save DC (if a proper spell)
+    nCasterLevel - the Caster Level
+    nMetaMagic - Metamagic feat
+
+    If these are altered later they are used in the ApplySpellEffectToObject() and
+    ApplySpellEffectAtLocation() functions.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -51,6 +73,23 @@ const int SPELL_TARGET_SELECTIVEHOSTILE = 3;  // Selective hostile - IE: Will no
 
 const int SPELL_INVALID = -1;
 
+// Checks for if the spell hook needs to be executed and execute it and check the return value if so.
+int DoSpellHook();
+
+// This gets the spell ID but overrides it if we are calling a spell with ExecuteScript
+int GetSpellIdCalculated();
+
+// This calculates the spell save DC for the given spell adding in bonuses and penalties as required
+// For a AOE it uses the stored DC.
+int GetSpellSaveDCCalculated(object oCaster = OBJECT_SELF, int nSpellId = SPELL_INVALID);
+
+// This calculates the spell caster level for any additional bonuses due to feats or similar.
+// For a AOE it uses the stored caster level.
+int GetCasterLevelCalculated(object oCaster = OBJECT_SELF, int nSpellId = SPELL_INVALID);
+
+// Will return the location of GetSpellTargetObject() if valid, else GetSpellTargetLocation.
+location GetSpellTargetLocationCalculated();
+
 // Perform a saving throw roll.
 // Unlike MySavingThrow this will not "return failure in case of immunity" since, well, they're immune!
 // Instead they'll be immune and we'll send appropriate feedback messages.
@@ -81,7 +120,7 @@ int GetSpellTargetValid(object oSource, object oTarget, int nTargetType);
 
 // Converts a SAVING_THROW_TYPE_* to an IMMUNITY_TYPE_* where these are checked for in the saving throw functions
 // else it will be IMMUNITY_TYPE_NONE (0)
-int GetImmuinityTypeFromSavingThrowType(int nSaveType);
+int GetImmunityTypeFromSavingThrowType(int nSaveType);
 
 // Check and do immunity for the given immunity type.
 // It also provides feedback to the given creatures if valid, and the game usually gives such feedback.
@@ -97,16 +136,80 @@ float GetRandomDelay(float fMinimumTime = 0.4, float MaximumTime = 1.1);
 // This gets the delay for the given VFX else a default of target distance / 20
 float GetVisualEffectHitDelay(int nVFX, object oTarget, object oSource = OBJECT_SELF);
 
-// This calculates the spell save DC for the given spell adding in bonuses and penalties as required
-// For a AOE it uses the stored DC.
-int GetSpellSaveDCCalculated(object oCaster = OBJECT_SELF, int nSpellId = SPELL_INVALID);
-
-// This calculates the spell caster level for any additional bonuses due to feats or similar.
-// For a AOE it uses the stored caster level.
-int GetCasterLevelCalculated(object oCaster = OBJECT_SELF, int nSpellId = SPELL_INVALID);
-
 // Rewrites the effect stack to use the given properties (default values don't override the current ones)
 effect EffectChangeProperties(effect eEffect, int nSpellId = SPELL_INVALID, int nCasterLevel = 0, object oCreator = OBJECT_SELF);
+
+// Applies the given effect but merges in the right spell Id, caster Id and caster level.
+void ApplySpellEffectToObject(int nDurationType, effect eEffect, object oTarget, float fDuration = 0.0);
+
+// Applies the given effect but merges in the right spell Id, caster Id and caster level.
+void ApplySpellEffectAtLocation(int nDurationType, effect eEffect, location lTarget, float fDuration = 0.0);
+
+// Signals nSpellId (set globally) against oTarget
+void SignalSpellCastAt(object oTarget, int bHostile, object oCaster = OBJECT_SELF);
+
+// Checks for if the spell hook needs to be executed and execute it and check the return value if so.
+int DoSpellHook()
+{
+    // TODO dummy spell hook for now
+    return FALSE;
+}
+
+// This gets the spell ID but overrides it if we are calling a spell with ExecuteScript
+int GetSpellIdCalculated()
+{
+    string sParam = GetScriptParam("SPELL_ID");
+    if (sParam != "")
+    {
+        return StringToInt(sParam);
+    }
+    return GetSpellId();
+}
+
+// This calculates the spell save DC for the given spell adding in bonuses and penalties as required
+// For a AOE it uses the stored DC on the AOE object then uses oCaster to change the value.
+int GetSpellSaveDCCalculated(object oCaster = OBJECT_SELF, int nSpellId = SPELL_INVALID)
+{
+    // If no spell Id input we retrieve it
+    if (nSpellId == SPELL_INVALID)
+    {
+        nSpellId = GetSpellId();
+    }
+
+    int nSpellSaveDC = GetSpellSaveDC();
+
+    // Modifications due to casters feats etc.
+
+    return nSpellSaveDC;
+}
+
+// This calculates the spell caster level for any additional bonuses due to feats or similar.
+// For a AOE pass in it as the oCaster, then it uses the stored caster level.
+int GetCasterLevelCalculated(object oCaster = OBJECT_SELF, int nSpellId = SPELL_INVALID)
+{
+    // If no spell Id input we retrieve it
+    if (nSpellId == SPELL_INVALID)
+    {
+        nSpellId = GetSpellId();
+    }
+
+    int nCasterLevel = GetCasterLevel(oCaster);
+
+    // Modifications due to casters feats etc.
+
+    return nCasterLevel;
+}
+
+// Will return the location of GetSpellTargetObject() if valid, else GetSpellTargetLocation.
+location GetSpellTargetLocationCalculated()
+{
+    object oTarget = GetSpellTargetObject();
+    if (GetIsObjectValid(oTarget))
+    {
+        return GetLocation(oTarget);
+    }
+    return GetSpellTargetLocation();
+}
 
 // Perform a saving throw roll.
 // Unlike MySavingThrow this will not "return failure in case of immunity" since, well, they're immune!
@@ -160,7 +263,7 @@ int DoSavingThrow(int nSavingThrow, object oTarget, int nDC, int nSaveType = SAV
             eVis = EffectVisualEffect(VFX_IMP_MAGIC_RESISTANCE_USE);
             // Provide some feedback formatted to the games method of showing immunity feedback
             // But we don't just fire the effect off - return 2 still that they're immune.
-            int nImmunityType = GetImmuinityTypeFromSavingThrowType(nSaveType);
+            int nImmunityType = GetImmunityTypeFromSavingThrowType(nSaveType);
 
             if (nImmunityType != IMMUNITY_TYPE_NONE)
             {
@@ -484,40 +587,6 @@ float GetVisualEffectHitDelay(int nVFX, object oTarget, object oSource = OBJECT_
     return GetDistanceBetween(oSource, oTarget) / 20.0;
 }
 
-// This calculates the spell save DC for the given spell adding in bonuses and penalties as required
-// For a AOE it uses the stored DC on the AOE object then uses oCaster to change the value.
-int GetSpellSaveDCCalculated(object oCaster = OBJECT_SELF, int nSpellId = SPELL_INVALID)
-{
-    // If no spell Id input we retrieve it
-    if (nSpellId == SPELL_INVALID)
-    {
-        nSpellId = GetSpellId();
-    }
-
-    int nSpellSaveDC = GetSpellSaveDC();
-
-    // Modifications due to casters feats etc.
-
-    return nSpellSaveDC;
-}
-
-// This calculates the spell caster level for any additional bonuses due to feats or similar.
-// For a AOE pass in it as the oCaster, then it uses the stored caster level.
-int GetCasterLevelCalculated(object oCaster = OBJECT_SELF, int nSpellId = SPELL_INVALID)
-{
-    // If no spell Id input we retrieve it
-    if (nSpellId == SPELL_INVALID)
-    {
-        nSpellId = GetSpellId();
-    }
-
-    int nCasterLevel = GetCasterLevel(oCaster);
-
-    // Modifications due to casters feats etc.
-
-    return nCasterLevel;
-}
-
 // Rewrites the effect stack to use the given properties (default values don't override the current ones)
 effect EffectChangeProperties(effect eEffect, int nSpellId = SPELL_INVALID, int nCasterLevel = 0, object oCreator = OBJECT_SELF)
 {
@@ -535,3 +604,30 @@ effect EffectChangeProperties(effect eEffect, int nSpellId = SPELL_INVALID, int 
     }
     return eEffect;
 }
+
+// Applies the given effect but merges in the right spell Id, caster Id and caster level.
+void ApplySpellEffectToObject(int nDurationType, effect eEffect, object oTarget, float fDuration = 0.0)
+{
+    ApplyEffectToObject(nDurationType, EffectChangeProperties(eEffect, nSpellId, nCasterLevel, oCaster), oTarget, fDuration);
+}
+
+// Applies the given effect but merges in the right spell Id, caster Id and caster level.
+void ApplySpellEffectAtLocation(int nDurationType, effect eEffect, location lTarget, float fDuration = 0.0)
+{
+    ApplyEffectAtLocation(nDurationType, EffectChangeProperties(eEffect, nSpellId, nCasterLevel, oCaster), lTarget, fDuration);
+}
+
+// Signals nSpellId (set globally) against oTarget
+void SignalSpellCastAt(object oTarget, int bHostile, object oCaster = OBJECT_SELF)
+{
+    SignalEvent(oTarget, EventSpellCastAt(oCaster, nSpellId));
+}
+
+// These global variables are used in most spell scripts and are initialised here to be consistent
+object oCaster   = OBJECT_SELF;
+object oCastItem = GetSpellCastItem();
+object oTarget   = GetSpellTargetObject();
+location lTarget = GetSpellTargetLocationCalculated();
+int nSpellId     = GetSpellIdCalculated();
+int nSaveDC      = GetSpellSaveDCCalculated();
+int nCasterLevel = GetCasterLevelCalculated();
