@@ -15,6 +15,7 @@
 #include "op_i_eosconstant"
 
 // Main Eos includes
+#include "op_i_debug"
 #include "op_i_spells"
 
 // Utility includes

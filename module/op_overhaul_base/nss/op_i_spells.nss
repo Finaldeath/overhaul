@@ -10,10 +10,11 @@
 //:: https://github.com/Finaldeath/overhaul
 //:://////////////////////////////////////////////
 
+#include "op_i_debug"
+
 // These are the games string refs for immunity feedback.
 // Format <CUSTOM0> : Immune to XXXX.
 // Using this in case SendFeedbackString() is added to the game.
-
 const int STRREF_IMMUNITY_BLINDNESS             = 62467;  //<CUSTOM0> : Immune to Blindness.
 const int STRREF_IMMUNITY_CHARM                 = 62470;  //<CUSTOM0> : Immune to Charm.
 const int STRREF_IMMUNITY_CONFUSION             = 62465;  //<CUSTOM0> : Immune to Confusion.
@@ -39,6 +40,15 @@ const int STRREF_IMMUNITY_STUN                  = 62466;  //<CUSTOM0> : Immune t
 
 const int STRREF_SOMEONE = 8349;  // Someone
 
+const int DURATION_TYPE_ROUNDS = 0;
+const int DURATION_TYPE_TURNS  = 1;
+const int DURATION_TYPE_HOURS  = 2;
+
+// For GetSpellTargetValid similar to Bioware's
+const int SPELL_TARGET_ALLALLIES        = 1;  // Allies only
+const int SPELL_TARGET_STANDARDHOSTILE  = 2;  // Standard hostile - IE: Will hit allies in certain PvP
+const int SPELL_TARGET_SELECTIVEHOSTILE = 3;  // Selective hostile - IE: Will not hit allies
+
 // Perform a saving throw roll.
 // Unlike MySavingThrow this will not "return failure in case of immunity" since, well, they're immune!
 // Instead they'll be immune and we'll send appropriate feedback messages.
@@ -47,6 +57,25 @@ const int STRREF_SOMEONE = 8349;  // Someone
 //   Returns: 2 if the target was immune to the save type specified
 // Note: If used within an Area of Effect Object Script (On Enter, OnExit, OnHeartbeat), you MUST pass GetAreaOfEffectCreator() into oSaveVersus!
 int DoSavingThrow(int nSavingThrow, object oTarget, int nDC, int nSaveType = SAVING_THROW_TYPE_NONE, object oSaveVersus = OBJECT_SELF, float fDelay = 0.0);
+
+// Used to route the resist magic checks into this function to check for spell countering by SR, Globes or Mantles.
+//   Return value if oCaster or oTarget is an invalid object: FALSE
+//   Return value if spell cast is not a player spell: - 1
+//   Return value if spell resisted: 1
+//   Return value if spell resisted via magic immunity: 2
+//   Return value if spell resisted via spell absorption: 3
+int DoResistSpell(object oCaster, object oTarget, float fDelay = 0.0);
+
+// Applies metamagic to the given dice roll
+// eg GetDiceRoll(4, 6, METAMAGIC_EMPOWER) will roll 4d6 and apply Empower to it.
+int GetDiceRoll(int nNumberOfDice, int nDiceSize, int nMetaMagic, int nBonus = 0);
+
+// Applies metamagic to the given duration
+// * nDurationType - The conversion used, rounds, turns (10 rounds) or hours
+float GetDuration(int nDuration, int nDurationType, int nMetaMagic);
+
+// Checks if the given target is valid to be targeted by oSource
+int GetSpellTargetValid(object oSource, object oTarget, int nTargetType);
 
 // Converts a SAVING_THROW_TYPE_* to an IMMUNITY_TYPE_* where these are checked for in the saving throw functions
 // else it will be IMMUNITY_TYPE_NONE (0)
@@ -124,12 +153,143 @@ int DoSavingThrow(int nSavingThrow, object oTarget, int nDC, int nSaveType = SAV
     return nResult;
 }
 
+// Used to route the resist magic checks into this function to check for spell countering by SR, Globes or Mantles.
+//   Return value if oCaster or oTarget is an invalid object: FALSE
+//   Return value if spell cast is not a player spell: - 1
+//   Return value if spell resisted: 1
+//   Return value if spell resisted via magic immunity: 2
+//   Return value if spell resisted via spell absorption: 3
+int DoResistSpell(object oCaster, object oTarget, float fDelay = 0.0)
+{
+    // Alter the delay so it applies just before any other VFX
+    if (fDelay > 0.5)
+    {
+        fDelay = fDelay - 0.1;
+    }
+    int nResist = ResistSpell(oCaster, oTarget);
+    if (nResist == 1)  // Spell Resistance
+    {
+        DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_MAGIC_RESISTANCE_USE), oTarget));
+    }
+    else if (nResist == 2)  // Globe or Immunity: Spell
+    {
+        DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_GLOBE_USE), oTarget));
+    }
+    else if (nResist == 3)  // Spell Mantle
+    {
+        if (fDelay > 0.5)
+        {
+            fDelay = fDelay - 0.1;
+        }
+        DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_SPELL_MANTLE_USE), oTarget));
+    }
+    return nResist;
+}
+
+// Applies metamagic to the given dice roll
+// eg GetDiceRoll(4, 6, METAMAGIC_EMPOWER) will roll 4d6 and apply Empower to it.
+int GetDiceRoll(int nNumberOfDice, int nDiceSize, int nMetaMagic, int nBonus = 0)
+{
+    int i, nDamage = 0;
+    for (i = 1; i <= nNumberOfDice; i++)
+    {
+        nDamage += Random(nDiceSize) + 1;
+    }
+    // Resolve metamagic
+    if (nMetaMagic & METAMAGIC_MAXIMIZE)
+    {
+        nDamage = nDiceSize * nNumberOfDice;
+    }
+    else if (nMetaMagic & METAMAGIC_EMPOWER)
+    {
+        nDamage += nDamage / 2;
+    }
+    // Add bonus if any
+    return nDamage + nBonus;
+}
+
+// Applies metamagic to the given duration
+// * nDurationType - The conversion used, rounds, turns (10 rounds) or hours
+float GetDuration(int nDuration, int nDurationType, int nMetaMagic)
+{
+    float fDuration = 0.0;
+    // Resolve metamagic
+    if (nMetaMagic & METAMAGIC_EXTEND)
+    {
+        nDuration *= 2;
+    }
+    // Return the right duration
+    if (nDurationType == DURATION_TYPE_ROUNDS)
+    {
+        fDuration = RoundsToSeconds(nDuration);
+    }
+    else if (nDurationType == DURATION_TYPE_TURNS)
+    {
+        fDuration = TurnsToSeconds(nDuration);
+    }
+    else if (nDurationType == DURATION_TYPE_HOURS)
+    {
+        fDuration = HoursToSeconds(nDuration);
+    }
+    else
+    {
+        OP_Debug("[ERROR] Spells GetDuration: Incorrect nDurationType.", LOG_LEVEL_ERROR);
+    }
+    return fDuration;
+}
+
+// Checks if the given target is valid to be targeted by oSource
+int GetSpellTargetValid(object oSource, object oTarget, int nTargetType)
+{
+    // If dead, not a valid target
+    if (GetIsDead(oTarget))
+    {
+        return FALSE;
+    }
+
+    int bReturnValue = FALSE;
+
+    switch (nTargetType)
+    {
+        // This kind of spell will affect all friendlies and anyone in my party/faction, even if we are upset with each other currently.
+        case SPELL_TARGET_ALLALLIES:
+        {
+            if (GetIsReactionTypeFriendly(oTarget, oSource) || GetFactionEqual(oTarget, oSource))
+            {
+                bReturnValue = TRUE;
+            }
+        }
+        break;
+        case SPELL_TARGET_STANDARDHOSTILE:
+        {
+            // This has been rewritten. We do a simple check for the reaction type now.
+            // Previously there was a lot of checks for henchmen, AOEs that PCs cast, etc.
+            if (!GetIsReactionTypeFriendly(oTarget, oSource))
+            {
+                bReturnValue = TRUE;
+            }
+        }
+        break;
+        // Only harms enemies, ever, such as Call Lightning
+        case SPELL_TARGET_SELECTIVEHOSTILE:
+        {
+            if (GetIsEnemy(oTarget, oSource))
+            {
+                bReturnValue = TRUE;
+            }
+        }
+        break;
+    }
+
+    return bReturnValue;
+}
+
 // Converts a SAVING_THROW_TYPE_* to an IMMUNITY_TYPE_* where these are checked for in the saving throw functions
 // else it will be IMMUNITY_TYPE_NONE (0)
 int GetImmuinityTypeFromSavingThrowType(int nSaveType)
 {
     // Only certain saving throw types check immunities in WillSave, ReflexSave or FortitudeSave
-    int nImmunityType = 0;
+    int nImmunityType = IMMUNITY_TYPE_NONE;
     switch (nSaveType)
     {
         case SAVING_THROW_TYPE_DEATH:
@@ -212,7 +372,8 @@ void SendImmunityFeedback(object oCaster, object oTarget, int nImmunityType)
         case IMMUNITY_TYPE_TRAP: sMessage = "Trap"; break;
         default:
         {
-            // EG: IMMUNITY_TYPE_NONE (0) or other values we do no messages.
+            // EG: IMMUNITY_TYPE_NONE (0) or other values we do no messages. This should not occur though.
+            if (DEBUG >= LOG_LEVEL_ERROR) OP_Debug("[ERROR] SendImmunityFeedback: Invalid nImmunityType: " + IntToString(nImmunityType));
             return;
         }
         break;
