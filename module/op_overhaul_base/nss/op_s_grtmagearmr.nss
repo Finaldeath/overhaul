@@ -1,10 +1,10 @@
 //::///////////////////////////////////////////////
-//:: Mage Armor
-//:: op_s_magearmor.nss
+//:: Greater Mage Armor
+//:: op_s_grtmagearmr.nss
 //:://////////////////////////////////////////////
 /*
-    Caster Level(s): Bard 1, Wizard / Sorcerer 1
-    Innate Level: 1
+    Caster Level(s): Wizard / Sorcerer 3
+    Innate Level: 3
     School: Conjuration
     Descriptor(s): Force
     Component(s): Verbal, Somatic
@@ -15,7 +15,7 @@
     Save: Harmless
     Spell Resistance: No
 
-    An invisible but tangible field of force surrounds the subject of mage armor, providing a +4 armor bonus to AC.
+    An invisible but tangible field of force surrounds the subject of mage armor, providing a +6 armor bonus to AC.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -27,7 +27,7 @@
 void main()
 {
     effect eVis = EffectVisualEffect(VFX_IMP_AC_BONUS);
-    effect eAC = EffectACIncrease(4, AC_ARMOUR_ENCHANTMENT_BONUS);
+    effect eAC = EffectACIncrease(6, AC_ARMOUR_ENCHANTMENT_BONUS);
     effect eDur = EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE);
     effect eLink = EffectLinkEffects(eAC, eDur);
 
