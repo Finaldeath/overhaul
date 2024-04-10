@@ -62,9 +62,9 @@ const int STRREF_IMMUNITY_STUN                  = 62466;  //<CUSTOM0> : Immune t
 
 const int STRREF_SOMEONE = 8349;  // Someone
 
-const int DURATION_TYPE_ROUNDS = 0;
-const int DURATION_TYPE_TURNS  = 1;
-const int DURATION_TYPE_HOURS  = 2;
+const int ROUNDS = 0;
+const int TURNS  = 1;
+const int HOURS  = 2;
 
 // For GetSpellTargetValid similar to Bioware's
 const int SPELL_TARGET_ALLALLIES        = 1;  // Allies only
@@ -111,12 +111,14 @@ int DoSavingThrow(int nSavingThrow, object oTarget, int nDC, int nSaveType = SAV
 int DoResistSpell(object oCaster, object oTarget, float fDelay = 0.0);
 
 // Applies metamagic to the given dice roll
-// eg GetDiceRoll(4, 6, METAMAGIC_EMPOWER) will roll 4d6 and apply Empower to it.
-int GetDiceRoll(int nNumberOfDice, int nDiceSize, int nMetaMagic, int nBonus = 0);
+// eg GetDiceRoll(4, 6, METAMAGIC_EMPOWER) will roll 4d6 and apply Empower to it
+// Metamagic is applied automatically
+int GetDiceRoll(int nNumberOfDice, int nDiceSize, int nBonus = 0);
 
 // Applies metamagic to the given duration
-// * nDurationType - The conversion used, rounds, turns (10 rounds) or hours
-float GetDuration(int nDuration, int nDurationType, int nMetaMagic);
+// * nType - The conversion used, ROUNDS (6 seconds), TURNS (10 rounds) or HOURS (module dependant)
+// Metamagic is applied automatically
+float GetDuration(int nDuration, int nDurationType);
 
 // Checks if the given target is valid to be targeted by oCaster
 int GetSpellTargetValid(object oTarget, object oCaster, int nTargetType);
@@ -327,8 +329,9 @@ int DoResistSpell(object oCaster, object oTarget, float fDelay = 0.0)
 }
 
 // Applies metamagic to the given dice roll
-// eg GetDiceRoll(4, 6, METAMAGIC_EMPOWER) will roll 4d6 and apply Empower to it.
-int GetDiceRoll(int nNumberOfDice, int nDiceSize, int nMetaMagic, int nBonus = 0)
+// eg GetDiceRoll(4, 6, METAMAGIC_EMPOWER) will roll 4d6 and apply Empower to it
+// Metamagic is applied automatically
+int GetDiceRoll(int nNumberOfDice, int nDiceSize, int nBonus = 0)
 {
     int i, nDamage = 0;
     for (i = 1; i <= nNumberOfDice; i++)
@@ -349,8 +352,9 @@ int GetDiceRoll(int nNumberOfDice, int nDiceSize, int nMetaMagic, int nBonus = 0
 }
 
 // Applies metamagic to the given duration
-// * nDurationType - The conversion used, rounds, turns (10 rounds) or hours
-float GetDuration(int nDuration, int nDurationType, int nMetaMagic)
+// * nType - The conversion used, ROUNDS (6 seconds), TURNS (10 rounds) or HOURS (module dependant)
+// Metamagic is applied automatically
+float GetDuration(int nDuration, int nDurationType)
 {
     float fDuration = 0.0;
     // Resolve metamagic
@@ -359,15 +363,15 @@ float GetDuration(int nDuration, int nDurationType, int nMetaMagic)
         nDuration *= 2;
     }
     // Return the right duration
-    if (nDurationType == DURATION_TYPE_ROUNDS)
+    if (nDurationType == ROUNDS)
     {
         fDuration = RoundsToSeconds(nDuration);
     }
-    else if (nDurationType == DURATION_TYPE_TURNS)
+    else if (nDurationType == TURNS)
     {
         fDuration = TurnsToSeconds(nDuration);
     }
-    else if (nDurationType == DURATION_TYPE_HOURS)
+    else if (nDurationType == HOURS)
     {
         fDuration = HoursToSeconds(nDuration);
     }
@@ -650,3 +654,5 @@ location lTarget = GetSpellTargetLocationCalculated();
 int nSpellId     = GetSpellIdCalculated();
 int nSpellSaveDC = GetSpellSaveDCCalculated();
 int nCasterLevel = GetCasterLevelCalculated();
+int nMetaMagic   = GetMetaMagicFeat();
+
