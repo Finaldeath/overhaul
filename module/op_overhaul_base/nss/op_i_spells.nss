@@ -73,6 +73,9 @@ const int SPELL_TARGET_SELECTIVEHOSTILE = 3;  // Selective hostile - IE: Will no
 
 const int SPELL_INVALID = -1;
 
+// Debug the spell and variables
+void DebugSpell();
+
 // Checks for if the spell hook needs to be executed and execute it and check the return value if so.
 int DoSpellHook();
 
@@ -148,9 +151,24 @@ void ApplySpellEffectAtLocation(int nDurationType, effect eEffect, location lTar
 // Signals nSpellId (set globally) against oTarget
 void SignalSpellCastAt(object oTarget, int bHostile, object oCaster = OBJECT_SELF);
 
+// Debug the spell and variables
+void DebugSpell()
+{
+    if (DEBUG >= LOG_LEVEL_INFO) OP_Debug("[Spell Script] Script: [" + GetScriptName() +
+                                          "] ID: [" + IntToString(nSpellId) +
+                                          "] Caster: [" + GetName(oCaster) +
+                                          "] Cast Item: [" + GetName(oCastItem) +
+                                          "] Target: [" + GetName(oTarget) +
+                                          "] Save DC: [" + IntToString(nSaveDC) +
+                                          "] Caster Level: [" + IntToString(nCasterLevel) + "]");
+}
+
 // Checks for if the spell hook needs to be executed and execute it and check the return value if so.
 int DoSpellHook()
 {
+    // We debug the global variables at script inception
+    DebugSpell();
+
     // TODO dummy spell hook for now
     return FALSE;
 }
@@ -551,7 +569,7 @@ float GetRandomDelay(float fMinimumTime = 0.4, float MaximumTime = 1.1)
 float GetVisualEffectHitDelay(int nVFX, object oTarget, object oSource = OBJECT_SELF)
 {
     // Check if the VFX has a programmed effect
-    int nProgrammedVFX = StringToInt(Get2DAString("spells", "ProgFX", nVFX));
+    int nProgrammedVFX = StringToInt(Get2DAString("visualeffects", "ProgFX_Impact", nVFX));
     if (nProgrammedVFX)
     {
         // Get the programmed VFX type, and if it's right we get the value else do default
@@ -583,6 +601,7 @@ float GetVisualEffectHitDelay(int nVFX, object oTarget, object oSource = OBJECT_
             return fDist / (3.0 * log(fDist) + 2.0);
         }
     }
+    if (DEBUG >= LOG_LEVEL_ERROR) OP_Debug("[ERROR] GetVisualEffectHitDelay Called with no programmed FX: " + IntToString(nProgrammedVFX), LOG_LEVEL_ERROR);
     // Default is distance / 20
     return GetDistanceBetween(oSource, oTarget) / 20.0;
 }
