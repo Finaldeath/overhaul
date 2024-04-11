@@ -13318,7 +13318,7 @@
         "Door",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_DelFirebal",
+      "ImpactScript": "op_s_delayfire",
       "InnateLevel": 7,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -13376,7 +13376,8 @@
       "TargetSizeX": 6.67,
       "TargetSizeY": null,
       "TargetingFlags": [
-        "HarmsEnemies"
+        "HarmsEnemies",
+        "HarmsAllies"
       ]
     },
     {
@@ -13457,7 +13458,7 @@
         "Door",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_DelFirebal",
+      "ImpactScript": "op_s_delayfire",
       "InnateLevel": 7,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -13585,7 +13586,7 @@
         "Door",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_DelFirebal",
+      "ImpactScript": "op_s_delayfire",
       "InnateLevel": 7,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -13713,7 +13714,7 @@
         "Door",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_DelFirebal",
+      "ImpactScript": "op_s_delayfire",
       "InnateLevel": 7,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -13841,7 +13842,7 @@
         "Door",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_DelFirebal",
+      "ImpactScript": "op_s_delayfire",
       "InnateLevel": 7,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -13969,7 +13970,7 @@
         "Door",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_DelFirebal",
+      "ImpactScript": "op_s_delayfire",
       "InnateLevel": 7,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -30089,6 +30090,124 @@
       "TargetingFlags": []
     },
     {
+      "ID": "09abd738-b9be-489d-8b3f-0fde64803eb8",
+      "Index": 8,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Mage_Armor",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 852,
+        "EN": {
+          "M": "Greater Mage Armor",
+          "F": "Mage Armor"
+        },
+        "FR": {
+          "M": "Armure de mage"
+        },
+        "DE": {
+          "M": "Magierr\u00FCstung"
+        },
+        "IT": {
+          "M": "Armatura Magica"
+        },
+        "ES": {
+          "M": "Armadura de mago"
+        },
+        "PL": {
+          "M": "Zbroja Maga"
+        }
+      },
+      "Description": {
+        "Index": 6199,
+        "EN": {
+          "M": "Caster Level(s): Wizard / Sorcerer 3\nInnate Level: 3\nSchool: Conjuration\nDescriptor(s): Force\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\r\n\nAn invisible but tangible field of force surrounds the subject of mage armor, providing a \u002B6 armor bonus to AC.",
+          "F": "Caster Level(s): Bard 1, Wizard / Sorcerer 1\nInnate Level: 1\nSchool: Conjuration\nDescriptor(s): Force\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe selected target gains the following bonuses to his AC: \u002B1 natural armor, \u002B1 dodge, \u002B1 deflection, and \u002B1 enhancement. The dodge bonus stacks with other dodge bonuses to AC, but the other bonuses do not stack with bonuses of the same type."
+        },
+        "FR": {
+          "M": "Niveau : Barde 1, Magicien / Ensorceleur 1\nNiveau inn\u00E9 : 1\nEcole : Invocation\nCat\u00E9gorie(s) : force\nComposante(s) : verbale, gestuelle\nPort\u00E9e : contact\nZone d\u0027effet / cible : 1 cr\u00E9ature\nDur\u00E9e : 1 heure/niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : inoffensif\nR\u00E9sistance \u00E0 la magie : non\n\nL\u0027utilisateur b\u00E9n\u00E9ficie des bonus suivants \u00E0 sa CA : armure naturelle \u002B1, esquive \u002B1, parade \u002B1 et alt\u00E9ration \u002B1. Le bonus d\u0027esquive est cumulable avec les autres bonus d\u0027esquive \u00E0 la CA, mais les autres bonus ne sont pas cumulables avec les bonus du m\u00EAme type."
+        },
+        "DE": {
+          "M": "Grad: BAR 1, MAG/HXM 1\nKalkulationsgrad: 1\nSchule: Hervorrufung\nKategorie: Energie\nKomponenten: V, G\nReichweite: Ber\u00FChrung\nWirkungsbereich/Ziel: 1 Kreatur\nWirkungsdauer: 1 Stunde/Stufe\nGegenzauber:\nRettungswurf: Harmlos\nZauberresistenz: Nein\n\nDas Ziel erh\u00E4lt folgende Boni auf sein RK: Nat\u00FCrliche R\u00FCstung \u002B1, Ausweichen \u002B1, Ablenkung \u002B1 und Verbesserung \u002B1. Der Ausweichbonus ist mit anderen Ausweichboni kumulativ, aber die anderen Boni sind mit Boni des gleichen Typs nicht kumulativ."
+        },
+        "IT": {
+          "M": "Livello(i) dell\u0027incantatore: Bardo 1, Mago / Stregone 1\nLivello innato: 1\nScuola: Evocazione\nDescrittore(i): Forza\nComponente(i): Verbale, Somatica\nRaggio d\u0027azione: Contatto\nArea d\u0027effetto / Bersaglio: Singolo\nDurata: 1 ora per livello\nControincantesimi aggiuntivi:\nTiro salvezza: Innoquo\nResistenza agli incantesimi: No\n\nIl bersaglio selezionato guadagna i seguenti bonus alla sua CA: \u002B1 di armatura naturale, \u002B1 per schivare, \u002B1 di deviazione e \u002B1 di potenziamento. Il bonus per schivare si somma agli altri bonus per schivare alla CA, mentre gli altri bonus non si sommano con i bonus dello stesso tipo."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Bardo 1, Hechicero / Mago 1\nNivel innato: 1\nEscuela: Conjuraci\u00F3n\nDescriptores: Fuerza\nComponentes: Verbal, Som\u00E1tico\nAlcance: Toque\n\u00C1rea de efecto / Objetivo: Individual\nDuraci\u00F3n: 1 hora / nivel\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Inofensivo\nResistencia a conjuros: No\n\nEl objetivo seleccionado obtiene los siguientes bonificadores a la CA: \u002B1 de armadura natural, \u002B1 de esquiva, \u002B1 de desv\u00EDo y \u002B1 de mejora. El bonificador de esquiva se apila con otros bonificadores de esquiva a la CA, pero los dem\u00E1s no se apilan con bonificadores de su mismo tipo."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Bard 1, Czarodziej / Czarownik 1\nPoziom wrodzony: 1\nSzko\u0142a: Przywo\u0142ywanie\nIdentyfikator(y): Si\u0142a\nKomponent(y): Werbalne, Somatyczne\nZasi\u0119g: Dotyk\nObszar dzia\u0142ania / Cel: Pojedynczy\nCzas trwania: 1 godzina / poziom\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Czar nieszkodliwy\nOdporno\u015B\u0107 na czary: Nie\n\nWybrany cel zyskuje nast\u0119puj\u0105ce premie do KP: \u002B1 za pancerz naturalny, \u002B1 za uniki, premi\u0119 ochronn\u0105 \u002B1 oraz dodatkowo \u002B1 za zakl\u0119cie. Premia za uniki kumuluje si\u0119 z innymi premiami za uniki, ale pozosta\u0142e premie nie kumuluj\u0105 si\u0119 z innymi tego samego typu."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_magearm",
+      "School": "C",
+      "Range": "T",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Creature",
+        "Item"
+      ],
+      "ImpactScript": "op_s_grtmagearmr",
+      "InnateLevel": 3,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_smhanelec01",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mehanelec01",
+      "ConjurationMaleSound": "vs_chant_conj_hm",
+      "ConjurationFemaleSound": "vs_chant_conj_hf",
+      "CastingAnimation": "Self",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": null,
+      "ProjectileSound": null,
+      "ProjectileOrientation": null,
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "TalentFriendlyProtectionSingle",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
       "ID": "99057b22-533a-43c8-8ac3-87c4f587d9dc",
       "Index": -1,
       "Overrides": "68890a2e-2837-70ca-f0c2-ed642d6ccd20",
@@ -31920,6 +32039,116 @@
         "HarmsEnemies",
         "HarmsAllies"
       ]
+    },
+    {
+      "ID": "7fec7bed-6276-4b4a-beae-7832a9a5839c",
+      "Index": -1,
+      "Overrides": "691d322b-b1a3-258a-cdce-8a6416590312",
+      "Disabled": false,
+      "Hint": "Arcane Archer Feat",
+      "ScriptConstant": "",
+      "SourceLabel": "ARHailOfArrows",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8690,
+        "EN": {
+          "M": "Hail of Arrows"
+        },
+        "FR": {
+          "M": "Pluie de fl\u00E8ches"
+        },
+        "DE": {
+          "M": "Pfeilhagel"
+        },
+        "IT": {
+          "M": "Raffica di frecce"
+        },
+        "ES": {
+          "M": "Lluvia de flechas"
+        },
+        "PL": {
+          "M": "Deszcz Strza\u0142"
+        }
+      },
+      "Description": {
+        "Index": null
+      },
+      "AlternativeCastMessage": {
+        "Index": 9067,
+        "EN": {
+          "M": "\u003CCUSTOM0\u003E launches arrows."
+        },
+        "FR": {
+          "M": "\u003CCUSTOM0\u003E d\u00E9coche des fl\u00E8ches"
+        },
+        "DE": {
+          "M": "\u003CCUSTOM0\u003E schie\u00DFt einen Pfeilhagel."
+        },
+        "IT": {
+          "M": "\u003CCUSTOM0\u003E lancia le sue frecce."
+        },
+        "ES": {
+          "M": "\u003CCUSTOM0\u003E dispara flechas."
+        },
+        "PL": {
+          "M": "\u003CCUSTOM0\u003E odpala strza\u0142y."
+        }
+      },
+      "Icon": "ife_x1hailarr",
+      "School": "T",
+      "Range": "P",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [],
+      "TargetTypes": [
+        "Self",
+        "Item"
+      ],
+      "ImpactScript": "x1_s2_hailarrow",
+      "InnateLevel": 1,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": null,
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": null,
+      "ConjurationMaleSound": null,
+      "ConjurationFemaleSound": null,
+      "CastingAnimation": "Attack",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": null,
+      "ProjectileOrientation": "None",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "HarmfulAoeIndiscriminant",
+      "ParentSpell": null,
+      "Type": "Feat",
+      "UseConcentration": false,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
     },
     {
       "ID": "8004be18-ac59-47b0-b728-8f99d00b13d1",
@@ -42794,6 +43023,115 @@
       "ParentSpell": null,
       "Type": "Spell",
       "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "2db83d66-b190-4ee4-8a7c-a8906a05d1d6",
+      "Index": -1,
+      "Overrides": "913f3dee-47e4-cdfb-053e-b1b094f80dfc",
+      "Disabled": false,
+      "Hint": "Feat",
+      "ScriptConstant": "",
+      "SourceLabel": "Greater_Wild_Shape_Minotaur",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 12648,
+        "EN": {
+          "M": "Minotaur"
+        },
+        "FR": {
+          "M": "Minotaure"
+        },
+        "DE": {
+          "M": "Minotaurus"
+        },
+        "IT": {
+          "M": "Minotauro"
+        },
+        "ES": {
+          "M": "Minotauro"
+        },
+        "PL": {
+          "M": "Minotaur"
+        }
+      },
+      "Description": {
+        "Index": null
+      },
+      "AlternativeCastMessage": {
+        "Index": 83578,
+        "EN": {
+          "M": "\u003CCUSTOM0\u003E shapeshifts."
+        },
+        "FR": {
+          "M": "\u003CCUSTOM0\u003E change de forme."
+        },
+        "DE": {
+          "M": "\u003CCUSTOM0\u003E wandelt seine Gestalt."
+        },
+        "IT": {
+          "M": "\u003CCUSTOM0\u003E muta forma."
+        },
+        "ES": {
+          "M": "\u003CCUSTOM0\u003E cambia de forma."
+        },
+        "PL": {
+          "M": "\u003CCUSTOM0\u003E zmienia posta\u0107."
+        }
+      },
+      "Icon": "ife_x2gwshp2",
+      "School": "T",
+      "Range": "P",
+      "Components": [],
+      "AvailableMetaMagic": [],
+      "TargetTypes": [
+        "Self"
+      ],
+      "ImpactScript": "X2_S2_GWildShp",
+      "InnateLevel": 3,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_smhannatr01",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mehannatr01",
+      "ConjurationMaleSound": null,
+      "ConjurationFemaleSound": null,
+      "CastingAnimation": "Out",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": null,
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": null,
+      "ParentSpell": {
+        "ID": "c78d46dd-2efd-c7b6-16de-92dfe86dab78",
+        "Label": "Greater Wildshape II"
+      },
+      "Type": "Feat",
+      "UseConcentration": false,
       "IsCastSpontaneously": false,
       "IsHostile": false,
       "CounterSpell1": null,
@@ -63509,343 +63847,6 @@
         "HarmsAllies",
         "OriginOnSelf"
       ]
-    },
-    {
-      "ID": "7fec7bed-6276-4b4a-beae-7832a9a5839c",
-      "Index": -1,
-      "Overrides": "691d322b-b1a3-258a-cdce-8a6416590312",
-      "Disabled": false,
-      "Hint": "Arcane Archer Feat",
-      "ScriptConstant": "",
-      "SourceLabel": "ARHailOfArrows",
-      "ExtensionValues": {},
-      "Name": {
-        "Index": 8690,
-        "EN": {
-          "M": "Hail of Arrows"
-        },
-        "FR": {
-          "M": "Pluie de fl\u00E8ches"
-        },
-        "DE": {
-          "M": "Pfeilhagel"
-        },
-        "IT": {
-          "M": "Raffica di frecce"
-        },
-        "ES": {
-          "M": "Lluvia de flechas"
-        },
-        "PL": {
-          "M": "Deszcz Strza\u0142"
-        }
-      },
-      "Description": {
-        "Index": null
-      },
-      "AlternativeCastMessage": {
-        "Index": 9067,
-        "EN": {
-          "M": "\u003CCUSTOM0\u003E launches arrows."
-        },
-        "FR": {
-          "M": "\u003CCUSTOM0\u003E d\u00E9coche des fl\u00E8ches"
-        },
-        "DE": {
-          "M": "\u003CCUSTOM0\u003E schie\u00DFt einen Pfeilhagel."
-        },
-        "IT": {
-          "M": "\u003CCUSTOM0\u003E lancia le sue frecce."
-        },
-        "ES": {
-          "M": "\u003CCUSTOM0\u003E dispara flechas."
-        },
-        "PL": {
-          "M": "\u003CCUSTOM0\u003E odpala strza\u0142y."
-        }
-      },
-      "Icon": "ife_x1hailarr",
-      "School": "T",
-      "Range": "P",
-      "Components": [
-        "V",
-        "S"
-      ],
-      "AvailableMetaMagic": [],
-      "TargetTypes": [
-        "Self",
-        "Item"
-      ],
-      "ImpactScript": "x1_s2_hailarrow",
-      "InnateLevel": 1,
-      "ConjurationTime": 1500,
-      "ConjuringAnimation": "Hand",
-      "ConjurationHeadEffect": null,
-      "ConjurationHandEffect": null,
-      "ConjurationGroundEffect": null,
-      "ConjurationSound": null,
-      "ConjurationMaleSound": null,
-      "ConjurationFemaleSound": null,
-      "CastingAnimation": "Attack",
-      "CastTime": 1000,
-      "CastingHeadEffect": null,
-      "CastingHandEffect": null,
-      "CastingGroundEffect": null,
-      "CastingSound": null,
-      "HasProjectile": false,
-      "ProjectileModel": null,
-      "ProjectileType": "Homing",
-      "ProjectileSpawnPoint": "Hand",
-      "ProjectileSound": null,
-      "ProjectileOrientation": "None",
-      "SubSpell1": null,
-      "SubSpell2": null,
-      "SubSpell3": null,
-      "SubSpell4": null,
-      "SubSpell5": null,
-      "SubSpell6": null,
-      "SubSpell7": null,
-      "SubSpell8": null,
-      "Category": "HarmfulAoeIndiscriminant",
-      "ParentSpell": null,
-      "Type": "Feat",
-      "UseConcentration": false,
-      "IsCastSpontaneously": false,
-      "IsHostile": false,
-      "CounterSpell1": null,
-      "CounterSpell2": null,
-      "HasProjectileVisuals": false,
-      "TargetShape": null,
-      "TargetSizeX": null,
-      "TargetSizeY": null,
-      "TargetingFlags": []
-    },
-    {
-      "ID": "2db83d66-b190-4ee4-8a7c-a8906a05d1d6",
-      "Index": -1,
-      "Overrides": "913f3dee-47e4-cdfb-053e-b1b094f80dfc",
-      "Disabled": false,
-      "Hint": "Feat",
-      "ScriptConstant": "",
-      "SourceLabel": "Greater_Wild_Shape_Minotaur",
-      "ExtensionValues": {},
-      "Name": {
-        "Index": 12648,
-        "EN": {
-          "M": "Minotaur"
-        },
-        "FR": {
-          "M": "Minotaure"
-        },
-        "DE": {
-          "M": "Minotaurus"
-        },
-        "IT": {
-          "M": "Minotauro"
-        },
-        "ES": {
-          "M": "Minotauro"
-        },
-        "PL": {
-          "M": "Minotaur"
-        }
-      },
-      "Description": {
-        "Index": null
-      },
-      "AlternativeCastMessage": {
-        "Index": 83578,
-        "EN": {
-          "M": "\u003CCUSTOM0\u003E shapeshifts."
-        },
-        "FR": {
-          "M": "\u003CCUSTOM0\u003E change de forme."
-        },
-        "DE": {
-          "M": "\u003CCUSTOM0\u003E wandelt seine Gestalt."
-        },
-        "IT": {
-          "M": "\u003CCUSTOM0\u003E muta forma."
-        },
-        "ES": {
-          "M": "\u003CCUSTOM0\u003E cambia de forma."
-        },
-        "PL": {
-          "M": "\u003CCUSTOM0\u003E zmienia posta\u0107."
-        }
-      },
-      "Icon": "ife_x2gwshp2",
-      "School": "T",
-      "Range": "P",
-      "Components": [],
-      "AvailableMetaMagic": [],
-      "TargetTypes": [
-        "Self"
-      ],
-      "ImpactScript": "X2_S2_GWildShp",
-      "InnateLevel": 3,
-      "ConjurationTime": 1500,
-      "ConjuringAnimation": "Hand",
-      "ConjurationHeadEffect": null,
-      "ConjurationHandEffect": "vco_smhannatr01",
-      "ConjurationGroundEffect": null,
-      "ConjurationSound": "sco_mehannatr01",
-      "ConjurationMaleSound": null,
-      "ConjurationFemaleSound": null,
-      "CastingAnimation": "Out",
-      "CastTime": 1000,
-      "CastingHeadEffect": null,
-      "CastingHandEffect": null,
-      "CastingGroundEffect": null,
-      "CastingSound": null,
-      "HasProjectile": false,
-      "ProjectileModel": null,
-      "ProjectileType": "Homing",
-      "ProjectileSpawnPoint": "Hand",
-      "ProjectileSound": null,
-      "ProjectileOrientation": "Path",
-      "SubSpell1": null,
-      "SubSpell2": null,
-      "SubSpell3": null,
-      "SubSpell4": null,
-      "SubSpell5": null,
-      "SubSpell6": null,
-      "SubSpell7": null,
-      "SubSpell8": null,
-      "Category": null,
-      "ParentSpell": {
-        "ID": "c78d46dd-2efd-c7b6-16de-92dfe86dab78",
-        "Label": "Greater Wildshape II"
-      },
-      "Type": "Feat",
-      "UseConcentration": false,
-      "IsCastSpontaneously": false,
-      "IsHostile": false,
-      "CounterSpell1": null,
-      "CounterSpell2": null,
-      "HasProjectileVisuals": false,
-      "TargetShape": null,
-      "TargetSizeX": null,
-      "TargetSizeY": null,
-      "TargetingFlags": []
-    },
-    {
-      "ID": "09abd738-b9be-489d-8b3f-0fde64803eb8",
-      "Index": 8,
-      "Overrides": null,
-      "Disabled": false,
-      "Hint": "",
-      "ScriptConstant": "",
-      "SourceLabel": "Mage_Armor",
-      "ExtensionValues": {},
-      "Name": {
-        "Index": 852,
-        "EN": {
-          "M": "Greater Mage Armor",
-          "F": "Mage Armor"
-        },
-        "FR": {
-          "M": "Armure de mage"
-        },
-        "DE": {
-          "M": "Magierr\u00FCstung"
-        },
-        "IT": {
-          "M": "Armatura Magica"
-        },
-        "ES": {
-          "M": "Armadura de mago"
-        },
-        "PL": {
-          "M": "Zbroja Maga"
-        }
-      },
-      "Description": {
-        "Index": 6199,
-        "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 3\nInnate Level: 3\nSchool: Conjuration\nDescriptor(s): Force\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\r\n\nAn invisible but tangible field of force surrounds the subject of mage armor, providing a \u002B6 armor bonus to AC.",
-          "F": "Caster Level(s): Bard 1, Wizard / Sorcerer 1\nInnate Level: 1\nSchool: Conjuration\nDescriptor(s): Force\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe selected target gains the following bonuses to his AC: \u002B1 natural armor, \u002B1 dodge, \u002B1 deflection, and \u002B1 enhancement. The dodge bonus stacks with other dodge bonuses to AC, but the other bonuses do not stack with bonuses of the same type."
-        },
-        "FR": {
-          "M": "Niveau : Barde 1, Magicien / Ensorceleur 1\nNiveau inn\u00E9 : 1\nEcole : Invocation\nCat\u00E9gorie(s) : force\nComposante(s) : verbale, gestuelle\nPort\u00E9e : contact\nZone d\u0027effet / cible : 1 cr\u00E9ature\nDur\u00E9e : 1 heure/niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : inoffensif\nR\u00E9sistance \u00E0 la magie : non\n\nL\u0027utilisateur b\u00E9n\u00E9ficie des bonus suivants \u00E0 sa CA : armure naturelle \u002B1, esquive \u002B1, parade \u002B1 et alt\u00E9ration \u002B1. Le bonus d\u0027esquive est cumulable avec les autres bonus d\u0027esquive \u00E0 la CA, mais les autres bonus ne sont pas cumulables avec les bonus du m\u00EAme type."
-        },
-        "DE": {
-          "M": "Grad: BAR 1, MAG/HXM 1\nKalkulationsgrad: 1\nSchule: Hervorrufung\nKategorie: Energie\nKomponenten: V, G\nReichweite: Ber\u00FChrung\nWirkungsbereich/Ziel: 1 Kreatur\nWirkungsdauer: 1 Stunde/Stufe\nGegenzauber:\nRettungswurf: Harmlos\nZauberresistenz: Nein\n\nDas Ziel erh\u00E4lt folgende Boni auf sein RK: Nat\u00FCrliche R\u00FCstung \u002B1, Ausweichen \u002B1, Ablenkung \u002B1 und Verbesserung \u002B1. Der Ausweichbonus ist mit anderen Ausweichboni kumulativ, aber die anderen Boni sind mit Boni des gleichen Typs nicht kumulativ."
-        },
-        "IT": {
-          "M": "Livello(i) dell\u0027incantatore: Bardo 1, Mago / Stregone 1\nLivello innato: 1\nScuola: Evocazione\nDescrittore(i): Forza\nComponente(i): Verbale, Somatica\nRaggio d\u0027azione: Contatto\nArea d\u0027effetto / Bersaglio: Singolo\nDurata: 1 ora per livello\nControincantesimi aggiuntivi:\nTiro salvezza: Innoquo\nResistenza agli incantesimi: No\n\nIl bersaglio selezionato guadagna i seguenti bonus alla sua CA: \u002B1 di armatura naturale, \u002B1 per schivare, \u002B1 di deviazione e \u002B1 di potenziamento. Il bonus per schivare si somma agli altri bonus per schivare alla CA, mentre gli altri bonus non si sommano con i bonus dello stesso tipo."
-        },
-        "ES": {
-          "M": "Nivel de lanzador: Bardo 1, Hechicero / Mago 1\nNivel innato: 1\nEscuela: Conjuraci\u00F3n\nDescriptores: Fuerza\nComponentes: Verbal, Som\u00E1tico\nAlcance: Toque\n\u00C1rea de efecto / Objetivo: Individual\nDuraci\u00F3n: 1 hora / nivel\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Inofensivo\nResistencia a conjuros: No\n\nEl objetivo seleccionado obtiene los siguientes bonificadores a la CA: \u002B1 de armadura natural, \u002B1 de esquiva, \u002B1 de desv\u00EDo y \u002B1 de mejora. El bonificador de esquiva se apila con otros bonificadores de esquiva a la CA, pero los dem\u00E1s no se apilan con bonificadores de su mismo tipo."
-        },
-        "PL": {
-          "M": "Poziom(y) czaruj\u0105cego: Bard 1, Czarodziej / Czarownik 1\nPoziom wrodzony: 1\nSzko\u0142a: Przywo\u0142ywanie\nIdentyfikator(y): Si\u0142a\nKomponent(y): Werbalne, Somatyczne\nZasi\u0119g: Dotyk\nObszar dzia\u0142ania / Cel: Pojedynczy\nCzas trwania: 1 godzina / poziom\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Czar nieszkodliwy\nOdporno\u015B\u0107 na czary: Nie\n\nWybrany cel zyskuje nast\u0119puj\u0105ce premie do KP: \u002B1 za pancerz naturalny, \u002B1 za uniki, premi\u0119 ochronn\u0105 \u002B1 oraz dodatkowo \u002B1 za zakl\u0119cie. Premia za uniki kumuluje si\u0119 z innymi premiami za uniki, ale pozosta\u0142e premie nie kumuluj\u0105 si\u0119 z innymi tego samego typu."
-        }
-      },
-      "AlternativeCastMessage": {
-        "Index": null
-      },
-      "Icon": "is_magearm",
-      "School": "C",
-      "Range": "T",
-      "Components": [
-        "V",
-        "S"
-      ],
-      "AvailableMetaMagic": [
-        "Extend",
-        "Quicken",
-        "Silent",
-        "Still"
-      ],
-      "TargetTypes": [
-        "Self",
-        "Creature",
-        "Item"
-      ],
-      "ImpactScript": "op_s_grtmagearmr",
-      "InnateLevel": 3,
-      "ConjurationTime": 1500,
-      "ConjuringAnimation": "Hand",
-      "ConjurationHeadEffect": null,
-      "ConjurationHandEffect": "vco_smhanelec01",
-      "ConjurationGroundEffect": null,
-      "ConjurationSound": "sco_mehanelec01",
-      "ConjurationMaleSound": "vs_chant_conj_hm",
-      "ConjurationFemaleSound": "vs_chant_conj_hf",
-      "CastingAnimation": "Self",
-      "CastTime": 1000,
-      "CastingHeadEffect": null,
-      "CastingHandEffect": null,
-      "CastingGroundEffect": null,
-      "CastingSound": null,
-      "HasProjectile": false,
-      "ProjectileModel": null,
-      "ProjectileType": null,
-      "ProjectileSpawnPoint": null,
-      "ProjectileSound": null,
-      "ProjectileOrientation": null,
-      "SubSpell1": null,
-      "SubSpell2": null,
-      "SubSpell3": null,
-      "SubSpell4": null,
-      "SubSpell5": null,
-      "SubSpell6": null,
-      "SubSpell7": null,
-      "SubSpell8": null,
-      "Category": "TalentFriendlyProtectionSingle",
-      "ParentSpell": null,
-      "Type": "Spell",
-      "UseConcentration": true,
-      "IsCastSpontaneously": false,
-      "IsHostile": false,
-      "CounterSpell1": null,
-      "CounterSpell2": null,
-      "HasProjectileVisuals": false,
-      "TargetShape": null,
-      "TargetSizeX": null,
-      "TargetSizeY": null,
-      "TargetingFlags": []
     }
   ]
 }

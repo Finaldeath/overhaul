@@ -33,6 +33,8 @@
 //:://////////////////////////////////////////////
 
 #include "op_i_debug"
+#include "op_i_eosconstants"
+#include "utl_i_maths"
 
 // These are the games string refs for immunity feedback.
 // Format <CUSTOM0> : Immune to XXXX.
@@ -152,6 +154,11 @@ void ApplySpellEffectAtLocation(int nDurationType, effect eEffect, location lTar
 
 // Signals nSpellId (set globally) against oTarget
 void SignalSpellCastAt(object oTarget, object oCaster, int bHostile);
+
+// Returns TRUE if we are OK running our AOE scripts.
+// Does a check for the AOE creator, and destroys ourself with no effect if they no longer exist.
+// This might be removed later but for now will stop some bugs.
+int AOECheck();
 
 // Debug the spell and variables
 void DebugSpell()
@@ -644,6 +651,21 @@ void ApplySpellEffectAtLocation(int nDurationType, effect eEffect, location lTar
 void SignalSpellCastAt(object oTarget, object oCaster, int bHostile)
 {
     SignalEvent(oTarget, EventSpellCastAt(oCaster, nSpellId));
+}
+
+// Returns TRUE if we are OK running our AOE scripts.
+// Does a check for the AOE creator, and destroys ourself with no effect if they no longer exist.
+// This might be removed later but for now will stop some bugs.
+int AOECheck()
+{
+    object oAOECreator = GetAreaOfEffectCreator();
+
+    if (!GetIsObjectValid(oAOECreator))
+    {
+        DestroyObject(OBJECT_SELF);
+        return FALSE;
+    }
+    return TRUE;
 }
 
 // These global variables are used in most spell scripts and are initialised here to be consistent
