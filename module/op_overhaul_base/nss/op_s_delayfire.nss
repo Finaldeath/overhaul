@@ -38,7 +38,7 @@ void main()
 
         if (DEBUG >= LOG_LEVEL_INFO) OP_Debug("[INFO] Delayed Fireball Blast. Entering object: " + GetName(oTarget));
 
-        if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
+        if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_SELECTIVEHOSTILE))
         {
             DelayedBlastEffect();
         }
@@ -48,9 +48,10 @@ void main()
     {
         if (!AOECheck()) return;
 
-        // Get count and increment until we reach the right number
-        int nCount = GetLocalInt(OBJECT_SELF, "INCREMENT");
+        // Get count and increment until we reach the right number of rounds to explode
+        int nCount = GetLocalInt(OBJECT_SELF, "COUNT");
         nCount++;
+        SetLocalInt(OBJECT_SELF, "COUNT", nCount);
         int nMaxCount;
         switch (nSpellId)
         {
@@ -60,6 +61,8 @@ void main()
             case SPELL_DELAYED_BLAST_FIREBALL_4_ROUNDS: nMaxCount = 4; break;
             case SPELL_DELAYED_BLAST_FIREBALL_5_ROUNDS: nMaxCount = 5; break;
         }
+
+        if (DEBUG >= LOG_LEVEL_INFO) OP_Debug("[INFO] Delayed Fireball Blast. Heartbeat. Count: " + IntToString(nCount) + " Max Count: " + IntToString(nMaxCount));
 
         if (nCount >= nMaxCount)
         {
@@ -77,7 +80,7 @@ void main()
     oTarget = GetFirstObjectInShape(SHAPE_SPHERE, fRadius, lTarget, TRUE, OBJECT_TYPE_CREATURE);
     while (GetIsObjectValid(oTarget))
     {
-        if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
+        if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_SELECTIVEHOSTILE))
         {
             DelayedBlastEffect();
             return;
@@ -106,8 +109,8 @@ void main()
         break;
     }
 
-    // Add 1.0 seconds so the last heartbeat fires properly.
-    ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, fDuration + 1.0);
+    // Add 10.0 seconds so the last heartbeat fires properly.
+    ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, fDuration + 10.0);
 }
 
 void DelayedBlastEffect()
