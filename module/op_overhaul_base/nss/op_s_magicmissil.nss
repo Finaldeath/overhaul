@@ -49,7 +49,7 @@ void main()
         SignalSpellCastAt(oTarget, oCaster, TRUE);
 
         // Make SR Check
-        if (!DoResistSpell(oCaster, oTarget, fDelay))
+        if (!DoResistSpell(oTarget, oCaster, fDelay))
         {
             float fDeltaTime = 0.0;
             int nCnt;
