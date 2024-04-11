@@ -68,6 +68,9 @@ const int ROUNDS = 0;
 const int TURNS  = 1;
 const int HOURS  = 2;
 
+const int TOUCH_MELEE  = 0;
+const int TOUCH_RANGED = 1;
+
 // For GetSpellTargetValid similar to Bioware's
 const int SPELL_TARGET_ALLALLIES        = 1;  // Allies only
 const int SPELL_TARGET_STANDARDHOSTILE  = 2;  // Standard hostile - IE: Will hit allies in certain PvP
@@ -81,16 +84,19 @@ void DebugSpell();
 // Checks for if the spell hook needs to be executed and execute it and check the return value if so.
 int DoSpellHook();
 
+// This gets the caster, usually OBJECT_SELF, or if an AOE it's GetAreaOfEffectCreator().
+object GetSpellCaster();
+
 // This gets the spell ID but overrides it if we are calling a spell with ExecuteScript
 int GetSpellIdCalculated();
 
 // This calculates the spell save DC for the given spell adding in bonuses and penalties as required
 // For a AOE it uses the stored DC.
-int GetSpellSaveDCCalculated(object oCaster = OBJECT_SELF, int nSpellId = SPELL_INVALID);
+int GetSpellSaveDCCalculated(object oCaster, int nSpellId = SPELL_INVALID);
 
 // This calculates the spell caster level for any additional bonuses due to feats or similar.
 // For a AOE it uses the stored caster level.
-int GetCasterLevelCalculated(object oCaster = OBJECT_SELF, int nSpellId = SPELL_INVALID);
+int GetCasterLevelCalculated(object oCaster, int nSpellId = SPELL_INVALID);
 
 // Will return the location of GetSpellTargetObject() if valid, else GetSpellTargetLocation.
 location GetSpellTargetLocationCalculated();
@@ -102,7 +108,7 @@ location GetSpellTargetLocationCalculated();
 //   Returns: 1 if the saving throw roll succeeded
 //   Returns: 2 if the target was immune to the save type specified
 // Note: If used within an Area of Effect Object Script (On Enter, OnExit, OnHeartbeat), you MUST pass GetAreaOfEffectCreator() into oSaveVersus!
-int DoSavingThrow(int nSavingThrow, object oTarget, int nDC, int nSaveType = SAVING_THROW_TYPE_NONE, object oSaveVersus = OBJECT_SELF, float fDelay = 0.0);
+int DoSavingThrow(object oTarget, object oSaveVersus, int nSavingThrow, int nDC, int nSaveType = SAVING_THROW_TYPE_NONE, float fDelay = 0.0);
 
 // Used to route the resist magic checks into this function to check for spell countering by SR, Globes or Mantles.
 //   Return value if oCaster or oTarget is an invalid object: FALSE
@@ -110,7 +116,14 @@ int DoSavingThrow(int nSavingThrow, object oTarget, int nDC, int nSaveType = SAV
 //   Return value if spell resisted: 1
 //   Return value if spell resisted via magic immunity: 2
 //   Return value if spell resisted via spell absorption: 3
-int DoResistSpell(object oCaster, object oTarget, float fDelay = 0.0);
+int DoResistSpell(object oTarget, object oCaster, float fDelay = 0.0);
+
+// Does a relevant touch attack. Some classes add bonuses to touch attacks, which can be added in here.
+// Return values:
+// * 0 - Miss
+// * 1 - Hit
+// * 2 - Critical Hit
+int DoTouchAttack(object oTarget, object oVersus, int nType, int bDisplayFeedback = TRUE);
 
 // Applies metamagic to the given dice roll
 // eg GetDiceRoll(4, 6, METAMAGIC_EMPOWER) will roll 4d6 and apply Empower to it
@@ -182,6 +195,17 @@ int DoSpellHook()
     return FALSE;
 }
 
+
+// This gets the caster, usually OBJECT_SELF, or if an AOE it's GetAreaOfEffectCreator().
+object GetSpellCaster()
+{
+    if (GetObjectType(OBJECT_SELF) == OBJECT_TYPE_AREA_OF_EFFECT)
+    {
+        return GetAreaOfEffectCreator();
+    }
+    return OBJECT_SELF;
+}
+
 // This gets the spell ID but overrides it if we are calling a spell with ExecuteScript
 int GetSpellIdCalculated()
 {
@@ -245,7 +269,7 @@ location GetSpellTargetLocationCalculated()
 //   Returns: 1 if the saving throw roll succeeded
 //   Returns: 2 if the target was immune to the save type specified
 // Note: If used within an Area of Effect Object Script (On Enter, OnExit, OnHeartbeat), you MUST pass GetAreaOfEffectCreator() into oSaveVersus!
-int DoSavingThrow(int nSavingThrow, object oTarget, int nDC, int nSaveType = SAVING_THROW_TYPE_NONE, object oSaveVersus = OBJECT_SELF, float fDelay = 0.0)
+int DoSavingThrow(object oTarget, object oSaveVersus, int nSavingThrow, int nDC, int nSaveType = SAVING_THROW_TYPE_NONE, float fDelay = 0.0)
 {
     // Sanity check
     if (nDC < 1)
@@ -308,7 +332,7 @@ int DoSavingThrow(int nSavingThrow, object oTarget, int nDC, int nSaveType = SAV
 //   Return value if spell resisted: 1
 //   Return value if spell resisted via magic immunity: 2
 //   Return value if spell resisted via spell absorption: 3
-int DoResistSpell(object oCaster, object oTarget, float fDelay = 0.0)
+int DoResistSpell(object oTarget, object oCaster, float fDelay = 0.0)
 {
     // Alter the delay so it applies just before any other VFX
     if (fDelay > 0.5)
@@ -334,6 +358,29 @@ int DoResistSpell(object oCaster, object oTarget, float fDelay = 0.0)
     }
     return nResist;
 }
+
+
+// Does a relevant touch attack. Some classes add bonuses to touch attacks, which can be added in here.
+// Return values:
+// * 0 - Miss
+// * 1 - Hit
+// * 2 - Critical Hit
+int DoTouchAttack(object oTarget, object oVersus, int nType, int bDisplayFeedback = TRUE)
+{
+    // Note: For now we don't use oVersus but it's possible to do this with ExecuteScript/ExecuteScriptChunk.
+    if (oVersus != OBJECT_SELF)
+    {
+        if (DEBUG >= LOG_LEVEL_ERROR) OP_Debug("[ERROR] DoTouchAttack used when oVersus isn't OBJECT_SELF");
+    }
+
+    if (nType == TOUCH_MELEE)
+    {
+        return TouchAttackMelee(oTarget, bDisplayFeedback);
+    }
+    // Else TOUCH_RANGED
+    return TouchAttackRanged(oTarget, bDisplayFeedback);
+}
+
 
 // Applies metamagic to the given dice roll
 // eg GetDiceRoll(4, 6, METAMAGIC_EMPOWER) will roll 4d6 and apply Empower to it
@@ -669,12 +716,12 @@ int AOECheck()
 }
 
 // These global variables are used in most spell scripts and are initialised here to be consistent
-object oCaster   = OBJECT_SELF;
+object oCaster   = GetSpellCaster();
 object oCastItem = GetSpellCastItem();
 object oTarget   = GetSpellTargetObject();
 location lTarget = GetSpellTargetLocationCalculated();
 int nSpellId     = GetSpellIdCalculated();
-int nSpellSaveDC = GetSpellSaveDCCalculated();
-int nCasterLevel = GetCasterLevelCalculated();
+int nSpellSaveDC = GetSpellSaveDCCalculated(oCaster);
+int nCasterLevel = GetCasterLevelCalculated(oCaster);
 int nMetaMagic   = GetMetaMagicFeat();
 
