@@ -33,7 +33,7 @@
 //:://////////////////////////////////////////////
 
 #include "op_i_debug"
-#include "op_i_eosconstants"
+#include "op_i_eosconstant"
 #include "utl_i_maths"
 
 // These are the games string refs for immunity feedback.
