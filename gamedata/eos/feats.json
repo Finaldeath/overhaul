@@ -4856,7 +4856,7 @@
       "Description": {
         "Index": 110694,
         "EN": {
-          "M": "Type of Feat: Class\nPrerequisite: Eye of Gruumsh level 1.\nSpecifics: At 1st level, the Eye of Gruumsh may grant a \u002B2 morale bonus on Will saving throws to any allies within 30 feet. The effect lasts for 1 hour per eye of Gruumsh level.\nUse: Combat Mode.",
+          "M": "Type of Feat: Class\nPrerequisite: Eye of Gruumsh level 1.\nSpecifics: At 1st level, the Eye of Gruumsh may grant a \u002B2 morale bonus on Will saving throws to any allies within 30 feet. The effect lasts for 1 hour per eye of Gruumsh level.\nUse: Selected (Instant).",
           "F": "Type of Feat: Class\nPrerequisite: Eye of Gruumsh level 1.\nSpecifics: At 1st level, the Eye of Gruumsh may grant a \u002B2 morale bonus on Will saving throws to any nongood orcs or half-orcs with Hit Dice lower than his character level within 30 feet. The effect lasts for 1 hour per eye of Gruumsh level.\nUse: Combat Mode."
         },
         "FR": {
@@ -4888,12 +4888,15 @@
       "RequiredFeat2": null,
       "UseableByAllClasses": false,
       "Category": "FriendlyEnhancementAoe",
-      "OnUseEffect": null,
+      "OnUseEffect": {
+        "ID": "58579d0e-0b78-47d6-836e-007f3916d7e1",
+        "Label": "Command the Horde"
+      },
       "SuccessorFeat": null,
       "CRModifier": 0.5,
-      "UsesPerDay": 0,
+      "UsesPerDay": 1,
       "MasterFeat": null,
-      "TargetSelf": false,
+      "TargetSelf": true,
       "RequiredFeatSelection1": null,
       "RequiredFeatSelection2": null,
       "RequiredFeatSelection3": null,
@@ -4913,7 +4916,7 @@
       "MaxLevel": null,
       "MinFortitudeSave": null,
       "RequiresEpic": false,
-      "UseActionQueue": true
+      "UseActionQueue": false
     },
     {
       "ID": "8c8fc1c0-b925-45be-b8d8-ffd2f60be379",
