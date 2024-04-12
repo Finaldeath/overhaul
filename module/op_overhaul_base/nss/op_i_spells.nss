@@ -173,6 +173,9 @@ void SignalSpellCastAt(object oTarget, object oCaster, int bHostile);
 // This might be removed later but for now will stop some bugs.
 int AOECheck();
 
+// Sends fake damage messages as per the game format for oTarget and oSource
+void FakeDamageMessage(object oTarget, object oSource, int nDamage, int nDamageType);
+
 // Debug the spell and variables
 void DebugSpell()
 {
@@ -713,6 +716,15 @@ int AOECheck()
         return FALSE;
     }
     return TRUE;
+}
+
+
+// Sends fake damage messages as per the game format for oTarget and oSource
+void FakeDamageMessage(object oTarget, object oSource, int nDamage, int nDamageType)
+{
+    // Similar to BroadcastDamageDataToParty
+
+
 }
 
 // These global variables are used in most spell scripts and are initialised here to be consistent

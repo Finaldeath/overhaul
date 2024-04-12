@@ -50164,7 +50164,7 @@
       "Type": "Spell",
       "UseConcentration": true,
       "IsCastSpontaneously": false,
-      "IsHostile": false,
+      "IsHostile": true,
       "CounterSpell1": null,
       "CounterSpell2": null,
       "HasProjectileVisuals": false,
@@ -63929,6 +63929,128 @@
         "HarmsEnemies",
         "HarmsAllies",
         "OriginOnSelf"
+      ]
+    },
+    {
+      "ID": "c62cc433-b916-4732-b944-dd94569347cb",
+      "Index": 10,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Stone_to_flesh",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 3046,
+        "EN": {
+          "M": "Disintegrate",
+          "F": "Stone to Flesh"
+        },
+        "FR": {
+          "M": "Transmutation de la pierre en chair"
+        },
+        "DE": {
+          "M": "Stein zu Fleisch"
+        },
+        "IT": {
+          "M": "Pietra in carne"
+        },
+        "ES": {
+          "M": "De la piedra a la carne"
+        },
+        "PL": {
+          "M": "Kamie\u0144 w Cia\u0142o"
+        }
+      },
+      "Description": {
+        "Index": 3047,
+        "EN": {
+          "M": "Caster Level(s): Wizard / Sorcerer 7\nInnate Level: 7\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells: \nSave: Fortitude partial\nSpell Resistance: Yes\r\n\nA ray springs from the character\u0027s pointing finger. You must make a successful ranged touch attack to hit. Any object struck by the ray takes 2d6 points of magical damage per caster level (to a maximum of 40d6). Any object reduced to 0 or fewer hit points by this spell is entirely disintegrated, leaving behind only a trace of fine dust.\r\n\r\nA creature or object that makes a successful Fortitude save is partially affected, taking only 5d6 points of damage. If this damage reduces the creature or object to 0 or fewer hit points, it is entirely disintegrated. ",
+          "F": "Caster Level(s): Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Single\nDuration: Permanent\nAdditional Counter Spells: Flesh to Stone\nSave: None\nSpell Resistance: No\n\nThis spell restores a petrified creature to its normal state, restoring life and goods."
+        },
+        "FR": {
+          "M": "Niveau : Magicien / Ensorceleur 6\nNiveau inn\u00E9 : 6\nEcole : Transmutation\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : moyenne\nZone d\u2019effet / cible : 1 cr\u00E9ature\nDur\u00E9e : Permanente\nContresorts suppl\u00E9mentaires : p\u00E9trification\nJet de sauvegarde : aucun\nR\u00E9sistance \u00E0 la magie : non\n\nCe sort rend son aspect normal \u00E0 une cr\u00E9ature p\u00E9trifi\u00E9e"
+        },
+        "DE": {
+          "M": "Grad: MAG/HXM 6\nKalkulationsgrad: 6\nSchule: Verwandlung\nKategorie:\nKomponenten: V, G\nReichweite: Mittel\nWirkungsbereich/Ziel: 1 Ziel\nWirkungsdauer: Permanent\nGegenzauber: Fleisch zu Stein\nRettungswurf: Nein\nZauberresistenz: Nein\n\nDer Zauber verwandelt eine versteinerte Person oder Kreatur wieder zu Fleisch. Dadurch beginnt sie wieder zu leben, und auch ihre Besitzt\u00FCmer werden wieder zug\u00E4nglich."
+        },
+        "IT": {
+          "M": "Livello(i) dell\u0027incantatore: mago / stregone 6\nLivello innato: 6\nScuola: trasmutazione\nDescrittore(i):\nComponente(i): verbale, somatica\nRaggio d\u0027azione: medio\nArea d\u0027effetto / bersaglio: singolo\nDurata: permanente\nControincantesimi addizionali: carne in pietra\nTiro salvezza: nessuno\nResistenza agli incantesimi: no\n\nQuesto incantesimo riporta una creatura pietrificata alla normalit\u00E0, restituendogli la vita e gli oggetti che portava addosso."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Hechicero/Mago 6\nNivel innato: 6\nEscuela: Transmutaci\u00F3n\nDescriptores:\nComponentes: Verbal, Som\u00E1tico\nAlcance: Intermedio\n\u00C1rea de efecto / Objetivo: Individual\nDuraci\u00F3n: Permanente\nContraconjuros adicionales: De la carne a la piedra\nTiro de salvaci\u00F3n: Ninguno\nResistencia a conjuros: No\n\nEste conjuro permite que una criatura petrificada recupere su estado normal, devolvi\u00E9ndole la vida y sus bienes."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Czarodziej/Czarownik 6\nPoziom wrodzony: 6\nSzko\u0142a: Przemiany\nIdentyfikator(y):\nKomponent(y): Werbalny, Somatyczny\nZasi\u0119g: \u015Aredni\nObszar dzia\u0142ania / Cel: Pojedynczy\nCzas trwania: Sta\u0142y*\nDodatkowe przeciwzakl\u0119cia: Zamiana Cia\u0142a w Kamie\u0144\nRzut obronny: Brak\nOdporno\u015B\u0107 na czary: Nie\n\nTen czar pozwala wr\u00F3ci\u0107 istocie zamienionej w kamie\u0144 do normalnego stanu, przywracaj\u0105c jej \u017Cycie i ekwipunek."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_x1stofls",
+      "School": "T",
+      "Range": "M",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Empower",
+        "Maximize",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Creature",
+        "Item",
+        "Door",
+        "Placeable"
+      ],
+      "ImpactScript": "op_s_disintegrat",
+      "InnateLevel": 7,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_smhannatr01",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mehannatr01",
+      "ConjurationMaleSound": "vs_chant_conj_hm",
+      "ConjurationFemaleSound": "vs_chant_conj_hf",
+      "CastingAnimation": "Touch",
+      "CastTime": 1700,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": null,
+      "ProjectileSound": null,
+      "ProjectileOrientation": null,
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "HarmfulRanged",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": true,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": [
+        "HarmsEnemies"
       ]
     }
   ]
