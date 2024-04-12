@@ -19,6 +19,6 @@ void main()
     string sResRef = GetResRef(OBJECT_SELF);
     int nType = GetObjectType(OBJECT_SELF);
     location lTarget = GetLocation(OBJECT_SELF);
-    AssignCommand(oModule, DelayCommand(3.0, Respawn(sResRef, nType, lTarget, GetScriptName())));
+    AssignCommand(oModule, DelayCommand(8.0, Respawn(sResRef, nType, lTarget, GetScriptName())));
 
 }

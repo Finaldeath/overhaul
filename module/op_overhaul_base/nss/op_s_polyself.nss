@@ -50,7 +50,7 @@ void main()
         break;
     }
 
-    effect eVis = EffectVisualEffect(VFX_IMP_POLYMORPH);
+    effect eVis  = EffectVisualEffect(VFX_IMP_POLYMORPH);
     effect ePoly = EffectPolymorph(nPoly);
 
     float fDuration = GetDuration(nCasterLevel, TURNS);

@@ -30,8 +30,8 @@ void main()
     if (DoSpellHook()) return;
 
     // Effects
-    effect eDeath = IgnoreEffectImmunity(EffectDeath());
-    effect eVis = EffectVisualEffect(VFX_IMP_UNSUMMON);
+    effect eDeath  = IgnoreEffectImmunity(EffectDeath());
+    effect eVis    = EffectVisualEffect(VFX_IMP_UNSUMMON);
     effect eImpact = EffectVisualEffect(VFX_FNF_LOS_EVIL_30);
 
     ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, eImpact, lTarget);
@@ -40,7 +40,7 @@ void main()
     int nPool = 2 * nCasterLevel;
 
     object oTarget = GetFirstObjectInShape(SHAPE_SPHERE, RADIUS_SIZE_COLOSSAL, lTarget);
-    while(GetIsObjectValid(oTarget) && nPool > 0)
+    while (GetIsObjectValid(oTarget) && nPool > 0)
     {
         if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
         {

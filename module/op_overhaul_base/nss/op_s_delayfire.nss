@@ -55,7 +55,7 @@ void main()
         int nMaxCount;
         switch (nSpellId)
         {
-            case SPELL_DELAYED_BLAST_FIREBALL_1_ROUND:  nMaxCount = 1; break;
+            case SPELL_DELAYED_BLAST_FIREBALL_1_ROUND: nMaxCount = 1; break;
             case SPELL_DELAYED_BLAST_FIREBALL_2_ROUNDS: nMaxCount = 2; break;
             case SPELL_DELAYED_BLAST_FIREBALL_3_ROUNDS: nMaxCount = 3; break;
             case SPELL_DELAYED_BLAST_FIREBALL_4_ROUNDS: nMaxCount = 4; break;
@@ -96,7 +96,7 @@ void main()
 
     switch (nSpellId)
     {
-        case SPELL_DELAYED_BLAST_FIREBALL_1_ROUND:  fDuration = 6.0; break;
+        case SPELL_DELAYED_BLAST_FIREBALL_1_ROUND: fDuration = 6.0; break;
         case SPELL_DELAYED_BLAST_FIREBALL_2_ROUNDS: fDuration = 12.0; break;
         case SPELL_DELAYED_BLAST_FIREBALL_3_ROUNDS: fDuration = 18.0; break;
         case SPELL_DELAYED_BLAST_FIREBALL_4_ROUNDS: fDuration = 24.0; break;
@@ -134,13 +134,13 @@ void DelayedBlastEffect()
     int nDamageDice = min(nCasterLevel, 20);
 
     effect eExplode = EffectVisualEffect(VFX_FNF_FIREBALL);
-    effect eVis = EffectVisualEffect(VFX_IMP_FLAME_M);
+    effect eVis     = EffectVisualEffect(VFX_IMP_FLAME_M);
 
     ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, eExplode, lTarget);
 
-    //Cycle through the targets in the explosion area
+    // Cycle through the targets in the explosion area
     oTarget = GetFirstObjectInShape(SHAPE_SPHERE, RADIUS_SIZE_HUGE, lTarget, TRUE, OBJECT_TYPE_CREATURE | OBJECT_TYPE_DOOR | OBJECT_TYPE_PLACEABLE);
-    while(GetIsObjectValid(oTarget))
+    while (GetIsObjectValid(oTarget))
     {
         if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
         {
@@ -157,7 +157,7 @@ void DelayedBlastEffect()
                 // Reflex adjusted
                 nDamage = GetReflexAdjustedDamage(nDamage, oTarget, nSpellSaveDC, SAVING_THROW_TYPE_FIRE, oCaster);
 
-                if(nDamage > 0)
+                if (nDamage > 0)
                 {
                     // Apply VFX impact and damage effect
                     effect eDam = EffectDamage(nDamage, DAMAGE_TYPE_FIRE);
@@ -169,5 +169,4 @@ void DelayedBlastEffect()
         // Get next target in the sequence
         oTarget = GetNextObjectInShape(SHAPE_SPHERE, RADIUS_SIZE_HUGE, lTarget, TRUE, OBJECT_TYPE_CREATURE | OBJECT_TYPE_DOOR | OBJECT_TYPE_PLACEABLE);
     }
-
 }

@@ -26,9 +26,9 @@
 
 void main()
 {
-    effect eVis = EffectVisualEffect(VFX_IMP_AC_BONUS);
-    effect eAC = EffectACIncrease(6, AC_ARMOUR_ENCHANTMENT_BONUS);
-    effect eDur = EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE);
+    effect eVis  = EffectVisualEffect(VFX_IMP_AC_BONUS);
+    effect eAC   = EffectACIncrease(6, AC_ARMOUR_ENCHANTMENT_BONUS);
+    effect eDur  = EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE);
     effect eLink = EffectLinkEffects(eAC, eDur);
 
     SignalSpellCastAt(oTarget, oCaster, FALSE);

@@ -51,7 +51,7 @@ void main()
                 {
                     // Limit damage to 40d6
                     int nDamageDice = min(nCasterLevel * 2, 40);
-                    nDamage = GetDiceRoll(nDamageDice, 6);
+                    nDamage         = GetDiceRoll(nDamageDice, 6);
 
                     // Critical hit?
                     if (nTouch == 2) nDamage *= 2;
@@ -67,9 +67,12 @@ void main()
                 DelayCommand(0.0, ApplyDisintegrate(oTarget, nDamage));
             }
         }
-        // Beam depends on hitting
-        effect eRay = EffectBeam(VFX_BEAM_FIRE, oCaster, BODY_NODE_HAND, !nTouch);
-        ApplyEffectToObject(DURATION_TYPE_INSTANT, eRay, oTarget);
+        else
+        {
+            // Miss beam
+            effect eRay = EffectBeam(VFX_BEAM_DISINTEGRATE, oCaster, BODY_NODE_HAND, TRUE);
+            ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eRay, oTarget, 1.5);
+        }
     }
 }
 
@@ -80,38 +83,61 @@ void ApplyDisintegrate(object oTarget, int nDamage)
     // New simpler way is to have us test if the death will happen and if it will we use
     // fake damage messages + DestroyObject
 
-    // Note the spell will kill when people reach 0 HP so this covers dying anyway
-    if (GetCurrentHitPoints(oTarget) - nDamage <= 0 &&
-       !GetPlotFlag(oTarget) &&
-       !GetImmortal(oTarget))
+    // If already dead NPC just apply the beam
+    if (GetIsDead(oTarget) && !GetIsPC(oTarget))
     {
-        // Fake damage message (maybe)
+        effect eRay = UnyieldingEffect(EffectBeam(VFX_BEAM_DISINTEGRATE, oCaster, BODY_NODE_HAND));
+        ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eRay, oTarget, 1.5);
+    }
+    // Note the spell will kill when people reach 0 HP so this covers dying anyway
+    else if (GetCurrentHitPoints(oTarget) - nDamage <= 0 &&
+        !GetPlotFlag(oTarget) &&
+        !GetImmortal(oTarget))
+    {
+        // Fake damage message (maybe...)
         FakeDamageMessage(oTarget, oCaster, nDamage, DAMAGE_TYPE_MAGICAL);
+
+        // Dust effect
+        effect eVis = EffectVisualEffect(30000);
+        ApplyEffectAtLocation(DURATION_TYPE_INSTANT, eVis, GetLocation(oTarget));
+
+        effect eRay = UnyieldingEffect(EffectBeam(VFX_BEAM_DISINTEGRATE, oCaster, BODY_NODE_HAND));
+        ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eRay, oTarget, 1.5);
 
         // If PC or henchman we just kill them
         if (GetIsPC(oTarget) || GetAssociateType(oTarget) == ASSOCIATE_TYPE_HENCHMAN)
         {
-            effect eDeath = EffectDeath();
+            effect eDeath = IgnoreEffectImmunity(EffectDeath());
             ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDeath, oTarget);
         }
         else
         {
-            // Set not lootable
+            // Set to be corpse lootable for the dust to work well
             SetLootable(oTarget, FALSE);
-            SetIsDestroyable(TRUE, FALSE, FALSE, oTarget);
+            SetIsDestroyable(FALSE, FALSE, FALSE, oTarget);
+            SetLootable(oTarget, TRUE);
+
+            // Make it stuck in place and stoney it before we make it dust
+            effect eStoneskin = EffectPetrify();
+            ApplyEffectToObject(DURATION_TYPE_PERMANENT, eStoneskin, oTarget);
+
+            // Apply invisibility
+            DelayCommand(1.0, SetCreatureAppearanceType(oTarget, 30000));
 
             // Apply death (trigger scripts)
-            effect eDeath = EffectDeath();
-            ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDeath, oTarget);
-
-            // Destroy them
-            DestroyObject(oTarget, 0.1);
+            effect eDeath = IgnoreEffectImmunity(EffectDeath(TRUE));
+            DelayCommand(1.5, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDeath, oTarget));
         }
     }
     else
     {
-        // Didn't kill, just apply normal damage
+        // Didn't kill, just apply normal damage and a minor VFX
+        effect eRay = UnyieldingEffect(EffectBeam(VFX_BEAM_DISINTEGRATE, oCaster, BODY_NODE_HAND));
+        ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eRay, oTarget, 1.5);
+
+        effect eVis    = EffectVisualEffect(VFX_IMP_MAGBLUE);
         effect eDamage = EffectDamage(nDamage);
+        ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
         ApplyEffectToObject(DURATION_TYPE_INSTANT, eDamage, oTarget);
     }
 }
@@ -185,5 +211,5 @@ void ApplyDisintegrate(object oTarget, int nDamage)
 void DestroyThem(object oTarget)
 {
     SetIsDestroyable(TRUE, FALSE, FALSE, oTarget);
-    DestroyObject(oTarget); // This should spawn the bodybag (ie SetLootable is FALSE)
+    DestroyObject(oTarget);  // This should spawn the bodybag (ie SetLootable is FALSE)
 }
