@@ -24,6 +24,14 @@
     A creature or object that makes a successful Fortitude save is partially
     affected, taking only 5d6 points of damage. If this damage reduces the
     creature or object to 0 or fewer hit points, it is entirely disintegrated.
+
+    ---------
+
+    Note this spell tries to stay non-disruptive to modules:
+    - Creatures are killed with EffectDeath()
+    - They'll turn into dust (change of appearance) and be set to not be raiseable
+    - PCs and Henchmen just get the VFX they won't get turned to dust. I guess
+      we could do it and when raised in a script change them back though.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -33,7 +41,6 @@
 #include "op_i_spells"
 
 void ApplyDisintegrate(object oTarget, int nDamage);
-void DestroyThem(object oTarget);
 
 void main()
 {
@@ -117,12 +124,12 @@ void ApplyDisintegrate(object oTarget, int nDamage)
             SetIsDestroyable(FALSE, FALSE, FALSE, oTarget);
             SetLootable(oTarget, TRUE);
 
-            // Make it stuck in place and stoney it before we make it dust
-            effect eStoneskin = EffectPetrify();
-            ApplyEffectToObject(DURATION_TYPE_PERMANENT, eStoneskin, oTarget);
+            // Make it stuck in place and stoney it before we make it dust (keeps it in the VFX area)
+            effect ePetrify = EffectPetrify();
+            ApplyEffectToObject(DURATION_TYPE_PERMANENT, ePetrify, oTarget);
 
             // Apply invisibility
-            DelayCommand(1.0, SetCreatureAppearanceType(oTarget, 30000));
+            DelayCommand(1.0, SetCreatureAppearanceType(oTarget, APPEARANCE_TYPE_OP_DISINTEGRATE_DUST_PLUME));
 
             // Apply death (trigger scripts)
             effect eDeath = IgnoreEffectImmunity(EffectDeath(TRUE));
@@ -142,74 +149,3 @@ void ApplyDisintegrate(object oTarget, int nDamage)
     }
 }
 
-/*
-
-    // What we want to do:
-    // * Set them to not be lootable
-    // * Damage them
-    // ** If that kills them then apply invisibility effect and VFX
-    // ** If it doesn't apply a minor VFX and set their original lootable state
-    // If a PC or is a PC's henchman we don't apply the invisibility or change the lootable flag.
-
-    effect eDamage = EffectDamage(nDamage);
-    ApplyEffectToObject(DURATION_TYPE_INSTANT, eDamage, oTarget);
-
-    int bLootable = GetLootable(oTarget);
-    int bDestroyable = GetIsDestroyable(oTarget);
-    int bRaiseable = GetIsRaiseable(oTarget);
-    int bSelectableWhenDead = GetIsSelectableWhenDead(oTarget);
-    int bChangedFlags = FALSE;
-
-    if (GetObjectType(oTarget) == OBJECT_TYPE_CREATURE)
-    {
-        // If dead we disappear them too, the body bag should appear since we set it before they died.
-        if (!GetIsPC(oTarget) &&
-             GetAssociateType(oTarget) != ASSOCIATE_TYPE_HENCHMAN &&
-            !GetPlotFlag(oTarget) &&
-            !GetImmortal(oTarget))
-        {
-            OP_Debug("Setting destroyable flags");
-            SetLootable(oTarget, FALSE);
-            SetIsDestroyable(FALSE, FALSE, FALSE, oTarget);
-            bChangedFlags = TRUE;
-        }
-    }
-
-    // Dead or not?
-    if (GetIsDead(oTarget))
-    {
-        // The dust effect
-        effect eVis = EffectVisualEffect(30000);
-        ApplyEffectAtLocation(DURATION_TYPE_INSTANT, eVis, GetLocation(oTarget));
-
-        // Invisible
-        if (bChangedFlags || GetObjectType(oTarget) != OBJECT_TYPE_CREATURE)
-        {
-            OP_Debug("Setting invisible");
-            effect eInvisible = UnyieldingEffect(EffectVisualEffect(VFX_COM_UNLOAD_MODEL));
-            ApplyEffectToObject(DURATION_TYPE_PERMANENT, eInvisible, oTarget);
-            DelayCommand(1.0, DestroyThem(oTarget));
-        }
-        // Now we should have died and the corpse magically disappear, but the loot bag should remain
-    }
-    else
-    {
-        // Minor VFX instead
-        effect eVis = EffectVisualEffect(VFX_IMP_MAGBLUE);
-        ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
-
-        // Reset flags
-        if (bChangedFlags)
-        {
-            SetLootable(oTarget, bLootable);
-            SetIsDestroyable(bDestroyable, bRaiseable, bSelectableWhenDead, oTarget);
-        }
-    }
-}
-
-*/
-void DestroyThem(object oTarget)
-{
-    SetIsDestroyable(TRUE, FALSE, FALSE, oTarget);
-    DestroyObject(oTarget);  // This should spawn the bodybag (ie SetLootable is FALSE)
-}
