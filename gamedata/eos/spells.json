@@ -9574,6 +9574,88 @@
       "TargetingFlags": []
     },
     {
+      "ID": "58579d0e-0b78-47d6-836e-007f3916d7e1",
+      "Index": 9,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "Eye of Gruumsh Feat",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Command the Horde",
+          "F": "New Spell"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Eye of Gruumsh level 1.\nSpecifics: At 1st level, the Eye of Gruumsh may grant a \u002B2 morale bonus on Will saving throws to any allies within 30 feet. The effect lasts for 1 hour per eye of Gruumsh level.\nUse: Selected (Instant)."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": null,
+      "School": "G",
+      "Range": "P",
+      "Components": [
+        "V"
+      ],
+      "AvailableMetaMagic": [],
+      "TargetTypes": [
+        "Self"
+      ],
+      "ImpactScript": "op_f_commandhord",
+      "InnateLevel": 2,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": null,
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": null,
+      "ConjurationMaleSound": null,
+      "ConjurationFemaleSound": null,
+      "CastingAnimation": "Out",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": null,
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyEnhancementAoe",
+      "ParentSpell": null,
+      "Type": "Feat",
+      "UseConcentration": false,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": "Sphere",
+      "TargetSizeX": 10,
+      "TargetSizeY": null,
+      "TargetingFlags": [
+        "HelpsAllies",
+        "OriginOnSelf"
+      ]
+    },
+    {
       "ID": "a577c14d-5c72-427f-81e8-8d2166dc53e5",
       "Index": -1,
       "Overrides": "90564d32-7d63-f43d-1c22-27e5197598f6",
@@ -63846,88 +63928,6 @@
       "TargetingFlags": [
         "HarmsEnemies",
         "HarmsAllies",
-        "OriginOnSelf"
-      ]
-    },
-    {
-      "ID": "58579d0e-0b78-47d6-836e-007f3916d7e1",
-      "Index": 9,
-      "Overrides": null,
-      "Disabled": false,
-      "Hint": "Eye of Gruumsh Feat",
-      "ScriptConstant": "",
-      "SourceLabel": null,
-      "ExtensionValues": {},
-      "Name": {
-        "Index": null,
-        "EN": {
-          "M": "Command the Horde",
-          "F": "New Spell"
-        }
-      },
-      "Description": {
-        "Index": null,
-        "EN": {
-          "M": "Type of Feat: Class\nPrerequisite: Eye of Gruumsh level 1.\nSpecifics: At 1st level, the Eye of Gruumsh may grant a \u002B2 morale bonus on Will saving throws to any allies within 30 feet. The effect lasts for 1 hour per eye of Gruumsh level.\nUse: Selected (Instant)."
-        }
-      },
-      "AlternativeCastMessage": {
-        "Index": null
-      },
-      "Icon": null,
-      "School": "G",
-      "Range": "P",
-      "Components": [
-        "V"
-      ],
-      "AvailableMetaMagic": [],
-      "TargetTypes": [
-        "Self"
-      ],
-      "ImpactScript": "op_f_commandhord",
-      "InnateLevel": 2,
-      "ConjurationTime": 1500,
-      "ConjuringAnimation": "Hand",
-      "ConjurationHeadEffect": null,
-      "ConjurationHandEffect": null,
-      "ConjurationGroundEffect": null,
-      "ConjurationSound": null,
-      "ConjurationMaleSound": null,
-      "ConjurationFemaleSound": null,
-      "CastingAnimation": "Out",
-      "CastTime": 1000,
-      "CastingHeadEffect": null,
-      "CastingHandEffect": null,
-      "CastingGroundEffect": null,
-      "CastingSound": null,
-      "HasProjectile": false,
-      "ProjectileModel": null,
-      "ProjectileType": "Homing",
-      "ProjectileSpawnPoint": "Hand",
-      "ProjectileSound": null,
-      "ProjectileOrientation": "Path",
-      "SubSpell1": null,
-      "SubSpell2": null,
-      "SubSpell3": null,
-      "SubSpell4": null,
-      "SubSpell5": null,
-      "SubSpell6": null,
-      "SubSpell7": null,
-      "SubSpell8": null,
-      "Category": "FriendlyEnhancementAoe",
-      "ParentSpell": null,
-      "Type": "Feat",
-      "UseConcentration": false,
-      "IsCastSpontaneously": false,
-      "IsHostile": false,
-      "CounterSpell1": null,
-      "CounterSpell2": null,
-      "HasProjectileVisuals": false,
-      "TargetShape": "Sphere",
-      "TargetSizeX": 10,
-      "TargetSizeY": null,
-      "TargetingFlags": [
-        "HelpsAllies",
         "OriginOnSelf"
       ]
     }
