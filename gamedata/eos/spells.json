@@ -48114,7 +48114,7 @@
       },
       "CounterSpell2": null,
       "HasProjectileVisuals": true,
-      "TargetShape": null,
+      "TargetShape": "Sphere",
       "TargetSizeX": null,
       "TargetSizeY": null,
       "TargetingFlags": []
@@ -64170,6 +64170,86 @@
         "HarmsAllies",
         "OriginOnSelf"
       ]
+    },
+    {
+      "ID": "77bbf4dc-0f3d-4a88-acf3-691372f76053",
+      "Index": 12,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": null,
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Read Magic",
+          "F": "New Spell"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Caster Level(s): Bard 0, Cleric 0, Druid 0, Paladin 1, Ranger 1, Wizard / Sorcerer 0\nInnate Level: 0\nSchool: General\nDescriptor(s): \nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Single Scroll\nDuration: Instant\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nYou identify a spell scrolls contents."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "ir_learnscroll",
+      "School": "G",
+      "Range": "P",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [],
+      "TargetTypes": [
+        "Item"
+      ],
+      "ImpactScript": "op_s_readmagic",
+      "InnateLevel": 0,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_mehansonc02",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mehansonc02",
+      "ConjurationMaleSound": "vs_chant_illu_mf",
+      "ConjurationFemaleSound": "vs_chant_illu_lf",
+      "CastingAnimation": "Self",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": null,
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": null,
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
     }
   ]
 }
