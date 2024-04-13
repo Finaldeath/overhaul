@@ -48,6 +48,8 @@ void main()
 
     if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
     {
+        SignalSpellCastAt(oTarget, oCaster, TRUE);
+
         int nTouch = DoTouchAttack(oTarget, oCaster, TOUCH_RANGED);
         if (nTouch)
         {
@@ -104,8 +106,11 @@ void ApplyDisintegrate(object oTarget, int nDamage)
         // Fake damage message (maybe...)
         FakeDamageMessage(oTarget, oCaster, nDamage, DAMAGE_TYPE_MAGICAL);
 
+        // Scale of VFX based off target
+        float fScale = GetVFXScale(oTarget);
+
         // Dust effect
-        effect eVis = EffectVisualEffect(30000);
+        effect eVis = EffectVisualEffect(30000, FALSE, fScale);
         ApplyEffectAtLocation(DURATION_TYPE_INSTANT, eVis, GetLocation(oTarget));
 
         effect eRay = UnyieldingEffect(EffectBeam(VFX_BEAM_DISINTEGRATE, oCaster, BODY_NODE_HAND));
@@ -120,7 +125,7 @@ void ApplyDisintegrate(object oTarget, int nDamage)
         else
         {
             // Set to be corpse lootable for the dust to work well
-            SetLootable(oTarget, FALSE);
+            SetLootable(oTarget, TRUE);
             SetIsDestroyable(FALSE, FALSE, FALSE, oTarget);
             SetLootable(oTarget, TRUE);
 

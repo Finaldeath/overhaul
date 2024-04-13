@@ -176,6 +176,9 @@ int AOECheck();
 // Sends fake damage messages as per the game format for oTarget and oSource
 void FakeDamageMessage(object oTarget, object oSource, int nDamage, int nDamageType);
 
+// Gets the scale of the VFX to apply to oCreature. If not a creature it returns 1.0.
+float GetVFXScale(object oCreature);
+
 // Debug the spell and variables
 void DebugSpell()
 {
@@ -723,8 +726,32 @@ int AOECheck()
 void FakeDamageMessage(object oTarget, object oSource, int nDamage, int nDamageType)
 {
     // Similar to BroadcastDamageDataToParty
+    // * Things in oTarget or oSource faction get info
+    // * Limited to a particular range (30M) and visibility info
+
+}
 
 
+// Gets the scale of the VFX to apply to oCreature. If not a creature it returns 1.0.
+float GetVFXScale(object oCreature)
+{
+    if (GetObjectType(oCreature) != OBJECT_TYPE_CREATURE) return 1.0;
+
+    // This is experimental. The data in appearance.2da isn't great.
+
+    // Max scale based off creature size
+    float fMax = IntToFloat(GetCreatureSize(oCreature)) / 2.5;
+
+    // PERSPACE     - Lowest number, their personal bump space (Half-Orc: 0.3)
+    // CREPERSPACE  - Medium number, their "combat" personal space (Half-Orc: 0.5)
+    // PREFATCKDIST - Highest number, some are wildly high compared to their size like Dire Badger at 2.6 (Half-Orc: 2.1)
+    float fScale = (StringToFloat(Get2DAString("appearance", "PERSPACE", GetAppearanceType(oTarget))) +
+                    StringToFloat(Get2DAString("appearance", "PREFATCKDIST", GetAppearanceType(oTarget))) ) / 2.0;
+    float fFinal = fmin(fScale, fMax);
+
+    OP_Debug("[GetVFXScale] fScale: " + FloatToString(fScale, 10, 4) + " fMax: " + FloatToString(fMax, 10, 4) + " fFinal: " + FloatToString(fFinal, 10, 4));
+
+    return fFinal;
 }
 
 // These global variables are used in most spell scripts and are initialised here to be consistent
