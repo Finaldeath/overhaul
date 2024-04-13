@@ -179,6 +179,13 @@ void FakeDamageMessage(object oTarget, object oSource, int nDamage, int nDamageT
 // Gets the scale of the VFX to apply to oCreature. If not a creature it returns 1.0.
 float GetVFXScale(object oCreature);
 
+// Gets the level the given spell is usually cast at, Eg Magic Missile is 1 for Wizards/Sorcerers
+// If CLASS_TYPE_INVALID is used it gets the Innate level instead.
+int GetSpellLevel(int nSpellId, int nClass = CLASS_TYPE_INVALID);
+
+// Returns a human readable name for the given effect (eg: "Fear" or "Negative Level").
+string GetEffectName(effect eEffect);
+
 // Debug the spell and variables
 void DebugSpell()
 {
@@ -753,6 +760,138 @@ float GetVFXScale(object oCreature)
 
     return fFinal;
 }
+
+// Gets the level the given spell is usually cast at, Eg Magic Missile is 1 for Wizards/Sorcerers
+// If CLASS_TYPE_INVALID is used it gets the Innate level instead.
+// If the given class cannot cast the given spell we return the innate level (let's assume this for domain spells etc.)
+int GetSpellLevel(int nSpellId, int nClass = CLASS_TYPE_INVALID)
+{
+    if (nClass != CLASS_TYPE_INVALID)
+    {
+        string sColumn = Get2DAString("classes", "SpellTableColumn", nClass);
+
+        if (sColumn != "")
+        {
+            string sLevel = Get2DAString("spells", sColumn, nSpellId);
+
+            if (sLevel != "")
+            {
+                return StringToInt(sLevel);
+            }
+        }
+    }
+    // Else return the innate level
+    return StringToInt(Get2DAString("spells", "Innate", nSpellId));
+}
+
+// Returns a human readable name for the given effect (eg: "Fear" or "Negative Level").
+string GetEffectName(effect eEffect)
+{
+    switch(GetEffectType(eEffect, TRUE))
+    {
+        case EFFECT_TYPE_DAMAGE_RESISTANCE:     return "Damage Resistance"; break;
+        case EFFECT_TYPE_REGENERATE:            return "Regeneration"; break;
+        case EFFECT_TYPE_DAMAGE_REDUCTION:      return "Damge Reduction"; break;
+        case EFFECT_TYPE_TEMPORARY_HITPOINTS:   return "Temporary Hitpoints"; break;
+        case EFFECT_TYPE_ENTANGLE:              return "Entangle"; break;
+        //case EFFECT_TYPE_INVULNERABLE           return "Invulnerable"; break;
+        case EFFECT_TYPE_DEAF:                  return "Deafness"; break;
+        case EFFECT_TYPE_RESURRECTION:          return "Ressurection"; break;
+        case EFFECT_TYPE_IMMUNITY:              return "Immunity"; break;
+        case EFFECT_TYPE_ENEMY_ATTACK_BONUS:    return "Enemy Attack Bonus"; break;
+        case EFFECT_TYPE_ARCANE_SPELL_FAILURE:  return "Arcane Spell Failure"; break;
+        case EFFECT_TYPE_AREA_OF_EFFECT:        return "Area of Effect"; break;
+        case EFFECT_TYPE_BEAM:                  return "Beam"; break;
+        case EFFECT_TYPE_CHARMED:               return "Charm"; break;
+        case EFFECT_TYPE_CONFUSED:              return "Confused"; break;
+        case EFFECT_TYPE_FRIGHTENED:            return "Fear"; break;
+        case EFFECT_TYPE_DOMINATED:             return "Dominate"; break;
+        case EFFECT_TYPE_PARALYZE:              return "Paralysis"; break;
+        case EFFECT_TYPE_DAZED:                 return "Daze"; break;
+        case EFFECT_TYPE_STUNNED:               return "Stun"; break;
+        case EFFECT_TYPE_SLEEP:                 return "Sleep"; break;
+/*
+int EFFECT_TYPE_POISON                      = 31;
+int EFFECT_TYPE_DISEASE                     = 32;
+int EFFECT_TYPE_CURSE                       = 33;
+int EFFECT_TYPE_SILENCE                     = 34;
+int EFFECT_TYPE_TURNED                      = 35;
+int EFFECT_TYPE_HASTE                       = 36;
+int EFFECT_TYPE_SLOW                        = 37;
+int EFFECT_TYPE_ABILITY_INCREASE            = 38;
+int EFFECT_TYPE_ABILITY_DECREASE            = 39;
+int EFFECT_TYPE_ATTACK_INCREASE             = 40;
+int EFFECT_TYPE_ATTACK_DECREASE             = 41;
+int EFFECT_TYPE_DAMAGE_INCREASE             = 42;
+int EFFECT_TYPE_DAMAGE_DECREASE             = 43;
+int EFFECT_TYPE_DAMAGE_IMMUNITY_INCREASE    = 44;
+int EFFECT_TYPE_DAMAGE_IMMUNITY_DECREASE    = 45;
+int EFFECT_TYPE_AC_INCREASE                 = 46;
+int EFFECT_TYPE_AC_DECREASE                 = 47;
+int EFFECT_TYPE_MOVEMENT_SPEED_INCREASE     = 48;
+int EFFECT_TYPE_MOVEMENT_SPEED_DECREASE     = 49;
+int EFFECT_TYPE_SAVING_THROW_INCREASE       = 50;
+int EFFECT_TYPE_SAVING_THROW_DECREASE       = 51;
+int EFFECT_TYPE_SPELL_RESISTANCE_INCREASE   = 52;
+int EFFECT_TYPE_SPELL_RESISTANCE_DECREASE   = 53;
+int EFFECT_TYPE_SKILL_INCREASE              = 54;
+int EFFECT_TYPE_SKILL_DECREASE              = 55;
+int EFFECT_TYPE_INVISIBILITY                = 56;
+int EFFECT_TYPE_IMPROVEDINVISIBILITY        = 57;
+int EFFECT_TYPE_DARKNESS                    = 58;
+int EFFECT_TYPE_DISPELMAGICALL              = 59;
+int EFFECT_TYPE_ELEMENTALSHIELD             = 60;
+int EFFECT_TYPE_NEGATIVELEVEL               = 61;
+int EFFECT_TYPE_POLYMORPH                   = 62;
+int EFFECT_TYPE_SANCTUARY                   = 63;
+int EFFECT_TYPE_TRUESEEING                  = 64;
+int EFFECT_TYPE_SEEINVISIBLE                = 65;
+int EFFECT_TYPE_TIMESTOP                    = 66;
+int EFFECT_TYPE_BLINDNESS                   = 67;
+int EFFECT_TYPE_SPELLLEVELABSORPTION        = 68;
+int EFFECT_TYPE_DISPELMAGICBEST             = 69;
+int EFFECT_TYPE_ULTRAVISION                 = 70;
+int EFFECT_TYPE_MISS_CHANCE                 = 71;
+int EFFECT_TYPE_CONCEALMENT                 = 72;
+int EFFECT_TYPE_SPELL_IMMUNITY              = 73;
+int EFFECT_TYPE_VISUALEFFECT                = 74;
+int EFFECT_TYPE_DISAPPEARAPPEAR             = 75;
+int EFFECT_TYPE_SWARM                       = 76;
+int EFFECT_TYPE_TURN_RESISTANCE_DECREASE    = 77;
+int EFFECT_TYPE_TURN_RESISTANCE_INCREASE    = 78;
+int EFFECT_TYPE_PETRIFY                     = 79;
+int EFFECT_TYPE_CUTSCENE_PARALYZE           = 80;
+int EFFECT_TYPE_ETHEREAL                    = 81;
+int EFFECT_TYPE_SPELL_FAILURE               = 82;
+int EFFECT_TYPE_CUTSCENEGHOST               = 83;
+int EFFECT_TYPE_CUTSCENEIMMOBILIZE          = 84;
+int EFFECT_TYPE_RUNSCRIPT                   = 85;
+int EFFECT_TYPE_ICON                        = 86;
+int EFFECT_TYPE_PACIFY                      = 87;
+int EFFECT_TYPE_BONUS_FEAT                  = 88;
+int EFFECT_TYPE_TIMESTOP_IMMUNITY           = 89;
+int EFFECT_TYPE_FORCE_WALK                  = 90;
+// The below values are used only if GetEffectType parameter bAllTypes is TRUE
+int EFFECT_TYPE_APPEAR                      = 91;
+int EFFECT_TYPE_CUTSCENE_DOMINATED          = 92;
+int EFFECT_TYPE_DAMAGE                      = 93;
+int EFFECT_TYPE_DEATH                       = 94;
+int EFFECT_TYPE_DISAPPEAR                   = 95;
+int EFFECT_TYPE_HEAL                        = 96;
+int EFFECT_TYPE_HITPOINTCHANGEWHENDYING     = 97;
+int EFFECT_TYPE_KNOCKDOWN                   = 98;
+int EFFECT_TYPE_MODIFY_ATTACKS              = 99;
+int EFFECT_TYPE_SUMMON_CREATURE             = 100;
+int EFFECT_TYPE_TAUNT                       = 101;
+int EFFECT_TYPE_WOUNDING                    = 102;
+// End of valued returned by bAllTypes being TRUE
+
+*/
+
+    }
+    return "";
+}
+
 
 // These global variables are used in most spell scripts and are initialised here to be consistent
 object oCaster   = GetSpellCaster();
