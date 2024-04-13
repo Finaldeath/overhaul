@@ -54,6 +54,8 @@ void main()
     // Max level of the targeted effect (unless not from a spell)
     int nMaxSpellLevel = 5;
 
+    SignalSpellCastAt(oTarget, oCaster, FALSE);
+
     effect eCheck = GetFirstEffect(oTarget);
     while (GetIsEffectValid(eCheck))
     {
@@ -86,14 +88,45 @@ void main()
                 // Try and break it!
                 if (d20() + nCheckLevel >= 11 + nCasterLevel)
                 {
-                    string sBroken = "*Broken Enchantment: " + GetEffectName(eCheck) + "*";
+                    string sBroken = "*Successfully broken enchantment of type: " + GetEffectName(eCheck) + "*";
                     SendMessageToPC(oCaster, sBroken);
                     if (oCaster != oTarget) SendMessageToPC(oTarget, sBroken);
                     RemoveEffect(oTarget, eCheck);
                 }
+                else
+                {
+                    string sBroken = "*Failed to break enchantment of type: " + GetEffectName(eCheck) + "*";
+                    SendMessageToPC(oCaster, sBroken);
+                    if (oCaster != oTarget) SendMessageToPC(oTarget, sBroken);
+                }
             }
         }
+        else if (nSpellId != SPELL_INVALID)
+        {
+            int nSpellSchool = GetSpellSchool(nSpellId);
 
+            if (nSpellSchool == SPELL_SCHOOL_ENCHANTMENT ||
+                nSpellSchool == SPELL_SCHOOL_TRANSMUTATION)
+            {
+                if (GetSpellLevel(nSpellId) <= nMaxSpellLevel)
+                {
+                    // For now just remove everything, good bad or whatever
+                    if (d20() + nCheckLevel >= 11 + nCasterLevel)
+                    {
+                        string sBroken = "*Successfully broken enchantment from the spell: " + GetSpellName(nSpellId) + "*";
+                        SendMessageToPC(oCaster, sBroken);
+                        if (oCaster != oTarget) SendMessageToPC(oTarget, sBroken);
+                        RemoveEffect(oTarget, eCheck);
+                    }
+                    else
+                    {
+                        string sBroken = "*Failed to break enchantment from the spell: " + GetSpellName(nSpellId) + "*";
+                        SendMessageToPC(oCaster, sBroken);
+                        if (oCaster != oTarget) SendMessageToPC(oTarget, sBroken);
+                    }
+                }
+            }
+        }
         eCheck = GetNextEffect(oTarget);
     }
 
