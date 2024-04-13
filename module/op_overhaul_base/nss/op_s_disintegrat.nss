@@ -126,7 +126,7 @@ void ApplyDisintegrate(object oTarget, int nDamage)
         {
             // Set to be corpse lootable for the dust to work well
             SetLootable(oTarget, TRUE);
-            SetIsDestroyable(FALSE, FALSE, FALSE, oTarget);
+            SetIsDestroyable(FALSE, TRUE, FALSE, oTarget);
             SetLootable(oTarget, TRUE);
 
             // Make it stuck in place and stoney it before we make it dust (keeps it in the VFX area)
@@ -137,7 +137,7 @@ void ApplyDisintegrate(object oTarget, int nDamage)
             DelayCommand(1.0, SetCreatureAppearanceType(oTarget, APPEARANCE_TYPE_OP_DISINTEGRATE_DUST_PLUME));
 
             // Apply death (trigger scripts)
-            effect eDeath = IgnoreEffectImmunity(EffectDeath(TRUE));
+            effect eDeath = IgnoreEffectImmunity(EffectDeath(FALSE));
             DelayCommand(1.5, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDeath, oTarget));
         }
     }
