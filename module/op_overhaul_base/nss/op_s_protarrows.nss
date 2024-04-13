@@ -46,19 +46,19 @@ void main()
     int nLimit = min(nCasterLevel * 10, 100);
 
     // Calculate damage reduction, max +5
-    int nDR = min(nCasterLevel/5 + 1, 5);
+    int nDR = min(nCasterLevel / 5 + 1, 5);
 
     // Scale of VFX based off target size.
     // This is experimental. Might revert to 3 set vfx files.
-    //float fScale = 0.5 * fmax(StringToFloat(Get2DAString("appearance", "PREFATCKDIST", GetAppearanceType(oTarget))), 0.8);
-    //SpeakString("scale: " + FloatToString(fScale));
+    // float fScale = 0.5 * fmax(StringToFloat(Get2DAString("appearance", "PREFATCKDIST", GetAppearanceType(oTarget))), 0.8);
+    // SpeakString("scale: " + FloatToString(fScale));
     float fScale = GetVFXScale(oTarget);
 
     effect eDR   = EffectDamageReduction(10, nDR, nLimit, TRUE);
     effect eDur  = EffectVisualEffect(30001, FALSE, fScale);
     effect eCess = EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE);
     effect eLink = EffectLinkEffects(eDR, eDur);
-    eLink = EffectLinkEffects(eLink, eCess);
+    eLink        = EffectLinkEffects(eLink, eCess);
 
     SignalSpellCastAt(oTarget, oCaster, FALSE);
 
@@ -67,4 +67,3 @@ void main()
     // Apply the armor bonuses and the VFX impact
     ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(nCasterLevel, TURNS));
 }
-

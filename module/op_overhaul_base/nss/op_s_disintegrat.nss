@@ -100,8 +100,8 @@ void ApplyDisintegrate(object oTarget, int nDamage)
     }
     // Note the spell will kill when people reach 0 HP so this covers dying anyway
     else if (GetCurrentHitPoints(oTarget) - nDamage <= 0 &&
-        !GetPlotFlag(oTarget) &&
-        !GetImmortal(oTarget))
+             !GetPlotFlag(oTarget) &&
+             !GetImmortal(oTarget))
     {
         // Fake damage message (maybe...)
         FakeDamageMessage(oTarget, oCaster, nDamage, DAMAGE_TYPE_MAGICAL);
@@ -153,4 +153,3 @@ void ApplyDisintegrate(object oTarget, int nDamage)
         ApplyEffectToObject(DURATION_TYPE_INSTANT, eDamage, oTarget);
     }
 }
-

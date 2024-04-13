@@ -31,11 +31,11 @@ void main()
         ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_FNF_HOWL_WAR_CRY), lTarget);
     }
 
-    effect eVis = EffectVisualEffect(VFX_IMP_IMPROVE_ABILITY_SCORE);
-    effect eDur = EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE);
+    effect eVis  = EffectVisualEffect(VFX_IMP_IMPROVE_ABILITY_SCORE);
+    effect eDur  = EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE);
     effect eSave = EffectSavingThrowIncrease(SAVING_THROW_WILL, 2);
     effect eLink = EffectLinkEffects(eSave, eDur);
-    eLink = ExtraordinaryEffect(eLink);
+    eLink        = ExtraordinaryEffect(eLink);
 
     int nLevel = GetLevelByClass(CLASS_TYPE_EYE_OF_GRUUMSH, oCaster);
 

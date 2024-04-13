@@ -59,10 +59,10 @@ void main()
     effect eCheck = GetFirstEffect(oTarget);
     while (GetIsEffectValid(eCheck))
     {
-        int nEffectType = GetEffectType(eCheck);
-        int nSpellId = GetEffectSpellId(eCheck);
+        int nEffectType  = GetEffectType(eCheck);
+        int nSpellId     = GetEffectSpellId(eCheck);
         int nCasterLevel = GetEffectCasterLevel(eCheck);
-        string sID = GetEffectLinkId(eCheck);
+        string sID       = GetEffectLinkId(eCheck);
 
         // TODO ID stuff - if (sID is in array don't check again)
 
@@ -133,4 +133,3 @@ void main()
     // We can also free their item curses but we've not implemented that yet
     // TODO
 }
-

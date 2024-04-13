@@ -216,7 +216,6 @@ int DoSpellHook()
     return FALSE;
 }
 
-
 // This gets the caster, usually OBJECT_SELF, or if an AOE it's GetAreaOfEffectCreator().
 object GetSpellCaster()
 {
@@ -380,7 +379,6 @@ int DoResistSpell(object oTarget, object oCaster, float fDelay = 0.0)
     return nResist;
 }
 
-
 // Does a relevant touch attack. Some classes add bonuses to touch attacks, which can be added in here.
 // Return values:
 // * 0 - Miss
@@ -401,7 +399,6 @@ int DoTouchAttack(object oTarget, object oVersus, int nType, int bDisplayFeedbac
     // Else TOUCH_RANGED
     return TouchAttackRanged(oTarget, bDisplayFeedback);
 }
-
 
 // Applies metamagic to the given dice roll
 // eg GetDiceRoll(4, 6, METAMAGIC_EMPOWER) will roll 4d6 and apply Empower to it
@@ -736,16 +733,13 @@ int AOECheck()
     return TRUE;
 }
 
-
 // Sends fake damage messages as per the game format for oTarget and oSource
 void FakeDamageMessage(object oTarget, object oSource, int nDamage, int nDamageType)
 {
     // Similar to BroadcastDamageDataToParty
     // * Things in oTarget or oSource faction get info
     // * Limited to a particular range (30M) and visibility info
-
 }
-
 
 // Gets the scale of the VFX to apply to oCreature. If not a creature it returns 1.0.
 float GetVFXScale(object oCreature)
@@ -761,7 +755,8 @@ float GetVFXScale(object oCreature)
     // CREPERSPACE  - Medium number, their "combat" personal space (Half-Orc: 0.5)
     // PREFATCKDIST - Highest number, some are wildly high compared to their size like Dire Badger at 2.6 (Half-Orc: 2.1)
     float fScale = (StringToFloat(Get2DAString("appearance", "PERSPACE", GetAppearanceType(oTarget))) +
-                    StringToFloat(Get2DAString("appearance", "PREFATCKDIST", GetAppearanceType(oTarget))) ) / 2.0;
+                    StringToFloat(Get2DAString("appearance", "PREFATCKDIST", GetAppearanceType(oTarget)))) /
+                   2.0;
     float fFinal = fmin(fScale, fMax);
 
     OP_Debug("[GetVFXScale] fScale: " + FloatToString(fScale, 10, 4) + " fMax: " + FloatToString(fMax, 10, 4) + " fFinal: " + FloatToString(fFinal, 10, 4));
@@ -803,7 +798,6 @@ int GetSpellLevel(int nSpellId, int nClass = CLASS_TYPE_INVALID)
     return StringToInt(Get2DAString("spells", "Innate", nSpellId));
 }
 
-
 // Gets the spell school of the given spell ID. Of course those not assigned to a class
 // spellbook is probably not a "real" spell school.
 // Returns -1 on error.
@@ -813,17 +807,17 @@ int GetSpellSchool(int nSpellId)
 
     // We could do another lookup into spellschools.2da but these are essentially hardcoded so
     // we're doing a quick lookup instead.
-    switch(HashString(sSchool))
+    switch (HashString(sSchool))
     {
-        case "A": return SPELL_SCHOOL_ABJURATION;       break;
-        case "C": return SPELL_SCHOOL_CONJURATION;      break;
-        case "D": return SPELL_SCHOOL_DIVINATION;       break;
-        case "E": return SPELL_SCHOOL_ENCHANTMENT;      break;
-        case "V": return SPELL_SCHOOL_EVOCATION;        break;
-        case "G": return SPELL_SCHOOL_GENERAL;          break;
-        case "I": return SPELL_SCHOOL_ILLUSION;         break;
-        case "N": return SPELL_SCHOOL_NECROMANCY;       break;
-        case "T": return SPELL_SCHOOL_TRANSMUTATION;    break;
+        case "A": return SPELL_SCHOOL_ABJURATION; break;
+        case "C": return SPELL_SCHOOL_CONJURATION; break;
+        case "D": return SPELL_SCHOOL_DIVINATION; break;
+        case "E": return SPELL_SCHOOL_ENCHANTMENT; break;
+        case "V": return SPELL_SCHOOL_EVOCATION; break;
+        case "G": return SPELL_SCHOOL_GENERAL; break;
+        case "I": return SPELL_SCHOOL_ILLUSION; break;
+        case "N": return SPELL_SCHOOL_NECROMANCY; break;
+        case "T": return SPELL_SCHOOL_TRANSMUTATION; break;
     }
     // Error (Eg an invalid spell line)
     return -1;
@@ -832,107 +826,104 @@ int GetSpellSchool(int nSpellId)
 // Returns a human readable name for the given effect (eg: "Fear" or "Negative Level").
 string GetEffectName(effect eEffect)
 {
-    switch(GetEffectType(eEffect, TRUE))
+    switch (GetEffectType(eEffect, TRUE))
     {
-        case EFFECT_TYPE_DAMAGE_RESISTANCE:     return "Damage Resistance"; break;
-        case EFFECT_TYPE_REGENERATE:            return "Regeneration"; break;
-        case EFFECT_TYPE_DAMAGE_REDUCTION:      return "Damge Reduction"; break;
-        case EFFECT_TYPE_TEMPORARY_HITPOINTS:   return "Temporary Hitpoints"; break;
-        case EFFECT_TYPE_ENTANGLE:              return "Entangle"; break;
-        //case EFFECT_TYPE_INVULNERABLE           return "Invulnerable"; break;
-        case EFFECT_TYPE_DEAF:                  return "Deafness"; break;
-        case EFFECT_TYPE_RESURRECTION:          return "Ressurection"; break;
-        case EFFECT_TYPE_IMMUNITY:              return "Immunity"; break;
-        case EFFECT_TYPE_ENEMY_ATTACK_BONUS:    return "Enemy Attack Bonus"; break;
-        case EFFECT_TYPE_ARCANE_SPELL_FAILURE:  return "Arcane Spell Failure"; break;
-        case EFFECT_TYPE_AREA_OF_EFFECT:        return "Area of Effect"; break;
-        case EFFECT_TYPE_BEAM:                  return "Beam"; break;
-        case EFFECT_TYPE_CHARMED:               return "Charm"; break;
-        case EFFECT_TYPE_CONFUSED:              return "Confused"; break;
-        case EFFECT_TYPE_FRIGHTENED:            return "Fear"; break;
-        case EFFECT_TYPE_DOMINATED:             return "Dominate"; break;
-        case EFFECT_TYPE_PARALYZE:              return "Paralysis"; break;
-        case EFFECT_TYPE_DAZED:                 return "Daze"; break;
-        case EFFECT_TYPE_STUNNED:               return "Stun"; break;
-        case EFFECT_TYPE_SLEEP:                 return "Sleep"; break;
-        case EFFECT_TYPE_POISON:                return "Poison"; break;
-        case EFFECT_TYPE_DISEASE:               return "Disease"; break;
-        case EFFECT_TYPE_CURSE:                  return "Curse"; break;
-        case EFFECT_TYPE_SILENCE:               return "Silence"; break;
-        case EFFECT_TYPE_TURNED:                return "Turned"; break;
-        case EFFECT_TYPE_HASTE:                 return "Haste"; break;
-        case EFFECT_TYPE_SLOW:                  return "Slow"; break;
-        case EFFECT_TYPE_ABILITY_INCREASE:      return "Ability Increase"; break;
-        case EFFECT_TYPE_ABILITY_DECREASE:      return "Ability Decrease"; break;
-        case EFFECT_TYPE_ATTACK_INCREASE:       return "Attack Increase"; break;
-        case EFFECT_TYPE_ATTACK_DECREASE:       return "Attack Decrease"; break;
-        case EFFECT_TYPE_DAMAGE_INCREASE:       return "Damage Increase"; break;
-        case EFFECT_TYPE_DAMAGE_DECREASE:       return "Damage Decrease"; break;
+        case EFFECT_TYPE_DAMAGE_RESISTANCE: return "Damage Resistance"; break;
+        case EFFECT_TYPE_REGENERATE: return "Regeneration"; break;
+        case EFFECT_TYPE_DAMAGE_REDUCTION: return "Damge Reduction"; break;
+        case EFFECT_TYPE_TEMPORARY_HITPOINTS: return "Temporary Hitpoints"; break;
+        case EFFECT_TYPE_ENTANGLE: return "Entangle"; break;
+        // case EFFECT_TYPE_INVULNERABLE           return "Invulnerable"; break;
+        case EFFECT_TYPE_DEAF: return "Deafness"; break;
+        case EFFECT_TYPE_RESURRECTION: return "Ressurection"; break;
+        case EFFECT_TYPE_IMMUNITY: return "Immunity"; break;
+        case EFFECT_TYPE_ENEMY_ATTACK_BONUS: return "Enemy Attack Bonus"; break;
+        case EFFECT_TYPE_ARCANE_SPELL_FAILURE: return "Arcane Spell Failure"; break;
+        case EFFECT_TYPE_AREA_OF_EFFECT: return "Area of Effect"; break;
+        case EFFECT_TYPE_BEAM: return "Beam"; break;
+        case EFFECT_TYPE_CHARMED: return "Charm"; break;
+        case EFFECT_TYPE_CONFUSED: return "Confused"; break;
+        case EFFECT_TYPE_FRIGHTENED: return "Fear"; break;
+        case EFFECT_TYPE_DOMINATED: return "Dominate"; break;
+        case EFFECT_TYPE_PARALYZE: return "Paralysis"; break;
+        case EFFECT_TYPE_DAZED: return "Daze"; break;
+        case EFFECT_TYPE_STUNNED: return "Stun"; break;
+        case EFFECT_TYPE_SLEEP: return "Sleep"; break;
+        case EFFECT_TYPE_POISON: return "Poison"; break;
+        case EFFECT_TYPE_DISEASE: return "Disease"; break;
+        case EFFECT_TYPE_CURSE: return "Curse"; break;
+        case EFFECT_TYPE_SILENCE: return "Silence"; break;
+        case EFFECT_TYPE_TURNED: return "Turned"; break;
+        case EFFECT_TYPE_HASTE: return "Haste"; break;
+        case EFFECT_TYPE_SLOW: return "Slow"; break;
+        case EFFECT_TYPE_ABILITY_INCREASE: return "Ability Increase"; break;
+        case EFFECT_TYPE_ABILITY_DECREASE: return "Ability Decrease"; break;
+        case EFFECT_TYPE_ATTACK_INCREASE: return "Attack Increase"; break;
+        case EFFECT_TYPE_ATTACK_DECREASE: return "Attack Decrease"; break;
+        case EFFECT_TYPE_DAMAGE_INCREASE: return "Damage Increase"; break;
+        case EFFECT_TYPE_DAMAGE_DECREASE: return "Damage Decrease"; break;
         case EFFECT_TYPE_DAMAGE_IMMUNITY_INCREASE: return "Damage Immunity Increase"; break;
-        case  EFFECT_TYPE_DAMAGE_IMMUNITY_DECREASE: return "Damge Immunity Decrease"; break;
-case EFFECT_TYPE_AC_INCREASE: return "AC Increase"; break;
-case EFFECT_TYPE_AC_DECREASE: return "AC Decrease"; break;
-case EFFECT_TYPE_MOVEMENT_SPEED_INCREASE: return "Movement Speed Increase"; break;
-case EFFECT_TYPE_MOVEMENT_SPEED_DECREASE: return "Movement Speed Decrease"; break;
-
-case EFFECT_TYPE_SAVING_THROW_INCREASE: return "Saving Throw Increase"; break;
-case EFFECT_TYPE_SAVING_THROW_DECREASE: return "DEFAULT"; break;
-case EFFECT_TYPE_SPELL_RESISTANCE_INCREASE: return "DEFAULT"; break;
-case EFFECT_TYPE_SPELL_RESISTANCE_DECREASE: return "DEFAULT"; break;
-case EFFECT_TYPE_SKILL_INCREASE: return "DEFAULT"; break;
-case EFFECT_TYPE_SKILL_DECREASE: return "DEFAULT"; break;
-case EFFECT_TYPE_INVISIBILITY: return "DEFAULT"; break;
-case EFFECT_TYPE_IMPROVEDINVISIBILITY: return "DEFAULT"; break;
-case EFFECT_TYPE_DARKNESS: return "DEFAULT"; break;
-case EFFECT_TYPE_DISPELMAGICALL: return "DEFAULT"; break;
-case EFFECT_TYPE_ELEMENTALSHIELD: return "DEFAULT"; break;
-case EFFECT_TYPE_NEGATIVELEVEL: return "DEFAULT"; break;
-case EFFECT_TYPE_POLYMORPH: return "DEFAULT"; break;
-case EFFECT_TYPE_SANCTUARY: return "DEFAULT"; break;
-case EFFECT_TYPE_TRUESEEING: return "DEFAULT"; break;
-case EFFECT_TYPE_SEEINVISIBLE: return "DEFAULT"; break;
-case EFFECT_TYPE_TIMESTOP: return "DEFAULT"; break;
-case EFFECT_TYPE_BLINDNESS: return "DEFAULT"; break;
-case EFFECT_TYPE_SPELLLEVELABSORPTION: return "DEFAULT"; break;
-case EFFECT_TYPE_DISPELMAGICBEST: return "DEFAULT"; break;
-case EFFECT_TYPE_ULTRAVISION: return "DEFAULT"; break;
-case EFFECT_TYPE_MISS_CHANCE: return "DEFAULT"; break;
-case EFFECT_TYPE_CONCEALMENT: return "DEFAULT"; break;
-case EFFECT_TYPE_SPELL_IMMUNITY: return "DEFAULT"; break;
-case EFFECT_TYPE_VISUALEFFECT: return "DEFAULT"; break;
-case EFFECT_TYPE_DISAPPEARAPPEAR: return "DEFAULT"; break;
-case EFFECT_TYPE_SWARM: return "DEFAULT"; break;
-case EFFECT_TYPE_TURN_RESISTANCE_DECREASE: return "DEFAULT"; break;
-case EFFECT_TYPE_TURN_RESISTANCE_INCREASE: return "DEFAULT"; break;
-case EFFECT_TYPE_PETRIFY: return "DEFAULT"; break;
-case EFFECT_TYPE_CUTSCENE_PARALYZE: return "DEFAULT"; break;
-case EFFECT_TYPE_ETHEREAL: return "DEFAULT"; break;
-case EFFECT_TYPE_SPELL_FAILURE: return "DEFAULT"; break;
-case EFFECT_TYPE_CUTSCENEGHOST: return "DEFAULT"; break;
-case EFFECT_TYPE_CUTSCENEIMMOBILIZE: return "DEFAULT"; break;
-case EFFECT_TYPE_RUNSCRIPT: return "DEFAULT"; break;
-case EFFECT_TYPE_ICON: return "DEFAULT"; break;
-case EFFECT_TYPE_PACIFY: return "DEFAULT"; break;
-case EFFECT_TYPE_BONUS_FEAT: return "DEFAULT"; break;
-case EFFECT_TYPE_TIMESTOP_IMMUNITY: return "DEFAULT"; break;
-case EFFECT_TYPE_FORCE_WALK: return "DEFAULT"; break;
-case EFFECT_TYPE_APPEAR: return "DEFAULT"; break;
-case EFFECT_TYPE_CUTSCENE_DOMINATED: return "DEFAULT"; break;
-case EFFECT_TYPE_DAMAGE: return "DEFAULT"; break;
-case EFFECT_TYPE_DEATH: return "DEFAULT"; break;
-case EFFECT_TYPE_DISAPPEAR: return "DEFAULT"; break;
-case EFFECT_TYPE_HEAL: return "DEFAULT"; break;
-case EFFECT_TYPE_HITPOINTCHANGEWHENDYING: return "DEFAULT"; break;
-case EFFECT_TYPE_KNOCKDOWN: return "DEFAULT"; break;
-case EFFECT_TYPE_MODIFY_ATTACKS: return "DEFAULT"; break;
-case EFFECT_TYPE_SUMMON_CREATURE: return "DEFAULT"; break;
-case EFFECT_TYPE_TAUNT: return "DEFAULT"; break;
-case EFFECT_TYPE_WOUNDING: return "DEFAULT"; break;
-
+        case EFFECT_TYPE_DAMAGE_IMMUNITY_DECREASE: return "Damge Immunity Decrease"; break;
+        case EFFECT_TYPE_AC_INCREASE: return "AC Increase"; break;
+        case EFFECT_TYPE_AC_DECREASE: return "AC Decrease"; break;
+        case EFFECT_TYPE_MOVEMENT_SPEED_INCREASE: return "Movement Speed Increase"; break;
+        case EFFECT_TYPE_MOVEMENT_SPEED_DECREASE: return "Movement Speed Decrease"; break;
+        case EFFECT_TYPE_SAVING_THROW_INCREASE: return "Saving Throw Increase"; break;
+        case EFFECT_TYPE_SAVING_THROW_DECREASE: return "Saving THrow Decrease"; break;
+        case EFFECT_TYPE_SPELL_RESISTANCE_INCREASE: return "Spell Resistance Increase"; break;
+        case EFFECT_TYPE_SPELL_RESISTANCE_DECREASE: return "Spell Resistance Decrease"; break;
+        case EFFECT_TYPE_SKILL_INCREASE: return "Skill Increase"; break;
+        case EFFECT_TYPE_SKILL_DECREASE: return "Skill Decrease"; break;
+        case EFFECT_TYPE_INVISIBILITY: return "Invisibility"; break;
+        // case EFFECT_TYPE_IMPROVEDINVISIBILITY: return "Improved Invisibility"; break;
+        case EFFECT_TYPE_DARKNESS: return "Darkness"; break;
+        case EFFECT_TYPE_DISPELMAGICALL: return "Dispell Magic All"; break;
+        case EFFECT_TYPE_ELEMENTALSHIELD: return "Elemental Shield"; break;
+        case EFFECT_TYPE_NEGATIVELEVEL: return "Negative Level"; break;
+        case EFFECT_TYPE_POLYMORPH: return "Polymorph"; break;
+        case EFFECT_TYPE_SANCTUARY: return "Sanctuary"; break;
+        case EFFECT_TYPE_TRUESEEING: return "True Seeing"; break;
+        case EFFECT_TYPE_SEEINVISIBLE: return "See Invisibility"; break;
+        case EFFECT_TYPE_TIMESTOP: return "Timestop"; break;
+        case EFFECT_TYPE_BLINDNESS: return "Blindness"; break;
+        case EFFECT_TYPE_SPELLLEVELABSORPTION: return "Spell Level Absorption"; break;
+        case EFFECT_TYPE_DISPELMAGICBEST: return "Dispel Magic Best"; break;
+        case EFFECT_TYPE_ULTRAVISION: return "Ultravision"; break;
+        case EFFECT_TYPE_MISS_CHANCE: return "Miss Chance"; break;
+        case EFFECT_TYPE_CONCEALMENT: return "Concealment"; break;
+        case EFFECT_TYPE_SPELL_IMMUNITY: return "Spell Immunity"; break;
+        case EFFECT_TYPE_VISUALEFFECT: return "Visual Effect"; break;
+        case EFFECT_TYPE_DISAPPEARAPPEAR: return "Disappear Appear"; break;
+        case EFFECT_TYPE_SWARM: return "Swarm"; break;
+        case EFFECT_TYPE_TURN_RESISTANCE_DECREASE: return "Turn Resistance Decrease"; break;
+        case EFFECT_TYPE_TURN_RESISTANCE_INCREASE: return "Turn Resistance Increase"; break;
+        case EFFECT_TYPE_PETRIFY: return "Petrify"; break;
+        case EFFECT_TYPE_CUTSCENE_PARALYZE: return "Cutscene Paralyze"; break;
+        case EFFECT_TYPE_ETHEREAL: return "Ethereal"; break;
+        case EFFECT_TYPE_SPELL_FAILURE: return "Spell Failure"; break;
+        case EFFECT_TYPE_CUTSCENEGHOST: return "Cutscene Ghost"; break;
+        case EFFECT_TYPE_CUTSCENEIMMOBILIZE: return "Cutscene Immobilize"; break;
+        case EFFECT_TYPE_RUNSCRIPT: return "Run Script"; break;
+        case EFFECT_TYPE_ICON: return "Icon"; break;
+        case EFFECT_TYPE_PACIFY: return "Pacify"; break;
+        case EFFECT_TYPE_BONUS_FEAT: return "Bonus Feat"; break;
+        case EFFECT_TYPE_TIMESTOP_IMMUNITY: return "Timestop Immunity"; break;
+        case EFFECT_TYPE_FORCE_WALK: return "Force Walk"; break;
+        case EFFECT_TYPE_APPEAR: return "Appear"; break;
+        case EFFECT_TYPE_CUTSCENE_DOMINATED: return "Cutscene Dominated"; break;
+        case EFFECT_TYPE_DAMAGE: return "Damage"; break;
+        case EFFECT_TYPE_DEATH: return "Death"; break;
+        case EFFECT_TYPE_DISAPPEAR: return "Disappear"; break;
+        case EFFECT_TYPE_HEAL: return "Heal"; break;
+        case EFFECT_TYPE_HITPOINTCHANGEWHENDYING: return "Hit Point Change When Dying"; break;
+        case EFFECT_TYPE_KNOCKDOWN: return "Knockdown"; break;
+        case EFFECT_TYPE_MODIFY_ATTACKS: return "Modify Attacks"; break;
+        case EFFECT_TYPE_SUMMON_CREATURE: return "Summon Creature"; break;
+        case EFFECT_TYPE_TAUNT: return "Taunt"; break;
+        case EFFECT_TYPE_WOUNDING: return "Wounding"; break;
     }
     return "";
 }
-
 
 // These global variables are used in most spell scripts and are initialised here to be consistent
 object oCaster   = GetSpellCaster();
@@ -943,4 +934,3 @@ int nSpellId     = GetSpellIdCalculated();
 int nSpellSaveDC = GetSpellSaveDCCalculated(oCaster);
 int nCasterLevel = GetCasterLevelCalculated(oCaster);
 int nMetaMagic   = GetMetaMagicFeat();
-

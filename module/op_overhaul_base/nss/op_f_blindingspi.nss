@@ -25,7 +25,7 @@ void main()
 {
     if (DoSpellHook()) return;
 
-    effect eVis = EffectVisualEffect(VFX_IMP_ACID_L);
+    effect eVis   = EffectVisualEffect(VFX_IMP_ACID_L);
     effect eBlind = EffectBlindness();
 
     if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))

@@ -64,4 +64,3 @@ void main()
     // Failure state
     SendMessageToPC(oCaster, "*You must target an unidentified spell scroll to read magic*");
 }
-
