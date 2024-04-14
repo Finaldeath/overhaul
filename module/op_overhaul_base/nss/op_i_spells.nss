@@ -194,6 +194,12 @@ int GetSpellSchool(int nSpellId);
 // Returns a human readable name for the given effect (eg: "Fear" or "Negative Level").
 string GetEffectName(effect eEffect);
 
+// Returns TRUE if the given creature is incorporeal (generally based off their appearance).
+int GetIsIncorporeal(object oCreature);
+
+// Returns TRUE if oObject has at least one effect matching nEffectType.
+int GetHasEffect(object oObject, int nEffectType);
+
 // Debug the spell and variables
 void DebugSpell()
 {
@@ -923,6 +929,37 @@ string GetEffectName(effect eEffect)
         case EFFECT_TYPE_WOUNDING: return "Wounding"; break;
     }
     return "";
+}
+
+// Returns TRUE if the given creature is incorporeal (generally based off their appearance).
+int GetIsIncorporeal(object oCreature)
+{
+    switch (GetAppearanceType(oCreature))
+    {
+        case APPEARANCE_TYPE_ALLIP:
+        case APPEARANCE_TYPE_INVISIBLE_HUMAN_MALE:
+        case APPEARANCE_TYPE_INVISIBLE_STALKER:
+        case APPEARANCE_TYPE_LANTERN_ARCHON:
+        case APPEARANCE_TYPE_WILL_O_WISP:
+            return TRUE;
+        break;
+    }
+    return FALSE;
+}
+
+// Returns TRUE if oObject has at least one effect matching nEffectType.
+int GetHasEffect(object oObject, int nEffectType)
+{
+    effect eCheck = GetFirstEffect(oObject);
+    while (GetIsEffectValid(eCheck))
+    {
+        if (GetEffectType(eCheck, TRUE) == nEffectType)
+        {
+            return TRUE;
+        }
+        eCheck = GetNextEffect(oObject);
+    }
+    return FALSE;
 }
 
 // These global variables are used in most spell scripts and are initialised here to be consistent
