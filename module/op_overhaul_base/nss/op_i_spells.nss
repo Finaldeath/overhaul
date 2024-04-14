@@ -721,7 +721,7 @@ void ApplySpellEffectAtLocation(int nDurationType, effect eEffect, location lTar
 // Signals nSpellId (set globally) against oTarget
 void SignalSpellCastAt(object oTarget, object oCaster, int bHostile)
 {
-    SignalEvent(oTarget, EventSpellCastAt(oCaster, nSpellId));
+    SignalEvent(oTarget, EventSpellCastAt(oCaster, nSpellId, bHostile));
 }
 
 // Returns TRUE if we are OK running our AOE scripts.
