@@ -35,6 +35,7 @@
 #include "op_i_debug"
 #include "op_i_eosconstant"
 #include "utl_i_maths"
+#include "utl_i_item"
 
 // These are the games string refs for immunity feedback.
 // Format <CUSTOM0> : Immune to XXXX.
@@ -196,6 +197,9 @@ string GetEffectName(effect eEffect);
 
 // Returns TRUE if the given creature is incorporeal (generally based off their appearance).
 int GetIsIncorporeal(object oCreature);
+
+// Returns TRUE if the given creature is made of metal (eg Iron Golem) based off appearance.
+int GetIsMetalCreature(object oCreature);
 
 // Returns TRUE if oObject has at least one effect matching nEffectType.
 int GetHasEffect(object oObject, int nEffectType);
@@ -944,6 +948,22 @@ int GetIsIncorporeal(object oCreature)
             return TRUE;
         break;
     }
+    return FALSE;
+}
+
+// Returns TRUE if the given creature is made of metal (eg Iron Golem) based off appearance.
+int GetIsMetalCreature(object oCreature)
+{
+    switch (GetAppearanceType(oCreature))
+    {
+        case APPEARANCE_TYPE_GOLEM_IRON:
+        case APPEARANCE_TYPE_GOLEM_ADAMANTIUM:
+        case APPEARANCE_TYPE_GOLEM_MITHRAL:
+        case APPEARANCE_TYPE_HELMED_HORROR:
+            return TRUE;
+        break;
+    }
+
     return FALSE;
 }
 
