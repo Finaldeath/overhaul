@@ -54,9 +54,10 @@ void main()
 
         if (bBonus)
         {
-            // Apply the bonus, a brief amount of attack bonus
+            // Apply the bonus, which shouldn't then apply outside this spell.
             effect eAttackBonus = EffectAttackIncrease(3, ATTACK_BONUS_MISC);
-            ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eAttackBonus, oCaster, 0.5);
+            eAttackBonus = HideEffectIcon(eAttackBonus);
+            ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eAttackBonus, oCaster, 0.0);
         }
 
         // Do the touch attack
