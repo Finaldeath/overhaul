@@ -124,16 +124,16 @@ void ApplyDisintegrate(object oTarget, int nDamage)
         }
         else
         {
-            // Set to be corpse lootable for the dust to work well
+            // Set to be corpse lootable for the dust to work well, no way to set the bodybag
+            // which would be more optimal. We are not allowing resurrections however.
             SetLootable(oTarget, TRUE);
-            SetIsDestroyable(FALSE, TRUE, FALSE, oTarget);
-            SetLootable(oTarget, TRUE);
+            SetIsDestroyable(FALSE, FALSE, TRUE, oTarget);
 
             // Make it stuck in place and stoney it before we make it dust (keeps it in the VFX area)
             effect ePetrify = EffectPetrify();
             ApplyEffectToObject(DURATION_TYPE_PERMANENT, ePetrify, oTarget);
 
-            // Apply invisibility
+            // They will become a dust plume!
             DelayCommand(1.0, SetCreatureAppearanceType(oTarget, APPEARANCE_TYPE_OP_DISINTEGRATE_DUST_PLUME));
 
             // Apply death (trigger scripts)
