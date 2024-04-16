@@ -26,6 +26,7 @@
 //:://////////////////////////////////////////////
 
 #include "op_i_spells"
+#include "x0_i0_position"
 
 void main()
 {
@@ -61,7 +62,7 @@ void main()
         }
 
         // Do the touch attack
-        int nTouchAttack = DoTouchAttack(oTarget, oCaster, TOUCH_MELEE);
+        int nTouchAttack = 0; //DoTouchAttack(oTarget, oCaster, TOUCH_MELEE);
         if (nTouchAttack)
         {
             if (!DoResistSpell(oTarget, oCaster))
@@ -78,6 +79,29 @@ void main()
                 DelayCommand(0.0, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
                 DelayCommand(0.0, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDamage, oTarget));
             }
+        }
+        else
+        {
+            // We miss by firing the VFX closer to us
+            //location lAhead = GenerateNewLocation(oCaster, 1.5, GetFacing(oCaster), GetFacing(oCaster));
+
+            vector vCaster = GetPosition(oCaster);
+            vector vTarget = GetPosition(oTarget);
+            vector vDiff = Vector((vTarget.x + vCaster.x) / 2.0, (vTarget.y + vCaster.y) / 2.0, (vTarget.z + vCaster.z) / 2.0);
+            vDiff = vDiff - vTarget;
+
+            //vector vDiff = GetPosition(oTarget) - GetPosition(oCaster);
+            //vDiff = Vector(vDiff.x/2, vDiff.y/2, vDiff.z/2);
+
+            vector vNormalized = VectorNormalize(vDiff);
+
+            SpeakString("vCaster: " + VectorToString(vCaster) + " vTarget: " + VectorToString(vTarget));
+            SpeakString("vDiff: " + VectorToString(vDiff) + " vNormalized: " + VectorToString(vNormalized));
+
+            //vector vTranslate = Vector(GetRandomDelay(0.5, 1.0), GetRandomDelay(0.5, 1.0), 0.0);
+
+            effect eVis = EffectVisualEffect(VFX_IMP_LIGHTNING_S, FALSE, 1.0, vDiff);
+            ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
         }
     }
 }
