@@ -15,7 +15,7 @@
     Save: None
     Spell Resistance: No
 
-    You identify a spell scrolls contents.
+    You identify a spell scroll or potions contents.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -34,7 +34,10 @@ void main()
         if (nBaseItemType == BASE_ITEM_BLANK_SCROLL ||
             nBaseItemType == BASE_ITEM_ENCHANTED_SCROLL ||
             nBaseItemType == BASE_ITEM_SCROLL ||
-            nBaseItemType == BASE_ITEM_SPELLSCROLL)
+            nBaseItemType == BASE_ITEM_SPELLSCROLL ||
+            nBaseItemType == BASE_ITEM_BLANK_POTION ||
+            nBaseItemType == BASE_ITEM_ENCHANTED_POTION||
+            nBaseItemType == BASE_ITEM_POTIONS)
         {
             if (!GetIdentified(oTarget))
             {
@@ -62,5 +65,5 @@ void main()
         }
     }
     // Failure state
-    SendMessageToPC(oCaster, "*You must target an unidentified spell scroll to read magic*");
+    SendMessageToPC(oCaster, "*You must target an unidentified spell scroll or potion.*");
 }
