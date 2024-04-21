@@ -23,6 +23,9 @@
     nSpellSaveDC - the Spell Save DC (if a proper spell)
     nCasterLevel - the Caster Level
     nMetaMagic - Metamagic feat
+    nCasterClass - Caster class
+    nSpellLevel - Spell level
+    bSpontaneous - Spontaneously cast or not
 
     If these are altered later they are used in the ApplySpellEffectToObject() and
     ApplySpellEffectAtLocation() functions.
@@ -209,8 +212,11 @@ void DebugSpell()
 {
     if (DEBUG >= LOG_LEVEL_INFO) OP_Debug("[Spell Script] Script: [" + GetScriptName() +
                                           "] ID: [" + IntToString(nSpellId) +
+                                          "] Level: [" + IntToString(nSpellLevel) +
                                           "] Caster: [" + GetName(oCaster) +
                                           "] Cast Item: [" + GetName(oCastItem) +
+                                          "] Caster class: [" + IntToString(nCasterClass) +
+                                          "] Spontanously cast: [" + IntToString(bSpontaneous) +
                                           "] Target: [" + GetName(oTarget) +
                                           "] Save DC: [" + IntToString(nSpellSaveDC) +
                                           "] Caster Level: [" + IntToString(nCasterLevel) + "]");
@@ -991,3 +997,6 @@ int nSpellId     = GetSpellIdCalculated();
 int nSpellSaveDC = GetSpellSaveDCCalculated(oCaster);
 int nCasterLevel = GetCasterLevelCalculated(oCaster);
 int nMetaMagic   = GetMetaMagicFeat();
+int nCasterClass = GetLastSpellCastClass();
+int nSpellLevel  = GetLastSpellLevel();
+int bSpontaneous = GetSpellCastSpontaneously();
