@@ -82,6 +82,8 @@ const int SPELL_TARGET_SELECTIVEHOSTILE = 3;  // Selective hostile - IE: Will no
 
 const int SPELL_INVALID = -1;
 
+const int SORT_METHOD_LOWEST_HP = 0;
+
 // Debug the spell and variables
 void DebugSpell();
 
@@ -206,6 +208,12 @@ int GetIsMetalCreature(object oCreature);
 
 // Returns TRUE if oObject has at least one effect matching nEffectType.
 int GetHasEffect(object oObject, int nEffectType);
+
+// Loops through relevant shape to get all the targets in it. It then sorts them using nSortMethod.
+// * nTargetType - The SPELL_TARGET_* type to check versus oCaster
+// * nSortMethod - The sorting method to apply once all the creatures are added.
+//                 SORT_METHOD_LOWEST_HP - Sorts so first object is the lowest HP.
+json GetArrayOfTargets(int nTargetType, int nSortMethod, int nShape, float fSize, location lTarget, int bLineOfSight=FALSE, int nObjectFilter=OBJECT_TYPE_CREATURE, vector vOrigin=[0.0,0.0,0.0]);
 
 // Debug the spell and variables
 void DebugSpell()
@@ -987,6 +995,50 @@ int GetHasEffect(object oObject, int nEffectType)
     }
     return FALSE;
 }
+
+// Generates a JsonObject for oObject containing the following key/value pairs:
+// - objectid  - Object's ID value as string ala ObjectToString()
+// - currenthp - Objects current HP as integer
+// Other things will be added once more are needed to sort with GetArrayOfTargets.
+json GetObjectInfo(object oObject)
+{
+    json jObject = JsonObject();
+    jObject = JsonObjectSet(jObject, "objectid", JsonString(ObjectToString(oObject)));
+    jObject = JsonObjectSet(jObject, "currenthp", JsonInt(GetCurrentHitPoints(oObject)));
+    return jObject;
+}
+
+// Loops through relevant shape to get all the targets in it. It then sorts them using nSortMethod.
+// * nTargetType - The SPELL_TARGET_* type to check versus oCaster
+// * nSortMethod - The sorting method to apply once all the creatures are added.
+//                 SORT_METHOD_LOWEST_HP - Sorts so first object is the lowest HP.
+json GetArrayOfTargets(int nTargetType, int nSortMethod, int nShape, float fSize, location lTarget, int bLineOfSight=FALSE, int nObjectFilter=OBJECT_TYPE_CREATURE, vector vOrigin=[0.0,0.0,0.0])
+{
+    json jArray = JsonArray();
+
+    object oObject = GetFirstObjectInShape(nShape, fSize, lTarget, bLineOfSight, nObjectFilter, vOrigin);
+    while (GetIsObjectValid(oObject))
+    {
+        json jObject = JsonObject();
+
+        // Add the value we sort with first so it's part of the sorting later
+        jObject = JsonObjectSet(jObject, "currenthp", JsonInt(GetCurrentHitPoints(oObject)));
+        jObject = JsonObjectSet(jObject, "objectid", JsonString(ObjectToString(oObject)));
+
+        jArray = JsonArrayInsert(jArray, jObject);
+
+        oObject = GetNextObjectInShape(nShape, fSize, lTarget, bLineOfSight, nObjectFilter, vOrigin);
+    }
+
+    // Sort the array
+    if (nSortMethod == SORT_METHOD_LOWEST_HP)
+    {
+        jArray = JsonArrayTransform(jArray, JSON_ARRAY_SORT_ASCENDING);
+    }
+
+    return jArray;
+}
+
 
 // These global variables are used in most spell scripts and are initialised here to be consistent
 object oCaster   = GetSpellCaster();

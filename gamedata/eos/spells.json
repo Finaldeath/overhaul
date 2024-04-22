@@ -6680,7 +6680,7 @@
       },
       "CounterSpell2": null,
       "HasProjectileVisuals": true,
-      "TargetShape": null,
+      "TargetShape": "Sphere",
       "TargetSizeX": null,
       "TargetSizeY": null,
       "TargetingFlags": []
@@ -48091,6 +48091,95 @@
       "TargetingFlags": []
     },
     {
+      "ID": "75320819-206f-4ab7-ba66-754291caa1e3",
+      "Index": 16,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Power Word, Blind",
+          "F": "New Spell"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Caster Level(s): Wizard / Sorcerer 8\nInnate Level: 8\nSchool: Divination\nDescriptor(s):\nComponent(s): Verbal\nRange: Short\nArea of Effect / Target: Large\nDuration: See Description\nAdditional Counter Spells: Remove Blindness/Deafness\nSave: None\nSpell Resistance: Yes\n\r\nThis spell blinds one or more creatures. It affects the creatures with the lowest current Hit Point totals first, selecting subjects one at a time until the next target would put it over the limit of 200.\r\n\r\nThe duration of the spell depends on the total hit points of the affected creatures: \r\nUp to 50: Permanent\r\n51 to 100: 1d4\u002B1 minutes\r\n101 to 200: 1d4\u002B1 rounds "
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "ief_blind",
+      "School": "D",
+      "Range": "S",
+      "Components": [
+        "V"
+      ],
+      "AvailableMetaMagic": [
+        "Silent"
+      ],
+      "TargetTypes": [
+        "Creature",
+        "Area",
+        "Item"
+      ],
+      "ImpactScript": "op_s_pwblind",
+      "InnateLevel": 8,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_mehanodd03",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mehanodd03",
+      "ConjurationMaleSound": "vs_chant_illu_hm",
+      "ConjurationFemaleSound": "vs_chant_illu_hf",
+      "CastingAnimation": "Out",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": true,
+      "ProjectileModel": "vpr_los",
+      "ProjectileType": "Accelerating",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": "spr_los",
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "HarmfulAoeIndiscriminant",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": true,
+      "CounterSpell1": {
+        "ID": "d68c5d8e-70fc-c784-df78-19dcabb0fdc9",
+        "Label": "Remove Blindness/Deafness"
+      },
+      "CounterSpell2": null,
+      "HasProjectileVisuals": true,
+      "TargetShape": "Sphere",
+      "TargetSizeX": 5,
+      "TargetSizeY": null,
+      "TargetingFlags": [
+        "HarmsEnemies",
+        "HarmsAllies"
+      ]
+    },
+    {
       "ID": "cb0d0115-6fe2-44a8-b933-21fa044680b8",
       "Index": -1,
       "Overrides": "fc9edad7-0bad-6521-e829-8d98ebcfde54",
@@ -48123,7 +48212,8 @@
       "Description": {
         "Index": 6225,
         "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 9\nInnate Level: 9\nSchool: Divination\nDescriptor(s): Death\nComponent(s): Verbal\nRange: Short\nArea of Effect / Target: Large, Single\nDuration: Instant\nAdditional Counter Spells: Death Ward\nSave: None\nSpell Resistance: Yes\n\nThis spell may be cast on a single creature or as an area effect. A targeted creature of up to 100 Hit Points is killed instantly. As an area effect, this spell will kill all creatures with fewer than 20 Hit Points, to a maximum total of 200 Hit Points."
+          "M": "Caster Level(s): Wizard / Sorcerer 9\nInnate Level: 9\nSchool: Divination\nDescriptor(s): Death\nComponent(s): Verbal\nRange: Short\nArea of Effect / Target: Large, Single\nDuration: Instant\nAdditional Counter Spells: Death Ward\nSave: None\nSpell Resistance: Yes\n\nThis spell may be cast on a single creature or as an area effect. A targeted creature of up to 100 current Hit Points is killed instantly. As an area effect, this spell will kill all creatures with fewer than 20 current Hit Points, to a maximum total of 200 Hit Points.",
+          "F": "Caster Level(s): Wizard / Sorcerer 9\nInnate Level: 9\nSchool: Divination\nDescriptor(s): Death\nComponent(s): Verbal\nRange: Short\nArea of Effect / Target: Large, Single\nDuration: Instant\nAdditional Counter Spells: Death Ward\nSave: None\nSpell Resistance: Yes\n\nThis spell may be cast on a single creature or as an area effect. A targeted creature of up to 100 Hit Points is killed instantly. As an area effect, this spell will kill all creatures with fewer than 20 Hit Points, to a maximum total of 200 Hit Points."
         },
         "FR": {
           "M": "Niveau : Magicien / Ensorceleur 9\nNiveau inn\u00E9 : 9\nEcole : Divination\nCat\u00E9gorie(s) : mort\nComposante(s) : verbale\nPort\u00E9e : courte\nZone d\u0027effet / cible : grande, 1 cr\u00E9ature\nDur\u00E9e : instantan\u00E9e\nContresorts suppl\u00E9mentaires : Protection contre la mort\nJet de sauvegarde : aucun\nR\u00E9sistance \u00E0 la magie : oui\n\nCe sort peut \u00EAtre lanc\u00E9 sur une cr\u00E9ature ou sur une zone d\u0027effet. Toute cr\u00E9ature cibl\u00E9e ayant jusqu\u0027\u00E0 100 points de vie est tu\u00E9e instantan\u00E9ment. Utilis\u00E9 sur une zone d\u0027effet, ce sort tue toutes les cr\u00E9atures ayant moins de 20 points de vie (total maximum de d\u00E9g\u00E2ts caus\u00E9s de 200 points de vie)."
@@ -48150,12 +48240,13 @@
       "Components": [
         "V"
       ],
-      "AvailableMetaMagic": [],
+      "AvailableMetaMagic": [
+        "Silent"
+      ],
       "TargetTypes": [
         "Creature",
         "Area",
-        "Item",
-        "Placeable"
+        "Item"
       ],
       "ImpactScript": "NW_S0_PWKill",
       "InnateLevel": 9,
@@ -48200,9 +48291,12 @@
       "CounterSpell2": null,
       "HasProjectileVisuals": true,
       "TargetShape": "Sphere",
-      "TargetSizeX": null,
+      "TargetSizeX": 5,
       "TargetSizeY": null,
-      "TargetingFlags": []
+      "TargetingFlags": [
+        "HarmsEnemies",
+        "SuppressWithTarget"
+      ]
     },
     {
       "ID": "12d6273f-4ed0-4dcb-9925-9b24f1c44197",
@@ -48237,7 +48331,8 @@
       "Description": {
         "Index": 6226,
         "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 7\nInnate Level: 7\nSchool: Divination\nDescriptor(s):\nComponent(s): Verbal\nRange: Short\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells: Clarity\nSave: None\nSpell Resistance: Yes\n\nAutomatically stuns a single target for a duration based on the target\u0027s Hit Points:\nUnder 50 Hit Points: 4d4 rounds\n51-100 Hit Points: 2d4 rounds\n101-150 Hit Points: 1d4 rounds"
+          "M": "Caster Level(s): Wizard / Sorcerer 7\nInnate Level: 7\nSchool: Divination\nDescriptor(s):\nComponent(s): Verbal\nRange: Short\nArea of Effect / Target: Single\nDuration: See Description\nAdditional Counter Spells: Clarity\nSave: None\nSpell Resistance: Yes\n\nAutomatically stuns a single target for a duration based on the target\u0027s currnet Hit Points:\nUp to 50 Hit Points: 4d4 rounds\n51-100 Hit Points: 2d4 rounds\n101-150 Hit Points: 1d4 rounds",
+          "F": "Caster Level(s): Wizard / Sorcerer 7\nInnate Level: 7\nSchool: Divination\nDescriptor(s):\nComponent(s): Verbal\nRange: Short\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells: Clarity\nSave: None\nSpell Resistance: Yes\n\nAutomatically stuns a single target for a duration based on the target\u0027s Hit Points:\nUnder 50 Hit Points: 4d4 rounds\n51-100 Hit Points: 2d4 rounds\n101-150 Hit Points: 1d4 rounds"
         },
         "FR": {
           "M": "Niveau : Magicien / Ensorceleur 7\nNiveau inn\u00E9 : 7\nEcole : Divination\nCat\u00E9gorie(s) :\nComposante(s) : verbale\nPort\u00E9e : courte\nZone d\u0027effet / cible : 1 cr\u00E9ature\nDur\u00E9e : instantan\u00E9e\nContresorts suppl\u00E9mentaires : Clart\u00E9\nJet de sauvegarde : aucun\nR\u00E9sistance \u00E0 la magie : oui\n\nCe sort \u00E9tourdit automatiquement une victime pendant un dur\u00E9e d\u00E9pendant de ses points de vie :\nInf\u00E9rieur \u00E0 50 points de vie : 4d4 rounds\n51 \u00E0 100 points de vie : 2d4 rounds\n101 \u00E0 150 points de vie : 1d4 rounds"
