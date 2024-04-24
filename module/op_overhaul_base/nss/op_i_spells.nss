@@ -82,6 +82,9 @@ const int SPELL_TARGET_SELECTIVEHOSTILE = 3;  // Selective hostile - IE: Will no
 
 const int SPELL_INVALID = -1;
 
+// Missing saving throw type constant
+const int SAVING_THROW_TYPE_PARALYSIS = 20;
+
 const int SORT_METHOD_LOWEST_HP = 0;
 
 // Debug the spell and variables
@@ -345,6 +348,10 @@ int DoSavingThrow(object oTarget, object oSaveVersus, int nSavingThrow, int nDC,
         if (nResult == 1)
             eVis = EffectVisualEffect(VFX_IMP_WILL_SAVING_THROW_USE);
     }
+    else
+    {
+        OP_Debug("[ERROR] DoSavingThrow: Invalid saving throw specified.");
+    }
     // Apply VFX
     /*
         return 0 = FAILED SAVE
@@ -494,6 +501,7 @@ int GetSpellTargetValid(object oTarget, object oCaster, int nTargetType)
         // This kind of spell will affect all friendlies and anyone in my party/faction, even if we are upset with each other currently.
         case SPELL_TARGET_ALLALLIES:
         {
+            OP_Debug("[INFO] GetSpellTargetValid: All allies oTarget: " + GetName(oTarget) + " GetIsReactionTypeFriendly: " + IntToString(GetIsReactionTypeFriendly(oTarget, oCaster)), LOG_LEVEL_INFO);
             if (GetIsReactionTypeFriendly(oTarget, oCaster) || GetFactionEqual(oTarget, oCaster))
             {
                 bReturnValue = TRUE;
@@ -502,6 +510,7 @@ int GetSpellTargetValid(object oTarget, object oCaster, int nTargetType)
         break;
         case SPELL_TARGET_STANDARDHOSTILE:
         {
+            OP_Debug("[INFO] GetSpellTargetValid: Standard hostile oTarget: " + GetName(oTarget) + " GetIsReactionTypeFriendly: " + IntToString(GetIsReactionTypeFriendly(oTarget, oCaster)), LOG_LEVEL_INFO);
             // This has been rewritten. We do a simple check for the reaction type now.
             // Previously there was a lot of checks for henchmen, AOEs that PCs cast, etc.
             if (!GetIsReactionTypeFriendly(oTarget, oCaster))
@@ -513,10 +522,16 @@ int GetSpellTargetValid(object oTarget, object oCaster, int nTargetType)
         // Only harms enemies, ever, such as Call Lightning
         case SPELL_TARGET_SELECTIVEHOSTILE:
         {
+            OP_Debug("[INFO] GetSpellTargetValid: Selective hostile oTarget: " + GetName(oTarget) + " GetIsEnemy: " + IntToString(GetIsEnemy(oTarget, oCaster)), LOG_LEVEL_INFO);
             if (GetIsEnemy(oTarget, oCaster))
             {
                 bReturnValue = TRUE;
             }
+        }
+        break;
+        default:
+        {
+            OP_Debug("[ERROR] GetSpellTargetValid: Invalid input: " + IntToString(nTargetType), LOG_LEVEL_ERROR);
         }
         break;
     }
@@ -549,6 +564,9 @@ int GetImmunityTypeFromSavingThrowType(int nSaveType)
             break;
         case SAVING_THROW_TYPE_TRAP:
             nImmunityType = IMMUNITY_TYPE_TRAP;
+            break;
+        case SAVING_THROW_TYPE_PARALYSIS:
+            nImmunityType = IMMUNITY_TYPE_PARALYSIS;
             break;
     }
     return nImmunityType;
