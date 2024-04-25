@@ -14,7 +14,8 @@
 // Eos constants include is generated from the Eos data
 #include "op_i_eosconstant"
 
-// Main Eos includes
+// Main Overhaul includes
+#include "op_i_constants"
 #include "op_i_debug"
 #include "op_i_spells"
 

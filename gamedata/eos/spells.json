@@ -29166,7 +29166,7 @@
       "Index": -1,
       "Overrides": "c1359a4d-93cc-eda6-6fce-d14525bd8bf4",
       "Disabled": false,
-      "Hint": "\u002BCounterspell",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "Globe_of_Invulnerability",
       "ExtensionValues": {},
@@ -29194,7 +29194,8 @@
       "Description": {
         "Index": 6162,
         "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Round / Level\nAdditional Counter Spells: Greater Spell Breach\nSave: None\nSpell Resistance: Yes\n\nA shimmering field of energy prevents all spells of level 4 or lower from affecting the caster."
+          "M": "Caster Level(s): Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Round / Level\nAdditional Counter Spells: Greater Spell Breach\nSave: Harmless\nSpell Resistance: No\n\nA shimmering field of energy prevents all spells of level 4 or lower from affecting the caster.",
+          "F": "Caster Level(s): Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Round / Level\nAdditional Counter Spells: Greater Spell Breach\nSave: None\nSpell Resistance: Yes\n\nA shimmering field of energy prevents all spells of level 4 or lower from affecting the caster."
         },
         "FR": {
           "M": "Niveau : Magicien / Ensorceleur 6\nNiveau inn\u00E9 : 6\nEcole : Abjuration\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : aucune\nZone d\u0027effet / cible : lanceur\nDur\u00E9e : 1 round/niveau\nContresorts suppl\u00E9mentaires : Br\u00E8che sup\u00E9rieure\nJet de sauvegarde : aucun\nR\u00E9sistance \u00E0 la magie : oui\n\nUn champ d\u0027\u00E9nergie \u00E9tincelant emp\u00EAche le lanceur d\u0027\u00EAtre affect\u00E9 par les sorts de niveau 4 ou inf\u00E9rieur."
@@ -29232,7 +29233,7 @@
         "Self",
         "Item"
       ],
-      "ImpactScript": "NW_S0_GlobeInv",
+      "ImpactScript": "op_s_globeinvul",
       "InnateLevel": 6,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",
@@ -43333,7 +43334,8 @@
       "Description": {
         "Index": 6216,
         "EN": {
-          "M": "Caster Level(s): Wizard/Sorcerer 4\nInnate Level: 4\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nA shimmering field of energy prevents all spells of level 3 or lower from affecting the caster."
+          "M": "Caster Level(s): Wizard/Sorcerer 4\nInnate Level: 4\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Round / Level\nAdditional Counter Spells: Lesser Spell Breach, Greater Spell Breach\nSave: Harmless\nSpell Resistance: No\n\nA shimmering field of energy prevents all spells of level 3 or lower from affecting the caster.",
+          "F": "Caster Level(s): Wizard/Sorcerer 4\nInnate Level: 4\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nA shimmering field of energy prevents all spells of level 3 or lower from affecting the caster."
         },
         "FR": {
           "M": "Niveau : Magicien / Ensorceleur 4\nNiveau inn\u00E9 : 4\nEcole : Abjuration\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : personnelle\nZone d\u0027effet / cible : lanceur\nDur\u00E9e : 1 round/niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : inoffensif\nR\u00E9sistance \u00E0 la magie : non\n\nUn champ d\u0027\u00E9nergie scintillant emp\u00EAche tous les sorts de niveau 3 ou inf\u00E9rieur d\u0027affecter le lanceur."
@@ -43371,7 +43373,7 @@
         "Self",
         "Item"
       ],
-      "ImpactScript": "NW_S0_MinGlobe",
+      "ImpactScript": "op_s_minorglobe",
       "InnateLevel": 4,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",
@@ -43407,8 +43409,14 @@
       "UseConcentration": true,
       "IsCastSpontaneously": false,
       "IsHostile": false,
-      "CounterSpell1": null,
-      "CounterSpell2": null,
+      "CounterSpell1": {
+        "ID": "18384fc3-3c01-88f3-9a94-8492d492b9bd",
+        "Label": "Lesser Spell Breach"
+      },
+      "CounterSpell2": {
+        "ID": "d7e13d94-f9e5-42d7-9b4e-273b0e5b2e7a",
+        "Label": "Greater Spell Breach"
+      },
       "HasProjectileVisuals": false,
       "TargetShape": null,
       "TargetSizeX": null,

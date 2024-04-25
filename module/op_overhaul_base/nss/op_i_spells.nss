@@ -37,6 +37,7 @@
 
 #include "op_i_debug"
 #include "op_i_eosconstant"
+#include "op_i_constants"
 #include "utl_i_maths"
 #include "utl_i_item"
 
