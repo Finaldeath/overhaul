@@ -24738,7 +24738,7 @@
       "Index": -1,
       "Overrides": "e5c1870d-044d-1faa-5616-f043953e6a67",
       "Disabled": false,
-      "Hint": "School: Conjuration",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
@@ -24766,7 +24766,8 @@
       "Description": {
         "Index": 8676,
         "EN": {
-          "M": "Type of Feat: Epic Spell\nPrerequisite: 21st level, the ability to cast 9th level spells and 26 ranks in spellcraft.\nSpecifics: The caster gets a \u002B20 armor class bonus.\nUse: Cast."
+          "M": "Type of Feat: Epic Spell\nPrerequisite: 21st level, the ability to cast 9th level spells and 26 ranks in spellcraft.\nSpecifics: The caster gets a \u002B20 armor AC enchantment bonus.\nUse: Cast.",
+          "F": "Type of Feat: Epic Spell\nPrerequisite: 21st level, the ability to cast 9th level spells and 26 ranks in spellcraft.\nSpecifics: The caster gets a \u002B20 armor class bonus.\nUse: Cast."
         },
         "FR": {
           "M": "Type de don : sort \u00E9pique\nConditions : 21\u00E8me niveau, possibilit\u00E9 de lancer des sorts de niveau 9 et rang 26 en Art de la magie.\nFonctionnement : Le lanceur de sorts b\u00E9n\u00E9ficie d\u0027un bonus de \u002B20 \u00E0 la CA.\nUtilisation : doit \u00EAtre lanc\u00E9."
@@ -24798,7 +24799,7 @@
       "TargetTypes": [
         "Self"
       ],
-      "ImpactScript": "X2_S2_EpMageArm",
+      "ImpactScript": "op_f_epicmagearm",
       "InnateLevel": 10,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -24840,7 +24841,9 @@
       "TargetShape": null,
       "TargetSizeX": null,
       "TargetSizeY": null,
-      "TargetingFlags": []
+      "TargetingFlags": [
+        "OriginOnSelf"
+      ]
     },
     {
       "ID": "e1a6445b-9919-428e-ab25-eb7d2f52845c",

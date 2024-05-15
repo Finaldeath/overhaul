@@ -213,6 +213,9 @@ int GetIsMetalCreature(object oCreature);
 // Returns TRUE if oObject has at least one effect matching nEffectType.
 int GetHasEffect(object oObject, int nEffectType);
 
+// Removes effects from the given spell ID. Retrurns TRUE if one was removed.
+int RemoveEffectsFromSpell(object oObject, int nSpellId);
+
 // Loops through relevant shape to get all the targets in it. It then sorts them using nSortMethod.
 // * nTargetType - The SPELL_TARGET_* type to check versus oCaster
 // * nSortMethod - The sorting method to apply once all the creatures are added.
@@ -1013,6 +1016,23 @@ int GetHasEffect(object oObject, int nEffectType)
         eCheck = GetNextEffect(oObject);
     }
     return FALSE;
+}
+
+// Removes effects from the given spell ID. Retrurns TRUE if one was removed.
+int RemoveEffectsFromSpell(object oObject, int nSpellId)
+{
+    int bRemoved = FALSE;
+    effect eCheck = GetFirstEffect(oObject);
+    while (GetIsEffectValid(eCheck))
+    {
+        if (GetEffectSpellId(eCheck) == nSpellId)
+        {
+            RemoveEffect(oObject, eCheck);
+            bRemoved = TRUE;
+        }
+        eCheck = GetNextEffect(oObject);
+    }
+    return bRemoved;
 }
 
 // Generates a JsonObject for oObject containing the following key/value pairs:
