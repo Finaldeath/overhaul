@@ -88,7 +88,7 @@ void main()
                         }
                         else if (nCurrentHP <= 100)
                         {
-                            ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oObject, GetDuration(d4() + 1, TURNS));
+                            ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oObject, GetDuration(d4() + 1, MINUTES));
                         }
                         else
                         {

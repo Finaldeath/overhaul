@@ -69,9 +69,9 @@ const int STRREF_IMMUNITY_STUN                  = 62466;  //<CUSTOM0> : Immune t
 
 const int STRREF_SOMEONE = 8349;  // Someone
 
-const int ROUNDS = 0;
-const int TURNS  = 1;
-const int HOURS  = 2;
+const int ROUNDS  = 0;
+const int MINUTES = 1;
+const int HOURS   = 2;
 
 const int TOUCH_MELEE  = 0;
 const int TOUCH_RANGED = 1;
@@ -141,7 +141,7 @@ int DoTouchAttack(object oTarget, object oVersus, int nType, int bDisplayFeedbac
 int GetDiceRoll(int nNumberOfDice, int nDiceSize, int nBonus = 0);
 
 // Applies metamagic to the given duration
-// * nType - The conversion used, ROUNDS (6 seconds), TURNS (10 rounds) or HOURS (module dependant)
+// * nType - The conversion used, ROUNDS (6 seconds), MINUTES ("1 turn" in old NWN = 1 minute/10 rounds) or HOURS (module dependant)
 // Metamagic is applied automatically
 float GetDuration(int nDuration, int nDurationType);
 
@@ -459,7 +459,7 @@ int GetDiceRoll(int nNumberOfDice, int nDiceSize, int nBonus = 0)
 }
 
 // Applies metamagic to the given duration
-// * nType - The conversion used, ROUNDS (6 seconds), TURNS (10 rounds) or HOURS (module dependant)
+// * nType - The conversion used, ROUNDS (6 seconds), MINUTES ("1 turn" in old NWN = 1 minute/10 rounds) or HOURS (module dependant)
 // Metamagic is applied automatically
 float GetDuration(int nDuration, int nDurationType)
 {
@@ -474,7 +474,7 @@ float GetDuration(int nDuration, int nDurationType)
     {
         fDuration = RoundsToSeconds(nDuration);
     }
-    else if (nDurationType == TURNS)
+    else if (nDurationType == MINUTES)
     {
         fDuration = TurnsToSeconds(nDuration);
     }

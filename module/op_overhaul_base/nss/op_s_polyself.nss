@@ -10,7 +10,7 @@
     Component(s): Verbal
     Range: Personal
     Area of Effect / Target: Caster
-    Duration: 1 Turn / Level
+    Duration: 1 minute / Level
     Additional Counter Spells:
     Save: Harmless
     Spell Resistance: No
@@ -53,7 +53,7 @@ void main()
     effect eVis  = EffectVisualEffect(VFX_IMP_POLYMORPH);
     effect ePoly = EffectPolymorph(nPoly);
 
-    float fDuration = GetDuration(nCasterLevel, TURNS);
+    float fDuration = GetDuration(nCasterLevel, MINUTES);
 
     // Fire cast spell at event for the specified target
     SignalSpellCastAt(oTarget, oCaster, FALSE);

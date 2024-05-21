@@ -10,7 +10,7 @@
     Component(s): Verbal, Somatic
     Range: Touch
     Area of Effect / Target: Single
-    Duration: 1 Turn / Level
+    Duration: 1 minute / Level
     Additional Counter Spells:
     Save: Harmless
     Spell Resistance: No
@@ -65,5 +65,5 @@ void main()
     // Note we don't remove duplicate effects since the AC bonus won't stack since it's no longer dodge based
 
     // Apply the armor bonuses and the VFX impact
-    ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(nCasterLevel, TURNS));
+    ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(nCasterLevel, MINUTES));
 }

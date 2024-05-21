@@ -19241,6 +19241,104 @@
       "UseActionQueue": true
     },
     {
+      "ID": "e9f23d45-eba9-4b38-8533-7970f952ea94",
+      "Index": -1,
+      "Overrides": "2b79e109-5a41-8a5f-5263-77ff72e14c5d",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_EPIC_SPELL_MAGE_ARMOUR",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8675,
+        "EN": {
+          "M": "Epic Spell: Epic Mage Armor"
+        },
+        "FR": {
+          "M": "Sort \u00E9pique : Armure de mage \u00E9pique"
+        },
+        "DE": {
+          "M": "Epischer Zauber: Epische Magierr\u00FCstung"
+        },
+        "IT": {
+          "M": "Incantesimo epico: corazza magica epica"
+        },
+        "ES": {
+          "M": "Conjuro \u00E9pico: Armadura de m\u00E1gico \u00E9pica"
+        },
+        "PL": {
+          "M": "Epicki czar: Epicka zbroja maga"
+        }
+      },
+      "Description": {
+        "Index": 8676,
+        "EN": {
+          "M": "Type of Feat: Epic Spell\nPrerequisite: 21st level, the ability to cast 9th level spells and 26 ranks in spellcraft.\nSpecifics: The caster gets a \u002B20 armor AC enchantment bonus.\nUse: Cast.",
+          "F": "Type of Feat: Epic Spell\nPrerequisite: 21st level, the ability to cast 9th level spells and 26 ranks in spellcraft.\nSpecifics: The caster gets a \u002B20 armor class bonus.\nUse: Cast."
+        },
+        "FR": {
+          "M": "Type de don : sort \u00E9pique\nConditions : 21\u00E8me niveau, possibilit\u00E9 de lancer des sorts de niveau 9 et rang 26 en Art de la magie.\nFonctionnement : Le lanceur de sorts b\u00E9n\u00E9ficie d\u0027un bonus de \u002B20 \u00E0 la CA.\nUtilisation : doit \u00EAtre lanc\u00E9."
+        },
+        "DE": {
+          "M": "Art des Talents: Epischer Zauber\nVoraussetzung: 21. Stufe, F\u00E4higkeit, Zauber des 9. Grades zu wirken und 26 Fertigkeitsr\u00E4nge in Zauberkunde.\nVorteil: Der Magieanwender erh\u00E4lt einen R\u00FCstungsbonus \u002B20.\nGebrauch: Zauber wirken."
+        },
+        "IT": {
+          "M": "Tipo di talento: epico\nPrerequisiti: livello 21, capacit\u00E0 di lanciare incantesimi di livello 9, 26 gradi in Sapienza magica.\nDettagli: l\u0027incantatore ottiene un bonus \u002B20 alla classe armatura.\nUso: lancio"
+        },
+        "ES": {
+          "M": "Tipo de dote: Conjuro \u00E9pico\nPrerrequisito: nivel 21\u00BA, la aptitud de lanzar conjuros de nivel 9\u00BA y 26 rangos en Conocimiento de conjuros.\nDetalles: el lanzador obtiene un bonificador \u002B20 a la Clase de Armadura.\nUso: Lanzado."
+        },
+        "PL": {
+          "M": "Rodzaj atutu: Epickie zakl\u0119cie\nWymagania: 21. poziom, zdolno\u015B\u0107 rzucania zakl\u0119\u0107 9. poziomu i umiej\u0119tno\u015B\u0107 Czaroznastwa na poziomie 26.\nOpis: rzucaj\u0105cy uzyskuje premi\u0119 \u002B20 do KP.\nU\u017Cywanie: rzucanie."
+        }
+      },
+      "Icon": "ife_x2spmagarm",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": "TalentFriendlyProtectionSelf",
+      "OnUseEffect": {
+        "ID": "e5c1870d-044d-1faa-5616-f043953e6a67",
+        "Label": "Epic Spell: Epic Mage Armor"
+      },
+      "SuccessorFeat": null,
+      "CRModifier": 1,
+      "UsesPerDay": 1,
+      "MasterFeat": {
+        "ID": "492d1226-9576-750c-b8d2-33bcd2e07e2f",
+        "Label": "Epic Spell"
+      },
+      "TargetSelf": true,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": {
+        "ID": "6a0c921d-73c6-4e7e-c24d-7c3b2873e527",
+        "Label": "Spellcraft"
+      },
+      "RequiredSkill1Minimum": 26,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "Magical",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": true,
+      "UseActionQueue": true
+    },
+    {
       "ID": "c6d353b5-b386-4fab-9af2-42f0385b2894",
       "Index": -1,
       "Overrides": "60fe9b2e-c9f1-296c-6a3b-60dfc5f9d8fa",
@@ -37764,104 +37862,6 @@
       "MaxLevel": null,
       "MinFortitudeSave": null,
       "RequiresEpic": false,
-      "UseActionQueue": true
-    },
-    {
-      "ID": "e9f23d45-eba9-4b38-8533-7970f952ea94",
-      "Index": -1,
-      "Overrides": "2b79e109-5a41-8a5f-5263-77ff72e14c5d",
-      "Disabled": false,
-      "Hint": "",
-      "ScriptConstant": "",
-      "SourceLabel": "FEAT_EPIC_SPELL_MAGE_ARMOUR",
-      "ExtensionValues": {},
-      "Name": {
-        "Index": 8675,
-        "EN": {
-          "M": "Epic Spell: Epic Mage Armor"
-        },
-        "FR": {
-          "M": "Sort \u00E9pique : Armure de mage \u00E9pique"
-        },
-        "DE": {
-          "M": "Epischer Zauber: Epische Magierr\u00FCstung"
-        },
-        "IT": {
-          "M": "Incantesimo epico: corazza magica epica"
-        },
-        "ES": {
-          "M": "Conjuro \u00E9pico: Armadura de m\u00E1gico \u00E9pica"
-        },
-        "PL": {
-          "M": "Epicki czar: Epicka zbroja maga"
-        }
-      },
-      "Description": {
-        "Index": 8676,
-        "EN": {
-          "M": "Type of Feat: Epic Spell\nPrerequisite: 21st level, the ability to cast 9th level spells and 26 ranks in spellcraft.\nSpecifics: The caster gets a \u002B20 armor AC enchantment bonus.\nUse: Cast.",
-          "F": "Type of Feat: Epic Spell\nPrerequisite: 21st level, the ability to cast 9th level spells and 26 ranks in spellcraft.\nSpecifics: The caster gets a \u002B20 armor class bonus.\nUse: Cast."
-        },
-        "FR": {
-          "M": "Type de don : sort \u00E9pique\nConditions : 21\u00E8me niveau, possibilit\u00E9 de lancer des sorts de niveau 9 et rang 26 en Art de la magie.\nFonctionnement : Le lanceur de sorts b\u00E9n\u00E9ficie d\u0027un bonus de \u002B20 \u00E0 la CA.\nUtilisation : doit \u00EAtre lanc\u00E9."
-        },
-        "DE": {
-          "M": "Art des Talents: Epischer Zauber\nVoraussetzung: 21. Stufe, F\u00E4higkeit, Zauber des 9. Grades zu wirken und 26 Fertigkeitsr\u00E4nge in Zauberkunde.\nVorteil: Der Magieanwender erh\u00E4lt einen R\u00FCstungsbonus \u002B20.\nGebrauch: Zauber wirken."
-        },
-        "IT": {
-          "M": "Tipo di talento: epico\nPrerequisiti: livello 21, capacit\u00E0 di lanciare incantesimi di livello 9, 26 gradi in Sapienza magica.\nDettagli: l\u0027incantatore ottiene un bonus \u002B20 alla classe armatura.\nUso: lancio"
-        },
-        "ES": {
-          "M": "Tipo de dote: Conjuro \u00E9pico\nPrerrequisito: nivel 21\u00BA, la aptitud de lanzar conjuros de nivel 9\u00BA y 26 rangos en Conocimiento de conjuros.\nDetalles: el lanzador obtiene un bonificador \u002B20 a la Clase de Armadura.\nUso: Lanzado."
-        },
-        "PL": {
-          "M": "Rodzaj atutu: Epickie zakl\u0119cie\nWymagania: 21. poziom, zdolno\u015B\u0107 rzucania zakl\u0119\u0107 9. poziomu i umiej\u0119tno\u015B\u0107 Czaroznastwa na poziomie 26.\nOpis: rzucaj\u0105cy uzyskuje premi\u0119 \u002B20 do KP.\nU\u017Cywanie: rzucanie."
-        }
-      },
-      "Icon": "ife_x2spmagarm",
-      "MinAttackBonus": null,
-      "MinStr": null,
-      "MinDex": null,
-      "MinInt": null,
-      "MinWis": null,
-      "MinCon": null,
-      "MinCha": null,
-      "MinSpellLevel": null,
-      "RequiredFeat1": null,
-      "RequiredFeat2": null,
-      "UseableByAllClasses": false,
-      "Category": "TalentFriendlyProtectionSelf",
-      "OnUseEffect": {
-        "ID": "e5c1870d-044d-1faa-5616-f043953e6a67",
-        "Label": "Epic Spell: Epic Mage Armor"
-      },
-      "SuccessorFeat": null,
-      "CRModifier": 1,
-      "UsesPerDay": 1,
-      "MasterFeat": {
-        "ID": "492d1226-9576-750c-b8d2-33bcd2e07e2f",
-        "Label": "Epic Spell"
-      },
-      "TargetSelf": true,
-      "RequiredFeatSelection1": null,
-      "RequiredFeatSelection2": null,
-      "RequiredFeatSelection3": null,
-      "RequiredFeatSelection4": null,
-      "RequiredFeatSelection5": null,
-      "RequiredSkill1": {
-        "ID": "6a0c921d-73c6-4e7e-c24d-7c3b2873e527",
-        "Label": "Spellcraft"
-      },
-      "RequiredSkill1Minimum": 26,
-      "RequiredSkill2": null,
-      "RequiredSkill2Minimum": null,
-      "ToolsetCategory": "Magical",
-      "IsHostile": false,
-      "MinLevel": null,
-      "MinLevelClass": null,
-      "MaxLevel": null,
-      "MinFortitudeSave": null,
-      "RequiresEpic": true,
       "UseActionQueue": true
     }
   ]
