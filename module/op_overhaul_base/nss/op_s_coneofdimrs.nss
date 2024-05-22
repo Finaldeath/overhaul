@@ -17,16 +17,13 @@ const string TAG_CONE_OF_DIMNESS = "CONE_OF_DIMNESS";
 void main()
 {
     effect eRunScript = GetLastRunScriptEffect();
-    oCaster = GetEffectCreator(eRunScript);
-    oTarget = OBJECT_SELF;
     int nEventType = GetLastRunScriptEffectScriptType();
 
     // We apply blindness/miss chance using the remaining duration "just in case" so it cleans up
     // even if the Run Script fails to. We add 1 second so it's just after the end of EffectRunScript
     float fDurationRemaining = IntToFloat(GetEffectDurationRemaining(eRunScript)) + 1.0;
 
-    SpeakString("Event! " + IntToString(nEventType));
-
+    //SpeakString("Event! " + IntToString(nEventType));
 
     if (nEventType == RUNSCRIPT_EFFECT_SCRIPT_TYPE_ON_APPLIED)
     {

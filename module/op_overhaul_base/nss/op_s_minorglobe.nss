@@ -42,7 +42,7 @@ void main()
 
     float fDuration = GetDuration(nCasterLevel, ROUNDS);
 
-    SignalSpellCastAt(oTarget, oCaster, FALSE);
+    SignalSpellCastAt();
 
     // Apply the VFX impact and effects
     ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);

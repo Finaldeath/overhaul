@@ -31,7 +31,7 @@ void main()
     effect eDur  = EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE);
     effect eLink = EffectLinkEffects(eAC, eDur);
 
-    SignalSpellCastAt(oTarget, oCaster, FALSE);
+    SignalSpellCastAt();
 
     // Note we don't remove duplicate effects since the AC bonus won't stack since it's no longer dodge based
 

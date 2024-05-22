@@ -30,6 +30,8 @@ void main()
 
     if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
     {
+        SignalSpellCastAt();
+
         if (DoTouchAttack(oTarget, oCaster, TOUCH_RANGED))
         {
             float fDuration = GetDuration(3, ROUNDS);

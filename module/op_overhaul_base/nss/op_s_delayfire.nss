@@ -145,7 +145,7 @@ void DelayedBlastEffect()
         if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
         {
             // Fire cast spell at event for the specified target
-            SignalSpellCastAt(oTarget, oCaster, TRUE);
+            SignalSpellCastAt();
 
             float fDelay = GetRandomDelay(0.01, 0.1);
 

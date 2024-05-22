@@ -34,7 +34,7 @@ void main()
 
     if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
     {
-        SignalSpellCastAt(oTarget, oCaster, TRUE);
+        SignalSpellCastAt();
 
         int bBonus = FALSE;
 

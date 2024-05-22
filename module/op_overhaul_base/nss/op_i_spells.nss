@@ -102,13 +102,20 @@ object GetSpellCaster();
 // This gets the spell ID but overrides it if we are calling a spell with ExecuteScript
 int GetSpellIdCalculated();
 
+// This gets if nSpellId is hostile or not using spells.2da
+// If left at -1 uses the global value
+int GetSpellIsHostile(int nSpellIdToCheck = -1);
+
 // This calculates the spell save DC for the given spell adding in bonuses and penalties as required
 // For a AOE it uses the stored DC.
-int GetSpellSaveDCCalculated(object oCaster, int nSpellId = SPELL_INVALID);
+int GetSpellSaveDCCalculated(object oCaster, int nSpellIdToCheck = SPELL_INVALID);
 
 // This calculates the spell caster level for any additional bonuses due to feats or similar.
 // For a AOE it uses the stored caster level.
-int GetCasterLevelCalculated(object oCaster, int nSpellId = SPELL_INVALID);
+int GetCasterLevelCalculated(object oCaster, int nSpellIdToCheck = SPELL_INVALID);
+
+// Will return the target of the spell. Some special cases are taken into account with Run Script and potions.
+object GetSpellTargetObjectCalculated();
 
 // Will return the location of GetSpellTargetObject() if valid, else GetSpellTargetLocation.
 location GetSpellTargetLocationCalculated();
@@ -177,8 +184,10 @@ void ApplySpellEffectToObject(int nDurationType, effect eEffect, object oTarget,
 // Applies the given effect but merges in the right spell Id, caster Id and caster level.
 void ApplySpellEffectAtLocation(int nDurationType, effect eEffect, location lTarget, float fDuration = 0.0);
 
-// Signals nSpellId (set globally) against oTarget
-void SignalSpellCastAt(object oTarget, object oCaster, int bHostile);
+// Signals a spell cast event.
+// By default if the default parameters are used then the global automatically
+// generated values are used instead.
+void SignalSpellCastAt(object oSignalTarget = OBJECT_INVALID, object oSignalCaster = OBJECT_INVALID, int bSignalHostile = -1, int nSignalSpellId = -1);
 
 // Returns TRUE if we are OK running our AOE scripts.
 // Does a check for the AOE creator, and destroys ourself with no effect if they no longer exist.
@@ -212,6 +221,9 @@ int GetIsIncorporeal(object oCreature);
 // Returns TRUE if the given creature is made of metal (eg Iron Golem) based off appearance.
 int GetIsMetalCreature(object oCreature);
 
+// Returns TRUE if the given creature is humanoid (base races plus goblins etc.)
+int GetIsHumanoidCreature(object oCreature);
+
 // Returns TRUE if oObject has at least one effect matching the parameters.
 // * nEffectType - Can be EFFECT_TYPE_ALL to be ignored
 // * sTag - Only checked if not blank
@@ -237,6 +249,9 @@ effect EffectRunScriptAutomatic(float fInterval = 6.0, string sScript = "");
 // Returns a garanteed invalid, and otherwise useless, effect.
 effect EffectInvalidEffect();
 
+// Returns a link combining all of the given effects (where valid)
+effect EffectLinkLotsOfEffects(effect eToLink1, effect eToLink2, effect eToLink3, effect eToLink4, effect eToLink5, effect eToLink6, effect eToLink7, effect eToLink8);
+
 // Debug the spell and variables
 void DebugSpell()
 {
@@ -249,7 +264,8 @@ void DebugSpell()
                                           "] Spontanously cast: [" + IntToString(bSpontaneous) +
                                           "] Target: [" + GetName(oTarget) +
                                           "] Save DC: [" + IntToString(nSpellSaveDC) +
-                                          "] Caster Level: [" + IntToString(nCasterLevel) + "]");
+                                          "] Caster Level: [" + IntToString(nCasterLevel) + "]" +
+                                          "] Hostile: [" + IntToString(GetSpellIsHostile(nSpellId)) + "]");
 }
 
 // Checks for if the spell hook needs to be executed and execute it and check the return value if so.
@@ -269,6 +285,10 @@ object GetSpellCaster()
     {
         return GetAreaOfEffectCreator();
     }
+    if (GetLastRunScriptEffectScriptType() != 0)
+    {
+        return GetEffectCreator(GetLastRunScriptEffect());
+    }
     return OBJECT_SELF;
 }
 
@@ -280,35 +300,51 @@ int GetSpellIdCalculated()
     {
         return StringToInt(sParam);
     }
+
+    // If it's a run script we retrieve it from the effect
+    if (GetLastRunScriptEffectScriptType() != 0)
+    {
+        return GetEffectSpellId(GetLastRunScriptEffect());
+    }
+
+    // Else it's a spell script or AOE script
     return GetSpellId();
+}
+
+// This gets if nSpellId is hostile or not using spells.2da
+// If left at -1 uses the global value
+int GetSpellIsHostile(int nSpellIdToCheck = -1)
+{
+    if (nSpellIdToCheck == -1) nSpellIdToCheck = nSpellId;
+
+    if (nSpellIdToCheck >= 0 && nSpellIdToCheck <= Get2DARowCount("spells"))
+    {
+        if (Get2DAString("spells", "Hostile", nSpellIdToCheck) == "1")
+        {
+            return TRUE;
+        }
+    }
+    // Everything else is false.
+    return FALSE;
 }
 
 // This calculates the spell save DC for the given spell adding in bonuses and penalties as required
 // For a AOE it uses the stored DC on the AOE object then uses oCaster to change the value.
-int GetSpellSaveDCCalculated(object oCaster = OBJECT_SELF, int nSpellId = SPELL_INVALID)
+int GetSpellSaveDCCalculated(object oCaster = OBJECT_SELF, int nSpellIdToCheck = SPELL_INVALID)
 {
     int nEventScript = GetCurrentlyRunningEvent();
-    int nRunScript = GetLastRunScriptEffectScriptType();
 
     // If no spell Id input we retrieve it
-    if (nSpellId == SPELL_INVALID)
+    if (nSpellIdToCheck == SPELL_INVALID)
     {
-        // If it's a run script
-        if (nRunScript != 0)
-        {
-            nSpellId = GetEffectSpellId(GetLastRunScriptEffect());
-        }
-        else
-        {
-            // Else it's a spell script or AOE script
-            nSpellId = GetSpellId();
-        }
+        // Use global value
+        nSpellIdToCheck = nSpellId;
     }
 
     int nSpellSaveDC = 0;
 
     // Run script stores the save DC
-    if (nRunScript != 0)
+    if (GetLastRunScriptEffectScriptType() != 0)
     {
         // Stored in the data field
         nSpellSaveDC = StringToInt(GetEffectString(GetLastRunScriptEffect(), 0));
@@ -336,12 +372,12 @@ int GetSpellSaveDCCalculated(object oCaster = OBJECT_SELF, int nSpellId = SPELL_
 
 // This calculates the spell caster level for any additional bonuses due to feats or similar.
 // For a AOE pass in it as the oCaster, then it uses the stored caster level.
-int GetCasterLevelCalculated(object oCaster = OBJECT_SELF, int nSpellId = SPELL_INVALID)
+int GetCasterLevelCalculated(object oCaster = OBJECT_SELF, int nSpellIdToCheck = SPELL_INVALID)
 {
-    // If no spell Id input we retrieve it
-    if (nSpellId == SPELL_INVALID)
+    // If no spell Id input we use the global value
+    if (nSpellIdToCheck == SPELL_INVALID)
     {
-        nSpellId = GetSpellId();
+        nSpellIdToCheck = nSpellId;
     }
 
     int nCasterLevel = GetCasterLevel(oCaster);
@@ -349,6 +385,29 @@ int GetCasterLevelCalculated(object oCaster = OBJECT_SELF, int nSpellId = SPELL_
     // Modifications due to casters feats etc.
 
     return nCasterLevel;
+}
+
+// Will return the target of the spell. Some special cases are taken into account with Run Script and potions.
+object GetSpellTargetObjectCalculated()
+{
+    // If run script we have OBJECT_SELF as the target
+    if (GetLastRunScriptEffectScriptType() != 0)
+    {
+        return OBJECT_SELF;
+    }
+
+    // Potions can only ever be used on self, notable when using some potions on enemies (a bug in the engine)
+    if (GetIsObjectValid(oCastItem))
+    {
+        if (GetBaseItemType(oCastItem) == BASE_ITEM_POTIONS ||
+            GetBaseItemType(oCastItem) == BASE_ITEM_ENCHANTED_POTION)
+        {
+            return OBJECT_SELF;
+        }
+    }
+
+    // Else it's just the default target determined by the engine
+    return GetSpellTargetObject();
 }
 
 // Will return the location of GetSpellTargetObject() if valid, else GetSpellTargetLocation.
@@ -807,10 +866,17 @@ void ApplySpellEffectAtLocation(int nDurationType, effect eEffect, location lTar
     ApplyEffectAtLocation(nDurationType, EffectChangeProperties(eEffect, nSpellId, nCasterLevel, oCaster), lTarget, fDuration);
 }
 
-// Signals nSpellId (set globally) against oTarget
-void SignalSpellCastAt(object oTarget, object oCaster, int bHostile)
+// Signals a spell cast event.
+// By default if the default parameters are used then the global automatically
+// generated values are used instead.
+void SignalSpellCastAt(object oSignalTarget = OBJECT_INVALID, object oSignalCaster = OBJECT_INVALID, int bSignalHostile = -1, int nSignalSpellId = -1)
 {
-    SignalEvent(oTarget, EventSpellCastAt(oCaster, nSpellId, bHostile));
+    if (oSignalTarget == OBJECT_INVALID) oSignalTarget = oTarget;
+    if (oSignalCaster == OBJECT_INVALID) oSignalCaster = oCaster;
+    if (nSignalSpellId == -1) nSignalSpellId = nSpellId;
+    if (bSignalHostile == -1) bSignalHostile = GetSpellIsHostile(nSignalSpellId);
+
+    SignalEvent(oSignalTarget, EventSpellCastAt(oSignalCaster, nSignalSpellId, bSignalHostile));
 }
 
 // Returns TRUE if we are OK running our AOE scripts.
@@ -1052,6 +1118,27 @@ int GetIsMetalCreature(object oCreature)
     return FALSE;
 }
 
+// Returns TRUE if the given creature is humanoid (base races plus goblins etc.)
+int GetIsHumanoidCreature(object oCreature)
+{
+    switch (GetRacialType(oCreature))
+    {
+        case RACIAL_TYPE_DWARF:
+        case RACIAL_TYPE_ELF:
+        case RACIAL_TYPE_HALFELF:
+        case RACIAL_TYPE_HALFLING:
+        case RACIAL_TYPE_HALFORC:
+        case RACIAL_TYPE_HUMAN:
+        case RACIAL_TYPE_HUMANOID_GOBLINOID:
+        case RACIAL_TYPE_HUMANOID_MONSTROUS:
+        case RACIAL_TYPE_HUMANOID_ORC:
+        case RACIAL_TYPE_HUMANOID_REPTILIAN:
+            return TRUE;
+        break;
+    }
+    return FALSE;
+}
+
 // Returns TRUE if oObject has at least one effect matching the parameters.
 // * nEffectType - Can be EFFECT_TYPE_ALL to be ignored
 // * sTag - Only checked if not blank
@@ -1181,10 +1268,25 @@ effect EffectInvalidEffect()
     return eReturn;
 }
 
+// Returns a link combining all of the given effects (where valid)
+effect EffectLinkLotsOfEffects(effect eToLink1, effect eToLink2, effect eToLink3, effect eToLink4, effect eToLink5, effect eToLink6, effect eToLink7, effect eToLink8)
+{
+    effect eLink = EffectLinkEffects(eToLink1, eToLink2);
+
+    if (GetIsEffectValid(eToLink3)) eLink = EffectLinkEffects(eLink, eToLink3);
+    if (GetIsEffectValid(eToLink4)) eLink = EffectLinkEffects(eLink, eToLink4);
+    if (GetIsEffectValid(eToLink5)) eLink = EffectLinkEffects(eLink, eToLink5);
+    if (GetIsEffectValid(eToLink6)) eLink = EffectLinkEffects(eLink, eToLink6);
+    if (GetIsEffectValid(eToLink7)) eLink = EffectLinkEffects(eLink, eToLink7);
+    if (GetIsEffectValid(eToLink8)) eLink = EffectLinkEffects(eLink, eToLink8);
+
+    return eLink;
+}
+
 // These global variables are used in most spell scripts and are initialised here to be consistent
 object oCaster   = GetSpellCaster();
 object oCastItem = GetSpellCastItem();
-object oTarget   = GetSpellTargetObject();
+object oTarget   = GetSpellTargetObjectCalculated();
 location lTarget = GetSpellTargetLocationCalculated();
 int nSpellId     = GetSpellIdCalculated();
 int nSpellSaveDC = GetSpellSaveDCCalculated(oCaster);

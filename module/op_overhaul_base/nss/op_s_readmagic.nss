@@ -39,6 +39,10 @@ void main()
             nBaseItemType == BASE_ITEM_ENCHANTED_POTION||
             nBaseItemType == BASE_ITEM_POTIONS)
         {
+            if (GetIsObjectValid(GetItemPossessor(oTarget)))
+            {
+                SignalSpellCastAt(GetItemPossessor(oTarget));
+            }
             if (!GetIdentified(oTarget))
             {
                 // Identify!

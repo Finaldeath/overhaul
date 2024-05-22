@@ -33,7 +33,7 @@ void main()
     if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE) &&
         GetObjectType(oTarget) == OBJECT_TYPE_CREATURE)
     {
-        SignalSpellCastAt(oTarget, oCaster, TRUE);
+        SignalSpellCastAt();
 
         // Deal with invalid targets and feedback
         if (GetRacialType(oTarget) == RACIAL_TYPE_SHAPECHANGER ||

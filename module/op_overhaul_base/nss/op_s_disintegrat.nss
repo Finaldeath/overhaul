@@ -48,7 +48,7 @@ void main()
 
     if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
     {
-        SignalSpellCastAt(oTarget, oCaster, TRUE);
+        SignalSpellCastAt();
 
         int nTouch = DoTouchAttack(oTarget, oCaster, TOUCH_RANGED);
         if (nTouch)

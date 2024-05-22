@@ -37,6 +37,7 @@ void main()
     int nPoly;
     switch (nSpellId)
     {
+        // No constants for these currently
         case 387: nPoly = POLYMORPH_TYPE_GIANT_SPIDER; break;
         case 388: nPoly = POLYMORPH_TYPE_TROLL; break;
         case 389: nPoly = POLYMORPH_TYPE_UMBER_HULK; break;
@@ -56,7 +57,7 @@ void main()
     float fDuration = GetDuration(nCasterLevel, MINUTES);
 
     // Fire cast spell at event for the specified target
-    SignalSpellCastAt(oTarget, oCaster, FALSE);
+    SignalSpellCastAt();
 
     // Apply the VFX impact and effects
     ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);

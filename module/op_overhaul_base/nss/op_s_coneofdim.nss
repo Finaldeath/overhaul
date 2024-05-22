@@ -53,7 +53,7 @@ void main()
     {
         if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
         {
-            SignalSpellCastAt(oTarget, oCaster, TRUE);
+            SignalSpellCastAt();
 
             // Get the distance between the target and caster to delay the application of effects
             float fDelay = GetDistanceBetween(oCaster, oTarget)/20.0;

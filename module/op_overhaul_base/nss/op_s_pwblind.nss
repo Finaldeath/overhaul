@@ -60,10 +60,10 @@ void main()
 
         if (GetIsObjectValid(oObject))
         {
-            OP_Debug("[INFO] PW: Blind. Target: " + GetName(oObject) + " HP: " + IntToString(GetCurrentHitPoints(oObject)));
+            //OP_Debug("[INFO] PW: Blind. Target: " + GetName(oObject) + " HP: " + IntToString(GetCurrentHitPoints(oObject)));
 
             // We signal this event against everyone even if it should stop early.
-            SignalSpellCastAt(oObject, oCaster, TRUE);
+            SignalSpellCastAt();
 
             // We don't affect dead creatures as much as we'd like to
             if (!GetIsDead(oObject))

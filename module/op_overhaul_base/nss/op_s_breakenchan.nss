@@ -54,7 +54,7 @@ void main()
     // Max level of the targeted effect (unless not from a spell)
     int nMaxSpellLevel = 5;
 
-    SignalSpellCastAt(oTarget, oCaster, FALSE);
+    SignalSpellCastAt();
 
     effect eCheck = GetFirstEffect(oTarget);
     while (GetIsEffectValid(eCheck))

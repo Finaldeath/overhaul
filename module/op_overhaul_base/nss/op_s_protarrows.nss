@@ -60,7 +60,7 @@ void main()
     effect eLink = EffectLinkEffects(eDR, eDur);
     eLink        = EffectLinkEffects(eLink, eCess);
 
-    SignalSpellCastAt(oTarget, oCaster, FALSE);
+    SignalSpellCastAt();
 
     // Note we don't remove duplicate effects since the AC bonus won't stack since it's no longer dodge based
 

@@ -49,7 +49,7 @@ void main()
         // Unlike Bioware's this affects the caster too, why a vortex wouldn't wh. knows...
         if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
         {
-            SignalSpellCastAt(oTarget, oCaster, TRUE);
+            SignalSpellCastAt();
 
             if (!GetIsIncorporeal(oTarget))
             {

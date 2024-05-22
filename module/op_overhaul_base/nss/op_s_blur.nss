@@ -37,7 +37,7 @@ void main()
 
     float fDuration = GetDuration(nCasterLevel, MINUTES);
 
-    SignalSpellCastAt(oTarget, oCaster, FALSE);
+    SignalSpellCastAt();
 
     ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
 }

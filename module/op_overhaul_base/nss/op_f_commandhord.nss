@@ -52,6 +52,8 @@ void main()
     {
         if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_ALLALLIES))
         {
+            SignalSpellCastAt();
+
             ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget, fDuration);
             ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
         }

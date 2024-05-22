@@ -49,7 +49,7 @@ void main()
                 GetAssociateType(oTarget) == ASSOCIATE_TYPE_FAMILIAR ||
                 GetAssociateType(oTarget) == ASSOCIATE_TYPE_ANIMALCOMPANION)
             {
-                SignalSpellCastAt(oTarget, oCaster, TRUE);
+                SignalSpellCastAt();
 
                 // Must be enough points in the pool to destroy target
                 if (nPool >= GetHitDice(oTarget))

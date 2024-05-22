@@ -28,7 +28,7 @@ void main()
     // Cannot be dispelled but lost on rest
     eLink = ExtraordinaryEffect(eLink);
 
-    SignalSpellCastAt(oTarget, oCaster, FALSE);
+    SignalSpellCastAt();
 
     // Note we don't remove duplicate effects since the AC bonus won't stack since it's no longer dodge based
 
