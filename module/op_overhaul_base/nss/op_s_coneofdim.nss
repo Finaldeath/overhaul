@@ -8,7 +8,7 @@
     School: Illusion
     Descriptor(s): Mind-Affecting
     Component(s): Verbal, Somatic
-    Range: Cone, 11M
+    Range: Cone, 10M
     Area of Effect / Target: Spell Cone
     Duration: 1 Round/Level (see Description)
     Additional Counter Spells:
@@ -48,7 +48,7 @@ void main()
     effect eBlindness = TagEffect(UnyieldingEffect(EffectBlindness()), CONE_OF_DIMNESS);
     float fDuration = GetDuration(nCasterLevel, ROUNDS);
 
-    oTarget = GetFirstObjectInShape(SHAPE_SPELLCONE, 11.0, lTarget, TRUE, OBJECT_TYPE_CREATURE);
+    oTarget = GetFirstObjectInShape(SHAPE_SPELLCONE, 10.0, lTarget, TRUE, OBJECT_TYPE_CREATURE);
     while(GetIsObjectValid(oTarget))
     {
         if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
@@ -71,7 +71,7 @@ void main()
                 }
             }
         }
-        oTarget = GetNextObjectInShape(SHAPE_SPELLCONE, 11.0, lTarget, TRUE, OBJECT_TYPE_CREATURE);
+        oTarget = GetNextObjectInShape(SHAPE_SPELLCONE, 10.0, lTarget, TRUE, OBJECT_TYPE_CREATURE);
     }
 }
 
