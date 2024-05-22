@@ -81,7 +81,9 @@ const int SPELL_TARGET_ALLALLIES        = 1;  // Allies only
 const int SPELL_TARGET_STANDARDHOSTILE  = 2;  // Standard hostile - IE: Will hit allies in certain PvP
 const int SPELL_TARGET_SELECTIVEHOSTILE = 3;  // Selective hostile - IE: Will not hit allies
 
+const int SPELL_ANY = -2; // Since GetEffectSpellId can return -1
 const int SPELL_INVALID = -1;
+const int EFFECT_TYPE_ALL = -1;
 
 // Missing saving throw type constant
 const int SAVING_THROW_TYPE_PARALYSIS = 20;
@@ -210,17 +212,30 @@ int GetIsIncorporeal(object oCreature);
 // Returns TRUE if the given creature is made of metal (eg Iron Golem) based off appearance.
 int GetIsMetalCreature(object oCreature);
 
-// Returns TRUE if oObject has at least one effect matching nEffectType.
-int GetHasEffect(object oObject, int nEffectType);
+// Returns TRUE if oObject has at least one effect matching the parameters.
+// * nEffectType - Can be EFFECT_TYPE_ALL to be ignored
+// * sTag - Only checked if not blank
+int GetHasEffect(object oObject, int nEffectType, string sTag = "");
 
-// Removes effects from the given spell ID. Retrurns TRUE if one was removed.
-int RemoveEffectsFromSpell(object oObject, int nSpellId);
+// Removes effects from the given spell ID. Returns TRUE if one was removed.
+// * nSpellId - If SPELL_ANY it will remove any spell Id. -1 or SPELL_INVALID is "Invalid spell ID" so technically still a subset of effects.
+// * sTag - If set the tag must match
+// * nEffectType - If set the effect type must match
+int RemoveEffectsFromSpell(object oObject, int nSpellId, int nEffectType = EFFECT_TYPE_ALL, string sTag = "");
 
 // Loops through relevant shape to get all the targets in it. It then sorts them using nSortMethod.
 // * nTargetType - The SPELL_TARGET_* type to check versus oCaster
 // * nSortMethod - The sorting method to apply once all the creatures are added.
 //                 SORT_METHOD_LOWEST_HP - Sorts so first object is the lowest HP.
 json GetArrayOfTargets(int nTargetType, int nSortMethod, int nShape, float fSize, location lTarget, int bLineOfSight=FALSE, int nObjectFilter=OBJECT_TYPE_CREATURE, vector vOrigin=[0.0,0.0,0.0]);
+
+// Returns a EffectRunScript
+// * sScript - If not set will use current script name + "rs" for all 3 slots
+// Sets the Spell Save DC into the sData field.
+effect EffectRunScriptAutomatic(float fInterval = 6.0, string sScript = "");
+
+// Returns a garanteed invalid, and otherwise useless, effect.
+effect EffectInvalidEffect();
 
 // Debug the spell and variables
 void DebugSpell()
@@ -272,15 +287,49 @@ int GetSpellIdCalculated()
 // For a AOE it uses the stored DC on the AOE object then uses oCaster to change the value.
 int GetSpellSaveDCCalculated(object oCaster = OBJECT_SELF, int nSpellId = SPELL_INVALID)
 {
+    int nEventScript = GetCurrentlyRunningEvent();
+    int nRunScript = GetLastRunScriptEffectScriptType();
+
     // If no spell Id input we retrieve it
     if (nSpellId == SPELL_INVALID)
     {
-        nSpellId = GetSpellId();
+        // If it's a run script
+        if (nRunScript != 0)
+        {
+            nSpellId = GetEffectSpellId(GetLastRunScriptEffect());
+        }
+        else
+        {
+            // Else it's a spell script or AOE script
+            nSpellId = GetSpellId();
+        }
     }
 
-    int nSpellSaveDC = GetSpellSaveDC();
+    int nSpellSaveDC = 0;
 
-    // Modifications due to casters feats etc.
+    // Run script stores the save DC
+    if (nRunScript != 0)
+    {
+        // Stored in the data field
+        nSpellSaveDC = StringToInt(GetEffectString(GetLastRunScriptEffect(), 0));
+    }
+    // AOEs store the save DC from when cast
+    else if (nEventScript == EVENT_SCRIPT_AREAOFEFFECT_ON_HEARTBEAT ||
+             nEventScript == EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_ENTER ||
+             nEventScript == EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_EXIT ||
+             nEventScript == EVENT_SCRIPT_AREAOFEFFECT_ON_USER_DEFINED_EVENT)
+    {
+        nSpellSaveDC = GetSpellSaveDC();
+    }
+
+    // Default fallback is a spell script
+    if (nSpellSaveDC == 0)
+    {
+        nSpellSaveDC = GetSpellSaveDC();
+
+        // Modifications due to casters feats etc. would go here
+
+    }
 
     return nSpellSaveDC;
 }
@@ -1003,29 +1052,56 @@ int GetIsMetalCreature(object oCreature)
     return FALSE;
 }
 
-// Returns TRUE if oObject has at least one effect matching nEffectType.
-int GetHasEffect(object oObject, int nEffectType)
+// Returns TRUE if oObject has at least one effect matching the parameters.
+// * nEffectType - Can be EFFECT_TYPE_ALL to be ignored
+// * sTag - Only checked if not blank
+int GetHasEffect(object oObject, int nEffectType, string sTag = "")
 {
     effect eCheck = GetFirstEffect(oObject);
     while (GetIsEffectValid(eCheck))
     {
-        if (GetEffectType(eCheck, TRUE) == nEffectType)
+        if (nEffectType == EFFECT_TYPE_ALL || GetEffectType(eCheck, TRUE) == nEffectType)
         {
-            return TRUE;
+            if (sTag == "" || GetEffectTag(eCheck) == sTag)
+            {
+                return TRUE;
+            }
         }
         eCheck = GetNextEffect(oObject);
     }
     return FALSE;
 }
 
-// Removes effects from the given spell ID. Retrurns TRUE if one was removed.
-int RemoveEffectsFromSpell(object oObject, int nSpellId)
+// Removes effects from the given spell ID. Returns TRUE if one was removed.
+// * nSpellId - If SPELL_ANY it will remove any spell Id. -1 or SPELL_INVALID is "Invalid spell ID" so technically still a subset of effects.
+// * sTag - If set the tag must match
+// * nEffectType - If set the effect type must match
+int RemoveEffectsFromSpell(object oObject, int nSpellId, int nEffectType = EFFECT_TYPE_ALL, string sTag = "")
 {
     int bRemoved = FALSE;
     effect eCheck = GetFirstEffect(oObject);
     while (GetIsEffectValid(eCheck))
     {
-        if (GetEffectSpellId(eCheck) == nSpellId)
+        if ( (nSpellId == SPELL_ANY || GetEffectSpellId(eCheck) == nSpellId) &&
+             (nEffectType == EFFECT_TYPE_ALL || GetEffectType(eCheck, TRUE) == nEffectType) &&
+             (sTag == "" || GetEffectTag(eCheck) == sTag) )
+        {
+            RemoveEffect(oObject, eCheck);
+            bRemoved = TRUE;
+        }
+        eCheck = GetNextEffect(oObject);
+    }
+    return bRemoved;
+}
+
+// Removes effects matching the given tag. Returns TRUE if one was removed.
+int RemoveEffectsMatchingTag(object oObject, string sTag)
+{
+    int bRemoved = FALSE;
+    effect eCheck = GetFirstEffect(oObject);
+    while (GetIsEffectValid(eCheck))
+    {
+        if (GetEffectTag(eCheck) == sTag)
         {
             RemoveEffect(oObject, eCheck);
             bRemoved = TRUE;
@@ -1078,6 +1154,32 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod, int nShape, float fSize
     return jArray;
 }
 
+// Returns a EffectRunScript
+// * sScript - If not set will use current script name + "rs" for all 3 slots
+// Sets the Spell Save DC into the sData field.
+effect EffectRunScriptAutomatic(float fInterval = 6.0, string sScript = "")
+{
+    if (sScript == "")
+    {
+        sScript = GetScriptName() + "rs";
+
+        if (GetStringLength(sScript) > 16)
+        {
+            // Oh no! Return an invalid effect
+            OP_Debug("[EffectRunScriptAutomatic] Script name too long: " + sScript, LOG_LEVEL_ERROR);
+            return EffectInvalidEffect();
+        }
+    }
+
+    return EffectRunScript(sScript, sScript, sScript, fInterval, IntToString(nSpellSaveDC));
+}
+
+// Returns a garanteed invalid, and otherwise useless, effect.
+effect EffectInvalidEffect()
+{
+    effect eReturn;
+    return eReturn;
+}
 
 // These global variables are used in most spell scripts and are initialised here to be consistent
 object oCaster   = GetSpellCaster();
