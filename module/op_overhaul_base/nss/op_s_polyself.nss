@@ -45,7 +45,7 @@ void main()
         case 391: nPoly = POLYMORPH_TYPE_ZOMBIE; break;
         default:
         {
-            if (DEBUG >= LOG_LEVEL_ERROR) OP_Debug("[ERROR] Polymorph Self Invalid Subspell ID");
+            if (DEBUG_LEVEL >= LOG_LEVEL_ERROR) OP_Debug("[ERROR] Polymorph Self Invalid Subspell ID");
             return;
         }
         break;

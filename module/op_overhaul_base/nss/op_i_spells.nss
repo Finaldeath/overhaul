@@ -26,6 +26,7 @@
     nCasterClass - Caster class
     nSpellLevel - Spell level
     bSpontaneous - Spontaneously cast or not
+    bHostile - Hostile or not (set in spells.2da but some spells can be both!)
 
     If these are altered later they are used in the ApplySpellEffectToObject() and
     ApplySpellEffectAtLocation() functions.
@@ -91,7 +92,7 @@ const int SAVING_THROW_TYPE_PARALYSIS = 20;
 const int SORT_METHOD_LOWEST_HP = 0;
 
 // Debug the spell and variables
-void DebugSpell();
+void DebugSpellVariables();
 
 // Checks for if the spell hook needs to be executed and execute it and check the return value if so.
 int DoSpellHook();
@@ -104,21 +105,21 @@ int GetSpellIdCalculated();
 
 // This gets if nSpellId is hostile or not using spells.2da
 // If left at -1 uses the global value
-int GetSpellIsHostile(int nSpellIdToCheck = -1);
+int GetSpellIsHostile(int nSpellIdToCheck);
 
 // This calculates the spell save DC for the given spell adding in bonuses and penalties as required
 // For a AOE it uses the stored DC.
-int GetSpellSaveDCCalculated(object oCaster, int nSpellIdToCheck = SPELL_INVALID);
+int GetSpellSaveDCCalculated(object oCaster, int nSpellIdToCheck);
 
 // This calculates the spell caster level for any additional bonuses due to feats or similar.
 // For a AOE it uses the stored caster level.
-int GetCasterLevelCalculated(object oCaster, int nSpellIdToCheck = SPELL_INVALID);
+int GetCasterLevelCalculated(object oCaster, int nSpellIdToCheck);
 
 // Will return the target of the spell. Some special cases are taken into account with Run Script and potions.
 object GetSpellTargetObjectCalculated();
 
-// Will return the location of GetSpellTargetObject() if valid, else GetSpellTargetLocation.
-location GetSpellTargetLocationCalculated();
+// Will return the location of oTarget if valid, else GetSpellTargetLocation.
+location GetSpellTargetLocationCalculated(object oTarget);
 
 // Perform a saving throw roll.
 // Unlike MySavingThrow this will not "return failure in case of immunity" since, well, they're immune!
@@ -252,10 +253,28 @@ effect EffectInvalidEffect();
 // Returns a link combining all of the given effects (where valid)
 effect EffectLinkLotsOfEffects(effect eToLink1, effect eToLink2, effect eToLink3, effect eToLink4, effect eToLink5, effect eToLink6, effect eToLink7, effect eToLink8);
 
+
+// These global variables are used in most spell scripts and are initialised here to be consistent
+// NB: You can't reuse these variables in the very functions in this list, so we pass them in.
+object oCastItem = GetSpellCastItem();
+object oCaster   = GetSpellCaster();
+object oTarget   = GetSpellTargetObjectCalculated();
+location lTarget = GetSpellTargetLocationCalculated(oTarget);
+int nSpellId     = GetSpellIdCalculated();
+int nSpellSaveDC = GetSpellSaveDCCalculated(oCaster, nSpellId);
+int nCasterLevel = GetCasterLevelCalculated(oCaster, nSpellId);
+int nMetaMagic   = GetMetaMagicFeat();
+int nCasterClass = GetLastSpellCastClass();
+int nSpellLevel  = GetLastSpellLevel();
+int bSpontaneous = GetSpellCastSpontaneously();
+int bHostile     = GetSpellIsHostile(nSpellId);
+
 // Debug the spell and variables
-void DebugSpell()
+void DebugSpellVariables()
 {
-    if (DEBUG >= LOG_LEVEL_INFO) OP_Debug("[Spell Script] Script: [" + GetScriptName() +
+    if (DEBUG_LEVEL >= LOG_LEVEL_INFO)
+    {
+        OP_Debug("[Spell Script] Script: [" + GetScriptName() +
                                           "] ID: [" + IntToString(nSpellId) +
                                           "] Level: [" + IntToString(nSpellLevel) +
                                           "] Caster: [" + GetName(oCaster) +
@@ -265,14 +284,15 @@ void DebugSpell()
                                           "] Target: [" + GetName(oTarget) +
                                           "] Save DC: [" + IntToString(nSpellSaveDC) +
                                           "] Caster Level: [" + IntToString(nCasterLevel) + "]" +
-                                          "] Hostile: [" + IntToString(GetSpellIsHostile(nSpellId)) + "]");
+                                          "] Hostile: [" + IntToString(bHostile) + "]");
+    }
 }
 
 // Checks for if the spell hook needs to be executed and execute it and check the return value if so.
 int DoSpellHook()
 {
-    // We debug the global variables at script inception
-    DebugSpell();
+    // Debug spell if logging enabled
+    DebugSpellVariables();
 
     // TODO dummy spell hook for now
     return FALSE;
@@ -313,13 +333,12 @@ int GetSpellIdCalculated()
 
 // This gets if nSpellId is hostile or not using spells.2da
 // If left at -1 uses the global value
-int GetSpellIsHostile(int nSpellIdToCheck = -1)
+int GetSpellIsHostile(int nSpellIdToCheck)
 {
-    if (nSpellIdToCheck == -1) nSpellIdToCheck = nSpellId;
-
     if (nSpellIdToCheck >= 0 && nSpellIdToCheck <= Get2DARowCount("spells"))
     {
-        if (Get2DAString("spells", "Hostile", nSpellIdToCheck) == "1")
+        // How the game does it
+        if (StringToInt(Get2DAString("spells", "HostileSetting", nSpellIdToCheck)) != 0)
         {
             return TRUE;
         }
@@ -330,54 +349,53 @@ int GetSpellIsHostile(int nSpellIdToCheck = -1)
 
 // This calculates the spell save DC for the given spell adding in bonuses and penalties as required
 // For a AOE it uses the stored DC on the AOE object then uses oCaster to change the value.
-int GetSpellSaveDCCalculated(object oCaster = OBJECT_SELF, int nSpellIdToCheck = SPELL_INVALID)
+int GetSpellSaveDCCalculated(object oCaster, int nSpellIdToCheck)
 {
-    int nEventScript = GetCurrentlyRunningEvent();
-
-    // If no spell Id input we retrieve it
-    if (nSpellIdToCheck == SPELL_INVALID)
-    {
-        // Use global value
-        nSpellIdToCheck = nSpellId;
-    }
-
-    int nSpellSaveDC = 0;
-
     // Run script stores the save DC
     if (GetLastRunScriptEffectScriptType() != 0)
     {
         // Stored in the data field
-        nSpellSaveDC = StringToInt(GetEffectString(GetLastRunScriptEffect(), 0));
+
+        // TODO sort with CasterLevel as well
+        return StringToInt(GetEffectString(GetLastRunScriptEffect(), 0));
     }
     // AOEs store the save DC from when cast
-    else if (nEventScript == EVENT_SCRIPT_AREAOFEFFECT_ON_HEARTBEAT ||
-             nEventScript == EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_ENTER ||
-             nEventScript == EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_EXIT ||
-             nEventScript == EVENT_SCRIPT_AREAOFEFFECT_ON_USER_DEFINED_EVENT)
+    else if (GetObjectType(OBJECT_SELF) == OBJECT_TYPE_AREA_OF_EFFECT)
     {
-        nSpellSaveDC = GetSpellSaveDC();
+        // TODO: Update this value with variables from caster based on spell ID + class cast
+        // We can calculate these changes I think, safely, more or less, without storing
+        // the save DC on the AOE somehow.
+        return GetSpellSaveDC();
     }
 
-    // Default fallback is a spell script
-    if (nSpellSaveDC == 0)
-    {
-        nSpellSaveDC = GetSpellSaveDC();
+    // Default fallback is a spell script which can have altered values for the save DC
+    int nSpellSaveDC = GetSpellSaveDC();
 
-        // Modifications due to casters feats etc. would go here
+    // Modifications due to casters feats etc. would go here
 
-    }
 
     return nSpellSaveDC;
 }
 
 // This calculates the spell caster level for any additional bonuses due to feats or similar.
 // For a AOE pass in it as the oCaster, then it uses the stored caster level.
-int GetCasterLevelCalculated(object oCaster = OBJECT_SELF, int nSpellIdToCheck = SPELL_INVALID)
+int GetCasterLevelCalculated(object oCaster, int nSpellIdToCheck)
 {
-    // If no spell Id input we use the global value
-    if (nSpellIdToCheck == SPELL_INVALID)
+    // Run script stores the caster level
+    if (GetLastRunScriptEffectScriptType() != 0)
     {
-        nSpellIdToCheck = nSpellId;
+        // Stored in the data field
+        string sData = GetEffectString(GetLastRunScriptEffect(), 0);
+
+        // TODO
+
+        return 0;
+    }
+    // If we are an Area of Effect we can get it from ourselves now
+    else if (GetObjectType(OBJECT_SELF) == OBJECT_TYPE_AREA_OF_EFFECT)
+    {
+        // This is stored fine since we can change the effects that generate it.
+        return GetCasterLevel(OBJECT_SELF);
     }
 
     int nCasterLevel = GetCasterLevel(oCaster);
@@ -397,10 +415,10 @@ object GetSpellTargetObjectCalculated()
     }
 
     // Potions can only ever be used on self, notable when using some potions on enemies (a bug in the engine)
-    if (GetIsObjectValid(oCastItem))
+    if (GetIsObjectValid(GetSpellCastItem()))
     {
-        if (GetBaseItemType(oCastItem) == BASE_ITEM_POTIONS ||
-            GetBaseItemType(oCastItem) == BASE_ITEM_ENCHANTED_POTION)
+        if (GetBaseItemType(GetSpellCastItem()) == BASE_ITEM_POTIONS ||
+            GetBaseItemType(GetSpellCastItem()) == BASE_ITEM_ENCHANTED_POTION)
         {
             return OBJECT_SELF;
         }
@@ -410,10 +428,9 @@ object GetSpellTargetObjectCalculated()
     return GetSpellTargetObject();
 }
 
-// Will return the location of GetSpellTargetObject() if valid, else GetSpellTargetLocation.
-location GetSpellTargetLocationCalculated()
+// Will return the location of oTarget if valid, else GetSpellTargetLocation.
+location GetSpellTargetLocationCalculated(object oTarget)
 {
-    object oTarget = GetSpellTargetObject();
     if (GetIsObjectValid(oTarget))
     {
         return GetLocation(oTarget);
@@ -532,7 +549,7 @@ int DoTouchAttack(object oTarget, object oVersus, int nType, int bDisplayFeedbac
     // Note: For now we don't use oVersus but it's possible to do this with ExecuteScript/ExecuteScriptChunk.
     if (oVersus != OBJECT_SELF)
     {
-        if (DEBUG >= LOG_LEVEL_ERROR) OP_Debug("[ERROR] DoTouchAttack used when oVersus isn't OBJECT_SELF");
+        if (DEBUG_LEVEL >= LOG_LEVEL_ERROR) OP_Debug("[ERROR] DoTouchAttack used when oVersus isn't OBJECT_SELF");
     }
 
     if (nType == TOUCH_MELEE)
@@ -743,7 +760,7 @@ void SendImmunityFeedback(object oCaster, object oTarget, int nImmunityType)
         default:
         {
             // EG: IMMUNITY_TYPE_NONE (0) or other values we do no messages. This should not occur though.
-            if (DEBUG >= LOG_LEVEL_ERROR) OP_Debug("[ERROR] SendImmunityFeedback: Invalid nImmunityType: " + IntToString(nImmunityType));
+            if (DEBUG_LEVEL >= LOG_LEVEL_ERROR) OP_Debug("[ERROR] SendImmunityFeedback: Invalid nImmunityType: " + IntToString(nImmunityType));
             return;
         }
         break;
@@ -831,7 +848,7 @@ float GetVisualEffectHitDelay(int nVFX, object oTarget, object oSource)
             return fDist / (3.0 * log(fDist) + 2.0);
         }
     }
-    if (DEBUG >= LOG_LEVEL_ERROR) OP_Debug("[ERROR] GetVisualEffectHitDelay Called with no programmed FX: " + IntToString(nProgrammedVFX), LOG_LEVEL_ERROR);
+    if (DEBUG_LEVEL >= LOG_LEVEL_ERROR) OP_Debug("[ERROR] GetVisualEffectHitDelay Called with no programmed FX: " + IntToString(nProgrammedVFX), LOG_LEVEL_ERROR);
     // Default is distance / 20
     return GetDistanceBetween(oSource, oTarget) / 20.0;
 }
@@ -874,7 +891,7 @@ void SignalSpellCastAt(object oSignalTarget = OBJECT_INVALID, object oSignalCast
     if (oSignalTarget == OBJECT_INVALID) oSignalTarget = oTarget;
     if (oSignalCaster == OBJECT_INVALID) oSignalCaster = oCaster;
     if (nSignalSpellId == -1) nSignalSpellId = nSpellId;
-    if (bSignalHostile == -1) bSignalHostile = GetSpellIsHostile(nSignalSpellId);
+    if (bSignalHostile == -1) bSignalHostile = bHostile;
 
     SignalEvent(oSignalTarget, EventSpellCastAt(oSignalCaster, nSignalSpellId, bSignalHostile));
 }
@@ -1283,15 +1300,3 @@ effect EffectLinkLotsOfEffects(effect eToLink1, effect eToLink2, effect eToLink3
     return eLink;
 }
 
-// These global variables are used in most spell scripts and are initialised here to be consistent
-object oCaster   = GetSpellCaster();
-object oCastItem = GetSpellCastItem();
-object oTarget   = GetSpellTargetObjectCalculated();
-location lTarget = GetSpellTargetLocationCalculated();
-int nSpellId     = GetSpellIdCalculated();
-int nSpellSaveDC = GetSpellSaveDCCalculated(oCaster);
-int nCasterLevel = GetCasterLevelCalculated(oCaster);
-int nMetaMagic   = GetMetaMagicFeat();
-int nCasterClass = GetLastSpellCastClass();
-int nSpellLevel  = GetLastSpellLevel();
-int bSpontaneous = GetSpellCastSpontaneously();

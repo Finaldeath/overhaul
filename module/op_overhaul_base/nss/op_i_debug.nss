@@ -17,7 +17,7 @@ const int LOG_LEVEL_WARNING = 2;  // Warnings and errors only
 const int LOG_LEVEL_INFO    = 3;  // All debug - every piece of information available
 
 // Set to the types of debug you want as per above
-const int DEBUG = LOG_LEVEL_INFO;
+const int DEBUG_LEVEL = LOG_LEVEL_INFO;
 
 // Print sDebug in various places depending on the nDebugLevel
 void OP_Debug(string sDebug, int nLogLevel = LOG_LEVEL_INFO);
@@ -25,7 +25,7 @@ void OP_Debug(string sDebug, int nLogLevel = LOG_LEVEL_INFO);
 // Print sDebug in various places depending on the nDebugLevel
 void OP_Debug(string sDebug, int nLogLevel = LOG_LEVEL_INFO)
 {
-    if (nLogLevel > DEBUG) return;
+    if (nLogLevel > DEBUG_LEVEL) return;
 
     SendMessageToPC(GetFirstPC(), sDebug);
 

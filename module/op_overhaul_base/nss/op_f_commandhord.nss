@@ -41,7 +41,7 @@ void main()
 
     if (nLevel == 0)
     {
-        if (DEBUG >= LOG_LEVEL_ERROR) OP_Debug("[ERROR] Command the Horde no class levels in Eye of Gruumsh. Script called in error?");
+        if (DEBUG_LEVEL >= LOG_LEVEL_ERROR) OP_Debug("[ERROR] Command the Horde no class levels in Eye of Gruumsh. Script called in error?");
         return;
     }
 
