@@ -1937,6 +1937,90 @@
       "TargetingFlags": []
     },
     {
+      "ID": "b4b8a423-b8df-443f-b855-bae7ed3e47f8",
+      "Index": 21,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Assay Resistance",
+          "F": "New Spell"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Caster Level(s): Cleric 4, Wizard / Sorcerer 4\nInnate Level: 4\nSchool: Divination\nDescriptor(s): \nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nThis spell enables you to divine the exact nature and vulnerabilities of a single creature\u0027s magical defenses, giving solely you a \u002B10 bonus on caster level checks to overcome its spell resistance.\r\n\r\nCasting this again will replace the creature affected with the new target, or refresh the duration if on the same target.",
+          "F": "Caster Level(s): Bard 0, Cleric 0, Druid 0, Paladin 1, Ranger 1, Wizard / Sorcerer 0\nInnate Level: 0\nSchool: General\nDescriptor(s): \nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Single Scroll\nDuration: Instant\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nYou identify a spell scrolls contents."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "i_dummy",
+      "School": "D",
+      "Range": "L",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Quicken"
+      ],
+      "TargetTypes": [
+        "Creature",
+        "Item"
+      ],
+      "ImpactScript": "op_s_assayresist",
+      "InnateLevel": 4,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_mehansonc01",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mehansonc01",
+      "ConjurationMaleSound": "vs_chant_illu_lm",
+      "ConjurationFemaleSound": "vs_chant_illu_lf",
+      "CastingAnimation": "Touch",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": "vca_outsonic",
+      "CastingGroundEffect": null,
+      "CastingSound": "sca_outsonic",
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": null,
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "HarmfulRanged",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": true,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
       "ID": "30fa964b-e598-42dc-8aea-7d7a8a2a39c4",
       "Index": -1,
       "Overrides": "0517a0cc-3c06-1d25-e6ae-c1f8314f7dfd",
@@ -2781,7 +2865,7 @@
       "AlternativeCastMessage": {
         "Index": null
       },
-      "Icon": "is_polyself",
+      "Icon": "i_dummy",
       "School": "T",
       "Range": "S",
       "Components": [
@@ -6825,7 +6909,7 @@
       "AlternativeCastMessage": {
         "Index": null
       },
-      "Icon": "is_x1displace",
+      "Icon": "i_dummy",
       "School": "I",
       "Range": "T",
       "Components": [
@@ -7148,7 +7232,7 @@
       "AlternativeCastMessage": {
         "Index": null
       },
-      "Icon": "is_lsdispel",
+      "Icon": "i_dummy",
       "School": "A",
       "Range": "S",
       "Components": [
@@ -10101,7 +10185,7 @@
       "AlternativeCastMessage": {
         "Index": null
       },
-      "Icon": "is_conecold",
+      "Icon": "i_dummy",
       "School": "I",
       "Range": "S",
       "Components": [
@@ -19638,7 +19722,7 @@
       "AlternativeCastMessage": {
         "Index": null
       },
-      "Icon": "is_x1stofls",
+      "Icon": "i_dummy",
       "School": "T",
       "Range": "M",
       "Components": [
@@ -30745,7 +30829,7 @@
       "AlternativeCastMessage": {
         "Index": null
       },
-      "Icon": "is_magearm",
+      "Icon": "i_dummy",
       "School": "C",
       "Range": "T",
       "Components": [
@@ -41338,7 +41422,7 @@
       "CounterSpell1": null,
       "CounterSpell2": null,
       "HasProjectileVisuals": true,
-      "TargetShape": null,
+      "TargetShape": "Sphere",
       "TargetSizeX": null,
       "TargetSizeY": null,
       "TargetingFlags": []
@@ -48334,7 +48418,7 @@
       "AlternativeCastMessage": {
         "Index": null
       },
-      "Icon": "ief_blind",
+      "Icon": "i_dummy",
       "School": "D",
       "Range": "S",
       "Components": [
@@ -48403,7 +48487,7 @@
       "Index": -1,
       "Overrides": "fc9edad7-0bad-6521-e829-8d98ebcfde54",
       "Disabled": false,
-      "Hint": "\u002BCounterspell",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
@@ -48522,7 +48606,7 @@
       "Index": -1,
       "Overrides": "00b98e77-8475-c2d1-096e-0a55555d3cfe",
       "Disabled": false,
-      "Hint": "\u002BCounterspell",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
@@ -49282,7 +49366,7 @@
       "AlternativeCastMessage": {
         "Index": null
       },
-      "Icon": "is_minglobe",
+      "Icon": "i_dummy",
       "School": "A",
       "Range": "T",
       "Components": [
@@ -50945,21 +51029,23 @@
       "Description": {
         "Index": null,
         "EN": {
-          "M": "Caster Level(s): Bard 0, Cleric 0, Druid 0, Paladin 1, Ranger 1, Wizard / Sorcerer 0\nInnate Level: 0\nSchool: General\nDescriptor(s): \nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Single Scroll\nDuration: Instant\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nYou identify a spell scroll or potions contents.",
+          "M": "Caster Level(s): Bard 0, Cleric 0, Druid 0, Paladin 1, Ranger 1, Wizard / Sorcerer 0\nInnate Level: 0\nSchool: Divination\nDescriptor(s): \nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Single Scroll\nDuration: Instant\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nYou identify a spell scroll or potions contents.",
           "F": "Caster Level(s): Bard 0, Cleric 0, Druid 0, Paladin 1, Ranger 1, Wizard / Sorcerer 0\nInnate Level: 0\nSchool: General\nDescriptor(s): \nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Single Scroll\nDuration: Instant\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nYou identify a spell scrolls contents."
         }
       },
       "AlternativeCastMessage": {
         "Index": null
       },
-      "Icon": "ir_learnscroll",
-      "School": "G",
+      "Icon": "i_dummy",
+      "School": "D",
       "Range": "P",
       "Components": [
         "V",
         "S"
       ],
-      "AvailableMetaMagic": [],
+      "AvailableMetaMagic": [
+        "Quicken"
+      ],
       "TargetTypes": [
         "Item"
       ],
@@ -50971,7 +51057,7 @@
       "ConjurationHandEffect": "vco_mehansonc02",
       "ConjurationGroundEffect": null,
       "ConjurationSound": "sco_mehansonc02",
-      "ConjurationMaleSound": "vs_chant_illu_mf",
+      "ConjurationMaleSound": "vs_chant_illu_lm",
       "ConjurationFemaleSound": "vs_chant_illu_lf",
       "CastingAnimation": "Self",
       "CastTime": 0,
@@ -50993,7 +51079,7 @@
       "SubSpell6": null,
       "SubSpell7": null,
       "SubSpell8": null,
-      "Category": null,
+      "Category": "HarmfulRanged",
       "ParentSpell": null,
       "Type": "Spell",
       "UseConcentration": true,
@@ -51002,7 +51088,7 @@
       "CounterSpell1": null,
       "CounterSpell2": null,
       "HasProjectileVisuals": false,
-      "TargetShape": null,
+      "TargetShape": "Sphere",
       "TargetSizeX": null,
       "TargetSizeY": null,
       "TargetingFlags": []
@@ -56363,7 +56449,7 @@
       "AlternativeCastMessage": {
         "Index": null
       },
-      "Icon": "is_x2elecloop",
+      "Icon": "i_dummy",
       "School": "T",
       "Range": "T",
       "Components": [
@@ -57030,6 +57116,89 @@
       "TargetingFlags": [
         "HarmsEnemies"
       ]
+    },
+    {
+      "ID": "8bead6a0-cc68-4bc1-a379-7bff1769c8a0",
+      "Index": 20,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Solipsism",
+          "F": "New Spell"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Caster Level(s): Wizard / Sorcerer 7\nInnate Level: 7\nSchool: Illusion\nDescriptor(s): Mind-Affecting\nComponent(s): Verbal\nRange: Medium\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells: \nSave: Will Negates\nSpell Resistance: Yes\n\r\nYou manipulate the senses of one creature so that it perceives itself to be the only real creature in all of existence and everything around it to be merely an illusion.\r\n\r\nIf the target fails its save, it is convinced of the unreality of every situation it might encounter. It takes no actions, not even purely mental actions, and instead watches the world around it with bemusement. The subject becomes effectively paralyzed and takes no steps to defend itself from any threat, since it considers any hostile action merely another illusion."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "i_dummy",
+      "School": "I",
+      "Range": "S",
+      "Components": [
+        "V"
+      ],
+      "AvailableMetaMagic": [
+        "Quicken",
+        "Silent"
+      ],
+      "TargetTypes": [
+        "Creature",
+        "Item"
+      ],
+      "ImpactScript": "op_s_solipsism",
+      "InnateLevel": 7,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": null,
+      "ConjurationGroundEffect": "vco_lgrinodd01",
+      "ConjurationSound": "sco_lgrinodd01",
+      "ConjurationMaleSound": "vs_chant_illu_hm",
+      "ConjurationFemaleSound": "vs_chant_illu_hf",
+      "CastingAnimation": "Out",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": true,
+      "ProjectileModel": "vpr_los",
+      "ProjectileType": "Accelerating",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": "spr_los",
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "HarmfulRanged",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": true,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": true,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
     },
     {
       "ID": "1f08f6a4-c622-409a-9bbc-fda24cae97cd",
@@ -62343,7 +62512,7 @@
       "AlternativeCastMessage": {
         "Index": null
       },
-      "Icon": "is_gengaze",
+      "Icon": "i_dummy",
       "School": "I",
       "Range": "S",
       "Components": [
@@ -64958,89 +65127,6 @@
         "HarmsAllies",
         "OriginOnSelf"
       ]
-    },
-    {
-      "ID": "8bead6a0-cc68-4bc1-a379-7bff1769c8a0",
-      "Index": 20,
-      "Overrides": null,
-      "Disabled": false,
-      "Hint": "",
-      "ScriptConstant": "",
-      "SourceLabel": null,
-      "ExtensionValues": {},
-      "Name": {
-        "Index": null,
-        "EN": {
-          "M": "Solipsism",
-          "F": "New Spell"
-        }
-      },
-      "Description": {
-        "Index": null,
-        "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 7\nInnate Level: 7\nSchool: Illusion\nDescriptor(s): Mind-Affecting\nComponent(s): Verbal\nRange: Medium\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells: \nSave: Will Negates\nSpell Resistance: Yes\n\r\nYou manipulate the senses of one creature so that it perceives itself to be the only real creature in all of existence and everything around it to be merely an illusion.\r\n\r\nIf the target fails its save, it is convinced of the unreality of every situation it might encounter. It takes no actions, not even purely mental actions, and instead watches the world around it with bemusement. The subject becomes effectively paralyzed and takes no steps to defend itself from any threat, since it considers any hostile action merely another illusion."
-        }
-      },
-      "AlternativeCastMessage": {
-        "Index": null
-      },
-      "Icon": "is_phankill",
-      "School": "I",
-      "Range": "S",
-      "Components": [
-        "V"
-      ],
-      "AvailableMetaMagic": [
-        "Quicken",
-        "Silent"
-      ],
-      "TargetTypes": [
-        "Creature",
-        "Item"
-      ],
-      "ImpactScript": "op_s_solipsism",
-      "InnateLevel": 7,
-      "ConjurationTime": 1500,
-      "ConjuringAnimation": "Hand",
-      "ConjurationHeadEffect": null,
-      "ConjurationHandEffect": null,
-      "ConjurationGroundEffect": "vco_lgrinodd01",
-      "ConjurationSound": "sco_lgrinodd01",
-      "ConjurationMaleSound": "vs_chant_illu_hm",
-      "ConjurationFemaleSound": "vs_chant_illu_hf",
-      "CastingAnimation": "Out",
-      "CastTime": 1000,
-      "CastingHeadEffect": null,
-      "CastingHandEffect": null,
-      "CastingGroundEffect": null,
-      "CastingSound": null,
-      "HasProjectile": true,
-      "ProjectileModel": "vpr_los",
-      "ProjectileType": "Accelerating",
-      "ProjectileSpawnPoint": "Hand",
-      "ProjectileSound": "spr_los",
-      "ProjectileOrientation": "Path",
-      "SubSpell1": null,
-      "SubSpell2": null,
-      "SubSpell3": null,
-      "SubSpell4": null,
-      "SubSpell5": null,
-      "SubSpell6": null,
-      "SubSpell7": null,
-      "SubSpell8": null,
-      "Category": "HarmfulRanged",
-      "ParentSpell": null,
-      "Type": "Spell",
-      "UseConcentration": true,
-      "IsCastSpontaneously": false,
-      "IsHostile": true,
-      "CounterSpell1": null,
-      "CounterSpell2": null,
-      "HasProjectileVisuals": true,
-      "TargetShape": null,
-      "TargetSizeX": null,
-      "TargetSizeY": null,
-      "TargetingFlags": []
     }
   ]
 }

@@ -138,6 +138,9 @@ int DoSavingThrow(object oTarget, object oSaveVersus, int nSavingThrow, int nDC,
 //   Return value if spell resisted via spell absorption: 3
 int DoResistSpell(object oTarget, object oCaster, float fDelay = 0.0);
 
+// Gets the assay resistance bonus to caster level for oCaster if it is affecting oTarget
+int GetAssayResistanceBonus(object oTarget, object oCaster);
+
 // Does a relevant touch attack. Some classes add bonuses to touch attacks, which can be added in here.
 // Return values:
 // * 0 - Miss
@@ -505,7 +508,7 @@ int DoSavingThrow(object oTarget, object oSaveVersus, int nSavingThrow, int nDC,
 
 // Used to route the resist magic checks into this function to check for spell countering by SR, Globes or Mantles.
 //   Return value if oCaster or oTarget is an invalid object: FALSE
-//   Return value if spell cast is not a player spell: - 1
+//   Return value if spell cast is not a player spell: FALSE (usually -1)
 //   Return value if spell resisted: 1
 //   Return value if spell resisted via magic immunity: 2
 //   Return value if spell resisted via spell absorption: 3
@@ -516,7 +519,18 @@ int DoResistSpell(object oTarget, object oCaster, float fDelay = 0.0)
     {
         fDelay = fDelay - 0.1;
     }
+
+    // Do the spell resistance check
+    int nResistSpellCasterLevel = nCasterLevel;
+
+    // Check for Assay Resistance bonus vs. oTarget
+    nResistSpellCasterLevel += GetAssayResistanceBonus(oTarget, oCaster);
+
+    // TODO: Make use of the above
+
     int nResist = ResistSpell(oCaster, oTarget);
+
+
     if (nResist == 1)  // Spell Resistance
     {
         DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_MAGIC_RESISTANCE_USE), oTarget));
@@ -533,7 +547,34 @@ int DoResistSpell(object oTarget, object oCaster, float fDelay = 0.0)
         }
         DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_SPELL_MANTLE_USE), oTarget));
     }
+
+    // This captures "not a player spell"
+    if (nResist < 0) nResist = 0;
+
     return nResist;
+}
+
+// Gets the assay resistance bonus to caster level for oCaster if it is affecting oTarget
+int GetAssayResistanceBonus(object oTarget, object oCaster)
+{
+    if (GetHasSpellEffect(SPELL_ASSAY_RESISTANCE, oCaster))
+    {
+        // Find the tagged effect
+        effect eCheck = GetFirstEffect(oCaster);
+        while (GetIsEffectValid(eCheck))
+        {
+            if (GetEffectSpellId(eCheck) == SPELL_ASSAY_RESISTANCE)
+            {
+                if (GetEffectTag(eCheck) == ObjectToString(oTarget))
+                {
+                    return 10;
+                }
+                return 0;
+            }
+            eCheck = GetNextEffect(oCaster);
+        }
+    }
+    return 0;
 }
 
 // Does a relevant touch attack. Some classes add bonuses to touch attacks, which can be added in here.
