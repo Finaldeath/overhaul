@@ -30,6 +30,11 @@ void main()
 {
     if (DoSpellHook()) return;
 
+    effect eLink =
+        EffectLinkEffects(EffectAttackDecrease(1),
+        EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_NEGATIVE),
+                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+
     if (GetIsHumanoidCreature(oTarget))
     {
         if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
@@ -40,12 +45,6 @@ void main()
             {
                 if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC))
                 {
-                    effect eAttackPenalty = EffectAttackDecrease(1);
-                    effect eDur = EffectVisualEffect(VFX_DUR_MIND_AFFECTING_NEGATIVE);
-                    effect eCessate = EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE);
-                    effect eInvalid = EffectInvalidEffect();
-                    effect eLink = EffectLinkLotsOfEffects(eAttackPenalty, eDur, eCessate, eInvalid, eInvalid, eInvalid, eInvalid, eInvalid);
-
                     ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(nCasterLevel, ROUNDS));
                 }
             }

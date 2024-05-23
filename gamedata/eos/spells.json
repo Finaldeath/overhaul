@@ -29251,7 +29251,7 @@
       "CounterSpell1": null,
       "CounterSpell2": null,
       "HasProjectileVisuals": false,
-      "TargetShape": null,
+      "TargetShape": "Sphere",
       "TargetSizeX": null,
       "TargetSizeY": null,
       "TargetingFlags": []
@@ -45666,7 +45666,7 @@
       },
       "CounterSpell2": null,
       "HasProjectileVisuals": true,
-      "TargetShape": null,
+      "TargetShape": "Sphere",
       "TargetSizeX": null,
       "TargetSizeY": null,
       "TargetingFlags": []
@@ -56647,7 +56647,7 @@
       "SubSpell6": null,
       "SubSpell7": null,
       "SubSpell8": null,
-      "Category": null,
+      "Category": "TalentFriendlyProtectionSelf",
       "ParentSpell": null,
       "Type": "Spell",
       "UseConcentration": true,
@@ -64958,6 +64958,89 @@
         "HarmsAllies",
         "OriginOnSelf"
       ]
+    },
+    {
+      "ID": "8bead6a0-cc68-4bc1-a379-7bff1769c8a0",
+      "Index": 20,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": null,
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Solipsism",
+          "F": "New Spell"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Caster Level(s): Wizard / Sorcerer 7\nInnate Level: 7\nSchool: Illusion\nDescriptor(s): Mind-Affecting\nComponent(s): Verbal\nRange: Medium\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells: \nSave: Will Negates\nSpell Resistance: Yes\n\r\nYou manipulate the senses of one creature so that it perceives itself to be the only real creature in all of existence and everything around it to be merely an illusion.\r\n\r\nIf the target fails its save, it is convinced of the unreality of every situation it might encounter. It takes no actions, not even purely mental actions, and instead watches the world around it with bemusement. The subject becomes effectively paralyzed and takes no steps to defend itself from any threat, since it considers any hostile action merely another illusion."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_phankill",
+      "School": "I",
+      "Range": "S",
+      "Components": [
+        "V"
+      ],
+      "AvailableMetaMagic": [
+        "Quicken",
+        "Silent"
+      ],
+      "TargetTypes": [
+        "Creature",
+        "Item"
+      ],
+      "ImpactScript": "op_s_solipsism",
+      "InnateLevel": 7,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": null,
+      "ConjurationGroundEffect": "vco_lgrinodd01",
+      "ConjurationSound": "sco_lgrinodd01",
+      "ConjurationMaleSound": "vs_chant_illu_hm",
+      "ConjurationFemaleSound": "vs_chant_illu_hf",
+      "CastingAnimation": "Out",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": true,
+      "ProjectileModel": "vpr_los",
+      "ProjectileType": "Accelerating",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": "spr_los",
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "HarmfulRanged",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": true,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": true,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
     }
   ]
 }

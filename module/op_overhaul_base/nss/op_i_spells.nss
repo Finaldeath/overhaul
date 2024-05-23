@@ -250,9 +250,6 @@ effect EffectRunScriptAutomatic(float fInterval = 6.0, string sScript = "");
 // Returns a garanteed invalid, and otherwise useless, effect.
 effect EffectInvalidEffect();
 
-// Returns a link combining all of the given effects (where valid)
-effect EffectLinkLotsOfEffects(effect eToLink1, effect eToLink2, effect eToLink3, effect eToLink4, effect eToLink5, effect eToLink6, effect eToLink7, effect eToLink8);
-
 
 // These global variables are used in most spell scripts and are initialised here to be consistent
 // NB: You can't reuse these variables in the very functions in this list, so we pass them in.
@@ -1283,20 +1280,5 @@ effect EffectInvalidEffect()
 {
     effect eReturn;
     return eReturn;
-}
-
-// Returns a link combining all of the given effects (where valid)
-effect EffectLinkLotsOfEffects(effect eToLink1, effect eToLink2, effect eToLink3, effect eToLink4, effect eToLink5, effect eToLink6, effect eToLink7, effect eToLink8)
-{
-    effect eLink = EffectLinkEffects(eToLink1, eToLink2);
-
-    if (GetIsEffectValid(eToLink3)) eLink = EffectLinkEffects(eLink, eToLink3);
-    if (GetIsEffectValid(eToLink4)) eLink = EffectLinkEffects(eLink, eToLink4);
-    if (GetIsEffectValid(eToLink5)) eLink = EffectLinkEffects(eLink, eToLink5);
-    if (GetIsEffectValid(eToLink6)) eLink = EffectLinkEffects(eLink, eToLink6);
-    if (GetIsEffectValid(eToLink7)) eLink = EffectLinkEffects(eLink, eToLink7);
-    if (GetIsEffectValid(eToLink8)) eLink = EffectLinkEffects(eLink, eToLink8);
-
-    return eLink;
 }
 
