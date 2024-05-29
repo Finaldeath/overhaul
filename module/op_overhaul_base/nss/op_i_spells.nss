@@ -84,6 +84,7 @@ const int SPELL_TARGET_SELECTIVEHOSTILE = 3;  // Selective hostile - IE: Will no
 
 const int SPELL_ANY = -2; // Since GetEffectSpellId can return -1
 const int SPELL_INVALID = -1;
+const int FEAT_INVALID = -1;
 const int EFFECT_TYPE_ALL = -1;
 
 // Missing saving throw type constant
@@ -206,6 +207,9 @@ float GetVFXScale(object oCreature);
 
 // Gets the given spells name, returns "" on error.
 string GetSpellName(int nSpellId);
+
+// Gets the given feat name, returns "" on error.
+string GetFeatName(int nFeatId);
 
 // Gets the level the given spell is usually cast at, Eg Magic Missile is 1 for Wizards/Sorcerers
 // If CLASS_TYPE_INVALID is used it gets the Innate level instead.
@@ -984,6 +988,17 @@ float GetVFXScale(object oCreature)
 string GetSpellName(int nSpellId)
 {
     string sTLK = Get2DAString("seplls", "Name", nSpellId);
+    if (sTLK != "")
+    {
+        return GetStringByStrRef(StringToInt(sTLK));
+    }
+    return "";
+}
+
+// Gets the given feat name, returns "" on error.
+string GetFeatName(int nFeatId)
+{
+    string sTLK = Get2DAString("feat", "FEAT", nFeatId);
     if (sTLK != "")
     {
         return GetStringByStrRef(StringToInt(sTLK));

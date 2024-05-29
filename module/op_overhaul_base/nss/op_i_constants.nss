@@ -31,4 +31,11 @@ const int EFFECT_ICON_MISS_CHANCE               = 146;
 const int EFFECT_ICON_ULTRAVISION               = 147;
 const int EFFECT_ICON_ARCANE_SPELL_FAILURE_BAD  = 148;
 const int EFFECT_ICON_ARCANE_SPELL_FAILURE_GOOD = 149;
+const int EFFECT_ICON_BARD_SONG                 = 150;
+const int EFFECT_ICON_CURSE_SONG                = 151;
+const int EFFECT_ICON_BONUS_FEAT                = 152;
+
+// visualeffects.2da ones not specified by default
+const int VFX_FNF_SPELL_FAIL_HEAD = 292;
+const int VFX_FNF_SPELL_FAIL_HAND = 293;
 
