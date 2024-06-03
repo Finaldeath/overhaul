@@ -115,7 +115,7 @@ int GetHasFeatPrerequisites(int nFeatId, object oCreature, json jCreature, objec
 
             if (nClass == CLASS_TYPE_INVALID) break;
 
-            if (GetCreatureMinimumSpellLevel(oCreature, nClass))
+            if (GetCreatureMaximumSpellLevel(oCreature, nClass) >= StringToInt(sTest))
             {
                 bFoundCasterClass = TRUE;
             }

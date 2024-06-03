@@ -20,7 +20,7 @@ int GetAbilityScoreConstant(string sAbilityName);
 // Checks the maximum level of spells castable by oCreature with nClass
 // eg a level 1 Wizard with at least 11 intelligence will return 1
 // Returns -1 on error
-int GetCreatureMinimumSpellLevel(object oCreature, int nClass);
+int GetCreatureMaximumSpellLevel(object oCreature, int nClass);
 
 // Checks if the given class can ever learn the given feat according to their feat list
 // Does not check ALLCLASSESCANUSE in feat.2da
@@ -57,7 +57,7 @@ int GetAbilityScoreConstant(string sAbilityName)
 // Checks the maximum level of spells castable by oCreature with nClass
 // eg a level 1 Wizard with at least 11 intelligence will return 1
 // Returns -1 on error
-int GetCreatureMinimumSpellLevel(object oCreature, int nClass)
+int GetCreatureMaximumSpellLevel(object oCreature, int nClass)
 {
     // Check they are a spellcasting class to begin with
     if (StringToInt(Get2DAString("classes", "SpellCaster", nClass)) == 0) return -1;
