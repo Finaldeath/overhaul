@@ -34107,6 +34107,783 @@
       "TargetingFlags": []
     },
     {
+      "ID": "2a266f98-f5d9-402c-b55d-0e7c99da78b1",
+      "Index": 22,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Heroics",
+          "F": "New Spell"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Caster Level(s): Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 minutes / level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\r\nThe heroics spell temporarily grants the subject a feat from the fighter\u0027s bonus feat list. For the duration of the heroics spell, the subject can use the feat as if it were one of those the creature had selected. All prerequisites for the feat must be met by the target of this spell. A creature can only be affected by one Heroics spell at a time.\r\n\r\nThe subspells allow you to choose a category of feats to apply;\r\n\r\n- Appropriate Feat (Feat from the below selection based on equipped weapons)\r\n- Melee Active Feat (Improved Knockdown, Improved Disarm, Whirlwind Attack, Knockdown, Sap, Disarm, Called Shot)\r\n- Melee Mode Feat (Greater Cleave, Cleave, Improved Power Attack, Power Attack)\r\n- Unarmed Feat (Stunning Fist, Deflect Arrows, Improved Unarmed Attack)\r\n- Ranged Feat (Rapid Shot, Called Shot, Point Blank Shot)\r\n- Weapon Feat (Weapon Specialization, Weapon Focus, Weapon Finesse (if applicable))\r\n- Defensive Feat (Improved Expertise, Expertise, Spring Attack, Mobility, Dodge, Improved Parry, Deflect Arrows (if unarmed), Blind Fight)\r\n- Two-Weapon Fighting Feat (Improved two-weapon fighting, Ambidexterity, Two-Weapon Fighting)"
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "i_dummy",
+      "School": "T",
+      "Range": "T",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [],
+      "TargetTypes": [
+        "Creature",
+        "Item"
+      ],
+      "ImpactScript": "op_s_heroics",
+      "InnateLevel": 2,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_mehanodd02",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "vco_mehanodd02",
+      "ConjurationMaleSound": "vs_chant_ench_lm",
+      "ConjurationFemaleSound": "vs_chant_ench_lf",
+      "CastingAnimation": "Touch",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": null,
+      "ProjectileOrientation": "Path",
+      "SubSpell1": {
+        "ID": "6948aec5-a192-4fa8-b9d0-ba1822522a34",
+        "Label": "Heroics (Appropriate Feat)"
+      },
+      "SubSpell2": {
+        "ID": "f2104b63-a511-4a51-98e9-55673e75e50f",
+        "Label": "Heroics (Melee Active Feat)"
+      },
+      "SubSpell3": {
+        "ID": "524ab8fd-323d-49e2-805b-4c1fdfa7b8e4",
+        "Label": "Heroics (Melee Mode Feat)"
+      },
+      "SubSpell4": {
+        "ID": "cd5364ec-7252-4c4f-bd86-dfc1292b3902",
+        "Label": "Heroics (Unarmed Feat)"
+      },
+      "SubSpell5": {
+        "ID": "7fdcbe40-76f3-4216-9ee2-b5c9040f32fc",
+        "Label": "Heroics (Ranged Feat)"
+      },
+      "SubSpell6": {
+        "ID": "1aa1c9dc-430a-44d8-a599-c46dda9b4bb4",
+        "Label": "Heroics (Weapon Feat)"
+      },
+      "SubSpell7": {
+        "ID": "313692e6-fec0-42c1-83dd-f4ecfa4447e1",
+        "Label": "Heroics (Defensive Feat)"
+      },
+      "SubSpell8": {
+        "ID": "2242727a-bd2d-4c8e-a774-4a50292b1483",
+        "Label": "Heroics (Two-Weapon Fighting Feat)"
+      },
+      "Category": "FriendlyEnhancementSingle",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "6948aec5-a192-4fa8-b9d0-ba1822522a34",
+      "Index": 23,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Heroics (Appropriate Feat)",
+          "F": "New Spell"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Caster Level(s): Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 minutes / level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\r\nThe heroics spell temporarily grants the subject a feat from the fighter\u0027s bonus feat list. For the duration of the heroics spell, the subject can use the feat as if it were one of those the creature had selected. All prerequisites for the feat must be met by the target of this spell. A creature can only be affected by one Heroics spell at a time.\r\n\r\nThe subspells allow you to choose a category of feats to apply;\r\n\r\n- Appropriate Feat (Feat from the below selection based on equipped weapons)\r\n- Melee Active Feat (Improved Knockdown, Improved Disarm, Whirlwind Attack, Knockdown, Sap, Disarm, Called Shot)\r\n- Melee Mode Feat (Greater Cleave, Cleave, Improved Power Attack, Power Attack)\r\n- Unarmed Feat (Stunning Fist, Deflect Arrows, Improved Unarmed Attack)\r\n- Ranged Feat (Rapid Shot, Called Shot, Point Blank Shot)\r\n- Weapon Feat (Weapon Specialization, Weapon Focus, Weapon Finesse (if applicable))\r\n- Defensive Feat (Improved Expertise, Expertise, Spring Attack, Mobility, Dodge, Improved Parry, Deflect Arrows (if unarmed), Blind Fight)\r\n- Two-Weapon Fighting Feat (Improved two-weapon fighting, Ambidexterity, Two-Weapon Fighting)"
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "i_dummy",
+      "School": "T",
+      "Range": "T",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [],
+      "TargetTypes": [
+        "Creature",
+        "Item"
+      ],
+      "ImpactScript": "op_s_heroics",
+      "InnateLevel": 2,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_mehanodd02",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "vco_mehanodd02",
+      "ConjurationMaleSound": "vs_chant_ench_lm",
+      "ConjurationFemaleSound": "vs_chant_ench_lf",
+      "CastingAnimation": "Touch",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": null,
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyEnhancementSingle",
+      "ParentSpell": {
+        "ID": "2a266f98-f5d9-402c-b55d-0e7c99da78b1",
+        "Label": "Heroics"
+      },
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "313692e6-fec0-42c1-83dd-f4ecfa4447e1",
+      "Index": 29,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Heroics (Defensive Feat)",
+          "F": "New Spell"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Caster Level(s): Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 minutes / level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\r\nThe heroics spell temporarily grants the subject a feat from the fighter\u0027s bonus feat list. For the duration of the heroics spell, the subject can use the feat as if it were one of those the creature had selected. All prerequisites for the feat must be met by the target of this spell. A creature can only be affected by one Heroics spell at a time.\r\n\r\nThe subspells allow you to choose a category of feats to apply;\r\n\r\n- Appropriate Feat (Feat from the below selection based on equipped weapons)\r\n- Melee Active Feat (Improved Knockdown, Improved Disarm, Whirlwind Attack, Knockdown, Sap, Disarm, Called Shot)\r\n- Melee Mode Feat (Greater Cleave, Cleave, Improved Power Attack, Power Attack)\r\n- Unarmed Feat (Stunning Fist, Deflect Arrows, Improved Unarmed Attack)\r\n- Ranged Feat (Rapid Shot, Called Shot, Point Blank Shot)\r\n- Weapon Feat (Weapon Specialization, Weapon Focus, Weapon Finesse (if applicable))\r\n- Defensive Feat (Improved Expertise, Expertise, Spring Attack, Mobility, Dodge, Improved Parry, Deflect Arrows (if unarmed), Blind Fight)\r\n- Two-Weapon Fighting Feat (Improved two-weapon fighting, Ambidexterity, Two-Weapon Fighting)"
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "i_dummy",
+      "School": "T",
+      "Range": "T",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [],
+      "TargetTypes": [
+        "Creature",
+        "Item"
+      ],
+      "ImpactScript": "op_s_heroics",
+      "InnateLevel": 2,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_mehanodd02",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "vco_mehanodd02",
+      "ConjurationMaleSound": "vs_chant_ench_lm",
+      "ConjurationFemaleSound": "vs_chant_ench_lf",
+      "CastingAnimation": "Touch",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": null,
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyEnhancementSingle",
+      "ParentSpell": {
+        "ID": "2a266f98-f5d9-402c-b55d-0e7c99da78b1",
+        "Label": "Heroics"
+      },
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "f2104b63-a511-4a51-98e9-55673e75e50f",
+      "Index": 24,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Heroics (Melee Active Feat)",
+          "F": "New Spell"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Caster Level(s): Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 minutes / level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\r\nThe heroics spell temporarily grants the subject a feat from the fighter\u0027s bonus feat list. For the duration of the heroics spell, the subject can use the feat as if it were one of those the creature had selected. All prerequisites for the feat must be met by the target of this spell. A creature can only be affected by one Heroics spell at a time.\r\n\r\nThe subspells allow you to choose a category of feats to apply;\r\n\r\n- Appropriate Feat (Feat from the below selection based on equipped weapons)\r\n- Melee Active Feat (Improved Knockdown, Improved Disarm, Whirlwind Attack, Knockdown, Sap, Disarm, Called Shot)\r\n- Melee Mode Feat (Greater Cleave, Cleave, Improved Power Attack, Power Attack)\r\n- Unarmed Feat (Stunning Fist, Deflect Arrows, Improved Unarmed Attack)\r\n- Ranged Feat (Rapid Shot, Called Shot, Point Blank Shot)\r\n- Weapon Feat (Weapon Specialization, Weapon Focus, Weapon Finesse (if applicable))\r\n- Defensive Feat (Improved Expertise, Expertise, Spring Attack, Mobility, Dodge, Improved Parry, Deflect Arrows (if unarmed), Blind Fight)\r\n- Two-Weapon Fighting Feat (Improved two-weapon fighting, Ambidexterity, Two-Weapon Fighting)"
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "i_dummy",
+      "School": "T",
+      "Range": "T",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [],
+      "TargetTypes": [
+        "Creature",
+        "Item"
+      ],
+      "ImpactScript": "op_s_heroics",
+      "InnateLevel": 2,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_mehanodd02",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "vco_mehanodd02",
+      "ConjurationMaleSound": "vs_chant_ench_lm",
+      "ConjurationFemaleSound": "vs_chant_ench_lf",
+      "CastingAnimation": "Touch",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": null,
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyEnhancementSingle",
+      "ParentSpell": {
+        "ID": "2a266f98-f5d9-402c-b55d-0e7c99da78b1",
+        "Label": "Heroics"
+      },
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "524ab8fd-323d-49e2-805b-4c1fdfa7b8e4",
+      "Index": 25,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Heroics (Melee Mode Feat)",
+          "F": "New Spell"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Caster Level(s): Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 minutes / level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\r\nThe heroics spell temporarily grants the subject a feat from the fighter\u0027s bonus feat list. For the duration of the heroics spell, the subject can use the feat as if it were one of those the creature had selected. All prerequisites for the feat must be met by the target of this spell. A creature can only be affected by one Heroics spell at a time.\r\n\r\nThe subspells allow you to choose a category of feats to apply;\r\n\r\n- Appropriate Feat (Feat from the below selection based on equipped weapons)\r\n- Melee Active Feat (Improved Knockdown, Improved Disarm, Whirlwind Attack, Knockdown, Sap, Disarm, Called Shot)\r\n- Melee Mode Feat (Greater Cleave, Cleave, Improved Power Attack, Power Attack)\r\n- Unarmed Feat (Stunning Fist, Deflect Arrows, Improved Unarmed Attack)\r\n- Ranged Feat (Rapid Shot, Called Shot, Point Blank Shot)\r\n- Weapon Feat (Weapon Specialization, Weapon Focus, Weapon Finesse (if applicable))\r\n- Defensive Feat (Improved Expertise, Expertise, Spring Attack, Mobility, Dodge, Improved Parry, Deflect Arrows (if unarmed), Blind Fight)\r\n- Two-Weapon Fighting Feat (Improved two-weapon fighting, Ambidexterity, Two-Weapon Fighting)"
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "i_dummy",
+      "School": "T",
+      "Range": "T",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [],
+      "TargetTypes": [
+        "Creature",
+        "Item"
+      ],
+      "ImpactScript": "op_s_heroics",
+      "InnateLevel": 2,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_mehanodd02",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "vco_mehanodd02",
+      "ConjurationMaleSound": "vs_chant_ench_lm",
+      "ConjurationFemaleSound": "vs_chant_ench_lf",
+      "CastingAnimation": "Touch",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": null,
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyEnhancementSingle",
+      "ParentSpell": {
+        "ID": "2a266f98-f5d9-402c-b55d-0e7c99da78b1",
+        "Label": "Heroics"
+      },
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "7fdcbe40-76f3-4216-9ee2-b5c9040f32fc",
+      "Index": 27,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Heroics (Ranged Feat)",
+          "F": "New Spell"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Caster Level(s): Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 minutes / level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\r\nThe heroics spell temporarily grants the subject a feat from the fighter\u0027s bonus feat list. For the duration of the heroics spell, the subject can use the feat as if it were one of those the creature had selected. All prerequisites for the feat must be met by the target of this spell. A creature can only be affected by one Heroics spell at a time.\r\n\r\nThe subspells allow you to choose a category of feats to apply;\r\n\r\n- Appropriate Feat (Feat from the below selection based on equipped weapons)\r\n- Melee Active Feat (Improved Knockdown, Improved Disarm, Whirlwind Attack, Knockdown, Sap, Disarm, Called Shot)\r\n- Melee Mode Feat (Greater Cleave, Cleave, Improved Power Attack, Power Attack)\r\n- Unarmed Feat (Stunning Fist, Deflect Arrows, Improved Unarmed Attack)\r\n- Ranged Feat (Rapid Shot, Called Shot, Point Blank Shot)\r\n- Weapon Feat (Weapon Specialization, Weapon Focus, Weapon Finesse (if applicable))\r\n- Defensive Feat (Improved Expertise, Expertise, Spring Attack, Mobility, Dodge, Improved Parry, Deflect Arrows (if unarmed), Blind Fight)\r\n- Two-Weapon Fighting Feat (Improved two-weapon fighting, Ambidexterity, Two-Weapon Fighting)"
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "i_dummy",
+      "School": "T",
+      "Range": "T",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [],
+      "TargetTypes": [
+        "Creature",
+        "Item"
+      ],
+      "ImpactScript": "op_s_heroics",
+      "InnateLevel": 2,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_mehanodd02",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "vco_mehanodd02",
+      "ConjurationMaleSound": "vs_chant_ench_lm",
+      "ConjurationFemaleSound": "vs_chant_ench_lf",
+      "CastingAnimation": "Touch",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": null,
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyEnhancementSingle",
+      "ParentSpell": {
+        "ID": "2a266f98-f5d9-402c-b55d-0e7c99da78b1",
+        "Label": "Heroics"
+      },
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "2242727a-bd2d-4c8e-a774-4a50292b1483",
+      "Index": 30,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Heroics (Two-Weapon Fighting Feat)",
+          "F": "New Spell"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Caster Level(s): Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 minutes / level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\r\nThe heroics spell temporarily grants the subject a feat from the fighter\u0027s bonus feat list. For the duration of the heroics spell, the subject can use the feat as if it were one of those the creature had selected. All prerequisites for the feat must be met by the target of this spell. A creature can only be affected by one Heroics spell at a time.\r\n\r\nThe subspells allow you to choose a category of feats to apply;\r\n\r\n- Appropriate Feat (Feat from the below selection based on equipped weapons)\r\n- Melee Active Feat (Improved Knockdown, Improved Disarm, Whirlwind Attack, Knockdown, Sap, Disarm, Called Shot)\r\n- Melee Mode Feat (Greater Cleave, Cleave, Improved Power Attack, Power Attack)\r\n- Unarmed Feat (Stunning Fist, Deflect Arrows, Improved Unarmed Attack)\r\n- Ranged Feat (Rapid Shot, Called Shot, Point Blank Shot)\r\n- Weapon Feat (Weapon Specialization, Weapon Focus, Weapon Finesse (if applicable))\r\n- Defensive Feat (Improved Expertise, Expertise, Spring Attack, Mobility, Dodge, Improved Parry, Deflect Arrows (if unarmed), Blind Fight)\r\n- Two-Weapon Fighting Feat (Improved two-weapon fighting, Ambidexterity, Two-Weapon Fighting)"
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "i_dummy",
+      "School": "T",
+      "Range": "T",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [],
+      "TargetTypes": [
+        "Creature",
+        "Item"
+      ],
+      "ImpactScript": "op_s_heroics",
+      "InnateLevel": 2,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_mehanodd02",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "vco_mehanodd02",
+      "ConjurationMaleSound": "vs_chant_ench_lm",
+      "ConjurationFemaleSound": "vs_chant_ench_lf",
+      "CastingAnimation": "Touch",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": null,
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyEnhancementSingle",
+      "ParentSpell": {
+        "ID": "2a266f98-f5d9-402c-b55d-0e7c99da78b1",
+        "Label": "Heroics"
+      },
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "cd5364ec-7252-4c4f-bd86-dfc1292b3902",
+      "Index": 26,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Heroics (Unarmed Feat)",
+          "F": "New Spell"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Caster Level(s): Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 minutes / level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\r\nThe heroics spell temporarily grants the subject a feat from the fighter\u0027s bonus feat list. For the duration of the heroics spell, the subject can use the feat as if it were one of those the creature had selected. All prerequisites for the feat must be met by the target of this spell. A creature can only be affected by one Heroics spell at a time.\r\n\r\nThe subspells allow you to choose a category of feats to apply;\r\n\r\n- Appropriate Feat (Feat from the below selection based on equipped weapons)\r\n- Melee Active Feat (Improved Knockdown, Improved Disarm, Whirlwind Attack, Knockdown, Sap, Disarm, Called Shot)\r\n- Melee Mode Feat (Greater Cleave, Cleave, Improved Power Attack, Power Attack)\r\n- Unarmed Feat (Stunning Fist, Deflect Arrows, Improved Unarmed Attack)\r\n- Ranged Feat (Rapid Shot, Called Shot, Point Blank Shot)\r\n- Weapon Feat (Weapon Specialization, Weapon Focus, Weapon Finesse (if applicable))\r\n- Defensive Feat (Improved Expertise, Expertise, Spring Attack, Mobility, Dodge, Improved Parry, Deflect Arrows (if unarmed), Blind Fight)\r\n- Two-Weapon Fighting Feat (Improved two-weapon fighting, Ambidexterity, Two-Weapon Fighting)"
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "i_dummy",
+      "School": "T",
+      "Range": "T",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [],
+      "TargetTypes": [
+        "Creature",
+        "Item"
+      ],
+      "ImpactScript": "op_s_heroics",
+      "InnateLevel": 2,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_mehanodd02",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "vco_mehanodd02",
+      "ConjurationMaleSound": "vs_chant_ench_lm",
+      "ConjurationFemaleSound": "vs_chant_ench_lf",
+      "CastingAnimation": "Touch",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": null,
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyEnhancementSingle",
+      "ParentSpell": {
+        "ID": "2a266f98-f5d9-402c-b55d-0e7c99da78b1",
+        "Label": "Heroics"
+      },
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "1aa1c9dc-430a-44d8-a599-c46dda9b4bb4",
+      "Index": 28,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Heroics (Weapon Feat)",
+          "F": "New Spell"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Caster Level(s): Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 minutes / level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\r\nThe heroics spell temporarily grants the subject a feat from the fighter\u0027s bonus feat list. For the duration of the heroics spell, the subject can use the feat as if it were one of those the creature had selected. All prerequisites for the feat must be met by the target of this spell. A creature can only be affected by one Heroics spell at a time.\r\n\r\nThe subspells allow you to choose a category of feats to apply;\r\n\r\n- Appropriate Feat (Feat from the below selection based on equipped weapons)\r\n- Melee Active Feat (Improved Knockdown, Improved Disarm, Whirlwind Attack, Knockdown, Sap, Disarm, Called Shot)\r\n- Melee Mode Feat (Greater Cleave, Cleave, Improved Power Attack, Power Attack)\r\n- Unarmed Feat (Stunning Fist, Deflect Arrows, Improved Unarmed Attack)\r\n- Ranged Feat (Rapid Shot, Called Shot, Point Blank Shot)\r\n- Weapon Feat (Weapon Specialization, Weapon Focus, Weapon Finesse (if applicable))\r\n- Defensive Feat (Improved Expertise, Expertise, Spring Attack, Mobility, Dodge, Improved Parry, Deflect Arrows (if unarmed), Blind Fight)\r\n- Two-Weapon Fighting Feat (Improved two-weapon fighting, Ambidexterity, Two-Weapon Fighting)"
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "i_dummy",
+      "School": "T",
+      "Range": "T",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [],
+      "TargetTypes": [
+        "Creature",
+        "Item"
+      ],
+      "ImpactScript": "op_s_heroics",
+      "InnateLevel": 2,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_mehanodd02",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "vco_mehanodd02",
+      "ConjurationMaleSound": "vs_chant_ench_lm",
+      "ConjurationFemaleSound": "vs_chant_ench_lf",
+      "CastingAnimation": "Touch",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": null,
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyEnhancementSingle",
+      "ParentSpell": {
+        "ID": "2a266f98-f5d9-402c-b55d-0e7c99da78b1",
+        "Label": "Heroics"
+      },
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
       "ID": "3433b8c2-08eb-4114-bca6-59723c9b2de2",
       "Index": -1,
       "Overrides": "476b8391-addc-a7cf-ee34-5813cdcaf5e9",
@@ -65127,783 +65904,6 @@
         "HarmsAllies",
         "OriginOnSelf"
       ]
-    },
-    {
-      "ID": "2a266f98-f5d9-402c-b55d-0e7c99da78b1",
-      "Index": 22,
-      "Overrides": null,
-      "Disabled": false,
-      "Hint": "",
-      "ScriptConstant": "",
-      "SourceLabel": null,
-      "ExtensionValues": {},
-      "Name": {
-        "Index": null,
-        "EN": {
-          "M": "Heroics",
-          "F": "New Spell"
-        }
-      },
-      "Description": {
-        "Index": null,
-        "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 minutes / level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\r\nThe heroics spell temporarily grants the subject a feat from the fighter\u0027s bonus feat list. For the duration of the heroics spell, the subject can use the feat as if it were one of those the creature had selected. All prerequisites for the feat must be met by the target of this spell. A creature can only be affected by one Heroics spell at a time.\r\n\r\nThe subspells allow you to choose a category of feats to apply;\r\n\r\n- Appropriate Feat (Feat from the below selection based on equipped weapons)\r\n- Melee Active Feat (Improved Knockdown, Improved Disarm, Whirlwind Attack, Knockdown, Sap, Disarm, Called Shot)\r\n- Melee Mode Feat (Greater Cleave, Cleave, Improved Power Attack, Power Attack)\r\n- Unarmed Feat (Stunning Fist, Deflect Arrows, Improved Unarmed Attack)\r\n- Ranged Feat (Rapid Shot, Called Shot, Point Blank Shot)\r\n- Weapon Feat (Weapon Specialization, Weapon Focus, Weapon Finesse (if applicable))\r\n- Defensive Feat (Improved Expertise, Expertise, Spring Attack, Mobility, Dodge, Improved Parry, Deflect Arrows (if unarmed), Blind Fight)\r\n- Two-Weapon Fighting Feat (Improved two-weapon fighting, Ambidexterity, Two-Weapon Fighting)"
-        }
-      },
-      "AlternativeCastMessage": {
-        "Index": null
-      },
-      "Icon": "i_dummy",
-      "School": "T",
-      "Range": "T",
-      "Components": [
-        "V",
-        "S"
-      ],
-      "AvailableMetaMagic": [],
-      "TargetTypes": [
-        "Creature",
-        "Item"
-      ],
-      "ImpactScript": "op_s_heroics",
-      "InnateLevel": 2,
-      "ConjurationTime": 1500,
-      "ConjuringAnimation": "Hand",
-      "ConjurationHeadEffect": null,
-      "ConjurationHandEffect": "vco_mehanodd02",
-      "ConjurationGroundEffect": null,
-      "ConjurationSound": "vco_mehanodd02",
-      "ConjurationMaleSound": "vs_chant_ench_lm",
-      "ConjurationFemaleSound": "vs_chant_ench_lf",
-      "CastingAnimation": "Touch",
-      "CastTime": 1000,
-      "CastingHeadEffect": null,
-      "CastingHandEffect": null,
-      "CastingGroundEffect": null,
-      "CastingSound": null,
-      "HasProjectile": false,
-      "ProjectileModel": null,
-      "ProjectileType": "Homing",
-      "ProjectileSpawnPoint": "Hand",
-      "ProjectileSound": null,
-      "ProjectileOrientation": "Path",
-      "SubSpell1": {
-        "ID": "6948aec5-a192-4fa8-b9d0-ba1822522a34",
-        "Label": "Heroics (Appropriate Feat)"
-      },
-      "SubSpell2": {
-        "ID": "f2104b63-a511-4a51-98e9-55673e75e50f",
-        "Label": "Heroics (Melee Active Feat)"
-      },
-      "SubSpell3": {
-        "ID": "524ab8fd-323d-49e2-805b-4c1fdfa7b8e4",
-        "Label": "Heroics (Melee Mode Feat)"
-      },
-      "SubSpell4": {
-        "ID": "cd5364ec-7252-4c4f-bd86-dfc1292b3902",
-        "Label": "Heroics (Unarmed Feat)"
-      },
-      "SubSpell5": {
-        "ID": "7fdcbe40-76f3-4216-9ee2-b5c9040f32fc",
-        "Label": "Heroics (Ranged Feat)"
-      },
-      "SubSpell6": {
-        "ID": "1aa1c9dc-430a-44d8-a599-c46dda9b4bb4",
-        "Label": "Heroics (Weapon Feat)"
-      },
-      "SubSpell7": {
-        "ID": "313692e6-fec0-42c1-83dd-f4ecfa4447e1",
-        "Label": "Heroics (Defensive Feat)"
-      },
-      "SubSpell8": {
-        "ID": "2242727a-bd2d-4c8e-a774-4a50292b1483",
-        "Label": "Heroics (Two-Weapon Fighting Feat)"
-      },
-      "Category": "FriendlyEnhancementSingle",
-      "ParentSpell": null,
-      "Type": "Spell",
-      "UseConcentration": true,
-      "IsCastSpontaneously": false,
-      "IsHostile": false,
-      "CounterSpell1": null,
-      "CounterSpell2": null,
-      "HasProjectileVisuals": false,
-      "TargetShape": null,
-      "TargetSizeX": null,
-      "TargetSizeY": null,
-      "TargetingFlags": []
-    },
-    {
-      "ID": "6948aec5-a192-4fa8-b9d0-ba1822522a34",
-      "Index": 23,
-      "Overrides": null,
-      "Disabled": false,
-      "Hint": "",
-      "ScriptConstant": "",
-      "SourceLabel": "",
-      "ExtensionValues": {},
-      "Name": {
-        "Index": null,
-        "EN": {
-          "M": "Heroics (Appropriate Feat)",
-          "F": "New Spell"
-        }
-      },
-      "Description": {
-        "Index": null,
-        "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 minutes / level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\r\nThe heroics spell temporarily grants the subject a feat from the fighter\u0027s bonus feat list. For the duration of the heroics spell, the subject can use the feat as if it were one of those the creature had selected. All prerequisites for the feat must be met by the target of this spell. A creature can only be affected by one Heroics spell at a time.\r\n\r\nThe subspells allow you to choose a category of feats to apply;\r\n\r\n- Appropriate Feat (Feat from the below selection based on equipped weapons)\r\n- Melee Active Feat (Improved Knockdown, Improved Disarm, Whirlwind Attack, Knockdown, Sap, Disarm, Called Shot)\r\n- Melee Mode Feat (Greater Cleave, Cleave, Improved Power Attack, Power Attack)\r\n- Unarmed Feat (Stunning Fist, Deflect Arrows, Improved Unarmed Attack)\r\n- Ranged Feat (Rapid Shot, Called Shot, Point Blank Shot)\r\n- Weapon Feat (Weapon Specialization, Weapon Focus, Weapon Finesse (if applicable))\r\n- Defensive Feat (Improved Expertise, Expertise, Spring Attack, Mobility, Dodge, Improved Parry, Deflect Arrows (if unarmed), Blind Fight)\r\n- Two-Weapon Fighting Feat (Improved two-weapon fighting, Ambidexterity, Two-Weapon Fighting)"
-        }
-      },
-      "AlternativeCastMessage": {
-        "Index": null
-      },
-      "Icon": "i_dummy",
-      "School": "T",
-      "Range": "T",
-      "Components": [
-        "V",
-        "S"
-      ],
-      "AvailableMetaMagic": [],
-      "TargetTypes": [
-        "Creature",
-        "Item"
-      ],
-      "ImpactScript": "op_s_heroics",
-      "InnateLevel": 2,
-      "ConjurationTime": 1500,
-      "ConjuringAnimation": "Hand",
-      "ConjurationHeadEffect": null,
-      "ConjurationHandEffect": "vco_mehanodd02",
-      "ConjurationGroundEffect": null,
-      "ConjurationSound": "vco_mehanodd02",
-      "ConjurationMaleSound": "vs_chant_ench_lm",
-      "ConjurationFemaleSound": "vs_chant_ench_lf",
-      "CastingAnimation": "Touch",
-      "CastTime": 1000,
-      "CastingHeadEffect": null,
-      "CastingHandEffect": null,
-      "CastingGroundEffect": null,
-      "CastingSound": null,
-      "HasProjectile": false,
-      "ProjectileModel": null,
-      "ProjectileType": "Homing",
-      "ProjectileSpawnPoint": "Hand",
-      "ProjectileSound": null,
-      "ProjectileOrientation": "Path",
-      "SubSpell1": null,
-      "SubSpell2": null,
-      "SubSpell3": null,
-      "SubSpell4": null,
-      "SubSpell5": null,
-      "SubSpell6": null,
-      "SubSpell7": null,
-      "SubSpell8": null,
-      "Category": "FriendlyEnhancementSingle",
-      "ParentSpell": {
-        "ID": "2a266f98-f5d9-402c-b55d-0e7c99da78b1",
-        "Label": "Heroics"
-      },
-      "Type": "Spell",
-      "UseConcentration": true,
-      "IsCastSpontaneously": false,
-      "IsHostile": false,
-      "CounterSpell1": null,
-      "CounterSpell2": null,
-      "HasProjectileVisuals": false,
-      "TargetShape": null,
-      "TargetSizeX": null,
-      "TargetSizeY": null,
-      "TargetingFlags": []
-    },
-    {
-      "ID": "f2104b63-a511-4a51-98e9-55673e75e50f",
-      "Index": 24,
-      "Overrides": null,
-      "Disabled": false,
-      "Hint": "",
-      "ScriptConstant": "",
-      "SourceLabel": "",
-      "ExtensionValues": {},
-      "Name": {
-        "Index": null,
-        "EN": {
-          "M": "Heroics (Melee Active Feat)",
-          "F": "New Spell"
-        }
-      },
-      "Description": {
-        "Index": null,
-        "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 minutes / level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\r\nThe heroics spell temporarily grants the subject a feat from the fighter\u0027s bonus feat list. For the duration of the heroics spell, the subject can use the feat as if it were one of those the creature had selected. All prerequisites for the feat must be met by the target of this spell. A creature can only be affected by one Heroics spell at a time.\r\n\r\nThe subspells allow you to choose a category of feats to apply;\r\n\r\n- Appropriate Feat (Feat from the below selection based on equipped weapons)\r\n- Melee Active Feat (Improved Knockdown, Improved Disarm, Whirlwind Attack, Knockdown, Sap, Disarm, Called Shot)\r\n- Melee Mode Feat (Greater Cleave, Cleave, Improved Power Attack, Power Attack)\r\n- Unarmed Feat (Stunning Fist, Deflect Arrows, Improved Unarmed Attack)\r\n- Ranged Feat (Rapid Shot, Called Shot, Point Blank Shot)\r\n- Weapon Feat (Weapon Specialization, Weapon Focus, Weapon Finesse (if applicable))\r\n- Defensive Feat (Improved Expertise, Expertise, Spring Attack, Mobility, Dodge, Improved Parry, Deflect Arrows (if unarmed), Blind Fight)\r\n- Two-Weapon Fighting Feat (Improved two-weapon fighting, Ambidexterity, Two-Weapon Fighting)"
-        }
-      },
-      "AlternativeCastMessage": {
-        "Index": null
-      },
-      "Icon": "i_dummy",
-      "School": "T",
-      "Range": "T",
-      "Components": [
-        "V",
-        "S"
-      ],
-      "AvailableMetaMagic": [],
-      "TargetTypes": [
-        "Creature",
-        "Item"
-      ],
-      "ImpactScript": "op_s_heroics",
-      "InnateLevel": 2,
-      "ConjurationTime": 1500,
-      "ConjuringAnimation": "Hand",
-      "ConjurationHeadEffect": null,
-      "ConjurationHandEffect": "vco_mehanodd02",
-      "ConjurationGroundEffect": null,
-      "ConjurationSound": "vco_mehanodd02",
-      "ConjurationMaleSound": "vs_chant_ench_lm",
-      "ConjurationFemaleSound": "vs_chant_ench_lf",
-      "CastingAnimation": "Touch",
-      "CastTime": 1000,
-      "CastingHeadEffect": null,
-      "CastingHandEffect": null,
-      "CastingGroundEffect": null,
-      "CastingSound": null,
-      "HasProjectile": false,
-      "ProjectileModel": null,
-      "ProjectileType": "Homing",
-      "ProjectileSpawnPoint": "Hand",
-      "ProjectileSound": null,
-      "ProjectileOrientation": "Path",
-      "SubSpell1": null,
-      "SubSpell2": null,
-      "SubSpell3": null,
-      "SubSpell4": null,
-      "SubSpell5": null,
-      "SubSpell6": null,
-      "SubSpell7": null,
-      "SubSpell8": null,
-      "Category": "FriendlyEnhancementSingle",
-      "ParentSpell": {
-        "ID": "2a266f98-f5d9-402c-b55d-0e7c99da78b1",
-        "Label": "Heroics"
-      },
-      "Type": "Spell",
-      "UseConcentration": true,
-      "IsCastSpontaneously": false,
-      "IsHostile": false,
-      "CounterSpell1": null,
-      "CounterSpell2": null,
-      "HasProjectileVisuals": false,
-      "TargetShape": null,
-      "TargetSizeX": null,
-      "TargetSizeY": null,
-      "TargetingFlags": []
-    },
-    {
-      "ID": "524ab8fd-323d-49e2-805b-4c1fdfa7b8e4",
-      "Index": 25,
-      "Overrides": null,
-      "Disabled": false,
-      "Hint": "",
-      "ScriptConstant": "",
-      "SourceLabel": "",
-      "ExtensionValues": {},
-      "Name": {
-        "Index": null,
-        "EN": {
-          "M": "Heroics (Melee Mode Feat)",
-          "F": "New Spell"
-        }
-      },
-      "Description": {
-        "Index": null,
-        "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 minutes / level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\r\nThe heroics spell temporarily grants the subject a feat from the fighter\u0027s bonus feat list. For the duration of the heroics spell, the subject can use the feat as if it were one of those the creature had selected. All prerequisites for the feat must be met by the target of this spell. A creature can only be affected by one Heroics spell at a time.\r\n\r\nThe subspells allow you to choose a category of feats to apply;\r\n\r\n- Appropriate Feat (Feat from the below selection based on equipped weapons)\r\n- Melee Active Feat (Improved Knockdown, Improved Disarm, Whirlwind Attack, Knockdown, Sap, Disarm, Called Shot)\r\n- Melee Mode Feat (Greater Cleave, Cleave, Improved Power Attack, Power Attack)\r\n- Unarmed Feat (Stunning Fist, Deflect Arrows, Improved Unarmed Attack)\r\n- Ranged Feat (Rapid Shot, Called Shot, Point Blank Shot)\r\n- Weapon Feat (Weapon Specialization, Weapon Focus, Weapon Finesse (if applicable))\r\n- Defensive Feat (Improved Expertise, Expertise, Spring Attack, Mobility, Dodge, Improved Parry, Deflect Arrows (if unarmed), Blind Fight)\r\n- Two-Weapon Fighting Feat (Improved two-weapon fighting, Ambidexterity, Two-Weapon Fighting)"
-        }
-      },
-      "AlternativeCastMessage": {
-        "Index": null
-      },
-      "Icon": "i_dummy",
-      "School": "T",
-      "Range": "T",
-      "Components": [
-        "V",
-        "S"
-      ],
-      "AvailableMetaMagic": [],
-      "TargetTypes": [
-        "Creature",
-        "Item"
-      ],
-      "ImpactScript": "op_s_heroics",
-      "InnateLevel": 2,
-      "ConjurationTime": 1500,
-      "ConjuringAnimation": "Hand",
-      "ConjurationHeadEffect": null,
-      "ConjurationHandEffect": "vco_mehanodd02",
-      "ConjurationGroundEffect": null,
-      "ConjurationSound": "vco_mehanodd02",
-      "ConjurationMaleSound": "vs_chant_ench_lm",
-      "ConjurationFemaleSound": "vs_chant_ench_lf",
-      "CastingAnimation": "Touch",
-      "CastTime": 1000,
-      "CastingHeadEffect": null,
-      "CastingHandEffect": null,
-      "CastingGroundEffect": null,
-      "CastingSound": null,
-      "HasProjectile": false,
-      "ProjectileModel": null,
-      "ProjectileType": "Homing",
-      "ProjectileSpawnPoint": "Hand",
-      "ProjectileSound": null,
-      "ProjectileOrientation": "Path",
-      "SubSpell1": null,
-      "SubSpell2": null,
-      "SubSpell3": null,
-      "SubSpell4": null,
-      "SubSpell5": null,
-      "SubSpell6": null,
-      "SubSpell7": null,
-      "SubSpell8": null,
-      "Category": "FriendlyEnhancementSingle",
-      "ParentSpell": {
-        "ID": "2a266f98-f5d9-402c-b55d-0e7c99da78b1",
-        "Label": "Heroics"
-      },
-      "Type": "Spell",
-      "UseConcentration": true,
-      "IsCastSpontaneously": false,
-      "IsHostile": false,
-      "CounterSpell1": null,
-      "CounterSpell2": null,
-      "HasProjectileVisuals": false,
-      "TargetShape": null,
-      "TargetSizeX": null,
-      "TargetSizeY": null,
-      "TargetingFlags": []
-    },
-    {
-      "ID": "cd5364ec-7252-4c4f-bd86-dfc1292b3902",
-      "Index": 26,
-      "Overrides": null,
-      "Disabled": false,
-      "Hint": "",
-      "ScriptConstant": "",
-      "SourceLabel": "",
-      "ExtensionValues": {},
-      "Name": {
-        "Index": null,
-        "EN": {
-          "M": "Heroics (Unarmed Feat)",
-          "F": "New Spell"
-        }
-      },
-      "Description": {
-        "Index": null,
-        "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 minutes / level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\r\nThe heroics spell temporarily grants the subject a feat from the fighter\u0027s bonus feat list. For the duration of the heroics spell, the subject can use the feat as if it were one of those the creature had selected. All prerequisites for the feat must be met by the target of this spell. A creature can only be affected by one Heroics spell at a time.\r\n\r\nThe subspells allow you to choose a category of feats to apply;\r\n\r\n- Appropriate Feat (Feat from the below selection based on equipped weapons)\r\n- Melee Active Feat (Improved Knockdown, Improved Disarm, Whirlwind Attack, Knockdown, Sap, Disarm, Called Shot)\r\n- Melee Mode Feat (Greater Cleave, Cleave, Improved Power Attack, Power Attack)\r\n- Unarmed Feat (Stunning Fist, Deflect Arrows, Improved Unarmed Attack)\r\n- Ranged Feat (Rapid Shot, Called Shot, Point Blank Shot)\r\n- Weapon Feat (Weapon Specialization, Weapon Focus, Weapon Finesse (if applicable))\r\n- Defensive Feat (Improved Expertise, Expertise, Spring Attack, Mobility, Dodge, Improved Parry, Deflect Arrows (if unarmed), Blind Fight)\r\n- Two-Weapon Fighting Feat (Improved two-weapon fighting, Ambidexterity, Two-Weapon Fighting)"
-        }
-      },
-      "AlternativeCastMessage": {
-        "Index": null
-      },
-      "Icon": "i_dummy",
-      "School": "T",
-      "Range": "T",
-      "Components": [
-        "V",
-        "S"
-      ],
-      "AvailableMetaMagic": [],
-      "TargetTypes": [
-        "Creature",
-        "Item"
-      ],
-      "ImpactScript": "op_s_heroics",
-      "InnateLevel": 2,
-      "ConjurationTime": 1500,
-      "ConjuringAnimation": "Hand",
-      "ConjurationHeadEffect": null,
-      "ConjurationHandEffect": "vco_mehanodd02",
-      "ConjurationGroundEffect": null,
-      "ConjurationSound": "vco_mehanodd02",
-      "ConjurationMaleSound": "vs_chant_ench_lm",
-      "ConjurationFemaleSound": "vs_chant_ench_lf",
-      "CastingAnimation": "Touch",
-      "CastTime": 1000,
-      "CastingHeadEffect": null,
-      "CastingHandEffect": null,
-      "CastingGroundEffect": null,
-      "CastingSound": null,
-      "HasProjectile": false,
-      "ProjectileModel": null,
-      "ProjectileType": "Homing",
-      "ProjectileSpawnPoint": "Hand",
-      "ProjectileSound": null,
-      "ProjectileOrientation": "Path",
-      "SubSpell1": null,
-      "SubSpell2": null,
-      "SubSpell3": null,
-      "SubSpell4": null,
-      "SubSpell5": null,
-      "SubSpell6": null,
-      "SubSpell7": null,
-      "SubSpell8": null,
-      "Category": "FriendlyEnhancementSingle",
-      "ParentSpell": {
-        "ID": "2a266f98-f5d9-402c-b55d-0e7c99da78b1",
-        "Label": "Heroics"
-      },
-      "Type": "Spell",
-      "UseConcentration": true,
-      "IsCastSpontaneously": false,
-      "IsHostile": false,
-      "CounterSpell1": null,
-      "CounterSpell2": null,
-      "HasProjectileVisuals": false,
-      "TargetShape": null,
-      "TargetSizeX": null,
-      "TargetSizeY": null,
-      "TargetingFlags": []
-    },
-    {
-      "ID": "7fdcbe40-76f3-4216-9ee2-b5c9040f32fc",
-      "Index": 27,
-      "Overrides": null,
-      "Disabled": false,
-      "Hint": "",
-      "ScriptConstant": "",
-      "SourceLabel": "",
-      "ExtensionValues": {},
-      "Name": {
-        "Index": null,
-        "EN": {
-          "M": "Heroics (Ranged Feat)",
-          "F": "New Spell"
-        }
-      },
-      "Description": {
-        "Index": null,
-        "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 minutes / level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\r\nThe heroics spell temporarily grants the subject a feat from the fighter\u0027s bonus feat list. For the duration of the heroics spell, the subject can use the feat as if it were one of those the creature had selected. All prerequisites for the feat must be met by the target of this spell. A creature can only be affected by one Heroics spell at a time.\r\n\r\nThe subspells allow you to choose a category of feats to apply;\r\n\r\n- Appropriate Feat (Feat from the below selection based on equipped weapons)\r\n- Melee Active Feat (Improved Knockdown, Improved Disarm, Whirlwind Attack, Knockdown, Sap, Disarm, Called Shot)\r\n- Melee Mode Feat (Greater Cleave, Cleave, Improved Power Attack, Power Attack)\r\n- Unarmed Feat (Stunning Fist, Deflect Arrows, Improved Unarmed Attack)\r\n- Ranged Feat (Rapid Shot, Called Shot, Point Blank Shot)\r\n- Weapon Feat (Weapon Specialization, Weapon Focus, Weapon Finesse (if applicable))\r\n- Defensive Feat (Improved Expertise, Expertise, Spring Attack, Mobility, Dodge, Improved Parry, Deflect Arrows (if unarmed), Blind Fight)\r\n- Two-Weapon Fighting Feat (Improved two-weapon fighting, Ambidexterity, Two-Weapon Fighting)"
-        }
-      },
-      "AlternativeCastMessage": {
-        "Index": null
-      },
-      "Icon": "i_dummy",
-      "School": "T",
-      "Range": "T",
-      "Components": [
-        "V",
-        "S"
-      ],
-      "AvailableMetaMagic": [],
-      "TargetTypes": [
-        "Creature",
-        "Item"
-      ],
-      "ImpactScript": "op_s_heroics",
-      "InnateLevel": 2,
-      "ConjurationTime": 1500,
-      "ConjuringAnimation": "Hand",
-      "ConjurationHeadEffect": null,
-      "ConjurationHandEffect": "vco_mehanodd02",
-      "ConjurationGroundEffect": null,
-      "ConjurationSound": "vco_mehanodd02",
-      "ConjurationMaleSound": "vs_chant_ench_lm",
-      "ConjurationFemaleSound": "vs_chant_ench_lf",
-      "CastingAnimation": "Touch",
-      "CastTime": 1000,
-      "CastingHeadEffect": null,
-      "CastingHandEffect": null,
-      "CastingGroundEffect": null,
-      "CastingSound": null,
-      "HasProjectile": false,
-      "ProjectileModel": null,
-      "ProjectileType": "Homing",
-      "ProjectileSpawnPoint": "Hand",
-      "ProjectileSound": null,
-      "ProjectileOrientation": "Path",
-      "SubSpell1": null,
-      "SubSpell2": null,
-      "SubSpell3": null,
-      "SubSpell4": null,
-      "SubSpell5": null,
-      "SubSpell6": null,
-      "SubSpell7": null,
-      "SubSpell8": null,
-      "Category": "FriendlyEnhancementSingle",
-      "ParentSpell": {
-        "ID": "2a266f98-f5d9-402c-b55d-0e7c99da78b1",
-        "Label": "Heroics"
-      },
-      "Type": "Spell",
-      "UseConcentration": true,
-      "IsCastSpontaneously": false,
-      "IsHostile": false,
-      "CounterSpell1": null,
-      "CounterSpell2": null,
-      "HasProjectileVisuals": false,
-      "TargetShape": null,
-      "TargetSizeX": null,
-      "TargetSizeY": null,
-      "TargetingFlags": []
-    },
-    {
-      "ID": "1aa1c9dc-430a-44d8-a599-c46dda9b4bb4",
-      "Index": 28,
-      "Overrides": null,
-      "Disabled": false,
-      "Hint": "",
-      "ScriptConstant": "",
-      "SourceLabel": "",
-      "ExtensionValues": {},
-      "Name": {
-        "Index": null,
-        "EN": {
-          "M": "Heroics (Weapon Feat)",
-          "F": "New Spell"
-        }
-      },
-      "Description": {
-        "Index": null,
-        "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 minutes / level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\r\nThe heroics spell temporarily grants the subject a feat from the fighter\u0027s bonus feat list. For the duration of the heroics spell, the subject can use the feat as if it were one of those the creature had selected. All prerequisites for the feat must be met by the target of this spell. A creature can only be affected by one Heroics spell at a time.\r\n\r\nThe subspells allow you to choose a category of feats to apply;\r\n\r\n- Appropriate Feat (Feat from the below selection based on equipped weapons)\r\n- Melee Active Feat (Improved Knockdown, Improved Disarm, Whirlwind Attack, Knockdown, Sap, Disarm, Called Shot)\r\n- Melee Mode Feat (Greater Cleave, Cleave, Improved Power Attack, Power Attack)\r\n- Unarmed Feat (Stunning Fist, Deflect Arrows, Improved Unarmed Attack)\r\n- Ranged Feat (Rapid Shot, Called Shot, Point Blank Shot)\r\n- Weapon Feat (Weapon Specialization, Weapon Focus, Weapon Finesse (if applicable))\r\n- Defensive Feat (Improved Expertise, Expertise, Spring Attack, Mobility, Dodge, Improved Parry, Deflect Arrows (if unarmed), Blind Fight)\r\n- Two-Weapon Fighting Feat (Improved two-weapon fighting, Ambidexterity, Two-Weapon Fighting)"
-        }
-      },
-      "AlternativeCastMessage": {
-        "Index": null
-      },
-      "Icon": "i_dummy",
-      "School": "T",
-      "Range": "T",
-      "Components": [
-        "V",
-        "S"
-      ],
-      "AvailableMetaMagic": [],
-      "TargetTypes": [
-        "Creature",
-        "Item"
-      ],
-      "ImpactScript": "op_s_heroics",
-      "InnateLevel": 2,
-      "ConjurationTime": 1500,
-      "ConjuringAnimation": "Hand",
-      "ConjurationHeadEffect": null,
-      "ConjurationHandEffect": "vco_mehanodd02",
-      "ConjurationGroundEffect": null,
-      "ConjurationSound": "vco_mehanodd02",
-      "ConjurationMaleSound": "vs_chant_ench_lm",
-      "ConjurationFemaleSound": "vs_chant_ench_lf",
-      "CastingAnimation": "Touch",
-      "CastTime": 1000,
-      "CastingHeadEffect": null,
-      "CastingHandEffect": null,
-      "CastingGroundEffect": null,
-      "CastingSound": null,
-      "HasProjectile": false,
-      "ProjectileModel": null,
-      "ProjectileType": "Homing",
-      "ProjectileSpawnPoint": "Hand",
-      "ProjectileSound": null,
-      "ProjectileOrientation": "Path",
-      "SubSpell1": null,
-      "SubSpell2": null,
-      "SubSpell3": null,
-      "SubSpell4": null,
-      "SubSpell5": null,
-      "SubSpell6": null,
-      "SubSpell7": null,
-      "SubSpell8": null,
-      "Category": "FriendlyEnhancementSingle",
-      "ParentSpell": {
-        "ID": "2a266f98-f5d9-402c-b55d-0e7c99da78b1",
-        "Label": "Heroics"
-      },
-      "Type": "Spell",
-      "UseConcentration": true,
-      "IsCastSpontaneously": false,
-      "IsHostile": false,
-      "CounterSpell1": null,
-      "CounterSpell2": null,
-      "HasProjectileVisuals": false,
-      "TargetShape": null,
-      "TargetSizeX": null,
-      "TargetSizeY": null,
-      "TargetingFlags": []
-    },
-    {
-      "ID": "313692e6-fec0-42c1-83dd-f4ecfa4447e1",
-      "Index": 29,
-      "Overrides": null,
-      "Disabled": false,
-      "Hint": "",
-      "ScriptConstant": "",
-      "SourceLabel": "",
-      "ExtensionValues": {},
-      "Name": {
-        "Index": null,
-        "EN": {
-          "M": "Heroics (Defensive Feat)",
-          "F": "New Spell"
-        }
-      },
-      "Description": {
-        "Index": null,
-        "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 minutes / level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\r\nThe heroics spell temporarily grants the subject a feat from the fighter\u0027s bonus feat list. For the duration of the heroics spell, the subject can use the feat as if it were one of those the creature had selected. All prerequisites for the feat must be met by the target of this spell. A creature can only be affected by one Heroics spell at a time.\r\n\r\nThe subspells allow you to choose a category of feats to apply;\r\n\r\n- Appropriate Feat (Feat from the below selection based on equipped weapons)\r\n- Melee Active Feat (Improved Knockdown, Improved Disarm, Whirlwind Attack, Knockdown, Sap, Disarm, Called Shot)\r\n- Melee Mode Feat (Greater Cleave, Cleave, Improved Power Attack, Power Attack)\r\n- Unarmed Feat (Stunning Fist, Deflect Arrows, Improved Unarmed Attack)\r\n- Ranged Feat (Rapid Shot, Called Shot, Point Blank Shot)\r\n- Weapon Feat (Weapon Specialization, Weapon Focus, Weapon Finesse (if applicable))\r\n- Defensive Feat (Improved Expertise, Expertise, Spring Attack, Mobility, Dodge, Improved Parry, Deflect Arrows (if unarmed), Blind Fight)\r\n- Two-Weapon Fighting Feat (Improved two-weapon fighting, Ambidexterity, Two-Weapon Fighting)"
-        }
-      },
-      "AlternativeCastMessage": {
-        "Index": null
-      },
-      "Icon": "i_dummy",
-      "School": "T",
-      "Range": "T",
-      "Components": [
-        "V",
-        "S"
-      ],
-      "AvailableMetaMagic": [],
-      "TargetTypes": [
-        "Creature",
-        "Item"
-      ],
-      "ImpactScript": "op_s_heroics",
-      "InnateLevel": 2,
-      "ConjurationTime": 1500,
-      "ConjuringAnimation": "Hand",
-      "ConjurationHeadEffect": null,
-      "ConjurationHandEffect": "vco_mehanodd02",
-      "ConjurationGroundEffect": null,
-      "ConjurationSound": "vco_mehanodd02",
-      "ConjurationMaleSound": "vs_chant_ench_lm",
-      "ConjurationFemaleSound": "vs_chant_ench_lf",
-      "CastingAnimation": "Touch",
-      "CastTime": 1000,
-      "CastingHeadEffect": null,
-      "CastingHandEffect": null,
-      "CastingGroundEffect": null,
-      "CastingSound": null,
-      "HasProjectile": false,
-      "ProjectileModel": null,
-      "ProjectileType": "Homing",
-      "ProjectileSpawnPoint": "Hand",
-      "ProjectileSound": null,
-      "ProjectileOrientation": "Path",
-      "SubSpell1": null,
-      "SubSpell2": null,
-      "SubSpell3": null,
-      "SubSpell4": null,
-      "SubSpell5": null,
-      "SubSpell6": null,
-      "SubSpell7": null,
-      "SubSpell8": null,
-      "Category": "FriendlyEnhancementSingle",
-      "ParentSpell": {
-        "ID": "2a266f98-f5d9-402c-b55d-0e7c99da78b1",
-        "Label": "Heroics"
-      },
-      "Type": "Spell",
-      "UseConcentration": true,
-      "IsCastSpontaneously": false,
-      "IsHostile": false,
-      "CounterSpell1": null,
-      "CounterSpell2": null,
-      "HasProjectileVisuals": false,
-      "TargetShape": null,
-      "TargetSizeX": null,
-      "TargetSizeY": null,
-      "TargetingFlags": []
-    },
-    {
-      "ID": "2242727a-bd2d-4c8e-a774-4a50292b1483",
-      "Index": 30,
-      "Overrides": null,
-      "Disabled": false,
-      "Hint": "",
-      "ScriptConstant": "",
-      "SourceLabel": "",
-      "ExtensionValues": {},
-      "Name": {
-        "Index": null,
-        "EN": {
-          "M": "Heroics (Two-Weapon Fighting Feat)",
-          "F": "New Spell"
-        }
-      },
-      "Description": {
-        "Index": null,
-        "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 minutes / level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\r\nThe heroics spell temporarily grants the subject a feat from the fighter\u0027s bonus feat list. For the duration of the heroics spell, the subject can use the feat as if it were one of those the creature had selected. All prerequisites for the feat must be met by the target of this spell. A creature can only be affected by one Heroics spell at a time.\r\n\r\nThe subspells allow you to choose a category of feats to apply;\r\n\r\n- Appropriate Feat (Feat from the below selection based on equipped weapons)\r\n- Melee Active Feat (Improved Knockdown, Improved Disarm, Whirlwind Attack, Knockdown, Sap, Disarm, Called Shot)\r\n- Melee Mode Feat (Greater Cleave, Cleave, Improved Power Attack, Power Attack)\r\n- Unarmed Feat (Stunning Fist, Deflect Arrows, Improved Unarmed Attack)\r\n- Ranged Feat (Rapid Shot, Called Shot, Point Blank Shot)\r\n- Weapon Feat (Weapon Specialization, Weapon Focus, Weapon Finesse (if applicable))\r\n- Defensive Feat (Improved Expertise, Expertise, Spring Attack, Mobility, Dodge, Improved Parry, Deflect Arrows (if unarmed), Blind Fight)\r\n- Two-Weapon Fighting Feat (Improved two-weapon fighting, Ambidexterity, Two-Weapon Fighting)"
-        }
-      },
-      "AlternativeCastMessage": {
-        "Index": null
-      },
-      "Icon": "i_dummy",
-      "School": "T",
-      "Range": "T",
-      "Components": [
-        "V",
-        "S"
-      ],
-      "AvailableMetaMagic": [],
-      "TargetTypes": [
-        "Creature",
-        "Item"
-      ],
-      "ImpactScript": "op_s_heroics",
-      "InnateLevel": 2,
-      "ConjurationTime": 1500,
-      "ConjuringAnimation": "Hand",
-      "ConjurationHeadEffect": null,
-      "ConjurationHandEffect": "vco_mehanodd02",
-      "ConjurationGroundEffect": null,
-      "ConjurationSound": "vco_mehanodd02",
-      "ConjurationMaleSound": "vs_chant_ench_lm",
-      "ConjurationFemaleSound": "vs_chant_ench_lf",
-      "CastingAnimation": "Touch",
-      "CastTime": 1000,
-      "CastingHeadEffect": null,
-      "CastingHandEffect": null,
-      "CastingGroundEffect": null,
-      "CastingSound": null,
-      "HasProjectile": false,
-      "ProjectileModel": null,
-      "ProjectileType": "Homing",
-      "ProjectileSpawnPoint": "Hand",
-      "ProjectileSound": null,
-      "ProjectileOrientation": "Path",
-      "SubSpell1": null,
-      "SubSpell2": null,
-      "SubSpell3": null,
-      "SubSpell4": null,
-      "SubSpell5": null,
-      "SubSpell6": null,
-      "SubSpell7": null,
-      "SubSpell8": null,
-      "Category": "FriendlyEnhancementSingle",
-      "ParentSpell": {
-        "ID": "2a266f98-f5d9-402c-b55d-0e7c99da78b1",
-        "Label": "Heroics"
-      },
-      "Type": "Spell",
-      "UseConcentration": true,
-      "IsCastSpontaneously": false,
-      "IsHostile": false,
-      "CounterSpell1": null,
-      "CounterSpell2": null,
-      "HasProjectileVisuals": false,
-      "TargetShape": null,
-      "TargetSizeX": null,
-      "TargetSizeY": null,
-      "TargetingFlags": []
     }
   ]
 }
