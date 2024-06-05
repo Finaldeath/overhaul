@@ -11493,7 +11493,7 @@
       "Description": {
         "Index": 6127,
         "EN": {
-          "M": "Caster Level(s): Bard 4, Cleric 4, Druid 5\nInnate Level: 4\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells:\nSave: Will for 1/2\nSpell Resistance: Yes\n\nThe target creature is healed of 4d8 points of damage, \u002B 1 point per caster level to a maximum of \u002B20.\r\n\r\nHealing spells have a reverse effect when used on undead, causing the targeted undead to take an amount of damage equal to what the spell normally heals. A successful touch attack must first be made when this spell is used against undead.",
+          "M": "Caster Level(s): Bard 4, Cleric 4, Druid 5\nInnate Level: 4\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells: Inflict Critical Wounds\nSave: Will 1/2\nSpell Resistance: Yes\n\nThe target creature is healed of 4d8 points of damage, \u002B 1 point per caster level to a maximum of \u002B20.\r\n\r\nHealing spells have a reverse effect when used on undead, causing the targeted undead to take an amount of damage equal to what the spell normally heals. A successful touch attack must first be made when this spell is used against undead.",
           "F": "Caster Level(s): Bard 4, Cleric 4, Druid 5\nInnate Level: 4\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells:\nSave: Will for 1/2\nSpell Resistance: Yes\n\nThe target creature is healed of 4d8 points of damage, \u002B 1 point per caster level to a maximum of \u002B20. Healing spells have a reverse effect when used on undead, causing the targeted undead to take an amount of damage equal to what the spell normally heals. A successful touch attack must first be made when this spell is used against undead."
         },
         "FR": {
@@ -11571,7 +11571,10 @@
       "UseConcentration": true,
       "IsCastSpontaneously": true,
       "IsHostile": false,
-      "CounterSpell1": null,
+      "CounterSpell1": {
+        "ID": "e0f55067-9ed4-6c33-4b91-7af2f9b81342",
+        "Label": "Inflict Critical Wounds"
+      },
       "CounterSpell2": null,
       "HasProjectileVisuals": false,
       "TargetShape": null,
@@ -11612,7 +11615,7 @@
       "Description": {
         "Index": 6127,
         "EN": {
-          "M": "Caster Level(s): Bard 4, Cleric 4, Druid 5\nInnate Level: 4\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells:\nSave: Will for 1/2\nSpell Resistance: Yes\n\nThe target creature is healed of 4d8 points of damage, \u002B 1 point per caster level to a maximum of \u002B20.\r\n\r\nHealing spells have a reverse effect when used on undead, causing the targeted undead to take an amount of damage equal to what the spell normally heals. A successful touch attack must first be made when this spell is used against undead.\r\n\r\nHealing spells do not affect constructs. ",
+          "M": "Caster Level(s): \nInnate Level: 4\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells: Inflict Critical Wounds\nSave: Will 1/2\nSpell Resistance: Yes\n\nThe target creature is healed of 4d8 points of damage, \u002B 1 point per caster level to a maximum of \u002B20.\r\n\r\nHealing spells have a reverse effect when used on undead, causing the targeted undead to take an amount of damage equal to what the spell normally heals. A successful touch attack must first be made when this spell is used against undead.\r\n\r\nHealing spells do not affect constructs. ",
           "F": "Caster Level(s): Bard 4, Cleric 4, Druid 5\nInnate Level: 4\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells:\nSave: Will for 1/2\nSpell Resistance: Yes\n\nThe target creature is healed of 4d8 points of damage, \u002B 1 point per caster level to a maximum of \u002B20. Healing spells have a reverse effect when used on undead, causing the targeted undead to take an amount of damage equal to what the spell normally heals. A successful touch attack must first be made when this spell is used against undead."
         },
         "FR": {
@@ -11649,7 +11652,6 @@
         "Still"
       ],
       "TargetTypes": [
-        "Self",
         "Creature",
         "Item",
         "Placeable"
@@ -11690,7 +11692,10 @@
       "UseConcentration": true,
       "IsCastSpontaneously": true,
       "IsHostile": false,
-      "CounterSpell1": null,
+      "CounterSpell1": {
+        "ID": "e0f55067-9ed4-6c33-4b91-7af2f9b81342",
+        "Label": "Inflict Critical Wounds"
+      },
       "CounterSpell2": null,
       "HasProjectileVisuals": false,
       "TargetShape": null,
@@ -11731,7 +11736,7 @@
       "Description": {
         "Index": 6128,
         "EN": {
-          "M": "Caster Level(s): Bard 1, Cleric 1, Druid 1, Paladin 1, Ranger 1\nInnate Level: 1\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells: Ghoul Touch\nSave: Will 1/2\nSpell Resistance: Yes\n\nThe target creature is healed for 1d8 points of damage, \u002B1 point per caster level (to a maximum of \u002B5).\r\n\r\nHealing spells have a reverse effect on undead, harming instead of healing them. A successful touch attack must first be made when this spell is used against undead.\r\n\r\nHealing spells do not affect constructs. ",
+          "M": "Caster Level(s): Bard 1, Cleric 1, Druid 1, Paladin 1, Ranger 1\nInnate Level: 1\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells: Inflict Light Wounds, Ghoul Touch\nSave: Will 1/2\nSpell Resistance: Yes\n\nThe target creature is healed for 1d8 points of damage, \u002B1 point per caster level (to a maximum of \u002B5).\r\n\r\nHealing spells have a reverse effect on undead, harming instead of healing them. A successful touch attack must first be made when this spell is used against undead.\r\n\r\nHealing spells do not affect constructs. ",
           "F": "Caster Level(s): Bard 1, Cleric 1, Druid 1, Paladin 1, Ranger 1\nInnate Level: 1\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells: Ghoul Touch\nSave: Will 1/2\nSpell Resistance: Yes\n\nThe target creature is healed for 1d8 points of damage, \u002B1 point per caster level (to a maximum of \u002B5). Healing spells have a reverse effect on undead, harming instead of healing them. A successful touch attack must first be made when this spell is used against undead."
         },
         "FR": {
@@ -11809,8 +11814,14 @@
       "UseConcentration": true,
       "IsCastSpontaneously": true,
       "IsHostile": false,
-      "CounterSpell1": null,
-      "CounterSpell2": null,
+      "CounterSpell1": {
+        "ID": "4a76ec82-6f5d-9ed2-5e84-a6ded7486501",
+        "Label": "Inflict Light Wounds"
+      },
+      "CounterSpell2": {
+        "ID": "c7d764c6-84ad-39d2-d164-56e8751ab489",
+        "Label": "Ghoul Touch"
+      },
       "HasProjectileVisuals": false,
       "TargetShape": null,
       "TargetSizeX": null,
@@ -11850,7 +11861,7 @@
       "Description": {
         "Index": 6129,
         "EN": {
-          "M": "Caster Level(s): Bard 0, Cleric 0, Druid 0\nInnate Level: 0\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells: Ghoul Touch\nSave: None\nSpell Resistance: Yes\n\nThe target creature is healed for 4 points of damage.\r\n\r\nHealing spells have a reverse effect on undead, harming instead of healing them. A successful touch attack must first be made when this spell is used against undead.\r\n\r\nHealing spells do not affect constructs. ",
+          "M": "Caster Level(s): Bard 0, Cleric 0, Druid 0\nInnate Level: 0\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells: Inflict Minor Wounds, Ghoul Touch\nSave: None\nSpell Resistance: Yes\n\nThe target creature is healed for 4 points of damage.\r\n\r\nHealing spells have a reverse effect on undead, harming instead of healing them. A successful touch attack must first be made when this spell is used against undead.\r\n\r\nHealing spells do not affect constructs. ",
           "F": "Caster Level(s): Bard 0, Cleric 0, Druid 0\nInnate Level: 0\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells: Ghoul Touch\nSave: None\nSpell Resistance: Yes\n\nThe target creature is healed for 4 points of damage. Healing spells have a reverse effect on undead, harming instead of healing them. A successful touch attack must first be made when this spell is used against undead."
         },
         "FR": {
@@ -11926,8 +11937,14 @@
       "UseConcentration": true,
       "IsCastSpontaneously": true,
       "IsHostile": false,
-      "CounterSpell1": null,
-      "CounterSpell2": null,
+      "CounterSpell1": {
+        "ID": "7e5c9a97-ff45-4d41-b825-fbf0b9cfe792",
+        "Label": "Inflict Minor Wounds"
+      },
+      "CounterSpell2": {
+        "ID": "c7d764c6-84ad-39d2-d164-56e8751ab489",
+        "Label": "Ghoul Touch"
+      },
       "HasProjectileVisuals": false,
       "TargetShape": null,
       "TargetSizeX": null,
@@ -11967,7 +11984,7 @@
       "Description": {
         "Index": 6130,
         "EN": {
-          "M": "Caster Level(s): Bard 2, Cleric 2, Druid 3, Paladin 3, Ranger 3\nInnate Level: 2\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells: Ghoul Touch\nSave: Will 1/2\nSpell Resistance:\n\nThe target creature is healed for 2d8 points of damage, \u002B1 point per caster level (to a maximum of \u002B10).\r\n\r\nHealing spells have a reverse effect on undead, harming instead of healing them. A successful touch attack must first be made when this spell is used against undead.\r\n\r\nHealing spells do not affect constructs. ",
+          "M": "Caster Level(s): Bard 2, Cleric 2, Druid 3, Paladin 3, Ranger 3\nInnate Level: 2\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells: Inflict Moderate Wounds, Ghoul Touch\nSave: Will 1/2\nSpell Resistance:\n\nThe target creature is healed for 2d8 points of damage, \u002B1 point per caster level (to a maximum of \u002B10).\r\n\r\nHealing spells have a reverse effect on undead, harming instead of healing them. A successful touch attack must first be made when this spell is used against undead.\r\n\r\nHealing spells do not affect constructs. ",
           "F": "Caster Level(s): Bard 2, Cleric 2, Druid 3, Paladin 3, Ranger 3\nInnate Level: 2\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells: Ghoul Touch\nSave: Will 1/2\nSpell Resistance:\n\nThe target creature is healed for 2d8 points of damage, \u002B1 point per caster level (to a maximum of \u002B10). Healing spells have a reverse effect on undead, harming instead of healing them. A successful touch attack must first be made when this spell is used against undead."
         },
         "FR": {
@@ -12045,8 +12062,14 @@
       "UseConcentration": true,
       "IsCastSpontaneously": true,
       "IsHostile": false,
-      "CounterSpell1": null,
-      "CounterSpell2": null,
+      "CounterSpell1": {
+        "ID": "294ae6fe-a19c-8c06-8946-b15788520e31",
+        "Label": "Inflict Moderate Wounds"
+      },
+      "CounterSpell2": {
+        "ID": "c7d764c6-84ad-39d2-d164-56e8751ab489",
+        "Label": "Ghoul Touch"
+      },
       "HasProjectileVisuals": false,
       "TargetShape": null,
       "TargetSizeX": null,
@@ -12086,7 +12109,7 @@
       "Description": {
         "Index": 6131,
         "EN": {
-          "M": "Caster Level(s): Bard 3, Cleric 3, Druid 4, Paladin 4, Ranger 4\nInnate Level: 4\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells: Ghoul Touch\nSave: Will 1/2\nSpell Resistance: Yes\n\nThe target creature is healed for 3d8 points of damage, \u002B1 point per caster level (to a maximum of \u002B15).\r\n\r\nHealing spells have a reverse effect on undead, harming instead of healing them. A successful touch attack must first be made when this spell is used against undead.\r\n\r\nHealing spells do not affect constructs. ",
+          "M": "Caster Level(s): Bard 3, Cleric 3, Druid 4, Paladin 4, Ranger 4\nInnate Level: 4\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells: Inflict Serious Wounds, Ghoul Touch\nSave: Will 1/2\nSpell Resistance: Yes\n\nThe target creature is healed for 3d8 points of damage, \u002B1 point per caster level (to a maximum of \u002B15).\r\n\r\nHealing spells have a reverse effect on undead, harming instead of healing them. A successful touch attack must first be made when this spell is used against undead.\r\n\r\nHealing spells do not affect constructs. ",
           "F": "Caster Level(s): Bard 3, Cleric 3, Druid 4, Paladin 4, Ranger 4\nInnate Level: 4\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells: Ghoul Touch\nSave: Will 1/2\nSpell Resistance: Yes\n\nThe target creature is healed for 3d8 points of damage, \u002B1 point per caster level (to a maximum of \u002B15). Healing spells have a reverse effect on undead, harming instead of healing them. A successful touch attack must first be made when this spell is used against undead."
         },
         "FR": {
@@ -12164,8 +12187,14 @@
       "UseConcentration": true,
       "IsCastSpontaneously": true,
       "IsHostile": false,
-      "CounterSpell1": null,
-      "CounterSpell2": null,
+      "CounterSpell1": {
+        "ID": "73b7fa6a-231c-3811-2b77-84e73cfff4b1",
+        "Label": "Inflict Serious Wounds"
+      },
+      "CounterSpell2": {
+        "ID": "c7d764c6-84ad-39d2-d164-56e8751ab489",
+        "Label": "Ghoul Touch"
+      },
       "HasProjectileVisuals": false,
       "TargetShape": null,
       "TargetSizeX": null,
@@ -37508,7 +37537,7 @@
       "Index": -1,
       "Overrides": "e0f55067-9ed4-6c33-4b91-7af2f9b81342",
       "Disabled": false,
-      "Hint": "\u002BCounterspell",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "Inflict_Critical_Wounds",
       "ExtensionValues": {},
@@ -37628,7 +37657,7 @@
       "Index": 432,
       "Overrides": "4a76ec82-6f5d-9ed2-5e84-a6ded7486501",
       "Disabled": false,
-      "Hint": "\u002BCounterspell",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
@@ -37748,7 +37777,7 @@
       "Index": 431,
       "Overrides": "7e5c9a97-ff45-4d41-b825-fbf0b9cfe792",
       "Disabled": false,
-      "Hint": "\u002BCounterspell",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
@@ -37866,7 +37895,7 @@
       "Index": 433,
       "Overrides": "294ae6fe-a19c-8c06-8946-b15788520e31",
       "Disabled": false,
-      "Hint": "\u002BCounterspell",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
@@ -37986,7 +38015,7 @@
       "Index": 434,
       "Overrides": "73b7fa6a-231c-3811-2b77-84e73cfff4b1",
       "Disabled": false,
-      "Hint": "\u002BCounterspell",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
