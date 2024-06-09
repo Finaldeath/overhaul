@@ -229,6 +229,9 @@ int GetIsMetalCreature(object oCreature);
 // Returns TRUE if the given creature is humanoid (base races plus goblins etc.)
 int GetIsHumanoidCreature(object oCreature);
 
+// Returns TRUE if the given creature is mindless (elemental, undead, vermin, construct, ooze)
+int GetIsMindless(object oCreature);
+
 // Returns TRUE if oObject has at least one effect matching the parameters.
 // * nEffectType - Can be EFFECT_TYPE_ALL to be ignored
 // * sTag - Only checked if not blank
@@ -1195,6 +1198,21 @@ int GetIsHumanoidCreature(object oCreature)
     return FALSE;
 }
 
+// Returns TRUE if the given creature is mindless (elemental, undead, vermin, construct, ooze)
+int GetIsMindless(object oCreature)
+{
+    switch(GetRacialType(oCreature))
+    {
+        case RACIAL_TYPE_ELEMENTAL:
+        case RACIAL_TYPE_UNDEAD:
+        case RACIAL_TYPE_VERMIN:
+        case RACIAL_TYPE_CONSTRUCT:
+        case RACIAL_TYPE_OOZE:
+            return TRUE;
+    }
+    return FALSE;
+}
+
 // Returns TRUE if oObject has at least one effect matching the parameters.
 // * nEffectType - Can be EFFECT_TYPE_ALL to be ignored
 // * sTag - Only checked if not blank
@@ -1310,6 +1328,12 @@ effect EffectRunScriptAutomatic(float fInterval = 6.0, string sScript = "")
         {
             // Oh no! Return an invalid effect
             OP_Debug("[EffectRunScriptAutomatic] Script name too long: " + sScript, LOG_LEVEL_ERROR);
+            return EffectInvalidEffect();
+        }
+
+        if (ResManGetAliasFor(sScript, RESTYPE_NSS) == "")
+        {
+            OP_Debug("[EffectRunScriptAutomatic] Script not found: " + sScript, LOG_LEVEL_ERROR);
             return EffectInvalidEffect();
         }
     }

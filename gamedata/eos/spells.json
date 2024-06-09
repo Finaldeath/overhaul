@@ -61292,7 +61292,7 @@
       "Index": 457,
       "Overrides": "74bc1e27-88d2-db08-09d6-a286b5e71a7e",
       "Disabled": false,
-      "Hint": "Remove Empower, Maximise",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
@@ -61320,7 +61320,7 @@
       "Description": {
         "Index": 2677,
         "EN": {
-          "M": "Caster Level(s): Bard 2, Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Enchantment\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Single\nDuration: 1d3 rounds\nAdditional Counter Spells:\nSave: Will negates\nSpell Resistance: Yes\n\nIf the target fails their saving throw they will begin laughing hysterically being knocked down onto the ground. They will be unable to defend themselves until the spell wears off. A creature whose racial type is different from the caster\u0027s gains a \u002B4 bonus on its saving throw because humor doesn\u0027t \u0027translate\u0027 well.",
+          "M": "Caster Level(s): Bard 2, Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Enchantment\nDescriptor(s): Mind-Affecting\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Single\nDuration: 1d3 rounds\nAdditional Counter Spells:\nSave: Will negates\nSpell Resistance: Yes\n\nIf the target fails their saving throw they will begin laughing hysterically affected as if knocked down. They will be unable to defend themselves until the spell wears off. A creature whose racial type is different from the caster\u0027s gains a \u002B4 bonus on its saving throw because humor doesn\u0027t \u0027translate\u0027 well.\r\n\r\nA creature who is mindless (elemental, undead, vermin, construct, ooze) will be unaffected.",
           "F": "Caster Level(s): Bard 2, Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Enchantment\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Single\nDuration: 1d3 rounds\nAdditional Counter Spells:\nSave: Will negates\nSpell Resistance: Yes\n\nIf the target fails their saving throw they will begin laughing hysterically. They will be unable to defend themselves until the spell wears off. A creature whose racial type is different from the caster\u0027s gains a \u002B4 bonus on its saving throw because humor doesn\u0027t \u0027translate\u0027 well."
         },
         "FR": {
@@ -61357,11 +61357,9 @@
       ],
       "TargetTypes": [
         "Creature",
-        "Item",
-        "Door",
-        "Placeable"
+        "Item"
       ],
-      "ImpactScript": "x0_s0_laugh",
+      "ImpactScript": "op_s_tashlaugh",
       "InnateLevel": 2,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
