@@ -2386,7 +2386,7 @@
       "Description": {
         "Index": 6272,
         "EN": {
-          "M": "Caster Level(s): Cleric 8\nInnate Level: 8\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nWhen this spell is cast, the caster chooses to be protected from either good or evil. He receives a \u002B4 deflection bonus to Armor Class, immunity to mind-affecting spells and spell-like abilities used by creatures of the chosen alignment\r\n\r\nAdditionally the caster gains spell resistance 25 against and all creatures also take 6 \u002B 1d8 divine damage each time they successfully strike the caster.",
+          "M": "Caster Level(s): Cleric 8\nInnate Level: 8\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nWhen this spell is cast, the caster chooses to be protected from either good or evil. He receives a \u002B4 deflection bonus to Armor Class, immunity to mind-affecting spells and spell-like abilities used by creatures of the chosen alignment\r\n\r\nAdditionally the caster gains spell resistance 25, and all creatures attacking the caster take 6 \u002B 1d8 divine (if Holy Aura) or negative (if Unholy Aura) damage on a successful hit.",
           "F": "Caster Level(s): Cleric 8\nInnate Level: 8\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: Yes\n\nWhen this spell is cast, the caster chooses to be protected from either good or evil. He receives a \u002B4 deflection bonus to Armor Class, immunity to mind-affecting spells and spell-like abilities used by creatures of the chosen alignment, and spell resistance 25 against spells cast by creatures of the chosen alignment. Creatures of the chosen alignment also take 6 \u002B 1d8 damage each time they successfully strike the Cleric."
         },
         "FR": {
@@ -2441,7 +2441,7 @@
         "Self",
         "Item"
       ],
-      "ImpactScript": "",
+      "ImpactScript": "op_s_auraversus",
       "InnateLevel": 8,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -24268,7 +24268,7 @@
       "Description": {
         "Index": 6147,
         "EN": {
-          "M": "Caster Level(s): Cleric 1, Druid 1, Paladin 1, Wizard / Sorcerer 1\nInnate Level: 1\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 24 Hours\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe target creature gains damage resistance 10/- against all elemental forms of damage. The spell ends after absorbing 20 points of damage from any single elemental type.",
+          "M": "Caster Level(s): Cleric 1, Druid 1, Paladin 1, Wizard / Sorcerer 1\nInnate Level: 1\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Minute / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe target creature gains damage resistance 10/- against all elemental forms of damage. The spell ends after absorbing 20 points of damage from any single elemental type.",
           "F": "Caster Level(s): Cleric 1, Druid 1, Paladin 1, Wizard / Sorcerer 1\nInnate Level: 2\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 24 Hours\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe target creature gains damage resistance 10/- against all elemental forms of damage. The spell ends after absorbing 20 points of damage from any single elemental type."
         },
         "FR": {
@@ -24306,10 +24306,9 @@
       "TargetTypes": [
         "Self",
         "Creature",
-        "Item",
-        "Placeable"
+        "Item"
       ],
-      "ImpactScript": "NW_S0_EndEle",
+      "ImpactScript": "op_s_elementprot",
       "InnateLevel": 1,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -24386,7 +24385,8 @@
       "Description": {
         "Index": 6535,
         "EN": {
-          "M": "Caster Level(s): Bard 6, Druid 6, Sorcerer / Wizard 5\nInnate Level: 5\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Turn / Caster Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe caster gains damage resistance 40/- against all elemental forms of damage. The spell ends after absorbing 60 points of damage from any single elemental type."
+          "M": "Caster Level(s): Bard 6, Druid 6, Sorcerer / Wizard 5\nInnate Level: 5\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Minute / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe caster gains damage resistance 40/- against all elemental forms of damage. The spell ends after absorbing 60 points of damage from any single elemental type.",
+          "F": "Caster Level(s): Bard 6, Druid 6, Sorcerer / Wizard 5\nInnate Level: 5\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Turn / Caster Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe caster gains damage resistance 40/- against all elemental forms of damage. The spell ends after absorbing 60 points of damage from any single elemental type."
         },
         "FR": {
           "M": "Niveau : Barde 6, Druide 6, Magicien / Ensorceleur 5\nNiveau inn\u00E9 : 5\nEcole : Abjuration\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : personnelle\nZone d\u0027effet / cible : lanceur\nDur\u00E9e : 1 tour/niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : inoffensif\nR\u00E9sistance \u00E0 la magie : non\n\nLa cible b\u00E9n\u00E9ficie d\u0027une r\u00E9sistance aux d\u00E9g\u00E2ts de 40/- contre toutes les formes de d\u00E9g\u00E2ts \u00E9l\u00E9mentaires. Le sort se termine apr\u00E8s avoir absorb\u00E9 60 points de d\u00E9g\u00E2ts d\u0027une m\u00EAme source \u00E9l\u00E9mentaire."
@@ -24424,7 +24424,7 @@
         "Self",
         "Item"
       ],
-      "ImpactScript": "NW_S0_EneBuffer",
+      "ImpactScript": "op_s_elementprot",
       "InnateLevel": 5,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",
@@ -24463,7 +24463,7 @@
       "CounterSpell1": null,
       "CounterSpell2": null,
       "HasProjectileVisuals": false,
-      "TargetShape": "Sphere",
+      "TargetShape": null,
       "TargetSizeX": null,
       "TargetSizeY": null,
       "TargetingFlags": []
@@ -35336,7 +35336,7 @@
         "Self",
         "Item"
       ],
-      "ImpactScript": "NW_S0_HolyAura",
+      "ImpactScript": "op_s_auraversus",
       "InnateLevel": 8,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",
@@ -50239,7 +50239,7 @@
       "Index": -1,
       "Overrides": "7a65af56-df0f-c9d9-e3fc-196545a906ab",
       "Disabled": false,
-      "Hint": "Description",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "Protection_from_Elements",
       "ExtensionValues": {},
@@ -50267,7 +50267,7 @@
       "Description": {
         "Index": 6505,
         "EN": {
-          "M": "Caster Level(s): Cleric 3, Druid 3, Ranger 2, Wizard / Sorcerer 3\nInnate Level: 3\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 24 Hours\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe target creature gains damage resistance 30/- against all elemental forms of damage. The spell ends after absorbing 40 points of damage from any single elemental type.",
+          "M": "Caster Level(s): Cleric 3, Druid 3, Ranger 2, Wizard / Sorcerer 3\nInnate Level: 3\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Minute / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe target creature gains damage resistance 30/- against all elemental forms of damage. The spell ends after absorbing 40 points of damage from any single elemental type.",
           "F": "Caster Level(s): Cleric 3, Druid 3, Ranger 2, Wizard / Sorcerer 3\nInnate Level: 2\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 24 Hours\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe target creature gains damage resistance 30/- against all elemental forms of damage. The spell ends after absorbing 40 points of damage from any single elemental type."
         },
         "FR": {
@@ -50305,10 +50305,9 @@
       "TargetTypes": [
         "Self",
         "Creature",
-        "Item",
-        "Placeable"
+        "Item"
       ],
-      "ImpactScript": "NW_S0_ProEle",
+      "ImpactScript": "op_s_elementprot",
       "InnateLevel": 3,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -52766,7 +52765,8 @@
       "Description": {
         "Index": 6507,
         "EN": {
-          "M": "Caster Level(s): Cleric 2, Druid 2, Paladin 2, Ranger 1, Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Turn / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe target creature gains damage resistance 20/- against all elemental forms of damage. The spell ends after absorbing 30 points of damage from any single elemental type."
+          "M": "Caster Level(s): Cleric 2, Druid 2, Paladin 2, Ranger 1, Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Minute / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe target creature gains damage resistance 20/- against all elemental forms of damage. The spell ends after absorbing 30 points of damage from any single elemental type.",
+          "F": "Caster Level(s): Cleric 2, Druid 2, Paladin 2, Ranger 1, Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Turn / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe target creature gains damage resistance 20/- against all elemental forms of damage. The spell ends after absorbing 30 points of damage from any single elemental type."
         },
         "FR": {
           "M": "Niveau : Pr\u00EAtre 2, Druide 2, Paladin 2, R\u00F4deur 1, Magicien / Ensorceleur 2\nNiveau inn\u00E9 : 2\nEcole : Abjuration\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : contact\nZone d\u0027effet / cible : 1 cr\u00E9ature\nDur\u00E9e : 1 tour/niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : inoffensif\nR\u00E9sistance \u00E0 la magie : non\n\nLa cible b\u00E9n\u00E9ficie d\u0027une r\u00E9sistance aux d\u00E9g\u00E2ts de 20/- contre toutes les formes de d\u00E9g\u00E2ts \u00E9l\u00E9mentaires. Le sort se termine apr\u00E8s avoir absorb\u00E9 30 points de d\u00E9g\u00E2ts d\u0027une m\u00EAme source \u00E9l\u00E9mentaire."
@@ -52803,10 +52803,9 @@
       "TargetTypes": [
         "Self",
         "Creature",
-        "Item",
-        "Placeable"
+        "Item"
       ],
-      "ImpactScript": "NW_S0_ResEle",
+      "ImpactScript": "op_s_elementprot",
       "InnateLevel": 2,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -63243,7 +63242,7 @@
         "Self",
         "Item"
       ],
-      "ImpactScript": "NW_S0_UnhAura",
+      "ImpactScript": "op_s_auraversus",
       "InnateLevel": 8,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",
