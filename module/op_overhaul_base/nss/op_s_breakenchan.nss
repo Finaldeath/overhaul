@@ -3,18 +3,6 @@
 //:: op_s_breakenchan.nss
 //:://////////////////////////////////////////////
 /*
-    Caster Level(s): Bard 4, Cleric 5
-    Innate Level: 5
-    School: Abjuration
-    Descriptor(s):
-    Component(s): Verbal, Somatic
-    Range: Short
-    Area of Effect / Target: Single Creature or Item
-    Duration: Instant
-    Additional Counter Spells:
-    Save: None
-    Spell Resistance: No
-
     This spell frees creatures from enchantments, transmutations, curses, and
     petrification (as well as other magical transformations). For each such
     effect, the character makes a check of 1d20 + caster level (maximum +15)

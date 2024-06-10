@@ -41,7 +41,7 @@ void main()
     ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, eImplode, lTarget);
 
     // Bypass magical immunity
-    effect eDeath = SupernaturalEffect(EffectDeath(TRUE));
+    effect eDeath = IgnoreEffectImmunity(EffectDeath(TRUE));
 
     oTarget = GetFirstObjectInShape(SHAPE_SPHERE, RADIUS_SIZE_MEDIUM, lTarget);
     while (GetIsObjectValid(oTarget))
@@ -61,7 +61,7 @@ void main()
                     if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_FORT, nSpellSaveDC, SAVING_THROW_TYPE_NONE, fDelay))
                     {
                         //Apply death effect and the VFX impact
-                        DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, eDeath, oTarget));
+                        DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDeath, oTarget));
                     }
                 }
             }

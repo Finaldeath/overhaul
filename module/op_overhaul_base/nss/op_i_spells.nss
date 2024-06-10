@@ -152,8 +152,8 @@ int GetAssayResistanceBonus(object oTarget, object oCaster);
 int DoTouchAttack(object oTarget, object oVersus, int nType, int bDisplayFeedback = TRUE);
 
 // Applies metamagic to the given dice roll
-// eg GetDiceRoll(4, 6, METAMAGIC_EMPOWER) will roll 4d6 and apply Empower to it
-// Metamagic is applied automatically
+// eg GetDiceRoll(4, 6, 8) will roll 4d6 and add 8 to the final roll
+// Metamagic is applied automatically (alter with the global nMetaMagic)
 int GetDiceRoll(int nNumberOfDice, int nDiceSize, int nBonus = 0);
 
 // Applies metamagic to the given duration
@@ -624,8 +624,8 @@ int DoTouchAttack(object oTarget, object oVersus, int nType, int bDisplayFeedbac
 }
 
 // Applies metamagic to the given dice roll
-// eg GetDiceRoll(4, 6, METAMAGIC_EMPOWER) will roll 4d6 and apply Empower to it
-// Metamagic is applied automatically
+// eg GetDiceRoll(4, 6, 8) will roll 4d6 and add 8 to the final roll
+// Metamagic is applied automatically (alter with the global nMetaMagic)
 int GetDiceRoll(int nNumberOfDice, int nDiceSize, int nBonus = 0)
 {
     int i, nDamage = 0;

@@ -3,31 +3,11 @@
 //:: op_s_globe.nss
 //:://////////////////////////////////////////////
 /*
-    Caster Level(s): Wizard / Sorcerer 6
-    Innate Level: 6
-    School: Abjuration
-    Descriptor(s):
-    Component(s): Verbal, Somatic
-    Range: Personal
-    Area of Effect / Target: Caster
-    Duration: 1 Round / Level
-    Additional Counter Spells: Greater Spell Breach
-    Save: None
-    Spell Resistance: Yes
+    Globe of Invulnerability
 
     A shimmering field of energy prevents all spells of level 4 or lower from affecting the caster.
 
-    Caster Level(s): Wizard/Sorcerer 4
-    Innate Level: 4
-    School: Abjuration
-    Descriptor(s):
-    Component(s): Verbal, Somatic
-    Range: Personal
-    Area of Effect / Target: Caster
-    Duration: 1 Round / Level
-    Additional Counter Spells:
-    Save: Harmless
-    Spell Resistance: No
+    Minor Globe of Invulnerability
 
     A shimmering field of energy prevents all spells of level 3 or lower from affecting the caster.
 */

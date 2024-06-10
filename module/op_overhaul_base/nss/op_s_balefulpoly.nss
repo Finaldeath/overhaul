@@ -3,18 +3,6 @@
 //:: op_s_balefulpoly.nss
 //:://////////////////////////////////////////////
 /*
-    Caster Level(s): Druid 5, Wizard / Sorcerer 5
-    Innate Level: 5
-    School: Transmutation
-    Descriptor(s):
-    Component(s): Verbal, Somatic
-    Range: Short
-    Area of Effect / Target: Single
-    Duration: 1 Round / Level
-    Additional Counter Spells: Polymorph Self, Shapechange
-    Save: Fortitude Negates
-    Spell Resistance: Yes
-
     You change the subject into a chicken. They cannot cast spells and gain the physical characteristics of a chicken.
 
     Shapechangers, gaseous and incorporeal creatures cannot be affected by this spell.

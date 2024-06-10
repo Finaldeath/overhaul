@@ -3,20 +3,9 @@
 //:: op_s_magicmissil.nss
 //:://////////////////////////////////////////////
 /*
-    Caster Level(s): Wizard / Sorcerer 1
-    Innate Level: 1
-    School: Evocation
-    Descriptor(s): Force
-    Component(s): Verbal, Somatic
-    Range: Long
-    Area of Effect / Target: Single
-    Duration: Instant
-    Additional Counter Spells:
-    Save: None
-    Spell Resistance: Yes
-
-    The caster creates a shimmering projectile of magical force that unerringly slams into a single selected target.
-    After level 1, the spell creates 1 additional missile every two caster levels, to a maximum of 5 missiles at
+    The caster creates a shimmering projectile of magical force that unerringly
+    slams into a single selected target. After level 1, the spell creates 1
+    additional missile every two caster levels, to a maximum of 5 missiles at
     level 9. Magic missiles do 1d4+1 points of damage each.
 */
 //:://////////////////////////////////////////////
@@ -36,12 +25,8 @@ void main()
     // Calculate the delay of the VFX
     float fDelay = GetVisualEffectHitDelay(VFX_IMP_MIRV, oTarget, oCaster);
 
-    int nMissiles = (nCasterLevel + 1) / 2;
     // Limit missiles to five
-    if (nMissiles > 5)
-    {
-        nMissiles = 5;
-    }
+    int nMissiles = min((nCasterLevel + 1) / 2, 5);
 
     if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
     {

@@ -3,20 +3,9 @@
 //:: op_s_banishment.nss
 //:://////////////////////////////////////////////
 /*
-    Caster Level(s): Cleric 6, Wizard / Sorcerer 7
-    Innate Level: 6
-    School: Abjuration
-    Descriptor(s):
-    Component(s): Verbal, Somatic
-    Range: Short
-    Area of Effect / Target: Colossal
-    Duration: Instant
-    Additional Counter Spells:
-    Save: Will negates
-    Spell Resistance: Yes
-
-    The caster is able to cause all summoned creatures, familiars, animal companions, and Outsiders in the
-    area of effect to be destroyed. A number of creatures equal to twice the caster's level in HD can be banished.
+    The caster is able to cause all summoned creatures, familiars, animal
+    companions, and Outsiders in the area of effect to be destroyed. A number
+    of creatures equal to twice the caster's level in HD can be banished.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info

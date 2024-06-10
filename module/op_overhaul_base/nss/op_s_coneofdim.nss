@@ -3,22 +3,6 @@
 //:: op_s_coneofdim
 //:://////////////////////////////////////////////
 /*
-    Caster Level(s): Wizard / Sorcerer 3
-    Innate Level: 3
-    School: Illusion
-    Descriptor(s): Mind-Affecting
-    Component(s): Verbal, Somatic
-    Range: Cone, 10M
-    Area of Effect / Target: Spell Cone
-    Duration: 1 Round/Level (see Description)
-    Additional Counter Spells:
-    Save: Will Negates
-    Spell Resistance: Yes
-
-    Splaying your fingers, you call upon the energies that dwell within the
-    shadowy places of the world. Your arm shakes with barely contained power,
-    causing a translucent gray cone to burst forth from your outstretched hand.
-
     Creatures in the cone must succeed on a Will save or believe darkness has
     engulfed them, rendering them blinded. A creature that makes its initial
     Will save suffers no ill effects. A creature that fails its initial save

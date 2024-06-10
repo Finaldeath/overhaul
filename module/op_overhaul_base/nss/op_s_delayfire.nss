@@ -3,21 +3,11 @@
 //:: op_s_delayfire.nss
 //:://////////////////////////////////////////////
 /*
-    Caster Level(s): Wizard / Sorcerer 7
-    Innate Level: 7
-    School: Evocation
-    Descriptor(s): Fire
-    Component(s): Verbal, Somatic
-    Range: Medium
-    Area of Effect / Target: Huge
-    Duration: 5 Rounds
-    Additional Counter Spells:
-    Save: Reflex 1/2
-    Spell Resistance: Yes
-
-    The caster creates a small, magical zone that can detect the passage of enemy creatures. When the field is activated,
-    it explodes, doing 1d6 points of fire damage per caster level to all within the area of effect, to a maximum of 20d6.
-    If no enemies enter it will explode after the chosen number of rounds.
+    The caster creates a small, magical zone that can detect the passage of
+    enemy creatures. When the field is activated, it explodes, doing 1d6 points
+    of fire damage per caster level to all within the area of effect, to a
+    maximum of 20d6. If no enemies enter it will explode after the chosen
+    number of rounds.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info

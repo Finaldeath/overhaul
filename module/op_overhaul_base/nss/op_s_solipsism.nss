@@ -3,18 +3,6 @@
 //:: op_s_solipsism.nss
 //:://////////////////////////////////////////////
 /*
-    Caster Level(s): Wizard / Sorcerer 7
-    Innate Level: 7
-    School: Illusion
-    Descriptor(s): Mind-Affecting
-    Component(s): Verbal
-    Range: Medium
-    Area of Effect / Target: Single
-    Duration: Instant
-    Additional Counter Spells:
-    Save: Will Negates
-    Spell Resistance: Yes
-
     You manipulate the senses of one creature so that it perceives itself to be
     the only real creature in all of existence and everything around it to be
     merely an illusion.

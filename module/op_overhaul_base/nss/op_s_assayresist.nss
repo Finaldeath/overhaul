@@ -3,18 +3,6 @@
 //:: op_s_assayresist.nss
 //:://////////////////////////////////////////////
 /*
-    Caster Level(s): Cleric 4, Wizard / Sorcerer 4
-    Innate Level: 4
-    School: Divination
-    Descriptor(s):
-    Component(s): Verbal, Somatic
-    Range: Long
-    Area of Effect / Target: Single
-    Duration: Instant
-    Additional Counter Spells:
-    Save: None
-    Spell Resistance: No
-
     This spell enables you to divine the exact nature and vulnerabilities of a
     single creature's magical defenses, giving solely you a +10 bonus on caster
     level checks to overcome its spell resistance.

@@ -3,18 +3,6 @@
 //:: op_s_heroics.nss
 //:://////////////////////////////////////////////
 /*
-    Caster Level(s): Wizard / Sorcerer 2
-    Innate Level: 2
-    School: Transmutation
-    Descriptor(s):
-    Component(s): Verbal, Somatic
-    Range: Touch
-    Area of Effect / Target: Single
-    Duration: 10 minutes / level
-    Additional Counter Spells:
-    Save: Harmless
-    Spell Resistance: No
-
     The heroics spell temporarily grants the subject a feat from the fighter's
     bonus feat list. For the duration of the heroics spell, the subject can use
     the feat as if it were one of those the creature had selected. All
@@ -31,7 +19,6 @@
     - Weapon Feat (Weapon Specialization, Weapon Focus, Weapon Finesse (if applicable))
     - Defensive Feat (Improved Expertise, Expertise, Spring Attack, Mobility, Dodge, Improved Parry, Deflect Arrows (if unarmed), Blind Fight)
     - Two-Weapon Fighting Feat (Improved two-weapon fighting, Ambidexterity, Two-Weapon Fighting)
-
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info

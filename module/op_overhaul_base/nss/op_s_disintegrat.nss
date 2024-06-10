@@ -3,18 +3,6 @@
 //:: op_s_disintegrat.nss
 //:://////////////////////////////////////////////
 /*
-    Caster Level(s): Wizard / Sorcerer 7
-    Innate Level: 7
-    School: Transmutation
-    Descriptor(s):
-    Component(s): Verbal, Somatic
-    Range: Medium
-    Area of Effect / Target: Single
-    Duration: Instant
-    Additional Counter Spells:
-    Save: Fortitude partial
-    Spell Resistance: Yes
-
     A ray springs from the character's pointing finger. You must make a
     successful ranged touchattack to hit. Any object struck by the ray takes 2d6
     points of magical damage per caster level (to a maximum of 40d6). Any object
@@ -80,7 +68,7 @@ void main()
         {
             // Miss beam
             effect eRay = EffectBeam(VFX_BEAM_DISINTEGRATE, oCaster, BODY_NODE_HAND, TRUE);
-            ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eRay, oTarget, 1.5);
+            ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eRay, oTarget, 1.5);
         }
     }
 }
@@ -96,7 +84,7 @@ void ApplyDisintegrate(object oTarget, int nDamage)
     if (GetIsDead(oTarget) && !GetIsPC(oTarget))
     {
         effect eRay = UnyieldingEffect(EffectBeam(VFX_BEAM_DISINTEGRATE, oCaster, BODY_NODE_HAND));
-        ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eRay, oTarget, 1.5);
+        ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eRay, oTarget, 1.5);
     }
     // Note the spell will kill when people reach 0 HP so this covers dying anyway
     else if (GetCurrentHitPoints(oTarget) - nDamage <= 0 &&
@@ -111,10 +99,10 @@ void ApplyDisintegrate(object oTarget, int nDamage)
 
         // Dust effect
         effect eVis = EffectVisualEffect(30000, FALSE, fScale);
-        ApplyEffectAtLocation(DURATION_TYPE_INSTANT, eVis, GetLocation(oTarget));
+        ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, eVis, GetLocation(oTarget));
 
         effect eRay = UnyieldingEffect(EffectBeam(VFX_BEAM_DISINTEGRATE, oCaster, BODY_NODE_HAND));
-        ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eRay, oTarget, 1.5);
+        ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eRay, oTarget, 1.5);
 
         // If PC or henchman we just kill them
         if (GetIsPC(oTarget) || GetAssociateType(oTarget) == ASSOCIATE_TYPE_HENCHMAN)
@@ -131,7 +119,7 @@ void ApplyDisintegrate(object oTarget, int nDamage)
 
             // Make it stuck in place and stoney it before we make it dust (keeps it in the VFX area)
             effect ePetrify = EffectPetrify();
-            ApplyEffectToObject(DURATION_TYPE_PERMANENT, ePetrify, oTarget);
+            ApplySpellEffectToObject(DURATION_TYPE_PERMANENT, ePetrify, oTarget);
 
             // They will become a dust plume!
             DelayCommand(1.0, SetCreatureAppearanceType(oTarget, APPEARANCE_TYPE_OP_DISINTEGRATE_DUST_PLUME));
@@ -149,7 +137,7 @@ void ApplyDisintegrate(object oTarget, int nDamage)
 
         effect eVis    = EffectVisualEffect(VFX_IMP_MAGBLUE);
         effect eDamage = EffectDamage(nDamage);
-        ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
-        ApplyEffectToObject(DURATION_TYPE_INSTANT, eDamage, oTarget);
+        ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
+        ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDamage, oTarget);
     }
 }

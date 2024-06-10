@@ -3,18 +3,6 @@
 //:: op_s_shockinggra.nss
 //:://////////////////////////////////////////////
 /*
-    Caster Level(s): Wizard / Sorcerer 1
-    Innate Level: 1
-    School: Transmutation
-    Descriptor(s): Electricity
-    Component(s): Verbal, Somatic
-    Range: Touch
-    Area of Effect / Target: Single
-    Duration: Instant
-    Additional Counter Spells:
-    Save: None
-    Spell Resistance: Yes
-
     The character's successful melee touch attack deals 1d8 points of electrical
     damage +1 point per caster level (maximum +20). When delivering the jolt,
     the character gains a +3 attack bonus if the opponent is wearing metal armor
@@ -62,7 +50,7 @@ void main()
         }
 
         // Do the touch attack
-        int nTouchAttack = 0; //DoTouchAttack(oTarget, oCaster, TOUCH_MELEE);
+        int nTouchAttack = DoTouchAttack(oTarget, oCaster, TOUCH_MELEE);
         if (nTouchAttack)
         {
             if (!DoResistSpell(oTarget, oCaster))
@@ -82,7 +70,13 @@ void main()
         }
         else
         {
-            // We miss by firing the VFX closer to us
+            // We miss by firing the VFX as missed
+            effect eVis = EffectVisualEffect(VFX_IMP_LIGHTNING_S, TRUE);
+            ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
+
+            // TODO better way would be to generate a new location between the two creatures
+/*
+
             //location lAhead = GenerateNewLocation(oCaster, 1.5, GetFacing(oCaster), GetFacing(oCaster));
 
             vector vCaster = GetPosition(oCaster);
@@ -102,6 +96,7 @@ void main()
 
             effect eVis = EffectVisualEffect(VFX_IMP_LIGHTNING_S, FALSE, 1.0, vDiff);
             ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
+*/
         }
     }
 }

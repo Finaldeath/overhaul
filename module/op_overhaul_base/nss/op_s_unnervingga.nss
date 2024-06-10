@@ -3,21 +3,11 @@
 //:: op_s_unnervingga.nss
 //:://////////////////////////////////////////////
 /*
-    Caster Level(s): Wizard / Sorcerer 0
-    Innate Level: 0
-    School: Illusion
-    Descriptor(s):
-    Component(s): Verbal, Somatic
-    Range: Short
-    Area of Effect / Target: Single humanoid creature
-    Duration: 1 Round/Level
-    Additional Counter Spells:
-    Save: Will Negates
-    Spell Resistance: Yes
+    The caster makes his face resemble one of the opponent's departed loved ones
+    or bitter enemies.
 
-    The caster makes his face resemble one of the opponent's departed loved ones or bitter enemies.
-
-    The subject humanoid takes a -1 penalty on attack rolls for the duration of the spell.
+    The subject humanoid takes a -1 penalty on attack rolls for the duration of
+    the spell.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info

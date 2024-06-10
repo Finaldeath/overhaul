@@ -3,18 +3,6 @@
 //:: op_s_polyself.nss
 //:://////////////////////////////////////////////
 /*
-    Caster Level(s): Ranger 4, Wizard / Sorcerer 4
-    Innate Level: 4
-    School: Transmutation
-    Descriptor(s):
-    Component(s): Verbal
-    Range: Personal
-    Area of Effect / Target: Caster
-    Duration: 1 minute / Level
-    Additional Counter Spells:
-    Save: Harmless
-    Spell Resistance: No
-
     The caster is able to turn himself into one of the following forms:
     Giant spider
     Troll

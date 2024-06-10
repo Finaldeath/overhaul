@@ -3,18 +3,6 @@
 //:: op_s_tashlaugh.nss
 //:://////////////////////////////////////////////
 /*
-    Caster Level(s): Bard 2, Wizard / Sorcerer 2
-    Innate Level: 2
-    School: Enchantment
-    Descriptor(s):
-    Component(s): Verbal, Somatic
-    Range: Short
-    Area of Effect / Target: Single
-    Duration: 1d3 rounds
-    Additional Counter Spells:
-    Save: Will negates
-    Spell Resistance: Yes
-
     If the target fails their saving throw they will begin laughing hysterically
     being knocked down onto the ground. They will be unable to defend themselves
     until the spell wears off. A creature whose racial type is different from

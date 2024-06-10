@@ -3,18 +3,6 @@
 //:: op_s_protarrows.nss
 //:://////////////////////////////////////////////
 /*
-    Caster Level(s): Wizard/Sorcerer 2
-    Innate Level: 2
-    School: Abjuration
-    Descriptor(s):
-    Component(s): Verbal, Somatic
-    Range: Touch
-    Area of Effect / Target: Single
-    Duration: 1 minute / Level
-    Additional Counter Spells:
-    Save: Harmless
-    Spell Resistance: No
-
     The warded creature gains resistance to ranged weapons. The subject gains
     damage reduction 10/+1 against ranged weapons. It ignores the first 10
     points of damage each time it takes damage from a ranged weapon, though a
@@ -54,11 +42,9 @@ void main()
     // SpeakString("scale: " + FloatToString(fScale));
     float fScale = GetVFXScale(oTarget);
 
-    effect eDR   = EffectDamageReduction(10, nDR, nLimit, TRUE);
-    effect eDur  = EffectVisualEffect(30001, FALSE, fScale);
-    effect eCess = EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE);
-    effect eLink = EffectLinkEffects(eDR, eDur);
-    eLink        = EffectLinkEffects(eLink, eCess);
+    effect eLink = EffectLinkEffects(EffectDamageReduction(10, nDR, nLimit, TRUE),
+                   EffectLinkEffects(EffectVisualEffect(VFX_DUR_PROTECTION_FROM_ARROWS, FALSE, fScale),
+                                     EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
 
     SignalSpellCastAt();
 

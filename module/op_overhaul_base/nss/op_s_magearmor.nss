@@ -1,21 +1,17 @@
 //::///////////////////////////////////////////////
-//:: Mage Armor
+//:: Mage Armor and Greater Mage Armor
 //:: op_s_magearmor.nss
 //:://////////////////////////////////////////////
 /*
-    Caster Level(s): Bard 1, Wizard / Sorcerer 1
-    Innate Level: 1
-    School: Conjuration
-    Descriptor(s): Force
-    Component(s): Verbal, Somatic
-    Range: Touch
-    Area of Effect / Target: Single
-    Duration: 1 Hour / Level
-    Additional Counter Spells:
-    Save: Harmless
-    Spell Resistance: No
+    Mage Armor
 
-    An invisible but tangible field of force surrounds the subject of mage armor, providing a +4 armor bonus to AC.
+    An invisible but tangible field of force surrounds the subject of mage
+    armor, providing a +4 armor bonus to AC.
+
+    Greater Mage Armor
+
+    An invisible but tangible field of force surrounds the subject of mage
+    armor, providing a +6 armor bonus to AC.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -26,16 +22,22 @@
 
 void main()
 {
-    effect eVis  = EffectVisualEffect(VFX_IMP_AC_BONUS);
-    effect eAC   = EffectACIncrease(4, AC_ARMOUR_ENCHANTMENT_BONUS);
-    effect eDur  = EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE);
-    effect eLink = EffectLinkEffects(eAC, eDur);
+    if (DoSpellHook()) return;
+
+    int nAC = nSpellId == SPELL_GREATER_MAGE_ARMOR ? 6 : 4;
+
+    effect eVis = EffectVisualEffect(VFX_IMP_AC_BONUS);
+    effect eLink = EffectLinkEffects(EffectACIncrease(nAC, AC_ARMOUR_ENCHANTMENT_BONUS),
+                                     EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
 
     SignalSpellCastAt();
 
-    // Note we don't remove duplicate effects since the AC bonus won't stack since it's no longer dodge based
+    // Note we don't remove duplicate effects since the AC bonus won't stack
+    // since it's no longer dodge based. However a future change may make it
+    // be removed so it is consistent with other spells (and so dispel magic
+    // is more effective).
 
     // Apply the armor bonuses and the VFX impact
-    ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
-    ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(nCasterLevel, HOURS));
+    ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
+    ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(nCasterLevel, HOURS));
 }

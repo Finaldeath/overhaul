@@ -3,18 +3,6 @@
 //:: op_s_readmagic.nss
 //:://////////////////////////////////////////////
 /*
-    Caster Level(s): Bard 0, Cleric 0, Druid 0, Paladin 1, Ranger 1, Wizard / Sorcerer 0
-    Innate Level: 0
-    School: General
-    Descriptor(s):
-    Component(s): Verbal, Somatic
-    Range: Personal
-    Area of Effect / Target: Single Scroll
-    Duration: Instant
-    Additional Counter Spells:
-    Save: None
-    Spell Resistance: No
-
     You identify a spell scroll or potions contents.
 */
 //:://////////////////////////////////////////////
@@ -27,6 +15,9 @@
 void main()
 {
     if (DoSpellHook()) return;
+
+    // TODO a helper for this would be to cast on a creature and it reads the
+    // magic of the first unidentified scroll in their inventory.
 
     if (GetObjectType(oTarget) == OBJECT_TYPE_ITEM)
     {
