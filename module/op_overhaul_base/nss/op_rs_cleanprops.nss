@@ -16,6 +16,13 @@
 
 void main()
 {
+    // If this run script isn't the right one to run, we exit
+    if (!GetItemTrackingIDMatches(GetLastRunScriptEffect()))
+    {
+        OP_Debug("[Run Script: Clean Item Properties] No longer current removal script, exiting.", LOG_LEVEL_INFO);
+        return;
+    }
+
     if (nSpellId == -1 ||
         GetLastRunScriptEffectScriptType() != RUNSCRIPT_EFFECT_SCRIPT_TYPE_ON_REMOVED)
     {
@@ -23,8 +30,8 @@ void main()
         return;
     }
 
-    // Loop the given tagged objects stored in our effect tag
-    string sTag = GetEffectTag(GetLastRunScriptEffect());
+    // Loop the given tagged objects stored in our run script tag
+    string sTag = GetEffectString(GetLastRunScriptEffect(), 0);
 
     if (sTag == "")
     {

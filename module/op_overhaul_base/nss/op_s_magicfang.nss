@@ -48,7 +48,7 @@ void main()
     if (DoSpellHook()) return;
 
     SignalSpellCastAt();
-    float fDuration = GetDuration(nCasterLevel, MINUTES);
+    float fDuration = 6.0; //GetDuration(nCasterLevel, MINUTES);
 
     int nMax = nSpellId == SPELL_GREATER_MAGIC_FANG ? 5 : 1;
     int nBonus = clamp(nCasterLevel/3, 1, nMax);
@@ -58,6 +58,9 @@ void main()
     int bApplied = FALSE;
 
     json jArray = JsonArray();
+
+    // Remove past EffectRunScript effects but don't need to trigger them
+    RemoveEffectsFromSpell(oTarget, nSpellId);
 
     object oItem = GetItemInSlot(INVENTORY_SLOT_CWEAPON_B, oTarget);
     if (GetIsObjectValid(oItem))
@@ -103,8 +106,10 @@ void main()
         ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
         // We apply a EffectRunScript that clears the item properties on removal
         // (ie dispel magic, resting)
-        effect eDur = EffectTrackItemProperties(jArray);
-        ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eDur, oTarget, fDuration);
+        effect eLink = EffectLinkEffects(EffectTrackItemProperties(jArray),
+                                         EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+        SetItemTrackingID(eLink);
+        ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
     }
     else
     {

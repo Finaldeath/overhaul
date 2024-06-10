@@ -265,6 +265,13 @@ effect EffectRunScriptAutomatic(float fInterval = 6.0, string sScript = "");
 // Apply the item properties with ApplySpellItemPropertyToItem()
 effect EffectTrackItemProperties(json jOIDs, int nSpellIdToTrack = SPELL_INVALID);
 
+// Sets the tracking ID used in EffectTrackItemProperties(). This means only that one
+// will be actioned (and any removed in the same script won't).
+void SetItemTrackingID(effect eAppliedEffect, object oTarget = OBJECT_INVALID, int nSpellId = SPELL_INVALID);
+
+// Returns TRUE if the given effect matches the stored tracking ID
+int GetItemTrackingIDMatches(effect eRunScript, object oTrackingParent = OBJECT_SELF);
+
 // Returns a garanteed invalid, and otherwise useless, effect.
 effect EffectInvalidEffect();
 
@@ -1380,6 +1387,22 @@ effect EffectTrackItemProperties(json jOIDs, int nSpellIdToTrack = SPELL_INVALID
     }
 
     return SetEffectSpellId(EffectRunScript("", "op_rs_cleanprops", "", 0.0, sTag), nSpellIdToTrack);
+}
+
+// Sets the tracking ID used in EffectTrackItemProperties(). This means only that one
+// will be actioned (and any removed in the same script won't).
+void SetItemTrackingID(effect eAppliedEffect, object oItemOwner = OBJECT_INVALID, int nSpellIdToUse = SPELL_INVALID)
+{
+    if (nSpellIdToUse == SPELL_INVALID) nSpellIdToUse = nSpellId;
+    if (oItemOwner == OBJECT_INVALID) oItemOwner = oTarget;
+
+    SetLocalString(oItemOwner, "OVERHAUL" + IntToString(nSpellId), GetEffectLinkId(eAppliedEffect));
+}
+
+// Returns TRUE if the given effect matches the stored tracking ID
+int GetItemTrackingIDMatches(effect eRunScript, object oTrackingParent = OBJECT_SELF)
+{
+    return (GetLocalString(oTrackingParent, "OVERHAUL" + IntToString(GetEffectSpellId(eRunScript))) == GetEffectLinkId(eRunScript));
 }
 
 // Returns a garanteed invalid, and otherwise useless, effect.
