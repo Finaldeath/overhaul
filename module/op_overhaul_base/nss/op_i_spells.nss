@@ -42,6 +42,7 @@
 #include "utl_i_maths"
 #include "utl_i_item"
 #include "op_i_feats"
+#include "op_i_itemprops"
 
 // These are the games string refs for immunity feedback.
 // Format <CUSTOM0> : Immune to XXXX.
@@ -189,6 +190,10 @@ void ApplySpellEffectToObject(int nDurationType, effect eEffect, object oTarget,
 // Applies the given effect but merges in the right spell Id, caster Id and caster level.
 void ApplySpellEffectAtLocation(int nDurationType, effect eEffect, location lTarget, float fDuration = 0.0);
 
+// Applies the given item property to the given item.
+// All existing item properties with a tag matching the spell ID are removed.
+void ApplySpellItemPropertyToItem(int nDurationType, itemproperty ipProperty, object oItem, float fDuration = 0.0);
+
 // Signals a spell cast event.
 // By default if the default parameters are used then the global automatically
 // generated values are used instead.
@@ -254,9 +259,14 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod, int nShape, float fSize
 // Sets the Spell Save DC into the sData field.
 effect EffectRunScriptAutomatic(float fInterval = 6.0, string sScript = "");
 
+// Returns the effect used to track item properties and removes them when this effect is removed
+// Uses the spell ID of this effect to track this.
+// * jOIDs -
+// Apply the item properties with ApplySpellItemPropertyToItem()
+effect EffectTrackItemProperties(json jOIDs, int nSpellIdToTrack = SPELL_INVALID);
+
 // Returns a garanteed invalid, and otherwise useless, effect.
 effect EffectInvalidEffect();
-
 
 // These global variables are used in most spell scripts and are initialised here to be consistent
 // NB: You can't reuse these variables in the very functions in this list, so we pass them in.
@@ -925,6 +935,18 @@ void ApplySpellEffectAtLocation(int nDurationType, effect eEffect, location lTar
     ApplyEffectAtLocation(nDurationType, EffectChangeProperties(eEffect, nSpellId, nCasterLevel, oCaster), lTarget, fDuration);
 }
 
+// Applies the given item property to the given item.
+// All existing item properties with a tag matching the spell ID are removed.
+void ApplySpellItemPropertyToItem(int nDurationType, itemproperty ipProperty, object oItem, float fDuration = 0.0)
+{
+    // Remove existing tagged
+    RemoveItemPropertiesMatchingSpellId(oItem, nSpellId);
+
+    // Apply tag to find it later
+    ipProperty = ApplyItemPropertyTaggedInfo(ipProperty, nSpellId, oCaster, nCasterLevel, nSpellSaveDC);
+    AddItemProperty(nDurationType, ipProperty, oItem, fDuration);
+}
+
 // Signals a spell cast event.
 // By default if the default parameters are used then the global automatically
 // generated values are used instead.
@@ -1339,6 +1361,25 @@ effect EffectRunScriptAutomatic(float fInterval = 6.0, string sScript = "")
     }
 
     return EffectRunScript(sScript, sScript, sScript, fInterval, IntToString(nSpellSaveDC));
+}
+
+// Returns the effect used to track item properties and removes them when this effect is removed
+// Uses the spell ID of this effect to track this.
+// * jOIDs -
+// Apply the item properties with ApplySpellItemPropertyToItem()
+effect EffectTrackItemProperties(json jOIDs, int nSpellIdToTrack = SPELL_INVALID)
+{
+    if (nSpellIdToTrack == SPELL_INVALID) nSpellIdToTrack = nSpellId;
+
+    string sTag = JsonDump(jOIDs);
+
+    if (sTag == "")
+    {
+        OP_Debug("[EffectTrackItemProperties] No OIDs set so can't remove item properties later.", LOG_LEVEL_ERROR);
+        return EffectInvalidEffect();
+    }
+
+    return SetEffectSpellId(EffectRunScript("", "op_rs_cleanprops", "", 0.0, sTag), nSpellIdToTrack);
 }
 
 // Returns a garanteed invalid, and otherwise useless, effect.
