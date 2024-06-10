@@ -39,18 +39,27 @@ void main()
     // The pool is the number of hit dice of creatures that can be banished
     int nPool = 2 * nCasterLevel;
 
-    object oTarget = GetFirstObjectInShape(SHAPE_SPHERE, RADIUS_SIZE_COLOSSAL, lTarget);
-    while (GetIsObjectValid(oTarget) && nPool > 0)
+    // Add all creatures of a given hostility to the array
+    // Note old version of the spell didn't test LOS.
+    json jArray = GetArrayOfTargets(SPELL_TARGET_STANDARDHOSTILE, SORT_METHOD_LOWEST_HD, SHAPE_SPHERE, RADIUS_SIZE_COLOSSAL, lTarget, TRUE);
+
+    // Loop array
+    int nIndex;
+    for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
     {
-        if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
+        oTarget = GetArrayObject(jArray, nIndex);
+        if (GetIsObjectValid(oTarget))
         {
+            //OP_Debug("[INFO] Banishment. Target: " + GetName(oTarget) + " HD: " + IntToString(GetHitDice(oTarget)));
+
+            // We signal this event against everyone even if it should stop early.
+            SignalSpellCastAt();
+
             if (GetRacialType(oTarget) == RACIAL_TYPE_OUTSIDER ||
                 GetAssociateType(oTarget) == ASSOCIATE_TYPE_SUMMONED ||
                 GetAssociateType(oTarget) == ASSOCIATE_TYPE_FAMILIAR ||
                 GetAssociateType(oTarget) == ASSOCIATE_TYPE_ANIMALCOMPANION)
             {
-                SignalSpellCastAt();
-
                 // Must be enough points in the pool to destroy target
                 if (nPool >= GetHitDice(oTarget))
                 {
@@ -70,6 +79,5 @@ void main()
                 }
             }
         }
-        oTarget = GetNextObjectInShape(SHAPE_SPHERE, RADIUS_SIZE_COLOSSAL, lTarget);
     }
 }

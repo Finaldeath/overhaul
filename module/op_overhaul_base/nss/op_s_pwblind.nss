@@ -51,59 +51,49 @@ void main()
     int nIndex;
     for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
     {
-        json jObject = JsonArrayGet(jArray, nIndex);
-
-        // Get the object ID
-        string sOID = JsonGetString(JsonObjectGet(jObject, "objectid"));
-
-        object oObject = StringToObject(sOID);
-
-        if (GetIsObjectValid(oObject))
+        oTarget = GetArrayObject(jArray, nIndex);
+        if (GetIsObjectValid(oTarget))
         {
-            //OP_Debug("[INFO] PW: Blind. Target: " + GetName(oObject) + " HP: " + IntToString(GetCurrentHitPoints(oObject)));
+            //OP_Debug("[INFO] PW: Blind. Target: " + GetName(oTarget) + " HP: " + IntToString(GetCurrentHitPoints(oTarget)));
 
             // We signal this event against everyone even if it should stop early.
             SignalSpellCastAt();
 
             // We don't affect dead creatures as much as we'd like to
-            if (!GetIsDead(oObject))
+            if (!GetIsDead(oTarget))
             {
                 // Calculate the HP change to our running total
-                int nCurrentHP = GetCurrentHitPoints(oObject);
+                int nCurrentHP = GetCurrentHitPoints(oTarget);
                 nHPRemaining -= nCurrentHP;
 
                 // If we have at least 0 (ie if the first target had 200 HP we can still affect them)
                 if (nHPRemaining >= 0)
                 {
                     // Check immunity - we only test this once the target is "valid" HP wise, and still remove that HP from the pool
-                    if (!GetIsImmuneWithFeedback(oObject, IMMUNITY_TYPE_BLINDNESS, oCaster))
+                    if (!GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_BLINDNESS, oCaster))
                     {
+                        float fDelay = GetRandomDelay(0.1, 0.25);
+
                         // Up to 50: Permanent
                         // 51 to 100: 1d4+1 minutes
                         // 101 to 200: 1d4+1 rounds
-                        ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oObject);
+                        DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
                         if (nCurrentHP <= 50)
                         {
-                            ApplySpellEffectToObject(DURATION_TYPE_PERMANENT, eLink, oObject);
+                            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_PERMANENT, eLink, oTarget));
                         }
                         else if (nCurrentHP <= 100)
                         {
-                            ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oObject, GetDuration(d4() + 1, MINUTES));
+                            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(d4() + 1, MINUTES)));
                         }
                         else
                         {
-                            ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oObject, GetDuration(d4() + 1, ROUNDS));
+                            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(d4() + 1, ROUNDS)));
                         }
                     }
                 }
             }
         }
-        else
-        {
-            // Error!
-            OP_Debug("[ERROR] Spell script: " + GetScriptName() + " has target OID is invalid in sorted array loop " + sOID, LOG_LEVEL_ERROR);
-        }
     }
-
 }
 

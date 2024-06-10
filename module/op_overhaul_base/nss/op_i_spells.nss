@@ -92,6 +92,7 @@ const int EFFECT_TYPE_ALL = -1;
 const int SAVING_THROW_TYPE_PARALYSIS = 20;
 
 const int SORT_METHOD_LOWEST_HP = 0;
+const int SORT_METHOD_LOWEST_HD = 1;
 
 // Debug the spell and variables
 void DebugSpellVariables();
@@ -253,6 +254,9 @@ int RemoveEffectsFromSpell(object oObject, int nSpellId, int nEffectType = EFFEC
 // * nSortMethod - The sorting method to apply once all the creatures are added.
 //                 SORT_METHOD_LOWEST_HP - Sorts so first object is the lowest HP.
 json GetArrayOfTargets(int nTargetType, int nSortMethod, int nShape, float fSize, location lTarget, int bLineOfSight=FALSE, int nObjectFilter=OBJECT_TYPE_CREATURE, vector vOrigin=[0.0,0.0,0.0]);
+
+// Gets the given Object stored as FIELD_OBJECTID in jArray at nIndex
+object GetArrayObject(json jArray, int nIndex);
 
 // Returns a EffectRunScript
 // * sScript - If not set will use current script name + "rs" for all 3 slots
@@ -1301,22 +1305,14 @@ int RemoveEffectsMatchingTag(object oObject, string sTag)
     return bRemoved;
 }
 
-// Generates a JsonObject for oObject containing the following key/value pairs:
-// - objectid  - Object's ID value as string ala ObjectToString()
-// - currenthp - Objects current HP as integer
-// Other things will be added once more are needed to sort with GetArrayOfTargets.
-json GetObjectInfo(object oObject)
-{
-    json jObject = JsonObject();
-    jObject = JsonObjectSet(jObject, "objectid", JsonString(ObjectToString(oObject)));
-    jObject = JsonObjectSet(jObject, "currenthp", JsonInt(GetCurrentHitPoints(oObject)));
-    return jObject;
-}
+const string FIELD_OBJECTID = "objectid";
+const string FIELD_METRIC = "metric";
 
 // Loops through relevant shape to get all the targets in it. It then sorts them using nSortMethod.
 // * nTargetType - The SPELL_TARGET_* type to check versus oCaster
 // * nSortMethod - The sorting method to apply once all the creatures are added.
-//                 SORT_METHOD_LOWEST_HP - Sorts so first object is the lowest HP.
+//                 SORT_METHOD_LOWEST_HP - Sorts so first object is the lowest HP
+//                 SORT_METHOD_LOWEST_HD - Sorts so first object is the lowest HD
 json GetArrayOfTargets(int nTargetType, int nSortMethod, int nShape, float fSize, location lTarget, int bLineOfSight=FALSE, int nObjectFilter=OBJECT_TYPE_CREATURE, vector vOrigin=[0.0,0.0,0.0])
 {
     json jArray = JsonArray();
@@ -1326,9 +1322,18 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod, int nShape, float fSize
     {
         json jObject = JsonObject();
 
+        // Metric depends on what we are sorting
+        int nMetric;
+
+        switch (nSortMethod)
+        {
+            case SORT_METHOD_LOWEST_HP: nMetric = GetCurrentHitPoints(oObject); break;
+            case SORT_METHOD_LOWEST_HD: nMetric = GetHitDice(oObject); break;
+        }
+
         // Add the value we sort with first so it's part of the sorting later
-        jObject = JsonObjectSet(jObject, "currenthp", JsonInt(GetCurrentHitPoints(oObject)));
-        jObject = JsonObjectSet(jObject, "objectid", JsonString(ObjectToString(oObject)));
+        jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonInt(nMetric));
+        jObject = JsonObjectSet(jObject, FIELD_OBJECTID, JsonString(ObjectToString(oObject)));
 
         jArray = JsonArrayInsert(jArray, jObject);
 
@@ -1336,12 +1341,36 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod, int nShape, float fSize
     }
 
     // Sort the array
-    if (nSortMethod == SORT_METHOD_LOWEST_HP)
+    if (nSortMethod == SORT_METHOD_LOWEST_HP ||
+        nSortMethod == SORT_METHOD_LOWEST_HD)
     {
         jArray = JsonArrayTransform(jArray, JSON_ARRAY_SORT_ASCENDING);
     }
 
     return jArray;
+}
+
+// Gets the given Object stored as FIELD_OBJECTID in jArray at nIndex
+object GetArrayObject(json jArray, int nIndex)
+{
+    json jObject = JsonArrayGet(jArray, nIndex);
+
+    // Get the object ID
+    string sOID = JsonGetString(JsonObjectGet(jObject, FIELD_OBJECTID));
+
+    if (sOID != "")
+    {
+        object oObject = StringToObject(sOID);
+        if (GetIsObjectValid(oObject))
+        {
+            return oObject;
+        }
+        else
+        {
+            OP_Debug("[ERROR] Spell script: " + GetScriptName() + " has target OID is invalid in sorted array loop " + sOID, LOG_LEVEL_ERROR);
+        }
+    }
+    return OBJECT_INVALID;
 }
 
 // Returns a EffectRunScript

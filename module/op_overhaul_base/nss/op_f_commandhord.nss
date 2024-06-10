@@ -54,8 +54,10 @@ void main()
         {
             SignalSpellCastAt();
 
-            ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget, fDuration);
-            ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
+            float fDelay = GetDistanceBetweenLocations(lTarget, GetLocation(oTarget))/20;
+
+            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget, fDuration));
+            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
         }
         oTarget = GetNextObjectInShape(SHAPE_SPHERE, RADIUS_SIZE_COLOSSAL, lTarget, TRUE, OBJECT_TYPE_CREATURE);
     }
