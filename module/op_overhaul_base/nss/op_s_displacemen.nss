@@ -29,11 +29,9 @@ void main()
 {
     if (DoSpellHook()) return;
 
-    effect eConcealment = EffectConcealment(50);
-    effect eDur = EffectVisualEffect(VFX_DUR_DISPLACEMENT);
-    effect eCessate = EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE);
-    effect eLink = EffectLinkEffects(eConcealment, eDur);
-    eLink = EffectLinkEffects(eLink, eCessate);
+    effect eLink = EffectLinkEffects(EffectConcealment(50),
+                   EffectLinkEffects(EffectVisualEffect(VFX_DUR_DISPLACEMENT),
+                                     EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
 
     float fDuration = GetDuration(nCasterLevel, ROUNDS);
 
