@@ -9390,10 +9390,9 @@
       "TargetTypes": [
         "Self",
         "Creature",
-        "Item",
-        "Placeable"
+        "Item"
       ],
-      "ImpactScript": "NW_S0_Clarity",
+      "ImpactScript": "op_s_mindblank",
       "InnateLevel": 2,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -9423,7 +9422,7 @@
       "SubSpell6": null,
       "SubSpell7": null,
       "SubSpell8": null,
-      "Category": "FriendlyConditionalSingle",
+      "Category": "FriendlyEnhancementSingle",
       "ParentSpell": null,
       "Type": "Spell",
       "UseConcentration": true,
@@ -9435,7 +9434,7 @@
       },
       "CounterSpell2": null,
       "HasProjectileVisuals": false,
-      "TargetShape": "Sphere",
+      "TargetShape": null,
       "TargetSizeX": null,
       "TargetSizeY": null,
       "TargetingFlags": []
@@ -40549,7 +40548,7 @@
       "Index": -1,
       "Overrides": "f58d20aa-0a41-327b-5295-fe7dc0a3ee7b",
       "Disabled": false,
-      "Hint": "\u002BCounterspell, description",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "Lesser_Mind_Blank",
       "ExtensionValues": {},
@@ -40577,7 +40576,7 @@
       "Description": {
         "Index": 6192,
         "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 5\nInnate Level: 5\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Single\nDuration: 1 Turn / Level\nAdditional Counter Spells: Confusion\nSave: Harmless\nSpell Resistance: No\n\nThis spell renders the target creature immune to mind-affecting spells and spell-like effects. It also removes Charm, Confusion, Daze, Domination, Sleep and Stun effects and the effects of the spells Bane and Feeblemind from the target creature.",
+          "M": "Caster Level(s): Wizard / Sorcerer 5\nInnate Level: 5\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Single\nDuration: 1 Minute / Level\nAdditional Counter Spells: Confusion\nSave: Harmless\nSpell Resistance: No\n\nThis spell renders the target creature immune to mind-affecting spells and spell-like effects. It also removes Charm, Confusion, Daze, Domination, Sleep and Stun effects and the effects of the spells Bane and Feeblemind from the target creature.",
           "F": "Caster Level(s): Wizard / Sorcerer 5\nInnate Level: 5\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Single\nDuration: 1 Turn / Level\nAdditional Counter Spells: Confusion\nSave: Harmless\nSpell Resistance: No\n\nThis spell renders the target creature immune to mind-affecting spells and spell-like effects, and removes all negative effects caused by such spells."
         },
         "FR": {
@@ -40615,10 +40614,9 @@
       "TargetTypes": [
         "Self",
         "Creature",
-        "Item",
-        "Placeable"
+        "Item"
       ],
-      "ImpactScript": "NW_S0_LsMndBlk",
+      "ImpactScript": "op_s_mindblank",
       "InnateLevel": 5,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",
@@ -40653,7 +40651,7 @@
       "Type": "Spell",
       "UseConcentration": true,
       "IsCastSpontaneously": false,
-      "IsHostile": true,
+      "IsHostile": false,
       "CounterSpell1": {
         "ID": "544416c7-02d0-730b-91ed-bac8e28beae4",
         "Label": "Confusion"
@@ -44165,7 +44163,7 @@
       "Index": -1,
       "Overrides": "4fe3f005-cd9c-059e-9c1c-964760de72cc",
       "Disabled": false,
-      "Hint": "Not hostile, counterspell Mass Charm",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
@@ -44193,7 +44191,7 @@
       "Description": {
         "Index": 6214,
         "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 8\nInnate Level: 8\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Huge\nDuration: 1 Turn / Level\nAdditional Counter Spells: Mass Charm\nSave: Harmless\nSpell Resistance: No\n\nThis spell renders all allies within the area of effect immune to mind-affecting spells and effects. It also removes Charm, Confusion, Daze, Domination, Sleep and Stun effects and the effects of the spells Bane and Feeblemind from the targeted creatures.",
+          "M": "Caster Level(s): Wizard / Sorcerer 8\nInnate Level: 8\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Huge\nDuration: 1 Minute / Level\nAdditional Counter Spells: Mass Charm\nSave: Harmless\nSpell Resistance: No\n\nThis spell renders all allies within the area of effect immune to mind-affecting spells and effects. It also removes Charm, Confusion, Daze, Domination, Sleep and Stun effects and the effects of the spells Bane and Feeblemind from the targeted creatures.",
           "F": "Caster Level(s): Wizard / Sorcerer 8\nInnate Level: 8\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Huge\nDuration: 1 Turn / Level\nAdditional Counter Spells: Mass Charm\nSave: Harmless\nSpell Resistance: No\n\nThis spell renders all allies within the area of effect immune to mind-affecting spells and effects. All negative mind-affecting effects are also removed from the target creatures."
         },
         "FR": {
@@ -44232,11 +44230,9 @@
         "Self",
         "Creature",
         "Area",
-        "Item",
-        "Door",
-        "Placeable"
+        "Item"
       ],
-      "ImpactScript": "NW_S0_MindBlk",
+      "ImpactScript": "op_s_mindblank",
       "InnateLevel": 8,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",

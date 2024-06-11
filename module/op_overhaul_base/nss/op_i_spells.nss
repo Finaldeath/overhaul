@@ -93,6 +93,7 @@ const int SAVING_THROW_TYPE_PARALYSIS = 20;
 
 const int SORT_METHOD_LOWEST_HP = 0;
 const int SORT_METHOD_LOWEST_HD = 1;
+const int SORT_METHOD_DISTANCE  = 2;
 
 // Debug the spell and variables
 void DebugSpellVariables();
@@ -252,7 +253,9 @@ int RemoveEffectsFromSpell(object oObject, int nSpellId, int nEffectType = EFFEC
 // Loops through relevant shape to get all the targets in it. It then sorts them using nSortMethod.
 // * nTargetType - The SPELL_TARGET_* type to check versus oCaster
 // * nSortMethod - The sorting method to apply once all the creatures are added.
-//                 SORT_METHOD_LOWEST_HP - Sorts so first object is the lowest HP.
+//                 SORT_METHOD_LOWEST_HP - Sorts so first object is the lowest HP
+//                 SORT_METHOD_LOWEST_HD - Sorts so first object is the lowest HD
+//                 SORT_METHOD_DISTANCE  - Sorts so the first object is the lowest distance
 json GetArrayOfTargets(int nTargetType, int nSortMethod, int nShape, float fSize, location lTarget, int bLineOfSight=FALSE, int nObjectFilter=OBJECT_TYPE_CREATURE, vector vOrigin=[0.0,0.0,0.0]);
 
 // Gets the given Object stored as FIELD_OBJECTID in jArray at nIndex
@@ -1313,6 +1316,7 @@ const string FIELD_METRIC = "metric";
 // * nSortMethod - The sorting method to apply once all the creatures are added.
 //                 SORT_METHOD_LOWEST_HP - Sorts so first object is the lowest HP
 //                 SORT_METHOD_LOWEST_HD - Sorts so first object is the lowest HD
+//                 SORT_METHOD_DISTANCE  - Sorts so the first object is the lowest distance
 json GetArrayOfTargets(int nTargetType, int nSortMethod, int nShape, float fSize, location lTarget, int bLineOfSight=FALSE, int nObjectFilter=OBJECT_TYPE_CREATURE, vector vOrigin=[0.0,0.0,0.0])
 {
     json jArray = JsonArray();
@@ -1320,29 +1324,31 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod, int nShape, float fSize
     object oObject = GetFirstObjectInShape(nShape, fSize, lTarget, bLineOfSight, nObjectFilter, vOrigin);
     while (GetIsObjectValid(oObject))
     {
-        json jObject = JsonObject();
-
-        // Metric depends on what we are sorting
-        int nMetric;
-
-        switch (nSortMethod)
+        if (GetSpellTargetValid(oObject, oCaster, nTargetType))
         {
-            case SORT_METHOD_LOWEST_HP: nMetric = GetCurrentHitPoints(oObject); break;
-            case SORT_METHOD_LOWEST_HD: nMetric = GetHitDice(oObject); break;
+            json jObject = JsonObject();
+
+            // Metric depends on what we are sorting
+            switch (nSortMethod)
+            {
+                case SORT_METHOD_LOWEST_HP: jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonInt(GetCurrentHitPoints(oObject))); break;
+                case SORT_METHOD_LOWEST_HD: jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonInt(GetHitDice(oObject))); break;
+                case SORT_METHOD_DISTANCE:  jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonFloat(GetDistanceBetweenLocations(lTarget, GetLocation(oObject)))); break;
+            }
+
+            // Add the value we sort with first and OID second so it's part of the sorting later
+            jObject = JsonObjectSet(jObject, FIELD_OBJECTID, JsonString(ObjectToString(oObject)));
+
+            jArray = JsonArrayInsert(jArray, jObject);
         }
-
-        // Add the value we sort with first so it's part of the sorting later
-        jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonInt(nMetric));
-        jObject = JsonObjectSet(jObject, FIELD_OBJECTID, JsonString(ObjectToString(oObject)));
-
-        jArray = JsonArrayInsert(jArray, jObject);
 
         oObject = GetNextObjectInShape(nShape, fSize, lTarget, bLineOfSight, nObjectFilter, vOrigin);
     }
 
     // Sort the array
     if (nSortMethod == SORT_METHOD_LOWEST_HP ||
-        nSortMethod == SORT_METHOD_LOWEST_HD)
+        nSortMethod == SORT_METHOD_LOWEST_HD ||
+        nSortMethod == SORT_METHOD_DISTANCE)
     {
         jArray = JsonArrayTransform(jArray, JSON_ARRAY_SORT_ASCENDING);
     }

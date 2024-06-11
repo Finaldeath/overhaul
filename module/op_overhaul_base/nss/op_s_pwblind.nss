@@ -42,46 +42,42 @@ void main()
     for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
     {
         oTarget = GetArrayObject(jArray, nIndex);
-        if (GetIsObjectValid(oTarget))
+
+        // We signal this event against everyone even if it should stop early.
+        SignalSpellCastAt();
+
+        // We don't affect dead creatures as much as we'd like to
+        if (!GetIsDead(oTarget))
         {
-            //OP_Debug("[INFO] PW: Blind. Target: " + GetName(oTarget) + " HP: " + IntToString(GetCurrentHitPoints(oTarget)));
+            // Calculate the HP change to our running total
+            int nCurrentHP = GetCurrentHitPoints(oTarget);
+            nHPRemaining -= nCurrentHP;
 
-            // We signal this event against everyone even if it should stop early.
-            SignalSpellCastAt();
-
-            // We don't affect dead creatures as much as we'd like to
-            if (!GetIsDead(oTarget))
+            // If we have at least 0 (ie if the first target had 200 HP we can still affect them)
+            if (nHPRemaining >= 0)
             {
-                // Calculate the HP change to our running total
-                int nCurrentHP = GetCurrentHitPoints(oTarget);
-                nHPRemaining -= nCurrentHP;
-
-                // If we have at least 0 (ie if the first target had 200 HP we can still affect them)
-                if (nHPRemaining >= 0)
+                // Check immunity - we only test this once the target is "valid" HP wise, and still remove that HP from the pool
+                if (!GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_BLINDNESS, oCaster))
                 {
-                    // Check immunity - we only test this once the target is "valid" HP wise, and still remove that HP from the pool
-                    if (!GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_BLINDNESS, oCaster))
-                    {
-                        float fDelay = GetRandomDelay(0.1, 0.25);
+                    float fDelay = GetRandomDelay(0.1, 0.25);
 
-                        if (!DoResistSpell(oTarget, oCaster, fDelay))
+                    if (!DoResistSpell(oTarget, oCaster, fDelay))
+                    {
+                        // Up to 50: Permanent
+                        // 51 to 100: 1d4+1 minutes
+                        // 101 to 200: 1d4+1 rounds
+                        DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
+                        if (nCurrentHP <= 50)
                         {
-                            // Up to 50: Permanent
-                            // 51 to 100: 1d4+1 minutes
-                            // 101 to 200: 1d4+1 rounds
-                            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
-                            if (nCurrentHP <= 50)
-                            {
-                                DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_PERMANENT, eLink, oTarget));
-                            }
-                            else if (nCurrentHP <= 100)
-                            {
-                                DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(d4() + 1, MINUTES)));
-                            }
-                            else
-                            {
-                                DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(d4() + 1, ROUNDS)));
-                            }
+                            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_PERMANENT, eLink, oTarget));
+                        }
+                        else if (nCurrentHP <= 100)
+                        {
+                            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(d4() + 1, MINUTES)));
+                        }
+                        else
+                        {
+                            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(d4() + 1, ROUNDS)));
                         }
                     }
                 }

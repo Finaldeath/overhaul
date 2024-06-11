@@ -46,7 +46,7 @@ void main()
     oTarget = GetFirstObjectInShape(SHAPE_SPHERE, RADIUS_SIZE_MEDIUM, lTarget);
     while (GetIsObjectValid(oTarget))
     {
-        // Unlike Bioware's this affects the caster too, why a vortex wouldn't wh. knows...
+        // Unlike Bioware's this affects the caster too, why a vortex wouldn't who knows...
         if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
         {
             SignalSpellCastAt();
