@@ -32311,7 +32311,8 @@
       "Description": {
         "Index": 6169,
         "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells: Globe of Invulnerability, Greater Spell Mantle\nSave: None\nSpell Resistance: No\n\nThis spell strips an enemy mage of up to four magical defenses, including Spell Mantle, Globes of Invulnerability, Stoneskins, Premonition, Protection from Elements, Ghostly and Ethereal Visage, Mage Armor, Shadow Shield and Elemental Shield. This spell will also lower the target creatures SR rating by 5 for ten rounds."
+          "M": "Caster Level(s): Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Single\nDuration: Special\nAdditional Counter Spells: Globe of Invulnerability, Greater Spell Mantle\nSave: None\nSpell Resistance: No\n\nThis spell strips an enemy mage of up to four magical defenses, including Spell Mantle, Globes of Invulnerability, Stoneskins, Premonition, Protection from Elements, Ghostly and Ethereal Visage, Mage Armor, Shadow Shield and Elemental Shield. This spell will also lower the target creatures SR rating by 5 for ten rounds.",
+          "F": "Caster Level(s): Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells: Globe of Invulnerability, Greater Spell Mantle\nSave: None\nSpell Resistance: No\n\nThis spell strips an enemy mage of up to four magical defenses, including Spell Mantle, Globes of Invulnerability, Stoneskins, Premonition, Protection from Elements, Ghostly and Ethereal Visage, Mage Armor, Shadow Shield and Elemental Shield. This spell will also lower the target creatures SR rating by 5 for ten rounds."
         },
         "FR": {
           "M": "Niveau : Magicien / Ensorceleur 6\nNiveau inn\u00E9 : 6\nEcole : Abjuration\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : moyenne\nZone d\u0027effet / cible : 1 cr\u00E9ature\nDur\u00E9e : instantan\u00E9e\nContresorts suppl\u00E9mentaires : Globe d\u0027invuln\u00E9rabilit\u00E9 renforc\u00E9e, Cape sup\u00E9rieure\nJet de sauvegarde : aucun\nR\u00E9sistance \u00E0 la magie : non\n\nCe sort permet d\u0027\u00F4ter \u00E0 un lanceur de sorts ennemi jusqu\u0027\u00E0 quatre protections magiques, ce qui inclut Cape, les variantes de Globe d\u0027invuln\u00E9rabilit\u00E9 et de Peau de pierre, Pr\u00E9monition, Protection contre les \u00E9l\u00E9ments, Visage spectral, Visage \u00E9th\u00E9r\u00E9, Armure de mage, Bouclier d\u0027ombre et Bouclier \u00E9l\u00E9mentaire. Ce sort diminue en outre de 5 la r\u00E9sistance \u00E0 la magie de la cr\u00E9ature cibl\u00E9e pour 10 rounds."
@@ -32346,8 +32347,7 @@
       ],
       "TargetTypes": [
         "Creature",
-        "Item",
-        "Placeable"
+        "Item"
       ],
       "ImpactScript": "NW_S0_GrSpBrch",
       "InnateLevel": 6,
@@ -32386,12 +32386,12 @@
       "IsCastSpontaneously": false,
       "IsHostile": true,
       "CounterSpell1": {
-        "ID": "4f7949bd-8931-d238-5251-eae639878357",
-        "Label": "Greater Spell Mantle"
-      },
-      "CounterSpell2": {
         "ID": "c1359a4d-93cc-eda6-6fce-d14525bd8bf4",
         "Label": "Globe of Invulnerability"
+      },
+      "CounterSpell2": {
+        "ID": "4f7949bd-8931-d238-5251-eae639878357",
+        "Label": "Greater Spell Mantle"
       },
       "HasProjectileVisuals": true,
       "TargetShape": null,
@@ -40972,10 +40972,9 @@
       ],
       "TargetTypes": [
         "Creature",
-        "Item",
-        "Placeable"
+        "Item"
       ],
-      "ImpactScript": "NW_S0_LsSpBrch",
+      "ImpactScript": "op_s_spellbreach",
       "InnateLevel": 4,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
