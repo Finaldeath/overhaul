@@ -38,4 +38,5 @@ const int EFFECT_ICON_BONUS_FEAT                = 152;
 // visualeffects.2da ones not specified by default
 const int VFX_FNF_SPELL_FAIL_HEAD = 292;
 const int VFX_FNF_SPELL_FAIL_HAND = 293;
+const int VFX_DUR_PROT_ACIDSHIELD = 448;
 
