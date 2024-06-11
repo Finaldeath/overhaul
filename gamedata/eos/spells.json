@@ -13148,7 +13148,7 @@
       "Description": {
         "Index": 3862,
         "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Necromancy\nDescriptor(s): Damage Shield\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 round / level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nA magical aura surrounds the caster injuring creatures that touch it. Any creature striking the caster takes 1d4 points of magical damage \u002B1 point per 2 caster levels (maximum \u002B5).",
+          "M": "Caster Level(s): Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Necromancy\nDescriptor(s): Damage Shield\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 round / level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nA magical aura surrounds the caster injuring creatures that touch it. Any creature striking the caster takes 1d4 points of negative damage \u002B1 point per 2 caster levels (maximum \u002B10).",
           "F": "Caster Level(s): Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Necromancy\nDescriptor(s): Magical Armor\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 round / level\nAdditional Counter Spells:\nSave: Will negates\nSpell Resistance: Yes\n\nA magical aura surrounds the caster -- injuring creatures that touch it. Any creature striking the caster takes 1d4 points of damage \u002B1 point per 2 caster levels (maximum \u002B5)."
         },
         "FR": {
@@ -13187,7 +13187,7 @@
         "Self",
         "Item"
       ],
-      "ImpactScript": "X2_S0_DthArm",
+      "ImpactScript": "op_s_damageshiel",
       "InnateLevel": 2,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -23845,7 +23845,7 @@
         "Self",
         "Item"
       ],
-      "ImpactScript": "NW_S0_FireShld",
+      "ImpactScript": "op_s_damageshiel",
       "InnateLevel": 4,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -43889,7 +43889,7 @@
         "Self",
         "Item"
       ],
-      "ImpactScript": "X2_S0_AcidShth",
+      "ImpactScript": "op_s_damageshiel",
       "InnateLevel": 5,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -65117,7 +65117,7 @@
       "Index": 441,
       "Overrides": "26ff1a90-7371-b5d0-1ed0-a9f9f7d40b6c",
       "Disabled": false,
-      "Hint": "Remove empower, maximize",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
@@ -65184,7 +65184,7 @@
         "Self",
         "Item"
       ],
-      "ImpactScript": "x0_s0_woundwhis",
+      "ImpactScript": "op_s_damageshiel",
       "InnateLevel": 3,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",
