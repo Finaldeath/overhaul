@@ -80,6 +80,7 @@ const int TOUCH_MELEE  = 0;
 const int TOUCH_RANGED = 1;
 
 // For GetSpellTargetValid similar to Bioware's
+const int SPELL_TARGET_ANYTHING         = 0;  // Anything. Most useful for spells like Dispel Magic.
 const int SPELL_TARGET_ALLALLIES        = 1;  // Allies only
 const int SPELL_TARGET_STANDARDHOSTILE  = 2;  // Standard hostile - IE: Will hit allies in certain PvP
 const int SPELL_TARGET_SELECTIVEHOSTILE = 3;  // Selective hostile - IE: Will not hit allies
@@ -151,6 +152,12 @@ int GetAssayResistanceBonus(object oTarget, object oCaster);
 // * 1 - Hit
 // * 2 - Critical Hit
 int DoTouchAttack(object oTarget, object oVersus, int nType, int bDisplayFeedback = TRUE);
+
+// Applies Dispel Magic to the given target (Area of Effects are also handled)
+void DoDispelMagic(object oTarget, int nCasterLevel, effect eVis, float fDelay, int bAll, int bBreach = FALSE);
+
+// Performs a spell breach up to nTotal spell are removed and nSR spell resistance is lowered.
+void DoSpellBreach(object oTarget, int nTotal, int nSR, int bVFX = TRUE);
 
 // Applies metamagic to the given dice roll
 // eg GetDiceRoll(4, 6, 8) will roll 4d6 and add 8 to the final roll
@@ -626,6 +633,148 @@ int DoTouchAttack(object oTarget, object oVersus, int nType, int bDisplayFeedbac
     return TouchAttackRanged(oTarget, bDisplayFeedback);
 }
 
+// Applies Dispel Magic to the given target
+void DoDispelMagic(object oTarget, int nCasterLevel, effect eVis, float fDelay, int bAll, int bBreach = FALSE)
+{
+    // Similar to Biowares both for compatibility and it makes sense.
+
+    // AOE check first
+    if (GetObjectType(oTarget) == OBJECT_TYPE_AREA_OF_EFFECT)
+    {
+        // Custom dispel check on persistent ones only
+        // We decide this just by the PER or MOB identifier. Meh.
+        if (TestStringAgainstPattern("VFX_PER_**", GetTag(oTarget)))
+        {
+            // Dispel magic check
+            int nOpposingCasterLevel = GetCasterLevel(oTarget);
+
+            // Non-spell Persistent AOEs cannot be dispelled
+            if (nOpposingCasterLevel == 0)
+            {
+                OP_Debug("Persistent AOE with no caster level, ignoring, this shouldn't happen.");
+                return;
+            }
+
+            // Same as creatures, can be immune to dispel
+            if (GetLocalInt(oTarget, "X1_L_IMMUNE_TO_DISPEL")) return;
+
+            if (d20() + nCasterLevel >= 10 + nOpposingCasterLevel)
+            {
+                FloatingTextStrRefOnCreature(100929, oCaster);  // "AoE dispelled"
+                if (GetIsObjectValid(GetAreaOfEffectCreator(oTarget)))
+                    FloatingTextStrRefOnCreature(100929, GetAreaOfEffectCreator(oTarget));
+                DelayCommand(fDelay, ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_FNF_LOS_NORMAL_10), GetLocation(oTarget)));
+                DestroyObject(oTarget, fDelay);
+            }
+            else
+            {
+                FloatingTextStrRefOnCreature(100930, oCaster); // "AoE not dispelled"
+            }
+        }
+    }
+
+    // Don't dispel magic on petrified targets
+    // this change is in to prevent weird things from happening with 'statue'
+    // creatures. Also creature can be scripted to be immune to dispel
+    // magic as well.
+    if (GetHasEffect(oTarget, EFFECT_TYPE_PETRIFY) || GetLocalInt(oTarget, "X1_L_IMMUNE_TO_DISPEL") == 10)
+    {
+        return;
+    }
+
+    // Fire spell event
+    if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
+    {
+        SignalSpellCastAt(oTarget, oCaster, TRUE);
+    }
+    else
+    {
+        SignalSpellCastAt(oTarget, oCaster, FALSE);
+    }
+
+    effect eDispel;
+    if (bAll)
+    {
+        eDispel = EffectDispelMagicAll(nCasterLevel);
+        if (bBreach)
+        {
+            DoSpellBreach(oTarget, 6, 10);
+        }
+    }
+    else
+    {
+        eDispel = EffectDispelMagicBest(nCasterLevel);
+        if (bBreach)
+        {
+            DelayCommand(fDelay, DoSpellBreach(oTarget, 2, 10));
+        }
+    }
+
+    DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
+    DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, eDispel, oTarget));
+}
+
+// Performs a spell breach up to nTotal spell are removed and nSR spell resistance is lowered.
+void DoSpellBreach(object oTarget, int nTotal, int nSR, int bVFX = TRUE)
+{
+    // We remove spells in a particular order, until we've removed nTotal number of spells
+    json jArray = JsonArray();
+
+    // Spells to remove. Could be moved to the 2da but frankly ordering it there is going to be a pain.
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_GREATER_SPELL_MANTLE));
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_PREMONITION));
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_SPELL_MANTLE));
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_SHADOW_SHIELD));
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_GREATER_STONESKIN));
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_ETHEREAL_VISAGE));
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_GLOBE_OF_INVULNERABILITY));
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_ENERGY_BUFFER));
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_ETHEREALNESS)); // Greater Sanctuary
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_MINOR_GLOBE_OF_INVULNERABILITY));
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_SPELL_RESISTANCE));
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_STONESKIN));
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_LESSER_SPELL_MANTLE));
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_MESTILS_ACID_SHEATH));
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_MIND_BLANK));
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_ELEMENTAL_SHIELD));
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_PROTECTION_FROM_SPELLS));
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_PROTECTION_FROM_ELEMENTS));
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_RESIST_ELEMENTS));
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_DEATH_ARMOR));
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_GHOSTLY_VISAGE));
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_ENDURE_ELEMENTS));
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_SHADOW_SHIELD));
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_SHADOW_CONJURATION_MAGE_ARMOR));
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_NEGATIVE_ENERGY_PROTECTION));
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_SANCTUARY));
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_MAGE_ARMOR));
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_STONE_BONES));
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_SHIELD));
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_SHIELD_OF_FAITH));
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_LESSER_MIND_BLANK));
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_IRONGUTS));
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_RESISTANCE));
+
+    int nIndex, nRemoved = 0;
+    for (nIndex = 0; nIndex < JsonGetLength(jArray) && nRemoved < nTotal; nIndex++)
+    {
+        json jObject = JsonArrayGet(jArray, nIndex);
+
+        if (RemoveEffectsFromSpell(oTarget, JsonGetInt(jObject)))
+        {
+            nRemoved++;
+        }
+    }
+    // This can not be dispelled
+    effect eLink = ExtraordinaryEffect(EffectLinkEffects(EffectSpellResistanceDecrease(nSR), EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+    ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, RoundsToSeconds(10));
+
+    if (bVFX)
+    {
+        ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_BREACH), oTarget);
+    }
+}
+
 // Applies metamagic to the given dice roll
 // eg GetDiceRoll(4, 6, 8) will roll 4d6 and add 8 to the final roll
 // Metamagic is applied automatically (alter with the global nMetaMagic)
@@ -722,6 +871,11 @@ int GetSpellTargetValid(object oTarget, object oCaster, int nTargetType)
             {
                 bReturnValue = TRUE;
             }
+        }
+        break;
+        case SPELL_TARGET_ANYTHING:
+        {
+            bReturnValue = TRUE;
         }
         break;
         default:
