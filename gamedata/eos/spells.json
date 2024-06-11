@@ -32283,7 +32283,7 @@
       "Index": -1,
       "Overrides": "d7e13d94-f9e5-42d7-9b4e-273b0e5b2e7a",
       "Disabled": false,
-      "Hint": "Counterspells",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
@@ -32404,7 +32404,7 @@
       "Index": -1,
       "Overrides": "4f7949bd-8931-d238-5251-eae639878357",
       "Disabled": false,
-      "Hint": "Added Counterspell",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
@@ -32432,7 +32432,8 @@
       "Description": {
         "Index": 6170,
         "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 9\nInnate Level: 9\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Round / Level\nAdditional Counter Spells: Greater Spell Breach\nSave: None\nSpell Resistance: No\n\nCreates a barrier around the caster that absorbs all incoming spells. It can absorb up to 1d12\u002B10 levels of spells before collapsing. "
+          "M": "Caster Level(s): Wizard / Sorcerer 9\nInnate Level: 9\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Round / Level\nAdditional Counter Spells: Greater Spell Breach\nSave: Harmless\nSpell Resistance: No\n\nCreates a barrier around the caster that absorbs all incoming spells. It can absorb up to 1d12\u002B10 levels of spells before collapsing. ",
+          "F": "Caster Level(s): Wizard / Sorcerer 9\nInnate Level: 9\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Round / Level\nAdditional Counter Spells: Greater Spell Breach\nSave: None\nSpell Resistance: No\n\nCreates a barrier around the caster that absorbs all incoming spells. It can absorb up to 1d12\u002B10 levels of spells before collapsing. "
         },
         "FR": {
           "M": "Niveau : Magicien / Ensorceleur 9\nNiveau inn\u00E9 : 9\nEcole : Abjuration\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : personnelle\nZone d\u0027effet / cible : lanceur\nDur\u00E9e : 1 round/niveau\nContresorts suppl\u00E9mentaires : Br\u00E8che sup\u00E9rieure\nJet de sauvegarde : aucun\nR\u00E9sistance \u00E0 la magie : non\n\nCe sort cr\u00E9e une barri\u00E8re autour du lanceur qui absorbe les sorts. La barri\u00E8re peut absorber 1d12 \u002B 10 niveaux de sort avant de dispara\u00EEtre."
@@ -32461,6 +32462,9 @@
         "S"
       ],
       "AvailableMetaMagic": [
+        "Empower",
+        "Extend",
+        "Maximize",
         "Quicken",
         "Silent",
         "Still"
@@ -32469,7 +32473,7 @@
         "Self",
         "Item"
       ],
-      "ImpactScript": "NW_S0_GrSpMant",
+      "ImpactScript": "op_s_spellmantle",
       "InnateLevel": 9,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -40909,7 +40913,7 @@
       "Index": -1,
       "Overrides": "18384fc3-3c01-88f3-9a94-8492d492b9bd",
       "Disabled": false,
-      "Hint": "Counterspells",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
@@ -41029,7 +41033,7 @@
       "Index": -1,
       "Overrides": "1ef83608-33f4-7bab-0225-ef46b6096492",
       "Disabled": false,
-      "Hint": "\u002BCounterspells",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "Lesser_Spell_Mantle",
       "ExtensionValues": {},
@@ -41057,7 +41061,8 @@
       "Description": {
         "Index": 6196,
         "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 5\nInnate Level: 5\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Round / Level\nAdditional Counter Spells: Lesser Spell Breach, Lesser Spell Mantle\nSave: Harmless\nSpell Resistance: No\n\nCreates a barrier around the caster that absorbs all incoming spells and spell-like abilities. It can absorb up to 1d4\u002B6 levels of spells before collapsing."
+          "M": "Caster Level(s): Wizard / Sorcerer 5\nInnate Level: 5\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Round / Level\nAdditional Counter Spells: Lesser Spell Breach, Greater Spell Breach\nSave: Harmless\nSpell Resistance: No\n\nCreates a barrier around the caster that absorbs all incoming spells and spell-like abilities. It can absorb up to 1d4\u002B6 levels of spells before collapsing.",
+          "F": "Caster Level(s): Wizard / Sorcerer 5\nInnate Level: 5\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Round / Level\nAdditional Counter Spells: Lesser Spell Breach, Lesser Spell Mantle\nSave: Harmless\nSpell Resistance: No\n\nCreates a barrier around the caster that absorbs all incoming spells and spell-like abilities. It can absorb up to 1d4\u002B6 levels of spells before collapsing."
         },
         "FR": {
           "M": "Niveau : Magicien / Ensorceleur 5\nNiveau inn\u00E9 : 5\nEcole : Abjuration\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : personnelle\nZone d\u0027effet / cible : lanceur\nDur\u00E9e : 1 round/niveau\nContresorts suppl\u00E9mentaires : Br\u00E8che, Cape\nJet de sauvegarde : inoffensif\nR\u00E9sistance \u00E0 la magie : non\n\nCr\u00E9e une barri\u00E8re autour du lanceur qui absorbe tous les sorts et les pouvoirs magiques. La barri\u00E8re peut absorber jusqu\u0027\u00E0 1d4 \u002B 6 niveaux de sort avant de dispara\u00EEtre."
@@ -41097,7 +41102,7 @@
         "Self",
         "Item"
       ],
-      "ImpactScript": "NW_S0_LsSpMant",
+      "ImpactScript": "op_s_spellmantle",
       "InnateLevel": 5,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -41138,8 +41143,8 @@
         "Label": "Lesser Spell Breach"
       },
       "CounterSpell2": {
-        "ID": "1ef83608-33f4-7bab-0225-ef46b6096492",
-        "Label": "Lesser Spell Mantle"
+        "ID": "d7e13d94-f9e5-42d7-9b4e-273b0e5b2e7a",
+        "Label": "Greater Spell Breach"
       },
       "HasProjectileVisuals": false,
       "TargetShape": null,
@@ -58255,7 +58260,7 @@
       "Index": -1,
       "Overrides": "ff673ac3-a04f-7aff-4583-2a90277cdb24",
       "Disabled": false,
-      "Hint": "added Counterspells",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
@@ -58283,7 +58288,8 @@
       "Description": {
         "Index": 6262,
         "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 7\nInnate Level: 7\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Round / Level\nAdditional Counter Spells: Spell Breach\nSave: Harmless\nSpell Resistance: No\n\nCreates a barrier around the caster that absorbs all incoming spells and spell-like abilities. It can absorb up to 1d8\u002B8 spell levels before collapsing."
+          "M": "Caster Level(s): Wizard / Sorcerer 7\nInnate Level: 7\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Round / Level\nAdditional Counter Spells: Lesser Spell Breach, Greater Spell Breach\nSave: Harmless\nSpell Resistance: No\n\nCreates a barrier around the caster that absorbs all incoming spells and spell-like abilities. It can absorb up to 1d8\u002B8 spell levels before collapsing.",
+          "F": "Caster Level(s): Wizard / Sorcerer 7\nInnate Level: 7\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Round / Level\nAdditional Counter Spells: Spell Breach\nSave: Harmless\nSpell Resistance: No\n\nCreates a barrier around the caster that absorbs all incoming spells and spell-like abilities. It can absorb up to 1d8\u002B8 spell levels before collapsing."
         },
         "FR": {
           "M": "Niveau : Magicien / Ensorceleur 7\nNiveau inn\u00E9 : 7\nEcole : Abjuration\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : personnelle\nZone d\u0027effet / cible : lanceur\nDur\u00E9e : 1 round/niveau\nContresorts suppl\u00E9mentaires : Br\u00E8che\nJet de sauvegarde : inoffensif\nR\u00E9sistance \u00E0 la magie : non\n\nCe sort cr\u00E9e une barri\u00E8re autour du lanceur qui absorbe 1d8\u002B8 niveaux de sorts ou de pouvoirs magiques avant de dispara\u00EEtre."
@@ -58323,7 +58329,7 @@
         "Self",
         "Item"
       ],
-      "ImpactScript": "NW_S0_SpMantle",
+      "ImpactScript": "op_s_spellmantle",
       "InnateLevel": 7,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
