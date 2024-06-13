@@ -35,8 +35,11 @@ const int EFFECT_ICON_BARD_SONG                 = 150;
 const int EFFECT_ICON_CURSE_SONG                = 151;
 const int EFFECT_ICON_BONUS_FEAT                = 152;
 
-// visualeffects.2da ones not specified by default
+// visualeffects.2da
 const int VFX_FNF_SPELL_FAIL_HEAD = 292;
 const int VFX_FNF_SPELL_FAIL_HAND = 293;
 const int VFX_DUR_PROT_ACIDSHIELD = 448;
+
+// spells.2da
+const int SPELL_CURE_CRITICAL_WOUNDS_OTHER = 567;
 

@@ -147,6 +147,7 @@ int DoResistSpell(object oTarget, object oCaster, float fDelay = 0.0);
 int GetAssayResistanceBonus(object oTarget, object oCaster);
 
 // Does a relevant touch attack. Some classes add bonuses to touch attacks, which can be added in here.
+// - nType can be TOUCH_MELEE or TOUCH_RANGED
 // Return values:
 // * 0 - Miss
 // * 1 - Hit
@@ -288,6 +289,7 @@ int GetItemTrackingIDMatches(effect eRunScript, object oTrackingParent = OBJECT_
 
 // Returns a garanteed invalid, and otherwise useless, effect.
 effect EffectInvalidEffect();
+
 
 // These global variables are used in most spell scripts and are initialised here to be consistent
 // NB: You can't reuse these variables in the very functions in this list, so we pass them in.
@@ -785,7 +787,7 @@ int GetDiceRoll(int nNumberOfDice, int nDiceSize, int nBonus = 0)
     {
         nDamage += Random(nDiceSize) + 1;
     }
-    // Resolve metamagic
+    // Resolve metamagic. Maximize and Empower don't stack.
     if (nMetaMagic & METAMAGIC_MAXIMIZE)
     {
         nDamage = nDiceSize * nNumberOfDice;

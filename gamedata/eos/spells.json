@@ -11492,7 +11492,7 @@
       "Description": {
         "Index": 6127,
         "EN": {
-          "M": "Caster Level(s): Bard 4, Cleric 4, Druid 5\nInnate Level: 4\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells: Inflict Critical Wounds\nSave: Will 1/2\nSpell Resistance: Yes\n\nThe target creature is healed of 4d8 points of damage, \u002B 1 point per caster level to a maximum of \u002B20.\r\n\r\nHealing spells have a reverse effect when used on undead, causing the targeted undead to take an amount of damage equal to what the spell normally heals. A successful touch attack must first be made when this spell is used against undead.",
+          "M": "Caster Level(s): Bard 4, Cleric 4, Druid 5\nInnate Level: 4\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells: Inflict Critical Wounds\nSave: Will 1/2\nSpell Resistance: Yes\n\nThe target creature is healed of 4d8 points of damage, \u002B1 point per caster level to a maximum of \u002B20.\r\n\r\nHealing spells have a reverse effect when used on undead, causing the targeted undead to take an amount of damage equal to what the spell normally heals. A successful touch attack must first be made when this spell is used against undead.",
           "F": "Caster Level(s): Bard 4, Cleric 4, Druid 5\nInnate Level: 4\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells:\nSave: Will for 1/2\nSpell Resistance: Yes\n\nThe target creature is healed of 4d8 points of damage, \u002B 1 point per caster level to a maximum of \u002B20. Healing spells have a reverse effect when used on undead, causing the targeted undead to take an amount of damage equal to what the spell normally heals. A successful touch attack must first be made when this spell is used against undead."
         },
         "FR": {
@@ -11531,10 +11531,9 @@
       "TargetTypes": [
         "Self",
         "Creature",
-        "Item",
-        "Placeable"
+        "Item"
       ],
-      "ImpactScript": "NW_S0_CurCrWn",
+      "ImpactScript": "op_s_curewounds",
       "InnateLevel": 4,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",
@@ -11614,7 +11613,7 @@
       "Description": {
         "Index": 6127,
         "EN": {
-          "M": "Caster Level(s): \nInnate Level: 4\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells: Inflict Critical Wounds\nSave: Will 1/2\nSpell Resistance: Yes\n\nThe target creature is healed of 4d8 points of damage, \u002B 1 point per caster level to a maximum of \u002B20.\r\n\r\nHealing spells have a reverse effect when used on undead, causing the targeted undead to take an amount of damage equal to what the spell normally heals. A successful touch attack must first be made when this spell is used against undead.\r\n\r\nHealing spells do not affect constructs. ",
+          "M": "Caster Level(s): \nInnate Level: 4\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells: Inflict Critical Wounds\nSave: Will 1/2\nSpell Resistance: Yes\n\nThe target creature is healed of 4d8 points of damage, \u002B1 point per caster level to a maximum of \u002B20.\r\n\r\nHealing spells have a reverse effect when used on undead, causing the targeted undead to take an amount of damage equal to what the spell normally heals. A successful touch attack must first be made when this spell is used against undead.\r\n\r\nHealing spells do not affect constructs. ",
           "F": "Caster Level(s): Bard 4, Cleric 4, Druid 5\nInnate Level: 4\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells:\nSave: Will for 1/2\nSpell Resistance: Yes\n\nThe target creature is healed of 4d8 points of damage, \u002B 1 point per caster level to a maximum of \u002B20. Healing spells have a reverse effect when used on undead, causing the targeted undead to take an amount of damage equal to what the spell normally heals. A successful touch attack must first be made when this spell is used against undead."
         },
         "FR": {
@@ -11652,10 +11651,9 @@
       ],
       "TargetTypes": [
         "Creature",
-        "Item",
-        "Placeable"
+        "Item"
       ],
-      "ImpactScript": "x2_s0_cureother",
+      "ImpactScript": "op_s_curewounds",
       "InnateLevel": 4,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",
@@ -11774,10 +11772,9 @@
       "TargetTypes": [
         "Self",
         "Creature",
-        "Item",
-        "Placeable"
+        "Item"
       ],
-      "ImpactScript": "NW_S0_CurLgtW",
+      "ImpactScript": "op_s_curewounds",
       "InnateLevel": 1,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -11897,10 +11894,9 @@
       "TargetTypes": [
         "Self",
         "Creature",
-        "Item",
-        "Placeable"
+        "Item"
       ],
-      "ImpactScript": "NW_S0_CurMinW",
+      "ImpactScript": "op_s_curewounds",
       "InnateLevel": 0,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -12022,10 +12018,9 @@
       "TargetTypes": [
         "Self",
         "Creature",
-        "Item",
-        "Placeable"
+        "Item"
       ],
-      "ImpactScript": "NW_S0_CurModW",
+      "ImpactScript": "op_s_curewounds",
       "InnateLevel": 2,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -12147,10 +12142,9 @@
       "TargetTypes": [
         "Self",
         "Creature",
-        "Item",
-        "Placeable"
+        "Item"
       ],
-      "ImpactScript": "NW_S0_CurSerW",
+      "ImpactScript": "op_s_curewounds",
       "InnateLevel": 3,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -33414,7 +33408,7 @@
         "Item",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_Heal",
+      "ImpactScript": "op_s_curewounds",
       "InnateLevel": 6,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",
