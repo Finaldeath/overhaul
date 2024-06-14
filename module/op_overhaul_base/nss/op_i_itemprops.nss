@@ -17,15 +17,7 @@
 
 #include "op_i_debug"
 #include "utl_i_itemprop"
-
-// Fields for the Json tag storage on item properties
-
-const string FIELD_OVERHAUL    = "overhaul";   // Int
-const int OVERHAUL_VERSION     = 1;            // Matching check for FIELD_OVERHAUL
-const string FIELD_SPELLID     = "spellid";    // Int
-const string FIELD_CREATOR     = "creator";    // String (OID)
-const string FIELD_CASTERLEVEL = "casterlevel";// Int
-const string FIELD_SPELLSAVEDC = "spellsavedc";// Int
+#include "op_i_json"
 
 // Debugs the given item and it's properties
 void DebugItemProperties(object oItem);
@@ -40,7 +32,7 @@ void RemoveItemPropertiesMatchingTag(object oItem, string sTag);
 void RemoveItemPropertiesMatchingSpellId(object oItem, int nSpellId);
 
 // Returns a the item property tagged with Json relating to the given fields
-itemproperty ApplyItemPropertyTaggedInfo(itemproperty ipProperty, int nSpellId, object oCreator, int nCasterLevel, int nSpellSaveDC);
+itemproperty ApplyItemPropertyTaggedInfo(itemproperty ipProperty, int nSpellId, object oCreator, int nCasterLevel, int nSpellSaveDC, int nMetaMagic);
 
 // Retrieves the item properties spell Id (need to be set with ApplyItemPropertyTaggedInfo)
 // Returns SPELL_INVALID if not found
@@ -57,6 +49,10 @@ int GetItemPropertyCasterLevel(itemproperty ipProperty);
 // Retrieves the item properties spell save DC (need to be set with ApplyItemPropertyTaggedInfo)
 // Returns 0 if not found
 int GetItemPropertySpellSaveDC(itemproperty ipProperty);
+
+// Retrieves the item properties metamagic (need to be set with ApplyItemPropertyTaggedInfo)
+// Returns 0 if not found
+int GetItemPropertyMetaMagic(itemproperty ipProperty);
 
 // Debugs the given item and it's properties
 void DebugItemProperties(object oItem)
@@ -130,16 +126,17 @@ void RemoveItemPropertiesMatchingSpellId(object oItem, int nSpellId)
 }
 
 // Returns a the item property tagged with Json relating to the given fields
-itemproperty ApplyItemPropertyTaggedInfo(itemproperty ipProperty, int nSpellId, object oCreator, int nCasterLevel, int nSpellSaveDC)
+itemproperty ApplyItemPropertyTaggedInfo(itemproperty ipProperty, int nSpellId, object oCreator, int nCasterLevel, int nSpellSaveDC, int nMetaMagic)
 {
     // We use a Json object dumped to string for this.
     json jObject = JsonObject();
 
-    jObject = JsonObjectSet(jObject, FIELD_OVERHAUL, JsonInt(OVERHAUL_VERSION));
-    jObject = JsonObjectSet(jObject, FIELD_SPELLID, JsonInt(nSpellId));
-    jObject = JsonObjectSet(jObject, FIELD_CREATOR, JsonString(ObjectToString(oCreator)));
-    jObject = JsonObjectSet(jObject, FIELD_CASTERLEVEL, JsonInt(nCasterLevel));
-    jObject = JsonObjectSet(jObject, FIELD_SPELLSAVEDC, JsonInt(nSpellSaveDC));
+    jObject = JsonObjectSet(jObject, JSON_FIELD_OVERHAUL, JsonInt(OVERHAUL_VERSION));
+    jObject = JsonObjectSet(jObject, JSON_FIELD_SPELLID, JsonInt(nSpellId));
+    jObject = JsonObjectSet(jObject, JSON_FIELD_CREATOR, JsonString(ObjectToString(oCreator)));
+    jObject = JsonObjectSet(jObject, JSON_FIELD_CASTERLEVEL, JsonInt(nCasterLevel));
+    jObject = JsonObjectSet(jObject, JSON_FIELD_SPELLSAVEDC, JsonInt(nSpellSaveDC));
+    jObject = JsonObjectSet(jObject, JSON_FIELD_METAMAGIC, JsonInt(nMetaMagic));
 
     OP_Debug("[ApplyItemPropertyTaggedInfo] Setting JSON:" + JsonDump(jObject));
 
@@ -147,7 +144,7 @@ itemproperty ApplyItemPropertyTaggedInfo(itemproperty ipProperty, int nSpellId, 
 }
 
 // Retrieves the item properties given field as integer (need to be set with ApplyItemPropertyTaggedInfo)
-// * sField - FIELD_* to find
+// * sField - JSON_FIELD_* to find
 // Returns nDefault if not found
 int GetItemPropertyTaggedIntField(itemproperty ipProperty, string sField, int nDefault = 0)
 {
@@ -161,13 +158,13 @@ int GetItemPropertyTaggedIntField(itemproperty ipProperty, string sField, int nD
 
     if (JsonGetType(jObject) == JSON_TYPE_NULL)
     {
-        OP_Debug("[GetItemPropertySpellId] No found valid Json. Error: " + JsonGetError(jObject));
+        OP_Debug("[GetItemPropertyTaggedIntField] No found valid Json. Error: " + JsonGetError(jObject), LOG_LEVEL_ERROR);
         return nDefault;
     }
     // Is it overhaul?
-    if (JsonGetInt(JsonObjectGet(jObject, FIELD_OVERHAUL)) != OVERHAUL_VERSION)
+    if (JsonGetInt(JsonObjectGet(jObject, JSON_FIELD_OVERHAUL)) != OVERHAUL_VERSION)
     {
-        OP_Debug("[GetItemPropertySpellId] Json found but not Overhaul. Error: " + JsonGetError(jObject));
+        OP_Debug("[GetItemPropertyTaggedIntField] Json found but not Overhaul. Error: " + JsonGetError(jObject), LOG_LEVEL_ERROR);
         return nDefault;
     }
 
@@ -180,7 +177,7 @@ int GetItemPropertyTaggedIntField(itemproperty ipProperty, string sField, int nD
 }
 
 // Retrieves the item properties given field as object (need to be set with ApplyItemPropertyTaggedInfo)
-// * sField - FIELD_* to find
+// * sField - JSON_FIELD_* to find
 // Returns OBJECT_INVALID if not found
 object GetItemPropertyTaggedObjectField(itemproperty ipProperty, string sField)
 {
@@ -194,13 +191,13 @@ object GetItemPropertyTaggedObjectField(itemproperty ipProperty, string sField)
 
     if (JsonGetType(jObject) == JSON_TYPE_NULL)
     {
-        OP_Debug("[GetItemPropertyCreator] No found valid Json. Error: " + JsonGetError(jObject));
+        OP_Debug("[GetItemPropertyTaggedObjectField] No found valid Json. Error: " + JsonGetError(jObject), LOG_LEVEL_ERROR);
         return OBJECT_INVALID;
     }
     // Is it overhaul?
-    if (JsonGetInt(JsonObjectGet(jObject, FIELD_OVERHAUL)) != OVERHAUL_VERSION)
+    if (JsonGetInt(JsonObjectGet(jObject, JSON_FIELD_OVERHAUL)) != OVERHAUL_VERSION)
     {
-        OP_Debug("[GetItemPropertySpellId] Json found but not Overhaul. Error: " + JsonGetError(jObject));
+        OP_Debug("[GetItemPropertyTaggedObjectField] Json found but not Overhaul. Error: " + JsonGetError(jObject), LOG_LEVEL_ERROR);
         return OBJECT_INVALID;
     }
 
@@ -224,26 +221,33 @@ object GetItemPropertyTaggedObjectField(itemproperty ipProperty, string sField)
 // Returns SPELL_INVALID if not found
 int GetItemPropertySpellId(itemproperty ipProperty)
 {
-    return GetItemPropertyTaggedIntField(ipProperty, FIELD_SPELLID, -1);
+    return GetItemPropertyTaggedIntField(ipProperty, JSON_FIELD_SPELLID, -1);
 }
 
 // Retrieves the item properties creator (need to be set with ApplyItemPropertyTaggedInfo)
 // Returns OBJECT_INVALID if not found
 object GetItemPropertyCreator(itemproperty ipProperty)
 {
-    return GetItemPropertyTaggedObjectField(ipProperty, FIELD_CREATOR);
+    return GetItemPropertyTaggedObjectField(ipProperty, JSON_FIELD_CREATOR);
 }
 
 // Retrieves the item properties caster level (need to be set with ApplyItemPropertyTaggedInfo)
 // Returns 0 if not found
 int GetItemPropertyCasterLevel(itemproperty ipProperty)
 {
-    return GetItemPropertyTaggedIntField(ipProperty, FIELD_CASTERLEVEL, 0);
+    return GetItemPropertyTaggedIntField(ipProperty, JSON_FIELD_CASTERLEVEL, 0);
 }
 
 // Retrieves the item properties spell save DC (need to be set with ApplyItemPropertyTaggedInfo)
 // Returns 0 if not found
 int GetItemPropertySpellSaveDC(itemproperty ipProperty)
 {
-    return GetItemPropertyTaggedIntField(ipProperty, FIELD_SPELLSAVEDC, -1);
+    return GetItemPropertyTaggedIntField(ipProperty, JSON_FIELD_SPELLSAVEDC, 0);
+}
+
+// Retrieves the item properties metamagic (need to be set with ApplyItemPropertyTaggedInfo)
+// Returns 0 if not found
+int GetItemPropertyMetaMagic(itemproperty ipProperty)
+{
+    return GetItemPropertyTaggedIntField(ipProperty, JSON_FIELD_METAMAGIC, 0);
 }
