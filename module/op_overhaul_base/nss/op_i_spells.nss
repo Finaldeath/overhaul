@@ -307,6 +307,16 @@ int GetItemTrackingIDMatches(effect eRunScript, object oTrackingParent = OBJECT_
 // Returns a garanteed invalid, and otherwise useless, effect.
 effect EffectInvalidEffect();
 
+// Gets an appropriate effect based on the target (PC or master is PC) and difficulty
+// Works around some issues when some effects are buggy applied to PCs as well.
+// Used for: Fear, Paralysis, Stun, Confusion, Charm, Dominate.
+effect GetScaledEffect(effect eEffect, object oTarget);
+
+// Gets difficulty based scaling of duration if the target is a PC. Has to be manually applied.
+// Should be used for: Paralysis, Stun, Daze, Sleep, Charm, Domination (although the latter 2 get converted to Daze)
+// * nDuratoinType - ROUNDS, MINUTES, HOURS
+float GetScaledDuration(object oTarget, int nDuration, int nDurationType);
+
 
 // These global variables are used in most spell scripts and are initialised here to be consistent
 // NB: You can't reuse these variables in the very functions in this list, so we pass them in.
@@ -1194,12 +1204,24 @@ effect EffectChangeProperties(effect eEffect, int nSpellId = SPELL_INVALID, int 
 // Applies the given effect but merges in the right spell Id, caster Id and caster level.
 void ApplySpellEffectToObject(int nDurationType, effect eEffect, object oTarget, float fDuration = 0.0)
 {
+    // Error checking
+    if (nDurationType == DURATION_TYPE_TEMPORARY && fDuration <= 0.0)
+        OP_Debug("[ApplySpellEffectToObject] Error: Temporary duration but fDuration is: " + FloatToString(fDuration), LOG_LEVEL_ERROR);
+    else if (nDurationType != DURATION_TYPE_TEMPORARY && fDuration != 0.0)
+        OP_Debug("[ApplySpellEffectToObject] Error: Non-Temporary duration but fDuration is: " + FloatToString(fDuration), LOG_LEVEL_ERROR);
+
     ApplyEffectToObject(nDurationType, EffectChangeProperties(eEffect, nSpellId, nCasterLevel, oCaster), oTarget, fDuration);
 }
 
 // Applies the given effect but merges in the right spell Id, caster Id and caster level.
 void ApplySpellEffectAtLocation(int nDurationType, effect eEffect, location lTarget, float fDuration = 0.0)
 {
+    // Error checking
+    if (nDurationType == DURATION_TYPE_TEMPORARY && fDuration <= 0.0)
+        OP_Debug("[ApplySpellEffectToObject] Error: Temporary duration but fDuration is: " + FloatToString(fDuration), LOG_LEVEL_ERROR);
+    else if (nDurationType != DURATION_TYPE_TEMPORARY && fDuration != 0.0)
+        OP_Debug("[ApplySpellEffectToObject] Error: Non-Temporary duration but fDuration is: " + FloatToString(fDuration), LOG_LEVEL_ERROR);
+
     ApplyEffectAtLocation(nDurationType, EffectChangeProperties(eEffect, nSpellId, nCasterLevel, oCaster), lTarget, fDuration);
 }
 
@@ -1720,3 +1742,64 @@ effect EffectInvalidEffect()
     return eReturn;
 }
 
+// Gets an appropriate effect based on the target (PC or master is PC) and difficulty
+// Works around some issues when some effects are buggy applied to PCs as well.
+// Used for: Fear, Paralysis, Stun, Confusion, Charm, Dominate.
+effect GetScaledEffect(effect eEffect, object oTarget)
+{
+    object oMaster = GetMaster(oTarget);
+    if(GetIsPC(oTarget) || (GetIsObjectValid(oMaster) && GetIsPC(oMaster)))
+    {
+        int nDiff = GetGameDifficulty();
+        switch (GetEffectType(eEffect))
+        {
+            case EFFECT_TYPE_FRIGHTENED:
+            {
+                if (nDiff == GAME_DIFFICULTY_VERY_EASY) return EffectAttackDecrease(2);
+                if (nDiff == GAME_DIFFICULTY_EASY) return EffectAttackDecrease(4);
+            }
+            break;
+            // Only affects DM "very easy" difficulty so meh why bother?
+            case EFFECT_TYPE_PARALYZE:
+            case EFFECT_TYPE_STUNNED:
+            case EFFECT_TYPE_CONFUSED:
+            {
+                if (nDiff == GAME_DIFFICULTY_VERY_EASY) return EffectDazed();
+            }
+            break;
+            case EFFECT_TYPE_CHARMED:
+            case EFFECT_TYPE_DOMINATED:
+            {
+                return EffectDazed();
+            }
+            break;
+        }
+    }
+    return eEffect;
+}
+
+// Gets difficulty based scaling of duration if the target is a PC. Has to be manually applied.
+// Should be used for: Paralysis, Stun, Daze, Sleep, Charm, Domination (although the latter 2 get converted to Daze)
+// * nDuratoinType - ROUNDS, MINUTES, HOURS
+float GetScaledDuration(object oTarget, int nDuration, int nDurationType)
+{
+    float fDuration = GetDuration(nDuration, nDurationType);
+    float fReturn = fDuration;
+    if (GetIsPC(oTarget))
+    {
+        int nDiff = GetGameDifficulty();
+        if (nDiff == GAME_DIFFICULTY_VERY_EASY || nDiff == GAME_DIFFICULTY_EASY)
+        {
+            fReturn = fDuration / 4;
+        }
+        else if (nDiff == GAME_DIFFICULTY_NORMAL)
+        {
+            fReturn = fDuration / 2;
+        }
+        if (fReturn < 6.0)
+        {
+            fReturn = 6.0;
+        }
+    }
+    return fReturn;
+}
