@@ -43244,7 +43244,7 @@
       "Description": {
         "Index": 6208,
         "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 8\nInnate Level: 8\nSchool: Enchantment\nDescriptor(s): Mind-Affecting\nComponent(s): Verbal\nRange: Short\nArea of Effect / Target: Large\nDuration: 1 Round / 2 Levels\nAdditional Counter Spells:\nSave: Will Negates\nSpell Resistance: Yes\n\nIn the eyes of all enemy creatures within the area of affect, the personal reputation of the caster is improved by 50%. The caster can charm up to twice his caster level in creatures.",
+          "M": "Caster Level(s): Wizard / Sorcerer 8\nInnate Level: 8\nSchool: Enchantment\nDescriptor(s): Mind-Affecting\nComponent(s): Verbal\nRange: Short\nArea of Effect / Target: Large\nDuration: 1 Round / 2 Levels\nAdditional Counter Spells:\nSave: Will Negates\nSpell Resistance: Yes\n\nIn the eyes of all enemy humanoids within the area of affect, the personal reputation of the caster is improved by 50%. The caster can charm up to twice his caster level in creatures.",
           "F": "Caster Level(s): Wizard / Sorcerer 8\nInnate Level: 8\nSchool: Enchantment\nDescriptor(s): Mind-Affecting\nComponent(s): Verbal\nRange: Short\nArea of Effect / Target: Large\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: Will Negates\nSpell Resistance: Yes\n\nIn the eyes of all non-allied creatures within the area of affect, the personal reputation of the caster is improved by 50%. The caster can charm up to twice his hit dice in creatures."
         },
         "FR": {
@@ -43283,7 +43283,7 @@
         "Item",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_MsCharm",
+      "ImpactScript": "op_s_charm",
       "InnateLevel": 8,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -43326,8 +43326,7 @@
       "TargetSizeX": 5,
       "TargetSizeY": null,
       "TargetingFlags": [
-        "HarmsEnemies",
-        "HarmsAllies"
+        "HarmsEnemies"
       ]
     },
     {
