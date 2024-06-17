@@ -20,6 +20,7 @@
     oTarget - The target if any
     LTarget - The target location (or location of oTarget if valid)
     nSpellId - the SPELL_* cast
+    nSpellSchool - The spell school of nSpellId, used in DoResistSpell and other locations
     nSpellSaveDC - the Spell Save DC (if a proper spell)
     nCasterLevel - the Caster Level
     nMetaMagic - Metamagic feat
@@ -151,13 +152,10 @@ location GetSpellTargetLocationCalculated(object oTarget);
 // Note: If used within an Area of Effect Object Script (On Enter, OnExit, OnHeartbeat), you MUST pass GetAreaOfEffectCreator() into oSaveVersus!
 int DoSavingThrow(object oTarget, object oSaveVersus, int nSavingThrow, int nDC, int nSaveType = SAVING_THROW_TYPE_NONE, float fDelay = 0.0);
 
-// Used to route the resist magic checks into this function to check for spell countering by SR, Globes or Mantles.
-//   Return value if oCaster or oTarget is an invalid object: FALSE
-//   Return value if spell cast is not a player spell: - 1
-//   Return value if spell resisted: 1
-//   Return value if spell resisted via magic immunity: 2
-//   Return value if spell resisted via spell absorption: 3
-int DoResistSpell(object oTarget, object oCaster, float fDelay = 0.0);
+// Used to route the resist magic checks into this function to check for spell countering by SR, Immunity, Globes or Mantles.
+// Now a simple TRUE if spell resisted/immune/absorbed, or FALSE otherwise.
+// Can now be called in a "non-true spell" so be careful and don't use in monster ability scripts.
+int DoResistSpell(object oTarget, object oCaster, float fDelay = 0.0, int bResistCheck = TRUE, int bImmunityCheck = TRUE, int bAbsorbCheck = TRUE);
 
 // Gets the assay resistance bonus to caster level for oCaster if it is affecting oTarget
 int GetAssayResistanceBonus(object oTarget, object oCaster);
@@ -325,6 +323,7 @@ object oCaster   = GetSpellCaster();
 object oTarget   = GetSpellTargetObjectCalculated();
 location lTarget = GetSpellTargetLocationCalculated(oTarget);
 int nSpellId     = GetSpellIdCalculated();
+int nSpellSchool = GetSpellSchool(nSpellId);
 int nSpellSaveDC = GetSpellSaveDCCalculated(oCaster, nSpellId);
 int nCasterLevel = GetCasterLevelCalculated(oCaster, nSpellId);
 int nMetaMagic   = GetMetaMagicFeatCalculated();
@@ -651,13 +650,10 @@ int DoSavingThrow(object oTarget, object oSaveVersus, int nSavingThrow, int nDC,
     return nResult;
 }
 
-// Used to route the resist magic checks into this function to check for spell countering by SR, Globes or Mantles.
-//   Return value if oCaster or oTarget is an invalid object: FALSE
-//   Return value if spell cast is not a player spell: FALSE (usually -1)
-//   Return value if spell resisted: 1
-//   Return value if spell resisted via magic immunity: 2
-//   Return value if spell resisted via spell absorption: 3
-int DoResistSpell(object oTarget, object oCaster, float fDelay = 0.0)
+// Used to route the resist magic checks into this function to check for spell countering by SR, Immunity, Globes or Mantles.
+// Now a simple TRUE if spell resisted/immune/absorbed, or FALSE otherwise.
+// Can now be called in a "non-true spell" so be careful and don't use in monster ability scripts.
+int DoResistSpell(object oTarget, object oCaster, float fDelay = 0.0, int bResistCheck = TRUE, int bImmunityCheck = TRUE, int bAbsorbCheck = TRUE)
 {
     // Alter the delay so it applies just before any other VFX
     if (fDelay > 0.5)
@@ -665,38 +661,58 @@ int DoResistSpell(object oTarget, object oCaster, float fDelay = 0.0)
         fDelay = fDelay - 0.1;
     }
 
-    // Do the spell resistance check
-    int nResistSpellCasterLevel = nCasterLevel;
-
-    // Check for Assay Resistance bonus vs. oTarget
-    nResistSpellCasterLevel += GetAssayResistanceBonus(oTarget, oCaster);
-
-    // TODO: Make use of the above
-
-    int nResist = ResistSpell(oCaster, oTarget);
-
-
-    if (nResist == 1)  // Spell Resistance
+    // Error check
+    if (!GetIsObjectValid(oTarget) || !GetIsObjectValid(oCaster))
     {
-        DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_MAGIC_RESISTANCE_USE), oTarget));
+        OP_Debug("[DoResistSpell] Error, caster or target is invalid. Caster: " + GetName(oCaster) + " Target: " + GetName(oTarget), LOG_LEVEL_ERROR);
+        return FALSE;
     }
-    else if (nResist == 2)  // Globe or Immunity: Spell
+
+    // We test the 3 resist spell functions in the ResistSpell order for now:
+    // Spell Absorption (Limited), Spell Absorption (Unlimited), Spell Immunity, Spell Resistance
+
+    // Spell Absorption (Limited) ie mantles
+    if (SpellAbsorptionLimitedCheck(oTarget, oCaster, nSpellId, nSpellSchool, nSpellLevel))
     {
-        DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_GLOBE_USE), oTarget));
-    }
-    else if (nResist == 3)  // Spell Mantle
-    {
+        OP_Debug("[DoResistSpell] SpellAbsorptionLimitedCheck: TRUE against target: " + GetName(oTarget));
         if (fDelay > 0.5)
         {
             fDelay = fDelay - 0.1;
         }
         DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_SPELL_MANTLE_USE), oTarget));
+        return TRUE;
     }
 
-    // This captures "not a player spell"
-    if (nResist < 0) nResist = 0;
+    // Spell Absorption (Unlimited) ie Globes
+    if (SpellAbsorptionUnlimitedCheck(oTarget, oCaster, nSpellId, nSpellSchool, nSpellLevel))
+    {
+        OP_Debug("[DoResistSpell] SpellAbsorptionUnlimitedCheck: TRUE against target: " + GetName(oTarget));
+        DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_GLOBE_USE), oTarget));
+        return TRUE;
+    }
 
-    return nResist;
+    // Spell Immunity
+    if (SpellImmunityCheck(oTarget, oCaster, nSpellId))
+    {
+        OP_Debug("[DoResistSpell] SpellImmunityCheck: TRUE against target: " + GetName(oTarget));
+        DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_GLOBE_USE), oTarget));
+        return TRUE;
+    }
+
+    // Spell Resistance
+    int nTargetSpellResistance = GetSpellResistance(oTarget);
+    int nResistSpellCasterLevel = nCasterLevel;
+
+    // Check for Assay Resistance bonus vs. oTarget
+    nResistSpellCasterLevel += GetAssayResistanceBonus(oTarget, oCaster);
+
+    if (SpellResistanceCheck(oTarget, oCaster, nSpellId, nResistSpellCasterLevel, nTargetSpellResistance))
+    {
+        OP_Debug("[DoResistSpell] SpellResistanceCheck: TRUE against target: " + GetName(oTarget));
+        DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_MAGIC_RESISTANCE_USE), oTarget));
+        return TRUE;
+    }
+    return FALSE;
 }
 
 // Gets the assay resistance bonus to caster level for oCaster if it is affecting oTarget
