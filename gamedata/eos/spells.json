@@ -11551,10 +11551,10 @@
       "CastingSound": null,
       "HasProjectile": false,
       "ProjectileModel": null,
-      "ProjectileType": null,
-      "ProjectileSpawnPoint": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
       "ProjectileSound": null,
-      "ProjectileOrientation": null,
+      "ProjectileOrientation": "Path",
       "SubSpell1": null,
       "SubSpell2": null,
       "SubSpell3": null,
@@ -11781,7 +11781,7 @@
       "ConjurationHeadEffect": null,
       "ConjurationHandEffect": "vco_smhanheal01",
       "ConjurationGroundEffect": null,
-      "ConjurationSound": "sco_mehanheal01",
+      "ConjurationSound": "sco_mehanheal02",
       "ConjurationMaleSound": "vs_chant_conj_lm",
       "ConjurationFemaleSound": "vs_chant_conj_lf",
       "CastingAnimation": "Touch",
@@ -11903,7 +11903,7 @@
       "ConjurationHeadEffect": null,
       "ConjurationHandEffect": "vco_smhanheal01",
       "ConjurationGroundEffect": null,
-      "ConjurationSound": "sco_mehanheal01",
+      "ConjurationSound": "sco_mehanheal02",
       "ConjurationMaleSound": "vs_chant_conj_lm",
       "ConjurationFemaleSound": "vs_chant_conj_lf",
       "CastingAnimation": "Touch",
@@ -12024,24 +12024,24 @@
       "InnateLevel": 2,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
-      "ConjurationHeadEffect": null,
+      "ConjurationHeadEffect": "",
       "ConjurationHandEffect": "vco_smhanheal01",
       "ConjurationGroundEffect": null,
-      "ConjurationSound": "sco_mehanheal01",
+      "ConjurationSound": "sco_mehanheal02",
       "ConjurationMaleSound": "vs_chant_conj_lm",
       "ConjurationFemaleSound": "vs_chant_conj_lf",
       "CastingAnimation": "Touch",
       "CastTime": 1000,
       "CastingHeadEffect": null,
-      "CastingHandEffect": null,
+      "CastingHandEffect": "",
       "CastingGroundEffect": null,
       "CastingSound": null,
       "HasProjectile": false,
       "ProjectileModel": null,
-      "ProjectileType": null,
-      "ProjectileSpawnPoint": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
       "ProjectileSound": null,
-      "ProjectileOrientation": null,
+      "ProjectileOrientation": "Path",
       "SubSpell1": null,
       "SubSpell2": null,
       "SubSpell3": null,
@@ -12162,10 +12162,10 @@
       "CastingSound": null,
       "HasProjectile": false,
       "ProjectileModel": null,
-      "ProjectileType": null,
-      "ProjectileSpawnPoint": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
       "ProjectileSound": null,
-      "ProjectileOrientation": null,
+      "ProjectileOrientation": "Path",
       "SubSpell1": null,
       "SubSpell2": null,
       "SubSpell3": null,
@@ -33408,8 +33408,7 @@
       "TargetTypes": [
         "Self",
         "Creature",
-        "Item",
-        "Placeable"
+        "Item"
       ],
       "ImpactScript": "op_s_curewounds",
       "InnateLevel": 6,
@@ -33429,10 +33428,10 @@
       "CastingSound": null,
       "HasProjectile": false,
       "ProjectileModel": null,
-      "ProjectileType": null,
-      "ProjectileSpawnPoint": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
       "ProjectileSound": null,
-      "ProjectileOrientation": null,
+      "ProjectileOrientation": "Path",
       "SubSpell1": null,
       "SubSpell2": null,
       "SubSpell3": null,
@@ -33457,127 +33456,6 @@
       "TargetSizeX": null,
       "TargetSizeY": null,
       "TargetingFlags": []
-    },
-    {
-      "ID": "3278079d-d8c0-4818-a69b-c15df785f139",
-      "Index": -1,
-      "Overrides": "81023d09-d783-b863-42b5-47a9f47c68ff",
-      "Disabled": false,
-      "Hint": "",
-      "ScriptConstant": "",
-      "SourceLabel": "Healing_Circle",
-      "ExtensionValues": {},
-      "Name": {
-        "Index": 830,
-        "EN": {
-          "M": "Healing Circle"
-        },
-        "FR": {
-          "M": "Cercle de gu\u00E9rison"
-        },
-        "DE": {
-          "M": "Kreis der Heilung"
-        },
-        "IT": {
-          "M": "Cerchio di Guarigione"
-        },
-        "ES": {
-          "M": "C\u00EDrculo curativo"
-        },
-        "PL": {
-          "M": "Uzdrawiaj\u0105cy Kr\u0105g"
-        }
-      },
-      "Description": {
-        "Index": 6177,
-        "EN": {
-          "M": "Caster Level(s): Bard 5, Cleric 5, Druid 6\nInnate Level: 5\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Medium\nDuration: Instant\nAdditional Counter Spells: Circle of Doom\nSave: Fortitude 1/2\nSpell Resistance: Yes\n\nAll friendly creatures within the area of effect are healed for 1d8 Hit Points, \u002B1 points per caster level up to a maximum of \u002B20. Healing spells have a reverse effect when used on undead, harming instead of healing them."
-        },
-        "FR": {
-          "M": "Niveau : Barde 5, Pr\u00EAtre 5, Druide 6\nNiveau inn\u00E9 : 5\nEcole : Invocation\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : personnelle\nZone d\u0027effet / cible : moyenne\nDur\u00E9e : instantan\u00E9e\nContresorts suppl\u00E9mentaires : Cercle de douleur\nJet de sauvegarde : Vigueur, 1/2\nR\u00E9sistance \u00E0 la magie : oui\n\nToutes les cr\u00E9atures amies dans la zone d\u0027effet r\u00E9cup\u00E8rent 1d8 points de vie \u002B1 par niveau du lanceur (maximum \u002B20). Les sorts de soins inversent leurs effets contre les morts-vivants et leur infligent des d\u00E9g\u00E2ts au lieu de les soigner."
-        },
-        "DE": {
-          "M": "Grad: BAR 5, DRU 6, KLE 5\nKalkulationsgrad: 5\nSchule: Beschw\u00F6rung\nKategorie:\nKomponenten: V, G\nReichweite: Pers\u00F6nlich\nWirkungsbereich/Ziel: Mittel\nWirkungsdauer: Augenblicklich\nGegenzauber: Kreis des Unheils\nRettungswurf: Z\u00E4higkeit halbiert\nZauberresistenz: Ja\n\nAlle freundlichen Kreaturen im Wirkungsbereich werden um 1W8 Trefferpunkte \u002B1 Trefferpunkt pro Zauberstufe geheilt (h\u00F6chstens \u002B20). Auf Untote hat der Zauber genau den gegenteiligen Effekt: Sie erleiden Schaden."
-        },
-        "IT": {
-          "M": "Livello dell\u2019incantatore: bardo 5, chierico 5, druido 6\nLivello innato: 5\nScuola: Evocazione\nDescrittore:\nComponenti: verbale, somatica\nRaggio d\u0027azione: personale\nArea d\u0027effetto/bersaglio: medio\nDurata: istantanea\nControincantesimi addizionali: Cerchio di devastazione\nTiro salvezza: tempra dimezza\nResistenza agli incantesimi: s\u00EC\n\nTutte le creature amiche entro l\u0027area d\u0027effetto vengono guarite per 1d8 Punti Ferita, \u002B1 Punto Ferita per livello dell\u0027incantatore, fino a un massimo di \u002B20. Gli incantesimi di guarigione hanno effetto contrario sui non morti, danneggiandoli invece di guarirli."
-        },
-        "ES": {
-          "M": "Nivel de lanzador: Bardo 5, Cl\u00E9rigo 5, Druida 6\nNivel innato: 5\nEscuela: Conjuraci\u00F3n\nDescriptores:\nComponentes: Verbal, Som\u00E1tico\nAlcance: Personal\n\u00C1rea de efecto / Objetivo: Intermedio\nDuraci\u00F3n: Instant\u00E1neo\nContraconjuros adicionales: C\u00EDrculo de fatalidad\nTiro de salvaci\u00F3n: Fortaleza 1/2\nResistencia a conjuros: S\u00ED\n\nTodas las criaturas amistosas dentro del \u00E1rea de efecto objetivo recuperan 1d8 puntos de golpe, \u002B1 punto por nivel de lanzador hasta un m\u00E1ximo de \u002B20. Los conjuros de curaci\u00F3n tienen un efecto inverso cuando se usan sobre muertos vivientes, da\u00F1\u00E1ndolos en lugar de curarlos."
-        },
-        "PL": {
-          "M": "Poziom(y) czaruj\u0105cego: Bard 5, Kap\u0142an 5, Druid 6\nPoziom wrodzony: 5\nSzko\u0142a: Przywo\u0142ywanie\nIdentyfikator(y):\nKomponent(y): Werbalne, Somatyczne\nZasi\u0119g: Osobisty\nObszar dzia\u0142ania / Cel: \u015Aredni\nCzas trwania: Natychmiastowy\nDodatkowe przeciwzakl\u0119cia: Kr\u0105g Zag\u0142ady\nRzut obronny: Wytrwa\u0142o\u015B\u0107, po\u0142owa\nOdporno\u015B\u0107 na czary: Tak\n\nKa\u017Cdy sojusznik na obszarze dzia\u0142ania czaru zostaje uleczony z 1k8 punkt\u00F3w obra\u017Ce\u0144, \u002B 1 na poziom rzucaj\u0105cego. Czar ten dzia\u0142a odwrotnie na nieumar\u0142ych, ka\u017Cdy nieumar\u0142y, kt\u00F3ry znajdzie si\u0119 w Uzdrawiaj\u0105cym Kr\u0119gu, otrzymuje 1k8 obra\u017Ce\u0144 \u002B1/poziom."
-        }
-      },
-      "AlternativeCastMessage": {
-        "Index": null
-      },
-      "Icon": "is_healcirc",
-      "School": "C",
-      "Range": "P",
-      "Components": [
-        "V",
-        "S"
-      ],
-      "AvailableMetaMagic": [
-        "Empower",
-        "Maximize",
-        "Quicken",
-        "Silent",
-        "Still"
-      ],
-      "TargetTypes": [
-        "Self",
-        "Area"
-      ],
-      "ImpactScript": "NW_S0_HealCirc",
-      "InnateLevel": 5,
-      "ConjurationTime": 1500,
-      "ConjuringAnimation": "Hand",
-      "ConjurationHeadEffect": null,
-      "ConjurationHandEffect": "vco_mehanheal03",
-      "ConjurationGroundEffect": "vco_lgrinheal01",
-      "ConjurationSound": "sco_lgrinheal01",
-      "ConjurationMaleSound": "vs_chant_conj_hm",
-      "ConjurationFemaleSound": "vs_chant_conj_hf",
-      "CastingAnimation": "Up",
-      "CastTime": 1000,
-      "CastingHeadEffect": null,
-      "CastingHandEffect": null,
-      "CastingGroundEffect": null,
-      "CastingSound": null,
-      "HasProjectile": false,
-      "ProjectileModel": null,
-      "ProjectileType": null,
-      "ProjectileSpawnPoint": null,
-      "ProjectileSound": null,
-      "ProjectileOrientation": null,
-      "SubSpell1": null,
-      "SubSpell2": null,
-      "SubSpell3": null,
-      "SubSpell4": null,
-      "SubSpell5": null,
-      "SubSpell6": null,
-      "SubSpell7": null,
-      "SubSpell8": null,
-      "Category": "FriendlyHealingAoe",
-      "ParentSpell": null,
-      "Type": "Spell",
-      "UseConcentration": true,
-      "IsCastSpontaneously": false,
-      "IsHostile": false,
-      "CounterSpell1": {
-        "ID": "5e3f4d50-0f15-a635-6273-760d2feadd04",
-        "Label": "Circle of Doom"
-      },
-      "CounterSpell2": null,
-      "HasProjectileVisuals": false,
-      "TargetShape": "Sphere",
-      "TargetSizeX": 5,
-      "TargetSizeY": null,
-      "TargetingFlags": [
-        "HelpsAllies"
-      ]
     },
     {
       "ID": "6e8bf61e-bd4d-4eb5-bd90-a3ee4aa99b73",
@@ -43330,6 +43208,407 @@
       ]
     },
     {
+      "ID": "59cb1aa8-94b0-4196-89de-ab669f08461c",
+      "Index": 33,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Mass Cure Critical Wounds",
+          "F": "New Spell"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Caster Level(s): Cleric 8, Druid 9\r\nInnate Level: 8\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Large\nDuration: Instant\nAdditional Counter Spells: \nSave: Will 1/2\nSpell Resistance: Yes\n\nAll friendly creatures within the area of effect are healed for 3d8 Hit Points, \u002B1 points per caster level up to a maximum of \u002B40.\r\n\r\nHealing spells have a reverse effect when used on hostile undead creatures, harming instead of healing them.\r\n\r\nHealing spells do not affect constructs.",
+          "F": "Caster Level(s): Bard 6, Cleric 6, Druid 7\nInnate Level: 6\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Large\nDuration: Instant\nAdditional Counter Spells: \nSave: Will 1/2\nSpell Resistance: Yes\n\nAll friendly creatures within the area of effect are healed for 1d8 Hit Points, \u002B1 points per caster level up to a maximum of \u002B25. Healing spells have a reverse effect when used on undead, harming instead of healing them."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "i_dummy",
+      "School": "C",
+      "Range": "S",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Empower",
+        "Maximize",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Creature",
+        "Area",
+        "Item"
+      ],
+      "ImpactScript": "op_s_curewounds",
+      "InnateLevel": 8,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Head",
+      "ConjurationHeadEffect": "vco_mehanheal03",
+      "ConjurationHandEffect": null,
+      "ConjurationGroundEffect": "vco_lgrinheal01",
+      "ConjurationSound": "sco_mehanheal03",
+      "ConjurationMaleSound": "vs_chant_conj_hm",
+      "ConjurationFemaleSound": "vs_chant_conj_hf",
+      "CastingAnimation": "Up",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": null,
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyHealingAoe",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": true,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": "Sphere",
+      "TargetSizeX": 5,
+      "TargetSizeY": null,
+      "TargetingFlags": [
+        "HelpsAllies"
+      ]
+    },
+    {
+      "ID": "3278079d-d8c0-4818-a69b-c15df785f139",
+      "Index": -1,
+      "Overrides": "81023d09-d783-b863-42b5-47a9f47c68ff",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "MASS_CURE_LIGHT_WOUNDS",
+      "SourceLabel": "Healing_Circle",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 830,
+        "EN": {
+          "M": "Mass Cure Light Wounds",
+          "F": "Healing Circle"
+        },
+        "FR": {
+          "M": "Cercle de gu\u00E9rison"
+        },
+        "DE": {
+          "M": "Kreis der Heilung"
+        },
+        "IT": {
+          "M": "Cerchio di Guarigione"
+        },
+        "ES": {
+          "M": "C\u00EDrculo curativo"
+        },
+        "PL": {
+          "M": "Uzdrawiaj\u0105cy Kr\u0105g"
+        }
+      },
+      "Description": {
+        "Index": 6177,
+        "EN": {
+          "M": "Caster Level(s): Bard 5, Cleric 5, Druid 6\nInnate Level: 5\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Large\nDuration: Instant\nAdditional Counter Spells: Circle of Doom\nSave: Will 1/2\nSpell Resistance: Yes\n\nAll friendly creatures within the area of effect are healed for 1d8 Hit Points, \u002B1 points per caster level up to a maximum of \u002B25.\r\n\r\nHealing spells have a reverse effect when used on hostile undead creatures, harming instead of healing them.\r\n\r\nHealing spells do not affect constructs.",
+          "F": "Caster Level(s): Bard 5, Cleric 5, Druid 6\nInnate Level: 5\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Medium\nDuration: Instant\nAdditional Counter Spells: Circle of Doom\nSave: Fortitude 1/2\nSpell Resistance: Yes\n\nAll friendly creatures within the area of effect are healed for 1d8 Hit Points, \u002B1 points per caster level up to a maximum of \u002B20. Healing spells have a reverse effect when used on undead, harming instead of healing them."
+        },
+        "FR": {
+          "M": "Niveau : Barde 5, Pr\u00EAtre 5, Druide 6\nNiveau inn\u00E9 : 5\nEcole : Invocation\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : personnelle\nZone d\u0027effet / cible : moyenne\nDur\u00E9e : instantan\u00E9e\nContresorts suppl\u00E9mentaires : Cercle de douleur\nJet de sauvegarde : Vigueur, 1/2\nR\u00E9sistance \u00E0 la magie : oui\n\nToutes les cr\u00E9atures amies dans la zone d\u0027effet r\u00E9cup\u00E8rent 1d8 points de vie \u002B1 par niveau du lanceur (maximum \u002B20). Les sorts de soins inversent leurs effets contre les morts-vivants et leur infligent des d\u00E9g\u00E2ts au lieu de les soigner."
+        },
+        "DE": {
+          "M": "Grad: BAR 5, DRU 6, KLE 5\nKalkulationsgrad: 5\nSchule: Beschw\u00F6rung\nKategorie:\nKomponenten: V, G\nReichweite: Pers\u00F6nlich\nWirkungsbereich/Ziel: Mittel\nWirkungsdauer: Augenblicklich\nGegenzauber: Kreis des Unheils\nRettungswurf: Z\u00E4higkeit halbiert\nZauberresistenz: Ja\n\nAlle freundlichen Kreaturen im Wirkungsbereich werden um 1W8 Trefferpunkte \u002B1 Trefferpunkt pro Zauberstufe geheilt (h\u00F6chstens \u002B20). Auf Untote hat der Zauber genau den gegenteiligen Effekt: Sie erleiden Schaden."
+        },
+        "IT": {
+          "M": "Livello dell\u2019incantatore: bardo 5, chierico 5, druido 6\nLivello innato: 5\nScuola: Evocazione\nDescrittore:\nComponenti: verbale, somatica\nRaggio d\u0027azione: personale\nArea d\u0027effetto/bersaglio: medio\nDurata: istantanea\nControincantesimi addizionali: Cerchio di devastazione\nTiro salvezza: tempra dimezza\nResistenza agli incantesimi: s\u00EC\n\nTutte le creature amiche entro l\u0027area d\u0027effetto vengono guarite per 1d8 Punti Ferita, \u002B1 Punto Ferita per livello dell\u0027incantatore, fino a un massimo di \u002B20. Gli incantesimi di guarigione hanno effetto contrario sui non morti, danneggiandoli invece di guarirli."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Bardo 5, Cl\u00E9rigo 5, Druida 6\nNivel innato: 5\nEscuela: Conjuraci\u00F3n\nDescriptores:\nComponentes: Verbal, Som\u00E1tico\nAlcance: Personal\n\u00C1rea de efecto / Objetivo: Intermedio\nDuraci\u00F3n: Instant\u00E1neo\nContraconjuros adicionales: C\u00EDrculo de fatalidad\nTiro de salvaci\u00F3n: Fortaleza 1/2\nResistencia a conjuros: S\u00ED\n\nTodas las criaturas amistosas dentro del \u00E1rea de efecto objetivo recuperan 1d8 puntos de golpe, \u002B1 punto por nivel de lanzador hasta un m\u00E1ximo de \u002B20. Los conjuros de curaci\u00F3n tienen un efecto inverso cuando se usan sobre muertos vivientes, da\u00F1\u00E1ndolos en lugar de curarlos."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Bard 5, Kap\u0142an 5, Druid 6\nPoziom wrodzony: 5\nSzko\u0142a: Przywo\u0142ywanie\nIdentyfikator(y):\nKomponent(y): Werbalne, Somatyczne\nZasi\u0119g: Osobisty\nObszar dzia\u0142ania / Cel: \u015Aredni\nCzas trwania: Natychmiastowy\nDodatkowe przeciwzakl\u0119cia: Kr\u0105g Zag\u0142ady\nRzut obronny: Wytrwa\u0142o\u015B\u0107, po\u0142owa\nOdporno\u015B\u0107 na czary: Tak\n\nKa\u017Cdy sojusznik na obszarze dzia\u0142ania czaru zostaje uleczony z 1k8 punkt\u00F3w obra\u017Ce\u0144, \u002B 1 na poziom rzucaj\u0105cego. Czar ten dzia\u0142a odwrotnie na nieumar\u0142ych, ka\u017Cdy nieumar\u0142y, kt\u00F3ry znajdzie si\u0119 w Uzdrawiaj\u0105cym Kr\u0119gu, otrzymuje 1k8 obra\u017Ce\u0144 \u002B1/poziom."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_healcirc",
+      "School": "C",
+      "Range": "S",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Empower",
+        "Maximize",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Creature",
+        "Area",
+        "Item"
+      ],
+      "ImpactScript": "op_s_curewounds",
+      "InnateLevel": 5,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Head",
+      "ConjurationHeadEffect": "vco_smhanheal01",
+      "ConjurationHandEffect": "",
+      "ConjurationGroundEffect": "vco_megrdheal01",
+      "ConjurationSound": "sco_mehanheal02",
+      "ConjurationMaleSound": "vs_chant_conj_hm",
+      "ConjurationFemaleSound": "vs_chant_conj_hf",
+      "CastingAnimation": "Up",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": null,
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyHealingAoe",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": true,
+      "IsHostile": false,
+      "CounterSpell1": {
+        "ID": "5e3f4d50-0f15-a635-6273-760d2feadd04",
+        "Label": "Circle of Doom"
+      },
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": "Sphere",
+      "TargetSizeX": 5,
+      "TargetSizeY": null,
+      "TargetingFlags": [
+        "HelpsAllies"
+      ]
+    },
+    {
+      "ID": "9b275c57-2b61-4792-9f68-03300c87ec7e",
+      "Index": 31,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Mass Cure Moderate Wounds",
+          "F": "New Spell"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Caster Level(s): Bard 6, Cleric 6, Druid 7\nInnate Level: 6\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Large\nDuration: Instant\nAdditional Counter Spells: \nSave: Will 1/2\nSpell Resistance: Yes\n\nAll friendly creatures within the area of effect are healed for 2d8 Hit Points, \u002B1 points per caster level up to a maximum of \u002B30.\r\n\r\nHealing spells have a reverse effect when used on hostile undead creatures, harming instead of healing them.\r\n\r\nHealing spells do not affect constructs.",
+          "F": "Caster Level(s): Bard 6, Cleric 6, Druid 7\nInnate Level: 6\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Large\nDuration: Instant\nAdditional Counter Spells: \nSave: Will 1/2\nSpell Resistance: Yes\n\nAll friendly creatures within the area of effect are healed for 1d8 Hit Points, \u002B1 points per caster level up to a maximum of \u002B25. Healing spells have a reverse effect when used on undead, harming instead of healing them."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "i_dummy",
+      "School": "C",
+      "Range": "S",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Empower",
+        "Maximize",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Creature",
+        "Area",
+        "Item"
+      ],
+      "ImpactScript": "op_s_curewounds",
+      "InnateLevel": 6,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Head",
+      "ConjurationHeadEffect": "vco_mehanheal01",
+      "ConjurationHandEffect": "",
+      "ConjurationGroundEffect": "vco_megrdheal01",
+      "ConjurationSound": "sco_mehanheal02",
+      "ConjurationMaleSound": "vs_chant_conj_hm",
+      "ConjurationFemaleSound": "vs_chant_conj_hf",
+      "CastingAnimation": "Up",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": null,
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyHealingAoe",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": true,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": "Sphere",
+      "TargetSizeX": 5,
+      "TargetSizeY": null,
+      "TargetingFlags": [
+        "HelpsAllies"
+      ]
+    },
+    {
+      "ID": "dd77e8fe-9cb0-4422-abd5-335fca97739e",
+      "Index": 32,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Mass Cure Serious Wounds",
+          "F": "New Spell"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Caster Level(s): Cleric 7, Druid 8\nInnate Level: 7\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Large\nDuration: Instant\nAdditional Counter Spells: \nSave: Will 1/2\nSpell Resistance: Yes\n\nAll friendly creatures within the area of effect are healed for 3d8 Hit Points, \u002B1 points per caster level up to a maximum of \u002B35.\r\n\r\nHealing spells have a reverse effect when used on hostile undead creatures, harming instead of healing them.\r\n\r\nHealing spells do not affect constructs.",
+          "F": "Caster Level(s): Bard 6, Cleric 6, Druid 7\nInnate Level: 6\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Large\nDuration: Instant\nAdditional Counter Spells: \nSave: Will 1/2\nSpell Resistance: Yes\n\nAll friendly creatures within the area of effect are healed for 1d8 Hit Points, \u002B1 points per caster level up to a maximum of \u002B25. Healing spells have a reverse effect when used on undead, harming instead of healing them."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "i_dummy",
+      "School": "C",
+      "Range": "S",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Empower",
+        "Maximize",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Creature",
+        "Area",
+        "Item"
+      ],
+      "ImpactScript": "op_s_curewounds",
+      "InnateLevel": 7,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Head",
+      "ConjurationHeadEffect": "vco_mehanheal02",
+      "ConjurationHandEffect": "",
+      "ConjurationGroundEffect": "vco_megrdheal01",
+      "ConjurationSound": "sco_mehanheal03",
+      "ConjurationMaleSound": "vs_chant_conj_hm",
+      "ConjurationFemaleSound": "vs_chant_conj_hf",
+      "CastingAnimation": "Up",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": null,
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyHealingAoe",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": true,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": "Sphere",
+      "TargetSizeX": 5,
+      "TargetSizeY": null,
+      "TargetingFlags": [
+        "HelpsAllies"
+      ]
+    },
+    {
       "ID": "2f198532-9f60-4ab1-941d-1e22f2fcf140",
       "Index": -1,
       "Overrides": "28651d6f-c47d-2023-559c-4bebe97b5a05",
@@ -43483,7 +43762,7 @@
       "Description": {
         "Index": 6211,
         "EN": {
-          "M": "Caster Level(s): Cleric 8, Druid 9\nInnate Level: 8\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Large\nDuration: Instant\nAdditional Counter Spells:\nSave: Will 1/2\nSpell Resistance: Yes\r\n\r\nAll allies within the area of effect are restored by 10 hit points per caster level (maximum 250). Additionally it removes the following adverse conditions: ability damage, blinded, confused, dazed, dazzled, deafened, diseased, exhausted, fatigued, feebleminded, insanity, nauseated, sickened, stunned, and poisoned.\r\n\r\nHealing spells have a reverse effect when used on undead, causing the targeted undead to take an amount of damage equal to what the spell normally heals.\r\n\r\nHealing spells do not affect constructs. ",
+          "M": "Caster Level(s): Cleric 8, Druid 9\nInnate Level: 8\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Large (Undead: Also ranged touch attack)\nDuration: Instant\nAdditional Counter Spells:\nSave: Will 1/2\nSpell Resistance: Yes\r\n\r\nAll allies within the area of effect are restored by 10 hit points per caster level (maximum 250). Additionally it removes the following adverse conditions: ability damage, blinded, confused, dazed, dazzled, deafened, diseased, exhausted, fatigued, feebleminded, insanity, nauseated, sickened, stunned, and poisoned.\r\n\r\nHealing spells have a reverse effect when used on hostile undead creatures, harming instead of healing them after a successful ranged touch attack.\r\n\r\nHealing spells do not affect constructs. ",
           "F": "Caster Level(s): Cleric 8, Druid 9\nInnate Level: 8\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Large\nDuration: Instant\nAdditional Counter Spells:\nSave: None\nSpell Resistance: Yes\n\nAll allies within the area of effect are restored to full Hit Points. Healing spells have a reverse effect on undead, harming instead of healing them (undead are reduced to 1d4 Hit Points with this spell)."
         },
         "FR": {
@@ -43507,7 +43786,7 @@
       },
       "Icon": "is_masheal",
       "School": "C",
-      "Range": "T",
+      "Range": "S",
       "Components": [
         "V",
         "S"
@@ -43521,31 +43800,30 @@
         "Self",
         "Creature",
         "Area",
-        "Item",
-        "Placeable"
+        "Item"
       ],
-      "ImpactScript": "NW_S0_MasHeal",
+      "ImpactScript": "op_s_curewounds",
       "InnateLevel": 8,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",
-      "ConjurationHeadEffect": "vco_mehanheal02",
+      "ConjurationHeadEffect": "vco_mehedheal01",
       "ConjurationHandEffect": null,
-      "ConjurationGroundEffect": "vco_lgrinheal01",
+      "ConjurationGroundEffect": "vco_lgsprheal01",
       "ConjurationSound": "sco_lgrinheal01",
       "ConjurationMaleSound": "vs_chant_conj_hm",
       "ConjurationFemaleSound": "vs_chant_conj_hf",
       "CastingAnimation": "Up",
       "CastTime": 1000,
-      "CastingHeadEffect": null,
+      "CastingHeadEffect": "",
       "CastingHandEffect": null,
-      "CastingGroundEffect": null,
+      "CastingGroundEffect": "",
       "CastingSound": null,
       "HasProjectile": false,
       "ProjectileModel": null,
-      "ProjectileType": null,
-      "ProjectileSpawnPoint": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
       "ProjectileSound": null,
-      "ProjectileOrientation": null,
+      "ProjectileOrientation": "Path",
       "SubSpell1": null,
       "SubSpell2": null,
       "SubSpell3": null,
@@ -43564,7 +43842,7 @@
       "CounterSpell2": null,
       "HasProjectileVisuals": false,
       "TargetShape": "Sphere",
-      "TargetSizeX": 3.33,
+      "TargetSizeX": 5,
       "TargetSizeY": null,
       "TargetingFlags": [
         "HelpsAllies"

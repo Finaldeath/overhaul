@@ -94,9 +94,10 @@ const int EFFECT_TYPE_ALL = -1;
 // Missing saving throw type constant
 const int SAVING_THROW_TYPE_PARALYSIS = 20;
 
-const int SORT_METHOD_LOWEST_HP = 0;
-const int SORT_METHOD_LOWEST_HD = 1;
-const int SORT_METHOD_DISTANCE  = 2;
+const int SORT_METHOD_NONE      = 0; // Just doesn't bother sorting
+const int SORT_METHOD_LOWEST_HP = 1;
+const int SORT_METHOD_LOWEST_HD = 2;
+const int SORT_METHOD_DISTANCE  = 3;
 
 // Debug the spell and variables
 void DebugSpellVariables();
@@ -246,6 +247,9 @@ int GetSpellLevel(int nSpellId, int nClass = CLASS_TYPE_INVALID);
 // Returns -1 on error.
 int GetSpellSchool(int nSpellId);
 
+// Returns TRUE if the spell has targeting defined in the column "TargetShape"
+int GetSpellIsAreaOfEffect(int nSpellId);
+
 // Returns a human readable name for the given effect (eg: "Fear" or "Negative Level").
 string GetEffectName(effect eEffect);
 
@@ -275,6 +279,7 @@ int RemoveEffectsFromSpell(object oObject, int nSpellId, int nEffectType = EFFEC
 // Loops through relevant shape to get all the targets in it. It then sorts them using nSortMethod.
 // * nTargetType - The SPELL_TARGET_* type to check versus oCaster
 // * nSortMethod - The sorting method to apply once all the creatures are added.
+//                 SORT_METHOD_NONE      - No sorting (slightly faster)
 //                 SORT_METHOD_LOWEST_HP - Sorts so first object is the lowest HP
 //                 SORT_METHOD_LOWEST_HD - Sorts so first object is the lowest HD
 //                 SORT_METHOD_DISTANCE  - Sorts so the first object is the lowest distance
@@ -1371,6 +1376,12 @@ int GetSpellSchool(int nSpellId)
     return -1;
 }
 
+// Returns TRUE if the spell has targeting defined in the column "TargetShape"
+int GetSpellIsAreaOfEffect(int nSpellId)
+{
+    return (Get2DAString("spells", "TargetShape", nSpellId) != "");
+}
+
 // Returns a human readable name for the given effect (eg: "Fear" or "Negative Level").
 string GetEffectName(effect eEffect)
 {
@@ -1606,6 +1617,7 @@ const string FIELD_METRIC = "metric";
 // Loops through relevant shape to get all the targets in it. It then sorts them using nSortMethod.
 // * nTargetType - The SPELL_TARGET_* type to check versus oCaster
 // * nSortMethod - The sorting method to apply once all the creatures are added.
+//                 SORT_METHOD_NONE      - No sorting (slightly faster)
 //                 SORT_METHOD_LOWEST_HP - Sorts so first object is the lowest HP
 //                 SORT_METHOD_LOWEST_HD - Sorts so first object is the lowest HD
 //                 SORT_METHOD_DISTANCE  - Sorts so the first object is the lowest distance
@@ -1623,6 +1635,7 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod, int nShape, float fSize
             // Metric depends on what we are sorting
             switch (nSortMethod)
             {
+                //SORT_METHOD_NONE - No need to store anything extra
                 case SORT_METHOD_LOWEST_HP: jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonInt(GetCurrentHitPoints(oObject))); break;
                 case SORT_METHOD_LOWEST_HD: jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonInt(GetHitDice(oObject))); break;
                 case SORT_METHOD_DISTANCE:  jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonFloat(GetDistanceBetweenLocations(lTarget, GetLocation(oObject)))); break;
@@ -1638,6 +1651,7 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod, int nShape, float fSize
     }
 
     // Sort the array
+    // SORT_METHOD_NONE doesn't need any sorting (no data to sort)
     if (nSortMethod == SORT_METHOD_LOWEST_HP ||
         nSortMethod == SORT_METHOD_LOWEST_HD ||
         nSortMethod == SORT_METHOD_DISTANCE)
