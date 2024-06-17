@@ -138,7 +138,9 @@ void main()
         {
             oTarget = GetArrayObject(jArray, nIndex);
 
-            HealOrHarm(oTarget, nVisHeal, nVisHarm, nDice, nHealingStatic, TRUE, bTouch);
+            float fDelay = GetDistanceBetweenLocations(lTarget, GetLocation(oTarget))/25.0;
+
+            DelayCommand(fDelay, HealOrHarm(oTarget, nVisHeal, nVisHarm, nDice, nHealingStatic, TRUE, bTouch));
         }
     }
     else
@@ -185,9 +187,9 @@ void HealOrHarm(object oTarget, int nVisHeal, int nVisHarm, int nDice, int nHeal
                     }
 
                     // Cap Heal damage
-                    if (nSpellId == SPELL_HEAL && GetCurrentHitPoints(oTarget) - nAmount < 1)
+                    if (nSpellId == SPELL_HEAL || nSpellId == SPELL_MASS_HEAL)
                     {
-                        nAmount = GetCurrentHitPoints(oTarget) - 1;
+                        if (GetCurrentHitPoints(oTarget) - nAmount < 1) nAmount = GetCurrentHitPoints(oTarget) - 1;
                     }
 
                     effect eDamage = EffectDamage(nAmount, DAMAGE_TYPE_POSITIVE);
