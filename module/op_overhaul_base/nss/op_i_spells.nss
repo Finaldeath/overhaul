@@ -265,6 +265,9 @@ int GetIsHumanoidCreature(object oCreature);
 // Returns TRUE if the given creature is mindless (elemental, undead, vermin, construct, ooze)
 int GetIsMindless(object oCreature);
 
+// Gets if either domain matches the given domain on the given class
+int GetClassHasDomain(object oCreature, int nClass, int nDomain);
+
 // Returns TRUE if oObject has at least one effect matching the parameters.
 // * nEffectType - Can be EFFECT_TYPE_ALL to be ignored
 // * sTag - Only checked if not blank
@@ -344,6 +347,7 @@ void DebugSpellVariables()
     {
         OP_Debug("[Spell Script] Script: [" + GetScriptName() +
                                           "] ID: [" + IntToString(nSpellId) +
+                                          "] Name: [" + GetSpellName(nSpellId) +
                                           "] Level: [" + IntToString(nSpellLevel) +
                                           "] Caster: [" + GetName(oCaster) +
                                           "] Cast Item: [" + GetName(oCastItem) +
@@ -1320,7 +1324,7 @@ float GetVFXScale(object oCreature)
 // Gets the given spells name, returns "" on error.
 string GetSpellName(int nSpellId)
 {
-    string sTLK = Get2DAString("seplls", "Name", nSpellId);
+    string sTLK = Get2DAString("spells", "Name", nSpellId);
     if (sTLK != "")
     {
         return GetStringByStrRef(StringToInt(sTLK));
@@ -1548,6 +1552,17 @@ int GetIsMindless(object oCreature)
         case RACIAL_TYPE_CONSTRUCT:
         case RACIAL_TYPE_OOZE:
             return TRUE;
+    }
+    return FALSE;
+}
+
+// Gets if either domain matches the given domain on the given class
+int GetClassHasDomain(object oCreature, int nClass, int nDomain)
+{
+    if (GetDomain(oCreature, 1, nClass) == nDomain ||
+        GetDomain(oCreature, 2, nClass) == nDomain)
+    {
+        return TRUE;
     }
     return FALSE;
 }
