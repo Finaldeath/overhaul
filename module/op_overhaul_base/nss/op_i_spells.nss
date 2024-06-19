@@ -28,6 +28,7 @@
     nSpellLevel - Spell level
     bSpontaneous - Spontaneously cast or not
     bHostile - Hostile or not (set in spells.2da but some spells can be both!)
+    bIllusionary - If a Shadow spell see op_s_shadow.nss (GetSpellTargetValid will do the will save)
 
     If these are altered later they are used in the ApplySpellEffectToObject() and
     ApplySpellEffectAtLocation() functions.
@@ -98,6 +99,13 @@ const int SORT_METHOD_NONE      = 0; // Just doesn't bother sorting
 const int SORT_METHOD_LOWEST_HP = 1;
 const int SORT_METHOD_LOWEST_HD = 2;
 const int SORT_METHOD_DISTANCE  = 3;
+
+// GetScriptParam settings when a script is executed
+
+const string SCRIPT_PARAMETER_SPELL_ID    = "SCRIPT_PARAMETER_SPELL_ID";     // Spell Id
+const string SCRIPT_PARAMETER_ILLUSIONARY = "SCRIPT_PARAMETER_ILLUSIONARY";  // Boolean
+const string SCRIPT_PARAMETER_ILLUSIONARY_STRENGTH = "SCRIPT_PARAMETER_ILLUSIONARY_STRENGTH"; // 20 = 20% strength
+
 
 // Debug the spell and variables
 void DebugSpellVariables();
@@ -175,14 +183,28 @@ void DoDispelMagic(object oTarget, int nCasterLevel, effect eVis, float fDelay, 
 // Performs a spell breach up to nTotal spell are removed and nSR spell resistance is lowered.
 void DoSpellBreach(object oTarget, int nTotal, int nSR, int bVFX = TRUE);
 
+// Gets if the spell script is illusionary (script param SCRIPT_PARAMETER_ILLUSIONARY set to "1")
+int GetSpellIsIllusionary();
+
+// Gets the illusionary strength of the current script call. Not relevant if not an
+// illusion spell. 20 would be 20% strength if they save a will save.
+int GetSpellIllusionaryStrength();
+
+// Checks if oTarget failed the will save done in GetSpellTargetValid() when they
+// were checked. Can affect GetDiceRoll/GetDuration.
+int GetTargetIllusionarySave(object oTarget);
+
+// Does (and stores) the Will saving throw for illusion saves.
+void DoIllusionSavingThrow(object oTarget, object oCaster);
+
 // Applies metamagic to the given dice roll
 // eg GetDiceRoll(4, 6, 8) will roll 4d6 and add 8 to the final roll
-// Metamagic is applied automatically (alter with the global nMetaMagic)
+// Metamagic is applied automatically (alter with the global nMetaMagic) alongside illusion changes
 int GetDiceRoll(int nNumberOfDice, int nDiceSize, int nBonus = 0);
 
 // Applies metamagic to the given duration
 // * nType - The conversion used, ROUNDS (6 seconds), MINUTES ("1 turn" in old NWN = 1 minute/10 rounds) or HOURS (module dependant)
-// Metamagic is applied automatically
+// Metamagic is applied automatically alongside illusion changes
 float GetDuration(int nDuration, int nDurationType);
 
 // Checks if the given target is valid to be targeted by oCaster
@@ -339,6 +361,8 @@ int nCasterClass = GetLastSpellCastClassCalculated();
 int nSpellLevel  = GetLastSpellLevelCalculated();
 int bSpontaneous = GetSpellCastSpontaneouslyCalculated();
 int bHostile     = GetSpellIsHostile(nSpellId);
+int bIllusionary = GetSpellIsIllusionary();
+int nIllusionaryStrength = GetSpellIllusionaryStrength();
 
 // Debug the spell and variables
 void DebugSpellVariables()
@@ -357,7 +381,9 @@ void DebugSpellVariables()
                                           "] Save DC: [" + IntToString(nSpellSaveDC) +
                                           "] Caster Level: [" + IntToString(nCasterLevel) + "]" +
                                           "] MetaMagic: [" + IntToString(nMetaMagic) + "]" +
-                                          "] Hostile: [" + IntToString(bHostile) + "]");
+                                          "] Hostile: [" + IntToString(bHostile) + "]" +
+                                          "] bIllusionary: [" + IntToString(bIllusionary) + "]" +
+                                          "] nIllusionaryStrength: [" + IntToString(nIllusionaryStrength) + "]");
     }
 }
 
@@ -366,6 +392,9 @@ int DoSpellHook()
 {
     // Debug spell if logging enabled
     DebugSpellVariables();
+
+    // Do not do the hook if this is an illusion spell
+    if (bIllusionary) return FALSE;
 
     // TODO dummy spell hook for now
     return FALSE;
@@ -413,7 +442,7 @@ object GetSpellCaster()
 // This gets the spell ID but overrides it if we are calling a spell with ExecuteScript
 int GetSpellIdCalculated()
 {
-    string sParam = GetScriptParam("SPELL_ID");
+    string sParam = GetScriptParam(SCRIPT_PARAMETER_SPELL_ID);
     if (sParam != "")
     {
         return StringToInt(sParam);
@@ -910,6 +939,75 @@ void DoSpellBreach(object oTarget, int nTotal, int nSR, int bVFX = TRUE)
     }
 }
 
+// Gets if the spell script is illusionary (script param SCRIPT_PARAMETER_ILLUSIONARY set to "1")
+int GetSpellIsIllusionary()
+{
+    string sParam = GetScriptParam(SCRIPT_PARAMETER_ILLUSIONARY);
+    if (sParam != "")
+    {
+        return TRUE;
+    }
+    return FALSE;
+}
+
+// Gets the illusionary strength of the current script call. Not relevant if not an
+// illusion spell. 20 would be 20% strength if they save a will save.
+int GetSpellIllusionaryStrength()
+{
+    string sStrength = GetScriptParam(SCRIPT_PARAMETER_ILLUSIONARY_STRENGTH);
+
+    if (sStrength != "")
+    {
+        return StringToInt(sStrength);
+    }
+    // Error
+    OP_Debug("[GetIllusionModifiedValue] No script parameter for illusionary strength", LOG_LEVEL_ERROR);
+    return 0;
+}
+
+// Checks if oTarget failed the will save done in GetSpellTargetValid() when they
+// were checked. Can affect GetDiceRoll/GetDuration.
+int GetTargetIllusionarySave(object oTarget)
+{
+    if (bIllusionary)
+    {
+        return GetLocalInt(oTarget, "ILLUSIONARY_SAVING_THROW_STATE");
+    }
+    return FALSE;
+}
+
+// Does (and stores) the Will saving throw for illusion saves.
+void DoIllusionSavingThrow(object oTarget, object oCaster)
+{
+    // This resets things for the next call if not illusionary
+    int bSave = FALSE;
+
+    if (bIllusionary)
+    {
+        // Maybe a mind spell? Not sure. For now we'll leave it as is.
+        bSave = DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC);
+    }
+    SetLocalInt(oTarget, "ILLUSIONARY_SAVING_THROW_STATE", bSave);
+}
+
+// Gets a modified value for nValue (minimum 1)
+int GetIllusionModifiedValue(int nValue)
+{
+    // Gets the illusion strength
+    string sStrength = GetScriptParam(SCRIPT_PARAMETER_ILLUSIONARY_STRENGTH);
+
+    if (sStrength != "")
+    {
+
+    }
+    else
+    {
+        OP_Debug("[GetIllusionModifiedValue] No script parameter for illusionary strength");
+
+    }
+    return nValue;
+}
+
 // Applies metamagic to the given dice roll
 // eg GetDiceRoll(4, 6, 8) will roll 4d6 and add 8 to the final roll
 // Metamagic is applied automatically (alter with the global nMetaMagic)
@@ -930,7 +1028,14 @@ int GetDiceRoll(int nNumberOfDice, int nDiceSize, int nBonus = 0)
         nDamage += nDamage / 2;
     }
     // Add bonus if any
-    return nDamage + nBonus;
+    nDamage += nBonus;
+
+    // Illusion alteration
+    if (GetTargetIllusionarySave(oTarget))
+    {
+        nDamage = GetIllusionModifiedValue(nDamage);
+    }
+    return nDamage;
 }
 
 // Applies metamagic to the given duration
@@ -965,6 +1070,8 @@ float GetDuration(int nDuration, int nDurationType)
 }
 
 // Checks if the given target is valid to be targeted by oCaster
+// This additionally, if the spell is illusionary, do a will saving throw for the illusion check
+// if the target is valid.
 int GetSpellTargetValid(object oTarget, object oCaster, int nTargetType)
 {
     // If dead, not a valid target
@@ -1018,6 +1125,12 @@ int GetSpellTargetValid(object oTarget, object oCaster, int nTargetType)
             OP_Debug("[ERROR] GetSpellTargetValid: Invalid input: " + IntToString(nTargetType), LOG_LEVEL_ERROR);
         }
         break;
+    }
+
+    // If valid we do a will save for illusion spells
+    if (bReturnValue)
+    {
+        DoIllusionSavingThrow(oTarget, oCaster);
     }
 
     return bReturnValue;
