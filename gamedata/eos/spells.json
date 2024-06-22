@@ -19803,7 +19803,7 @@
       "CounterSpell1": null,
       "CounterSpell2": null,
       "HasProjectileVisuals": false,
-      "TargetShape": "Sphere",
+      "TargetShape": null,
       "TargetSizeX": null,
       "TargetSizeY": null,
       "TargetingFlags": [
@@ -20046,7 +20046,7 @@
       "CounterSpell1": null,
       "CounterSpell2": null,
       "HasProjectileVisuals": true,
-      "TargetShape": "Sphere",
+      "TargetShape": null,
       "TargetSizeX": 5,
       "TargetSizeY": null,
       "TargetingFlags": [
@@ -66319,6 +66319,91 @@
         "HarmsAllies",
         "OriginOnSelf"
       ]
+    },
+    {
+      "ID": "6aeacf8e-9be1-4997-83e1-c931b389a72a",
+      "Index": 34,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": null,
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Lower Spell Resistance",
+          "F": "New Spell"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Caster Level(s): Cleric 4, Wizard / Sorcerer 4\nInnate Level: 4\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Single\nDuration: 1 Minute / Level\nAdditional Counter Spells:\nSave: Fortitude Negates (see text)\nSpell Resistance: No\n\nThis spell reduces the subject\u0027s spell resistance by 1 per caster level (maximum reduction 15).\r\n\r\nThe save DC gains a bonus equal to your caster level."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "i_dummy",
+      "School": "T",
+      "Range": "P",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Creature",
+        "Item"
+      ],
+      "ImpactScript": "op_s_lowerresist",
+      "InnateLevel": 4,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_mebalelec01",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mebalelec01",
+      "ConjurationMaleSound": "vs_chant_conj_lm",
+      "ConjurationFemaleSound": "vs_chant_conj_lf",
+      "CastingAnimation": "Touch",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": true,
+      "ProjectileModel": "vpr_ectoelec01",
+      "ProjectileType": "Accelerating",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": "spr_ectoelec01",
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "HarmfulRanged",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": true,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
     }
   ]
 }
