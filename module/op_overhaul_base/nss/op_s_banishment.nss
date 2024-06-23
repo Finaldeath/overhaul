@@ -21,7 +21,7 @@ void main()
     // Effects
     effect eDeath  = IgnoreEffectImmunity(EffectDeath());
     effect eVis    = EffectVisualEffect(VFX_IMP_UNSUMMON);
-    effect eImpact = EffectVisualEffect(VFX_FNF_LOS_EVIL_30);
+    effect eImpact = EffectVisualEffect(VFX_IMP_UNSUMMON, FALSE, 5.0);
 
     ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, eImpact, lTarget);
 
