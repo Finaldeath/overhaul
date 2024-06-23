@@ -19843,7 +19843,7 @@
       "Description": {
         "Index": 6137,
         "EN": {
-          "M": "Caster Level(s): Bard 4, Cleric 4, Wizard / Sorcerer 5\nInnate Level: 4\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Colossal\nDuration: Instant\nAdditional Counter Spells: Gate\nSave: Will Negates\nSpell Resistance: Yes\n\nAll summoned creatures, animal companions, and familiars are unsummoned within the area of effect. The saving throw is modified by adding your caster level, and taking off the targets hit dice.",
+          "M": "Caster Level(s): Bard 4, Cleric 4, Wizard / Sorcerer 5\nInnate Level: 4\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells: Gate\nSave: Will Negates\nSpell Resistance: Yes\n\nThis spell forces the targeted outsider, summoned creature, animal companions or familiars back to their proper plane. The saving throw is modified by adding your caster level, and taking off the targets hit dice.",
           "F": "Caster Level(s): Bard 4, Cleric 4, Wizard / Sorcerer 5\nInnate Level: 4\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Colossal\nDuration: Instant\nAdditional Counter Spells: Gate\nSave: Will Negates\nSpell Resistance: Yes\n\nAll summoned creatures, animal companions, and familiars belonging to enemy spellcasters are unsummoned within the area of effect. "
         },
         "FR": {
@@ -19879,9 +19879,7 @@
       ],
       "TargetTypes": [
         "Creature",
-        "Area",
-        "Item",
-        "Placeable"
+        "Item"
       ],
       "ImpactScript": "op_s_dismissal",
       "InnateLevel": 4,
@@ -19913,7 +19911,7 @@
       "SubSpell6": null,
       "SubSpell7": null,
       "SubSpell8": null,
-      "Category": "HarmfulAoeIndiscriminant",
+      "Category": "HarmfulRanged",
       "ParentSpell": null,
       "Type": "Spell",
       "UseConcentration": true,
@@ -19925,13 +19923,11 @@
       },
       "CounterSpell2": null,
       "HasProjectileVisuals": true,
-      "TargetShape": "Sphere",
-      "TargetSizeX": 10,
+      "TargetShape": null,
+      "TargetSizeX": null,
       "TargetSizeY": null,
       "TargetingFlags": [
-        "HarmsEnemies",
-        "HarmsAllies",
-        "IgnoresSelf"
+        "HarmsEnemies"
       ]
     },
     {

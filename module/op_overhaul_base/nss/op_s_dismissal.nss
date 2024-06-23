@@ -24,21 +24,14 @@ void main()
     // Effects
     effect eDeath  = IgnoreEffectImmunity(EffectDeath());
     effect eVis    = EffectVisualEffect(VFX_IMP_UNSUMMON);
-    effect eImpact = EffectVisualEffect(VFX_IMP_UNSUMMON, FALSE, 5.0);
 
-    ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, eImpact, lTarget);
-
-    json jArray = GetArrayOfTargets(SPELL_TARGET_STANDARDHOSTILE, SORT_METHOD_NONE, SHAPE_SPHERE, RADIUS_SIZE_COLOSSAL, lTarget, TRUE);
-
-    int nIndex;
-    for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
+    if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
     {
-        oTarget = GetArrayObject(jArray, nIndex);
-
-        // We signal this event against everyone even if it should stop early.
+        // We signal this event against everyone
         SignalSpellCastAt();
 
-        if (GetAssociateType(oTarget) == ASSOCIATE_TYPE_SUMMONED ||
+        if (GetRacialType(oTarget) == RACIAL_TYPE_OUTSIDER ||
+            GetAssociateType(oTarget) == ASSOCIATE_TYPE_SUMMONED ||
             GetAssociateType(oTarget) == ASSOCIATE_TYPE_FAMILIAR ||
             GetAssociateType(oTarget) == ASSOCIATE_TYPE_ANIMALCOMPANION)
         {
@@ -56,6 +49,10 @@ void main()
                 DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDeath, oTarget));
                 DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
             }
+        }
+        else
+        {
+            FloatingTextStringOnCreature("*Target is not an outsider, summon, familiar or animal companion.", oCaster, FALSE);
         }
     }
 }
