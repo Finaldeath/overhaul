@@ -19,7 +19,8 @@
     oCastItem - The spell cast item, if any
     oTarget - The target if any
     LTarget - The target location (or location of oTarget if valid)
-    nSpellId - the SPELL_* cast
+    nSpellId - The SPELL_* cast
+    nSpellType - The SPELL_TYPE_* that nSpellId is
     nSpellSchool - The spell school of nSpellId, used in DoResistSpell and other locations
     nSpellSaveDC - the Spell Save DC (if a proper spell)
     nCasterLevel - the Caster Level
@@ -105,7 +106,8 @@ const string SCRIPT_PARAMETER_SPELL_ID    = "SCRIPT_PARAMETER_SPELL_ID";     // 
 const string SCRIPT_PARAMETER_ILLUSIONARY = "SCRIPT_PARAMETER_ILLUSIONARY";  // Boolean
 const string SCRIPT_PARAMETER_ILLUSIONARY_STRENGTH = "SCRIPT_PARAMETER_ILLUSIONARY_STRENGTH"; // 20 = 20% strength
 
-// Spell types (UserType column)
+// Spell types (UserType column) stored in nSpellType
+const int SPELL_TYPE_INVALID         = 0; // Invalid setting! Error!!!
 const int SPELL_TYPE_SPELL           = 1; // Standard spell.
 const int SPELL_TYPE_CREATURE_POWER  = 2; // Or "Spell ability". Uses HD for resist spell. Checks spell immunity.
 const int SPELL_TYPE_FEAT            = 3; // No resist spell/absorption checks are valid. Checks spell immunity.
@@ -126,6 +128,9 @@ object GetSpellCaster();
 
 // This gets the spell ID but overrides it if we are calling a spell with ExecuteScript
 int GetSpellIdCalculated();
+
+// This gets the SPELL_TYPE_* the spell ID is classified as (UserType column)
+int GetSpellType(int nSpellIdToCheck);
 
 // This gets if nSpellId is hostile or not using spells.2da
 // If left at -1 uses the global value
@@ -358,6 +363,7 @@ object oCaster   = GetSpellCaster();
 object oTarget   = GetSpellTargetObjectCalculated();
 location lTarget = GetSpellTargetLocationCalculated(oTarget);
 int nSpellId     = GetSpellIdCalculated();
+int nSpellType   = GetSpellType(nSpellId);
 int nSpellSchool = GetSpellSchool(nSpellId);
 int nSpellSaveDC = GetSpellSaveDCCalculated(oCaster, nSpellId);
 int nCasterLevel = GetCasterLevelCalculated(oCaster, nSpellId);
@@ -377,6 +383,7 @@ void DebugSpellVariables()
         OP_Debug("[Spell Script] Script: [" + GetScriptName() +
                                           "] ID: [" + IntToString(nSpellId) +
                                           "] Name: [" + GetSpellName(nSpellId) +
+                                          "] Type: [" + IntToString(nSpellType) +
                                           "] Level: [" + IntToString(nSpellLevel) +
                                           "] Caster: [" + GetName(oCaster) +
                                           "] Cast Item: [" + GetName(oCastItem) +
@@ -466,6 +473,22 @@ int GetSpellIdCalculated()
 
     // Else it's a spell script or AOE script
     return GetSpellId();
+}
+
+// This gets the SPELL_TYPE_* the spell ID is classified as (UserType column)
+int GetSpellType(int nSpellIdToCheck)
+{
+    string sUserType = Get2DAString("spells", "UserType", nSpellIdToCheck);
+    switch (HashString(sUserType))
+    {
+        case "1": return SPELL_TYPE_SPELL; break;
+        case "2": return SPELL_TYPE_CREATURE_POWER; break;
+        case "3": return SPELL_TYPE_FEAT; break;
+        case "4": return SPELL_TYPE_ITEM_POWER; break;
+    }
+    // Something else invalid
+    OP_Debug("[GetSpellType] Invalid UserType column!", LOG_LEVEL_ERROR);
+    return SPELL_TYPE_INVALID;
 }
 
 // This gets if nSpellId is hostile or not using spells.2da
@@ -711,29 +734,36 @@ int DoResistSpell(object oTarget, object oCaster, float fDelay = 0.0, int bResis
         return FALSE;
     }
 
-    // Certain checks are only done for "true spells".
+    // Checks are done based on the nSpellType;
+    // - SPELL_TYPE_SPELL           - Standard spell
+    // - SPELL_TYPE_CREATURE_POWER  - Or "Spell ability". Uses HD for resist spell. Checks spell immunity.
+    // - SPELL_TYPE_FEAT            - No resist spell/absorption checks are valid. Checks spell immunity.
+    // - SPELL_TYPE_ITEM_POWER      - No resist spell/absorption checks are valid. Checks spell immunity.
 
     // We test the 3 resist spell functions in the ResistSpell order for now:
     // Spell Absorption (Limited), Spell Absorption (Unlimited), Spell Immunity, Spell Resistance
 
-    // Spell Absorption (Limited) ie mantles
-    if (SpellAbsorptionLimitedCheck(oTarget, oCaster, nSpellId, nSpellSchool, nSpellLevel))
+    if (nSpellType == SPELL_TYPE_SPELL)
     {
-        OP_Debug("[DoResistSpell] SpellAbsorptionLimitedCheck: TRUE against target: " + GetName(oTarget));
-        if (fDelay > 0.5)
+        // Spell Absorption (Limited) ie mantles
+        if (SpellAbsorptionLimitedCheck(oTarget, oCaster, nSpellId, nSpellSchool, nSpellLevel))
         {
-            fDelay = fDelay - 0.1;
+            OP_Debug("[DoResistSpell] SpellAbsorptionLimitedCheck: TRUE against target: " + GetName(oTarget));
+            if (fDelay > 0.5)
+            {
+                fDelay = fDelay - 0.1;
+            }
+            DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_SPELL_MANTLE_USE), oTarget));
+            return TRUE;
         }
-        DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_SPELL_MANTLE_USE), oTarget));
-        return TRUE;
-    }
 
-    // Spell Absorption (Unlimited) ie Globes
-    if (SpellAbsorptionUnlimitedCheck(oTarget, oCaster, nSpellId, nSpellSchool, nSpellLevel))
-    {
-        OP_Debug("[DoResistSpell] SpellAbsorptionUnlimitedCheck: TRUE against target: " + GetName(oTarget));
-        DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_GLOBE_USE), oTarget));
-        return TRUE;
+        // Spell Absorption (Unlimited) ie Globes
+        if (SpellAbsorptionUnlimitedCheck(oTarget, oCaster, nSpellId, nSpellSchool, nSpellLevel))
+        {
+            OP_Debug("[DoResistSpell] SpellAbsorptionUnlimitedCheck: TRUE against target: " + GetName(oTarget));
+            DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_GLOBE_USE), oTarget));
+            return TRUE;
+        }
     }
 
     // Spell Immunity
@@ -744,19 +774,29 @@ int DoResistSpell(object oTarget, object oCaster, float fDelay = 0.0, int bResis
         return TRUE;
     }
 
-    // Spell Resistance
-    int nTargetSpellResistance = GetSpellResistance(oTarget);
-    int nResistSpellCasterLevel = nCasterLevel;
-
-    // Check for Assay Resistance bonus vs. oTarget
-    nResistSpellCasterLevel += GetAssayResistanceBonus(oTarget, oCaster);
-
-    if (SpellResistanceCheck(oTarget, oCaster, nSpellId, nResistSpellCasterLevel, nTargetSpellResistance))
+    if (nSpellType == SPELL_TYPE_SPELL || nSpellType == SPELL_TYPE_CREATURE_POWER)
     {
-        OP_Debug("[DoResistSpell] SpellResistanceCheck: TRUE against target: " + GetName(oTarget));
-        DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_MAGIC_RESISTANCE_USE), oTarget));
-        return TRUE;
+        // Spell Resistance
+        int nTargetSpellResistance = GetSpellResistance(oTarget);
+        int nResistSpellCasterLevel = nCasterLevel;
+
+        // Creature powers use the casters HD
+        if (nSpellType == SPELL_TYPE_CREATURE_POWER)
+        {
+            nResistSpellCasterLevel = GetHitDice(oCaster);
+        }
+
+        // Check for Assay Resistance bonus vs. oTarget
+        nResistSpellCasterLevel += GetAssayResistanceBonus(oTarget, oCaster);
+
+        if (SpellResistanceCheck(oTarget, oCaster, nSpellId, nResistSpellCasterLevel, nTargetSpellResistance))
+        {
+            OP_Debug("[DoResistSpell] SpellResistanceCheck: TRUE against target: " + GetName(oTarget));
+            DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_MAGIC_RESISTANCE_USE), oTarget));
+            return TRUE;
+        }
     }
+
     return FALSE;
 }
 
