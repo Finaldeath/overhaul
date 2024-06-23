@@ -101,10 +101,15 @@ const int SORT_METHOD_LOWEST_HD = 2;
 const int SORT_METHOD_DISTANCE  = 3;
 
 // GetScriptParam settings when a script is executed
-
 const string SCRIPT_PARAMETER_SPELL_ID    = "SCRIPT_PARAMETER_SPELL_ID";     // Spell Id
 const string SCRIPT_PARAMETER_ILLUSIONARY = "SCRIPT_PARAMETER_ILLUSIONARY";  // Boolean
 const string SCRIPT_PARAMETER_ILLUSIONARY_STRENGTH = "SCRIPT_PARAMETER_ILLUSIONARY_STRENGTH"; // 20 = 20% strength
+
+// Spell types (UserType column)
+const int SPELL_TYPE_SPELL           = 1; // Standard spell.
+const int SPELL_TYPE_CREATURE_POWER  = 2; // Or "Spell ability". Uses HD for resist spell. Checks spell immunity.
+const int SPELL_TYPE_FEAT            = 3; // No resist spell/absorption checks are valid. Checks spell immunity.
+const int SPELL_TYPE_ITEM_POWER      = 4; // No resist spell/absorption checks are valid. Checks spell immunity.
 
 
 // Debug the spell and variables
@@ -705,6 +710,8 @@ int DoResistSpell(object oTarget, object oCaster, float fDelay = 0.0, int bResis
         OP_Debug("[DoResistSpell] Error, caster or target is invalid. Caster: " + GetName(oCaster) + " Target: " + GetName(oTarget), LOG_LEVEL_ERROR);
         return FALSE;
     }
+
+    // Certain checks are only done for "true spells".
 
     // We test the 3 resist spell functions in the ResistSpell order for now:
     // Spell Absorption (Limited), Spell Absorption (Unlimited), Spell Immunity, Spell Resistance
