@@ -28429,7 +28429,7 @@
       "Index": -1,
       "Overrides": "42c5ad5b-5cf2-69bc-c982-9894c866052f",
       "Disabled": false,
-      "Hint": "\u002BCounterspell",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "Freedom_of_Movement",
       "ExtensionValues": {},
@@ -28457,7 +28457,8 @@
       "Description": {
         "Index": 6159,
         "EN": {
-          "M": "Caster Level(s): Cleric 4, Druid 4, Paladin 4, Ranger 4\nInnate Level: 4\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Single\nDuration: 1 Turn / Level\nAdditional Counter Spells: Web\nSave: None\nSpell Resistance: No\n\nThe target creature becomes immune to paralysis, slow, and entanglement spells and effects."
+          "M": "Caster Level(s): Bard 4, Cleric 4, Druid 4, Paladin 4, Ranger 4\nInnate Level: 4\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Single\nDuration: 1 Minute / Level\nAdditional Counter Spells: Web\nSave: None\nSpell Resistance: No\n\nThe target creature becomes immune to movement speed decrease, paralysis, slow, and entanglement spells and effects. These effects are also removed.\r\n\r\nThe spell will not protect the user against self-inflicted penalties (for instance casting Iron Body still will apply the movement speed changes).",
+          "F": "Caster Level(s): Cleric 4, Druid 4, Paladin 4, Ranger 4\nInnate Level: 4\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Single\nDuration: 1 Turn / Level\nAdditional Counter Spells: Web\nSave: None\nSpell Resistance: No\n\nThe target creature becomes immune to paralysis, slow, and entanglement spells and effects."
         },
         "FR": {
           "M": "Niveau : Pr\u00EAtre 4, Druide 4, Paladin 4, R\u00F4deur 4\nNiveau inn\u00E9 : 4\nEcole : Abjuration\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : moyenne\nZone d\u0027effet / cible : 1 cr\u00E9ature\nDur\u00E9e : 1 tour/niveau\nContresorts suppl\u00E9mentaires : Toile d\u0027araign\u00E9e\nJet de sauvegarde : aucun\nR\u00E9sistance \u00E0 la magie : non\n\nLe b\u00E9n\u00E9ficiaire est immunis\u00E9 contre les sorts et les effets de paralysie, de lenteur et d\u0027enchev\u00EAtrement."
@@ -28494,11 +28495,9 @@
       "TargetTypes": [
         "Self",
         "Creature",
-        "Item",
-        "Door",
-        "Placeable"
+        "Item"
       ],
-      "ImpactScript": "NW_S0_FreeMove",
+      "ImpactScript": "op_s_cureeffects",
       "InnateLevel": 4,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -31413,7 +31412,7 @@
       "Description": {
         "Index": 6167,
         "EN": {
-          "M": "Caster Level(s): Cleric 7\nInnate Level: 7\nSchool: Necromancy\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nGreater Restoration removes most temporary and all permanent negative effects from the target character, incuding curses, level drain and the spell Feeblemind. It does not remove negative effects of reduced movement speed.",
+          "M": "Caster Level(s): Cleric 7\nInnate Level: 7\nSchool: Necromancy\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nGreater Restoration removes magical and extraordinary negative effects from the target character, incuding: ability decreases, AC decreases, attack decreases, damage immunity decreases, saving throw decreases, skill resistance decreases, skill decreases, blindness, deafness, curses, diseases, poisons, paralysis, charm, dominated, dazed, confusion, fear, negative levels, paralysis, slow and stunned effects. It also cures the spell Feeblemind.\r\n\r\nIt does not remove negative effects of reduced movement speed or heal any damage.",
           "F": "Caster Level(s): Cleric 7\nInnate Level: 7\nSchool: Necromancy\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nGreater Restoration removes most temporary and all permanent negative effects from the target character, incuding level drain. It does not remove negative mental effects or the effects of reduced movement speed. It also heals the target creature to full Hit Points."
         },
         "FR": {
@@ -31452,7 +31451,7 @@
         "Creature",
         "Item"
       ],
-      "ImpactScript": "NW_S0_GrRestore",
+      "ImpactScript": "op_s_cureeffects",
       "InnateLevel": 7,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",
@@ -40843,10 +40842,9 @@
       "TargetTypes": [
         "Self",
         "Creature",
-        "Item",
-        "Placeable"
+        "Item"
       ],
-      "ImpactScript": "NW_S0_LsRestor",
+      "ImpactScript": "op_s_cureeffects",
       "InnateLevel": 2,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",
@@ -46102,7 +46100,7 @@
         "Creature",
         "Item"
       ],
-      "ImpactScript": "NW_S0_RemEffect",
+      "ImpactScript": "op_s_cureeffects",
       "InnateLevel": 3,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -46138,7 +46136,10 @@
       "UseConcentration": true,
       "IsCastSpontaneously": false,
       "IsHostile": false,
-      "CounterSpell1": null,
+      "CounterSpell1": {
+        "ID": "8cafe1df-8bd9-6761-08cd-4b8c900280d3",
+        "Label": "Poison"
+      },
       "CounterSpell2": null,
       "HasProjectileVisuals": false,
       "TargetShape": null,
@@ -52517,7 +52518,8 @@
       "Description": {
         "Index": 6239,
         "EN": {
-          "M": "Caster Level(s): Cleric 3, Paladin 3, Wizard / Sorcerer 4\nInnate Level: 3\nSchool: Divination\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Medium\nDuration: Instant\nAdditional Counter Spells: Blindness / Deafness\nSave: Harmless\nSpell Resistance: No\n\nAll allies within the area of effect are cured of blindness and deafness."
+          "M": "Caster Level(s): Cleric 3, Paladin 3, Wizard / Sorcerer 4\nInnate Level: 3\nSchool: Divination\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells: Blindness / Deafness\nSave: Harmless\nSpell Resistance: No\r\n\nThe target creature is cured of blindness and deafness.",
+          "F": "Caster Level(s): Cleric 3, Paladin 3, Wizard / Sorcerer 4\nInnate Level: 3\nSchool: Divination\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Medium\nDuration: Instant\nAdditional Counter Spells: Blindness / Deafness\nSave: Harmless\nSpell Resistance: No\n\nAll allies within the area of effect are cured of blindness and deafness."
         },
         "FR": {
           "M": "Niveau : Pr\u00EAtre 3, Paladin 3, Magicien / Ensorceleur 4\nNiveau inn\u00E9 : 3\nEcole : Divination\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : courte\nZone d\u0027effet / cible : moyenne\nDur\u00E9e : instantan\u00E9e\nContresorts suppl\u00E9mentaires : C\u00E9cit\u00E9/Surdit\u00E9\nJet de sauvegarde : inoffensif\nR\u00E9sistance \u00E0 la magie : non\n\nTous les alli\u00E9s dans la zone d\u0027effet sont gu\u00E9ris de la c\u00E9cit\u00E9 et de la surdit\u00E9."
@@ -52539,7 +52541,7 @@
         "Index": null
       },
       "Icon": "is_rmvblddef",
-      "School": "D",
+      "School": "C",
       "Range": "S",
       "Components": [
         "V",
@@ -52553,11 +52555,9 @@
       "TargetTypes": [
         "Self",
         "Creature",
-        "Area",
-        "Item",
-        "Placeable"
+        "Item"
       ],
-      "ImpactScript": "NW_S0_RemEffect",
+      "ImpactScript": "op_s_cureeffects",
       "InnateLevel": 3,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -52599,12 +52599,10 @@
       },
       "CounterSpell2": null,
       "HasProjectileVisuals": false,
-      "TargetShape": "Sphere",
-      "TargetSizeX": 3.33,
+      "TargetShape": null,
+      "TargetSizeX": null,
       "TargetSizeY": null,
-      "TargetingFlags": [
-        "HelpsAllies"
-      ]
+      "TargetingFlags": []
     },
     {
       "ID": "59863997-e330-492a-82ea-d614e616b349",
@@ -52792,7 +52790,7 @@
         "Self",
         "Creature"
       ],
-      "ImpactScript": "NW_S0_RemEffect",
+      "ImpactScript": "op_s_cureeffects",
       "InnateLevel": 1,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -52906,10 +52904,9 @@
       "TargetTypes": [
         "Self",
         "Creature",
-        "Item",
-        "Placeable"
+        "Item"
       ],
-      "ImpactScript": "NW_S0_RemEffect",
+      "ImpactScript": "op_s_cureeffects",
       "InnateLevel": 3,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -52951,19 +52948,17 @@
       },
       "CounterSpell2": null,
       "HasProjectileVisuals": false,
-      "TargetShape": "Sphere",
-      "TargetSizeX": 3.33,
+      "TargetShape": null,
+      "TargetSizeX": null,
       "TargetSizeY": null,
-      "TargetingFlags": [
-        "HelpsAllies"
-      ]
+      "TargetingFlags": []
     },
     {
       "ID": "40547def-0380-4241-9542-062c3a66f0c0",
       "Index": -1,
       "Overrides": "a60837a7-7603-c3f5-b7bf-271cf7d2eb8a",
       "Disabled": false,
-      "Hint": "Remove hostile flag",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
@@ -52991,7 +52986,8 @@
       "Description": {
         "Index": 6242,
         "EN": {
-          "M": "Caster Level(s): Cleric 1\nInnate Level: 1\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Large, 1 Creature / 4 Levels\nDuration: 10 Turns\nAdditional Counter Spells: Fear\nSave: Harmless\nSpell Resistance: No\n\nAll fear effects are removed from allies within the area of effect. The targets also gain a \u002B4 bonus to saving throws against fear spells and effects for the duration of the spell."
+          "M": "Caster Level(s): Cleric 1\nInnate Level: 1\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Large, 1 Creature / 4 Levels\nDuration: 10 Minutes\nAdditional Counter Spells: Fear\nSave: Harmless\nSpell Resistance: No\n\nAll fear effects are removed from allies within the area of effect. The targets also gain a \u002B4 bonus to saving throws against fear spells and effects for the duration of the spell.",
+          "F": "Caster Level(s): Cleric 1\nInnate Level: 1\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Large, 1 Creature / 4 Levels\nDuration: 10 Turns\nAdditional Counter Spells: Fear\nSave: Harmless\nSpell Resistance: No\n\nAll fear effects are removed from allies within the area of effect. The targets also gain a \u002B4 bonus to saving throws against fear spells and effects for the duration of the spell."
         },
         "FR": {
           "M": "Niveau : Pr\u00EAtre 1\nNiveau inn\u00E9 : 1\nEcole : Abjuration\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : courte\nZone d\u0027effet / cible : grande, 1 cr\u00E9ature / 4 niveaux\nDur\u00E9e : 10 tours\nContresorts suppl\u00E9mentaires : Terreur\nJet de sauvegarde : inoffensif\nR\u00E9sistance \u00E0 la magie : non\n\nTous les effets de terreur sont neutralis\u00E9s pour tous les alli\u00E9s dans la zone d\u0027effet. Ils b\u00E9n\u00E9ficient \u00E9galement d\u0027une immunit\u00E9 contre les sorts et effets de terreur pendant toute la dur\u00E9e du sort."
@@ -53029,10 +53025,9 @@
         "Self",
         "Creature",
         "Area",
-        "Item",
-        "Placeable"
+        "Item"
       ],
-      "ImpactScript": "NW_S0_RmvFear",
+      "ImpactScript": "op_s_cureeffects",
       "InnateLevel": 1,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -53468,7 +53463,7 @@
       "Description": {
         "Index": 6246,
         "EN": {
-          "M": "Caster Level(s): Cleric 4\nInnate Level: 4\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nRemoves all magical, extraordinary and supernatural effects that apply a penalty to ability scores, Armor Class, attack and damage rolls, skills, spell resistance, saving throws and damage immunity. This spell also removes all level drain, blindness, paralysis and deafness effects. Will not remove the effects of a curse or a disease.",
+          "M": "Caster Level(s): Cleric 4\nInnate Level: 4\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nRemoves all magical and extraordinary effects that apply a penalty to ability scores, Armor Class, attack and damage rolls, skills, spell resistance, saving throws and damage immunity. This spell also removes all level drain, blindness, paralysis and deafness effects. Will not remove the effects of a curse or a disease.",
           "F": "Caster Level(s): Cleric 4\nInnate Level: 4\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nRemoves all magical, extraordinary and supernatural effects that apply a penalty to ability scores, Armor Class, attack and damage rolls, spell resistance, saving throws and damage immunity. This spell also removes all level drain, blindness and deafness effects. Will not remove the effects of a curse or a disease."
         },
         "FR": {
@@ -53505,10 +53500,9 @@
       "TargetTypes": [
         "Self",
         "Creature",
-        "Item",
-        "Placeable"
+        "Item"
       ],
-      "ImpactScript": "NW_S0_Restore",
+      "ImpactScript": "op_s_cureeffects",
       "InnateLevel": 4,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",
@@ -53585,7 +53579,7 @@
       "Description": {
         "Index": 6246,
         "EN": {
-          "M": "Caster Level(s): \nInnate Level: 4\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nRemoves all magical, extraordinary and supernatural effects that apply a penalty to ability scores, Armor Class, attack and damage rolls, skills, spell resistance, saving throws and damage immunity. This spell also removes all level drain, blindness, paralysis and deafness effects. Will not remove the effects of a curse or a disease.",
+          "M": "Caster Level(s): \nInnate Level: 4\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nRemoves all magical and extraordinary effects that apply a penalty to ability scores, Armor Class, attack and damage rolls, skills, spell resistance, saving throws and damage immunity. This spell also removes all level drain, blindness, paralysis and deafness effects. Will not remove the effects of a curse or a disease.",
           "F": "Caster Level(s): Cleric 4\nInnate Level: 4\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nRemoves all magical, extraordinary and supernatural effects that apply a penalty to ability scores, Armor Class, attack and damage rolls, spell resistance, saving throws and damage immunity. This spell also removes all level drain, blindness and deafness effects. Will not remove the effects of a curse or a disease."
         },
         "FR": {
@@ -53622,10 +53616,9 @@
       "TargetTypes": [
         "Self",
         "Creature",
-        "Item",
-        "Placeable"
+        "Item"
       ],
-      "ImpactScript": "x2_s0_restother",
+      "ImpactScript": "op_s_cureeffects",
       "InnateLevel": 4,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",

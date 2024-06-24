@@ -53,7 +53,7 @@ const int VFX_COM_BLOOD_REG_WIMP_GREEN      = 299;
 const int VFX_COM_BLOOD_LRG_WIMP_GREEN      = 300;
 const int VFX_COM_BLOOD_CRT_WIMP_GREEN      = 301;
 const int VFX_IMP_DESTRUCTION_LOW           = 302; // Unused in scripts AFAIK, purple "pulling in" and different sound effect too
-const int SCENE_WEIRD                       = 323;
+const int VFX_SCENE_WEIRD                   = 323;
 const int VFX_EYES_BLUE_HUMAN_MALE          = 324;
 const int VFX_EYES_BLUE_HUMAN_FEMALE        = 325;
 const int VFX_EYES_BLUE_DWARF_MALE          = 326;
@@ -67,7 +67,7 @@ const int VFX_EYES_BLUE_HALFLING_FEMALE     = 333;
 const int VFX_EYES_BLUE_HALFORC_MALE        = 334;
 const int VFX_EYES_BLUE_HALFORC_FEMALE      = 335;
 const int VFX_EYES_BLUE_TROGLODYTE          = 336;
-const int SCENE_EVARD                       = 346; // also DUR_TENTACLE
+const int VFX_SCENE_EVARD                   = 346; // also DUR_TENTACLE
 const int VFX_SCENE_TOWER                   = 347;
 const int VFX_SCENE_TEMPLE                  = 348;
 const int VFX_SCENE_LAVA                    = 349;
@@ -170,5 +170,6 @@ const int VFX_ICONGLOW                      = 10002;
 
 // spells.2da
 const int SPELLABILITY_CURE_CRITICAL_WOUNDS_OTHER = 567;
+const int SPELLABILITY_RESTOREATION_OTHER         = 568;
 const int SPELLABILITY_HARM_SELF                  = 759;
 
