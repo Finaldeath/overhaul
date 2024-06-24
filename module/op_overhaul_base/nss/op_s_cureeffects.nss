@@ -218,6 +218,7 @@ void main()
         default:
         {
             OP_Debug("[Cure Effects] Unknown spell ID: " + IntToString(nSpellId), LOG_LEVEL_ERROR);
+            return;
         }
         break;
     }

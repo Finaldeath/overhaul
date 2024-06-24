@@ -31294,7 +31294,7 @@
       "Description": {
         "Index": 6166,
         "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 8\nInnate Level: 8\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Single\nArea of Effect / Target: Single or Point\nDuration: 1 Round / 2 Levels (paralysis), 1 Hour / Level (summon)\nAdditional Counter Spells:\nSave: Will (-5) Negates\nSpell Resistance: No\n\nThis spell has two modes of operation: targeting a single outsider, or summoning a planar ally. Targeted outsiders are paralyzed for 1 round per 2 caster levels. The type of summoned ally is based on the caster\u0027s alignment:\nEvil: Vrock\nNeutral: Death slaad\nGood: Celestial Avenger",
+          "M": "Caster Level(s): Wizard / Sorcerer 8\nInnate Level: 8\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Single\nArea of Effect / Target: Single or Point\nDuration: 1 Round / 2 Levels (paralysis), 1 Hour / Level (summon)\nAdditional Counter Spells:\nSave: Will (-5) Negates\nSpell Resistance: Yes\n\nThis spell has two modes of operation: targeting a single outsider, or summoning a planar ally. Targeted outsiders are paralyzed for 1 round per 2 caster levels. The type of summoned ally is based on the caster\u0027s alignment:\nEvil: Vrock\nNeutral: Death Slaad\nGood: Celestial Avenger",
           "F": "Caster Level(s): Wizard / Sorcerer 8\nInnate Level: 8\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Single\nArea of Effect / Target: Single or Point\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: Will (-5) Negates\nSpell Resistance: No\n\nThis spell has two modes of operation: targeting a single outsider, or summoning a planar ally. Targeted outsiders are paralyzed for 1 round per 2 caster levels. The type of summoned ally is based on the caster\u0027s alignment:\nEvil: Vrock\nNeutral: Death slaad\nGood: Celestial Avenger"
         },
         "FR": {
@@ -31335,7 +31335,7 @@
         "Item",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_GrPlanar",
+      "ImpactScript": "op_s_planarbind",
       "InnateLevel": 8,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",
@@ -40684,7 +40684,7 @@
       "Description": {
         "Index": 6193,
         "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 5\nInnate Level: 5\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Single or Point\nDuration: 1 Round / 2 Levels (paralysis), 1 Hour / Level (summon)\nAdditional Counter Spells: Dismissal\nSave: Will Negates\nSpell Resistance: No\n\nThis spell has two modes of operation: targeting a single outsider, or summoning a planar ally. Targeted outsiders are paralyzed for 1 round per 2 caster levels. The type of summoned ally is based on the caster\u0027s alignment:\nEvil: Imp\nNeutral: Red slaad\nGood: Lantern archon",
+          "M": "Caster Level(s): Wizard / Sorcerer 5\nInnate Level: 5\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Single or Point\nDuration: 1 Round / 2 Levels (paralysis), 1 Hour / Level (summon)\nAdditional Counter Spells: Dismissal\nSave: Will Negates\nSpell Resistance: Yes\n\nThis spell has two modes of operation: targeting a single outsider, or summoning a planar ally. Targeted outsiders are paralyzed for 1 round per 2 caster levels. The type of summoned ally is based on the caster\u0027s alignment:\nEvil: Imp\nNeutral: Red Slaad\nGood: Lantern Archon",
           "F": "Caster Level(s): Wizard / Sorcerer 5\nInnate Level: 5\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Single or Point\nDuration: 1 Round / 2 Levels\nAdditional Counter Spells: Dismissal\nSave: Will Negates\nSpell Resistance: No\n\nThis spell has two modes of operation: targeting a single outsider, or summoning a planar ally. Targeted outsiders are paralyzed for 1 round per 2 caster levels. The type of summoned ally is based on the caster\u0027s alignment:\nEvil: Imp\nNeutral: Red slaad\nGood: Lantern archon"
         },
         "FR": {
@@ -40725,7 +40725,7 @@
         "Item",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_LsPlanar",
+      "ImpactScript": "op_s_planarbind",
       "InnateLevel": 5,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",
@@ -40760,7 +40760,7 @@
       "Type": "Spell",
       "UseConcentration": true,
       "IsCastSpontaneously": false,
-      "IsHostile": true,
+      "IsHostile": false,
       "CounterSpell1": {
         "ID": "baa6935b-2ada-6184-6267-39db802e1998",
         "Label": "Dismissal"
@@ -47064,7 +47064,7 @@
       "Description": {
         "Index": 2668,
         "EN": {
-          "M": "Caster Level(s): Cleric 6\nInnate Level: 6\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 hour / level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nAn Outsider is summoned to assist the caster. The type of Outsider varies with the caster\u0027s alignment:\r\nEvil: Succubus\nNeutral: Green slaad\nGood: Hound archon",
+          "M": "Caster Level(s): Cleric 6\nInnate Level: 6\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 hour / level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nAn Outsider is summoned to assist the caster. The type of Outsider varies with the caster\u0027s alignment:\r\nEvil: Succubus\nNeutral: Green Slaad\nGood: Hound Archon",
           "F": "Caster Level(s): Cleric 6\nInnate Level: 6\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 hour / level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nAn Outsider is summoned to assist the caster. The type of Outsider varies with the caster\u0027s alignment."
         },
         "FR": {
@@ -47105,7 +47105,7 @@
         "Item",
         "Placeable"
       ],
-      "ImpactScript": "X0_S0_Planar",
+      "ImpactScript": "op_s_planarbind",
       "InnateLevel": 6,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",
@@ -47182,7 +47182,7 @@
       "Description": {
         "Index": 6501,
         "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Single or Point\nDuration: 1 Round / 2 Levels (paralysis), 1 Hour / Level (summon)\nAdditional Counter Spells:\nSave: Will (-2) Negates\nSpell Resistance: No\n\nThis spell has two modes of operation: targeting a single outsider, or summoning a planar ally. Targeted outsiders are paralyzed for 1 round per 2 caster levels. The type of summoned ally is based on the caster\u0027s alignment:\nEvil: Succubus\nNeutral: Green slaad\nGood: Hound archon",
+          "M": "Caster Level(s): Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Single or Point\nDuration: 1 Round / 2 Levels (paralysis), 1 Hour / Level (summon)\nAdditional Counter Spells:\nSave: Will (-2) Negates\nSpell Resistance: Yes\r\n\nThis spell has two modes of operation: targeting a single outsider, or summoning a planar ally. Targeted outsiders are paralyzed for 1 round per 2 caster levels. The type of summoned ally is based on the caster\u0027s alignment:\nEvil: Succubus\nNeutral: Green Slaad\nGood: Hound Archon",
           "F": "Caster Level(s): Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Single or Point\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: Will (-2) Negates\nSpell Resistance: No\n\nThis spell has two modes of operation: targeting a single outsider, or summoning a planar ally. Targeted outsiders are paralyzed for 1 round per 2 caster levels. The type of summoned ally is based on the caster\u0027s alignment:\nEvil: Succubus\nNeutral: Green slaad\nGood: Hound archon"
         },
         "FR": {
@@ -47223,7 +47223,7 @@
         "Item",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_Planar",
+      "ImpactScript": "op_s_planarbind",
       "InnateLevel": 6,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",
