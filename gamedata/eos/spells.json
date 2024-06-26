@@ -29629,7 +29629,8 @@
       "Description": {
         "Index": 3784,
         "EN": {
-          "M": "Caster Level(s): Cleric 3\nInnate Level: 3\nSchool: Abjuration\nDescriptor(s): Sonic\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Large\nDuration: 1 Turn / 2 Level\nAdditional Counter Spells:\nSave: Reflex 1/2\nSpell Resistance: Yes\n\nThe caster creates a small, magical zone that can detect the passage of enemy creatures. When the field is activated, it explodes, doing 1d8 points of sonic damage per two caster levels to all creatures within the area of effect (to a maximum of 5d8). After being triggered, the glyph dissipates."
+          "M": "Caster Level(s): Cleric 3\nInnate Level: 3\nSchool: Abjuration\nDescriptor(s): Sonic\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: 2.5M area of effect zone, Large blast radius\nDuration: 1 Minute / 2 Level\nAdditional Counter Spells:\nSave: Reflex 1/2\nSpell Resistance: Yes\n\nThe caster creates a small, magical zone that can detect the passage of enemy creatures. When the field is activated, it explodes, doing 1d8 points of sonic damage per two caster levels to the entering object and all creatures within a large area (to a maximum of 5d8). After being triggered, the glyph dissipates.",
+          "F": "Caster Level(s): Cleric 3\nInnate Level: 3\nSchool: Abjuration\nDescriptor(s): Sonic\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Large\nDuration: 1 Turn / 2 Level\nAdditional Counter Spells:\nSave: Reflex 1/2\nSpell Resistance: Yes\n\nThe caster creates a small, magical zone that can detect the passage of enemy creatures. When the field is activated, it explodes, doing 1d8 points of sonic damage per two caster levels to all creatures within the area of effect (to a maximum of 5d8). After being triggered, the glyph dissipates."
         },
         "FR": {
           "M": "Niveau : Pr\u00EAtre 3\nNiveau inn\u00E9 : 3\nEcole : Abjuration\nCat\u00E9gorie(s) : sonique\nComposante(s) : verbale, gestuelle\nPort\u00E9e : courte\nZone d\u0027effet / cible : grande\nDur\u00E9e : 1 tour / 2 niveaux\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : R\u00E9flexe, 1/2\nR\u00E9sistance \u00E0 la magie : oui\n\nLe lanceur de sorts cr\u00E9e une petite zone magique qui peut d\u00E9tecter le passage de cr\u00E9atures ennemies. Quand le champ est activ\u00E9, il explose en infligeant 1d8 points de d\u00E9g\u00E2ts soniques tous les deux niveaux du lanceur de sorts, \u00E0 toutes les cr\u00E9atures qui se trouvent dans la zone d\u0027effet (maximum 5d8). Une fois le glyphe d\u00E9clench\u00E9, il dispara\u00EEt."
@@ -29668,11 +29669,9 @@
       "TargetTypes": [
         "Creature",
         "Area",
-        "Item",
-        "Door",
-        "Placeable"
+        "Item"
       ],
-      "ImpactScript": "X2_S0_GlphWard",
+      "ImpactScript": "op_s_glyphofward",
       "InnateLevel": 3,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -29712,7 +29711,7 @@
       "CounterSpell2": null,
       "HasProjectileVisuals": true,
       "TargetShape": "Sphere",
-      "TargetSizeX": 5,
+      "TargetSizeX": 2.5,
       "TargetSizeY": null,
       "TargetingFlags": [
         "HarmsEnemies",

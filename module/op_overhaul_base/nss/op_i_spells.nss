@@ -635,6 +635,22 @@ object GetSpellTargetObjectCalculated()
         return OBJECT_SELF;
     }
 
+    // If AOE scripts we set it appropriately
+    int nScript = GetCurrentlyRunningEvent();
+    if (nScript == EVENT_SCRIPT_AREAOFEFFECT_ON_HEARTBEAT ||
+        nScript == EVENT_SCRIPT_AREAOFEFFECT_ON_USER_DEFINED_EVENT)
+    {
+        return OBJECT_INVALID;
+    }
+    else if(nScript == EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_ENTER)
+    {
+        return GetEnteringObject();
+    }
+    else if(nScript == EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_EXIT)
+    {
+        return GetExitingObject();
+    }
+
     // Potions can only ever be used on self, notable when using some potions on enemies (a bug in the engine)
     if (GetIsObjectValid(GetSpellCastItem()))
     {
@@ -652,10 +668,20 @@ object GetSpellTargetObjectCalculated()
 // Will return the location of oTarget if valid, else GetSpellTargetLocation.
 location GetSpellTargetLocationCalculated(object oTarget)
 {
+    location lReturn;
     if (GetIsObjectValid(oTarget))
     {
         return GetLocation(oTarget);
     }
+    // If AOE scripts we set have no valid location for these two events so
+    // use ourselves
+    int nScript = GetCurrentlyRunningEvent();
+    if (nScript == EVENT_SCRIPT_AREAOFEFFECT_ON_HEARTBEAT ||
+        nScript == EVENT_SCRIPT_AREAOFEFFECT_ON_USER_DEFINED_EVENT)
+    {
+        return GetLocation(OBJECT_SELF);
+    }
+
     return GetSpellTargetLocation();
 }
 
