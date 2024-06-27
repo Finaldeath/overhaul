@@ -28,7 +28,7 @@ void main()
 {
     if (DoSpellHook()) return;
 
-    int nHealing;
+    int nHealing, nMaxTargets = 1;
     switch (nSpellId)
     {
         case SPELL_REGENERATE_LIGHT_WOUNDS:     nHealing = 1; break;
@@ -36,6 +36,8 @@ void main()
         case SPELL_MONSTROUS_REGENERATION:      nHealing = 3; break;
         case SPELL_REGENERATE_CRITICAL_WOUNDS:  nHealing = 4; break;
         case SPELL_REGENERATE:                  nHealing = 5; break;
+        case SPELL_REGENERATE_RING:             nHealing = 1; nMaxTargets = max(1, nCasterLevel/2); break;
+        case SPELL_REGENERATE_CIRCLE:           nHealing = 3; nMaxTargets = max(1, nCasterLevel/2); break;
         default:
         {
             OP_Debug("[Regenerate] Unknown spell ID: " + IntToString(nSpellId), LOG_LEVEL_ERROR);
@@ -48,18 +50,48 @@ void main()
     effect eLink = EffectLinkEffects(EffectRegenerate(nHealing, 6.0),
                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
 
-    SignalSpellCastAt();
+    if (GetSpellIsAreaOfEffect(nSpellId))
+    {
+        // Same AOE effect for each
+        ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_PULSE_NATURE), lTarget);
 
-    float fDuration = GetDuration(10 + nCasterLevel, ROUNDS);
+        json jArray = GetArrayOfTargets(SPELL_TARGET_ALLALLIES, SORT_METHOD_DISTANCE, SHAPE_SPHERE, RADIUS_SIZE_LARGE, lTarget, TRUE);
 
-    // We first check for any existing of this exact same level of regen
-    fDuration += GetRemainingDurationOfRegen(oTarget, nHealing);
+        int nIndex;
+        for (nIndex = 0; nIndex < JsonGetLength(jArray) && nIndex < nMaxTargets; nIndex++)
+        {
+            oTarget = GetArrayObject(jArray, nIndex);
 
-    // Then we cull all existing regen effects
-    RemoveEffectsFromSpell(oTarget, SPELL_ANY, EFFECT_TYPE_REGENERATE);
+            SignalSpellCastAt();
 
-    ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
-    ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
+            float fDelay = GetDistanceBetweenLocations(lTarget, GetLocation(oTarget))/25.0;
+            float fDuration = GetDuration(10 + nCasterLevel, ROUNDS);
+
+            // We first check for any existing of this exact same level of regen
+            fDuration += GetRemainingDurationOfRegen(oTarget, nHealing);
+
+            // Then we cull all existing regen effects
+            RemoveEffectsFromSpell(oTarget, SPELL_ANY, EFFECT_TYPE_REGENERATE);
+
+            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
+            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
+        }
+    }
+    else
+    {
+        SignalSpellCastAt();
+
+        float fDuration = GetDuration(10 + nCasterLevel, ROUNDS);
+
+        // We first check for any existing of this exact same level of regen
+        fDuration += GetRemainingDurationOfRegen(oTarget, nHealing);
+
+        // Then we cull all existing regen effects
+        RemoveEffectsFromSpell(oTarget, SPELL_ANY, EFFECT_TYPE_REGENERATE);
+
+        ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
+        ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
+    }
 }
 
 float GetRemainingDurationOfRegen(object oObject, int nHealing)
