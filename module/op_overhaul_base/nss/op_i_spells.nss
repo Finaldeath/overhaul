@@ -311,6 +311,9 @@ int GetHasEffect(object oObject, int nEffectType, string sTag = "");
 // * nEffectType - If set the effect type must match
 int RemoveEffectsFromSpell(object oObject, int nSpellId, int nEffectType = EFFECT_TYPE_ALL, string sTag = "");
 
+// Finds the duration remaining of the given spell on oObject
+float GetRemainingDurationOfSpell(object oObject, int nSpellId);
+
 // Cures a JsonArray of integer effects with some caveats:
 // - oTarget - Creature to cure
 // - jArray - The array of EFFECT_TYPE_* integers to remove. Note:
@@ -1818,6 +1821,21 @@ int RemoveEffectsFromSpell(object oObject, int nSpellId, int nEffectType = EFFEC
         eCheck = GetNextEffect(oObject);
     }
     return bRemoved;
+}
+
+// Finds the duration remaining of the given spell on oObject
+float GetRemainingDurationOfSpell(object oObject, int nSpellId)
+{
+    effect eCheck = GetFirstEffect(oObject);
+    while (GetIsEffectValid(eCheck))
+    {
+        if (GetEffectSpellId(eCheck) == nSpellId)
+        {
+            return IntToFloat(GetEffectDurationRemaining(eCheck));
+        }
+        eCheck = GetNextEffect(oObject);
+    }
+    return 0.0;
 }
 
 // Cures a JsonArray of integer effects with some caveats:

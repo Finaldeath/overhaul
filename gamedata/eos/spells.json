@@ -45104,122 +45104,6 @@
       "TargetingFlags": []
     },
     {
-      "ID": "0884da15-9f1b-4d22-82fe-b2de80b972c8",
-      "Index": -1,
-      "Overrides": "199eaa45-b4b7-b618-b393-feea71add92b",
-      "Disabled": false,
-      "Hint": "",
-      "ScriptConstant": "",
-      "SourceLabel": "Monstrous_Regeneration",
-      "ExtensionValues": {},
-      "Name": {
-        "Index": 3874,
-        "EN": {
-          "M": "Monstrous Regeneration"
-        },
-        "FR": {
-          "M": "R\u00E9g\u00E9n\u00E9ration monstrueuse"
-        },
-        "DE": {
-          "M": "Monstr\u00F6se Regeneration"
-        },
-        "IT": {
-          "M": "Rigenerazione mostruosa"
-        },
-        "ES": {
-          "M": "Regeneraci\u00F3n monstruosa"
-        },
-        "PL": {
-          "M": "Potworna Regeneracja"
-        }
-      },
-      "Description": {
-        "Index": 3875,
-        "EN": {
-          "M": "Caster Level(s): Cleric 5\nInnate Level: 5\nSchool: Conjuration\nDescriptor(s): Regeneration\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Round / 2 Caster Levels\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nFor the duration of the spell, the target creature gains the ability to regenerate 3 Hit Points every round."
-        },
-        "FR": {
-          "M": "Niveau : Pr\u00EAtre 5\nNiveau inn\u00E9 : 5\nEcole : Invocation\nCat\u00E9gorie(s) : r\u00E9g\u00E9n\u00E9ration\nComposante(s) : verbale, gestuelle\nPort\u00E9e : contact\nZone d\u0027effet / cible : une seule\nDur\u00E9e : 1 round / 2 niveaux\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : inoffensif\nR\u00E9sistance \u00E0 la magie : non\n\nPendant toute le dur\u00E9e du sort, la cr\u00E9ature cibl\u00E9e r\u00E9g\u00E9n\u00E8re 3 points de vie par round."
-        },
-        "DE": {
-          "M": "Grad: KLE 5\nKalkulationsgrad: 5\nSchule: Beschw\u00F6rung\nKategorie: Regeneration\nKomponenten: V, G\nReichweite: Ber\u00FChrung\nWirkungsbereich/Ziel: 1 Kreatur\nWirkungsdauer: 1 Runde f\u00FCr je 2 Stufen\nGegenzauber:\nRettungswurf: Harmlos\nZauberresistenz: Nein\n\nF\u00FCr die Wirkungsdauer des Zaubers erh\u00E4lt das Ziel die F\u00E4higkeit Regeneration und regeneriert drei Trefferpunkte pro Runde."
-        },
-        "IT": {
-          "M": "Livello dell\u2019incantatore: chierico 5\nLivello innato: 5\nScuola: Evocazione\nDescrittore: rigenerazione\nComponenti: verbale, somatica\nRaggio d\u0027azione: tocco\nArea d\u0027effetto/bersaglio: singolo\nDurata: 1 turno/2 livelli incantatore\nControincantesimi addizionali:\nTiro salvezza: innocuo\nResistenza agli incantesimi: no\n\nPer la durata dell\u0027incantesimo, la creatura bersaglio \u00E8 in grado di rigenerare 3 punti ferita a ogni turno."
-        },
-        "ES": {
-          "M": "Nivel de lanzador: Cl\u00E9rigo 5\nNivel innato: 5\nEscuela: Conjuraci\u00F3n\nDescriptores: Regeneraci\u00F3n\nComponentes: Verbal, Som\u00E1tico\nAlcance: Toque\n\u00C1rea de efecto / Objetivo: Individual\nDuraci\u00F3n: 1 asalto / 2 niveles de lanzador\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Inofensivo\nResistencia a conjuros: No\n\nMientras dure el conjuro, la criatura objetivo obtendr\u00E1 la aptitud para regenerar 3 puntos de golpe por asalto."
-        },
-        "PL": {
-          "M": "Poziom(y) czaruj\u0105cego: Kap\u0142an 5\nPoziom wrodzony: 5\nSzko\u0142a: Sprowadzanie\nIdentyfikator(y): Regeneracja\nKomponent(y): Werbalny, Somatyczny\nZasi\u0119g: Dotyk\nObszar dzia\u0142ania / Cel: Pojedynczy\nCzas trwania: 1 runda / 2 poziomy rzucaj\u0105cego\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Czar nieszkodliwy\nOdporno\u015B\u0107 na czary: Nie\n\nPrzez okres dzia\u0142ania tego czaru istota mo\u017Ce co rund\u0119 zregenerowa\u0107 3 Punkty Wytrzyma\u0142o\u015Bci."
-        }
-      },
-      "AlternativeCastMessage": {
-        "Index": null
-      },
-      "Icon": "is_x2monregen",
-      "School": "C",
-      "Range": "T",
-      "Components": [
-        "V",
-        "S"
-      ],
-      "AvailableMetaMagic": [
-        "Extend",
-        "Quicken",
-        "Silent",
-        "Still"
-      ],
-      "TargetTypes": [
-        "Self",
-        "Creature",
-        "Item"
-      ],
-      "ImpactScript": "X2_S0_MonRegen",
-      "InnateLevel": 5,
-      "ConjurationTime": 1500,
-      "ConjuringAnimation": "Hand",
-      "ConjurationHeadEffect": null,
-      "ConjurationHandEffect": "vco_mehannatr02",
-      "ConjurationGroundEffect": "vco_megrdnatr01",
-      "ConjurationSound": "sco_megrdnatr01",
-      "ConjurationMaleSound": "vs_chant_conj_hm",
-      "ConjurationFemaleSound": "vs_chant_conj_hf",
-      "CastingAnimation": "Out",
-      "CastTime": 1000,
-      "CastingHeadEffect": null,
-      "CastingHandEffect": null,
-      "CastingGroundEffect": null,
-      "CastingSound": null,
-      "HasProjectile": false,
-      "ProjectileModel": null,
-      "ProjectileType": null,
-      "ProjectileSpawnPoint": null,
-      "ProjectileSound": null,
-      "ProjectileOrientation": null,
-      "SubSpell1": null,
-      "SubSpell2": null,
-      "SubSpell3": null,
-      "SubSpell4": null,
-      "SubSpell5": null,
-      "SubSpell6": null,
-      "SubSpell7": null,
-      "SubSpell8": null,
-      "Category": "FriendlyEnhancementSingle",
-      "ParentSpell": null,
-      "Type": "Spell",
-      "UseConcentration": true,
-      "IsCastSpontaneously": false,
-      "IsHostile": false,
-      "CounterSpell1": null,
-      "CounterSpell2": null,
-      "HasProjectileVisuals": false,
-      "TargetShape": null,
-      "TargetSizeX": null,
-      "TargetSizeY": null,
-      "TargetingFlags": []
-    },
-    {
       "ID": "aea0bb0b-515e-4521-8375-029fcd1e957f",
       "Index": -1,
       "Overrides": "cfc64669-af52-7b82-b104-d545702e5acb",
@@ -52370,18 +52254,107 @@
       "TargetingFlags": []
     },
     {
+      "ID": "2a41c2f0-16a2-4dd6-a0cc-f8e18f979015",
+      "Index": 35,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Regenerate Light Wounds",
+          "F": "New Spell"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Caster Level(s): Cleric 2, Druid 1\nInnate Level: 1\nSchool: Conjuration\nDescriptor(s): Healing (Regeneration)\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 Rounds \u002B 1 / Caster Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nFor the duration of the spell, the target creature gains the ability to regenerate 1 Hit Points every round.\r\n\r\nIf cast on a subject with the same amount of regeneration or higher, the duration of this spell is increased by the remaining duration. Otherwise if the regeneration effect is lower then it is replaced with the new higher level regeneration.",
+          "F": "Caster Level(s): Cleric 2, Druid 1\nInnate Level: 1\nSchool: Conjuration\nDescriptor(s): Healing (Regeneration)\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 Rounds \u002B 1 / Caster Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nFor the duration of the spell, the target creature gains the ability to regenerate 1 Hit Points every round.\r\n\r\nIf cast on a subject with the same level of regeneration spell the duration is increased, otherwise the any regeneration spells are replaced with the new different regeneration."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "i_dummy",
+      "School": "C",
+      "Range": "T",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Creature",
+        "Item"
+      ],
+      "ImpactScript": "op_s_regenerate",
+      "InnateLevel": 1,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_mehannatr01",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mehannatr01",
+      "ConjurationMaleSound": "vs_chant_conj_lm",
+      "ConjurationFemaleSound": "vs_chant_conj_lf",
+      "CastingAnimation": "Out",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": null,
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyEnhancementSingle",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
       "ID": "dc9aa1db-d79b-4ae2-b45d-fd85019c6ca3",
       "Index": -1,
       "Overrides": "e5cd2f07-24ff-e8ab-eac4-6753c554e752",
       "Disabled": false,
-      "Hint": "",
+      "Hint": "Was: Regenerate",
       "ScriptConstant": "",
       "SourceLabel": "Regenerate",
       "ExtensionValues": {},
       "Name": {
         "Index": 6340,
         "EN": {
-          "M": "Regenerate"
+          "M": "Regenerate Massive Wounds",
+          "F": "Regenerate"
         },
         "FR": {
           "M": "R\u00E9g\u00E9n\u00E9ration"
@@ -52402,7 +52375,8 @@
       "Description": {
         "Index": 6541,
         "EN": {
-          "M": "Caster Level(s): Cleric 7, Druid 6\nInnate Level: 7\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Round / Caster Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nFor the duration of the spell, the target creature gains the ability to regenerate 6 Hit Points every round."
+          "M": "Caster Level(s): Cleric 7, Druid 6\nInnate Level: 6\nSchool: Conjuration\nDescriptor(s): Healing (Regeneration)\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 Rounds \u002B 1 / Caster Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nFor the duration of the spell, the target creature gains the ability to regenerate 5 Hit Points every round.\r\n\r\nIf cast on a subject with the same amount of regeneration or higher, the duration of this spell is increased by the remaining duration. Otherwise if the regeneration effect is lower then it is replaced with the new higher level regeneration.",
+          "F": "Caster Level(s): Cleric 7, Druid 6\nInnate Level: 7\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Round / Caster Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nFor the duration of the spell, the target creature gains the ability to regenerate 6 Hit Points every round."
         },
         "FR": {
           "M": "Niveau : Pr\u00EAtre 7, Druide 6\nNiveau inn\u00E9 : 7\nEcole : Invocation\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : contact\nZone d\u0027effet / cible : 1 cr\u00E9ature\nDur\u00E9e : 1 round / niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : inoffensif\nR\u00E9sistance \u00E0 la magie : non\n\nPendant toute la dur\u00E9e du sort, la cible a la capacit\u00E9 de r\u00E9g\u00E9n\u00E9rer 6 points de vie par round."
@@ -52439,15 +52413,14 @@
       "TargetTypes": [
         "Self",
         "Creature",
-        "Item",
-        "Placeable"
+        "Item"
       ],
-      "ImpactScript": "NW_S0_Regen",
-      "InnateLevel": 7,
+      "ImpactScript": "op_s_regenerate",
+      "InnateLevel": 6,
       "ConjurationTime": 1500,
-      "ConjuringAnimation": "Hand",
-      "ConjurationHeadEffect": null,
-      "ConjurationHandEffect": "vco_mehannatr02",
+      "ConjuringAnimation": "Head",
+      "ConjurationHeadEffect": "vco_mehannatr03",
+      "ConjurationHandEffect": "",
       "ConjurationGroundEffect": "vco_megrdnatr01",
       "ConjurationSound": "sco_megrdnatr01",
       "ConjurationMaleSound": "vs_chant_conj_hm",
@@ -52464,6 +52437,212 @@
       "ProjectileSpawnPoint": null,
       "ProjectileSound": null,
       "ProjectileOrientation": null,
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyEnhancementSingle",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "3b0f21ad-95bc-42ae-be8a-a0575abb7ebd",
+      "Index": 36,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Regenerate Moderate Wounds",
+          "F": "New Spell"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Caster Level(s): Cleric 3, Druid 2\nInnate Level: 2\nSchool: Conjuration\nDescriptor(s): Healing (Regeneration)\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 Rounds \u002B 1 / Caster Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nFor the duration of the spell, the target creature gains the ability to regenerate 2 Hit Points every round.\r\n\r\nIf cast on a subject with the same amount of regeneration or higher, the duration of this spell is increased by the remaining duration. Otherwise if the regeneration effect is lower then it is replaced with the new higher level regeneration.",
+          "F": "Caster Level(s): Cleric 2, Druid 1\nInnate Level: 1\nSchool: Conjuration\nDescriptor(s): Healing (Regeneration)\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 Rounds \u002B 1 / Caster Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nFor the duration of the spell, the target creature gains the ability to regenerate 1 Hit Points every round.\r\n\r\nIf cast on a subject with the same level of regeneration spell the duration is increased, otherwise the any regeneration spells are replaced with the new different regeneration."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "i_dummy",
+      "School": "C",
+      "Range": "T",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Creature",
+        "Item"
+      ],
+      "ImpactScript": "op_s_regenerate",
+      "InnateLevel": 2,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_mehannatr01",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mehannatr01",
+      "ConjurationMaleSound": "vs_chant_conj_lm",
+      "ConjurationFemaleSound": "vs_chant_conj_lf",
+      "CastingAnimation": "Out",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": null,
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyEnhancementSingle",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "0884da15-9f1b-4d22-82fe-b2de80b972c8",
+      "Index": -1,
+      "Overrides": "199eaa45-b4b7-b618-b393-feea71add92b",
+      "Disabled": false,
+      "Hint": "Was: Monstrous Regeneration",
+      "ScriptConstant": "",
+      "SourceLabel": "Monstrous_Regeneration",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 3874,
+        "EN": {
+          "M": "Regenerate Serious Wounds",
+          "F": "Monstrous Regeneration"
+        },
+        "FR": {
+          "M": "R\u00E9g\u00E9n\u00E9ration monstrueuse"
+        },
+        "DE": {
+          "M": "Monstr\u00F6se Regeneration"
+        },
+        "IT": {
+          "M": "Rigenerazione mostruosa"
+        },
+        "ES": {
+          "M": "Regeneraci\u00F3n monstruosa"
+        },
+        "PL": {
+          "M": "Potworna Regeneracja"
+        }
+      },
+      "Description": {
+        "Index": 3875,
+        "EN": {
+          "M": "Caster Level(s): Cleric 5, Druid 4\nInnate Level: 4\nSchool: Conjuration\nDescriptor(s): Healing (Regeneration)\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 Rounds \u002B 1 / Caster Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nFor the duration of the spell, the target creature gains the ability to regenerate 3 Hit Points every round.\r\n\r\nIf cast on a subject with the same amount of regeneration or higher, the duration of this spell is increased by the remaining duration. Otherwise if the regeneration effect is lower then it is replaced with the new higher level regeneration.",
+          "F": "Caster Level(s): Cleric 5\nInnate Level: 5\nSchool: Conjuration\nDescriptor(s): Regeneration\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Round / 2 Caster Levels\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nFor the duration of the spell, the target creature gains the ability to regenerate 3 Hit Points every round."
+        },
+        "FR": {
+          "M": "Niveau : Pr\u00EAtre 5\nNiveau inn\u00E9 : 5\nEcole : Invocation\nCat\u00E9gorie(s) : r\u00E9g\u00E9n\u00E9ration\nComposante(s) : verbale, gestuelle\nPort\u00E9e : contact\nZone d\u0027effet / cible : une seule\nDur\u00E9e : 1 round / 2 niveaux\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : inoffensif\nR\u00E9sistance \u00E0 la magie : non\n\nPendant toute le dur\u00E9e du sort, la cr\u00E9ature cibl\u00E9e r\u00E9g\u00E9n\u00E8re 3 points de vie par round."
+        },
+        "DE": {
+          "M": "Grad: KLE 5\nKalkulationsgrad: 5\nSchule: Beschw\u00F6rung\nKategorie: Regeneration\nKomponenten: V, G\nReichweite: Ber\u00FChrung\nWirkungsbereich/Ziel: 1 Kreatur\nWirkungsdauer: 1 Runde f\u00FCr je 2 Stufen\nGegenzauber:\nRettungswurf: Harmlos\nZauberresistenz: Nein\n\nF\u00FCr die Wirkungsdauer des Zaubers erh\u00E4lt das Ziel die F\u00E4higkeit Regeneration und regeneriert drei Trefferpunkte pro Runde."
+        },
+        "IT": {
+          "M": "Livello dell\u2019incantatore: chierico 5\nLivello innato: 5\nScuola: Evocazione\nDescrittore: rigenerazione\nComponenti: verbale, somatica\nRaggio d\u0027azione: tocco\nArea d\u0027effetto/bersaglio: singolo\nDurata: 1 turno/2 livelli incantatore\nControincantesimi addizionali:\nTiro salvezza: innocuo\nResistenza agli incantesimi: no\n\nPer la durata dell\u0027incantesimo, la creatura bersaglio \u00E8 in grado di rigenerare 3 punti ferita a ogni turno."
+        },
+        "ES": {
+          "M": "Nivel de lanzador: Cl\u00E9rigo 5\nNivel innato: 5\nEscuela: Conjuraci\u00F3n\nDescriptores: Regeneraci\u00F3n\nComponentes: Verbal, Som\u00E1tico\nAlcance: Toque\n\u00C1rea de efecto / Objetivo: Individual\nDuraci\u00F3n: 1 asalto / 2 niveles de lanzador\nContraconjuros adicionales:\nTiro de salvaci\u00F3n: Inofensivo\nResistencia a conjuros: No\n\nMientras dure el conjuro, la criatura objetivo obtendr\u00E1 la aptitud para regenerar 3 puntos de golpe por asalto."
+        },
+        "PL": {
+          "M": "Poziom(y) czaruj\u0105cego: Kap\u0142an 5\nPoziom wrodzony: 5\nSzko\u0142a: Sprowadzanie\nIdentyfikator(y): Regeneracja\nKomponent(y): Werbalny, Somatyczny\nZasi\u0119g: Dotyk\nObszar dzia\u0142ania / Cel: Pojedynczy\nCzas trwania: 1 runda / 2 poziomy rzucaj\u0105cego\nDodatkowe przeciwzakl\u0119cia:\nRzut obronny: Czar nieszkodliwy\nOdporno\u015B\u0107 na czary: Nie\n\nPrzez okres dzia\u0142ania tego czaru istota mo\u017Ce co rund\u0119 zregenerowa\u0107 3 Punkty Wytrzyma\u0142o\u015Bci."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_x2monregen",
+      "School": "C",
+      "Range": "T",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Creature",
+        "Item"
+      ],
+      "ImpactScript": "op_s_regenerate",
+      "InnateLevel": 4,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_mehannatr02",
+      "ConjurationGroundEffect": "",
+      "ConjurationSound": "sco_mehannatr02",
+      "ConjurationMaleSound": "vs_chant_conj_lm",
+      "ConjurationFemaleSound": "vs_chant_conj_lf",
+      "CastingAnimation": "Out",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": null,
+      "ProjectileOrientation": "Path",
       "SubSpell1": null,
       "SubSpell2": null,
       "SubSpell3": null,
@@ -66396,6 +66575,94 @@
         "HarmsAllies",
         "OriginOnSelf"
       ]
+    },
+    {
+      "ID": "4cd603e5-94c2-4ece-a7c6-517742ca0c6c",
+      "Index": 37,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Regenerate Critical Wounds",
+          "F": "New Spell"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Caster Level(s): Cleric 6, Druid 5\nInnate Level: 5\nSchool: Conjuration\nDescriptor(s): Healing (Regeneration)\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 Rounds \u002B 1 / Caster Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nFor the duration of the spell, the target creature gains the ability to regenerate 4 Hit Points every round.\r\n\r\nIf cast on a subject with the same amount of regeneration or higher, the duration of this spell is increased by the remaining duration. Otherwise if the regeneration effect is lower then it is replaced with the new higher level regeneration.",
+          "F": "Caster Level(s): Cleric 2, Druid 1\nInnate Level: 1\nSchool: Conjuration\nDescriptor(s): Healing (Regeneration)\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 Rounds \u002B 1 / Caster Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nFor the duration of the spell, the target creature gains the ability to regenerate 1 Hit Points every round.\r\n\r\nIf cast on a subject with the same level of regeneration spell the duration is increased, otherwise the any regeneration spells are replaced with the new different regeneration."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "i_dummy",
+      "School": "C",
+      "Range": "T",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Creature",
+        "Item"
+      ],
+      "ImpactScript": "op_s_regenerate",
+      "InnateLevel": 5,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Head",
+      "ConjurationHeadEffect": "vco_mehannatr03",
+      "ConjurationHandEffect": "",
+      "ConjurationGroundEffect": "",
+      "ConjurationSound": "sco_mehannatr03",
+      "ConjurationMaleSound": "vs_chant_conj_hm",
+      "ConjurationFemaleSound": "vs_chant_conj_hf",
+      "CastingAnimation": "Out",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": null,
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyEnhancementSingle",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
     }
   ]
 }
