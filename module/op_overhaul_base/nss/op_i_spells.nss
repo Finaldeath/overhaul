@@ -18,7 +18,7 @@
     oCaster - The caller of the script by default
     oCastItem - The spell cast item, if any
     oTarget - The target if any
-    LTarget - The target location (or location of oTarget if valid)
+    lTarget - The target location (or location of oTarget if valid)
     nSpellId - The SPELL_* cast
     nSpellType - The SPELL_TYPE_* that nSpellId is
     nSpellSchool - The spell school of nSpellId, used in DoResistSpell and other locations
@@ -119,6 +119,9 @@ void DebugSpellVariables();
 
 // Checks for if the spell hook needs to be executed and execute it and check the return value if so.
 int DoSpellHook();
+
+// Returns TRUE if this is a state script running since we can't test GetCurrentlyRunningEvent
+int GetIsStateScript();
 
 // Gets the item used to cast the spell. This only works in main spell scripts or run scripts not Area of Effects for now.
 object GetSpellCastItemCalculated();
@@ -343,6 +346,29 @@ object GetArrayObject(json jArray, int nIndex);
 // * sScript - If not set will use current script name + "rs" (eg: op_s_melfsacid -> op_s_melfsacidrs)
 effect EffectRunScriptAutomatic(float fInterval = 6.0, string sScript = "");
 
+// This tags the given effect with JSON_FIELD_* information and returns it
+effect EffectTagWithMetadata(effect eEffect);
+
+// Retrieves the effects save DC (need to be set with EffectTagWithMetadata)
+// Returns 0 if not found
+int GetEffectTaggedSpellSaveDC(effect eEffect);
+
+// Retrieves the effects metamagic (need to be set with EffectTagWithMetadata)
+// Returns 0 if not found
+int GetEffectTaggedMetaMagic(effect eEffect);
+
+// Retrieves the effects caster class (need to be set with EffectTagWithMetadata)
+// Returns CLASS_TYPE_INVALID if not found
+int GetEffectTaggedCasterClass(effect eEffect);
+
+// Retrieves the effects spell level (need to be set with EffectTagWithMetadata)
+// Returns -1 if not found
+int GetEffectTaggedSpellLevel(effect eEffect);
+
+// Retrieves the effects spontaneous casting state (need to be set with EffectTagWithMetadata)
+// Returns 0 if not found
+int GetEffectTaggedSpontaneous(effect eEffect);
+
 // Returns the effect used to track item properties and removes them when this effect is removed
 // Uses the spell ID of this effect to track this.
 // * jOIDs - OIDs of the items to track
@@ -426,10 +452,23 @@ int DoSpellHook()
     return FALSE;
 }
 
+// Returns TRUE if this is a state script running since we can't test GetCurrentlyRunningEvent
+int GetIsStateScript()
+{
+    // Test the scripts explicitly
+    string sScriptName = GetScriptName();
+    if (GetStringLeft(sScriptName, 6) == "op_ss_")
+    {
+        return TRUE;
+    }
+    return FALSE;
+}
 
 // Gets the item used to cast the spell. This only works in main spell scripts or run scripts not Area of Effects for now.
 object GetSpellCastItemCalculated()
 {
+    if (GetIsStateScript()) return OBJECT_INVALID;
+
     if (GetObjectType(OBJECT_SELF) == OBJECT_TYPE_AREA_OF_EFFECT)
     {
         return OBJECT_INVALID;
@@ -450,6 +489,8 @@ object GetSpellCastItemCalculated()
 // This gets the caster, usually OBJECT_SELF, or if an AOE it's GetAreaOfEffectCreator().
 object GetSpellCaster()
 {
+    if (GetIsStateScript()) return OBJECT_INVALID;
+
     if (GetObjectType(OBJECT_SELF) == OBJECT_TYPE_AREA_OF_EFFECT)
     {
         return GetAreaOfEffectCreator();
@@ -468,6 +509,8 @@ object GetSpellCaster()
 // This gets the spell ID but overrides it if we are calling a spell with ExecuteScript
 int GetSpellIdCalculated()
 {
+    if (GetIsStateScript()) return SPELL_INVALID;
+
     string sParam = GetScriptParam(SCRIPT_PARAMETER_SPELL_ID);
     if (sParam != "")
     {
@@ -492,6 +535,8 @@ int GetSpellIdCalculated()
 // This gets the SPELL_TYPE_* the spell ID is classified as (UserType column)
 int GetSpellType(int nSpellIdToCheck)
 {
+    if (GetIsStateScript()) return SPELL_TYPE_INVALID;
+
     string sUserType = Get2DAString("spells", "UserType", nSpellIdToCheck);
     switch (HashString(sUserType))
     {
@@ -525,6 +570,8 @@ int GetSpellIsHostile(int nSpellIdToCheck)
 // For a AOE it uses the stored DC on the AOE object then uses oCaster to change the value.
 int GetSpellSaveDCCalculated(object oCaster, int nSpellIdToCheck)
 {
+    if (nSpellIdToCheck == SPELL_INVALID) return 0;
+
     // Run script stores the save DC
     if (GetLastRunScriptEffectScriptType() != 0)
     {
@@ -553,6 +600,8 @@ int GetSpellSaveDCCalculated(object oCaster, int nSpellIdToCheck)
 // For a AOE pass in it as the oCaster, then it uses the stored caster level.
 int GetCasterLevelCalculated(object oCaster, int nSpellIdToCheck)
 {
+    if (nSpellIdToCheck == SPELL_INVALID) return 0;
+
     // Run script stores the caster level
     if (GetLastRunScriptEffectScriptType() != 0)
     {
@@ -581,6 +630,8 @@ int GetCasterLevelCalculated(object oCaster, int nSpellIdToCheck)
 // Retrieves the metamagic used, in a spell script, AOE script or run script
 int GetMetaMagicFeatCalculated()
 {
+    if (GetIsStateScript()) return METAMAGIC_NONE;
+
     if (GetLastRunScriptEffectScriptType() != 0)
     {
         return GetRunScriptMetaMagic(GetLastRunScriptEffect());
@@ -601,6 +652,8 @@ int GetMetaMagicFeatCalculated()
 // Retrieves the spell casting class, in a spell script or run script.
 int GetLastSpellCastClassCalculated()
 {
+    if (GetIsStateScript()) return METAMAGIC_NONE;
+
     if (GetLastRunScriptEffectScriptType() != 0)
     {
         return GetRunScriptCasterClass(GetLastRunScriptEffect());
@@ -611,6 +664,8 @@ int GetLastSpellCastClassCalculated()
 // Retrieves the spell level (0 - 9), in a spell script or run script.
 int GetLastSpellLevelCalculated()
 {
+    if (GetIsStateScript()) return METAMAGIC_NONE;
+
     if (GetLastRunScriptEffectScriptType() != 0)
     {
         return GetRunScriptSpellLevel(GetLastRunScriptEffect());
@@ -622,6 +677,8 @@ int GetLastSpellLevelCalculated()
 // Retrieves if the spell was spontaneously ccast, in a spell script or run script.
 int GetSpellCastSpontaneouslyCalculated()
 {
+    if (GetIsStateScript()) return METAMAGIC_NONE;
+
     if (GetLastRunScriptEffectScriptType() != 0)
     {
         return GetRunScriptSpontaneous(GetLastRunScriptEffect());
@@ -632,6 +689,8 @@ int GetSpellCastSpontaneouslyCalculated()
 // Will return the target of the spell. Some special cases are taken into account with Run Script and potions.
 object GetSpellTargetObjectCalculated()
 {
+    if (GetIsStateScript()) return OBJECT_SELF;
+
     // If run script we have OBJECT_SELF as the target
     if (GetLastRunScriptEffectScriptType() != 0)
     {
@@ -2048,6 +2107,66 @@ effect EffectRunScriptAutomatic(float fInterval = 6.0, string sScript = "")
     // we can apply anything we want in that script inside the main script applying it.
     return EffectRunScript("", sScript, sScript, fInterval, JsonDump(jObject));
 }
+
+// This tags the given effect with JSON_FIELD_* information and returns it
+effect EffectTagWithMetadata(effect eEffect)
+{
+    // Gather some data for later retrieval
+    // This is similar to the op_i_itemprops version but stores only what cannot be altered
+    // on the effect.
+    // We use a Json object dumped to string for this.
+    json jObject = JsonObject();
+
+    jObject = JsonObjectSet(jObject, JSON_FIELD_OVERHAUL, JsonInt(OVERHAUL_VERSION));
+    //jObject = JsonObjectSet(jObject, JSON_FIELD_SPELLID, JsonInt(nSpellId));
+    //jObject = JsonObjectSet(jObject, JSON_FIELD_CREATOR, JsonString(ObjectToString(oCaster)));
+    //jObject = JsonObjectSet(jObject, JSON_FIELD_CASTERLEVEL, JsonInt(nCasterLevel));
+    jObject = JsonObjectSet(jObject, JSON_FIELD_SPELLSAVEDC, JsonInt(nSpellSaveDC));
+    jObject = JsonObjectSet(jObject, JSON_FIELD_METAMAGIC, JsonInt(nMetaMagic));
+    jObject = JsonObjectSet(jObject, JSON_FIELD_CASTERCLASS, JsonInt(nCasterClass));
+    jObject = JsonObjectSet(jObject, JSON_FIELD_SPELLLEVEL, JsonInt(nSpellLevel));
+    jObject = JsonObjectSet(jObject, JSON_FIELD_SPONTANEOUS, JsonInt(bSpontaneous));
+
+    return TagEffect(eEffect, JsonDump(jObject));
+}
+
+// Retrieves the effects save DC (need to be set with EffectTagWithMetadata)
+// Returns 0 if not found
+int GetEffectTaggedSpellSaveDC(effect eEffect)
+{
+    return GetJsonMetadataIntField(GetEffectTag(eEffect), JSON_FIELD_SPELLSAVEDC, 0);
+}
+
+// Retrieves the effects metamagic (need to be set with EffectTagWithMetadata)
+// Returns 0 if not found
+int GetEffectTaggedMetaMagic(effect eEffect)
+{
+    return GetJsonMetadataIntField(GetEffectTag(eEffect), JSON_FIELD_METAMAGIC, 0);
+}
+
+// Retrieves the effects caster class (need to be set with EffectTagWithMetadata)
+// Returns CLASS_TYPE_INVALID if not found
+int GetEffectTaggedCasterClass(effect eEffect)
+{
+    return GetJsonMetadataIntField(GetEffectTag(eEffect), JSON_FIELD_CASTERCLASS, CLASS_TYPE_INVALID);
+}
+
+// Retrieves the effects spell level (need to be set with EffectTagWithMetadata)
+// Returns -1 if not found
+int GetEffectTaggedSpellLevel(effect eEffect)
+{
+    return GetJsonMetadataIntField(GetEffectTag(eEffect), JSON_FIELD_SPELLLEVEL, -1);
+}
+
+// Retrieves the effects spontaneous casting state (need to be set with EffectTagWithMetadata)
+// Returns 0 if not found
+int GetEffectTaggedSpontaneous(effect eEffect)
+{
+    return GetJsonMetadataIntField(GetEffectTag(eEffect), JSON_FIELD_SPONTANEOUS, 0);
+}
+
+
+// This retrieves the given JSON_FIELD_ from the given effect, if present. Else a default value is returned.
 
 // Returns the effect used to track item properties and removes them when this effect is removed
 // Uses the spell ID of this effect to track this.

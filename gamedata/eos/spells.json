@@ -34931,7 +34931,8 @@
       "Description": {
         "Index": 6178,
         "EN": {
-          "M": "Caster Level(s): Druid 2, Ranger 2\nInnate Level: 2\nSchool: Enchantment\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Single\nDuration: 1 Round / Level\nAdditional Counter Spells: Freedom of Movement\nSave: Will (-4) Negates\nSpell Resistance: Yes\n\nThe target animal is paralyzed for the duration of the spell."
+          "M": "Caster Level(s): Druid 2, Ranger 2\nInnate Level: 2\nSchool: Enchantment\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Single\nDuration: 1 Round / Level\nAdditional Counter Spells: Freedom of Movement\nSave: Will Negates; see text\nSpell Resistance: Yes\n\nThe target animal is paralyzed for the duration of the spell. Each round it may attempt a new saving throw to end the effect.",
+          "F": "Caster Level(s): Druid 2, Ranger 2\nInnate Level: 2\nSchool: Enchantment\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Single\nDuration: 1 Round / Level\nAdditional Counter Spells: Freedom of Movement\nSave: Will (-4) Negates\nSpell Resistance: Yes\n\nThe target animal is paralyzed for the duration of the spell."
         },
         "FR": {
           "M": "Niveau : Druide 2, R\u00F4deur 2\nNiveau inn\u00E9 : 2\nEcole : Enchantement\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : moyenne\nZone d\u0027effet / cible : 1 cr\u00E9ature\nDur\u00E9e : 1 round/niveau\nContresort suppl\u00E9mentaire : Libert\u00E9 de mouvement\nJet de sauvegarde : Volont\u00E9 (-4), annule\nR\u00E9sistance \u00E0 la magie : oui\n\nL\u0027animal pris pour cible est paralys\u00E9 pendant toute la dur\u00E9e du sort."
@@ -34969,7 +34970,7 @@
         "Creature",
         "Item"
       ],
-      "ImpactScript": "NW_S0_HoldAnim",
+      "ImpactScript": "op_s_paralysis",
       "InnateLevel": 2,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -35049,7 +35050,8 @@
       "Description": {
         "Index": 6179,
         "EN": {
-          "M": "Caster Level(s): Bard 4, Druid 4, Wizard / Sorcerer 5\nInnate Level: 4\nSchool: Enchantment\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Single\nDuration: 1 Round / Level\nAdditional Counter Spells: Freedom of Movement\nSave: Will Negates\nSpell Resistance: Yes\n\nThe target monster is paralyzed for the duration of the spell."
+          "M": "Caster Level(s): Bard 4, Druid 4, Wizard / Sorcerer 5\nInnate Level: 4\nSchool: Enchantment\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Single\nDuration: 1 Round / Level\nAdditional Counter Spells: Freedom of Movement\nSave: Will Negates; see text\nSpell Resistance: Yes\n\nThe target monster is paralyzed for the duration of the spell. Each round it may attempt a new saving throw to end the effect.",
+          "F": "Caster Level(s): Bard 4, Druid 4, Wizard / Sorcerer 5\nInnate Level: 4\nSchool: Enchantment\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Single\nDuration: 1 Round / Level\nAdditional Counter Spells: Freedom of Movement\nSave: Will Negates\nSpell Resistance: Yes\n\nThe target monster is paralyzed for the duration of the spell."
         },
         "FR": {
           "M": "Niveau : Barde 4, Druide 4, Magicien / Ensorceleur 5\nNiveau inn\u00E9 : 4\nEcole : Enchantement\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : moyenne\nZone d\u0027effet / cible : 1 cr\u00E9ature\nDur\u00E9e : 1 round/niveau\nContresort suppl\u00E9mentaire : Libert\u00E9 de mouvement\nJet de sauvegarde : Volont\u00E9, annule\nR\u00E9sistance \u00E0 la magie : oui\n\nLe monstre pris pour cible est paralys\u00E9 pendant toute la dur\u00E9e du sort."
@@ -35085,10 +35087,9 @@
       ],
       "TargetTypes": [
         "Creature",
-        "Item",
-        "Placeable"
+        "Item"
       ],
-      "ImpactScript": "NW_S0_HoldMon",
+      "ImpactScript": "op_s_paralysis",
       "InnateLevel": 4,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -35168,7 +35169,8 @@
       "Description": {
         "Index": 6180,
         "EN": {
-          "M": "Caster Level(s): Bard 2, Cleric 2, Wizard / Sorcerer 3\nInnate Level: 2\nSchool: Enchantment\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Single\nDuration: 1 Round / Level\nAdditional Counter Spells: Freedom of Movement\nSave: Will Negates\nSpell Resistance: Yes\n\nThe target humanoid is paralyzed for the duration of the spell."
+          "M": "Caster Level(s): Bard 2, Cleric 2, Wizard / Sorcerer 3\nInnate Level: 2\nSchool: Enchantment\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Single\nDuration: 1 Round / Level\nAdditional Counter Spells: Freedom of Movement\nSave: Will Negates; see text\nSpell Resistance: Yes\n\nThe target humanoid is paralyzed for the duration of the spell. Each round it may attempt a new saving throw to end the effect.",
+          "F": "Caster Level(s): Bard 2, Cleric 2, Wizard / Sorcerer 3\nInnate Level: 2\nSchool: Enchantment\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Single\nDuration: 1 Round / Level\nAdditional Counter Spells: Freedom of Movement\nSave: Will Negates\nSpell Resistance: Yes\n\nThe target humanoid is paralyzed for the duration of the spell."
         },
         "FR": {
           "M": "Niveau : Barde 2, Pr\u00EAtre 2, Magicien / Ensorceleur 2\nNiveau inn\u00E9 : 2\nEcole : Enchantement\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : moyenne\nZone d\u0027effet / cible : 1 cr\u00E9ature\nDur\u00E9e : 1 round/niveau\nContresort suppl\u00E9mentaire : Libert\u00E9 de mouvement\nJet de sauvegarde : Volont\u00E9, annule\nR\u00E9sistance \u00E0 la magie : oui\n\nL\u0027humano\u00EFde pris pour cible est paralys\u00E9 pendant toute la dur\u00E9e du sort."
@@ -35204,10 +35206,9 @@
       ],
       "TargetTypes": [
         "Creature",
-        "Item",
-        "Placeable"
+        "Item"
       ],
-      "ImpactScript": "NW_S0_HoldPers",
+      "ImpactScript": "op_s_paralysis",
       "InnateLevel": 2,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -52254,6 +52255,185 @@
       "TargetingFlags": []
     },
     {
+      "ID": "7e40802f-de80-4474-83b9-7091678b4522",
+      "Index": 39,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Regenerate Circle",
+          "F": "New Spell"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Caster Level(s): Druid 6\nInnate Level: 6\nSchool: Conjuration\nDescriptor(s): Healing (Regeneration)\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Large, 1 Creature / 2 Levels\nDuration: 10 Rounds \u002B 1 / Caster Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nFor the duration of the spell, allies in the area gain the ability to regenerate 3 Hit Points every round.\r\n\r\nIf cast on a subject with the same amount of regeneration or higher, the duration of this spell is increased by the remaining duration. Otherwise if the regeneration effect is lower then it is replaced with the new higher level regeneration.",
+          "F": "Caster Level(s): Cleric 2, Druid 1\nInnate Level: 1\nSchool: Conjuration\nDescriptor(s): Healing (Regeneration)\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 Rounds \u002B 1 / Caster Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nFor the duration of the spell, the target creature gains the ability to regenerate 1 Hit Points every round.\r\n\r\nIf cast on a subject with the same level of regeneration spell the duration is increased, otherwise the any regeneration spells are replaced with the new different regeneration."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "i_dummy",
+      "School": "C",
+      "Range": "S",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Creature",
+        "Area",
+        "Item"
+      ],
+      "ImpactScript": "op_s_regenerate",
+      "InnateLevel": 6,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Head",
+      "ConjurationHeadEffect": "vco_mehannatr03",
+      "ConjurationHandEffect": "",
+      "ConjurationGroundEffect": "vco_lgrinnatr01",
+      "ConjurationSound": "sco_megrdnatr01",
+      "ConjurationMaleSound": "vs_chant_conj_lm",
+      "ConjurationFemaleSound": "vs_chant_conj_lf",
+      "CastingAnimation": "Up",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": null,
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyEnhancementAoe",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": "Sphere",
+      "TargetSizeX": 5,
+      "TargetSizeY": null,
+      "TargetingFlags": [
+        "HelpsAllies"
+      ]
+    },
+    {
+      "ID": "4cd603e5-94c2-4ece-a7c6-517742ca0c6c",
+      "Index": 37,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Regenerate Critical Wounds",
+          "F": "New Spell"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Caster Level(s): Cleric 6, Druid 5\nInnate Level: 5\nSchool: Conjuration\nDescriptor(s): Healing (Regeneration)\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 Rounds \u002B 1 / Caster Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nFor the duration of the spell, the target creature gains the ability to regenerate 4 Hit Points every round.\r\n\r\nIf cast on a subject with the same amount of regeneration or higher, the duration of this spell is increased by the remaining duration. Otherwise if the regeneration effect is lower then it is replaced with the new higher level regeneration.",
+          "F": "Caster Level(s): Cleric 2, Druid 1\nInnate Level: 1\nSchool: Conjuration\nDescriptor(s): Healing (Regeneration)\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 Rounds \u002B 1 / Caster Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nFor the duration of the spell, the target creature gains the ability to regenerate 1 Hit Points every round.\r\n\r\nIf cast on a subject with the same level of regeneration spell the duration is increased, otherwise the any regeneration spells are replaced with the new different regeneration."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "i_dummy",
+      "School": "C",
+      "Range": "T",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Creature",
+        "Item"
+      ],
+      "ImpactScript": "op_s_regenerate",
+      "InnateLevel": 5,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Head",
+      "ConjurationHeadEffect": "vco_mehannatr03",
+      "ConjurationHandEffect": "",
+      "ConjurationGroundEffect": "",
+      "ConjurationSound": "sco_mehannatr03",
+      "ConjurationMaleSound": "vs_chant_conj_hm",
+      "ConjurationFemaleSound": "vs_chant_conj_hf",
+      "CastingAnimation": "Out",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": null,
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyEnhancementSingle",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
       "ID": "2a41c2f0-16a2-4dd6-a0cc-f8e18f979015",
       "Index": 35,
       "Overrides": null,
@@ -52546,6 +52726,97 @@
       "TargetSizeX": null,
       "TargetSizeY": null,
       "TargetingFlags": []
+    },
+    {
+      "ID": "f40d8aa5-9990-40a3-b84b-5d2fb0050c63",
+      "Index": 38,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Regenerate Ring",
+          "F": "New Spell"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Caster Level(s): Druid 3\nInnate Level: 3\nSchool: Conjuration\nDescriptor(s): Healing (Regeneration)\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Large, 1 Creature / 2 Levels\nDuration: 10 Rounds \u002B 1 / Caster Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nFor the duration of the spell, allies in the area gain the ability to regenerate 1 Hit Points every round.\r\n\r\nIf cast on a subject with the same amount of regeneration or higher, the duration of this spell is increased by the remaining duration. Otherwise if the regeneration effect is lower then it is replaced with the new higher level regeneration.",
+          "F": "Caster Level(s): Cleric 2, Druid 1\nInnate Level: 1\nSchool: Conjuration\nDescriptor(s): Healing (Regeneration)\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 Rounds \u002B 1 / Caster Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nFor the duration of the spell, the target creature gains the ability to regenerate 1 Hit Points every round.\r\n\r\nIf cast on a subject with the same level of regeneration spell the duration is increased, otherwise the any regeneration spells are replaced with the new different regeneration."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "i_dummy",
+      "School": "C",
+      "Range": "S",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Creature",
+        "Area",
+        "Item"
+      ],
+      "ImpactScript": "op_s_regenerate",
+      "InnateLevel": 3,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Head",
+      "ConjurationHeadEffect": "vco_mehannatr02",
+      "ConjurationHandEffect": "",
+      "ConjurationGroundEffect": "vco_megrdnatr01",
+      "ConjurationSound": "sco_megrdnatr01",
+      "ConjurationMaleSound": "vs_chant_conj_lm",
+      "ConjurationFemaleSound": "vs_chant_conj_lf",
+      "CastingAnimation": "Up",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": null,
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyEnhancementAoe",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": "Sphere",
+      "TargetSizeX": 5,
+      "TargetSizeY": null,
+      "TargetingFlags": [
+        "HelpsAllies"
+      ]
     },
     {
       "ID": "0884da15-9f1b-4d22-82fe-b2de80b972c8",
@@ -59649,7 +59920,8 @@
       "Description": {
         "Index": 3780,
         "EN": {
-          "M": "Caster Level(s): Druid 6\nInnate Level: 6\nSchool: Conjuration\nDescriptor(s): Paralyse\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Huge\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: Will negates\nSpell Resistance: Yes\n\nCreates a cloud that paralyzes any creatures inside of it, encasing them in stone for 1d6 rounds."
+          "M": "Caster Level(s): Druid 6\nInnate Level: 6\nSchool: Conjuration\nDescriptor(s): Paralyse\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Huge\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: Will Negates\nSpell Resistance: Yes\n\nCreates a cloud that paralyzes any creatures inside of it, encasing them in stone for 1d6 rounds.",
+          "F": "Caster Level(s): Druid 6\nInnate Level: 6\nSchool: Conjuration\nDescriptor(s): Paralyse\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Huge\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: Will negates\nSpell Resistance: Yes\n\nCreates a cloud that paralyzes any creatures inside of it, encasing them in stone for 1d6 rounds."
         },
         "FR": {
           "M": "Niveau : Druide 6\nNiveau inn\u00E9 : 6\nEcole : Invocation\nCat\u00E9gorie(s) : paralysie\nComposante(s) : verbale, gestuelle\nPort\u00E9e : moyenne\nZone d\u0027effet / cible : tr\u00E8s grande\nDur\u00E9e : 1 round / niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : Volont\u00E9, annule\nR\u00E9sistance \u00E0 la magie : oui\n\nEngendre un nuage qui paralyse toute cr\u00E9ature qui s\u0027y trouve, en la recouvrant de pierres pendant 1d6 rounds."
@@ -66574,276 +66846,6 @@
         "HarmsEnemies",
         "HarmsAllies",
         "OriginOnSelf"
-      ]
-    },
-    {
-      "ID": "4cd603e5-94c2-4ece-a7c6-517742ca0c6c",
-      "Index": 37,
-      "Overrides": null,
-      "Disabled": false,
-      "Hint": "",
-      "ScriptConstant": "",
-      "SourceLabel": "",
-      "ExtensionValues": {},
-      "Name": {
-        "Index": null,
-        "EN": {
-          "M": "Regenerate Critical Wounds",
-          "F": "New Spell"
-        }
-      },
-      "Description": {
-        "Index": null,
-        "EN": {
-          "M": "Caster Level(s): Cleric 6, Druid 5\nInnate Level: 5\nSchool: Conjuration\nDescriptor(s): Healing (Regeneration)\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 Rounds \u002B 1 / Caster Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nFor the duration of the spell, the target creature gains the ability to regenerate 4 Hit Points every round.\r\n\r\nIf cast on a subject with the same amount of regeneration or higher, the duration of this spell is increased by the remaining duration. Otherwise if the regeneration effect is lower then it is replaced with the new higher level regeneration.",
-          "F": "Caster Level(s): Cleric 2, Druid 1\nInnate Level: 1\nSchool: Conjuration\nDescriptor(s): Healing (Regeneration)\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 Rounds \u002B 1 / Caster Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nFor the duration of the spell, the target creature gains the ability to regenerate 1 Hit Points every round.\r\n\r\nIf cast on a subject with the same level of regeneration spell the duration is increased, otherwise the any regeneration spells are replaced with the new different regeneration."
-        }
-      },
-      "AlternativeCastMessage": {
-        "Index": null
-      },
-      "Icon": "i_dummy",
-      "School": "C",
-      "Range": "T",
-      "Components": [
-        "V",
-        "S"
-      ],
-      "AvailableMetaMagic": [
-        "Extend",
-        "Quicken",
-        "Silent",
-        "Still"
-      ],
-      "TargetTypes": [
-        "Self",
-        "Creature",
-        "Item"
-      ],
-      "ImpactScript": "op_s_regenerate",
-      "InnateLevel": 5,
-      "ConjurationTime": 1500,
-      "ConjuringAnimation": "Head",
-      "ConjurationHeadEffect": "vco_mehannatr03",
-      "ConjurationHandEffect": "",
-      "ConjurationGroundEffect": "",
-      "ConjurationSound": "sco_mehannatr03",
-      "ConjurationMaleSound": "vs_chant_conj_hm",
-      "ConjurationFemaleSound": "vs_chant_conj_hf",
-      "CastingAnimation": "Out",
-      "CastTime": 1000,
-      "CastingHeadEffect": null,
-      "CastingHandEffect": null,
-      "CastingGroundEffect": null,
-      "CastingSound": null,
-      "HasProjectile": false,
-      "ProjectileModel": null,
-      "ProjectileType": "Homing",
-      "ProjectileSpawnPoint": "Hand",
-      "ProjectileSound": null,
-      "ProjectileOrientation": "Path",
-      "SubSpell1": null,
-      "SubSpell2": null,
-      "SubSpell3": null,
-      "SubSpell4": null,
-      "SubSpell5": null,
-      "SubSpell6": null,
-      "SubSpell7": null,
-      "SubSpell8": null,
-      "Category": "FriendlyEnhancementSingle",
-      "ParentSpell": null,
-      "Type": "Spell",
-      "UseConcentration": true,
-      "IsCastSpontaneously": false,
-      "IsHostile": false,
-      "CounterSpell1": null,
-      "CounterSpell2": null,
-      "HasProjectileVisuals": false,
-      "TargetShape": null,
-      "TargetSizeX": null,
-      "TargetSizeY": null,
-      "TargetingFlags": []
-    },
-    {
-      "ID": "f40d8aa5-9990-40a3-b84b-5d2fb0050c63",
-      "Index": 38,
-      "Overrides": null,
-      "Disabled": false,
-      "Hint": "",
-      "ScriptConstant": "",
-      "SourceLabel": "",
-      "ExtensionValues": {},
-      "Name": {
-        "Index": null,
-        "EN": {
-          "M": "Regenerate Ring",
-          "F": "New Spell"
-        }
-      },
-      "Description": {
-        "Index": null,
-        "EN": {
-          "M": "Caster Level(s): Druid 3\nInnate Level: 3\nSchool: Conjuration\nDescriptor(s): Healing (Regeneration)\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Large, 1 Creature / 2 Levels\nDuration: 10 Rounds \u002B 1 / Caster Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nFor the duration of the spell, allies in the area gain the ability to regenerate 1 Hit Points every round.\r\n\r\nIf cast on a subject with the same amount of regeneration or higher, the duration of this spell is increased by the remaining duration. Otherwise if the regeneration effect is lower then it is replaced with the new higher level regeneration.",
-          "F": "Caster Level(s): Cleric 2, Druid 1\nInnate Level: 1\nSchool: Conjuration\nDescriptor(s): Healing (Regeneration)\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 Rounds \u002B 1 / Caster Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nFor the duration of the spell, the target creature gains the ability to regenerate 1 Hit Points every round.\r\n\r\nIf cast on a subject with the same level of regeneration spell the duration is increased, otherwise the any regeneration spells are replaced with the new different regeneration."
-        }
-      },
-      "AlternativeCastMessage": {
-        "Index": null
-      },
-      "Icon": "i_dummy",
-      "School": "C",
-      "Range": "S",
-      "Components": [
-        "V",
-        "S"
-      ],
-      "AvailableMetaMagic": [
-        "Extend",
-        "Quicken",
-        "Silent",
-        "Still"
-      ],
-      "TargetTypes": [
-        "Self",
-        "Creature",
-        "Area",
-        "Item"
-      ],
-      "ImpactScript": "op_s_regenerate",
-      "InnateLevel": 3,
-      "ConjurationTime": 1500,
-      "ConjuringAnimation": "Head",
-      "ConjurationHeadEffect": "vco_mehannatr02",
-      "ConjurationHandEffect": "",
-      "ConjurationGroundEffect": "vco_megrdnatr01",
-      "ConjurationSound": "sco_megrdnatr01",
-      "ConjurationMaleSound": "vs_chant_conj_lm",
-      "ConjurationFemaleSound": "vs_chant_conj_lf",
-      "CastingAnimation": "Up",
-      "CastTime": 1000,
-      "CastingHeadEffect": null,
-      "CastingHandEffect": null,
-      "CastingGroundEffect": null,
-      "CastingSound": null,
-      "HasProjectile": false,
-      "ProjectileModel": null,
-      "ProjectileType": "Homing",
-      "ProjectileSpawnPoint": "Hand",
-      "ProjectileSound": null,
-      "ProjectileOrientation": "Path",
-      "SubSpell1": null,
-      "SubSpell2": null,
-      "SubSpell3": null,
-      "SubSpell4": null,
-      "SubSpell5": null,
-      "SubSpell6": null,
-      "SubSpell7": null,
-      "SubSpell8": null,
-      "Category": "FriendlyEnhancementAoe",
-      "ParentSpell": null,
-      "Type": "Spell",
-      "UseConcentration": true,
-      "IsCastSpontaneously": false,
-      "IsHostile": false,
-      "CounterSpell1": null,
-      "CounterSpell2": null,
-      "HasProjectileVisuals": false,
-      "TargetShape": "Sphere",
-      "TargetSizeX": 5,
-      "TargetSizeY": null,
-      "TargetingFlags": [
-        "HelpsAllies"
-      ]
-    },
-    {
-      "ID": "7e40802f-de80-4474-83b9-7091678b4522",
-      "Index": 39,
-      "Overrides": null,
-      "Disabled": false,
-      "Hint": "",
-      "ScriptConstant": "",
-      "SourceLabel": "",
-      "ExtensionValues": {},
-      "Name": {
-        "Index": null,
-        "EN": {
-          "M": "Regenerate Circle",
-          "F": "New Spell"
-        }
-      },
-      "Description": {
-        "Index": null,
-        "EN": {
-          "M": "Caster Level(s): Druid 6\nInnate Level: 6\nSchool: Conjuration\nDescriptor(s): Healing (Regeneration)\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Large, 1 Creature / 2 Levels\nDuration: 10 Rounds \u002B 1 / Caster Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nFor the duration of the spell, allies in the area gain the ability to regenerate 3 Hit Points every round.\r\n\r\nIf cast on a subject with the same amount of regeneration or higher, the duration of this spell is increased by the remaining duration. Otherwise if the regeneration effect is lower then it is replaced with the new higher level regeneration.",
-          "F": "Caster Level(s): Cleric 2, Druid 1\nInnate Level: 1\nSchool: Conjuration\nDescriptor(s): Healing (Regeneration)\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 10 Rounds \u002B 1 / Caster Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nFor the duration of the spell, the target creature gains the ability to regenerate 1 Hit Points every round.\r\n\r\nIf cast on a subject with the same level of regeneration spell the duration is increased, otherwise the any regeneration spells are replaced with the new different regeneration."
-        }
-      },
-      "AlternativeCastMessage": {
-        "Index": null
-      },
-      "Icon": "i_dummy",
-      "School": "C",
-      "Range": "S",
-      "Components": [
-        "V",
-        "S"
-      ],
-      "AvailableMetaMagic": [
-        "Extend",
-        "Quicken",
-        "Silent",
-        "Still"
-      ],
-      "TargetTypes": [
-        "Self",
-        "Creature",
-        "Area",
-        "Item"
-      ],
-      "ImpactScript": "op_s_regenerate",
-      "InnateLevel": 6,
-      "ConjurationTime": 1500,
-      "ConjuringAnimation": "Head",
-      "ConjurationHeadEffect": "vco_mehannatr03",
-      "ConjurationHandEffect": "",
-      "ConjurationGroundEffect": "vco_lgrinnatr01",
-      "ConjurationSound": "sco_megrdnatr01",
-      "ConjurationMaleSound": "vs_chant_conj_lm",
-      "ConjurationFemaleSound": "vs_chant_conj_lf",
-      "CastingAnimation": "Up",
-      "CastTime": 1000,
-      "CastingHeadEffect": null,
-      "CastingHandEffect": null,
-      "CastingGroundEffect": null,
-      "CastingSound": null,
-      "HasProjectile": false,
-      "ProjectileModel": null,
-      "ProjectileType": "Homing",
-      "ProjectileSpawnPoint": "Hand",
-      "ProjectileSound": null,
-      "ProjectileOrientation": "Path",
-      "SubSpell1": null,
-      "SubSpell2": null,
-      "SubSpell3": null,
-      "SubSpell4": null,
-      "SubSpell5": null,
-      "SubSpell6": null,
-      "SubSpell7": null,
-      "SubSpell8": null,
-      "Category": "FriendlyEnhancementAoe",
-      "ParentSpell": null,
-      "Type": "Spell",
-      "UseConcentration": true,
-      "IsCastSpontaneously": false,
-      "IsHostile": false,
-      "CounterSpell1": null,
-      "CounterSpell2": null,
-      "HasProjectileVisuals": false,
-      "TargetShape": "Sphere",
-      "TargetSizeX": 5,
-      "TargetSizeY": null,
-      "TargetingFlags": [
-        "HelpsAllies"
       ]
     }
   ]
