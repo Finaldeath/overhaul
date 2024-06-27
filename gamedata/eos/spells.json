@@ -149,7 +149,8 @@
       "Description": {
         "Index": 6096,
         "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Conjuration\nDescriptor(s): Acid\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Large\nDuration: 1 Round / 2 Level\nAdditional Counter Spells:\nSave: Fortitude\nSpell Resistance: Yes\n\nAcid Fog creates a thick, clinging, greenish cloud. Creatures entering the cloud take 4d6 acid damage. Creatures inside the cloud must make a Fortitude save or have their movement reduced by 50%. Every round a creature spends in the cloud, it suffers 2d6 acid damage."
+          "M": "Caster Level(s): Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Conjuration\nDescriptor(s): Acid\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Large\nDuration: 1 Round / 2 Levels\nAdditional Counter Spells:\nSave: Fortitude (see text)\nSpell Resistance: Yes\n\nAcid Fog creates a thick, clinging, greenish cloud. Creatures entering the cloud must make a Fortitude save or have their movement reduced by 50%, and will take 4d6 acid damage (half if the fortitude save was successful).\r\n\r\nEvery round a creature spends in the cloud, it suffers 2d6 acid damage (half on a successful fortitude save).",
+          "F": "Caster Level(s): Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Conjuration\nDescriptor(s): Acid\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Large\nDuration: 1 Round / 2 Level\nAdditional Counter Spells:\nSave: Fortitude\nSpell Resistance: Yes\n\nAcid Fog creates a thick, clinging, greenish cloud. Creatures entering the cloud take 4d6 acid damage. Creatures inside the cloud must make a Fortitude save or have their movement reduced by 50%. Every round a creature spends in the cloud, it suffers 2d6 acid damage."
         },
         "FR": {
           "M": "Niveau : Magicien / Ensorceleur 6\nNiveau inn\u00E9 : 6\nEcole : Invocation\nCat\u00E9gorie(s) : acide\nComposante(s) : verbale, gestuelle\nPort\u00E9e : longue\nZone d\u0027effet / cible : grande\nDur\u00E9e : 1 round/2 niveaux\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : Vigueur\nR\u00E9sistance \u00E0 la magie : oui\n\nBrume acide cr\u00E9e un \u00E9pais nuage verd\u00E2tre. Les cr\u00E9atures qui y p\u00E9n\u00E8trent subissent 4d6 points de d\u00E9g\u00E2t d\u0027Acide. Celles qui sont prises \u00E0 l\u0027int\u00E9rieur doivent effectuer un jet de Vigueur ou voir leur vitesse r\u00E9duite de moiti\u00E9. Toute cr\u00E9ature se voit infliger 2d6 points de d\u00E9g\u00E2ts d\u0027Acide par round pass\u00E9 dans le nuage."
@@ -192,7 +193,7 @@
         "Door",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_AcidFog",
+      "ImpactScript": "op_s_acidfog",
       "InnateLevel": 6,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",

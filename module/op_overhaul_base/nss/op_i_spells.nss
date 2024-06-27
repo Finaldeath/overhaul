@@ -823,6 +823,20 @@ int DoResistSpell(object oTarget, object oCaster, float fDelay = 0.0, int bResis
             nResistSpellCasterLevel = GetHitDice(oCaster);
         }
 
+        // Add spell penetration feats
+        if (GetHasFeat(FEAT_EPIC_SPELL_PENETRATION, oCaster))
+        {
+            nResistSpellCasterLevel += 6;
+        }
+        else if (GetHasFeat(FEAT_GREATER_SPELL_PENETRATION, oCaster))
+        {
+            nResistSpellCasterLevel += 4;
+        }
+        else if (GetHasFeat(FEAT_SPELL_PENETRATION, oCaster))
+        {
+            nResistSpellCasterLevel += 2;
+        }
+
         // Check for Assay Resistance bonus vs. oTarget
         nResistSpellCasterLevel += GetAssayResistanceBonus(oTarget, oCaster);
 
