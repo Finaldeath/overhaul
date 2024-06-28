@@ -6,12 +6,15 @@
     Resistance
     Grants the target creature a +1 bonus to all saving throws.
 
+    Superior Resistance
+    +3 to saves.
+
+    Major Resistance
+    +6 to saves.
+
     Protection from Spells
     Within the area of effect, up to one ally per 4 caster levels receives a
     +8 bonus on all saving throws against spells.
-
-    While Resistance is vs. everything and Protection from Spells is only vs.
-    spells this isn't the worst thing to have as one script.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -38,6 +41,26 @@ void main()
 
             eVis = EffectVisualEffect(VFX_IMP_HEAD_HOLY);
             eLink = EffectLinkEffects(EffectSavingThrowIncrease(SAVING_THROW_ALL, 1),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+        }
+        break;
+        case SPELL_SUPERIOR_RESISTANCE:
+        {
+            bAOE = FALSE;
+            fDuration = GetDuration(nCasterLevel, HOURS);
+
+            eVis = EffectVisualEffect(VFX_IMP_MAGIC_PROTECTION);
+            eLink = EffectLinkEffects(EffectSavingThrowIncrease(SAVING_THROW_ALL, 3),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+        }
+        break;
+        case SPELL_MAJOR_RESISTANCE:
+        {
+            bAOE = FALSE;
+            fDuration = GetDuration(nCasterLevel, HOURS);
+
+            eVis = EffectVisualEffect(VFX_IMP_MAGIC_PROTECTION);
+            eLink = EffectLinkEffects(EffectSavingThrowIncrease(SAVING_THROW_ALL, 6),
                                       EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
         }
         break;
