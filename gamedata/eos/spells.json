@@ -26956,7 +26956,8 @@
       "Description": {
         "Index": 6155,
         "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 3\nInnate Level: 3\nSchool: Evocation\nDescriptor(s): Fire\nComponent(s): Verbal, Somatic\nRange: Large\nArea of Effect / Target: Huge\nDuration: Instant\nAdditional Counter Spells:\nSave: Reflex 1/2\nSpell Resistance: Yes\n\nThe caster unleashes a fiery projectile that explodes upon all within the area of effect for 1d6 points of fire damage per caster level, to a maximum of 10d6."
+          "M": "Caster Level(s): Wizard / Sorcerer 3\nInnate Level: 3\nSchool: Evocation\nDescriptor(s): Fire\nComponent(s): Verbal, Somatic\nRange: Large\nArea of Effect / Target: Huge\nDuration: Instantaneous\nAdditional Counter Spells:\nSave: Reflex 1/2\nSpell Resistance: Yes\n\nThe caster unleashes a fiery projectile that explodes upon all within the area of effect for 1d6 points of fire damage per caster level, to a maximum of 10d6.",
+          "F": "Caster Level(s): Wizard / Sorcerer 3\nInnate Level: 3\nSchool: Evocation\nDescriptor(s): Fire\nComponent(s): Verbal, Somatic\nRange: Large\nArea of Effect / Target: Huge\nDuration: Instant\nAdditional Counter Spells:\nSave: Reflex 1/2\nSpell Resistance: Yes\n\nThe caster unleashes a fiery projectile that explodes upon all within the area of effect for 1d6 points of fire damage per caster level, to a maximum of 10d6."
         },
         "FR": {
           "M": "Niveau : Magicien / Ensorceleur 3\nNiveau inn\u00E9 : 3\nEcole : Evocation\nCat\u00E9gorie(s) : feu\nComposante(s) : verbale, gestuelle\nPort\u00E9e : longue\nZone d\u0027effet / cible : tr\u00E8s grande\nDur\u00E9e : instantan\u00E9e\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : R\u00E9flexes, 1/2\nR\u00E9sistance \u00E0 la magie : oui\n\nLe lanceur de sort lib\u00E8re un projectile ardent qui explose et inflige \u00E0 tous ceux qui se trouvent dans la zone d\u0027effet 1d6 points de d\u00E9g\u00E2ts par niveau du lanceur (maximum 10d6)."
@@ -26998,7 +26999,7 @@
         "Door",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_Fireball",
+      "ImpactScript": "op_s_explosions",
       "InnateLevel": 3,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -31615,7 +31616,7 @@
       "Index": 71,
       "Overrides": "2e878e60-9e96-37ea-e13c-b7afa83e3c1e",
       "Disabled": false,
-      "Hint": "Added Quicken",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
@@ -31643,7 +31644,8 @@
       "Description": {
         "Index": 6168,
         "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 5\nInnate Level: 5\nSchool: Illusion\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Special\nArea of Effect / Target: Special\nDuration: Special\nAdditional Counter Spells:\nSave: Special\nSpell Resistance: Special\n\nAllows the caster to conjure a shadow variant of one of the following spells: Summon Shadow, Melf\u0027s Acid Arrow, Ghostly Visage, Web, or Minor Globe of Invulnerability."
+          "M": "Caster Level(s): Wizard / Sorcerer 5\nInnate Level: 5\nSchool: Illusion\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Special\nArea of Effect / Target: Special\nDuration: Special\nAdditional Counter Spells:\nSave: Special\nSpell Resistance: Special\n\nAllows the caster to conjure a shadow variant of one of the following spells: Summon Monster VI, Melf\u0027s Acid Arrow, Ghostly Visage, Web, or Minor Globe of Invulnerability.",
+          "F": "Caster Level(s): Wizard / Sorcerer 5\nInnate Level: 5\nSchool: Illusion\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Special\nArea of Effect / Target: Special\nDuration: Special\nAdditional Counter Spells:\nSave: Special\nSpell Resistance: Special\n\nAllows the caster to conjure a shadow variant of one of the following spells: Summon Shadow, Melf\u0027s Acid Arrow, Ghostly Visage, Web, or Minor Globe of Invulnerability."
         },
         "FR": {
           "M": "Niveau : Magicien / Ensorceleur 5\nNiveau inn\u00E9 : 5\nEcole : Illusion\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : sp\u00E9ciale\nZone d\u0027effet / cible : sp\u00E9ciale\nDur\u00E9e : variable\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : sp\u00E9cial\nR\u00E9sistance \u00E0 la magie : sp\u00E9ciale\n\nCe sort permet au lanceur d\u0027invoquer une variante spectrale des sorts suivants : Convocation d\u0027ombre, Fl\u00E8che acide de Melf, Visage spectral, Toile d\u0027araign\u00E9e ou Globe d\u0027invuln\u00E9rabilit\u00E9 partielle."
@@ -31684,7 +31686,7 @@
         "Door",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_GrShConj",
+      "ImpactScript": "op_s_shadow",
       "InnateLevel": 5,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -31729,7 +31731,7 @@
       "SubSpell6": null,
       "SubSpell7": null,
       "SubSpell8": null,
-      "Category": null,
+      "Category": "TalentFriendlySummon",
       "ParentSpell": null,
       "Type": "Spell",
       "UseConcentration": true,
@@ -31796,7 +31798,7 @@
         "Item",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_GhostVis",
+      "ImpactScript": "op_s_shadow",
       "InnateLevel": 5,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -31901,7 +31903,7 @@
         "Door",
         "Placeable"
       ],
-      "ImpactScript": "op_s_melfsacid",
+      "ImpactScript": "op_s_shadow",
       "InnateLevel": 5,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -32000,7 +32002,7 @@
         "Self",
         "Item"
       ],
-      "ImpactScript": "NW_S0_MinGlobe",
+      "ImpactScript": "op_s_shadow",
       "InnateLevel": 5,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",
@@ -32052,14 +32054,15 @@
       "Index": 349,
       "Overrides": "14d1709c-7949-18a2-9579-868124509d55",
       "Disabled": false,
-      "Hint": "Fix category",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
       "Name": {
         "Index": 6308,
         "EN": {
-          "M": "Greater Shadow Conjuration, Summon Shadow"
+          "M": "Greater Shadow Conjuration, Summon Monaster VI",
+          "F": "Greater Shadow Conjuration, Summon Shadow"
         },
         "FR": {
           "M": "Convocation d\u0027ombres majeure, convocation d\u0027ombre"
@@ -32079,10 +32082,6 @@
       },
       "Description": {
         "Index": 6514,
-        "EN": {
-          "M": "Caster Level(s): Special\nInnate Level: 5\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Point\nDuration: 1 Turn / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nThis spell opens a portal to the Elemental Plane of Shadow and draws forth a shadow ally to become a faithful and loyal servant. Illusionists are able to use this spell in conjunction with the Shades, Shadow Conjuration, and Greater Shadow Conjuration spells. The shadow ally summoned depends on caster level:\nLevel \u003C 8: Greater shadow\nLevel = 8 to 10: Shadow mastiff\nLevel = 11 to 14: Shadow lord\nLevel \u003E 14: Shadow demon",
-          "F": "Caster Level(s): Cleric 5, Special\nInnate Level: 5\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Point\nDuration: 1 Turn / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nThis spell opens a portal to the Elemental Plane of Shadow and draws forth a shadow ally to become a faithful and loyal servant. Illusionists are able to use this spell in conjunction with the Shades, Shadow Conjuration, and Greater Shadow Conjuration spells. The shadow ally summoned depends on caster level:\nLevel \u003C 8: Greater shadow\nLevel = 8 to 10: Shadow mastiff\nLevel = 11 to 14: Shadow lord\nLevel \u003E 14: Shadow demon"
-        },
         "FR": {
           "M": "Niveau : Pr\u00EAtre 5, sp\u00E9cial\nNiveau inn\u00E9 : 5\nEcole : Invocation\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : moyenne\nZone d\u0027effet / cible : point d\u00E9sign\u00E9\nDur\u00E9e : 1 tour/niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : aucun\nR\u00E9sistance \u00E0 la magie : non\n\nCe sort ouvre un portail sur le plan \u00E9l\u00E9mentaire de l\u0027Ombre et invoque un alli\u00E9 de t\u00E9n\u00E8bres qui servira fid\u00E8lement le lanceur. Les illusionnistes peuvent utiliser ce sort avec les sorts Reflet d\u0027ombres, Convocation d\u0027ombre et Convocation d\u0027ombre majeure. L\u0027alli\u00E9 invoqu\u00E9 d\u00E9pend du niveau du lanceur de sorts :\nNiveau \u003C 8 : ombre majeure\nNiveau  =  8 to 10 : molosse d\u0027ombre\nNiveau  = 11 to 14 : seigneur des ombres\nNiveau  \u003E 14 : d\u00E9mombre"
         },
@@ -32102,7 +32101,7 @@
       "AlternativeCastMessage": {
         "Index": null
       },
-      "Icon": "is_summshad",
+      "Icon": "is_summon6",
       "School": "I",
       "Range": "S",
       "Components": [
@@ -32118,7 +32117,7 @@
         "Area",
         "Item"
       ],
-      "ImpactScript": "NW_S0_SummShad",
+      "ImpactScript": "op_s_shadow",
       "InnateLevel": 5,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -32220,7 +32219,7 @@
         "Door",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_Web",
+      "ImpactScript": "op_s_shadow",
       "InnateLevel": 5,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -42777,6 +42776,93 @@
       "ParentSpell": null,
       "Type": "Other",
       "UseConcentration": false,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "57aac181-7f6b-40a5-8543-bec3db10e5ef",
+      "Index": 40,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Major Resistance",
+          "F": "New Spell"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Caster Level(s): Bard 2, Cleric 2, Druid 2, Paladin 2, Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nGrants the target creature a \u002B3 bonus to all saving throws."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "i_dummy",
+      "School": "A",
+      "Range": "T",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Creature",
+        "Item"
+      ],
+      "ImpactScript": "op_s_buffsaves",
+      "InnateLevel": 2,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_mehannatr02",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mehannatr02",
+      "ConjurationMaleSound": "vs_chant_conj_lm",
+      "ConjurationFemaleSound": "vs_chant_conj_lm",
+      "CastingAnimation": "Up",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": null,
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyEnhancementSingle",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
       "IsCastSpontaneously": false,
       "IsHostile": false,
       "CounterSpell1": null,
@@ -54749,7 +54835,7 @@
         "Door",
         "Placeable"
       ],
-      "ImpactScript": "X2_S0_ScntSphere",
+      "ImpactScript": "op_s_explosions",
       "InnateLevel": 3,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -55287,7 +55373,8 @@
       "Description": {
         "Index": 6251,
         "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Illusion\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Special\nArea of Effect / Target: Special\nDuration: Special\nAdditional Counter Spells:\nSave: Special\nSpell Resistance: Yes\n\nThe caster conjures a shadow variant of one of the following spells: Cone of Cold, Fireball, Stoneskin, Wall of Fire, or Summon Shadow."
+          "M": "Caster Level(s): Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Illusion\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Special\nArea of Effect / Target: Special\nDuration: Special\nAdditional Counter Spells:\nSave: Special\nSpell Resistance: Yes\n\nThe caster conjures a shadow variant of one of the following spells: Cone of Cold, Fireball, Stoneskin, Wall of Fire, or Summon Creature VIII.",
+          "F": "Caster Level(s): Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Illusion\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Special\nArea of Effect / Target: Special\nDuration: Special\nAdditional Counter Spells:\nSave: Special\nSpell Resistance: Yes\n\nThe caster conjures a shadow variant of one of the following spells: Cone of Cold, Fireball, Stoneskin, Wall of Fire, or Summon Shadow."
         },
         "FR": {
           "M": "Niveau : Magicien / Ensorceleur 6\nNiveau inn\u00E9 : 6\nEcole : Illusion\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : sp\u00E9ciale\nZone d\u0027effet / cible : sp\u00E9cial\nDur\u00E9e : sp\u00E9cial\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : sp\u00E9cial\nR\u00E9sistance \u00E0 la magie : oui\n\nLe lanceur invoque une variante d\u0027ombre de l\u0027un des sorts suivants : C\u00F4ne de froid, Boule de feu, Peau de pierre, Mur de feu ou Convocation d\u0027ombre."
@@ -55327,7 +55414,7 @@
         "Door",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_Shades",
+      "ImpactScript": "op_s_shadow",
       "InnateLevel": 6,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -55440,7 +55527,7 @@
         "Door",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_ConeCold",
+      "ImpactScript": "op_s_shadow",
       "InnateLevel": 6,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -55546,7 +55633,7 @@
         "Door",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_Fireball",
+      "ImpactScript": "op_s_shadow",
       "InnateLevel": 6,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -55648,7 +55735,7 @@
         "Creature",
         "Item"
       ],
-      "ImpactScript": "op_s_damagereduc",
+      "ImpactScript": "op_s_shadow",
       "InnateLevel": 6,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -55700,14 +55787,14 @@
       "Index": 324,
       "Overrides": "bf8ce33e-772e-56e7-ea05-1ec33f669213",
       "Disabled": false,
-      "Hint": "Fix category",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
       "Name": {
         "Index": 5117,
         "EN": {
-          "M": "Shades, Summon Shadow",
+          "M": "Shades, Summon Creature VIII",
           "F": "Summon Shadow"
         },
         "FR": {
@@ -55728,10 +55815,6 @@
       },
       "Description": {
         "Index": 6514,
-        "EN": {
-          "M": "Caster Level(s): Special\nInnate Level: 6\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Point\nDuration: 1 Turn / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nThis spell opens a portal to the Elemental Plane of Shadow and draws forth a shadow ally to become a faithful and loyal servant. Illusionists are able to use this spell in conjunction with the Shades, Shadow Conjuration, and Greater Shadow Conjuration spells. The shadow ally summoned depends on caster level:\nLevel \u003C 8: Greater shadow\nLevel = 8 to 10: Shadow mastiff\nLevel = 11 to 14: Shadow lord\nLevel \u003E 14: Shadow demon",
-          "F": "Caster Level(s): Cleric 5, Special\nInnate Level: 5\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Point\nDuration: 1 Turn / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nThis spell opens a portal to the Elemental Plane of Shadow and draws forth a shadow ally to become a faithful and loyal servant. Illusionists are able to use this spell in conjunction with the Shades, Shadow Conjuration, and Greater Shadow Conjuration spells. The shadow ally summoned depends on caster level:\nLevel \u003C 8: Greater shadow\nLevel = 8 to 10: Shadow mastiff\nLevel = 11 to 14: Shadow lord\nLevel \u003E 14: Shadow demon"
-        },
         "FR": {
           "M": "Niveau : Pr\u00EAtre 5, sp\u00E9cial\nNiveau inn\u00E9 : 5\nEcole : Invocation\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : moyenne\nZone d\u0027effet / cible : point d\u00E9sign\u00E9\nDur\u00E9e : 1 tour/niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : aucun\nR\u00E9sistance \u00E0 la magie : non\n\nCe sort ouvre un portail sur le plan \u00E9l\u00E9mentaire de l\u0027Ombre et invoque un alli\u00E9 de t\u00E9n\u00E8bres qui servira fid\u00E8lement le lanceur. Les illusionnistes peuvent utiliser ce sort avec les sorts Reflet d\u0027ombres, Convocation d\u0027ombre et Convocation d\u0027ombre majeure. L\u0027alli\u00E9 invoqu\u00E9 d\u00E9pend du niveau du lanceur de sorts :\nNiveau \u003C 8 : ombre majeure\nNiveau  =  8 to 10 : molosse d\u0027ombre\nNiveau  = 11 to 14 : seigneur des ombres\nNiveau  \u003E 14 : d\u00E9mombre"
         },
@@ -55767,7 +55850,7 @@
         "Item",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_SummShad",
+      "ImpactScript": "op_s_shadow",
       "InnateLevel": 6,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -55868,7 +55951,7 @@
         "Door",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_WallFire",
+      "ImpactScript": "op_s_shadow",
       "InnateLevel": 6,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -55951,7 +56034,8 @@
       "Description": {
         "Index": 6252,
         "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 4\nInnate Level: 4\nSchool: Illusion\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Special\nArea of Effect / Target: Special\nDuration: Special\nAdditional Counter Spells:\nSave: Special\nSpell Resistance: Yes\n\nThe caster conjures a shadow variant of one of the following spells: Darkness, Invisibility, Mage Armor, Magic Missile, or Summon Shadow."
+          "M": "Caster Level(s): Wizard / Sorcerer 4\nInnate Level: 4\nSchool: Illusion\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Special\nArea of Effect / Target: Special\nDuration: Special\nAdditional Counter Spells:\nSave: Special\nSpell Resistance: Yes\n\nThe caster conjures a shadow variant of one of the following spells: Darkness, Invisibility, Mage Armor, Magic Missile, or Summon Creature III.",
+          "F": "Caster Level(s): Wizard / Sorcerer 4\nInnate Level: 4\nSchool: Illusion\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Special\nArea of Effect / Target: Special\nDuration: Special\nAdditional Counter Spells:\nSave: Special\nSpell Resistance: Yes\n\nThe caster conjures a shadow variant of one of the following spells: Darkness, Invisibility, Mage Armor, Magic Missile, or Summon Shadow."
         },
         "FR": {
           "M": "Niveau : Magicien / Ensorceleur 4\nNiveau inn\u00E9 : 4\nEcole : Illusion\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : sp\u00E9cial\nZone d\u0027effet / cible : sp\u00E9cial\nDur\u00E9e : sp\u00E9cial\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : sp\u00E9cial\nR\u00E9sistance \u00E0 la magie : oui\n\nLe lanceur invoque une variante d\u0027ombre de l\u0027un des sorts suivants : T\u00E9n\u00E8bres, Invisibilit\u00E9, Armure de mage, Projectile magique ou Convocation d\u0027ombres."
@@ -55992,7 +56076,7 @@
         "Door",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_ShadConj",
+      "ImpactScript": "op_s_shadow",
       "InnateLevel": 4,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -56106,7 +56190,7 @@
         "Item",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_Darkness",
+      "ImpactScript": "op_s_shadow",
       "InnateLevel": 4,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",
@@ -56211,7 +56295,7 @@
         "Door",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_Invisib",
+      "ImpactScript": "op_s_shadow",
       "InnateLevel": 4,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -56313,7 +56397,7 @@
         "Door",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_MageArm",
+      "ImpactScript": "op_s_shadow",
       "InnateLevel": 4,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -56414,7 +56498,7 @@
         "Door",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_MagMiss",
+      "ImpactScript": "op_s_shadow",
       "InnateLevel": 4,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -56466,14 +56550,15 @@
       "Index": 344,
       "Overrides": "6e0f955c-48bf-909e-53a5-c3440177516a",
       "Disabled": false,
-      "Hint": "Fix category",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
       "Name": {
         "Index": 6303,
         "EN": {
-          "M": "Shadow Conjuration, Summon Shadow"
+          "M": "Shadow Conjuration, Summon Monster III",
+          "F": "Shadow Conjuration, Summon Shadow"
         },
         "FR": {
           "M": "Convocation d\u0027ombres, convocation d\u0027ombre"
@@ -56493,10 +56578,6 @@
       },
       "Description": {
         "Index": 6514,
-        "EN": {
-          "M": "Caster Level(s): Special\nInnate Level: 4\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Point\nDuration: 1 Turn / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nThis spell opens a portal to the Elemental Plane of Shadow and draws forth a shadow ally to become a faithful and loyal servant. Illusionists are able to use this spell in conjunction with the Shades, Shadow Conjuration, and Greater Shadow Conjuration spells. The shadow ally summoned depends on caster level:\nLevel \u003C 8: Greater shadow\nLevel = 8 to 10: Shadow mastiff\nLevel = 11 to 14: Shadow lord\nLevel \u003E 14: Shadow demon",
-          "F": "Caster Level(s): Cleric 5, Special\nInnate Level: 5\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Point\nDuration: 1 Turn / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nThis spell opens a portal to the Elemental Plane of Shadow and draws forth a shadow ally to become a faithful and loyal servant. Illusionists are able to use this spell in conjunction with the Shades, Shadow Conjuration, and Greater Shadow Conjuration spells. The shadow ally summoned depends on caster level:\nLevel \u003C 8: Greater shadow\nLevel = 8 to 10: Shadow mastiff\nLevel = 11 to 14: Shadow lord\nLevel \u003E 14: Shadow demon"
-        },
         "FR": {
           "M": "Niveau : Pr\u00EAtre 5, sp\u00E9cial\nNiveau inn\u00E9 : 5\nEcole : Invocation\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : moyenne\nZone d\u0027effet / cible : point d\u00E9sign\u00E9\nDur\u00E9e : 1 tour/niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : aucun\nR\u00E9sistance \u00E0 la magie : non\n\nCe sort ouvre un portail sur le plan \u00E9l\u00E9mentaire de l\u0027Ombre et invoque un alli\u00E9 de t\u00E9n\u00E8bres qui servira fid\u00E8lement le lanceur. Les illusionnistes peuvent utiliser ce sort avec les sorts Reflet d\u0027ombres, Convocation d\u0027ombre et Convocation d\u0027ombre majeure. L\u0027alli\u00E9 invoqu\u00E9 d\u00E9pend du niveau du lanceur de sorts :\nNiveau \u003C 8 : ombre majeure\nNiveau  =  8 to 10 : molosse d\u0027ombre\nNiveau  = 11 to 14 : seigneur des ombres\nNiveau  \u003E 14 : d\u00E9mombre"
         },
@@ -56516,7 +56597,7 @@
       "AlternativeCastMessage": {
         "Index": null
       },
-      "Icon": "is_summshad",
+      "Icon": "is_summon3",
       "School": "I",
       "Range": "S",
       "Components": [
@@ -56533,7 +56614,7 @@
         "Item",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_SummShad",
+      "ImpactScript": "op_s_shadow",
       "InnateLevel": 4,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -62089,6 +62170,93 @@
       ]
     },
     {
+      "ID": "5c5473dd-4c38-4996-9407-9010519db902",
+      "Index": 41,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Superior Resistance",
+          "F": "New Spell"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Caster Level(s): Bard 5, Cleric 5, Druid 5, Wizard / Sorcerer 5\r\nInnate Level: 5\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nGrants the target creature a \u002B6 bonus to all saving throws."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "i_dummy",
+      "School": "A",
+      "Range": "T",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Creature",
+        "Item"
+      ],
+      "ImpactScript": "op_s_buffsaves",
+      "InnateLevel": 5,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_mehannatr03",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mehannatr03",
+      "ConjurationMaleSound": "vs_chant_conj_hm",
+      "ConjurationFemaleSound": "vs_chant_conj_hm",
+      "CastingAnimation": "Up",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": null,
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyEnhancementSingle",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
       "ID": "c72f2a89-b749-40b5-a53d-7782ccc965a5",
       "Index": -1,
       "Overrides": "2cdbad7b-485c-2b92-626b-759ed738c905",
@@ -66847,180 +67015,6 @@
         "HarmsAllies",
         "OriginOnSelf"
       ]
-    },
-    {
-      "ID": "57aac181-7f6b-40a5-8543-bec3db10e5ef",
-      "Index": 40,
-      "Overrides": null,
-      "Disabled": false,
-      "Hint": "",
-      "ScriptConstant": "",
-      "SourceLabel": null,
-      "ExtensionValues": {},
-      "Name": {
-        "Index": null,
-        "EN": {
-          "M": "Major Resistance",
-          "F": "New Spell"
-        }
-      },
-      "Description": {
-        "Index": null,
-        "EN": {
-          "M": "Caster Level(s): Bard 2, Cleric 2, Druid 2, Paladin 2, Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nGrants the target creature a \u002B3 bonus to all saving throws."
-        }
-      },
-      "AlternativeCastMessage": {
-        "Index": null
-      },
-      "Icon": "i_dummy",
-      "School": "A",
-      "Range": "T",
-      "Components": [
-        "V",
-        "S"
-      ],
-      "AvailableMetaMagic": [
-        "Extend",
-        "Quicken",
-        "Silent",
-        "Still"
-      ],
-      "TargetTypes": [
-        "Self",
-        "Creature",
-        "Item"
-      ],
-      "ImpactScript": "op_s_buffsaves",
-      "InnateLevel": 2,
-      "ConjurationTime": 1500,
-      "ConjuringAnimation": "Hand",
-      "ConjurationHeadEffect": null,
-      "ConjurationHandEffect": "vco_mehannatr02",
-      "ConjurationGroundEffect": null,
-      "ConjurationSound": "sco_mehannatr02",
-      "ConjurationMaleSound": "vs_chant_conj_lm",
-      "ConjurationFemaleSound": "vs_chant_conj_lm",
-      "CastingAnimation": "Up",
-      "CastTime": 1000,
-      "CastingHeadEffect": null,
-      "CastingHandEffect": null,
-      "CastingGroundEffect": null,
-      "CastingSound": null,
-      "HasProjectile": false,
-      "ProjectileModel": null,
-      "ProjectileType": "Homing",
-      "ProjectileSpawnPoint": "Hand",
-      "ProjectileSound": null,
-      "ProjectileOrientation": "Path",
-      "SubSpell1": null,
-      "SubSpell2": null,
-      "SubSpell3": null,
-      "SubSpell4": null,
-      "SubSpell5": null,
-      "SubSpell6": null,
-      "SubSpell7": null,
-      "SubSpell8": null,
-      "Category": "FriendlyEnhancementSingle",
-      "ParentSpell": null,
-      "Type": "Spell",
-      "UseConcentration": true,
-      "IsCastSpontaneously": false,
-      "IsHostile": false,
-      "CounterSpell1": null,
-      "CounterSpell2": null,
-      "HasProjectileVisuals": false,
-      "TargetShape": null,
-      "TargetSizeX": null,
-      "TargetSizeY": null,
-      "TargetingFlags": []
-    },
-    {
-      "ID": "5c5473dd-4c38-4996-9407-9010519db902",
-      "Index": 41,
-      "Overrides": null,
-      "Disabled": false,
-      "Hint": "",
-      "ScriptConstant": "",
-      "SourceLabel": null,
-      "ExtensionValues": {},
-      "Name": {
-        "Index": null,
-        "EN": {
-          "M": "Superior Resistance",
-          "F": "New Spell"
-        }
-      },
-      "Description": {
-        "Index": null,
-        "EN": {
-          "M": "Caster Level(s): Bard 5, Cleric 5, Druid 5, Wizard / Sorcerer 5\r\nInnate Level: 5\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nGrants the target creature a \u002B6 bonus to all saving throws."
-        }
-      },
-      "AlternativeCastMessage": {
-        "Index": null
-      },
-      "Icon": "i_dummy",
-      "School": "A",
-      "Range": "T",
-      "Components": [
-        "V",
-        "S"
-      ],
-      "AvailableMetaMagic": [
-        "Extend",
-        "Quicken",
-        "Silent",
-        "Still"
-      ],
-      "TargetTypes": [
-        "Self",
-        "Creature",
-        "Item"
-      ],
-      "ImpactScript": "op_s_buffsaves",
-      "InnateLevel": 5,
-      "ConjurationTime": 1500,
-      "ConjuringAnimation": "Hand",
-      "ConjurationHeadEffect": null,
-      "ConjurationHandEffect": "vco_mehannatr03",
-      "ConjurationGroundEffect": null,
-      "ConjurationSound": "sco_mehannatr03",
-      "ConjurationMaleSound": "vs_chant_conj_hm",
-      "ConjurationFemaleSound": "vs_chant_conj_hm",
-      "CastingAnimation": "Up",
-      "CastTime": 1000,
-      "CastingHeadEffect": null,
-      "CastingHandEffect": null,
-      "CastingGroundEffect": null,
-      "CastingSound": null,
-      "HasProjectile": false,
-      "ProjectileModel": null,
-      "ProjectileType": "Homing",
-      "ProjectileSpawnPoint": "Hand",
-      "ProjectileSound": null,
-      "ProjectileOrientation": "Path",
-      "SubSpell1": null,
-      "SubSpell2": null,
-      "SubSpell3": null,
-      "SubSpell4": null,
-      "SubSpell5": null,
-      "SubSpell6": null,
-      "SubSpell7": null,
-      "SubSpell8": null,
-      "Category": "FriendlyEnhancementSingle",
-      "ParentSpell": null,
-      "Type": "Spell",
-      "UseConcentration": true,
-      "IsCastSpontaneously": false,
-      "IsHostile": false,
-      "CounterSpell1": null,
-      "CounterSpell2": null,
-      "HasProjectileVisuals": false,
-      "TargetShape": null,
-      "TargetSizeX": null,
-      "TargetSizeY": null,
-      "TargetingFlags": []
     }
   ]
 }

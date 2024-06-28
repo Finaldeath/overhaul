@@ -169,6 +169,9 @@ const int VFX_SILVEYES                      = 10001;
 const int VFX_ICONGLOW                      = 10002;
 
 // spells.2da
+const int SPELL_GREATER_SHADOW_CONJURATION        = 71;
+const int SPELL_SHADES                            = 158;
+const int SPELL_SHADOW_CONJURATION                = 159;
 const int SPELLABILITY_CURE_CRITICAL_WOUNDS_OTHER = 567;
 const int SPELLABILITY_RESTOREATION_OTHER         = 568;
 const int SPELLABILITY_HARM_SELF                  = 759;

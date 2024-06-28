@@ -42,11 +42,12 @@
 #include "op_i_debug"
 #include "op_i_eosconstant"
 #include "op_i_constants"
-#include "utl_i_maths"
-#include "utl_i_item"
 #include "op_i_feats"
 #include "op_i_itemprops"
 #include "op_i_runscript"
+#include "utl_i_maths"
+#include "utl_i_item"
+#include "utl_i_strings"
 
 // These are the games string refs for immunity feedback.
 // Format <CUSTOM0> : Immune to XXXX.
@@ -173,6 +174,9 @@ location GetSpellTargetLocationCalculated(object oTarget);
 //   Returns: 2 if the target was immune to the save type specified
 // Note: If used within an Area of Effect Object Script (On Enter, OnExit, OnHeartbeat), you MUST pass GetAreaOfEffectCreator() into oSaveVersus!
 int DoSavingThrow(object oTarget, object oSaveVersus, int nSavingThrow, int nDC, int nSaveType = SAVING_THROW_TYPE_NONE, float fDelay = 0.0);
+
+// Returns the modified amount of nDamage based on the saving throw being successful for half (or more if reflex save and feats are involved).
+int DoDamageSavingThrow(int nDamage, object oTarget, object oSaveVersus, int nSavingThrow, int nDC, int nSaveType = SAVING_THROW_TYPE_NONE, float fDelay = 0.0);
 
 // Used to route the resist magic checks into this function to check for spell countering by SR, Immunity, Globes or Mantles.
 // Now a simple TRUE if spell resisted/immune/absorbed, or FALSE otherwise.
@@ -395,6 +399,13 @@ effect GetScaledEffect(effect eEffect, object oTarget);
 // * nDuratoinType - ROUNDS, MINUTES, HOURS
 float GetScaledDuration(object oTarget, int nDuration, int nDurationType);
 
+// Retrieves the SHAPE_* value from spells.2da. Returns -1 on error.
+int GetSpellShape(int nSpellId);
+
+// Retrieves the size value of a spells shape from spells.2da. Returns -1.0 on error.
+// Uses TargetSizeX since for Cube and Spell Cylinders it's the X value that is relevant.
+float GetSpellShapeSize(int nSpellId);
+
 
 // These global variables are used in most spell scripts and are initialised here to be consistent
 // NB: You can't reuse these variables in the very functions in this list, so we pass them in.
@@ -420,7 +431,7 @@ void DebugSpellVariables()
 {
     if (DEBUG_LEVEL >= LOG_LEVEL_INFO)
     {
-        OP_Debug("[Spell Script] Script: [" + GetScriptName() +
+        OP_Debug("[Spell Script] Script:" + GetStringColoredRGB("[" + GetScriptName() +
                                           "] ID: [" + IntToString(nSpellId) +
                                           "] Name: [" + GetSpellName(nSpellId) +
                                           "] Type: [" + IntToString(nSpellType) +
@@ -431,11 +442,11 @@ void DebugSpellVariables()
                                           "] Spontanously cast: [" + IntToString(bSpontaneous) +
                                           "] Target: [" + GetName(oTarget) +
                                           "] Save DC: [" + IntToString(nSpellSaveDC) +
-                                          "] Caster Level: [" + IntToString(nCasterLevel) + "]" +
-                                          "] MetaMagic: [" + IntToString(nMetaMagic) + "]" +
-                                          "] Hostile: [" + IntToString(bHostile) + "]" +
-                                          "] bIllusionary: [" + IntToString(bIllusionary) + "]" +
-                                          "] nIllusionaryStrength: [" + IntToString(nIllusionaryStrength) + "]");
+                                          "] Caster Level: [" + IntToString(nCasterLevel) +
+                                          "] MetaMagic: [" + IntToString(nMetaMagic) +
+                                          "] Hostile: [" + IntToString(bHostile) +
+                                          "] bIllusionary: [" + IntToString(bIllusionary) +
+                                          "] nIllusionaryStrength: [" + IntToString(nIllusionaryStrength) + "]", 255, 255, 255));
     }
 }
 
@@ -815,6 +826,35 @@ int DoSavingThrow(object oTarget, object oSaveVersus, int nSavingThrow, int nDC,
     return nResult;
 }
 
+// Returns the modified amount of nDamage based on the saving throw being successful for half (or more if reflex save and feats are involved).
+int DoDamageSavingThrow(int nDamage, object oTarget, object oSaveVersus, int nSavingThrow, int nDC, int nSaveType = SAVING_THROW_TYPE_NONE, float fDelay = 0.0)
+{
+    if (nSavingThrow == SAVING_THROW_REFLEX)
+    {
+        if(!DoSavingThrow(oTarget, oSaveVersus, nSavingThrow, nDC, nSaveType, fDelay))
+        {
+            if (GetHasFeat(FEAT_IMPROVED_EVASION, oTarget))
+            {
+                nDamage /= 2;
+            }
+        }
+        else if (GetHasFeat(FEAT_EVASION, oTarget) || GetHasFeat(FEAT_IMPROVED_EVASION, oTarget))
+        {
+            nDamage = 0;
+        }
+        else
+        {
+            nDamage /= 2;
+        }
+    }
+    else if (DoSavingThrow(oTarget, oSaveVersus, nSavingThrow, nDC, nSaveType, fDelay))
+    {
+        nDamage /= 2;
+    }
+
+    return nDamage;
+}
+
 // Used to route the resist magic checks into this function to check for spell countering by SR, Immunity, Globes or Mantles.
 // Now a simple TRUE if spell resisted/immune/absorbed, or FALSE otherwise.
 // Can now be called in a "non-true spell" so be careful and don't use in monster ability scripts.
@@ -1153,12 +1193,13 @@ void DoIllusionSavingThrow(object oTarget, object oCaster)
 // Gets a modified value for nValue (minimum 1)
 int GetIllusionModifiedValue(int nValue)
 {
-    // Gets the illusion strength
+    // Gets the illusion strength (eg "20" means 20% power)
     string sStrength = GetScriptParam(SCRIPT_PARAMETER_ILLUSIONARY_STRENGTH);
 
     if (sStrength != "")
     {
-
+        // 10 * 20 = 200, / 100 =
+        nValue = FloatToInt(IntToFloat(nValue) * (StringToFloat(sStrength) / 100.0));
     }
     else
     {
@@ -2270,4 +2311,43 @@ float GetScaledDuration(object oTarget, int nDuration, int nDurationType)
         }
     }
     return fReturn;
+}
+
+// Retrieves the SHAPE_* value from spells.2da. Returns -1 on error.
+int GetSpellShape(int nSpellId)
+{
+    switch (HashString(Get2DAString("spells", "TargetShape", nSpellId)))
+    {
+        case "sphere": return SHAPE_SPHERE; break;
+        case "rectangle":
+        {
+            // There are 2 options, CUBE (same on each side, a kind of "square fireball")
+            // or SPELLCYLINDER (lighting bolt etc.)
+            if (Get2DAString("spells", "TargetSizeX", nSpellId) == Get2DAString("spells", "TargetSizeY", nSpellId))
+            {
+                return SHAPE_CUBE;
+            }
+            return SHAPE_SPELLCYLINDER;
+        }
+        break;
+        case "cone":
+            // Yes we have SHAPE_CONE but it needs investigating and we should
+            // use this
+            return SHAPE_SPELLCONE;
+        break;
+    }
+    return -1;
+}
+
+// Retrieves the size value of a spells shape from spells.2da. Returns -1.0 on error.
+// Uses TargetSizeX since for Cube and Spell Cylinders it's the X value that is relevant.
+float GetSpellShapeSize(int nSpellId)
+{
+    string sSize = Get2DAString("spells", "TargetSizeX", nSpellId);
+
+    if (sSize != "")
+    {
+        return StringToFloat(sSize);
+    }
+    return -1.0;
 }

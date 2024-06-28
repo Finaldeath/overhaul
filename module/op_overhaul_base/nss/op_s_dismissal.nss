@@ -3,12 +3,11 @@
 //:: op_s_dismissal.nss
 //:://////////////////////////////////////////////
 /*
-    All summoned creatures, animal companions, and familiars are unsummoned
-    within the area of effect. The saving throw is modified by adding your
-    caster level, and taking off the targets hit dice.
+    This spell forces the targeted outsider, summoned creature, animal companions or
+    familiars back to their proper plane. The saving throw is modified by adding
+    your caster level, and taking off the targets hit dice.
 
-    NB: We're not removing outsiders. This otherwise is kinda more powerful
-    (sometimes) then Banishment.
+    Single target version of Banishment.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
