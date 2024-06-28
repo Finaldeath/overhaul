@@ -32,30 +32,29 @@ void main()
     effect eBlindness = TagEffect(UnyieldingEffect(EffectBlindness()), CONE_OF_DIMNESS);
     float fDuration = GetDuration(nCasterLevel, ROUNDS);
 
-    oTarget = GetFirstObjectInShape(SHAPE_SPELLCONE, 10.0, lTarget, TRUE, OBJECT_TYPE_CREATURE);
-    while(GetIsObjectValid(oTarget))
+    json jArray = GetArrayOfTargets(SPELL_TARGET_STANDARDHOSTILE);
+    int nIndex;
+    for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
     {
-        if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
+        oTarget = GetArrayObject(jArray, nIndex);
+
+        SignalSpellCastAt();
+
+        // Get the distance between the target and caster to delay the application of effects
+        float fDelay = GetDistanceBetween(oCaster, oTarget)/20.0;
+
+        if (!DoResistSpell(oTarget, oCaster, fDelay))
         {
-            SignalSpellCastAt();
-
-            // Get the distance between the target and caster to delay the application of effects
-            float fDelay = GetDistanceBetween(oCaster, oTarget)/20.0;
-
-            if (!DoResistSpell(oTarget, oCaster, fDelay))
+            if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_MIND_SPELLS, fDelay))
             {
-                if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_MIND_SPELLS, fDelay))
+                if (!GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_BLINDNESS, oCaster))
                 {
-                    if (!GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_BLINDNESS, oCaster))
-                    {
-                        DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
-                        DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eRunScript, oTarget, fDuration));
-                        DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eBlindness, oTarget, fDuration));
-                    }
+                    DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
+                    DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eRunScript, oTarget, fDuration));
+                    DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eBlindness, oTarget, fDuration));
                 }
             }
         }
-        oTarget = GetNextObjectInShape(SHAPE_SPELLCONE, 10.0, lTarget, TRUE, OBJECT_TYPE_CREATURE);
     }
 }
 

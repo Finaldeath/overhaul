@@ -339,7 +339,8 @@ void CureEffects(object oTarget, json jArray, int bSupernaturalRemoval = FALSE);
 //                 SORT_METHOD_LOWEST_HP - Sorts so first object is the lowest HP
 //                 SORT_METHOD_LOWEST_HD - Sorts so first object is the lowest HD
 //                 SORT_METHOD_DISTANCE  - Sorts so the first object is the lowest distance
-json GetArrayOfTargets(int nTargetType, int nSortMethod, int nShape, float fSize, location lTarget, int bLineOfSight=FALSE, int nObjectFilter=OBJECT_TYPE_CREATURE, vector vOrigin=[0.0,0.0,0.0]);
+// The other variables can be set, but if not then the current Spell Id will sort the shape and size.
+json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, int nObjectFilter=OBJECT_TYPE_CREATURE, int nShape = -1, float fSize = -1.0, location lArrayTarget=LOCATION_INVALID, int bLineOfSight=TRUE, vector vOrigin=[0.0,0.0,0.0]);
 
 // Gets the given Object stored as FIELD_OBJECTID in jArray at nIndex
 object GetArrayObject(json jArray, int nIndex);
@@ -405,6 +406,10 @@ int GetSpellShape(int nSpellId);
 // Retrieves the size value of a spells shape from spells.2da. Returns -1.0 on error.
 // Uses TargetSizeX since for Cube and Spell Cylinders it's the X value that is relevant.
 float GetSpellShapeSize(int nSpellId);
+
+// Checks if any creature of the given target type is present in the given AOE at lCheckTarget (if not set defaults to lTarget).
+// CURRENTLY DOES NOT SUPPORT RETANGLES LIKE BLADE BARRIER OR WALL OF FIRE
+int GetIsTargetInAOEAtLocation(int nAOE, int nTargetType = SPELL_TARGET_SELECTIVEHOSTILE, location lCheckTarget = LOCATION_INVALID);
 
 
 // These global variables are used in most spell scripts and are initialised here to be consistent
@@ -1315,8 +1320,8 @@ int GetSpellTargetValid(object oTarget, object oCaster, int nTargetType)
         // This kind of spell will affect all friendlies and anyone in my party/faction, even if we are upset with each other currently.
         case SPELL_TARGET_ALLALLIES:
         {
-            OP_Debug("[INFO] GetSpellTargetValid: All allies oTarget: " + GetName(oTarget) + " GetIsReactionTypeFriendly: " + IntToString(GetIsReactionTypeFriendly(oTarget, oCaster)) + " GetFactionEqual: " + IntToString(GetFactionEqual(oTarget, oCaster)), LOG_LEVEL_INFO);
-            if (GetIsReactionTypeFriendly(oTarget, oCaster) || GetFactionEqual(oTarget, oCaster))
+            OP_Debug("[INFO] GetSpellTargetValid: All allies oTarget: " + GetName(oTarget) + " GetIsFriend: " + IntToString(GetIsFriend(oTarget, oCaster)) + " GetFactionEqual: " + IntToString(GetFactionEqual(oTarget, oCaster)), LOG_LEVEL_INFO);
+            if (GetIsFriend(oTarget, oCaster) || GetFactionEqual(oTarget, oCaster))
             {
                 bReturnValue = TRUE;
             }
@@ -2059,8 +2064,14 @@ const string FIELD_METRIC = "metric";
 //                 SORT_METHOD_LOWEST_HP - Sorts so first object is the lowest HP
 //                 SORT_METHOD_LOWEST_HD - Sorts so first object is the lowest HD
 //                 SORT_METHOD_DISTANCE  - Sorts so the first object is the lowest distance
-json GetArrayOfTargets(int nTargetType, int nSortMethod, int nShape, float fSize, location lTarget, int bLineOfSight=FALSE, int nObjectFilter=OBJECT_TYPE_CREATURE, vector vOrigin=[0.0,0.0,0.0])
+// The other variables can be set, but if not then the current Spell Id will sort the shape and size.
+json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, int nObjectFilter=OBJECT_TYPE_CREATURE, int nShape = -1, float fSize = -1.0, location lArrayTarget=LOCATION_INVALID, int bLineOfSight=TRUE, vector vOrigin=[0.0,0.0,0.0])
 {
+    // Get some values if not set
+    if (nShape == -1) nShape = GetSpellShape(nSpellId);
+    if (fSize == -1.0) fSize = GetSpellShapeSize(nSpellId);
+    if (!GetIsObjectValid(GetAreaFromLocation(lArrayTarget))) lArrayTarget = lTarget;
+
     json jArray = JsonArray();
 
     // Error checking - we log these might be mistakes in spell scripts
@@ -2378,3 +2389,27 @@ float GetSpellShapeSize(int nSpellId)
     }
     return -1.0;
 }
+
+// Checks if any creature of the given target type is present in the given AOE at lCheckTarget (if not set defaults to lTarget).
+// CURRENTLY DOES NOT SUPPORT RETANGLES LIKE BLADE BARRIER OR WALL OF FIRE
+int GetIsTargetInAOEAtLocation(int nAOE, int nTargetType = SPELL_TARGET_SELECTIVEHOSTILE, location lCheckTarget = LOCATION_INVALID)
+{
+    if (!GetIsObjectValid(GetAreaFromLocation(lCheckTarget))) lCheckTarget = lTarget;
+
+    // If fired at somewhere that has a enemy in the trigger already, we...just explode. I mean why not?
+    float fRadius = StringToFloat(Get2DAString("vfx_persistent", "RADIUS", nAOE));
+
+    if (fRadius == 0.0)
+    {
+        OP_Debug("[GetTargetInAOEAtLocation] AOE ref: " + IntToString(nAOE) + " has no radius set and this function only supports spheres right now.", LOG_LEVEL_ERROR);
+        return FALSE;
+    }
+    // Simplest way that also adheres to LOS checks
+    json jArray = GetArrayOfTargets(nTargetType, SORT_METHOD_NONE, OBJECT_TYPE_CREATURE, SHAPE_SPHERE, fRadius, lCheckTarget);
+    if (JsonGetLength(jArray) > 0)
+    {
+        return TRUE;
+    }
+    return FALSE;
+}
+

@@ -43,30 +43,29 @@ void main()
     // Bypass magical immunity
     effect eDeath = IgnoreEffectImmunity(EffectDeath(TRUE));
 
-    oTarget = GetFirstObjectInShape(SHAPE_SPHERE, RADIUS_SIZE_MEDIUM, lTarget);
-    while (GetIsObjectValid(oTarget))
+    // Unlike Bioware's this affects the caster too, why a vortex wouldn't who knows...
+    json jArray = GetArrayOfTargets(SPELL_TARGET_STANDARDHOSTILE);
+    int nIndex;
+    for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
     {
-        // Unlike Bioware's this affects the caster too, why a vortex wouldn't who knows...
-        if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
+        oTarget = GetArrayObject(jArray, nIndex);
+
+        SignalSpellCastAt();
+
+        if (!GetIsIncorporeal(oTarget))
         {
-            SignalSpellCastAt();
+            float fDelay = GetRandomDelay(0.4, 1.2);
 
-            if (!GetIsIncorporeal(oTarget))
+            if (!DoResistSpell(oTarget, oCaster, fDelay))
             {
-                float fDelay = GetRandomDelay(0.4, 1.2);
-
-                if (!DoResistSpell(oTarget, oCaster, fDelay))
+                // Unlike Bioware's this one isn't "versus Death" and no bonus +3 randomly to the save DC
+                if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_FORT, nSpellSaveDC, SAVING_THROW_TYPE_NONE, fDelay))
                 {
-                    // Unlike Bioware's this one isn't "versus Death" and no bonus +3 randomly to the save DC
-                    if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_FORT, nSpellSaveDC, SAVING_THROW_TYPE_NONE, fDelay))
-                    {
-                        //Apply death effect and the VFX impact
-                        DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDeath, oTarget));
-                    }
+                    //Apply death effect and the VFX impact
+                    DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDeath, oTarget));
                 }
             }
         }
-        oTarget = GetNextObjectInShape(SHAPE_SPHERE, RADIUS_SIZE_MEDIUM, lTarget);
     }
 }
 

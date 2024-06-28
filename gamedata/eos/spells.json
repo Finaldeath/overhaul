@@ -59407,7 +59407,8 @@
       "Description": {
         "Index": 6261,
         "EN": {
-          "M": "Caster Level(s): Cleric 5, Druid 5\nInnate Level: 5\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Turn / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe target creature has its spell resistance set to 12, \u002B1 per caster level. If the target already had a higher spell resistance, this spell has no effect."
+          "M": "Caster Level(s): Cleric 5, Druid 5\nInnate Level: 5\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Minute / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe target creature has its spell resistance set to 12, \u002B1 per caster level. If the target already had a higher spell resistance, this spell has no effect.",
+          "F": "Caster Level(s): Cleric 5, Druid 5\nInnate Level: 5\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Turn / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe target creature has its spell resistance set to 12, \u002B1 per caster level. If the target already had a higher spell resistance, this spell has no effect."
         },
         "FR": {
           "M": "Niveau : Pr\u00EAtre 5, Druide 5\nNiveau inn\u00E9 : 5\nEcole : Abjuration\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : contact\nZone d\u0027effet / cible : 1 cr\u00E9ature\nDur\u00E9e : 1 tour/niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : inoffensif\nR\u00E9sistance \u00E0 la magie : non\n\nLa cible b\u00E9n\u00E9ficie d\u0027une r\u00E9sistance \u00E0 la magie de 12 \u002B1 par niveau du lanceur. Le sort est sans effet si la cible b\u00E9n\u00E9ficie d\u00E9j\u00E0 d\u0027une r\u00E9sistance \u00E0 la magie sup\u00E9rieure."
@@ -59444,10 +59445,9 @@
       "TargetTypes": [
         "Self",
         "Creature",
-        "Item",
-        "Placeable"
+        "Item"
       ],
-      "ImpactScript": "NW_S0_SplResis",
+      "ImpactScript": "op_s_spellresist",
       "InnateLevel": 5,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",
@@ -59465,10 +59465,10 @@
       "CastingSound": null,
       "HasProjectile": false,
       "ProjectileModel": null,
-      "ProjectileType": null,
-      "ProjectileSpawnPoint": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
       "ProjectileSound": null,
-      "ProjectileOrientation": null,
+      "ProjectileOrientation": "Path",
       "SubSpell1": null,
       "SubSpell2": null,
       "SubSpell3": null,
@@ -60428,6 +60428,116 @@
       "Category": "FriendlyEnhancementSelf",
       "ParentSpell": null,
       "Type": "Feat",
+      "UseConcentration": false,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "1a039b51-5cfe-4c3e-aec0-da3fd055000e",
+      "Index": -1,
+      "Overrides": "b4de9932-faf2-4f11-b414-8a85a7da5a0f",
+      "Disabled": false,
+      "Hint": "Creature Power",
+      "ScriptConstant": "",
+      "SourceLabel": "Summon_Baatezu",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 83692,
+        "EN": {
+          "M": "Summon Baatezu"
+        },
+        "FR": {
+          "M": "Convocation de Baatezu"
+        },
+        "DE": {
+          "M": "Baatezu herbeizaubern"
+        },
+        "IT": {
+          "M": "Evoca baatezu"
+        },
+        "ES": {
+          "M": "Convocar baatezu"
+        },
+        "PL": {
+          "M": "Przywo\u0142anie Baatezu"
+        }
+      },
+      "Description": {
+        "Index": 83693,
+        "EN": {
+          "M": "Summoning abilities allow creatures to enlist the aid of extraplanar allies at will. The following types of Summons each ability provides:\n\r\nSummon Baatezu: Summons a erinyes baatezu.\nSummon Celestial: Summons a lantern archon.\nSummon Mephit: Summons a steam mephit.\nSummon Tanar\u0027ri: Summons a succubus.\nSummon Slaadi: Summons a red slaad.",
+          "F": "Summoning abilities allow creatures to enlist the aid of extraplanar allies at will. The following types of Summons are available in the game:\n\nSummon Tanar\u0027ri: Summons a  succubus to aid the caster in combat\nSummon Celestial: Summons one of the following creatures: lantern archon, hound archon, or trumpet archon.\nSummon Mephit: Summons  a mephit (if the caster is a mephit, it will attempt to summon another mephit of its own type).\nSummon Slaadi: A percentage chance of summoning a red slaad or green slaad according to creature\u0027s HD.\nSummon Baatezu:  Summons an erinyes baatezu to aid the caster in combat"
+        },
+        "FR": {
+          "M": "Les pouvoirs de convocation permettent de convoquer \u00E0 volont\u00E9 des alli\u00E9s extra-planaires. Les convocations suivantes sont possibles en cours de jeu :\n\nConvocation de tanar\u0027ri : invoque une succube pour aider le lanceur de sorts en combat.\nConvocation de c\u00E9leste : un certain pourcentage de chances d\u0027invoquer l\u0027une des cr\u00E9atures suivantes : archon lumineux, canin ou messager.\nConvocation de m\u00E9phite : un certain pourcentage de chances d\u0027invoquer un M\u00E9phite (si le lanceur de sorts est un m\u00E9phite, il essaiera d\u0027invoquer un m\u00E9phite de son esp\u00E8ce).\nConvocation de slaad : un certain pourcentage de chances d\u0027invoquer un slaad rouge ou vert selon les DV de la cr\u00E9ature.\nConvocation de Baatzezu : invoque une \u00E9rinye pour aider le lanceur de sorts en combat."
+        },
+        "DE": {
+          "M": "Kreaturen mit der F\u00E4higkeit Herbeizauberung k\u00F6nnen andere Externare herbeizaubern, die ihnen im Kampf beistehen. Es gibt folgende Versionen dieser F\u00E4higkeit:\n\nTanar\u0027ri herbeizaubern: Ein Sukkubus erscheint und steht der Kreatur im Kampf bei.\nCelestischen herbeizaubern: Die Kreatur kann eine der folgenden Kreaturen herbeizaubern: Leuchtender Archon, Hundearchon oder Posaunen-Archon.\nMephit herbeizaubern: Die Kreatur kann einen Mephit herbeizaubern. Handelt es sich bei der Kreatur, welche die F\u00E4higkeit einsetzt, um einen Mephit, zaubert sie immer einen Mephit ihrer Art herbei.\nSlaad herbeizaubern: Die Kreatur kann einen Slaad herbeizaubern. Ob es sich dabei um einen Roten Slaad oder einen Gr\u00FCnen Slaad handelt, h\u00E4ngt von den TW der Kreatur ab, welche die F\u00E4higkeit einsetzt.\nBaatezu herbeizaubern: Die Kreatur zaubert eine Erinnye herbei, die ihr im Kampf beisteht."
+        },
+        "IT": {
+          "M": "Le capacit\u00E0 di Evocazione permettono alle creature di ottenere l\u0027aiuto di alleati extraplanari a volont\u00E0. Nel gioco sono disponibili i seguenti tipi di Evocazione:\n\nEvoca tanar\u0027ri: evoca un succube che assiste l\u0027incantatore in combattimento.\nEvoca celestiale: possibilit\u00E0 percentuale di evocare una delle seguenti creature: arconte lanterna, arconte segugio o arconte tromba.\nEvoca mephit: possibilit\u00E0 percentuale di evocare un mephit (se l\u0027incantatore \u00E8 un mephit, cercher\u00E0 di evocarne un altro dello stesso tipo).\nEvoca slaad: Possibilit\u00E0 percentuale di evocare uno slaad rosso o uno slaad verde in base ai DV della creatura.\nEvoca baatezu: evoca un bateezu erinni che assiste l\u0027incantatore in combattimento."
+        },
+        "ES": {
+          "M": "Las aptitudes de Convocaci\u00F3n permiten a las criaturas reclutar la ayuda de aliados extraplanarios a voluntad. En el juego est\u00E1n disponibles los siguientes tipos de convocaciones:\n\nConvocar tanar\u0027ri: Convoca a un s\u00FAcubo para que ayude al lanzador en el combate.\nConvocar celestial: Convoca a una de las criaturas siguientes: Lamparconte, canarconte o clangarconte.\nConvocar m\u00E9fit: Convoca a un m\u00E9fit (si el lanzador es un m\u00E9fit, intentar\u00E1 convocar a otro m\u00E9fit de su mismo tipo).\nConvocar slaad: Hay una probabilidad de convocar a un slaad rojo o un slaad verde seg\u00FAn los DG de la criatura.\nConvocar baatezu: Convoca a una erinia para que ayude al lanzador en el combate."
+        },
+        "PL": {
+          "M": "Zdolno\u015B\u0107 przywo\u0142ania pozwala w jednej chwili wezwa\u0107 na pomoc sojusznik\u00F3w ze sfer. W grze dost\u0119pne s\u0105 nast\u0119puj\u0105ce Przywo\u0142ywania:\n\nPrzywo\u0142anie Tanar\u2019ri: Przywo\u0142uje sukuba, kt\u00F3ry pomaga w walce.\nPrzywo\u0142anie Niebianina: Przywo\u0142uje jedn\u0105 z nast\u0119puj\u0105cych istot: Archont Latarniany, Psi Archont lub Archont Tr\u0119bacz.\nPrzywo\u0142anie Mefita: Przywo\u0142uje mefita (je\u015Bli rzucaj\u0105cy jest mefitem, przywo\u0142uje innego mefita tego samego typu).\nPrzywo\u0142anie Slaada: Daje procentow\u0105 szans\u0119 przywo\u0142ania czerwonego lub zielonego slaada, zale\u017Cnie od KW istoty.\nPrzywo\u0142anie Baatezu: Przywo\u0142uje Erinje Baatezu, kt\u00F3ra pomaga w walce."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "ir_gensummon",
+      "School": "C",
+      "Range": "S",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [],
+      "TargetTypes": [
+        "Area"
+      ],
+      "ImpactScript": "nw_s_summon",
+      "InnateLevel": 5,
+      "ConjurationTime": 500,
+      "ConjuringAnimation": "Head",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": null,
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": null,
+      "ConjurationMaleSound": null,
+      "ConjurationFemaleSound": null,
+      "CastingAnimation": "Out",
+      "CastTime": 500,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": null,
+      "ProjectileSound": null,
+      "ProjectileOrientation": null,
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "TalentFriendlySummon",
+      "ParentSpell": null,
+      "Type": "CreaturePower",
       "UseConcentration": false,
       "IsCastSpontaneously": false,
       "IsHostile": false,
@@ -61791,6 +61901,336 @@
       "Category": "TalentFriendlySummon",
       "ParentSpell": null,
       "Type": "Feat",
+      "UseConcentration": false,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "a14f87cb-025c-4f93-b876-e20a702a5ef9",
+      "Index": -1,
+      "Overrides": "726e4178-0a7e-3aee-044c-54ec875189d9",
+      "Disabled": false,
+      "Hint": "Creature Power",
+      "ScriptConstant": "",
+      "SourceLabel": "Summon_Mephit",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 6482,
+        "EN": {
+          "M": "Summon Mephit"
+        },
+        "FR": {
+          "M": "Convocation de m\u00E9phite"
+        },
+        "DE": {
+          "M": "Mephit herbeizaubern"
+        },
+        "IT": {
+          "M": "Evoca Mephit"
+        },
+        "ES": {
+          "M": "Convocar m\u00E9fit"
+        },
+        "PL": {
+          "M": "Przywo\u0142anie Mefita"
+        }
+      },
+      "Description": {
+        "Index": 6554,
+        "EN": {
+          "M": "Summoning abilities allow creatures to enlist the aid of extraplanar allies at will. The following types of Summons each ability provides:\n\r\nSummon Baatezu: Summons a erinyes baatezu.\nSummon Celestial: Summons a lantern archon.\nSummon Mephit: Summons a steam mephit.\nSummon Tanar\u0027ri: Summons a succubus.\nSummon Slaadi: Summons a red slaad.",
+          "F": "Summoning abilities allow creatures to enlist the aid of extraplanar allies at will. The following types of Summons are available in the game:\n\nSummon Tanar\u0027ri: Summons a succubus to aid the caster in combat\nSummon Celestial: A percentage chance of summoning one of the following creatures: lantern archon, hound archon, or trumpet archon.\nSummon Mephit: A percentage chance of summoning a mephit (if the caster is a mephit, it will attempt to summon another mephit of its own type).\nSummon Slaadi: A percentage chance of summoning a red slaad or green slaad according to creature\u0027s HD."
+        },
+        "FR": {
+          "M": "Les pouvoirs de convocation permettent de convoquer \u00E0 volont\u00E9 des alli\u00E9s extra-planaires. Les convocations suivantes sont possibles en cours de jeu :\n\nConvocation de tanar\u0027ri : invoque une succube pour aider le lanceur de sorts en combat.\nConvocation de c\u00E9leste : un certain pourcentage de chances d\u0027invoquer l\u0027une des cr\u00E9atures suivantes : archon lumineux, canin ou messager.\nConvocation de m\u00E9phite : un certain pourcentage de chances d\u0027invoquer un M\u00E9phite (si le lanceur de sorts est un m\u00E9phite, il essaiera d\u0027invoquer un m\u00E9phite de son esp\u00E8ce).\nConvocation de slaad : un certain pourcentage de chances d\u0027invoquer un slaad rouge ou vert selon les DV de la cr\u00E9ature."
+        },
+        "DE": {
+          "M": "Kreaturen mit der F\u00E4higkeit Herbeizauberung k\u00F6nnen andere Externare herbeizaubern, die ihnen im Kampf beistehen. Es gibt folgende Versionen dieser F\u00E4higkeit:\n\nTanar\u0027ri herbeizaubern: Ein Sukkubus erscheint und steht der Kreatur im Kampf bei.\nCelestischen herbeizaubern: Die Kreatur kann mit einer gewissen Prozentchance eine der folgenden Kreaturen herbeizaubern: Leuchtender Archon, Hundearchon oder Posaunen-Archon.\nMephit herbeizaubern: Die Kreatur kann mit einer gewissen Prozentchance einen Mephit herbeizaubern. Handelt es sich bei der Kreatur, welche die F\u00E4higkeit einsetzt, um einen Mephit, zaubert sie immer einen Mephit ihrer Art herbei, wenn sie erfolgreich ist.\nSlaad herbeizaubern: Die Kreatur kann mit einer gewissen Prozentchance einen Slaad herbeizaubern. Ob es sich dabei um einen Roten Slaad oder einen Gr\u00FCnen Slaad handelt, h\u00E4ngt von den TW der Kreatur ab, welche die F\u00E4higkeit einsetzt."
+        },
+        "IT": {
+          "M": "Le capacit\u00E0 di Evocazione permettono alle creature di ottenere l\u0027aiuto di alleati extraplanari a volont\u00E0. Nel gioco sono disponibili i seguenti tipi di Evocazione:\n\nEvoca tanar\u0027ri: possibilit\u00E0 percentuale di evocare una delle seguenti creature: quasit, succube o vrock.\nEvoca celestiale: possibilit\u00E0 percentuale di evocare una delle seguenti creature: arconte lanterna, arconte segugio o arconte tromba.\nEvoca mephit: possibilit\u00E0 percentuale di evocare un mephit (se l\u0027incantatore \u00E8 un mephit, cercher\u00E0 di evocarne un altro dello stesso tipo).\nEvoca slaad: possibilit\u00E0 percentuale di evocare uno slaad rosso o uno slaad verde in base ai DV della creatura."
+        },
+        "ES": {
+          "M": "Las aptitudes de Convocaci\u00F3n permiten a las criaturas reclutar la ayuda de aliados extraplanarios a voluntad. En el juego est\u00E1n disponibles los siguientes tipos de convocaciones:\n\nConvocar tanar\u0027ri: Convoca a un s\u00FAcubo para que ayude al lanzador en el combate.\nConvocar celestial: Hay una probabilidad de que aparezca una de las siguientes criaturas: Lamparconte, canarconte o clangarconte.\nConvocar m\u00E9fit: Hay una probabilidad de convocar a un m\u00E9fit (si el lanzador es un m\u00E9fit, intentar\u00E1 convocar a otro m\u00E9fit de su mismo tipo).\nConvocar slaad: Hay una probabilidad de convocar a un slaad rojo o un slaad verde seg\u00FAn los DG de la criatura."
+        },
+        "PL": {
+          "M": "Zdolno\u015Bci Przywo\u0142ania pozwalaj\u0105 wzywa\u0107 na \u017Cyczenie sojusznik\u00F3w z innych Sfer. W grze wyst\u0119puj\u0105 nast\u0119puj\u0105ce rodzaje Przywo\u0142a\u0144:\nPrzywo\u0142anie Tanar\u0027ri: Daje procentow\u0105 szans\u0119 na przyzwanie jednej z nast\u0119puj\u0105cych istot: Quasit, Sukub, albo Vrok.\nPrzywo\u0142anie Niebianina: Daje procentow\u0105 szans\u0119 na przyzwanie jednej z nast\u0119puj\u0105cych istot: Archon Latarnik, Archon Ogar, Archon Tr\u0119bacz.\nPrzywo\u0142anie Mefita: Daje procentow\u0105 szans\u0119 na przyzwanie mefita (je\u015Bli rzucaj\u0105cym czar jest mefit, przywo\u0142uje mefity swojego rodzaju).\nPrzywo\u0142anie Slaada: Daje procentow\u0105 szans\u0119 na przyzwanie czerwonego lub zielonego slaada, zale\u017Cnie od ilo\u015Bci Kostek Wytrzyma\u0142o\u015Bci istoty."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "ir_gensummon",
+      "School": "C",
+      "Range": "S",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [],
+      "TargetTypes": [
+        "Area"
+      ],
+      "ImpactScript": "nw_s_summon",
+      "InnateLevel": 5,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": "vco_mehanodd02",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mehanodd02",
+      "ConjurationMaleSound": null,
+      "ConjurationFemaleSound": null,
+      "CastingAnimation": "Out",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": true,
+      "ProjectileModel": "vpr_los",
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": "spr_los",
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "TalentFriendlySummon",
+      "ParentSpell": null,
+      "Type": "CreaturePower",
+      "UseConcentration": false,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": true,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "872734aa-5850-431c-baf7-a645fb1ed866",
+      "Index": -1,
+      "Overrides": "144543c9-f533-b279-32a7-4aeb42e303ac",
+      "Disabled": false,
+      "Hint": "Creature Power",
+      "ScriptConstant": "",
+      "SourceLabel": "Summon_Slaad",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 5335,
+        "EN": {
+          "M": "Summon Slaad"
+        },
+        "FR": {
+          "M": "Convocation de slaad"
+        },
+        "DE": {
+          "M": "Slaad herbeizaubern"
+        },
+        "IT": {
+          "M": "Evoca Slaad"
+        },
+        "ES": {
+          "M": "Convocar slaad"
+        },
+        "PL": {
+          "M": "Przywo\u0142anie Slaada"
+        }
+      },
+      "Description": {
+        "Index": 6554,
+        "EN": {
+          "M": "Summoning abilities allow creatures to enlist the aid of extraplanar allies at will. The following types of Summons each ability provides:\n\r\nSummon Baatezu: Summons a erinyes baatezu.\nSummon Celestial: Summons a lantern archon.\nSummon Mephit: Summons a steam mephit.\nSummon Tanar\u0027ri: Summons a succubus.\nSummon Slaadi: Summons a red slaad.",
+          "F": "Summoning abilities allow creatures to enlist the aid of extraplanar allies at will. The following types of Summons are available in the game:\n\nSummon Tanar\u0027ri: Summons a succubus to aid the caster in combat\nSummon Celestial: A percentage chance of summoning one of the following creatures: lantern archon, hound archon, or trumpet archon.\nSummon Mephit: A percentage chance of summoning a mephit (if the caster is a mephit, it will attempt to summon another mephit of its own type).\nSummon Slaadi: A percentage chance of summoning a red slaad or green slaad according to creature\u0027s HD."
+        },
+        "FR": {
+          "M": "Les pouvoirs de convocation permettent de convoquer \u00E0 volont\u00E9 des alli\u00E9s extra-planaires. Les convocations suivantes sont possibles en cours de jeu :\n\nConvocation de tanar\u0027ri : invoque une succube pour aider le lanceur de sorts en combat.\nConvocation de c\u00E9leste : un certain pourcentage de chances d\u0027invoquer l\u0027une des cr\u00E9atures suivantes : archon lumineux, canin ou messager.\nConvocation de m\u00E9phite : un certain pourcentage de chances d\u0027invoquer un M\u00E9phite (si le lanceur de sorts est un m\u00E9phite, il essaiera d\u0027invoquer un m\u00E9phite de son esp\u00E8ce).\nConvocation de slaad : un certain pourcentage de chances d\u0027invoquer un slaad rouge ou vert selon les DV de la cr\u00E9ature."
+        },
+        "DE": {
+          "M": "Kreaturen mit der F\u00E4higkeit Herbeizauberung k\u00F6nnen andere Externare herbeizaubern, die ihnen im Kampf beistehen. Es gibt folgende Versionen dieser F\u00E4higkeit:\n\nTanar\u0027ri herbeizaubern: Ein Sukkubus erscheint und steht der Kreatur im Kampf bei.\nCelestischen herbeizaubern: Die Kreatur kann mit einer gewissen Prozentchance eine der folgenden Kreaturen herbeizaubern: Leuchtender Archon, Hundearchon oder Posaunen-Archon.\nMephit herbeizaubern: Die Kreatur kann mit einer gewissen Prozentchance einen Mephit herbeizaubern. Handelt es sich bei der Kreatur, welche die F\u00E4higkeit einsetzt, um einen Mephit, zaubert sie immer einen Mephit ihrer Art herbei, wenn sie erfolgreich ist.\nSlaad herbeizaubern: Die Kreatur kann mit einer gewissen Prozentchance einen Slaad herbeizaubern. Ob es sich dabei um einen Roten Slaad oder einen Gr\u00FCnen Slaad handelt, h\u00E4ngt von den TW der Kreatur ab, welche die F\u00E4higkeit einsetzt."
+        },
+        "IT": {
+          "M": "Le capacit\u00E0 di Evocazione permettono alle creature di ottenere l\u0027aiuto di alleati extraplanari a volont\u00E0. Nel gioco sono disponibili i seguenti tipi di Evocazione:\n\nEvoca tanar\u0027ri: possibilit\u00E0 percentuale di evocare una delle seguenti creature: quasit, succube o vrock.\nEvoca celestiale: possibilit\u00E0 percentuale di evocare una delle seguenti creature: arconte lanterna, arconte segugio o arconte tromba.\nEvoca mephit: possibilit\u00E0 percentuale di evocare un mephit (se l\u0027incantatore \u00E8 un mephit, cercher\u00E0 di evocarne un altro dello stesso tipo).\nEvoca slaad: possibilit\u00E0 percentuale di evocare uno slaad rosso o uno slaad verde in base ai DV della creatura."
+        },
+        "ES": {
+          "M": "Las aptitudes de Convocaci\u00F3n permiten a las criaturas reclutar la ayuda de aliados extraplanarios a voluntad. En el juego est\u00E1n disponibles los siguientes tipos de convocaciones:\n\nConvocar tanar\u0027ri: Convoca a un s\u00FAcubo para que ayude al lanzador en el combate.\nConvocar celestial: Hay una probabilidad de que aparezca una de las siguientes criaturas: Lamparconte, canarconte o clangarconte.\nConvocar m\u00E9fit: Hay una probabilidad de convocar a un m\u00E9fit (si el lanzador es un m\u00E9fit, intentar\u00E1 convocar a otro m\u00E9fit de su mismo tipo).\nConvocar slaad: Hay una probabilidad de convocar a un slaad rojo o un slaad verde seg\u00FAn los DG de la criatura."
+        },
+        "PL": {
+          "M": "Zdolno\u015Bci Przywo\u0142ania pozwalaj\u0105 wzywa\u0107 na \u017Cyczenie sojusznik\u00F3w z innych Sfer. W grze wyst\u0119puj\u0105 nast\u0119puj\u0105ce rodzaje Przywo\u0142a\u0144:\nPrzywo\u0142anie Tanar\u0027ri: Daje procentow\u0105 szans\u0119 na przyzwanie jednej z nast\u0119puj\u0105cych istot: Quasit, Sukub, albo Vrok.\nPrzywo\u0142anie Niebianina: Daje procentow\u0105 szans\u0119 na przyzwanie jednej z nast\u0119puj\u0105cych istot: Archon Latarnik, Archon Ogar, Archon Tr\u0119bacz.\nPrzywo\u0142anie Mefita: Daje procentow\u0105 szans\u0119 na przyzwanie mefita (je\u015Bli rzucaj\u0105cym czar jest mefit, przywo\u0142uje mefity swojego rodzaju).\nPrzywo\u0142anie Slaada: Daje procentow\u0105 szans\u0119 na przyzwanie czerwonego lub zielonego slaada, zale\u017Cnie od ilo\u015Bci Kostek Wytrzyma\u0142o\u015Bci istoty."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "ir_gensummon",
+      "School": "C",
+      "Range": "S",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [],
+      "TargetTypes": [
+        "Area"
+      ],
+      "ImpactScript": "nw_s_summon",
+      "InnateLevel": 5,
+      "ConjurationTime": 500,
+      "ConjuringAnimation": "Head",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": null,
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": null,
+      "ConjurationMaleSound": null,
+      "ConjurationFemaleSound": null,
+      "CastingAnimation": "Out",
+      "CastTime": 500,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": null,
+      "ProjectileSound": null,
+      "ProjectileOrientation": null,
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "TalentFriendlySummon",
+      "ParentSpell": null,
+      "Type": "CreaturePower",
+      "UseConcentration": false,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
+      "ID": "96e8845d-5561-4102-8282-2835cb3bb47c",
+      "Index": -1,
+      "Overrides": "0a865f49-2a84-be3c-90fe-2d963b819c94",
+      "Disabled": false,
+      "Hint": "Creature Power",
+      "ScriptConstant": "",
+      "SourceLabel": "Summon_Tanarri",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 5336,
+        "EN": {
+          "M": "Summon Tanarri"
+        },
+        "FR": {
+          "M": "Convocation de tanar\u0027ri"
+        },
+        "DE": {
+          "M": "Tanar\u0027ri herbeizaubern"
+        },
+        "IT": {
+          "M": "Evoca Tanarri"
+        },
+        "ES": {
+          "M": "Convocar Tanar\u0027ri"
+        },
+        "PL": {
+          "M": "Przywo\u0142anie Tanar\u0027ri"
+        }
+      },
+      "Description": {
+        "Index": 6554,
+        "EN": {
+          "M": "Summoning abilities allow creatures to enlist the aid of extraplanar allies at will. The following types of Summons each ability provides:\n\r\nSummon Baatezu: Summons a erinyes baatezu.\nSummon Celestial: Summons a lantern archon.\nSummon Mephit: Summons a steam mephit.\nSummon Tanar\u0027ri: Summons a succubus.\nSummon Slaadi: Summons a red slaad.",
+          "F": "Summoning abilities allow creatures to enlist the aid of extraplanar allies at will. The following types of Summons are available in the game:\n\nSummon Tanar\u0027ri: Summons a succubus to aid the caster in combat\nSummon Celestial: A percentage chance of summoning one of the following creatures: lantern archon, hound archon, or trumpet archon.\nSummon Mephit: A percentage chance of summoning a mephit (if the caster is a mephit, it will attempt to summon another mephit of its own type).\nSummon Slaadi: A percentage chance of summoning a red slaad or green slaad according to creature\u0027s HD."
+        },
+        "FR": {
+          "M": "Les pouvoirs de convocation permettent de convoquer \u00E0 volont\u00E9 des alli\u00E9s extra-planaires. Les convocations suivantes sont possibles en cours de jeu :\n\nConvocation de tanar\u0027ri : invoque une succube pour aider le lanceur de sorts en combat.\nConvocation de c\u00E9leste : un certain pourcentage de chances d\u0027invoquer l\u0027une des cr\u00E9atures suivantes : archon lumineux, canin ou messager.\nConvocation de m\u00E9phite : un certain pourcentage de chances d\u0027invoquer un M\u00E9phite (si le lanceur de sorts est un m\u00E9phite, il essaiera d\u0027invoquer un m\u00E9phite de son esp\u00E8ce).\nConvocation de slaad : un certain pourcentage de chances d\u0027invoquer un slaad rouge ou vert selon les DV de la cr\u00E9ature."
+        },
+        "DE": {
+          "M": "Kreaturen mit der F\u00E4higkeit Herbeizauberung k\u00F6nnen andere Externare herbeizaubern, die ihnen im Kampf beistehen. Es gibt folgende Versionen dieser F\u00E4higkeit:\n\nTanar\u0027ri herbeizaubern: Ein Sukkubus erscheint und steht der Kreatur im Kampf bei.\nCelestischen herbeizaubern: Die Kreatur kann mit einer gewissen Prozentchance eine der folgenden Kreaturen herbeizaubern: Leuchtender Archon, Hundearchon oder Posaunen-Archon.\nMephit herbeizaubern: Die Kreatur kann mit einer gewissen Prozentchance einen Mephit herbeizaubern. Handelt es sich bei der Kreatur, welche die F\u00E4higkeit einsetzt, um einen Mephit, zaubert sie immer einen Mephit ihrer Art herbei, wenn sie erfolgreich ist.\nSlaad herbeizaubern: Die Kreatur kann mit einer gewissen Prozentchance einen Slaad herbeizaubern. Ob es sich dabei um einen Roten Slaad oder einen Gr\u00FCnen Slaad handelt, h\u00E4ngt von den TW der Kreatur ab, welche die F\u00E4higkeit einsetzt."
+        },
+        "IT": {
+          "M": "Le capacit\u00E0 di Evocazione permettono alle creature di ottenere l\u0027aiuto di alleati extraplanari a volont\u00E0. Nel gioco sono disponibili i seguenti tipi di Evocazione:\n\nEvoca tanar\u0027ri: possibilit\u00E0 percentuale di evocare una delle seguenti creature: quasit, succube o vrock.\nEvoca celestiale: possibilit\u00E0 percentuale di evocare una delle seguenti creature: arconte lanterna, arconte segugio o arconte tromba.\nEvoca mephit: possibilit\u00E0 percentuale di evocare un mephit (se l\u0027incantatore \u00E8 un mephit, cercher\u00E0 di evocarne un altro dello stesso tipo).\nEvoca slaad: possibilit\u00E0 percentuale di evocare uno slaad rosso o uno slaad verde in base ai DV della creatura."
+        },
+        "ES": {
+          "M": "Las aptitudes de Convocaci\u00F3n permiten a las criaturas reclutar la ayuda de aliados extraplanarios a voluntad. En el juego est\u00E1n disponibles los siguientes tipos de convocaciones:\n\nConvocar tanar\u0027ri: Convoca a un s\u00FAcubo para que ayude al lanzador en el combate.\nConvocar celestial: Hay una probabilidad de que aparezca una de las siguientes criaturas: Lamparconte, canarconte o clangarconte.\nConvocar m\u00E9fit: Hay una probabilidad de convocar a un m\u00E9fit (si el lanzador es un m\u00E9fit, intentar\u00E1 convocar a otro m\u00E9fit de su mismo tipo).\nConvocar slaad: Hay una probabilidad de convocar a un slaad rojo o un slaad verde seg\u00FAn los DG de la criatura."
+        },
+        "PL": {
+          "M": "Zdolno\u015Bci Przywo\u0142ania pozwalaj\u0105 wzywa\u0107 na \u017Cyczenie sojusznik\u00F3w z innych Sfer. W grze wyst\u0119puj\u0105 nast\u0119puj\u0105ce rodzaje Przywo\u0142a\u0144:\nPrzywo\u0142anie Tanar\u0027ri: Daje procentow\u0105 szans\u0119 na przyzwanie jednej z nast\u0119puj\u0105cych istot: Quasit, Sukub, albo Vrok.\nPrzywo\u0142anie Niebianina: Daje procentow\u0105 szans\u0119 na przyzwanie jednej z nast\u0119puj\u0105cych istot: Archon Latarnik, Archon Ogar, Archon Tr\u0119bacz.\nPrzywo\u0142anie Mefita: Daje procentow\u0105 szans\u0119 na przyzwanie mefita (je\u015Bli rzucaj\u0105cym czar jest mefit, przywo\u0142uje mefity swojego rodzaju).\nPrzywo\u0142anie Slaada: Daje procentow\u0105 szans\u0119 na przyzwanie czerwonego lub zielonego slaada, zale\u017Cnie od ilo\u015Bci Kostek Wytrzyma\u0142o\u015Bci istoty."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "ir_gensummon",
+      "School": "C",
+      "Range": "S",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [],
+      "TargetTypes": [
+        "Area"
+      ],
+      "ImpactScript": "nw_s_summon",
+      "InnateLevel": 5,
+      "ConjurationTime": 500,
+      "ConjuringAnimation": "Head",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": null,
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": null,
+      "ConjurationMaleSound": null,
+      "ConjurationFemaleSound": null,
+      "CastingAnimation": "Out",
+      "CastTime": 500,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": null,
+      "ProjectileSound": null,
+      "ProjectileOrientation": null,
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "TalentFriendlySummon",
+      "ParentSpell": null,
+      "Type": "CreaturePower",
       "UseConcentration": false,
       "IsCastSpontaneously": false,
       "IsHostile": false,
@@ -67006,92 +67446,70 @@
       ]
     },
     {
-      "ID": "a14f87cb-025c-4f93-b876-e20a702a5ef9",
-      "Index": -1,
-      "Overrides": "726e4178-0a7e-3aee-044c-54ec875189d9",
+      "ID": "270f3655-8d82-4f6c-858d-53d3a9346564",
+      "Index": 42,
+      "Overrides": null,
       "Disabled": false,
-      "Hint": "Creature Power",
+      "Hint": "",
       "ScriptConstant": "",
-      "SourceLabel": "Summon_Mephit",
+      "SourceLabel": null,
       "ExtensionValues": {},
       "Name": {
-        "Index": 6482,
+        "Index": null,
         "EN": {
-          "M": "Summon Mephit"
-        },
-        "FR": {
-          "M": "Convocation de m\u00E9phite"
-        },
-        "DE": {
-          "M": "Mephit herbeizaubern"
-        },
-        "IT": {
-          "M": "Evoca Mephit"
-        },
-        "ES": {
-          "M": "Convocar m\u00E9fit"
-        },
-        "PL": {
-          "M": "Przywo\u0142anie Mefita"
+          "M": "Mass Spell Resistance",
+          "F": "New Spell"
         }
       },
       "Description": {
-        "Index": 6554,
+        "Index": null,
         "EN": {
-          "M": "Summoning abilities allow creatures to enlist the aid of extraplanar allies at will. The following types of Summons each ability provides:\n\r\nSummon Baatezu: Summons a erinyes baatezu.\nSummon Celestial: Summons a lantern archon.\nSummon Mephit: Summons a steam mephit.\nSummon Tanar\u0027ri: Summons a succubus.\nSummon Slaadi: Summons a red slaad.",
-          "F": "Summoning abilities allow creatures to enlist the aid of extraplanar allies at will. The following types of Summons are available in the game:\n\nSummon Tanar\u0027ri: Summons a succubus to aid the caster in combat\nSummon Celestial: A percentage chance of summoning one of the following creatures: lantern archon, hound archon, or trumpet archon.\nSummon Mephit: A percentage chance of summoning a mephit (if the caster is a mephit, it will attempt to summon another mephit of its own type).\nSummon Slaadi: A percentage chance of summoning a red slaad or green slaad according to creature\u0027s HD."
-        },
-        "FR": {
-          "M": "Les pouvoirs de convocation permettent de convoquer \u00E0 volont\u00E9 des alli\u00E9s extra-planaires. Les convocations suivantes sont possibles en cours de jeu :\n\nConvocation de tanar\u0027ri : invoque une succube pour aider le lanceur de sorts en combat.\nConvocation de c\u00E9leste : un certain pourcentage de chances d\u0027invoquer l\u0027une des cr\u00E9atures suivantes : archon lumineux, canin ou messager.\nConvocation de m\u00E9phite : un certain pourcentage de chances d\u0027invoquer un M\u00E9phite (si le lanceur de sorts est un m\u00E9phite, il essaiera d\u0027invoquer un m\u00E9phite de son esp\u00E8ce).\nConvocation de slaad : un certain pourcentage de chances d\u0027invoquer un slaad rouge ou vert selon les DV de la cr\u00E9ature."
-        },
-        "DE": {
-          "M": "Kreaturen mit der F\u00E4higkeit Herbeizauberung k\u00F6nnen andere Externare herbeizaubern, die ihnen im Kampf beistehen. Es gibt folgende Versionen dieser F\u00E4higkeit:\n\nTanar\u0027ri herbeizaubern: Ein Sukkubus erscheint und steht der Kreatur im Kampf bei.\nCelestischen herbeizaubern: Die Kreatur kann mit einer gewissen Prozentchance eine der folgenden Kreaturen herbeizaubern: Leuchtender Archon, Hundearchon oder Posaunen-Archon.\nMephit herbeizaubern: Die Kreatur kann mit einer gewissen Prozentchance einen Mephit herbeizaubern. Handelt es sich bei der Kreatur, welche die F\u00E4higkeit einsetzt, um einen Mephit, zaubert sie immer einen Mephit ihrer Art herbei, wenn sie erfolgreich ist.\nSlaad herbeizaubern: Die Kreatur kann mit einer gewissen Prozentchance einen Slaad herbeizaubern. Ob es sich dabei um einen Roten Slaad oder einen Gr\u00FCnen Slaad handelt, h\u00E4ngt von den TW der Kreatur ab, welche die F\u00E4higkeit einsetzt."
-        },
-        "IT": {
-          "M": "Le capacit\u00E0 di Evocazione permettono alle creature di ottenere l\u0027aiuto di alleati extraplanari a volont\u00E0. Nel gioco sono disponibili i seguenti tipi di Evocazione:\n\nEvoca tanar\u0027ri: possibilit\u00E0 percentuale di evocare una delle seguenti creature: quasit, succube o vrock.\nEvoca celestiale: possibilit\u00E0 percentuale di evocare una delle seguenti creature: arconte lanterna, arconte segugio o arconte tromba.\nEvoca mephit: possibilit\u00E0 percentuale di evocare un mephit (se l\u0027incantatore \u00E8 un mephit, cercher\u00E0 di evocarne un altro dello stesso tipo).\nEvoca slaad: possibilit\u00E0 percentuale di evocare uno slaad rosso o uno slaad verde in base ai DV della creatura."
-        },
-        "ES": {
-          "M": "Las aptitudes de Convocaci\u00F3n permiten a las criaturas reclutar la ayuda de aliados extraplanarios a voluntad. En el juego est\u00E1n disponibles los siguientes tipos de convocaciones:\n\nConvocar tanar\u0027ri: Convoca a un s\u00FAcubo para que ayude al lanzador en el combate.\nConvocar celestial: Hay una probabilidad de que aparezca una de las siguientes criaturas: Lamparconte, canarconte o clangarconte.\nConvocar m\u00E9fit: Hay una probabilidad de convocar a un m\u00E9fit (si el lanzador es un m\u00E9fit, intentar\u00E1 convocar a otro m\u00E9fit de su mismo tipo).\nConvocar slaad: Hay una probabilidad de convocar a un slaad rojo o un slaad verde seg\u00FAn los DG de la criatura."
-        },
-        "PL": {
-          "M": "Zdolno\u015Bci Przywo\u0142ania pozwalaj\u0105 wzywa\u0107 na \u017Cyczenie sojusznik\u00F3w z innych Sfer. W grze wyst\u0119puj\u0105 nast\u0119puj\u0105ce rodzaje Przywo\u0142a\u0144:\nPrzywo\u0142anie Tanar\u0027ri: Daje procentow\u0105 szans\u0119 na przyzwanie jednej z nast\u0119puj\u0105cych istot: Quasit, Sukub, albo Vrok.\nPrzywo\u0142anie Niebianina: Daje procentow\u0105 szans\u0119 na przyzwanie jednej z nast\u0119puj\u0105cych istot: Archon Latarnik, Archon Ogar, Archon Tr\u0119bacz.\nPrzywo\u0142anie Mefita: Daje procentow\u0105 szans\u0119 na przyzwanie mefita (je\u015Bli rzucaj\u0105cym czar jest mefit, przywo\u0142uje mefity swojego rodzaju).\nPrzywo\u0142anie Slaada: Daje procentow\u0105 szans\u0119 na przyzwanie czerwonego lub zielonego slaada, zale\u017Cnie od ilo\u015Bci Kostek Wytrzyma\u0142o\u015Bci istoty."
+          "M": "Caster Level(s): Cleric 7\nInnate Level: 7\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Large\nDuration: 1 Minute / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nUp to 1 ally per caster level has its spell resistance set to 12, \u002B1 per caster level. If the target already had a higher spell resistance, this spell has no effect."
         }
       },
       "AlternativeCastMessage": {
         "Index": null
       },
-      "Icon": "ir_gensummon",
-      "School": "C",
+      "Icon": "i_dummy",
+      "School": "A",
       "Range": "S",
       "Components": [
         "V",
         "S"
       ],
-      "AvailableMetaMagic": [],
-      "TargetTypes": [
-        "Area"
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
       ],
-      "ImpactScript": "nw_s_summon",
-      "InnateLevel": 5,
+      "TargetTypes": [
+        "Self",
+        "Creature",
+        "Area",
+        "Item"
+      ],
+      "ImpactScript": "op_s_spellresist",
+      "InnateLevel": 7,
       "ConjurationTime": 1500,
-      "ConjuringAnimation": "Hand",
-      "ConjurationHeadEffect": null,
-      "ConjurationHandEffect": "vco_mehanodd02",
-      "ConjurationGroundEffect": null,
-      "ConjurationSound": "sco_mehanodd02",
-      "ConjurationMaleSound": null,
-      "ConjurationFemaleSound": null,
+      "ConjuringAnimation": "Head",
+      "ConjurationHeadEffect": "vco_mehanmind02",
+      "ConjurationHandEffect": null,
+      "ConjurationGroundEffect": "vco_lgsprmind01",
+      "ConjurationSound": "sco_lgsprmind01",
+      "ConjurationMaleSound": "vs_chant_conj_hm",
+      "ConjurationFemaleSound": "vs_chant_conj_hf",
       "CastingAnimation": "Out",
       "CastTime": 1000,
       "CastingHeadEffect": null,
       "CastingHandEffect": null,
       "CastingGroundEffect": null,
       "CastingSound": null,
-      "HasProjectile": true,
-      "ProjectileModel": "vpr_los",
+      "HasProjectile": false,
+      "ProjectileModel": null,
       "ProjectileType": "Homing",
       "ProjectileSpawnPoint": "Hand",
-      "ProjectileSound": "spr_los",
+      "ProjectileSound": null,
       "ProjectileOrientation": "Path",
       "SubSpell1": null,
       "SubSpell2": null,
@@ -67101,349 +67519,21 @@
       "SubSpell6": null,
       "SubSpell7": null,
       "SubSpell8": null,
-      "Category": "TalentFriendlySummon",
+      "Category": "TalentFriendlyProtectionAoe",
       "ParentSpell": null,
-      "Type": "CreaturePower",
-      "UseConcentration": false,
-      "IsCastSpontaneously": false,
-      "IsHostile": false,
-      "CounterSpell1": null,
-      "CounterSpell2": null,
-      "HasProjectileVisuals": true,
-      "TargetShape": null,
-      "TargetSizeX": null,
-      "TargetSizeY": null,
-      "TargetingFlags": []
-    },
-    {
-      "ID": "872734aa-5850-431c-baf7-a645fb1ed866",
-      "Index": -1,
-      "Overrides": "144543c9-f533-b279-32a7-4aeb42e303ac",
-      "Disabled": false,
-      "Hint": "Creature Power",
-      "ScriptConstant": "",
-      "SourceLabel": "Summon_Slaad",
-      "ExtensionValues": {},
-      "Name": {
-        "Index": 5335,
-        "EN": {
-          "M": "Summon Slaad"
-        },
-        "FR": {
-          "M": "Convocation de slaad"
-        },
-        "DE": {
-          "M": "Slaad herbeizaubern"
-        },
-        "IT": {
-          "M": "Evoca Slaad"
-        },
-        "ES": {
-          "M": "Convocar slaad"
-        },
-        "PL": {
-          "M": "Przywo\u0142anie Slaada"
-        }
-      },
-      "Description": {
-        "Index": 6554,
-        "EN": {
-          "M": "Summoning abilities allow creatures to enlist the aid of extraplanar allies at will. The following types of Summons each ability provides:\n\r\nSummon Baatezu: Summons a erinyes baatezu.\nSummon Celestial: Summons a lantern archon.\nSummon Mephit: Summons a steam mephit.\nSummon Tanar\u0027ri: Summons a succubus.\nSummon Slaadi: Summons a red slaad.",
-          "F": "Summoning abilities allow creatures to enlist the aid of extraplanar allies at will. The following types of Summons are available in the game:\n\nSummon Tanar\u0027ri: Summons a succubus to aid the caster in combat\nSummon Celestial: A percentage chance of summoning one of the following creatures: lantern archon, hound archon, or trumpet archon.\nSummon Mephit: A percentage chance of summoning a mephit (if the caster is a mephit, it will attempt to summon another mephit of its own type).\nSummon Slaadi: A percentage chance of summoning a red slaad or green slaad according to creature\u0027s HD."
-        },
-        "FR": {
-          "M": "Les pouvoirs de convocation permettent de convoquer \u00E0 volont\u00E9 des alli\u00E9s extra-planaires. Les convocations suivantes sont possibles en cours de jeu :\n\nConvocation de tanar\u0027ri : invoque une succube pour aider le lanceur de sorts en combat.\nConvocation de c\u00E9leste : un certain pourcentage de chances d\u0027invoquer l\u0027une des cr\u00E9atures suivantes : archon lumineux, canin ou messager.\nConvocation de m\u00E9phite : un certain pourcentage de chances d\u0027invoquer un M\u00E9phite (si le lanceur de sorts est un m\u00E9phite, il essaiera d\u0027invoquer un m\u00E9phite de son esp\u00E8ce).\nConvocation de slaad : un certain pourcentage de chances d\u0027invoquer un slaad rouge ou vert selon les DV de la cr\u00E9ature."
-        },
-        "DE": {
-          "M": "Kreaturen mit der F\u00E4higkeit Herbeizauberung k\u00F6nnen andere Externare herbeizaubern, die ihnen im Kampf beistehen. Es gibt folgende Versionen dieser F\u00E4higkeit:\n\nTanar\u0027ri herbeizaubern: Ein Sukkubus erscheint und steht der Kreatur im Kampf bei.\nCelestischen herbeizaubern: Die Kreatur kann mit einer gewissen Prozentchance eine der folgenden Kreaturen herbeizaubern: Leuchtender Archon, Hundearchon oder Posaunen-Archon.\nMephit herbeizaubern: Die Kreatur kann mit einer gewissen Prozentchance einen Mephit herbeizaubern. Handelt es sich bei der Kreatur, welche die F\u00E4higkeit einsetzt, um einen Mephit, zaubert sie immer einen Mephit ihrer Art herbei, wenn sie erfolgreich ist.\nSlaad herbeizaubern: Die Kreatur kann mit einer gewissen Prozentchance einen Slaad herbeizaubern. Ob es sich dabei um einen Roten Slaad oder einen Gr\u00FCnen Slaad handelt, h\u00E4ngt von den TW der Kreatur ab, welche die F\u00E4higkeit einsetzt."
-        },
-        "IT": {
-          "M": "Le capacit\u00E0 di Evocazione permettono alle creature di ottenere l\u0027aiuto di alleati extraplanari a volont\u00E0. Nel gioco sono disponibili i seguenti tipi di Evocazione:\n\nEvoca tanar\u0027ri: possibilit\u00E0 percentuale di evocare una delle seguenti creature: quasit, succube o vrock.\nEvoca celestiale: possibilit\u00E0 percentuale di evocare una delle seguenti creature: arconte lanterna, arconte segugio o arconte tromba.\nEvoca mephit: possibilit\u00E0 percentuale di evocare un mephit (se l\u0027incantatore \u00E8 un mephit, cercher\u00E0 di evocarne un altro dello stesso tipo).\nEvoca slaad: possibilit\u00E0 percentuale di evocare uno slaad rosso o uno slaad verde in base ai DV della creatura."
-        },
-        "ES": {
-          "M": "Las aptitudes de Convocaci\u00F3n permiten a las criaturas reclutar la ayuda de aliados extraplanarios a voluntad. En el juego est\u00E1n disponibles los siguientes tipos de convocaciones:\n\nConvocar tanar\u0027ri: Convoca a un s\u00FAcubo para que ayude al lanzador en el combate.\nConvocar celestial: Hay una probabilidad de que aparezca una de las siguientes criaturas: Lamparconte, canarconte o clangarconte.\nConvocar m\u00E9fit: Hay una probabilidad de convocar a un m\u00E9fit (si el lanzador es un m\u00E9fit, intentar\u00E1 convocar a otro m\u00E9fit de su mismo tipo).\nConvocar slaad: Hay una probabilidad de convocar a un slaad rojo o un slaad verde seg\u00FAn los DG de la criatura."
-        },
-        "PL": {
-          "M": "Zdolno\u015Bci Przywo\u0142ania pozwalaj\u0105 wzywa\u0107 na \u017Cyczenie sojusznik\u00F3w z innych Sfer. W grze wyst\u0119puj\u0105 nast\u0119puj\u0105ce rodzaje Przywo\u0142a\u0144:\nPrzywo\u0142anie Tanar\u0027ri: Daje procentow\u0105 szans\u0119 na przyzwanie jednej z nast\u0119puj\u0105cych istot: Quasit, Sukub, albo Vrok.\nPrzywo\u0142anie Niebianina: Daje procentow\u0105 szans\u0119 na przyzwanie jednej z nast\u0119puj\u0105cych istot: Archon Latarnik, Archon Ogar, Archon Tr\u0119bacz.\nPrzywo\u0142anie Mefita: Daje procentow\u0105 szans\u0119 na przyzwanie mefita (je\u015Bli rzucaj\u0105cym czar jest mefit, przywo\u0142uje mefity swojego rodzaju).\nPrzywo\u0142anie Slaada: Daje procentow\u0105 szans\u0119 na przyzwanie czerwonego lub zielonego slaada, zale\u017Cnie od ilo\u015Bci Kostek Wytrzyma\u0142o\u015Bci istoty."
-        }
-      },
-      "AlternativeCastMessage": {
-        "Index": null
-      },
-      "Icon": "ir_gensummon",
-      "School": "C",
-      "Range": "S",
-      "Components": [
-        "V",
-        "S"
-      ],
-      "AvailableMetaMagic": [],
-      "TargetTypes": [
-        "Area"
-      ],
-      "ImpactScript": "nw_s_summon",
-      "InnateLevel": 5,
-      "ConjurationTime": 500,
-      "ConjuringAnimation": "Head",
-      "ConjurationHeadEffect": null,
-      "ConjurationHandEffect": null,
-      "ConjurationGroundEffect": null,
-      "ConjurationSound": null,
-      "ConjurationMaleSound": null,
-      "ConjurationFemaleSound": null,
-      "CastingAnimation": "Out",
-      "CastTime": 500,
-      "CastingHeadEffect": null,
-      "CastingHandEffect": null,
-      "CastingGroundEffect": null,
-      "CastingSound": null,
-      "HasProjectile": false,
-      "ProjectileModel": null,
-      "ProjectileType": null,
-      "ProjectileSpawnPoint": null,
-      "ProjectileSound": null,
-      "ProjectileOrientation": null,
-      "SubSpell1": null,
-      "SubSpell2": null,
-      "SubSpell3": null,
-      "SubSpell4": null,
-      "SubSpell5": null,
-      "SubSpell6": null,
-      "SubSpell7": null,
-      "SubSpell8": null,
-      "Category": "TalentFriendlySummon",
-      "ParentSpell": null,
-      "Type": "CreaturePower",
-      "UseConcentration": false,
+      "Type": "Spell",
+      "UseConcentration": true,
       "IsCastSpontaneously": false,
       "IsHostile": false,
       "CounterSpell1": null,
       "CounterSpell2": null,
       "HasProjectileVisuals": false,
-      "TargetShape": null,
-      "TargetSizeX": null,
+      "TargetShape": "Sphere",
+      "TargetSizeX": 5,
       "TargetSizeY": null,
-      "TargetingFlags": []
-    },
-    {
-      "ID": "96e8845d-5561-4102-8282-2835cb3bb47c",
-      "Index": -1,
-      "Overrides": "0a865f49-2a84-be3c-90fe-2d963b819c94",
-      "Disabled": false,
-      "Hint": "Creature Power",
-      "ScriptConstant": "",
-      "SourceLabel": "Summon_Tanarri",
-      "ExtensionValues": {},
-      "Name": {
-        "Index": 5336,
-        "EN": {
-          "M": "Summon Tanarri"
-        },
-        "FR": {
-          "M": "Convocation de tanar\u0027ri"
-        },
-        "DE": {
-          "M": "Tanar\u0027ri herbeizaubern"
-        },
-        "IT": {
-          "M": "Evoca Tanarri"
-        },
-        "ES": {
-          "M": "Convocar Tanar\u0027ri"
-        },
-        "PL": {
-          "M": "Przywo\u0142anie Tanar\u0027ri"
-        }
-      },
-      "Description": {
-        "Index": 6554,
-        "EN": {
-          "M": "Summoning abilities allow creatures to enlist the aid of extraplanar allies at will. The following types of Summons each ability provides:\n\r\nSummon Baatezu: Summons a erinyes baatezu.\nSummon Celestial: Summons a lantern archon.\nSummon Mephit: Summons a steam mephit.\nSummon Tanar\u0027ri: Summons a succubus.\nSummon Slaadi: Summons a red slaad.",
-          "F": "Summoning abilities allow creatures to enlist the aid of extraplanar allies at will. The following types of Summons are available in the game:\n\nSummon Tanar\u0027ri: Summons a succubus to aid the caster in combat\nSummon Celestial: A percentage chance of summoning one of the following creatures: lantern archon, hound archon, or trumpet archon.\nSummon Mephit: A percentage chance of summoning a mephit (if the caster is a mephit, it will attempt to summon another mephit of its own type).\nSummon Slaadi: A percentage chance of summoning a red slaad or green slaad according to creature\u0027s HD."
-        },
-        "FR": {
-          "M": "Les pouvoirs de convocation permettent de convoquer \u00E0 volont\u00E9 des alli\u00E9s extra-planaires. Les convocations suivantes sont possibles en cours de jeu :\n\nConvocation de tanar\u0027ri : invoque une succube pour aider le lanceur de sorts en combat.\nConvocation de c\u00E9leste : un certain pourcentage de chances d\u0027invoquer l\u0027une des cr\u00E9atures suivantes : archon lumineux, canin ou messager.\nConvocation de m\u00E9phite : un certain pourcentage de chances d\u0027invoquer un M\u00E9phite (si le lanceur de sorts est un m\u00E9phite, il essaiera d\u0027invoquer un m\u00E9phite de son esp\u00E8ce).\nConvocation de slaad : un certain pourcentage de chances d\u0027invoquer un slaad rouge ou vert selon les DV de la cr\u00E9ature."
-        },
-        "DE": {
-          "M": "Kreaturen mit der F\u00E4higkeit Herbeizauberung k\u00F6nnen andere Externare herbeizaubern, die ihnen im Kampf beistehen. Es gibt folgende Versionen dieser F\u00E4higkeit:\n\nTanar\u0027ri herbeizaubern: Ein Sukkubus erscheint und steht der Kreatur im Kampf bei.\nCelestischen herbeizaubern: Die Kreatur kann mit einer gewissen Prozentchance eine der folgenden Kreaturen herbeizaubern: Leuchtender Archon, Hundearchon oder Posaunen-Archon.\nMephit herbeizaubern: Die Kreatur kann mit einer gewissen Prozentchance einen Mephit herbeizaubern. Handelt es sich bei der Kreatur, welche die F\u00E4higkeit einsetzt, um einen Mephit, zaubert sie immer einen Mephit ihrer Art herbei, wenn sie erfolgreich ist.\nSlaad herbeizaubern: Die Kreatur kann mit einer gewissen Prozentchance einen Slaad herbeizaubern. Ob es sich dabei um einen Roten Slaad oder einen Gr\u00FCnen Slaad handelt, h\u00E4ngt von den TW der Kreatur ab, welche die F\u00E4higkeit einsetzt."
-        },
-        "IT": {
-          "M": "Le capacit\u00E0 di Evocazione permettono alle creature di ottenere l\u0027aiuto di alleati extraplanari a volont\u00E0. Nel gioco sono disponibili i seguenti tipi di Evocazione:\n\nEvoca tanar\u0027ri: possibilit\u00E0 percentuale di evocare una delle seguenti creature: quasit, succube o vrock.\nEvoca celestiale: possibilit\u00E0 percentuale di evocare una delle seguenti creature: arconte lanterna, arconte segugio o arconte tromba.\nEvoca mephit: possibilit\u00E0 percentuale di evocare un mephit (se l\u0027incantatore \u00E8 un mephit, cercher\u00E0 di evocarne un altro dello stesso tipo).\nEvoca slaad: possibilit\u00E0 percentuale di evocare uno slaad rosso o uno slaad verde in base ai DV della creatura."
-        },
-        "ES": {
-          "M": "Las aptitudes de Convocaci\u00F3n permiten a las criaturas reclutar la ayuda de aliados extraplanarios a voluntad. En el juego est\u00E1n disponibles los siguientes tipos de convocaciones:\n\nConvocar tanar\u0027ri: Convoca a un s\u00FAcubo para que ayude al lanzador en el combate.\nConvocar celestial: Hay una probabilidad de que aparezca una de las siguientes criaturas: Lamparconte, canarconte o clangarconte.\nConvocar m\u00E9fit: Hay una probabilidad de convocar a un m\u00E9fit (si el lanzador es un m\u00E9fit, intentar\u00E1 convocar a otro m\u00E9fit de su mismo tipo).\nConvocar slaad: Hay una probabilidad de convocar a un slaad rojo o un slaad verde seg\u00FAn los DG de la criatura."
-        },
-        "PL": {
-          "M": "Zdolno\u015Bci Przywo\u0142ania pozwalaj\u0105 wzywa\u0107 na \u017Cyczenie sojusznik\u00F3w z innych Sfer. W grze wyst\u0119puj\u0105 nast\u0119puj\u0105ce rodzaje Przywo\u0142a\u0144:\nPrzywo\u0142anie Tanar\u0027ri: Daje procentow\u0105 szans\u0119 na przyzwanie jednej z nast\u0119puj\u0105cych istot: Quasit, Sukub, albo Vrok.\nPrzywo\u0142anie Niebianina: Daje procentow\u0105 szans\u0119 na przyzwanie jednej z nast\u0119puj\u0105cych istot: Archon Latarnik, Archon Ogar, Archon Tr\u0119bacz.\nPrzywo\u0142anie Mefita: Daje procentow\u0105 szans\u0119 na przyzwanie mefita (je\u015Bli rzucaj\u0105cym czar jest mefit, przywo\u0142uje mefity swojego rodzaju).\nPrzywo\u0142anie Slaada: Daje procentow\u0105 szans\u0119 na przyzwanie czerwonego lub zielonego slaada, zale\u017Cnie od ilo\u015Bci Kostek Wytrzyma\u0142o\u015Bci istoty."
-        }
-      },
-      "AlternativeCastMessage": {
-        "Index": null
-      },
-      "Icon": "ir_gensummon",
-      "School": "C",
-      "Range": "S",
-      "Components": [
-        "V",
-        "S"
-      ],
-      "AvailableMetaMagic": [],
-      "TargetTypes": [
-        "Area"
-      ],
-      "ImpactScript": "nw_s_summon",
-      "InnateLevel": 5,
-      "ConjurationTime": 500,
-      "ConjuringAnimation": "Head",
-      "ConjurationHeadEffect": null,
-      "ConjurationHandEffect": null,
-      "ConjurationGroundEffect": null,
-      "ConjurationSound": null,
-      "ConjurationMaleSound": null,
-      "ConjurationFemaleSound": null,
-      "CastingAnimation": "Out",
-      "CastTime": 500,
-      "CastingHeadEffect": null,
-      "CastingHandEffect": null,
-      "CastingGroundEffect": null,
-      "CastingSound": null,
-      "HasProjectile": false,
-      "ProjectileModel": null,
-      "ProjectileType": null,
-      "ProjectileSpawnPoint": null,
-      "ProjectileSound": null,
-      "ProjectileOrientation": null,
-      "SubSpell1": null,
-      "SubSpell2": null,
-      "SubSpell3": null,
-      "SubSpell4": null,
-      "SubSpell5": null,
-      "SubSpell6": null,
-      "SubSpell7": null,
-      "SubSpell8": null,
-      "Category": "TalentFriendlySummon",
-      "ParentSpell": null,
-      "Type": "CreaturePower",
-      "UseConcentration": false,
-      "IsCastSpontaneously": false,
-      "IsHostile": false,
-      "CounterSpell1": null,
-      "CounterSpell2": null,
-      "HasProjectileVisuals": false,
-      "TargetShape": null,
-      "TargetSizeX": null,
-      "TargetSizeY": null,
-      "TargetingFlags": []
-    },
-    {
-      "ID": "1a039b51-5cfe-4c3e-aec0-da3fd055000e",
-      "Index": -1,
-      "Overrides": "b4de9932-faf2-4f11-b414-8a85a7da5a0f",
-      "Disabled": false,
-      "Hint": "Creature Power",
-      "ScriptConstant": "",
-      "SourceLabel": "Summon_Baatezu",
-      "ExtensionValues": {},
-      "Name": {
-        "Index": 83692,
-        "EN": {
-          "M": "Summon Baatezu"
-        },
-        "FR": {
-          "M": "Convocation de Baatezu"
-        },
-        "DE": {
-          "M": "Baatezu herbeizaubern"
-        },
-        "IT": {
-          "M": "Evoca baatezu"
-        },
-        "ES": {
-          "M": "Convocar baatezu"
-        },
-        "PL": {
-          "M": "Przywo\u0142anie Baatezu"
-        }
-      },
-      "Description": {
-        "Index": 83693,
-        "EN": {
-          "M": "Summoning abilities allow creatures to enlist the aid of extraplanar allies at will. The following types of Summons each ability provides:\n\r\nSummon Baatezu: Summons a erinyes baatezu.\nSummon Celestial: Summons a lantern archon.\nSummon Mephit: Summons a steam mephit.\nSummon Tanar\u0027ri: Summons a succubus.\nSummon Slaadi: Summons a red slaad.",
-          "F": "Summoning abilities allow creatures to enlist the aid of extraplanar allies at will. The following types of Summons are available in the game:\n\nSummon Tanar\u0027ri: Summons a  succubus to aid the caster in combat\nSummon Celestial: Summons one of the following creatures: lantern archon, hound archon, or trumpet archon.\nSummon Mephit: Summons  a mephit (if the caster is a mephit, it will attempt to summon another mephit of its own type).\nSummon Slaadi: A percentage chance of summoning a red slaad or green slaad according to creature\u0027s HD.\nSummon Baatezu:  Summons an erinyes baatezu to aid the caster in combat"
-        },
-        "FR": {
-          "M": "Les pouvoirs de convocation permettent de convoquer \u00E0 volont\u00E9 des alli\u00E9s extra-planaires. Les convocations suivantes sont possibles en cours de jeu :\n\nConvocation de tanar\u0027ri : invoque une succube pour aider le lanceur de sorts en combat.\nConvocation de c\u00E9leste : un certain pourcentage de chances d\u0027invoquer l\u0027une des cr\u00E9atures suivantes : archon lumineux, canin ou messager.\nConvocation de m\u00E9phite : un certain pourcentage de chances d\u0027invoquer un M\u00E9phite (si le lanceur de sorts est un m\u00E9phite, il essaiera d\u0027invoquer un m\u00E9phite de son esp\u00E8ce).\nConvocation de slaad : un certain pourcentage de chances d\u0027invoquer un slaad rouge ou vert selon les DV de la cr\u00E9ature.\nConvocation de Baatzezu : invoque une \u00E9rinye pour aider le lanceur de sorts en combat."
-        },
-        "DE": {
-          "M": "Kreaturen mit der F\u00E4higkeit Herbeizauberung k\u00F6nnen andere Externare herbeizaubern, die ihnen im Kampf beistehen. Es gibt folgende Versionen dieser F\u00E4higkeit:\n\nTanar\u0027ri herbeizaubern: Ein Sukkubus erscheint und steht der Kreatur im Kampf bei.\nCelestischen herbeizaubern: Die Kreatur kann eine der folgenden Kreaturen herbeizaubern: Leuchtender Archon, Hundearchon oder Posaunen-Archon.\nMephit herbeizaubern: Die Kreatur kann einen Mephit herbeizaubern. Handelt es sich bei der Kreatur, welche die F\u00E4higkeit einsetzt, um einen Mephit, zaubert sie immer einen Mephit ihrer Art herbei.\nSlaad herbeizaubern: Die Kreatur kann einen Slaad herbeizaubern. Ob es sich dabei um einen Roten Slaad oder einen Gr\u00FCnen Slaad handelt, h\u00E4ngt von den TW der Kreatur ab, welche die F\u00E4higkeit einsetzt.\nBaatezu herbeizaubern: Die Kreatur zaubert eine Erinnye herbei, die ihr im Kampf beisteht."
-        },
-        "IT": {
-          "M": "Le capacit\u00E0 di Evocazione permettono alle creature di ottenere l\u0027aiuto di alleati extraplanari a volont\u00E0. Nel gioco sono disponibili i seguenti tipi di Evocazione:\n\nEvoca tanar\u0027ri: evoca un succube che assiste l\u0027incantatore in combattimento.\nEvoca celestiale: possibilit\u00E0 percentuale di evocare una delle seguenti creature: arconte lanterna, arconte segugio o arconte tromba.\nEvoca mephit: possibilit\u00E0 percentuale di evocare un mephit (se l\u0027incantatore \u00E8 un mephit, cercher\u00E0 di evocarne un altro dello stesso tipo).\nEvoca slaad: Possibilit\u00E0 percentuale di evocare uno slaad rosso o uno slaad verde in base ai DV della creatura.\nEvoca baatezu: evoca un bateezu erinni che assiste l\u0027incantatore in combattimento."
-        },
-        "ES": {
-          "M": "Las aptitudes de Convocaci\u00F3n permiten a las criaturas reclutar la ayuda de aliados extraplanarios a voluntad. En el juego est\u00E1n disponibles los siguientes tipos de convocaciones:\n\nConvocar tanar\u0027ri: Convoca a un s\u00FAcubo para que ayude al lanzador en el combate.\nConvocar celestial: Convoca a una de las criaturas siguientes: Lamparconte, canarconte o clangarconte.\nConvocar m\u00E9fit: Convoca a un m\u00E9fit (si el lanzador es un m\u00E9fit, intentar\u00E1 convocar a otro m\u00E9fit de su mismo tipo).\nConvocar slaad: Hay una probabilidad de convocar a un slaad rojo o un slaad verde seg\u00FAn los DG de la criatura.\nConvocar baatezu: Convoca a una erinia para que ayude al lanzador en el combate."
-        },
-        "PL": {
-          "M": "Zdolno\u015B\u0107 przywo\u0142ania pozwala w jednej chwili wezwa\u0107 na pomoc sojusznik\u00F3w ze sfer. W grze dost\u0119pne s\u0105 nast\u0119puj\u0105ce Przywo\u0142ywania:\n\nPrzywo\u0142anie Tanar\u2019ri: Przywo\u0142uje sukuba, kt\u00F3ry pomaga w walce.\nPrzywo\u0142anie Niebianina: Przywo\u0142uje jedn\u0105 z nast\u0119puj\u0105cych istot: Archont Latarniany, Psi Archont lub Archont Tr\u0119bacz.\nPrzywo\u0142anie Mefita: Przywo\u0142uje mefita (je\u015Bli rzucaj\u0105cy jest mefitem, przywo\u0142uje innego mefita tego samego typu).\nPrzywo\u0142anie Slaada: Daje procentow\u0105 szans\u0119 przywo\u0142ania czerwonego lub zielonego slaada, zale\u017Cnie od KW istoty.\nPrzywo\u0142anie Baatezu: Przywo\u0142uje Erinje Baatezu, kt\u00F3ra pomaga w walce."
-        }
-      },
-      "AlternativeCastMessage": {
-        "Index": null
-      },
-      "Icon": "ir_gensummon",
-      "School": "C",
-      "Range": "S",
-      "Components": [
-        "V",
-        "S"
-      ],
-      "AvailableMetaMagic": [],
-      "TargetTypes": [
-        "Area"
-      ],
-      "ImpactScript": "nw_s_summon",
-      "InnateLevel": 5,
-      "ConjurationTime": 500,
-      "ConjuringAnimation": "Head",
-      "ConjurationHeadEffect": null,
-      "ConjurationHandEffect": null,
-      "ConjurationGroundEffect": null,
-      "ConjurationSound": null,
-      "ConjurationMaleSound": null,
-      "ConjurationFemaleSound": null,
-      "CastingAnimation": "Out",
-      "CastTime": 500,
-      "CastingHeadEffect": null,
-      "CastingHandEffect": null,
-      "CastingGroundEffect": null,
-      "CastingSound": null,
-      "HasProjectile": false,
-      "ProjectileModel": null,
-      "ProjectileType": null,
-      "ProjectileSpawnPoint": null,
-      "ProjectileSound": null,
-      "ProjectileOrientation": null,
-      "SubSpell1": null,
-      "SubSpell2": null,
-      "SubSpell3": null,
-      "SubSpell4": null,
-      "SubSpell5": null,
-      "SubSpell6": null,
-      "SubSpell7": null,
-      "SubSpell8": null,
-      "Category": "TalentFriendlySummon",
-      "ParentSpell": null,
-      "Type": "CreaturePower",
-      "UseConcentration": false,
-      "IsCastSpontaneously": false,
-      "IsHostile": false,
-      "CounterSpell1": null,
-      "CounterSpell2": null,
-      "HasProjectileVisuals": false,
-      "TargetShape": null,
-      "TargetSizeX": null,
-      "TargetSizeY": null,
-      "TargetingFlags": []
+      "TargetingFlags": [
+        "HelpsAllies"
+      ]
     }
   ]
 }

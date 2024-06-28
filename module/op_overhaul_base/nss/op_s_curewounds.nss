@@ -128,7 +128,7 @@ void main()
         // Same AOE effect for each
         ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_FNF_LOS_HOLY_20), lTarget);
 
-        json jArray = GetArrayOfTargets(SPELL_TARGET_ANYTHING, SORT_METHOD_NONE, SHAPE_SPHERE, RADIUS_SIZE_LARGE, lTarget, TRUE);
+        json jArray = GetArrayOfTargets(SPELL_TARGET_ANYTHING);
 
         // Mass heal gets touch attacks for balance
         int bTouch = nSpellId == SPELL_MASS_HEAL ? TRUE : FALSE;

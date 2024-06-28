@@ -46,17 +46,10 @@ void main()
     ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_DUR_GLYPH_OF_WARDING), lTarget);
 
     // If fired at somewhere that has a enemy in the trigger already, we...just explode. I mean why not?
-    float fRadius = StringToFloat(Get2DAString("vfx_persistent", "RADIUS", AOE_PER_GLYPH_OF_WARDING));
-
-    oTarget = GetFirstObjectInShape(SHAPE_SPHERE, fRadius, lTarget, TRUE, OBJECT_TYPE_CREATURE);
-    while (GetIsObjectValid(oTarget))
+    if (GetIsTargetInAOEAtLocation(AOE_PER_GLYPH_OF_WARDING))
     {
-        if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_SELECTIVEHOSTILE))
-        {
-            GlyphEffect();
-            return;
-        }
-        oTarget = GetNextObjectInShape(SHAPE_SPHERE, fRadius, lTarget, TRUE, OBJECT_TYPE_CREATURE);
+        GlyphEffect();
+        return;
     }
 
     // Declare major variables including Area of Effect Object
@@ -87,7 +80,7 @@ void GlyphEffect()
 
     ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, eExplode, lTarget);
 
-    json jArray = GetArrayOfTargets(SPELL_TARGET_STANDARDHOSTILE, SORT_METHOD_LOWEST_HD, SHAPE_SPHERE, RADIUS_SIZE_LARGE, lTarget, TRUE, OBJECT_TYPE_CREATURE | OBJECT_TYPE_DOOR | OBJECT_TYPE_PLACEABLE);
+    json jArray = GetArrayOfTargets(SPELL_TARGET_STANDARDHOSTILE, SORT_METHOD_DISTANCE, OBJECT_TYPE_CREATURE | OBJECT_TYPE_DOOR | OBJECT_TYPE_PLACEABLE);
 
     // Loop array
     int nIndex;

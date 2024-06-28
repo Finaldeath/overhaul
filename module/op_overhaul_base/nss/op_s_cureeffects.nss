@@ -225,7 +225,7 @@ void main()
 
     if (bAOE)
     {
-        json jArray = GetArrayOfTargets(SPELL_TARGET_ALLALLIES, SORT_METHOD_DISTANCE, SHAPE_SPHERE, fRadius, lTarget, TRUE);
+        json jArray = GetArrayOfTargets(SPELL_TARGET_ALLALLIES);
 
         ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, eImpact, lTarget);
 

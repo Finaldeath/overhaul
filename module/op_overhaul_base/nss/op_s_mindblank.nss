@@ -51,7 +51,7 @@ void main()
         effect eImpact = EffectVisualEffect(VFX_FNF_LOS_NORMAL_20);
         ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, eImpact, lTarget);
 
-        json jArray = GetArrayOfTargets(SPELL_TARGET_ALLALLIES, SORT_METHOD_DISTANCE, SHAPE_SPHERE, RADIUS_SIZE_HUGE, lTarget, TRUE);
+        json jArray = GetArrayOfTargets(SPELL_TARGET_ALLALLIES);
 
         // Loop array
         int nIndex;

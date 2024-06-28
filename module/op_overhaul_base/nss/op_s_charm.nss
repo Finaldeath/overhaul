@@ -42,11 +42,7 @@ void main()
     {
         ApplyEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_FNF_LOS_NORMAL_20), lTarget);
 
-        // Add all creatures of a given hostility to the array
-        // Note old version of the spell didn't test LOS.
-        json jArray = GetArrayOfTargets(SPELL_TARGET_SELECTIVEHOSTILE, SORT_METHOD_LOWEST_HD, SHAPE_SPHERE, RADIUS_SIZE_LARGE, lTarget, TRUE);
-
-        // Loop array
+        json jArray = GetArrayOfTargets(SPELL_TARGET_SELECTIVEHOSTILE, SORT_METHOD_LOWEST_HD);
         int nIndex;
         int nPool = nCasterLevel * 2;
         for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)

@@ -90,8 +90,7 @@ void main()
     {
         ApplyEffectAtLocation(DURATION_TYPE_INSTANT, eImpact, lTarget);
 
-        json jArray = GetArrayOfTargets(SPELL_TARGET_ALLALLIES, SORT_METHOD_DISTANCE, SHAPE_SPHERE, RADIUS_SIZE_MEDIUM, lTarget, TRUE);
-
+        json jArray = GetArrayOfTargets(SPELL_TARGET_ALLALLIES);
         int nIndex;
         for (nIndex = 0; nIndex < JsonGetLength(jArray) && nIndex < nMaxTargets; nIndex++)
         {

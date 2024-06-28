@@ -45,8 +45,7 @@ void main()
         // AOE
         ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_FNF_LOS_NORMAL_20), lTarget);
 
-        json jArray = GetArrayOfTargets(SPELL_TARGET_ANYTHING, SORT_METHOD_DISTANCE, SHAPE_SPHERE, RADIUS_SIZE_LARGE, lTarget, TRUE, OBJECT_TYPE_CREATURE | OBJECT_TYPE_AREA_OF_EFFECT);
-
+        json jArray = GetArrayOfTargets(SPELL_TARGET_ANYTHING, SORT_METHOD_DISTANCE, OBJECT_TYPE_CREATURE | OBJECT_TYPE_AREA_OF_EFFECT);
         int nIndex;
         for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
         {

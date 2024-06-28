@@ -65,17 +65,10 @@ void main()
     if (DoSpellHook()) return;
 
     // If fired at somewhere that has a enemy in the trigger already, we...just explode. I mean why not?
-    float fRadius = StringToFloat(Get2DAString("vfx_persistent", "RADIUS", AOE_PER_DELAY_BLAST_FIREBALL));
-
-    oTarget = GetFirstObjectInShape(SHAPE_SPHERE, fRadius, lTarget, TRUE, OBJECT_TYPE_CREATURE);
-    while (GetIsObjectValid(oTarget))
+    if (GetIsTargetInAOEAtLocation(AOE_PER_DELAY_BLAST_FIREBALL))
     {
-        if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_SELECTIVEHOSTILE))
-        {
-            DelayedBlastEffect();
-            return;
-        }
-        oTarget = GetNextObjectInShape(SHAPE_SPHERE, fRadius, lTarget, TRUE, OBJECT_TYPE_CREATURE);
+        DelayedBlastEffect();
+        return;
     }
 
     // Declare major variables including Area of Effect Object
@@ -128,35 +121,31 @@ void DelayedBlastEffect()
 
     ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, eExplode, lTarget);
 
-    // Cycle through the targets in the explosion area
-    oTarget = GetFirstObjectInShape(SHAPE_SPHERE, RADIUS_SIZE_HUGE, lTarget, TRUE, OBJECT_TYPE_CREATURE | OBJECT_TYPE_DOOR | OBJECT_TYPE_PLACEABLE);
-    while (GetIsObjectValid(oTarget))
+    json jArray = GetArrayOfTargets(SPELL_TARGET_STANDARDHOSTILE, SORT_METHOD_DISTANCE, OBJECT_TYPE_CREATURE | OBJECT_TYPE_DOOR | OBJECT_TYPE_PLACEABLE);
+    int nIndex;
+    for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
     {
-        if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
+        oTarget = GetArrayObject(jArray, nIndex);
+
+        SignalSpellCastAt();
+
+        float fDelay = GetRandomDelay(0.01, 0.1);
+
+        // Make SR check
+        if (!DoResistSpell(oTarget, oCaster, fDelay))
         {
-            // Fire cast spell at event for the specified target
-            SignalSpellCastAt();
+            int nDamage = GetDiceRoll(nDamageDice, 6);
 
-            float fDelay = GetRandomDelay(0.01, 0.1);
+            // Reflex adjusted
+            nDamage = DoDamageSavingThrow(nDamage, oTarget, oCaster, SAVING_THROW_REFLEX, nSpellSaveDC, SAVING_THROW_TYPE_FIRE, fDelay);
 
-            // Make SR check
-            if (!DoResistSpell(oTarget, oCaster, fDelay))
+            if (nDamage > 0)
             {
-                int nDamage = GetDiceRoll(nDamageDice, 6);
-
-                // Reflex adjusted
-                nDamage = GetReflexAdjustedDamage(nDamage, oTarget, nSpellSaveDC, SAVING_THROW_TYPE_FIRE, oCaster);
-
-                if (nDamage > 0)
-                {
-                    // Apply VFX impact and damage effect
-                    effect eDam = EffectDamage(nDamage, DAMAGE_TYPE_FIRE);
-                    DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
-                    DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDam, oTarget));
-                }
+                // Apply VFX impact and damage effect
+                effect eDam = EffectDamage(nDamage, DAMAGE_TYPE_FIRE);
+                DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
+                DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDam, oTarget));
             }
         }
-        // Get next target in the sequence
-        oTarget = GetNextObjectInShape(SHAPE_SPHERE, RADIUS_SIZE_HUGE, lTarget, TRUE, OBJECT_TYPE_CREATURE | OBJECT_TYPE_DOOR | OBJECT_TYPE_PLACEABLE);
     }
 }

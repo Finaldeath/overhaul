@@ -35,7 +35,7 @@ void main()
     int nHPRemaining = 200;
 
     // Add all creatures of a given hostility to the array
-    json jArray = GetArrayOfTargets(SPELL_TARGET_STANDARDHOSTILE, SORT_METHOD_LOWEST_HP, SHAPE_SPHERE, RADIUS_SIZE_LARGE, lTarget, TRUE);
+    json jArray = GetArrayOfTargets(SPELL_TARGET_STANDARDHOSTILE, SORT_METHOD_LOWEST_HP);
 
     // Loop array
     int nIndex;

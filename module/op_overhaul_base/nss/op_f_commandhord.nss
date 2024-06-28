@@ -43,18 +43,17 @@ void main()
 
     float fDuration = GetDuration(nCasterLevel, HOURS);
 
-    oTarget = GetFirstObjectInShape(SHAPE_SPHERE, RADIUS_SIZE_COLOSSAL, lTarget, TRUE, OBJECT_TYPE_CREATURE);
-    while (GetIsObjectValid(oTarget))
+    json jArray = GetArrayOfTargets(SPELL_TARGET_ALLALLIES);
+    int nIndex;
+    for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
     {
-        if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_ALLALLIES))
-        {
-            SignalSpellCastAt();
+        oTarget = GetArrayObject(jArray, nIndex);
 
-            float fDelay = GetDistanceBetweenLocations(lTarget, GetLocation(oTarget))/20;
+        SignalSpellCastAt();
 
-            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget, fDuration));
-            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
-        }
-        oTarget = GetNextObjectInShape(SHAPE_SPHERE, RADIUS_SIZE_COLOSSAL, lTarget, TRUE, OBJECT_TYPE_CREATURE);
+        float fDelay = GetDistanceBetweenLocations(lTarget, GetLocation(oTarget))/25.0;
+
+        DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
+        DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
     }
 }

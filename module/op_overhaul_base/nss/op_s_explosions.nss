@@ -53,14 +53,9 @@ void main()
         break;
     }
 
-    // Retrieve AOE data from spells.2da
-    int nShape = GetSpellShape(nSpellId);
-    float fRadius = GetSpellShapeSize(nSpellId);
-
-    json jArray = GetArrayOfTargets(SPELL_TARGET_STANDARDHOSTILE, SORT_METHOD_DISTANCE, nShape, fRadius, lTarget, TRUE);
-
     ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, eImpact, lTarget);
 
+    json jArray = GetArrayOfTargets(SPELL_TARGET_STANDARDHOSTILE, SORT_METHOD_DISTANCE, OBJECT_TYPE_CREATURE | OBJECT_TYPE_DOOR | OBJECT_TYPE_PLACEABLE);
     int nIndex;
     for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
     {
