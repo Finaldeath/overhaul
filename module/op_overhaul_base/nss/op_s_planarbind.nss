@@ -106,6 +106,9 @@ void main()
         break;
     }
 
+    // Summon effects are extraordinary, Dispel Magic can be done on the summon itself
+    eSummon = ExtraordinaryEffect(eSummon);
+
     ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eSummon, lTarget, GetDuration(nCasterLevel, HOURS));
 }
 

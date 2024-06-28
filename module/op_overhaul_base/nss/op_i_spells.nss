@@ -194,7 +194,7 @@ int GetAssayResistanceBonus(object oTarget, object oCaster);
 // * 2 - Critical Hit
 int DoTouchAttack(object oTarget, object oVersus, int nType, int bDisplayFeedback = TRUE);
 
-// Applies Dispel Magic to the given target (Area of Effects are also handled)
+// Applies Dispel Magic to the given target (Area of Effects are also handled, as are Summoned Creatures)
 void DoDispelMagic(object oTarget, int nCasterLevel, effect eVis, float fDelay, int bAll, int bBreach = FALSE);
 
 // Performs a spell breach up to nTotal spell are removed and nSR spell resistance is lowered.
@@ -997,7 +997,7 @@ int DoTouchAttack(object oTarget, object oVersus, int nType, int bDisplayFeedbac
     return TouchAttackRanged(oTarget, bDisplayFeedback);
 }
 
-// Applies Dispel Magic to the given target
+// Applies Dispel Magic to the given target (Area of Effects are also handled, as are Summoned Creatures)
 void DoDispelMagic(object oTarget, int nCasterLevel, effect eVis, float fDelay, int bAll, int bBreach = FALSE)
 {
     // Similar to Biowares both for compatibility and it makes sense.
@@ -1054,6 +1054,33 @@ void DoDispelMagic(object oTarget, int nCasterLevel, effect eVis, float fDelay, 
     else
     {
         SignalSpellCastAt(oTarget, oCaster, FALSE);
+    }
+
+    // If a summoned creature we first check if we're going to dispel them entirely
+    if (GetObjectType(oTarget) == OBJECT_TYPE_CREATURE &&
+        GetAssociateType(oTarget) == ASSOCIATE_TYPE_SUMMONED)
+    {
+        // To do this nicely we will remove the parent effect
+        object oMaster = GetMaster(oTarget);
+
+        effect eCheck = GetFirstEffect(oMaster);
+        while (GetIsEffectValid(eCheck))
+        {
+            if (GetEffectType(eCheck, TRUE) == EFFECT_TYPE_SUMMON_CREATURE)
+            {
+                // See if it matches
+                if (GetEffectObject(eCheck, 1) == oTarget)
+                {
+                    // We dispel using this effects caster level
+                    if (d20() + nCasterLevel >= 11 + GetEffectCasterLevel(eCheck))
+                    {
+                        RemoveEffect(oMaster, eCheck);
+                        return;
+                    }
+                }
+            }
+            eCheck = GetNextEffect(oMaster);
+        }
     }
 
     effect eDispel;
