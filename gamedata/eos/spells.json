@@ -32545,7 +32545,8 @@
       "Description": {
         "Index": 6171,
         "EN": {
-          "M": "Caster Level(s): Druid 6, Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nGrants the caster a damage reduction of 20/\u002B5. The spell absorbs 10 points of melee damage per caster level, to a maximum of 150, before fading."
+          "M": "Caster Level(s): Druid 6, Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nGrants the caster a damage reduction of 20/\u002B5. The spell absorbs 10 points of physical damage per caster level, to a maximum of 150, before fading.",
+          "F": "Caster Level(s): Druid 6, Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nGrants the caster a damage reduction of 20/\u002B5. The spell absorbs 10 points of melee damage per caster level, to a maximum of 150, before fading."
         },
         "FR": {
           "M": "Niveau : Druide 6, Magicien / Ensorceleur 6\nNiveau inn\u00E9 : 6\nEcole : Transmutation\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : personnelle\nZone d\u0027effet / cible : lanceur\nDur\u00E9e : 1 heure/niveau\nContresort suppl\u00E9mentaire :\nJet de sauvegarde : inoffensif\nR\u00E9sistance \u00E0 la magie : non\n\nCe sort octroie au lanceur une r\u00E9duction des d\u00E9g\u00E2ts de 20/\u002B5. Il absorbe 10 points de d\u00E9g\u00E2ts de corps \u00E0 corps par niveau du lanceur jusqu\u0027\u00E0 un maximum de 150, apr\u00E8s quoi il se dissipe."
@@ -32583,7 +32584,7 @@
         "Self",
         "Item"
       ],
-      "ImpactScript": "NW_S0_GrStoneSk",
+      "ImpactScript": "op_s_damagereduc",
       "InnateLevel": 6,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -50031,7 +50032,8 @@
       "Description": {
         "Index": 6228,
         "EN": {
-          "M": "Caster Level(s): Druid 8, Wizard / Sorcerer 8\nInnate Level: 8\nSchool: Divination\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Hour / Level\nAdditional Counter Spells: Feeblemind\nSave: Harmless\nSpell Resistance: No\n\nPremonition allows the caster to see a few moments into the future. This grants him damage reduction 30/\u002B5, and absorbs 10 points of melee damage per caster level before collapsing."
+          "M": "Caster Level(s): Druid 8, Wizard / Sorcerer 8\nInnate Level: 8\nSchool: Divination\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Hour / Level\nAdditional Counter Spells: Feeblemind\nSave: Harmless\nSpell Resistance: No\n\nPremonition allows the caster to see a few moments into the future. This grants him damage reduction 30/\u002B5, and absorbs 10 points of physical damage per caster level before collapsing.",
+          "F": "Caster Level(s): Druid 8, Wizard / Sorcerer 8\nInnate Level: 8\nSchool: Divination\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Hour / Level\nAdditional Counter Spells: Feeblemind\nSave: Harmless\nSpell Resistance: No\n\nPremonition allows the caster to see a few moments into the future. This grants him damage reduction 30/\u002B5, and absorbs 10 points of melee damage per caster level before collapsing."
         },
         "FR": {
           "M": "Niveau : Druide 8, Magicien / Ensorceleur 8\nNiveau inn\u00E9 : 8\nEcole : Divination\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : personnelle\nZone d\u0027effet / cible : lanceur\nDur\u00E9e : 1 heure/niveau\nContresorts suppl\u00E9mentaires : D\u00E9bilit\u00E9\nJet de sauvegarde : inoffensif\nR\u00E9sistance \u00E0 la magie : non\n\nCe sort permet au lanceur d\u0027entrevoir l\u0027avenir. Cela lui permet de b\u00E9n\u00E9ficier d\u0027une r\u00E9duction des d\u00E9g\u00E2ts de 30/\u002B5 et d\u0027absorber 10 points de d\u00E9g\u00E2ts de corps \u00E0 corps par niveau avant que le sort ne se dissipe."
@@ -50069,7 +50071,7 @@
         "Self",
         "Item"
       ],
-      "ImpactScript": "NW_S0_Premo",
+      "ImpactScript": "op_s_damagereduc",
       "InnateLevel": 8,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",
@@ -55644,11 +55646,9 @@
       "TargetTypes": [
         "Self",
         "Creature",
-        "Item",
-        "Door",
-        "Placeable"
+        "Item"
       ],
-      "ImpactScript": "NW_S0_Stoneskn",
+      "ImpactScript": "op_s_damagereduc",
       "InnateLevel": 6,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -60043,7 +60043,8 @@
       "Description": {
         "Index": 6265,
         "EN": {
-          "M": "Caster Level(s): Druid 4, Wizard / Sorcerer 4\nInnate Level: 4\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThis spell grants the target creature damage reduction 10/\u002B5. The spell absorbs 10 points of melee damage per caster level, to a maximum of 100, before collapsing."
+          "M": "Caster Level(s): Druid 4, Wizard / Sorcerer 4\nInnate Level: 4\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThis spell grants the target creature damage reduction 10/\u002B5. The spell absorbs 10 points of physical damage per caster level, to a maximum of 100, before collapsing.",
+          "F": "Caster Level(s): Druid 4, Wizard / Sorcerer 4\nInnate Level: 4\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThis spell grants the target creature damage reduction 10/\u002B5. The spell absorbs 10 points of melee damage per caster level, to a maximum of 100, before collapsing."
         },
         "FR": {
           "M": "Niveau : Druide 4, Magicien / Ensorceleur 4\nNiveau inn\u00E9 : 4\nEcole : Abjuration\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : contact\nZone d\u0027effet / cible : 1 cr\u00E9ature\nDur\u00E9e : 1 heure/niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : inoffensif\nR\u00E9sistance \u00E0 la magie : non\n\nLa cible de ce sort b\u00E9n\u00E9ficie d\u0027une r\u00E9duction des d\u00E9g\u00E2ts de 10/\u002B5. Avant de dispara\u00EEtre, le sort absorbe 10 points de d\u00E9g\u00E2ts de corps \u00E0 corps par niveau du lanceur, jusqu\u0027\u00E0 un maximum de 100 points."
@@ -60080,10 +60081,9 @@
       "TargetTypes": [
         "Self",
         "Creature",
-        "Item",
-        "Placeable"
+        "Item"
       ],
-      "ImpactScript": "NW_S0_Stoneskn",
+      "ImpactScript": "op_s_damagereduc",
       "InnateLevel": 4,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
