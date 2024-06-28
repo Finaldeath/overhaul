@@ -3,7 +3,16 @@
 //:: op_s_dominate
 //:://////////////////////////////////////////////
 /*
+    Domination spells.
 
+    Dominate Person
+    Humanoids only
+    Dominate Animal
+    Animals only
+    Dominate Monster
+    Anything!
+    Control Undead
+    Undead only (and affects them even if mind protected).
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -33,7 +42,10 @@ void main()
 
     if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
     {
-        SignalSpellCastAt();
+        // Even though the spell is "Hostile" for PvP purposes we'll leave it as being non-hostile
+        // This stops the charm effect being removed (right away), and keeps to the behaviour to how
+        // Bioware's spells worked
+        SignalSpellCastAt(oTarget, oCaster, FALSE);
 
         float fDuration;
 
@@ -69,7 +81,6 @@ void main()
             }
             break;
         }
-        SpeakString("fDuration = " + FloatToString(fDuration));
 
         if (!DoResistSpell(oTarget, oCaster))
         {
