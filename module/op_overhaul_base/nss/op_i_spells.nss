@@ -2082,10 +2082,14 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, 
     if (!GetIsObjectValid(GetAreaFromLocation(lTarget))) { OP_Debug("[GetArrayOfTargets] lTarget invalid. Area OID: " + ObjectToString(GetAreaFromLocation(lTarget)), LOG_LEVEL_ERROR); return jArray; }
     if (nObjectFilter < 0 || nObjectFilter > 32767) { OP_Debug("[GetArrayOfTargets] nObjectFilter invalid: " + IntToString(nObjectFilter), LOG_LEVEL_ERROR); return jArray; }
 
+    // We can accidentially due to maths(TM) target ourselves in the case of cones and cylinders which start on us, so let's not do that.
+    int bTargetSelf = TRUE;
+    if (nShape == SHAPE_CONE || nShape == SHAPE_SPELLCONE || nShape == SHAPE_SPELLCYLINDER) bTargetSelf = FALSE;
+
     object oObject = GetFirstObjectInShape(nShape, fSize, lTarget, bLineOfSight, nObjectFilter, vOrigin);
     while (GetIsObjectValid(oObject))
     {
-        if (GetSpellTargetValid(oObject, oCaster, nTargetType))
+        if (GetSpellTargetValid(oObject, oCaster, nTargetType) && (bTargetSelf == TRUE || oObject != oCaster))
         {
             json jObject = JsonObject();
 
