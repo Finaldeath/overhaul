@@ -6,10 +6,10 @@
     Resistance
     Grants the target creature a +1 bonus to all saving throws.
 
-    Superior Resistance
+    Major Resistance
     +3 to saves.
 
-    Major Resistance
+    Superior Resistance
     +6 to saves.
 
     Protection from Spells
@@ -44,7 +44,7 @@ void main()
                                       EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
         }
         break;
-        case SPELL_SUPERIOR_RESISTANCE:
+        case SPELL_MAJOR_RESISTANCE:
         {
             bAOE = FALSE;
             fDuration = GetDuration(nCasterLevel, HOURS);
@@ -54,7 +54,7 @@ void main()
                                       EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
         }
         break;
-        case SPELL_MAJOR_RESISTANCE:
+        case SPELL_SUPERIOR_RESISTANCE:
         {
             bAOE = FALSE;
             fDuration = GetDuration(nCasterLevel, HOURS);
