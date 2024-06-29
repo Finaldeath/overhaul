@@ -114,6 +114,8 @@ const int SPELL_TYPE_CREATURE_POWER  = 2; // Or "Spell ability". Uses HD for res
 const int SPELL_TYPE_FEAT            = 3; // No resist spell/absorption checks are valid. Checks spell immunity.
 const int SPELL_TYPE_ITEM_POWER      = 4; // No resist spell/absorption checks are valid. Checks spell immunity.
 
+// Extra shape types - more may come later for complex spells. Will include links to spells.2da
+const int SHAPE_HSPHERE = 100;
 
 // Debug the spell and variables
 void DebugSpellVariables();
@@ -404,8 +406,9 @@ float GetScaledDuration(object oTarget, int nDuration, int nDurationType);
 int GetSpellShape(int nSpellId);
 
 // Retrieves the size value of a spells shape from spells.2da. Returns -1.0 on error.
-// Uses TargetSizeX since for Cube and Spell Cylinders it's the X value that is relevant.
-float GetSpellShapeSize(int nSpellId);
+// bX if TRUE uses TargetSizeX since for Cube and Spell Cylinders it's the X value that is relevant.
+// If bX is false gets the TargetSizeY value
+float GetSpellShapeSize(int nSpellId, int bX = TRUE);
 
 // Checks if any creature of the given target type is present in the given AOE at lCheckTarget (if not set defaults to lTarget).
 // CURRENTLY DOES NOT SUPPORT RETANGLES LIKE BLADE BARRIER OR WALL OF FIRE
@@ -2067,8 +2070,18 @@ const string FIELD_METRIC = "metric";
 // The other variables can be set, but if not then the current Spell Id will sort the shape and size.
 json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, int nObjectFilter=OBJECT_TYPE_CREATURE, int nShape = -1, float fSize = -1.0, location lArrayTarget=LOCATION_INVALID, int bLineOfSight=TRUE, vector vOrigin=[0.0,0.0,0.0])
 {
+    float fSafeArea = -1.0;
     // Get some values if not set
     if (nShape == -1) nShape = GetSpellShape(nSpellId);
+
+    if (nShape == SHAPE_HSPHERE)
+    {
+        // Special case...
+        fSafeArea = GetSpellShapeSize(nSpellId);    // X
+        fSize = GetSpellShapeSize(nSpellId, FALSE); // Y
+        nShape = SHAPE_SPHERE;
+    }
+
     if (fSize == -1.0) fSize = GetSpellShapeSize(nSpellId);
     if (!GetIsObjectValid(GetAreaFromLocation(lArrayTarget))) lArrayTarget = lTarget;
 
@@ -2089,25 +2102,28 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, 
     object oObject = GetFirstObjectInShape(nShape, fSize, lTarget, bLineOfSight, nObjectFilter, vOrigin);
     while (GetIsObjectValid(oObject))
     {
-        if (GetSpellTargetValid(oObject, oCaster, nTargetType) && (bTargetSelf == TRUE || oObject != oCaster))
+        // Safe area test
+        if (fSafeArea < 0.0 || GetDistanceBetweenLocations(lTarget, GetLocation(oTarget)) > fSafeArea)
         {
-            json jObject = JsonObject();
-
-            // Metric depends on what we are sorting
-            switch (nSortMethod)
+            if (GetSpellTargetValid(oObject, oCaster, nTargetType) && (bTargetSelf == TRUE || oObject != oCaster))
             {
-                //SORT_METHOD_NONE - No need to store anything extra
-                case SORT_METHOD_LOWEST_HP: jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonInt(GetCurrentHitPoints(oObject))); break;
-                case SORT_METHOD_LOWEST_HD: jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonInt(GetHitDice(oObject))); break;
-                case SORT_METHOD_DISTANCE:  jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonFloat(GetDistanceBetweenLocations(lTarget, GetLocation(oObject)))); break;
+                json jObject = JsonObject();
+
+                // Metric depends on what we are sorting
+                switch (nSortMethod)
+                {
+                    //SORT_METHOD_NONE - No need to store anything extra
+                    case SORT_METHOD_LOWEST_HP: jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonInt(GetCurrentHitPoints(oObject))); break;
+                    case SORT_METHOD_LOWEST_HD: jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonInt(GetHitDice(oObject))); break;
+                    case SORT_METHOD_DISTANCE:  jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonFloat(GetDistanceBetweenLocations(lTarget, GetLocation(oObject)))); break;
+                }
+
+                // Add the value we sort with first and OID second so it's part of the sorting later
+                jObject = JsonObjectSet(jObject, FIELD_OBJECTID, JsonString(ObjectToString(oObject)));
+
+                jArray = JsonArrayInsert(jArray, jObject);
             }
-
-            // Add the value we sort with first and OID second so it's part of the sorting later
-            jObject = JsonObjectSet(jObject, FIELD_OBJECTID, JsonString(ObjectToString(oObject)));
-
-            jArray = JsonArrayInsert(jArray, jObject);
         }
-
         oObject = GetNextObjectInShape(nShape, fSize, lTarget, bLineOfSight, nObjectFilter, vOrigin);
     }
 
@@ -2361,6 +2377,7 @@ int GetSpellShape(int nSpellId)
     switch (HashString(Get2DAString("spells", "TargetShape", nSpellId)))
     {
         case "sphere": return SHAPE_SPHERE; break;
+        case "hspere": return SHAPE_HSPHERE; break;
         case "rectangle":
         {
             // There are 2 options, CUBE (same on each side, a kind of "square fireball")
@@ -2382,10 +2399,13 @@ int GetSpellShape(int nSpellId)
 }
 
 // Retrieves the size value of a spells shape from spells.2da. Returns -1.0 on error.
-// Uses TargetSizeX since for Cube and Spell Cylinders it's the X value that is relevant.
-float GetSpellShapeSize(int nSpellId)
+// bX if TRUE uses TargetSizeX since for Cube and Spell Cylinders it's the X value that is relevant.
+// If bX is false gets the TargetSizeY value
+float GetSpellShapeSize(int nSpellId, int bX = TRUE)
 {
-    string sSize = Get2DAString("spells", "TargetSizeX", nSpellId);
+    string sColumn = bX ? "TargetSizeX" : "TargetSizeY";
+
+    string sSize = Get2DAString("spells", sColumn, nSpellId);
 
     if (sSize != "")
     {
