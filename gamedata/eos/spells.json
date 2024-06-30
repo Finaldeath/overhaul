@@ -55147,7 +55147,7 @@
       },
       "Icon": "is_seeinvis",
       "School": "D",
-      "Range": "P",
+      "Range": "T",
       "Components": [
         "V",
         "S"
@@ -55161,10 +55161,9 @@
       "TargetTypes": [
         "Self",
         "Creature",
-        "Item",
-        "Placeable"
+        "Item"
       ],
-      "ImpactScript": "NW_S0_SeeInvis",
+      "ImpactScript": "op_s_sight",
       "InnateLevel": 2,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -55182,10 +55181,10 @@
       "CastingSound": null,
       "HasProjectile": false,
       "ProjectileModel": null,
-      "ProjectileType": null,
-      "ProjectileSpawnPoint": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
       "ProjectileSound": null,
-      "ProjectileOrientation": null,
+      "ProjectileOrientation": "Path",
       "SubSpell1": null,
       "SubSpell2": null,
       "SubSpell3": null,
@@ -63776,10 +63775,9 @@
       "TargetTypes": [
         "Self",
         "Creature",
-        "Item",
-        "Placeable"
+        "Item"
       ],
-      "ImpactScript": "NW_S0_TrueSee",
+      "ImpactScript": "op_s_sight",
       "InnateLevel": 5,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",
@@ -63797,10 +63795,10 @@
       "CastingSound": null,
       "HasProjectile": false,
       "ProjectileModel": null,
-      "ProjectileType": null,
-      "ProjectileSpawnPoint": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
       "ProjectileSound": null,
-      "ProjectileOrientation": null,
+      "ProjectileOrientation": "Path",
       "SubSpell1": null,
       "SubSpell2": null,
       "SubSpell3": null,
@@ -64178,7 +64176,8 @@
       "Name": {
         "Index": 6331,
         "EN": {
-          "M": "Ultravision"
+          "M": "Darkvision",
+          "F": "Ultravision"
         },
         "FR": {
           "M": "Ultravision"
@@ -64199,7 +64198,8 @@
       "Description": {
         "Index": 6531,
         "EN": {
-          "M": "Caster Level(s): Bard 2, Cleric 2, Druid 1, Ranger 1, Wizard 2\nInnate Level: 2\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe target creature\u0027s ability to see in complete darkness is improved beyond that of Darkvision. When this spell is applied even the effects of magical darkness are pierced."
+          "M": "Caster Level(s): Bard 2, Cleric 2, Druid 1, Ranger 1, Wizard 2\nInnate Level: 2\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\r\nThe target creature gains Darkvision as per the racial feat. Additionally it confers a \u002B5 bonus to spot checks. ",
+          "F": "Caster Level(s): Bard 2, Cleric 2, Druid 1, Ranger 1, Wizard 2\nInnate Level: 2\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe target creature\u0027s ability to see in complete darkness is improved beyond that of Darkvision. When this spell is applied even the effects of magical darkness are pierced."
         },
         "FR": {
           "M": "Niveau : Barde 2, Pr\u00EAtre 2, Druide 1, R\u00F4deur 1, Magicien / Ensorceleur 2\nNiveau inn\u00E9 : 2\nEcole : Transmutation\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : contact\nZone d\u0027effet / cible : 1 cr\u00E9ature\nDur\u00E9e : 1 heure/niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : inoffensif\nR\u00E9sistance \u00E0 la magie : non\n\nLa capacit\u00E9 du b\u00E9n\u00E9ficiaire \u00E0 voir dans le noir est augment\u00E9e et est bien sup\u00E9rieure \u00E0 Vision dans le noir. Gr\u00E2ce \u00E0 ce sort, il est possible de voir m\u00EAme au sein des t\u00E9n\u00E8bres magiques."
@@ -64220,7 +64220,7 @@
       "AlternativeCastMessage": {
         "Index": null
       },
-      "Icon": "is_darkvis",
+      "Icon": "i_dummy",
       "School": "T",
       "Range": "T",
       "Components": [
@@ -64238,7 +64238,7 @@
         "Creature",
         "Item"
       ],
-      "ImpactScript": "NW_S0_DarkVis",
+      "ImpactScript": "op_s_sight",
       "InnateLevel": 2,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -64268,7 +64268,7 @@
       "SubSpell6": null,
       "SubSpell7": null,
       "SubSpell8": null,
-      "Category": "FriendlyEnhancementSelf",
+      "Category": "FriendlyConditionalSingle",
       "ParentSpell": null,
       "Type": "Spell",
       "UseConcentration": true,
@@ -67535,6 +67535,93 @@
         "HarmsAllies",
         "OriginOnSelf"
       ]
+    },
+    {
+      "ID": "79fdaaef-6797-4ca4-b879-e5f9e64ce482",
+      "Index": 43,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": null,
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Ultravsion",
+          "F": "New Spell"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Caster Level(s): Bard 2, Cleric 2, Druid 1, Ranger 1, Wizard 2\nInnate Level: 2\nSchool: Divination\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe target creature gains the ability to see through magical Darkness."
+        }
+      },
+      "AlternativeCastMessage": {
+        "Index": null
+      },
+      "Icon": "is_darkvis",
+      "School": "D",
+      "Range": "T",
+      "Components": [
+        "V",
+        "S"
+      ],
+      "AvailableMetaMagic": [
+        "Extend",
+        "Quicken",
+        "Silent",
+        "Still"
+      ],
+      "TargetTypes": [
+        "Self",
+        "Creature",
+        "Item"
+      ],
+      "ImpactScript": "op_s_sight",
+      "InnateLevel": 2,
+      "ConjurationTime": 1500,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": "",
+      "ConjurationHandEffect": "vco_mehanmind01",
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "sco_mehanmind01",
+      "ConjurationMaleSound": "vs_chant_illu_lm",
+      "ConjurationFemaleSound": "vs_chant_illu_lf",
+      "CastingAnimation": "Out",
+      "CastTime": 1000,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
+      "ProjectileSound": null,
+      "ProjectileOrientation": "Path",
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "FriendlyConditionalSingle",
+      "ParentSpell": null,
+      "Type": "Spell",
+      "UseConcentration": true,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
     }
   ]
 }
