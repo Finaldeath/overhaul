@@ -9273,10 +9273,9 @@
       "TargetTypes": [
         "Self",
         "Creature",
-        "Item",
-        "Placeable"
+        "Item"
       ],
-      "ImpactScript": "NW_S0_ClairAdVo",
+      "ImpactScript": "op_s_skills",
       "InnateLevel": 3,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",
@@ -36452,7 +36451,7 @@
       "Index": 86,
       "Overrides": "745ff007-191b-e2d8-53c9-289ca0e1be20",
       "Disabled": false,
-      "Hint": "Innate: 1",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
@@ -36480,7 +36479,7 @@
       "Description": {
         "Index": 6183,
         "EN": {
-          "M": "Caster Level(s): Bard 1, Wizard / Sorcerer 1\nInnate Level: 1\nSchool: Divination\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Item\nDuration: Instant\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance:\n\r\nIdentify reveals the magical properties of a single unidentified item.",
+          "M": "Caster Level(s): Bard 1, Wizard / Sorcerer 1\nInnate Level: 1\nSchool: Divination\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Item\nDuration: Instant\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\r\nIdentify reveals the magical properties of a single unidentified item.",
           "F": "Caster Level(s): Bard 1, Wizard / Sorcerer 1\nInnate Level: 1\nSchool: Divination\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 2 Rounds\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance:\n\nOver the next two rounds, the caster gains a bonus of 10 \u002B1 per caster level to their Lore skill."
         },
         "FR": {
@@ -36504,13 +36503,12 @@
       },
       "Icon": "is_identify",
       "School": "D",
-      "Range": "T",
+      "Range": "P",
       "Components": [
         "V",
         "S"
       ],
       "AvailableMetaMagic": [
-        "Extend",
         "Quicken",
         "Silent",
         "Still"
@@ -36518,7 +36516,7 @@
       "TargetTypes": [
         "Item"
       ],
-      "ImpactScript": "NW_S0_Identify",
+      "ImpactScript": "op_s_identify",
       "InnateLevel": 1,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -40203,7 +40201,8 @@
       "Description": {
         "Index": 6543,
         "EN": {
-          "M": "Caster Level(s): Bard 4, Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Divination\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Turn / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThis spell grants the caster a \u002B10 bonus to Lore checks, \u002B1 per 2 caster levels."
+          "M": "Caster Level(s): Bard 4, Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Divination\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: Instant\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThis spell instantly identifies all the items in the casters inventory. For the purposes of identification you gain \u002B10 plus 1 per 2 caster level ranks in your Lore skill. ",
+          "F": "Caster Level(s): Bard 4, Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Divination\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Turn / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThis spell grants the caster a \u002B10 bonus to Lore checks, \u002B1 per 2 caster levels."
         },
         "FR": {
           "M": "Niveau : Barde 4, Magicien / Ensorceleur 6\nNiveau inn\u00E9 : 6\nEcole : Divination\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : personnelle\nZone d\u0027effet / cible : lanceur\nDur\u00E9e : 1 tour/niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : inoffensif\nR\u00E9sistance \u00E0 la magie : non\n\nCe sort octroie au lanceur un bonus de \u002B10, \u002B1 tous les 2 niveaux \u00E0 ses jets de comp\u00E9tence Connaissance."
@@ -40232,7 +40231,6 @@
         "S"
       ],
       "AvailableMetaMagic": [
-        "Extend",
         "Quicken",
         "Silent",
         "Still"
@@ -40241,7 +40239,7 @@
         "Self",
         "Item"
       ],
-      "ImpactScript": "NW_S0_Lore",
+      "ImpactScript": "op_s_identify",
       "InnateLevel": 6,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -52370,7 +52368,7 @@
       "Description": {
         "Index": null,
         "EN": {
-          "M": "Caster Level(s): Bard 0, Cleric 0, Druid 0, Paladin 1, Ranger 1, Wizard / Sorcerer 0\nInnate Level: 0\nSchool: Divination\nDescriptor(s): \nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Single Scroll\nDuration: Instant\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nYou identify a spell scroll or potions contents.",
+          "M": "Caster Level(s): Bard 0, Cleric 0, Druid 0, Paladin 1, Ranger 1, Wizard / Sorcerer 0\nInnate Level: 0\nSchool: Divination\nDescriptor(s): \nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Scroll or Potion Item\nDuration: Instant\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nYou identify a spell scroll or potions contents.",
           "F": "Caster Level(s): Bard 0, Cleric 0, Druid 0, Paladin 1, Ranger 1, Wizard / Sorcerer 0\nInnate Level: 0\nSchool: General\nDescriptor(s): \nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Single Scroll\nDuration: Instant\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nYou identify a spell scrolls contents."
         }
       },
@@ -52385,12 +52383,14 @@
         "S"
       ],
       "AvailableMetaMagic": [
-        "Quicken"
+        "Quicken",
+        "Silent",
+        "Still"
       ],
       "TargetTypes": [
         "Item"
       ],
-      "ImpactScript": "op_s_readmagic",
+      "ImpactScript": "op_s_identify",
       "InnateLevel": 0,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -52429,7 +52429,7 @@
       "CounterSpell1": null,
       "CounterSpell2": null,
       "HasProjectileVisuals": false,
-      "TargetShape": "Sphere",
+      "TargetShape": null,
       "TargetSizeX": null,
       "TargetSizeY": null,
       "TargetingFlags": []
