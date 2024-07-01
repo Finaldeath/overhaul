@@ -92,7 +92,7 @@ void ApplyDisintegrate(object oTarget, int nDamage)
              !GetImmortal(oTarget))
     {
         // Fake damage message (maybe...)
-        FakeDamageMessage(oTarget, oCaster, nDamage, DAMAGE_TYPE_MAGICAL);
+        SendFakeDamageFeedbackMessage(oTarget, oCaster, nDamage, DAMAGE_TYPE_MAGICAL);
 
         // Scale of VFX based off target
         float fScale = GetVFXScale(oTarget);

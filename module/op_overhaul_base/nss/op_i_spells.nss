@@ -45,37 +45,10 @@
 #include "op_i_feats"
 #include "op_i_itemprops"
 #include "op_i_runscript"
+#include "op_i_feedback"
 #include "utl_i_maths"
 #include "utl_i_item"
 #include "utl_i_strings"
-
-// These are the games string refs for immunity feedback.
-// Format <CUSTOM0> : Immune to XXXX.
-// Using this in case SendFeedbackString() is added to the game.
-const int STRREF_IMMUNITY_BLINDNESS             = 62467;  //<CUSTOM0> : Immune to Blindness.
-const int STRREF_IMMUNITY_CHARM                 = 62470;  //<CUSTOM0> : Immune to Charm.
-const int STRREF_IMMUNITY_CONFUSION             = 62465;  //<CUSTOM0> : Immune to Confusion.
-const int STRREF_IMMUNITY_CRITICAL_HITS         = 62454;  //<CUSTOM0> : Immune to Critical Hits.
-const int STRREF_IMMUNITY_CURSE                 = 62469;  //<CUSTOM0> : Immune to Curse.
-const int STRREF_IMMUNITY_DAZE                  = 62464;  //<CUSTOM0> : Immune to Daze.
-const int STRREF_IMMUNITY_DEAFNESS              = 62468;  //<CUSTOM0> : Immune to Deafness.
-const int STRREF_IMMUNITY_DEATH_MAGIC           = 62455;  //<CUSTOM0> : Immune to Death Magic.
-const int STRREF_IMMUNITY_DISEASE               = 62453;  //<CUSTOM0> : Immune to Disease.
-const int STRREF_IMMUNITY_DOMINATE              = 62471;  //<CUSTOM0> : Immune to Dominate.
-const int STRREF_IMMUNITY_ENTANGLE              = 62472;  //<CUSTOM0> : Immune to Entangle.
-const int STRREF_IMMUNITY_FEAR                  = 62456;  //<CUSTOM0> : Immune to Fear.
-const int STRREF_IMMUNITY_KNOCKDOWN             = 62457;  //<CUSTOM0> : Immune to Knockdown.
-const int STRREF_IMMUNITY_MIND_AFFECTING_SPELLS = 62460;  //<CUSTOM0> : Immune to Mind Affecting Spells.
-const int STRREF_IMMUNITY_NEGATIVE_LEVELS       = 62459;  //<CUSTOM0> : Immune to Negative Levels.
-const int STRREF_IMMUNITY_PARALYSIS             = 62458;  //<CUSTOM0> : Immune to Paralysis.
-const int STRREF_IMMUNITY_POISON                = 62461;  //<CUSTOM0> : Immune to Poison.
-const int STRREF_IMMUNITY_SILENCE               = 62473;  //<CUSTOM0> : Immune to Silence.
-const int STRREF_IMMUNITY_SLEEP                 = 62463;  //<CUSTOM0> : Immune to Sleep.
-const int STRREF_IMMUNITY_SLOW                  = 62474;  //<CUSTOM0> : Immune to Slow.
-const int STRREF_IMMUNITY_SNEAK_ATTACKS         = 62462;  //<CUSTOM0> : Immune to Sneak Attacks.
-const int STRREF_IMMUNITY_STUN                  = 62466;  //<CUSTOM0> : Immune to Stun.
-
-const int STRREF_SOMEONE = 8349;  // Someone
 
 const int ROUNDS  = 0;
 const int MINUTES = 1;
@@ -90,10 +63,6 @@ const int SPELL_TARGET_ANYTHING         = 0;  // Anything. Most useful for spell
 const int SPELL_TARGET_ALLALLIES        = 1;  // Allies only
 const int SPELL_TARGET_STANDARDHOSTILE  = 2;  // Standard hostile - IE: Will hit allies in certain PvP
 const int SPELL_TARGET_SELECTIVEHOSTILE = 3;  // Selective hostile - IE: Will not hit allies
-
-const int SPELL_ANY = -2; // Since GetEffectSpellId can return -1
-const int SPELL_INVALID = -1;
-const int EFFECT_TYPE_ALL = -1;
 
 // Missing saving throw type constant
 const int SAVING_THROW_TYPE_PARALYSIS = 20;
@@ -239,10 +208,6 @@ int GetImmunityTypeFromSavingThrowType(int nSaveType);
 // If nImmunityType is IMMUNITY_TYPE_NONE this automatically fails (ie they're not immune).
 int GetIsImmuneWithFeedback(object oCreature, int nImmunityType, object oVersus = OBJECT_INVALID);
 
-// Provide some feedback formatted to the games method of showing immunity feedback
-// This doesn't cover every immunity type, only those the game usually feeds back on.
-void SendImmunityFeedback(object oCaster, object oTarget, int nImmunityType);
-
 // This allows the application of a random delay to effects based on time parameters passed in.
 float GetRandomDelay(float fMinimumTime = 0.4, float MaximumTime = 1.1);
 
@@ -288,9 +253,6 @@ void SignalSpellCastAt(object oSignalTarget = OBJECT_INVALID, object oSignalCast
 // Does a check for the AOE creator, and destroys ourself with no effect if they no longer exist.
 // This might be removed later but for now will stop some bugs.
 int AOECheck();
-
-// Sends fake damage messages as per the game format for oTarget and oSource
-void FakeDamageMessage(object oTarget, object oSource, int nDamage, int nDamageType);
 
 // Gets the scale of the VFX to apply to oCreature. If not a creature it returns 1.0.
 float GetVFXScale(object oCreature);
@@ -1029,7 +991,7 @@ int DoTouchAttack(object oTarget, object oVersus, int nType, int bDisplayFeedbac
     return TouchAttackRanged(oTarget, bDisplayFeedback);
 }
 
-// Applies Dispel Magic to the given target (Area of Effects are also handled, as are Summoned Creatures)
+// Applies Dispel Magic to the given target (Area of Effects are also handled, items on the ground as well, as are Summoned Creatures)
 void DoDispelMagic(object oTarget, int nCasterLevel, effect eVis, float fDelay, int bAll, int bBreach = FALSE)
 {
     // Similar to Biowares both for compatibility and it makes sense.
@@ -1067,6 +1029,12 @@ void DoDispelMagic(object oTarget, int nCasterLevel, effect eVis, float fDelay, 
                 FloatingTextStrRefOnCreature(100930, oCaster); // "AoE not dispelled"
             }
         }
+    }
+    else if (GetObjectType(oTarget) == OBJECT_TYPE_ITEM)
+    {
+        // Items get dispelled on the ground
+        DispelMagicalItemProperties(oTarget, oCaster, nCasterLevel);
+        return;
     }
 
     // Don't dispel magic on petrified targets
@@ -1107,6 +1075,8 @@ void DoDispelMagic(object oTarget, int nCasterLevel, effect eVis, float fDelay, 
                     if (d20() + nCasterLevel >= 11 + GetEffectCasterLevel(eCheck))
                     {
                         RemoveEffect(oMaster, eCheck);
+                        // Return since this should not remove the summoned creature itself (or swarm if appropriate)
+                        // For now keeping this simple.
                         return;
                     }
                 }
@@ -1118,6 +1088,33 @@ void DoDispelMagic(object oTarget, int nCasterLevel, effect eVis, float fDelay, 
     effect eDispel;
     if (bAll)
     {
+        if (GetObjectType(oTarget) == OBJECT_TYPE_CREATURE)
+        {
+            // We should dispel magical effects from items possessed by the target creature.
+            // Let's assume that, for now at least, only the equipped items matter
+            // and creature items are "linked" (removed from one are removed from
+            // the others).
+            int nSlot, bDoneCreatureWeapons = FALSE;
+            for (nSlot = 0; nSlot < NUM_INVENTORY_SLOTS; nSlot++)
+            {
+                object oItem = GetItemInSlot(nSlot, oTarget);
+                // Creature item slot L/R/B pass first valid one in
+                if (nSlot == INVENTORY_SLOT_CWEAPON_L ||
+                    nSlot == INVENTORY_SLOT_CWEAPON_R ||
+                    nSlot == INVENTORY_SLOT_CWEAPON_B)
+                {
+                    if (!bDoneCreatureWeapons)
+                    {
+                        DispelMagicalItemProperties(oItem, oCaster, nCasterLevel, TRUE);
+                        bDoneCreatureWeapons = TRUE;
+                    }
+                }
+                else
+                {
+                    DispelMagicalItemProperties(oItem, oCaster, nCasterLevel);
+                }
+            }
+        }
         eDispel = EffectDispelMagicAll(nCasterLevel);
         if (bBreach)
         {
@@ -1181,9 +1178,7 @@ void DoSpellBreach(object oTarget, int nTotal, int nSR, int bVFX = TRUE)
     int nIndex, nRemoved = 0;
     for (nIndex = 0; nIndex < JsonGetLength(jArray) && nRemoved < nTotal; nIndex++)
     {
-        json jObject = JsonArrayGet(jArray, nIndex);
-
-        if (RemoveEffectsFromSpell(oTarget, JsonGetInt(jObject)))
+        if (RemoveEffectsFromSpell(oTarget, JsonGetInt(JsonArrayGet(jArray, nIndex))))
         {
             nRemoved++;
         }
@@ -1446,84 +1441,6 @@ int GetIsImmuneWithFeedback(object oCreature, int nImmunityType, object oVersus 
     return FALSE;
 }
 
-// Provide some feedback formatted to the games method of showing immunity feedback
-void SendImmunityFeedback(object oCaster, object oTarget, int nImmunityType)
-{
-    // Format:
-    // <CUSTOM0> : Immune to Mind Affecting Spells.
-    int nStrRef = 0;
-    string sMessage;
-    // We'll use the string ref if possible, else make our own up.
-    switch (nImmunityType)
-    {
-        case IMMUNITY_TYPE_ABILITY_DECREASE: sMessage = "Ability Decrease"; break;
-        case IMMUNITY_TYPE_AC_DECREASE: sMessage = "AC Decrease"; break;
-        case IMMUNITY_TYPE_ATTACK_DECREASE: sMessage = "Attack Decrease"; break;
-        case IMMUNITY_TYPE_BLINDNESS: nStrRef = STRREF_IMMUNITY_BLINDNESS; break;
-        case IMMUNITY_TYPE_CHARM: nStrRef = STRREF_IMMUNITY_CHARM; break;
-        case IMMUNITY_TYPE_CONFUSED: nStrRef = STRREF_IMMUNITY_CONFUSION; break;
-        case IMMUNITY_TYPE_CRITICAL_HIT: nStrRef = STRREF_IMMUNITY_CRITICAL_HITS; break;
-        case IMMUNITY_TYPE_CURSED: nStrRef = STRREF_IMMUNITY_CURSE; break;
-        case IMMUNITY_TYPE_DAMAGE_DECREASE: sMessage = "Damage Decrease"; break;
-        case IMMUNITY_TYPE_DAMAGE_IMMUNITY_DECREASE: sMessage = "Damage Immunity Decrease"; break;
-        case IMMUNITY_TYPE_DAZED: nStrRef = STRREF_IMMUNITY_DAZE; break;
-        case IMMUNITY_TYPE_DEAFNESS: nStrRef = STRREF_IMMUNITY_DEAFNESS; break;
-        case IMMUNITY_TYPE_DEATH: nStrRef = STRREF_IMMUNITY_DEATH_MAGIC; break;
-        case IMMUNITY_TYPE_DISEASE: nStrRef = STRREF_IMMUNITY_DISEASE; break;
-        case IMMUNITY_TYPE_DOMINATE: nStrRef = STRREF_IMMUNITY_DOMINATE; break;
-        case IMMUNITY_TYPE_ENTANGLE: nStrRef = STRREF_IMMUNITY_ENTANGLE; break;
-        case IMMUNITY_TYPE_FEAR: nStrRef = STRREF_IMMUNITY_FEAR; break;
-        case IMMUNITY_TYPE_KNOCKDOWN: nStrRef = STRREF_IMMUNITY_KNOCKDOWN; break;
-        case IMMUNITY_TYPE_MIND_SPELLS: nStrRef = STRREF_IMMUNITY_MIND_AFFECTING_SPELLS; break;
-        case IMMUNITY_TYPE_MOVEMENT_SPEED_DECREASE: sMessage = "Movement Speed Decrease"; break;
-        case IMMUNITY_TYPE_NEGATIVE_LEVEL: nStrRef = STRREF_IMMUNITY_NEGATIVE_LEVELS; break;
-        case IMMUNITY_TYPE_PARALYSIS: nStrRef = STRREF_IMMUNITY_PARALYSIS; break;
-        case IMMUNITY_TYPE_POISON: nStrRef = STRREF_IMMUNITY_POISON; break;
-        case IMMUNITY_TYPE_SAVING_THROW_DECREASE: sMessage = "Saving Throw Decrease"; break;
-        case IMMUNITY_TYPE_SILENCE: nStrRef = STRREF_IMMUNITY_SILENCE; break;
-        case IMMUNITY_TYPE_SKILL_DECREASE: sMessage = "Skill Decrease"; break;
-        case IMMUNITY_TYPE_SLEEP: nStrRef = STRREF_IMMUNITY_SLEEP; break;
-        case IMMUNITY_TYPE_SLOW: nStrRef = STRREF_IMMUNITY_SLOW; break;
-        case IMMUNITY_TYPE_SNEAK_ATTACK: nStrRef = STRREF_IMMUNITY_SNEAK_ATTACKS; break;
-        case IMMUNITY_TYPE_SPELL_RESISTANCE_DECREASE: sMessage = "Spell Resistance Decrease"; break;
-        case IMMUNITY_TYPE_STUN: nStrRef = STRREF_IMMUNITY_STUN; break;
-        case IMMUNITY_TYPE_TRAP: sMessage = "Trap"; break;
-        default:
-        {
-            // EG: IMMUNITY_TYPE_NONE (0) or other values we do no messages. This should not occur though.
-            if (DEBUG_LEVEL >= LOG_LEVEL_ERROR) OP_Debug("[ERROR] SendImmunityFeedback: Invalid nImmunityType: " + IntToString(nImmunityType));
-            return;
-        }
-        break;
-    }
-
-    // If oTarget is valid and oCaster knows of them use that name, else use "Someone" TLK string
-    string sTarget;
-    if (GetIsObjectValid(oTarget) && (GetObjectSeen(oCaster, oTarget) || GetObjectHeard(oCaster, oTarget)))
-    {
-        sTarget = GetName(oTarget);
-    }
-    else
-    {
-        sTarget = GetStringByStrRef(STRREF_SOMEONE);
-    }
-
-    // No string ref available for immunity feedback we  do our own; Bioware didn't provide feedback on several of them (besides in spell scripts a VFX).
-    if (nStrRef == 0)
-    {
-        sMessage = sTarget + " : " + sMessage + ".";
-    }
-    else
-    {
-        // Replace <CUSTOM0> with the given named target
-        sMessage = RegExpReplace("<CUSTOM0>", GetStringByStrRef(nStrRef), sTarget, REGEXP_BASIC);
-    }
-
-    // Send the feedback
-    if (GetIsObjectValid(oCaster)) SendMessageToPC(oCaster, sMessage);
-    if (GetIsObjectValid(oTarget)) SendMessageToPC(oCaster, sMessage);
-}
-
 // This allows the application of a random delay to effects based on time parameters passed in.
 float GetRandomDelay(float fMinimumTime = 0.4, float MaximumTime = 1.1)
 {
@@ -1730,14 +1647,6 @@ int AOECheck()
         return FALSE;
     }
     return TRUE;
-}
-
-// Sends fake damage messages as per the game format for oTarget and oSource
-void FakeDamageMessage(object oTarget, object oSource, int nDamage, int nDamageType)
-{
-    // Similar to BroadcastDamageDataToParty
-    // * Things in oTarget or oSource faction get info
-    // * Limited to a particular range (30M) and visibility info
 }
 
 // Gets the scale of the VFX to apply to oCreature. If not a creature it returns 1.0.

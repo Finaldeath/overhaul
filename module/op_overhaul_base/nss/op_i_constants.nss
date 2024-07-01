@@ -10,6 +10,12 @@
 //:: https://github.com/Finaldeath/overhaul
 //:://////////////////////////////////////////////
 
+
+// Some default/invalid values
+const int SPELL_ANY = -2; // Since GetEffectSpellId can return -1
+const int SPELL_INVALID = -1;
+const int EFFECT_TYPE_ALL = -1;
+
 // effecticons.2da
 const int EFFECT_ICON_GENERIC_DECREASE          = 130;
 const int EFFECT_ICON_GENERIC_INCREASE          = 131;

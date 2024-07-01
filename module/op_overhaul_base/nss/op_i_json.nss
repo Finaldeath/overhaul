@@ -40,6 +40,10 @@ int GetJsonMetadataIntField(string sJson, string sField, int nDefault = 0);
 // Returns OBJECT_INVALID if not found
 object GetJsonMetadataObjectField(string sJson, string sField);
 
+// Checks if there are any matches for nData in jArray
+int GetArrayMatchesInt(json jArray, int nData);
+
+
 // Retrieves if the given sJson string has any data, and if it has it is valid Overhaul data
 // Will NOT print any debug messages on error, just reutrns FALSE.
 int GetJsonMetadataIsValid(string sJson)
@@ -135,5 +139,19 @@ object GetJsonMetadataObjectField(string sJson, string sField)
         }
     }
     return OBJECT_INVALID;
+}
+
+// Checks if there are any matches for nData in jArray
+int GetArrayMatchesInt(json jArray, int nData)
+{
+    int nIndex;
+    for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
+    {
+        if(JsonGetInt(JsonArrayGet(jArray, nIndex)) == nData)
+        {
+            return TRUE;
+        }
+    }
+    return FALSE;
 }
 

@@ -85,17 +85,19 @@ void main()
     {
         effect eVis = EffectVisualEffect(VFX_IMP_HOLY_AID);
         ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
+
+        // Magical Item Properties are now dealt with in DoDispelMagic
         // We apply a EffectRunScript that clears the item properties on removal
         // (ie dispel magic, resting)
-        effect eLink = EffectLinkEffects(EffectTrackItemProperties(jArray),
-                                         EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
-        SetItemTrackingID(eLink);
-        ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
+        //effect eLink = EffectLinkEffects(EffectTrackItemProperties(jArray),
+        //                                 EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+        //SetItemTrackingID(eLink);
+        //ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
     }
     else
     {
         // No creature items?
-        SendMessageToPC(oCaster, "Magic Fang: No creature weapons found on " + GetName(oTarget) + ".");
+        SendMessageToPC(oCaster, "*Magic Fang: No creature weapons found on " + GetName(oTarget) + "*");
         ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_FNF_SPELL_FAIL_HAND), oCaster);
     }
 }

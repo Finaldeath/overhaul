@@ -8,6 +8,9 @@
     We are not going to be hooking into the fact item properties are technically
     effects with spell Ids etc.
 
+    Instead we will add metadata on the item property creation into the tag
+    using Json which we can then use to sort it later.
+
 
 */
 //:://////////////////////////////////////////////
@@ -15,12 +18,23 @@
 //:: https://github.com/Finaldeath/overhaul
 //:://////////////////////////////////////////////
 
+#include "op_i_constants"
+#include "op_i_feedback"
 #include "op_i_debug"
-#include "utl_i_itemprop"
 #include "op_i_json"
+#include "utl_i_itemprop"
 
 // Debugs the given item and it's properties
 void DebugItemProperties(object oItem);
+
+// Dispels magical item properties on oItem
+// Note: This will attempt to just dispel all present item properties since this should
+// only be called when it's targeted on a single creature or an item on the ground/in inventory
+// - bCreatureItem - If set the 4 creature items get the item properties removed, but only oItem is checked
+int DispelMagicalItemProperties(object oItem, object oCaster, int nCasterLevel, int bCreatureItem = FALSE);
+
+// Returns TRUE if there are any item properties matching the given property
+int GetItemHasMatchingItemProperty(object oItem, itemproperty ipProperty);
 
 // Returns a string with the duration of the property information
 string GetItemPropertyDurationString(itemproperty ipProperty);
@@ -78,6 +92,92 @@ void DebugItemProperties(object oItem)
         nCount++;
         ipCheck = GetNextItemProperty(oItem);
     }
+}
+
+// Dispels magical item properties on oItem
+// Note: This will attempt to just dispel all present item properties since this should
+// only be called when it's targeted on a single creature or an item on the ground/in inventory
+// - bCreatureItem - If set oItem is ignored (although the possessor is used) and it gets one of
+//   the creature items to remove things from, and applies it to the other 2.
+int DispelMagicalItemProperties(object oItem, object oCaster, int nCasterLevel, int bCreatureItem = FALSE)
+{
+    // Count amount
+    int nAmount = 0;
+
+    json jIgnoreArray = JsonArray();
+    json jDispelArray = JsonArray();
+
+    object oSecondItem, oThirdItem;
+
+    if (bCreatureItem)
+    {
+        // Find first valid item
+        object oPossessor = GetItemPossessor(oItem);
+        int nSlot = INVENTORY_SLOT_CWEAPON_L;
+        oItem = GetItemInSlot(nSlot, oPossessor);
+
+        if (!GetIsObjectValid(oItem))
+        {
+            oItem = GetItemInSlot(++nSlot, oPossessor);
+            if (!GetIsObjectValid(oItem))
+            {
+                oItem = GetItemInSlot(++nSlot, oPossessor);
+
+                if (!GetIsObjectValid(oItem))
+                {
+                    OP_Debug("[DispelMagicalItemProperties] No valid creature weapons but want to dispel them? oPossessor: " + GetName(oPossessor));
+                    return 0;
+                }
+            }
+        }
+        if (nSlot == INVENTORY_SLOT_CWEAPON_L)
+        {
+            oSecondItem = GetItemInSlot(++nSlot, oPossessor);
+            oThirdItem = GetItemInSlot(++nSlot, oPossessor);
+        }
+        else if (nSlot == INVENTORY_SLOT_CWEAPON_R)
+        {
+            oSecondItem = GetItemInSlot(++nSlot, oPossessor);
+        }
+    }
+
+    itemproperty ipCheck = GetFirstItemProperty(oItem);
+    while (GetIsItemPropertyValid(ipCheck))
+    {
+        // Check if it's magical, ie from a spell
+        int nSpellId = GetItemPropertySpellId(ipCheck);
+        if (nSpellId != SPELL_INVALID && !GetArrayMatchesInt(jIgnoreArray, nSpellId))
+        {
+            // Do a dispel magic check
+            if (d20() + nCasterLevel >= 11 + GetItemPropertyCasterLevel(ipCheck))
+            {
+                // Remove it the spell Id ones from the right items
+                if (bCreatureItem)
+                {
+                    RemoveItemPropertiesMatchingSpellId(oItem, nSpellId);
+                    RemoveItemPropertiesMatchingSpellId(oSecondItem, nSpellId);
+                    RemoveItemPropertiesMatchingSpellId(oThirdItem, nSpellId);
+                }
+                else
+                {
+                    RemoveItemPropertiesMatchingSpellId(oItem, nSpellId);
+                }
+                // Add to feedback array
+                jDispelArray = JsonArrayInsert(jDispelArray, JsonInt(nSpellId));
+
+                nAmount++;
+            }
+            // Add to ignore array since we've checked it - no double checks (or
+            // we dispelled it so the next ones are timed to be cleared anyway).
+            jIgnoreArray = JsonArrayInsert(jIgnoreArray, JsonInt(nSpellId));
+        }
+        ipCheck = GetNextItemProperty(oItem);
+    }
+    if (nAmount > 0)
+    {
+        SendDispelMagicFeedbackForItem(oCaster, oItem, jDispelArray);
+    }
+    return nAmount;
 }
 
 // Returns a string with the duration of the property information
