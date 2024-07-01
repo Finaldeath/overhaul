@@ -10,6 +10,9 @@
     4 caster levels. The effect is supernatural and can only be removed by Heal
     or Greater Restoration.
 
+    Ray of Enfeeblement
+    The target creature takes 1d6 Strength damage, plus 1 per 2 caster levels,
+    to a maximum of +5 damage.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -47,6 +50,19 @@ void main()
             eLink = SupernaturalEffect(eLink);
 
             fDuration = GetDuration(nCasterLevel / 2, ROUNDS);
+        }
+        break;
+        case SPELL_RAY_OF_ENFEEBLEMENT:
+        {
+            nSavingThrow = SAVING_THROW_FORT;
+            nSavingThrowType = SAVING_THROW_TYPE_NEGATIVE;
+            nVis = VFX_IMP_REDUCE_ABILITY_SCORE;
+            nBeam = VFX_BEAM_ODD;
+            int nDamage = GetDiceRoll(1, 6, min(5, nCasterLevel/2));
+            eLink = EffectLinkEffects(EffectAbilityDecrease(ABILITY_STRENGTH, nDamage),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+
+            fDuration = GetDuration(nCasterLevel, ROUNDS);
         }
         break;
         default:
