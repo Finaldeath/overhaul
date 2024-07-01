@@ -33,7 +33,7 @@ void main()
 
     switch (nSpellId)
     {
-        case SPELL_DARKVISION:
+        case SPELL_DARKVISION_PROPER: // New "Darkvision" spell
         {
             fDuration = GetDuration(nCasterLevel, HOURS);
             eLink = EffectLinkEffects(EffectBonusFeat(FEAT_DARKVISION),
@@ -42,7 +42,7 @@ void main()
                                       EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE))));
         }
         break;
-        case SPELL_ULTRAVSION:
+        case SPELL_DARKVISION: // Ultravision
         {
             fDuration = GetDuration(nCasterLevel, HOURS);
             eLink = EffectLinkEffects(EffectUltravision(),

@@ -81,8 +81,9 @@ const int ROUNDS  = 0;
 const int MINUTES = 1;
 const int HOURS   = 2;
 
-const int TOUCH_MELEE  = 0;
-const int TOUCH_RANGED = 1;
+const int TOUCH_NONE   = 0;
+const int TOUCH_MELEE  = 1;
+const int TOUCH_RANGED = 2;
 
 // For GetSpellTargetValid similar to Bioware's
 const int SPELL_TARGET_ANYTHING         = 0;  // Anything. Most useful for spells like Dispel Magic.
@@ -189,7 +190,7 @@ int DoResistSpell(object oTarget, object oCaster, float fDelay = 0.0, int bResis
 int GetAssayResistanceBonus(object oTarget, object oCaster);
 
 // Does a relevant touch attack. Some classes add bonuses to touch attacks, which can be added in here.
-// - nType can be TOUCH_MELEE or TOUCH_RANGED
+// - nType can be TOUCH_MELEE or TOUCH_RANGED. If TOUCH_NONE it simply returns TRUE so it doesn't do anything.
 // Return values:
 // * 0 - Miss
 // * 1 - Hit
@@ -235,6 +236,7 @@ int GetImmunityTypeFromSavingThrowType(int nSaveType);
 
 // Check and do immunity for the given immunity type.
 // It also provides feedback to the given creatures if valid, and the game usually gives such feedback.
+// If nImmunityType is IMMUNITY_TYPE_NONE this automatically fails (ie they're not immune).
 int GetIsImmuneWithFeedback(object oCreature, int nImmunityType, object oVersus = OBJECT_INVALID);
 
 // Provide some feedback formatted to the games method of showing immunity feedback
@@ -255,6 +257,23 @@ void ApplySpellEffectToObject(int nDurationType, effect eEffect, object oTarget,
 
 // Applies the given effect but merges in the right spell Id, caster Id and caster level.
 void ApplySpellEffectAtLocation(int nDurationType, effect eEffect, location lTarget, float fDuration = 0.0);
+
+// Applies the given Beam/Ray effect to oTarget. Does it as an unyielding effect so even if they die it'll persist.
+// - nBeam - visualeffects.2da line (is checked if it is a beam)
+// - oTarget - Target of the beam
+// - bMissEffect - Beam hits or not
+// - nBodyPart - BODY_NODE_* the beam hits (default: HAND)
+// - fDuration - If 0.0 it isues the nSpellId's spells.2da CastTime value to look proper
+// - oEffector - The source of the beam. Defaults to oCaster if invalid.
+void ApplyBeamToObject(int nBeam, object oTarget, int bMissEffect = FALSE, int nBodyPart = BODY_NODE_HAND, float fDuration = 0.0, object oEffector = OBJECT_INVALID);
+
+// Applies the given VFX effect to oTarget.
+// - nVFX - visualeffects.2da line (cannot be a Beam type). Use VFX_NONE to have this function be ignored.
+// - oTarget - Target of the VFX
+// - bMissEffect - VFX hits or not
+// - fDuration - If 0.0 it applies it instantly, or applies it for a given duration.
+// Usual scale and translate values as well.
+void ApplyVisualEffectToObject(int nVFX, object oTarget, int bMissEffect = FALSE, float fDuration = 0.0, float fScale=1.0f, vector vTranslate=[0.0,0.0,0.0], vector vRotate=[0.0,0.0,0.0]);
 
 // Applies the given item property to the given item.
 // All existing item properties with a tag matching the spell ID are removed.
@@ -984,13 +1003,18 @@ int GetAssayResistanceBonus(object oTarget, object oCaster)
     return 0;
 }
 
+
 // Does a relevant touch attack. Some classes add bonuses to touch attacks, which can be added in here.
+// - nType can be TOUCH_MELEE or TOUCH_RANGED. If TOUCH_NONE it simply returns TRUE so it doesn't do anything.
 // Return values:
 // * 0 - Miss
 // * 1 - Hit
 // * 2 - Critical Hit
 int DoTouchAttack(object oTarget, object oVersus, int nType, int bDisplayFeedback = TRUE)
 {
+    // We just "hit" if TOUCH_NONE.
+    if (nType == TOUCH_NONE) return TRUE;
+
     // Note: For now we don't use oVersus but it's possible to do this with ExecuteScript/ExecuteScriptChunk.
     if (oVersus != OBJECT_SELF)
     {
@@ -1407,8 +1431,11 @@ int GetImmunityTypeFromSavingThrowType(int nSaveType)
 
 // Check and do immunity for the given immunity type.
 // It also provides feedback to the given creatures if valid.
+// If nImmunityType is IMMUNITY_TYPE_NONE this automatically fails (ie they're not immune).
 int GetIsImmuneWithFeedback(object oCreature, int nImmunityType, object oVersus = OBJECT_INVALID)
 {
+    if (nImmunityType == IMMUNITY_TYPE_NONE) return FALSE;
+
     if (GetIsImmune(oCreature, nImmunityType, oVersus))
     {
         // Send some feedback
@@ -1597,6 +1624,72 @@ void ApplySpellEffectAtLocation(int nDurationType, effect eEffect, location lTar
         OP_Debug("[ApplySpellEffectToObject] Error: Non-Temporary duration but fDuration is: " + FloatToString(fDuration), LOG_LEVEL_ERROR);
 
     ApplyEffectAtLocation(nDurationType, EffectChangeProperties(eEffect, nSpellId, nCasterLevel, oCaster), lTarget, fDuration);
+}
+
+// Applies the given Beam/Ray effect to oTarget. Does it as an unyielding effect so even if they die it'll persist.
+// - nBeam - visualeffects.2da line (is checked if it is a beam). Use VFX_NONE if you don't want this to do anything.
+// - oTarget - Target of the beam
+// - bMissEffect - Beam hits or not
+// - nBodyPart - BODY_NODE_* the beam hits (default: HAND)
+// - fDuration - If 0.0 it isues the nSpellId's spells.2da CastTime value to look proper
+// - oEffector - The source of the beam. Defaults to oCaster if invalid.
+void ApplyBeamToObject(int nBeam, object oTarget, int bMissEffect = FALSE, int nBodyPart = BODY_NODE_HAND, float fDuration = 0.0, object oEffector = OBJECT_INVALID)
+{
+    if (nBeam == VFX_NONE) return;
+    // Validate nBeam value can be a beam
+    if (Get2DAString("visualeffects", "Type_FD", nBeam) != "B") { OP_Debug("[ApplyBeamToObject] VFX is not Beam type: " + IntToString(nBeam), LOG_LEVEL_ERROR); return; }
+    // Technically nBodyPart can be invalid (and thus default to ground/root of the target) but we'll try and keep it sane enough for now
+    if (nBodyPart < 0 || nBodyPart > 11) { OP_Debug("[ApplyBeamToObject] Target nBodyPart is invalid: " + IntToString(nBodyPart), LOG_LEVEL_ERROR); return; }
+
+    // Get duration from spells.2da
+    if (fDuration == 0.0)
+    {
+        // Cast time is in miliseconds
+        string sCastTime = Get2DAString("spells", "CastTime", nSpellId);
+
+        if (sCastTime != "")
+        {
+            fDuration = StringToFloat(sCastTime) / 1000.0;
+        }
+        else
+        {
+            OP_Debug("[ApplyBeamToObject] Cannot find valid CastTime for the duration for nSpellId: " + IntToString(nSpellId), LOG_LEVEL_ERROR);
+            return;
+        }
+    }
+    if (!GetIsObjectValid(oEffector)) oEffector = oCaster;
+
+    effect eBeam = UnyieldingEffect(EffectBeam(nBeam, oEffector, nBodyPart, bMissEffect));
+
+    // We never apply this permanently
+    ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eBeam, oTarget, fDuration);
+}
+
+// Applies the given VFX effect to oTarget.
+// - nVFX - visualeffects.2da line (cannot be a Beam type). Use VFX_NONE to have this function be ignored.
+// - oTarget - Target of the VFX
+// - bMissEffect - VFX hits or not
+// - fDuration - If 0.0 it applies it instantly, or applies it for a given duration.
+// Usual scale and translate values as well.
+void ApplyVisualEffectToObject(int nVFX, object oTarget, int bMissEffect = FALSE, float fDuration = 0.0, float fScale=1.0f, vector vTranslate=[0.0,0.0,0.0], vector vRotate=[0.0,0.0,0.0])
+{
+    if (nVFX == VFX_NONE) return;
+
+    // Validate VFX
+    string sType = Get2DAString("visualeffects", "Type_FD", nVFX);
+    if (sType == "" || sType == "B") { OP_Debug("[ApplyVisualEffectToObject] VFX invalid or a Beam type: " + IntToString(nVFX), LOG_LEVEL_ERROR); return; }
+
+    effect eVFX = EffectVisualEffect(nVFX, bMissEffect, fScale, vTranslate, vRotate);
+
+    // Apply VFX
+    if (fDuration <= 0.0)
+    {
+        ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVFX, oTarget);
+    }
+    else
+    {
+        ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eVFX, oTarget, fDuration);
+    }
 }
 
 // Applies the given item property to the given item.
