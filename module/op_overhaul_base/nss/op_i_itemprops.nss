@@ -44,9 +44,7 @@
 // Debugs the given item and it's properties
 void DebugItemProperties(object oItem);
 
-// This checks if we can add a given item property to ipProperty. It will:
-// * Check and remove any spell Ids that match on the target weapon
-// * Always remove any matching properties of the same type/subtype/durationtype
+// This checks if we can add a given item property to ipProperty. It check these things:
 // * Do not apply the effect if it is of a certain type (On Hit property types)
 //   where already one of that type already exists.
 int GetCanApplySafeItemProperty(object oItem, itemproperty ipProperty);
@@ -155,9 +153,7 @@ void DebugItemProperties(object oItem)
     }
 }
 
-// This checks if we can add a given item property to ipProperty. It will:
-// * Check and remove any spell Ids that match on the target weapon
-// * Always remove any matching properties of the same type/subtype/durationtype
+// This checks if we can add a given item property to ipProperty. It check these things:
 // * Do not apply the effect if it is of a certain type (On Hit property types)
 //   where already one of that type already exists.
 int GetCanApplySafeItemProperty(object oItem, itemproperty ipProperty)
@@ -201,10 +197,12 @@ int ApplySafeItemProperty(object oItem, itemproperty ipProperty, float fDuration
     }
 
     // Remove any that match the type but are temporary
-    RemoveItemMatchingItemProperty(oItem, ipProperty);
+    int nRemoved = RemoveItemMatchingItemProperty(oItem, ipProperty);
+
+    SpeakString("nRemoved = " + IntToString(nRemoved));
 
     // Remove any that match the spell Id
-    RemoveItemPropertiesMatchingSpellId(oItem, nSpellId);
+    //RemoveItemPropertiesMatchingSpellId(oItem, nSpellId);
 
     ApplyItemProperty(oItem, ipProperty, fDuration, nSpellId, oCaster, nCasterLevel, nSpellSaveDC, nMetaMagic);
 
@@ -215,8 +213,12 @@ int ApplySafeItemProperty(object oItem, itemproperty ipProperty, float fDuration
 // Can be used to add 2 properties to an item of the same type if used after ApplySafeItemProperty().
 void ApplyItemProperty(object oItem, itemproperty ipProperty, float fDuration, int nSpellId, object oCaster, int nCasterLevel, int nSpellSaveDC, int nMetaMagic)
 {
+    // No debug messages since we can use this on invalid properties (they just don't apply)
+    if (!GetIsItemPropertyValid(ipProperty)) return;
+    if (fDuration <= 0.0) return;
+
     // Add metadata
-    ApplyItemPropertyTaggedInfo(ipProperty, nSpellId, oCaster, nCasterLevel, nSpellSaveDC, nMetaMagic);
+    ipProperty = ApplyItemPropertyTaggedInfo(ipProperty, nSpellId, oCaster, nCasterLevel, nSpellSaveDC, nMetaMagic);
 
     // Apply it
     AddItemProperty(DURATION_TYPE_TEMPORARY, ipProperty, oItem, fDuration);
@@ -271,11 +273,14 @@ int RemoveItemMatchingItemProperty(object oItem, itemproperty ipProperty)
     int nAmount = 0;
     json jArrayOfSpellIds = JsonArray();
 
+    SpeakString("RemoveItemMatchingItemProperty");
+    DebugItemProperties(oItem);
+
     itemproperty ipCheck = GetFirstItemProperty(oItem);
     while (GetIsItemPropertyValid(ipCheck))
     {
-        if (GetItemPropertyType(ipCheck) == nType &&
-            GetItemPropertyDurationType(ipCheck) == DURATION_TYPE_TEMPORARY)
+        if (GetItemPropertyDurationType(ipCheck) == DURATION_TYPE_TEMPORARY &&
+            GetItemPropertyType(ipCheck) == nType)
         {
             RemoveItemProperty(oItem, ipCheck);
 

@@ -66,7 +66,7 @@ void main()
         break;
     }
 
-    if (GetIsObjectValid(oTarget))
+    if (GetIsObjectValid(oTarget) && GetObjectType(oTarget) == OBJECT_TYPE_ITEM)
     {
         // Fire spell cast at something
         if (GetIsObjectValid(GetItemPossessor(oTarget)))
