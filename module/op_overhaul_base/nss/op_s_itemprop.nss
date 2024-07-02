@@ -13,10 +13,17 @@
     spell to a creature.
 
     Flame Weapon
-    1d4 points of fire damage +1 per caster level to a maximum of +10.
+    1d6 points of fire damage.
 
-    Darkfire
-
+    Blackstaff
+    Quaterstaff or Magical Staff only:
+    - Gives it a +4 enhancement bonus.
+    - On striking a creature, dispel magic is cast on the target (caster check
+      of 1d20 + 10).
+    - On striking a creature, if they fail a Will save and SR check, then one
+      prepared spell (or one unused spell slot, for spellcasters who do not
+      prepare spells) of the highest spell level available will be unreadied
+      and unavailable to cast.
 
 */
 //:://////////////////////////////////////////////
@@ -45,23 +52,16 @@ void main()
         case SPELL_FLAME_WEAPON:
             oTarget = GetMeleeWeaponToCastSpellOn(oTarget, nSpellId);
             nVis = VFX_IMP_PULSE_FIRE;
-            // We apply 2 damage properties, one for the random damage and one for the static damage
             ipProperty1 = ItemPropertyVisualEffect(ITEM_VISUAL_FIRE);
-            ipProperty2 = ItemPropertyDamageBonus(DAMAGE_TYPE_FIRE, IP_CONST_DAMAGEBONUS_1d4);
-            // Sort by caster level for the +1-10
-            switch (nCasterLevel)
-            {
-                case 1: ipProperty3 = ItemPropertyDamageBonus(DAMAGE_TYPE_FIRE, IP_CONST_DAMAGEBONUS_1); break;
-                case 2: ipProperty3 = ItemPropertyDamageBonus(DAMAGE_TYPE_FIRE, IP_CONST_DAMAGEBONUS_2); break;
-                case 3: ipProperty3 = ItemPropertyDamageBonus(DAMAGE_TYPE_FIRE, IP_CONST_DAMAGEBONUS_3); break;
-                case 4: ipProperty3 = ItemPropertyDamageBonus(DAMAGE_TYPE_FIRE, IP_CONST_DAMAGEBONUS_4); break;
-                case 5: ipProperty3 = ItemPropertyDamageBonus(DAMAGE_TYPE_FIRE, IP_CONST_DAMAGEBONUS_5); break;
-                case 6: ipProperty3 = ItemPropertyDamageBonus(DAMAGE_TYPE_FIRE, IP_CONST_DAMAGEBONUS_6); break;
-                case 7: ipProperty3 = ItemPropertyDamageBonus(DAMAGE_TYPE_FIRE, IP_CONST_DAMAGEBONUS_7); break;
-                case 8: ipProperty3 = ItemPropertyDamageBonus(DAMAGE_TYPE_FIRE, IP_CONST_DAMAGEBONUS_8); break;
-                case 9: ipProperty3 = ItemPropertyDamageBonus(DAMAGE_TYPE_FIRE, IP_CONST_DAMAGEBONUS_9); break;
-                default: ipProperty3 = ItemPropertyDamageBonus(DAMAGE_TYPE_FIRE, IP_CONST_DAMAGEBONUS_10); break;
-            }
+            ipProperty2 = ItemPropertyDamageBonus(IP_CONST_DAMAGETYPE_FIRE, IP_CONST_DAMAGEBONUS_1d6);
+            fDuration = GetDuration(nCasterLevel, MINUTES);
+        break;
+        case SPELL_BLACKSTAFF:
+            oTarget = GetItemToCastSpellOn(oTarget, BASE_ITEM_MAGICSTAFF, nSpellId, BASE_ITEM_QUARTERSTAFF);
+            nVis = VFX_IMP_EVIL_HELP;
+            ipProperty1 = ItemPropertyVisualEffect(ITEM_VISUAL_EVIL);
+            ipProperty2 = ItemPropertyEnhancementBonus(4);
+            ipProperty3 = ItemPropertyOnHitCastSpell(IP_CONST_ONHIT_CASTSPELL_ONHIT_BLACKSTAFF, nCasterLevel);
             fDuration = GetDuration(nCasterLevel, MINUTES);
         break;
     }
@@ -79,13 +79,23 @@ void main()
             GetCanApplySafeItemProperty(oTarget, ipProperty2) &&
             GetCanApplySafeItemProperty(oTarget, ipProperty3))
         {
-            // Apply them
+            // Apply them (but only clear effects using the first one)
             ApplySafeItemProperty(oTarget, ipProperty1, fDuration, nSpellId, oCaster, nCasterLevel, nSpellSaveDC, nMetaMagic);
             ApplyItemProperty(oTarget, ipProperty2, fDuration, nSpellId, oCaster, nCasterLevel, nSpellSaveDC, nMetaMagic);
             ApplyItemProperty(oTarget, ipProperty3, fDuration, nSpellId, oCaster, nCasterLevel, nSpellSaveDC, nMetaMagic);
 
             // VFX?
-            if (nVis != VFX_INVALID) ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(nVis), GetItemPossessor(oTarget));
+            if (nVis != VFX_INVALID)
+            {
+                if (GetIsObjectValid(GetItemPossessor(oTarget)))
+                {
+                    ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(nVis), GetItemPossessor(oTarget));
+                }
+                else
+                {
+                    ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(nVis), oTarget);
+                }
+            }
         }
     }
 }

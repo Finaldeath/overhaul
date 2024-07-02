@@ -19,6 +19,9 @@ const int EFFECT_TYPE_ALL = -1;
 const int MAX_INT = 2147483647;
 const float MAX_FLOAT = 9999999.0;
 
+// iprp_onhitspell.2da
+const int IP_CONST_ONHIT_CASTSPELL_ONHIT_BLACKSTAFF = 141;
+
 // effecticons.2da
 const int EFFECT_ICON_GENERIC_DECREASE          = 130;
 const int EFFECT_ICON_GENERIC_INCREASE          = 131;

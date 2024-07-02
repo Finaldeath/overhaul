@@ -85,7 +85,7 @@ object GetEquippableItemToCastSpellOn(object oTarget, int nSpellId);
 
 // Gets an appropriate item (either oTarget, or something oTarget has equipped) without nSpellId
 // Will provide automatic feedback to OBJECT_SELF (assumed caster) if nothing is found.
-object GetItemToCastSpellOn(object oTarget, int nBaseItemType, int nSpellId);
+object GetItemToCastSpellOn(object oTarget, int nBaseItemType, int nSpellId, int nBaseItemType2 = -1, int nBaseItemType3 = -1);
 
 // Dispels magical item properties on oItem
 // Note: This will attempt to just dispel all present item properties since this should
@@ -407,13 +407,15 @@ object GetEquippableItemToCastSpellOn(object oTarget, int nSpellId)
 
 // Gets an appropriate item (either oTarget, or something oTarget has equipped) without nSpellId
 // Will provide automatic feedback to OBJECT_SELF (assumed caster) if nothing is found.
-object GetItemToCastSpellOn(object oTarget, int nBaseItemType, int nSpellId)
+object GetItemToCastSpellOn(object oTarget, int nBaseItemType, int nSpellId, int nBaseItemType2 = -1, int nBaseItemType3 = -1)
 {
     // Does oTarget itself match?
     if (GetObjectType(oTarget) == OBJECT_TYPE_ITEM)
     {
         // If directly targeted it doesn't matter if it's already got the spell Id
-        if (GetBaseItemType(oTarget) == nBaseItemType)
+        if (GetBaseItemType(oTarget) == nBaseItemType ||
+            GetBaseItemType(oTarget) == nBaseItemType2 ||
+            GetBaseItemType(oTarget) == nBaseItemType3)
         {
             return oTarget;
         }
@@ -426,16 +428,24 @@ object GetItemToCastSpellOn(object oTarget, int nBaseItemType, int nSpellId)
         {
             object oItem = GetItemInSlot(nSlot, oTarget);
 
-            if (GetIsObjectValid(oItem) &&
-                GetBaseItemType(oItem) == nBaseItemType &&
-               !GetItemHasSpellCastOnIt(oItem, nSpellId))
+            if (GetIsObjectValid(oItem))
             {
-                return oItem;
+                if (GetBaseItemType(oItem) == nBaseItemType ||
+                    GetBaseItemType(oItem) == nBaseItemType2 ||
+                    GetBaseItemType(oItem) == nBaseItemType3)
+                {
+                    if (!GetItemHasSpellCastOnIt(oItem, nSpellId)) return oItem;
+                }
             }
         }
     }
     // Failure message
-    SendMessageToPC(OBJECT_SELF, "* Spell failed - Target must be a " + GetStringByStrRef(StringToInt(Get2DAString("baseitems", "Name", nBaseItemType))) + " type item or be a creature with one equipped *");
+    string sItemNames = GetStringByStrRef(StringToInt(Get2DAString("baseitems", "Name", nBaseItemType)));
+
+    if (nBaseItemType2 != -1) sItemNames += " or " + GetStringByStrRef(StringToInt(Get2DAString("baseitems", "Name", nBaseItemType2)));
+    if (nBaseItemType3 != -1) sItemNames += " or " + GetStringByStrRef(StringToInt(Get2DAString("baseitems", "Name", nBaseItemType3)));
+
+    SendMessageToPC(OBJECT_SELF, "* Spell failed - Target must be a " + sItemNames + " type item or be a creature with one equipped *");
     return OBJECT_INVALID;
 }
 

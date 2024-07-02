@@ -5711,7 +5711,7 @@
       "Description": {
         "Index": 3762,
         "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 8\nInnate Level: 8\nSchool: Transmutation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Creature holding quarterstaff or item (quarterstaff)\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: Will Special; see text\nSpell Resistance: Yes\n\nCasting this spell on a quarterstaff will do the following:\n- Gives it a \u002B4 enhancement bonus.\n- On striking a creature, dispel magic is cast on the target (caster check of 1d20 \u002B 10).\r\n- On striking a creature, if they fail a Will save and SR check, then one prepared spell (or one unused spell slot, for spellcasters who do not prepare spells) of the highest spell level available will be unreadied and unavailable to cast.\r\n\nThe spell will not work on any other weapon than a quarterstaff or magical staff, but you can target another creature to affect a staff they are holding.",
+          "M": "Caster Level(s): Wizard / Sorcerer 8\nInnate Level: 8\nSchool: Transmutation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Creature holding quarterstaff or item (quarterstaff, magical staff)\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: Will Special; see text\nSpell Resistance: Yes\n\nCasting this spell on a quarterstaff will do the following:\n- Gives it a \u002B4 enhancement bonus.\n- On striking a creature, dispel magic is cast on the target (caster check of 1d20 \u002B 10).\r\n- On striking a creature, if they fail a Will save and SR check, then one prepared spell (or one unused spell slot, for spellcasters who do not prepare spells) of the highest spell level available will be unreadied and unavailable to cast.\r\n\nThe spell will not work on any other weapon than a quarterstaff or magical staff, but you can target another creature to affect a staff they are holding.",
           "F": "Caster Level(s): Wizard / Sorcerer 8\nInnate Level: 8\nSchool: Transmutation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Creature holding quarterstaff or item (quarterstaff)\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: No\nSpell Resistance: Yes\n\nCasting this spell on a quarterstaff will do the following:\n- Gives it a \u002B4 enhancement bonus.\n- On striking a creature, dispel magic is cast on the target.\n\nThe spell will not work on any other weapon than a quarterstaff"
         },
         "FR": {
@@ -5751,7 +5751,7 @@
         "Creature",
         "Item"
       ],
-      "ImpactScript": "X2_S0_Blckstff",
+      "ImpactScript": "op_s_itemprop",
       "InnateLevel": 8,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -5760,7 +5760,7 @@
       "ConjurationGroundEffect": null,
       "ConjurationSound": "sco_atomgren",
       "ConjurationMaleSound": "vs_chant_ench_hm",
-      "ConjurationFemaleSound": "vs_chant_ench_lf",
+      "ConjurationFemaleSound": "vs_chant_ench_hf",
       "CastingAnimation": "Self",
       "CastTime": 1000,
       "CastingHeadEffect": null,
@@ -5769,10 +5769,10 @@
       "CastingSound": null,
       "HasProjectile": false,
       "ProjectileModel": null,
-      "ProjectileType": null,
-      "ProjectileSpawnPoint": null,
+      "ProjectileType": "Homing",
+      "ProjectileSpawnPoint": "Hand",
       "ProjectileSound": null,
-      "ProjectileOrientation": null,
+      "ProjectileOrientation": "Path",
       "SubSpell1": null,
       "SubSpell2": null,
       "SubSpell3": null,
@@ -5814,7 +5814,8 @@
       "Description": {
         "Index": null,
         "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 8\nInnate Level: 8\nSchool: Transmutation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Creature holding quarterstaff or item (quarterstaff)\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: Will Special; see text\nSpell Resistance: Yes\n\nCasting this spell on a quarterstaff will do the following:\n- Gives it a \u002B4 enhancement bonus.\n- On striking a creature, dispel magic is cast on the target (caster check of 1d20 \u002B 10).\r\n- On striking a creature, if they fail a Will save and SR check, then one prepared spell (or one unused spell slot, for spellcasters who do not prepare spells) of the highest spell level available will be unreadied and unavailable to cast.\r\n\nThe spell will not work on any other weapon than a quarterstaff or magical staff, but you can target another creature to affect their staff, or give them a staff powered with this enchantment to use."
+          "M": "- On striking a creature, dispel magic is cast on the target (caster check of 1d20 \u002B 10).\r\n- On striking a creature, if they fail a Will save and SR check, then one prepared spell (or one unused spell slot, for spellcasters who do not prepare spells) of the highest spell level available will be unreadied and unavailable to cast.",
+          "F": "Caster Level(s): Wizard / Sorcerer 8\nInnate Level: 8\nSchool: Transmutation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Creature holding quarterstaff or item (quarterstaff)\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: Will Special; see text\nSpell Resistance: Yes\n\nCasting this spell on a quarterstaff will do the following:\n- Gives it a \u002B4 enhancement bonus.\n- On striking a creature, dispel magic is cast on the target (caster check of 1d20 \u002B 10).\r\n- On striking a creature, if they fail a Will save and SR check, then one prepared spell (or one unused spell slot, for spellcasters who do not prepare spells) of the highest spell level available will be unreadied and unavailable to cast.\r\n\nThe spell will not work on any other weapon than a quarterstaff or magical staff, but you can target another creature to affect their staff, or give them a staff powered with this enchantment to use."
         }
       },
       "AlternativeCastMessage": {
@@ -5822,7 +5823,7 @@
       },
       "Icon": "is_x2blckstff",
       "School": "T",
-      "Range": "T",
+      "Range": "P",
       "Components": [],
       "AvailableMetaMagic": [],
       "TargetTypes": [],
@@ -5861,7 +5862,7 @@
       "Type": "Other",
       "UseConcentration": false,
       "IsCastSpontaneously": false,
-      "IsHostile": false,
+      "IsHostile": true,
       "CounterSpell1": null,
       "CounterSpell2": null,
       "HasProjectileVisuals": false,
@@ -12449,7 +12450,7 @@
       "Description": {
         "Index": 3782,
         "EN": {
-          "M": "Caster Level(s): Cleric 3\nInnate Level: 3\nSchool: Evocation\nDescriptor(s): Fire\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Creature, Melee Weapon\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nThis spell allows the caster to immolate a melee weapon. The weapon will do 1d6 \u002B1 per two caster levels (maximum of \u002B10) of fire damage on a successful hit. This damage is not affected by a critical hit on an attack roll.\r\n\r\nThe caster can either target a specific melee weapon in their inventory or a creature to enchant the weapon the creature is wielding. Only melee weapons will be affected, not ranged weapons, creature claws or unarmed attacks.",
+          "M": "Caster Level(s): Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Evocation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Melee Weapon or Creature with equipped Melee Weapon\nDuration: 1 Minute / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nSets a melee weapon aflame, granting 1d6 points of fire damage.\r\n\r\nThe caster can either target a specific melee weapon in their inventory or a creature to enchant the weapon the creature is wielding. Only melee weapons will be affected, not ranged weapons, creature claws or unarmed attacks.",
           "F": "Caster Level(s): Cleric 3\nInnate Level: 3\nSchool: Evocation\nDescriptor(s): Fire\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Creature, Melee Weapon\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nThis spell allows the caster to immolate a non-magical weapon. The weapon will do 1d6  points of damage, \u002B1 per two caster levels (maximum of \u002B10) of fire damage. The caster can either target a specific melee weapon in his inventory or a creature to enchant the weapon the creature is wielding.\n"
         },
         "FR": {
@@ -27766,7 +27767,7 @@
       "Description": {
         "Index": 3764,
         "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Evocation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Melee Weapon or Creature with equipped Melee Weapon\nDuration: 1 Minute / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nSets a melee weapon aflame, granting 1d4 points of fire damage \u002B1 per caster level to a maximum of \u002B10. This damage is not affected by a critical hit on an attack roll.\r\n\r\nThe caster can either target a specific melee weapon in their inventory or a creature to enchant the weapon the creature is wielding. Only melee weapons will be affected, not ranged weapons, creature claws or unarmed attacks.",
+          "M": "Caster Level(s): Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Evocation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Melee Weapon or Creature with equipped Melee Weapon\nDuration: 1 Minute / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nSets a melee weapon aflame, granting \u002B1d6 points of fire damage.\r\n\r\nThe caster can either target a specific melee weapon in their inventory or a creature to enchant the weapon the creature is wielding. Only melee weapons will be affected, not ranged weapons, creature claws or unarmed attacks.",
           "F": "Caster Level(s): Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Evocation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Creature or Melee Weapon\nDuration: 1 Minute / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nSets a melee weapon aflame, granting 1d4 points of fire damage \u002B1 per caster level to a maximum of \u002B10. You can target a specific weapon or a creature with this spell.\n"
         },
         "FR": {
