@@ -114,7 +114,7 @@ int GetSpellIsHostile(int nSpellIdToCheck);
 
 // This calculates the spell save DC for the given spell adding in bonuses and penalties as required
 // For a AOE it uses the stored DC.
-int GetSpellSaveDCCalculated(object oCaster, int nSpellIdToCheck);
+int GetSpellSaveDCCalculated(object oCaster, int nSpellIdToCheck, object oCastItem, int nSpellType);
 
 // This calculates the spell caster level for any additional bonuses due to feats or similar.
 // For a AOE it uses the stored caster level.
@@ -401,7 +401,7 @@ location lTarget = GetSpellTargetLocationCalculated(oTarget);
 int nSpellId     = GetSpellIdCalculated();
 int nSpellType   = GetSpellType(nSpellId);
 int nSpellSchool = GetSpellSchool(nSpellId);
-int nSpellSaveDC = GetSpellSaveDCCalculated(oCaster, nSpellId);
+int nSpellSaveDC = GetSpellSaveDCCalculated(oCaster, nSpellId, oCastItem, nSpellType);
 int nCasterLevel = GetCasterLevelCalculated(oCaster, nSpellId);
 int nMetaMagic   = GetMetaMagicFeatCalculated();
 int nCasterClass = GetLastSpellCastClassCalculated();
@@ -474,7 +474,7 @@ object GetSpellCastItemCalculated()
     {
         if (!GetIsObjectValid(GetEffectCreator(GetLastRunScriptEffect())))
         {
-            OP_Debug("[GetSpellCaster] Invalid caster for run script. Applied script?", LOG_LEVEL_ERROR);
+            OP_Debug("[GetSpellCaster] Invalid cast item for run script. Applied script?", LOG_LEVEL_ERROR);
         }
         return OBJECT_INVALID; // TODO
     }
@@ -564,12 +564,30 @@ int GetSpellIsHostile(int nSpellIdToCheck)
 
 // This calculates the spell save DC for the given spell adding in bonuses and penalties as required
 // For a AOE it uses the stored DC on the AOE object then uses oCaster to change the value.
-int GetSpellSaveDCCalculated(object oCaster, int nSpellIdToCheck)
+int GetSpellSaveDCCalculated(object oCaster, int nSpellIdToCheck, object oCastItem, int nSpellType)
 {
     if (nSpellIdToCheck == SPELL_INVALID) return 0;
 
+    if (GetIsObjectValid(oCastItem) && nSpellType == SPELL_TYPE_ITEM_POWER)
+    {
+        // Find the On Hit: Cast Spell property if available
+        itemproperty ipCheck = GetFirstItemProperty(oCastItem);
+        while (GetIsItemPropertyValid(ipCheck))
+        {
+            if (GetItemPropertyType(ipCheck) == ITEM_PROPERTY_ONHITCASTSPELL)
+            {
+                int nSaveDC = GetItemPropertySpellSaveDC(ipCheck);
+
+                if (nSaveDC > 0) return nSaveDC;
+            }
+            ipCheck = GetNextItemProperty(oCastItem);
+        }
+
+        // Default back to base spell save DC if for some reason not found
+        return GetSpellSaveDC();
+    }
     // Run script stores the save DC
-    if (GetLastRunScriptEffectScriptType() != 0)
+    else if (GetLastRunScriptEffectScriptType() != 0)
     {
         return GetRunScriptSpellSaveDC(GetLastRunScriptEffect());
     }
