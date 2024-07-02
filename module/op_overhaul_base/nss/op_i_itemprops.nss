@@ -30,7 +30,8 @@ void DebugItemProperties(object oItem);
 // Dispels magical item properties on oItem
 // Note: This will attempt to just dispel all present item properties since this should
 // only be called when it's targeted on a single creature or an item on the ground/in inventory
-// - bCreatureItem - If set the 4 creature items get the item properties removed, but only oItem is checked
+// - bCreatureItem - If set oItem is ignored (although the possessor is used) and it gets one of
+//   the creature items to remove things from, and applies it to the other 2.
 int DispelMagicalItemProperties(object oItem, object oCaster, int nCasterLevel, int bCreatureItem = FALSE);
 
 // Returns TRUE if there are any item properties matching the given property
@@ -144,7 +145,7 @@ int DispelMagicalItemProperties(object oItem, object oCaster, int nCasterLevel, 
     itemproperty ipCheck = GetFirstItemProperty(oItem);
     while (GetIsItemPropertyValid(ipCheck))
     {
-        // Check if it's magical, ie from a spell
+        // Check if it's magical, ie from a spell (ie not assassins poison or some other nonmagical effect)
         int nSpellId = GetItemPropertySpellId(ipCheck);
         if (nSpellId != SPELL_INVALID && !GetArrayMatchesInt(jIgnoreArray, nSpellId))
         {

@@ -206,7 +206,7 @@ void SendDispelMagicFeedback(object oCaster, object oTarget, json jArrayOfSpellI
     }
     if (GetIsObjectValid(oTarget))
     {
-        SendMessageToPC(oCaster, FEEDBACK_COLOUR_MAGIC + GetStringByStrRef(STRREF_DISPEL_MAGIC) + FEEDBACK_COLOUR_END + " : " + GetNameOrSomeone(oTarget) + " : " + FEEDBACK_COLOUR_MAGIC + sSpellNames + FEEDBACK_COLOUR_END);
+        SendMessageToPC(oTarget, FEEDBACK_COLOUR_MAGIC + GetStringByStrRef(STRREF_DISPEL_MAGIC) + FEEDBACK_COLOUR_END + " : " + GetNameOrSomeone(oTarget) + " : " + FEEDBACK_COLOUR_MAGIC + sSpellNames + FEEDBACK_COLOUR_END);
     }
 }
 
@@ -224,6 +224,16 @@ void SendDispelMagicFeedbackForItem(object oCaster, object oItem, json jArrayOfS
         sSpellNames += GetStringByStrRef(StringToInt(Get2DAString("spells", "Name", nSpellId)));
     }
 
+    // For item names we use the base item name not the "real name" (like for NPCs it'd show
+    // "Balor Weapon" or something equally unseen). Also helps hide things a little even if the target is a PC.
+    // For creature weapons we use just "Creature Item" for better or worse. Maybe improve later.
+    int nBaseItemType = GetBaseItemType(oItem);
+    if (nBaseItemType == BASE_ITEM_CPIERCWEAPON ||
+        nBaseItemType == BASE_ITEM_CSLASHWEAPON ||
+        nBaseItemType == BASE_ITEM_CSLSHPRCWEAP) nBaseItemType = BASE_ITEM_CREATUREITEM;
+
+    string sItemName = FEEDBACK_COLOUR_OTHERNAME + GetStringByStrRef(StringToInt(Get2DAString("baseitems", "Name", nBaseItemType))) + FEEDBACK_COLOUR_END;
+
     object oTarget = GetItemPossessor(oItem);
     // Possessed item
     if (GetIsObjectValid(oTarget))
@@ -231,11 +241,11 @@ void SendDispelMagicFeedbackForItem(object oCaster, object oItem, json jArrayOfS
         // Caster version
         if (GetIsObjectValid(oCaster))
         {
-            SendMessageToPC(oCaster, FEEDBACK_COLOUR_MAGIC + GetStringByStrRef(STRREF_DISPEL_MAGIC) + FEEDBACK_COLOUR_END + " : " + GetNameOrSomeone(oItem) + " (possessed by " + GetNameOrSomeone(oTarget, oCaster) + ") : " + FEEDBACK_COLOUR_MAGIC + sSpellNames + FEEDBACK_COLOUR_END);
+            SendMessageToPC(oCaster, FEEDBACK_COLOUR_MAGIC + GetStringByStrRef(STRREF_DISPEL_MAGIC) + FEEDBACK_COLOUR_END + " : " + sItemName + " (possessed by " + GetNameOrSomeone(oTarget, oCaster) + ") : " + FEEDBACK_COLOUR_MAGIC + sSpellNames + FEEDBACK_COLOUR_END);
         }
         if (GetIsObjectValid(oTarget))
         {
-            SendMessageToPC(oCaster, FEEDBACK_COLOUR_MAGIC + GetStringByStrRef(STRREF_DISPEL_MAGIC) + FEEDBACK_COLOUR_END + " : " + GetNameOrSomeone(oTarget) + " (possessed by " + GetNameOrSomeone(oTarget) + ") : " + FEEDBACK_COLOUR_MAGIC + sSpellNames + FEEDBACK_COLOUR_END);
+            SendMessageToPC(oTarget, FEEDBACK_COLOUR_MAGIC + GetStringByStrRef(STRREF_DISPEL_MAGIC) + FEEDBACK_COLOUR_END + " : " + sItemName + " (possessed by " + GetNameOrSomeone(oTarget) + ") : " + FEEDBACK_COLOUR_MAGIC + sSpellNames + FEEDBACK_COLOUR_END);
         }
     }
     // Item on the ground or something else
@@ -244,7 +254,7 @@ void SendDispelMagicFeedbackForItem(object oCaster, object oItem, json jArrayOfS
         // Caster version only
         if (GetIsObjectValid(oCaster))
         {
-            SendMessageToPC(oCaster, FEEDBACK_COLOUR_MAGIC + GetStringByStrRef(STRREF_DISPEL_MAGIC) + FEEDBACK_COLOUR_END + " : " + GetNameOrSomeone(oItem, oCaster) + " : " + FEEDBACK_COLOUR_MAGIC + sSpellNames + FEEDBACK_COLOUR_END);
+            SendMessageToPC(oCaster, FEEDBACK_COLOUR_MAGIC + GetStringByStrRef(STRREF_DISPEL_MAGIC) + FEEDBACK_COLOUR_END + " : " + GetNameOrSomeone(oItem) + " : " + FEEDBACK_COLOUR_MAGIC + sSpellNames + FEEDBACK_COLOUR_END);
         }
     }
 }

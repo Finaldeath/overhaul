@@ -38,7 +38,7 @@ void main()
     // Single target or AOE?
     if (GetIsObjectValid(oTarget))
     {
-        DoDispelMagic(oTarget, nCasterLevel, eVis, 0.0, FALSE, bBreach);
+        DoDispelMagic(oTarget, nCasterLevel, eVis, 0.0, TRUE, bBreach);
     }
     else
     {
