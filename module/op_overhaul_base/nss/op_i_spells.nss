@@ -240,10 +240,6 @@ void ApplyBeamToObject(int nBeam, object oTarget, int bMissEffect = FALSE, int n
 // Usual scale and translate values as well.
 void ApplyVisualEffectToObject(int nVFX, object oTarget, int bMissEffect = FALSE, float fDuration = 0.0, float fScale=1.0f, vector vTranslate=[0.0,0.0,0.0], vector vRotate=[0.0,0.0,0.0]);
 
-// Applies the given item property to the given item.
-// All existing item properties with a tag matching the spell ID are removed.
-void ApplySpellItemPropertyToItem(int nDurationType, itemproperty ipProperty, object oItem, float fDuration = 0.0);
-
 // Signals a spell cast event.
 // By default if the default parameters are used then the global automatically
 // generated values are used instead.
@@ -1609,17 +1605,6 @@ void ApplyVisualEffectToObject(int nVFX, object oTarget, int bMissEffect = FALSE
     }
 }
 
-// Applies the given item property to the given item.
-// All existing item properties with a tag matching the spell ID are removed.
-void ApplySpellItemPropertyToItem(int nDurationType, itemproperty ipProperty, object oItem, float fDuration = 0.0)
-{
-    // Remove existing tagged
-    RemoveItemPropertiesMatchingSpellId(oItem, nSpellId);
-
-    // Apply tag to find it later
-    ipProperty = ApplyItemPropertyTaggedInfo(ipProperty, nSpellId, oCaster, nCasterLevel, nSpellSaveDC, nMetaMagic);
-    AddItemProperty(nDurationType, ipProperty, oItem, fDuration);
-}
 
 // Signals a spell cast event.
 // By default if the default parameters are used then the global automatically
@@ -2265,9 +2250,6 @@ int GetEffectTaggedSpontaneous(effect eEffect)
 {
     return GetJsonMetadataIntField(GetEffectTag(eEffect), JSON_FIELD_SPONTANEOUS, 0);
 }
-
-
-// This retrieves the given JSON_FIELD_ from the given effect, if present. Else a default value is returned.
 
 // Returns the effect used to track item properties and removes them when this effect is removed
 // Uses the spell ID of this effect to track this.

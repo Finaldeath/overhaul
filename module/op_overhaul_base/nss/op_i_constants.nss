@@ -16,6 +16,9 @@ const int SPELL_ANY = -2; // Since GetEffectSpellId can return -1
 const int SPELL_INVALID = -1;
 const int EFFECT_TYPE_ALL = -1;
 
+const int MAX_INT = 2147483647;
+const float MAX_FLOAT = 9999999.0;
+
 // effecticons.2da
 const int EFFECT_ICON_GENERIC_DECREASE          = 130;
 const int EFFECT_ICON_GENERIC_INCREASE          = 131;
@@ -42,6 +45,7 @@ const int EFFECT_ICON_CURSE_SONG                = 151;
 const int EFFECT_ICON_BONUS_FEAT                = 152;
 
 // visualeffects.2da
+const int VFX_INVALID                       = -1;
 const int VFX_DUR_LEAF                      = 132; // Wide leaf VFX used in SoU Heurodis final fight
 const int VFX_FNF_CLOUD                     = 133; // Clouds going upwards (ie as if the ground was falling) in SoU Heurodis final fight when she dies, and Beholder appearing in Chapter 1 HotU
 const int VFX_FNF_WIND                      = 134; // White lines randomly going directly upwards (ie if ground was falling) in SoU Heurodis final fight and some random bits of HotU like teleports

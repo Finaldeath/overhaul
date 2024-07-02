@@ -52,8 +52,7 @@ void main()
         jObject = JsonObjectSet(jObject, "objectid", JsonString(ObjectToString(oItem)));
         jArray = JsonArrayInsert(jArray, jObject);
 
-        bApplied = TRUE;
-        ApplySpellItemPropertyToItem(DURATION_TYPE_TEMPORARY, ipBonus, oItem, fDuration);
+        bApplied += ApplySafeItemProperty(oItem, ipBonus, fDuration, nSpellId, oCaster, nCasterLevel, nSpellSaveDC, nMetaMagic);
     }
 
     oItem = GetItemInSlot(INVENTORY_SLOT_CWEAPON_L, oTarget);
@@ -65,8 +64,7 @@ void main()
         jObject = JsonObjectSet(jObject, "objectid", JsonString(ObjectToString(oItem)));
         jArray = JsonArrayInsert(jArray, jObject);
 
-        bApplied = TRUE;
-        ApplySpellItemPropertyToItem(DURATION_TYPE_TEMPORARY, ipBonus, oItem, fDuration);
+        bApplied += ApplySafeItemProperty(oItem, ipBonus, fDuration, nSpellId, oCaster, nCasterLevel, nSpellSaveDC, nMetaMagic);
     }
 
     oItem = GetItemInSlot(INVENTORY_SLOT_CWEAPON_R, oTarget);
@@ -78,8 +76,7 @@ void main()
         jObject = JsonObjectSet(jObject, "objectid", JsonString(ObjectToString(oItem)));
         jArray = JsonArrayInsert(jArray, jObject);
 
-        bApplied = TRUE;
-        ApplySpellItemPropertyToItem(DURATION_TYPE_TEMPORARY, ipBonus, oItem, fDuration);
+        bApplied += ApplySafeItemProperty(oItem, ipBonus, fDuration, nSpellId, oCaster, nCasterLevel, nSpellSaveDC, nMetaMagic);
     }
     if (bApplied == TRUE)
     {

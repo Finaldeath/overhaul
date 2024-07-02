@@ -10662,7 +10662,7 @@
       "Description": {
         "Index": 522,
         "EN": {
-          "M": "Caster Level(s): Cleric 3,  Wizard / Sorcerer 2\nInnate Level: 3\nSchool: Illusion\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single Creature or Item\nDuration: Permanent\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\r\n\nThis creates a magical flame that burns as bright as a torch until dispelled. It can be cast on any item that can be equipped to create a permanent source of light.",
+          "M": "Caster Level(s): Cleric 3,  Wizard / Sorcerer 2\nInnate Level: 3\nSchool: Evocation\nDescriptor(s): Light\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Item or targeted creatures equipped items\nDuration: Permanent\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\r\n\nThis creates a magical flame that burns as bright as a torch until dispelled. It can be cast on any item that can be equipped to create a permanent source of light. If targeting a creature one of their equipped items will be targeted instead.",
           "F": "Caster Level(s): Cleric 3,  Wizard / Sorcerer 2\nInnate Level: 3\nSchool: Illusion\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single Creature or Item\nDuration: Permanent\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\nThis creates a magical flame that burns as bright as a torch until dispelled. It can be cast on any item that can be equipped to create a permanent source of light."
         },
         "FR": {
@@ -10701,7 +10701,7 @@
         "Creature",
         "Item"
       ],
-      "ImpactScript": "x0_s0_clight",
+      "ImpactScript": "op_s_itemprop",
       "InnateLevel": 2,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",
@@ -27766,7 +27766,7 @@
       "Description": {
         "Index": 3764,
         "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Evocation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Creature or Melee Weapon\nDuration: 1 Minute / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nSets a melee weapon aflame, granting 1d4 points of fire damage \u002B1 per caster level to a maximum of \u002B10. This damage is not affected by a critical hit on an attack roll.\r\n\r\nThe caster can either target a specific melee weapon in their inventory or a creature to enchant the weapon the creature is wielding. Only melee weapons will be affected, not ranged weapons, creature claws or unarmed attacks.",
+          "M": "Caster Level(s): Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Evocation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Melee Weapon or Creature with equipped Melee Weapon\nDuration: 1 Minute / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nSets a melee weapon aflame, granting 1d4 points of fire damage \u002B1 per caster level to a maximum of \u002B10. This damage is not affected by a critical hit on an attack roll.\r\n\r\nThe caster can either target a specific melee weapon in their inventory or a creature to enchant the weapon the creature is wielding. Only melee weapons will be affected, not ranged weapons, creature claws or unarmed attacks.",
           "F": "Caster Level(s): Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Evocation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Creature or Melee Weapon\nDuration: 1 Minute / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nSets a melee weapon aflame, granting 1d4 points of fire damage \u002B1 per caster level to a maximum of \u002B10. You can target a specific weapon or a creature with this spell.\n"
         },
         "FR": {
@@ -27806,7 +27806,7 @@
         "Creature",
         "Item"
       ],
-      "ImpactScript": "X2_S0_FlmeWeap",
+      "ImpactScript": "op_s_itemprop",
       "InnateLevel": 2,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
