@@ -72,8 +72,9 @@ int GetItemHasSpellCastOnIt(object oItem, int nSpellId);
 int RemoveItemMatchingItemProperty(object oItem, itemproperty ipProperty);
 
 // Gets an appropriate melee weapon (either oTarget, or something oTarget has equipped) without nSpellId
+// - nDamageType - if set needs to have at least one of the matching damage types as well
 // Will provide automatic feedback to OBJECT_SELF (assumed caster) if nothing is found.
-object GetMeleeWeaponToCastSpellOn(object oTarget, int nSpellId);
+object GetMeleeWeaponToCastSpellOn(object oTarget, int nSpellId, int nDamageType = -1);
 
 // Gets an appropriate ranged weapon (either oTarget, or something oTarget has equipped) without nSpellId
 // Will provide automatic feedback to OBJECT_SELF (assumed caster) if nothing is found.
@@ -303,9 +304,26 @@ int RemoveItemMatchingItemProperty(object oItem, itemproperty ipProperty)
     return nAmount;
 }
 
+// Move to utl_i_item at some stage
+
+// Returns TRUE if the base damage done by oItem matches nDamageType.
+// Doesn't check for item properties adding extra damage types.
+int GetItemDoesDamageType(object oItem, int nDamageType)
+{
+    switch (StringToInt(Get2DAString("baseitems", "WeaponType", GetBaseItemType(oItem))))
+    {
+        case 1: if (nDamageType == DAMAGE_TYPE_PIERCING) return TRUE; break; // 1 = Piercing
+        case 2: if (nDamageType == DAMAGE_TYPE_BLUDGEONING) return TRUE; break; // 2 = Bludgeoning
+        case 3: if (nDamageType == DAMAGE_TYPE_SLASHING) return TRUE; break; // 3 = Slashing
+        case 4: if (nDamageType == DAMAGE_TYPE_SLASHING || nDamageType == DAMAGE_TYPE_PIERCING) return TRUE; break; // 4 = Slashing and Piercing
+        case 5: if (nDamageType == DAMAGE_TYPE_PIERCING || nDamageType == DAMAGE_TYPE_BLUDGEONING) return TRUE; break; // 5 = Piercing and Bludgeoning
+    }
+    return FALSE;
+}
+
 // Gets an appropriate melee weapon (either oTarget, or something oTarget has equipped) without nSpellId
 // Will provide automatic feedback to OBJECT_SELF (assumed caster) if nothing is found.
-object GetMeleeWeaponToCastSpellOn(object oTarget, int nSpellId)
+object GetMeleeWeaponToCastSpellOn(object oTarget, int nSpellId, int nDamageType = -1)
 {
     // Does oTarget itself match?
     if (GetObjectType(oTarget) == OBJECT_TYPE_ITEM)
@@ -313,7 +331,10 @@ object GetMeleeWeaponToCastSpellOn(object oTarget, int nSpellId)
         // If directly targeted it doesn't matter if it's already got the spell Id
         if (GetItemIsMelee(oTarget))
         {
-            return oTarget;
+            if (nDamageType == -1 || GetItemDoesDamageType(oTarget, nDamageType))
+            {
+                return oTarget;
+            }
         }
     }
     // Check equipped items
@@ -326,14 +347,40 @@ object GetMeleeWeaponToCastSpellOn(object oTarget, int nSpellId)
 
             if (GetItemIsMelee(oItem) && !GetItemHasSpellCastOnIt(oItem, nSpellId))
             {
-                return oItem;
+                if (nDamageType == -1 || GetItemDoesDamageType(oItem, nDamageType))
+                {
+                    return oItem;
+                }
             }
         }
     }
 
     // Failure message
-    // 83615 * Spell Failed - Target must be a melee weapon or creature with a melee weapon equipped *
-    SendMessageToPCByStrRef(OBJECT_SELF, 83615);
+    if (nDamageType == DAMAGE_TYPE_SLASHING)
+    {
+        // 83621 * Invalid Target - This spell must be cast on a slashing weapon *
+        SendMessageToPCByStrRef(OBJECT_SELF, 83621);
+    }
+    else if (nDamageType != -1)
+    {
+        string sDamage;
+        if (nDamageType == DAMAGE_TYPE_PIERCING)
+        {
+            sDamage = "piercing";
+        }
+        else
+        {
+            sDamage = "bludgeoning";
+        }
+        SendMessageToPC(OBJECT_SELF, "* Spell failed - Target weapon must be a " + sDamage + " type melee item or be a creature with one equipped *");
+
+    }
+    else
+    {
+        // 83615 * Spell Failed - Target must be a melee weapon or creature with a melee weapon equipped *
+        SendMessageToPCByStrRef(OBJECT_SELF, 83615);
+    }
+
     return OBJECT_INVALID;
 }
 

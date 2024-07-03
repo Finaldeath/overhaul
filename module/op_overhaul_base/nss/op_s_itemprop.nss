@@ -25,6 +25,8 @@
       prepare spells) of the highest spell level available will be unreadied
       and unavailable to cast.
 
+    Blade Thirst
+    +3 Enchantment Bonus, Blue VFX (for now use Cold)
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -63,6 +65,29 @@ void main()
             ipProperty2 = ItemPropertyEnhancementBonus(4);
             ipProperty3 = ItemPropertyOnHitCastSpell(IP_CONST_ONHIT_CASTSPELL_ONHIT_BLACKSTAFF, nCasterLevel);
             fDuration = GetDuration(nCasterLevel, MINUTES);
+        break;
+        case SPELL_BLADE_THIRST:
+            oTarget = GetMeleeWeaponToCastSpellOn(oTarget, nSpellId, DAMAGE_TYPE_SLASHING);
+            nVis = VFX_IMP_SUPER_HEROISM;
+            ipProperty1 = ItemPropertyVisualEffect(ITEM_VISUAL_COLD); // TODO Update VFX
+            ipProperty2 = ItemPropertyEnhancementBonus(3);
+            fDuration = GetDuration(nCasterLevel, ROUNDS);
+        break;
+        case SPELL_BLESS_WEAPON:
+            // Two choices for target: Directly targeting some bolts, or targeting a melee weapon
+            if (GetBaseItemType(oTarget) == BASE_ITEM_BOLT)
+            {
+                ipProperty1 = ItemPropertyOnHitCastSpell(IP_CONST_ONHIT_CASTSPELL_ONHIT_SLAYRAKSHASA, 1);
+            }
+            else
+            {
+                oTarget = GetMeleeWeaponToCastSpellOn(oTarget, nSpellId);
+                ipProperty1 = ItemPropertyVisualEffect(ITEM_VISUAL_HOLY);
+                ipProperty2 = ItemPropertyEnhancementBonus(1);
+                ipProperty3 = ItemPropertyDamageBonusVsRace(IP_CONST_RACIALTYPE_UNDEAD, IP_CONST_DAMAGETYPE_DIVINE, IP_CONST_DAMAGEBONUS_2d6);
+            }
+            nVis = VFX_IMP_SUPER_HEROISM;
+            fDuration = GetDuration(nCasterLevel, ROUNDS);
         break;
     }
 
