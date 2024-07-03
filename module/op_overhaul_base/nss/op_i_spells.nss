@@ -167,7 +167,7 @@ int GetAssayResistanceBonus(object oTarget, object oCaster);
 int DoTouchAttack(object oTarget, object oVersus, int nType, int bDisplayFeedback = TRUE);
 
 // Applies Dispel Magic to the given target (Area of Effects are also handled, as are Summoned Creatures)
-void DoDispelMagic(object oTarget, int nCasterLevel, effect eVis, float fDelay, int bAll, int bBreach = FALSE);
+void DoDispelMagic(object oTarget, int nCasterLevel, int nVis = VFX_INVALID, float fDelay = 0.0, int bAll = TRUE, int bBreach = FALSE);
 
 // Performs a spell breach up to nTotal spell are removed and nSR spell resistance is lowered.
 void DoSpellBreach(object oTarget, int nTotal, int nSR, int bVFX = TRUE);
@@ -1006,7 +1006,7 @@ int DoTouchAttack(object oTarget, object oVersus, int nType, int bDisplayFeedbac
 }
 
 // Applies Dispel Magic to the given target (Area of Effects are also handled, items on the ground as well, as are Summoned Creatures)
-void DoDispelMagic(object oTarget, int nCasterLevel, effect eVis, float fDelay, int bAll, int bBreach = FALSE)
+void DoDispelMagic(object oTarget, int nCasterLevel, int nVis = VFX_INVALID, float fDelay = 0.0, int bAll = TRUE, int bBreach = FALSE)
 {
     // Similar to Biowares both for compatibility and it makes sense.
 
@@ -1112,20 +1112,23 @@ void DoDispelMagic(object oTarget, int nCasterLevel, effect eVis, float fDelay, 
             for (nSlot = 0; nSlot < NUM_INVENTORY_SLOTS; nSlot++)
             {
                 object oItem = GetItemInSlot(nSlot, oTarget);
-                // Creature item slot L/R/B pass first valid one in
-                if (nSlot == INVENTORY_SLOT_CWEAPON_L ||
-                    nSlot == INVENTORY_SLOT_CWEAPON_R ||
-                    nSlot == INVENTORY_SLOT_CWEAPON_B)
+                if (GetIsObjectValid(oItem))
                 {
-                    if (!bDoneCreatureWeapons)
+                    // Creature item slot L/R/B pass first valid one in
+                    if (nSlot == INVENTORY_SLOT_CWEAPON_L ||
+                        nSlot == INVENTORY_SLOT_CWEAPON_R ||
+                        nSlot == INVENTORY_SLOT_CWEAPON_B)
                     {
-                        DispelMagicalItemProperties(oItem, oCaster, nCasterLevel, TRUE);
-                        bDoneCreatureWeapons = TRUE;
+                        if (!bDoneCreatureWeapons)
+                        {
+                            DispelMagicalItemProperties(oItem, oCaster, nCasterLevel, TRUE);
+                            bDoneCreatureWeapons = TRUE;
+                        }
                     }
-                }
-                else
-                {
-                    DispelMagicalItemProperties(oItem, oCaster, nCasterLevel);
+                    else
+                    {
+                        DispelMagicalItemProperties(oItem, oCaster, nCasterLevel);
+                    }
                 }
             }
         }
@@ -1144,7 +1147,7 @@ void DoDispelMagic(object oTarget, int nCasterLevel, effect eVis, float fDelay, 
         }
     }
 
-    DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
+    if (nVis != VFX_INVALID) DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(nVis), oTarget));
     DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, eDispel, oTarget));
 }
 

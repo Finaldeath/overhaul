@@ -33,12 +33,12 @@ void main()
         case SPELL_MORDENKAINENS_DISJUNCTION: nCasterLevel = min(nCasterLevel, 40); bBreach = TRUE; break;
     }
 
-    effect eVis = EffectVisualEffect(VFX_IMP_HEAD_SONIC);
+    int nVis = VFX_IMP_HEAD_SONIC;
 
     // Single target or AOE?
     if (GetIsObjectValid(oTarget))
     {
-        DoDispelMagic(oTarget, nCasterLevel, eVis, 0.0, TRUE, bBreach);
+        DoDispelMagic(oTarget, nCasterLevel, nVis, 0.0, TRUE, bBreach);
     }
     else
     {
@@ -51,7 +51,7 @@ void main()
         {
             oTarget = GetArrayObject(jArray, nIndex);
             float fDelay = GetDistanceBetweenLocations(lTarget, GetLocation(oTarget))/20;
-            DoDispelMagic(oTarget, nCasterLevel, eVis, fDelay, FALSE, bBreach);
+            DoDispelMagic(oTarget, nCasterLevel, nVis, fDelay, FALSE, bBreach);
         }
     }
 }
