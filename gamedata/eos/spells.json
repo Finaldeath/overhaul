@@ -13012,7 +13012,7 @@
       "Description": {
         "Index": 3751,
         "EN": {
-          "M": "Caster Level(s): Paladin 1\nInnate Level: 1\nSchool: Transmutation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Creature or Melee Weapon\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nYou empower a weapon with a \u002B1 attack bonus and a \u002B3 sonic damage bonus. Also, the weapon gains the ability to deafen the creature that is struck like a thunderstone (DC 15 Fortitude save to avoid deafness, 5 round duration) once per round. The attack bonus will not stack with an existing enhancement bonus or holy avenger properties.\r\n\r\nThe caster can either target a specific melee weapon in their inventory or a creature to enchant the weapon the creature is wielding. Only melee weapons will be affected, not ranged weapons, creature claws or unarmed attacks.",
+          "M": "Caster Level(s): Paladin 1\nInnate Level: 1\nSchool: Transmutation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Melee Weapon or Creature with equipped Melee Weapon\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nYou empower a melee weapon with a \u002B1 attack bonus and a \u002B3 sonic damage bonus. Also, the weapon gains the ability to deafen the creature that is struck like a thunderstone (DC 15 Fortitude save to avoid deafness, 5 round duration) once per round. The attack bonus will not stack with an existing enhancement bonus or holy avenger properties. If the target item has an existing On Hit property it will not apply.\r\n\r\nThe caster can either target a specific melee weapon in their inventory or a creature to enchant the weapon the creature is wielding. Only melee weapons will be affected, not ranged weapons, creature claws or unarmed attacks.",
           "F": "Caster Level(s): Paladin 1\nInnate Level: 1\nSchool: Transmutation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Creature, Melee Weapon\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nYou empower a weapon with a \u002B1 attack bonus and a \u002B3 sonic damage bonus. Also, the weapon gains the ability to deafen the creature that is struck like a thunderstone . The attack bonus will not stack with an existing enhancement bonus or holy avenger properties.\n"
         },
         "FR": {
@@ -13052,7 +13052,7 @@
         "Creature",
         "Item"
       ],
-      "ImpactScript": "X2_S0_DeafClng",
+      "ImpactScript": "op_s_itemprop",
       "InnateLevel": 1,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -13153,7 +13153,7 @@
         "Placeable",
         "Trigger"
       ],
-      "ImpactScript": "X2_S3_deafclng",
+      "ImpactScript": "op_ip_deafclang",
       "InnateLevel": 1,
       "ConjurationTime": 0,
       "ConjuringAnimation": "Hand",
@@ -31148,7 +31148,7 @@
       "Description": {
         "Index": 3770,
         "EN": {
-          "M": "Caster Level(s): Bard 3, Cleric 4, Paladin 3, Wizard / Sorcerer 3\nInnate Level: 3\nSchool: Transmutation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Melee Weapon or Creature with equipped Melee Weapon\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nYou empower the touched melee weapon with a \u002B1 enhancement bonus per 3 caster levels (maximum of \u002B5). You can either directly target the weapon you want to cast this spell on, or you can target a creature, affecting the creature\u0027s main melee weapon.",
+          "M": "Caster Level(s): Bard 3, Cleric 4, Paladin 3, Wizard / Sorcerer 3\nInnate Level: 3\nSchool: Transmutation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Melee Weapon or Creature with equipped Melee Weapon\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nYou empower the touched melee weapon with a \u002B1 enhancement bonus per 4 caster levels (maximum of \u002B5). You can either directly target the weapon you want to cast this spell on, or you can target a creature, affecting the creature\u0027s main melee weapon.",
           "F": "Caster Level(s): Bard 3, Cleric 4, Paladin 3, Wizard / Sorcerer 3\nInnate Level: 3\nSchool: Transmutation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Creature or  Melee Weapon\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nYou empower the touched weapon with a \u002B1 enhancement bonus per 3 caster levels (maximum of \u002B5). You can either directly target the weapon you want to cast this spell on, or you can target a creature, affecting the creature\u0027s main hand weapon."
         },
         "FR": {
@@ -39846,7 +39846,7 @@
       "Description": {
         "Index": 3758,
         "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 3, Bard 3\nInnate Level: 3\nSchool: Transmutation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Creature or Slashing Weapon\nDuration: 10 Minutes / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nAdds the Keen property to the targeted slashing melee weapon, increasing its critical threat range. You can also target another creature to enchant its worn slashing melee weapon.",
+          "M": "Caster Level(s): Wizard / Sorcerer 3, Bard 3\nInnate Level: 3\nSchool: Transmutation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Slashing or Piercing Melee Weapon or Creature with equipped with one\nDuration: 10 Minutes / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nAdds the Keen property to the targeted slashing or piercing melee weapon, increasing its critical threat range. You can also target another creature to enchant its worn slashing or piercing melee weapon.",
           "F": "Caster Level(s): Wizard / Sorcerer 3, Bard 3\nInnate Level: 3\nSchool: Transmutation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Creature or Slashing Weapon\nDuration: 10 Minutes / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nAdds the Keen property to the targeted slashing melee weapon, increasing its critical threat range."
         },
         "FR": {
@@ -39886,7 +39886,7 @@
         "Creature",
         "Item"
       ],
-      "ImpactScript": "X2_S0_KeenEdge",
+      "ImpactScript": "op_s_itemprop",
       "InnateLevel": 3,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -42426,7 +42426,7 @@
       "Description": {
         "Index": 3772,
         "EN": {
-          "M": "Caster Level(s): Cleric 3\nInnate Level: 3\nSchool: Transmutation\nDescriptor(s): Armor Enchantment\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Creature, Armor or Shield\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nYou empower the touched armor or shield with a \u002B1 AC bonus per 3 caster levels (maximum of \u002B5). You can also target another creature to enchant its armor, or if they are not wearing any armor, their shield.",
+          "M": "Caster Level(s): Cleric 3\nInnate Level: 3\nSchool: Transmutation\nDescriptor(s): Armor Enchantment\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Creature, Armor or Shield\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nYou empower the touched armor or shield with a \u002B1 AC bonus per 4 caster levels (maximum of \u002B5). You can also target another creature to enchant its armor, or if they are not wearing any armor, their shield.",
           "F": "Caster Level(s): Cleric 3\nInnate Level: 3\nSchool: Transmutation\nDescriptor(s): Armor Enchantment\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Creature, Armor or Shield\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nYou empower the touched armor or shield with a \u002B1 AC bonus per 3 caster levels (maximum of \u002B5). "
         },
         "FR": {
@@ -42466,7 +42466,7 @@
         "Creature",
         "Item"
       ],
-      "ImpactScript": "X2_S0_MagcVest",
+      "ImpactScript": "op_s_itemprop",
       "InnateLevel": 3,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",

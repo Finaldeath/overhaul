@@ -26,7 +26,8 @@
       and unavailable to cast.
 
     Blade Thirst
-    +3 Enchantment Bonus, Blue VFX (for now use Cold)
+    +3 Enchantment Bonus on a slashing weapon, Blue VFX (for now use Cold) and
+    blue light.
 
     Bless Weapon
     +1 Enchantment and +2d6 vs Undead
@@ -37,7 +38,18 @@
     Magic Weapon
     +1 Enchantment
     Greater Magic Weapon
-    +1 / 3 caster levels (max +5).
+    +1 / 4 caster levels (max +5).
+
+    Magic Vestment
+    +1 AC bonus per 4 caster levels (maximum of +5) armor or shield
+
+    Keen Edge
+    Piercing or Slashing weapon add the Keen item property.
+
+    Deafening Clang
+    +1 attack bonus and a +3 sonic damage bonus, defening clang On Hit spell.
+    Sonic VFX.
+
 
 */
 //:://////////////////////////////////////////////
@@ -52,7 +64,7 @@ void main()
     if (DoSpellHook()) return;
 
     effect eVis;
-    itemproperty ipProperty1, ipProperty2, ipProperty3;
+    itemproperty ipProperty1, ipProperty2, ipProperty3, ipProperty4;
     float fDuration;
     int nVis = VFX_INVALID, bSpecialVFX = FALSE;
 
@@ -83,6 +95,7 @@ void main()
             nVis = VFX_IMP_SUPER_HEROISM;
             ipProperty1 = ItemPropertyVisualEffect(ITEM_VISUAL_COLD); // TODO Update VFX
             ipProperty2 = ItemPropertyEnhancementBonus(3);
+            ipProperty3 = ItemPropertyLight(IP_CONST_LIGHTBRIGHTNESS_BRIGHT, IP_CONST_LIGHTCOLOR_BLUE);
             fDuration = GetDuration(nCasterLevel, ROUNDS);
         break;
         case SPELL_BLESS_WEAPON:
@@ -117,9 +130,30 @@ void main()
         break;
         case SPELL_GREATER_MAGIC_WEAPON:
             oTarget = GetMeleeWeaponToCastSpellOn(oTarget, nSpellId);
-            ipProperty1 = ItemPropertyEnhancementBonus(min(5, nCasterLevel/3));
+            ipProperty1 = ItemPropertyEnhancementBonus(min(5, nCasterLevel/4));
             nVis = VFX_IMP_SUPER_HEROISM;
             fDuration = GetDuration(nCasterLevel, HOURS);
+        break;
+        case SPELL_MAGIC_VESTMENT:
+            oTarget = GetArmorOrShieldToCastSpellOn(oTarget, nSpellId, TRUE);
+            ipProperty1 = ItemPropertyACBonus(min(5, nCasterLevel/4));
+            nVis = VFX_IMP_GLOBE_USE;
+            fDuration = GetDuration(nCasterLevel, HOURS);
+        break;
+        case SPELL_KEEN_EDGE:
+            oTarget = GetMeleeWeaponToCastSpellOn(oTarget, nSpellId, DAMAGE_TYPE_PIERCING | DAMAGE_TYPE_SLASHING);
+            ipProperty1 = ItemPropertyKeen();
+            nVis = VFX_IMP_SUPER_HEROISM;
+            fDuration = GetDuration(nCasterLevel * 10, MINUTES);
+        break;
+        case SPELL_DEAFENING_CLANG:
+            oTarget = GetMeleeWeaponToCastSpellOn(oTarget, nSpellId);
+            ipProperty1 = ItemPropertyOnHitCastSpell(IP_CONST_ONHIT_CASTSPELL_DEAFENING_CLNG, 5);
+            ipProperty2 = ItemPropertyAttackBonus(1);
+            ipProperty3 = ItemPropertyDamageBonus(IP_CONST_DAMAGETYPE_SONIC, IP_CONST_DAMAGEBONUS_3);
+            ipProperty4 = ItemPropertyVisualEffect(ITEM_VISUAL_SONIC);
+            nVis = VFX_IMP_SUPER_HEROISM;
+            fDuration = GetDuration(nCasterLevel, ROUNDS);
         break;
         default:
             OP_Debug("[Item Property spells] No valid spell ID passed in: " + IntToString(nSpellId));
@@ -138,12 +172,14 @@ void main()
         // Check we can apply the item properties
         if (GetCanApplySafeItemProperty(oTarget, ipProperty1) &&
             GetCanApplySafeItemProperty(oTarget, ipProperty2) &&
-            GetCanApplySafeItemProperty(oTarget, ipProperty3))
+            GetCanApplySafeItemProperty(oTarget, ipProperty3) &&
+            GetCanApplySafeItemProperty(oTarget, ipProperty4))
         {
             // Apply them (but only clear effects using the first one)
             ApplySafeItemProperty(oTarget, ipProperty1, fDuration, nSpellId, oCaster, nCasterLevel, nSpellSaveDC, nMetaMagic);
             ApplyItemProperty(oTarget, ipProperty2, fDuration, nSpellId, oCaster, nCasterLevel, nSpellSaveDC, nMetaMagic);
             ApplyItemProperty(oTarget, ipProperty3, fDuration, nSpellId, oCaster, nCasterLevel, nSpellSaveDC, nMetaMagic);
+            ApplyItemProperty(oTarget, ipProperty4, fDuration, nSpellId, oCaster, nCasterLevel, nSpellSaveDC, nMetaMagic);
 
             // VFX?
             object oVFXTarget = oTarget;

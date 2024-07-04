@@ -15,17 +15,17 @@
 #include "utl_i_strings"
 
 // Colour codes
-const string FEEDBACK_COLOUR_FEEDBACK   = "<c\xff\xff\x1>";  // Yellow
-const string FEEDBACK_COLOUR_COMBAT     = "<c\xff\x66\x1>";  // Orange
-const string FEEDBACK_COLOUR_MAGIC      = "<c\xcc\x77\xff>"; // Purple
-const string FEEDBACK_COLOUR_SKILLS     = "<c\x1\x66\xff>";  // Dark Blue
-const string FEEDBACK_COLOUR_SAVING     = "<c\x66\xcc\xff>"; // Pale Blue
-const string FEEDBACK_COLOUR_SAVESTATUS = "<c\x20\xff\x20>"; // some kind of green.
-const string FEEDBACK_COLOUR_PAUSESTATE = "<c\xff\x01\x01>"; // bright red.
-const string FEEDBACK_COLOUR_CLIENTNAME = "<c\x99\xff\xff>"; // Cyan blue? (Client creature name)
-const string FEEDBACK_COLOUR_OTHERNAME  = "<c\xcc\x99\xcc>"; // Disgusting purple (other creature names)
-const string FEEDBACK_COLOUR_DRAIN      = "<c\xff\x1\x1>";   // horrifically sad, depressing, and draining red
-const string FEEDBACK_COLOUR_HINT       = "<c\xff\xff\x1>";  // For Loadscreen Hints. Yellow.
+const string FEEDBACK_COLOUR_FEEDBACK   = "<c\xFF\xFF\x01>"; // Yellow
+const string FEEDBACK_COLOUR_COMBAT     = "<c\xFF\x66\x01>"; // Orange
+const string FEEDBACK_COLOUR_MAGIC      = "<c\xCC\x77\xFF>"; // Purple
+const string FEEDBACK_COLOUR_SKILLS     = "<c\x01\x66\xFF>"; // Dark Blue
+const string FEEDBACK_COLOUR_SAVING     = "<c\x66\xCC\xFF>"; // Pale Blue
+const string FEEDBACK_COLOUR_SAVESTATUS = "<c\x20\xFF\x20>"; // some kind of green.
+const string FEEDBACK_COLOUR_PAUSESTATE = "<c\xFF\x01\x01>"; // bright red.
+const string FEEDBACK_COLOUR_CLIENTNAME = "<c\x99\xFF\xFF>"; // Cyan blue? (Client creature name)
+const string FEEDBACK_COLOUR_OTHERNAME  = "<c\xCC\x99\xCC>"; // Disgusting purple (other creature names)
+const string FEEDBACK_COLOUR_DRAIN      = "<c\xFF\x01\x01>"; // horrifically sad, depressing, and draining red
+const string FEEDBACK_COLOUR_HINT       = "<c\xFF\xFF\x01>"; // For Loadscreen Hints. Yellow.
 
 const string FEEDBACK_COLOUR_END = "</c>";
 

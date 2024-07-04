@@ -775,38 +775,36 @@ location GetSpellTargetLocationCalculated(object oTarget)
 int DoSavingThrow(object oTarget, object oSaveVersus, int nSavingThrow, int nDC, int nSaveType = SAVING_THROW_TYPE_NONE, float fDelay = 0.0)
 {
     // Sanity check
-    if (nDC < 1)
+    nDC = clamp(nDC, 1, 255);
+
+    if (nSaveType < 0 || nSaveType > SAVING_THROW_TYPE_PARALYSIS)
     {
-        nDC = 1;
-    }
-    else if (nDC > 255)
-    {
-        nDC = 255;
+        OP_Debug("[ERROR] DoSavingThrow: Invalid saving throw type specified: " + IntToString(nSavingThrow), LOG_LEVEL_ERROR);
     }
 
-    effect eVis;
+    int nVis = VFX_INVALID;
     int nResult = 0;
     if (nSavingThrow == SAVING_THROW_FORT)
     {
         nResult = FortitudeSave(oTarget, nDC, nSaveType, oSaveVersus);
         if (nResult == 1)
-            eVis = EffectVisualEffect(VFX_IMP_FORTITUDE_SAVING_THROW_USE);
+            nVis = VFX_IMP_FORTITUDE_SAVING_THROW_USE;
     }
     else if (nSavingThrow == SAVING_THROW_REFLEX)
     {
         nResult = ReflexSave(oTarget, nDC, nSaveType, oSaveVersus);
         if (nResult == 1)
-            eVis = EffectVisualEffect(VFX_IMP_REFLEX_SAVE_THROW_USE);
+            nVis = VFX_IMP_REFLEX_SAVE_THROW_USE;
     }
     else if (nSavingThrow == SAVING_THROW_WILL)
     {
         nResult = WillSave(oTarget, nDC, nSaveType, oSaveVersus);
         if (nResult == 1)
-            eVis = EffectVisualEffect(VFX_IMP_WILL_SAVING_THROW_USE);
+            nVis = VFX_IMP_WILL_SAVING_THROW_USE;
     }
     else
     {
-        OP_Debug("[ERROR] DoSavingThrow: Invalid saving throw specified.");
+        OP_Debug("[ERROR] DoSavingThrow: Invalid saving throw specified: " + IntToString(nSavingThrow) + " Auto failure.", LOG_LEVEL_ERROR);
     }
     // Apply VFX
     /*
@@ -818,7 +816,7 @@ int DoSavingThrow(object oTarget, object oSaveVersus, int nSavingThrow, int nDC,
     {
         if (nResult == 2)
         {
-            eVis = EffectVisualEffect(VFX_IMP_MAGIC_RESISTANCE_USE);
+            nVis = VFX_IMP_MAGIC_RESISTANCE_USE;
             // Provide some feedback formatted to the games method of showing immunity feedback
             // But we don't just fire the effect off - return 2 still that they're immune.
             int nImmunityType = GetImmunityTypeFromSavingThrowType(nSaveType);
@@ -828,7 +826,7 @@ int DoSavingThrow(object oTarget, object oSaveVersus, int nSavingThrow, int nDC,
                 SendImmunityFeedback(oSaveVersus, oTarget, nImmunityType);
             }
         }
-        DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
+        if (nVis != VFX_INVALID) DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
     }
     return nResult;
 }

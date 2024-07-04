@@ -72,13 +72,17 @@ int GetItemHasSpellCastOnIt(object oItem, int nSpellId);
 int RemoveItemMatchingItemProperty(object oItem, itemproperty ipProperty);
 
 // Gets an appropriate melee weapon (either oTarget, or something oTarget has equipped) without nSpellId
-// - nDamageType - if set needs to have at least one of the matching damage types as well
+// - nDamageType - if set needs to have at least one of the matching damage types as well. Can be DAMAGE_TYPE_PIERCING | DAMAGE_TYPE_SLASHING for either.
 // Will provide automatic feedback to OBJECT_SELF (assumed caster) if nothing is found.
 object GetMeleeWeaponToCastSpellOn(object oTarget, int nSpellId, int nDamageType = -1);
 
 // Gets an appropriate ranged weapon (either oTarget, or something oTarget has equipped) without nSpellId
 // Will provide automatic feedback to OBJECT_SELF (assumed caster) if nothing is found.
 object GetRangedWeaponToCastSpellOn(object oTarget, int nSpellId);
+
+// Gets an appropriate armor, and optinally shield (either oTarget, or something oTarget has equipped) without nSpellId
+// Will provide automatic feedback to OBJECT_SELF (assumed caster) if nothing is found.
+object GetArmorOrShieldToCastSpellOn(object oTarget, int nSpellId, int bAllowShields = TRUE);
 
 // Gets an appropriate equippable item (either oTarget, or something oTarget has equipped) without nSpellId
 // Will provide automatic feedback to OBJECT_SELF (assumed caster) if nothing is found.
@@ -309,16 +313,17 @@ int GetItemDoesDamageType(object oItem, int nDamageType)
 {
     switch (StringToInt(Get2DAString("baseitems", "WeaponType", GetBaseItemType(oItem))))
     {
-        case 1: if (nDamageType == DAMAGE_TYPE_PIERCING) return TRUE; break; // 1 = Piercing
-        case 2: if (nDamageType == DAMAGE_TYPE_BLUDGEONING) return TRUE; break; // 2 = Bludgeoning
-        case 3: if (nDamageType == DAMAGE_TYPE_SLASHING) return TRUE; break; // 3 = Slashing
-        case 4: if (nDamageType == DAMAGE_TYPE_SLASHING || nDamageType == DAMAGE_TYPE_PIERCING) return TRUE; break; // 4 = Slashing and Piercing
-        case 5: if (nDamageType == DAMAGE_TYPE_PIERCING || nDamageType == DAMAGE_TYPE_BLUDGEONING) return TRUE; break; // 5 = Piercing and Bludgeoning
+        case 1: if (nDamageType & DAMAGE_TYPE_PIERCING) return TRUE; break; // 1 = Piercing
+        case 2: if (nDamageType & DAMAGE_TYPE_BLUDGEONING) return TRUE; break; // 2 = Bludgeoning
+        case 3: if (nDamageType & DAMAGE_TYPE_SLASHING) return TRUE; break; // 3 = Slashing
+        case 4: if (nDamageType & DAMAGE_TYPE_SLASHING || nDamageType & DAMAGE_TYPE_PIERCING) return TRUE; break; // 4 = Slashing and Piercing
+        case 5: if (nDamageType & DAMAGE_TYPE_PIERCING || nDamageType & DAMAGE_TYPE_BLUDGEONING) return TRUE; break; // 5 = Piercing and Bludgeoning
     }
     return FALSE;
 }
 
 // Gets an appropriate melee weapon (either oTarget, or something oTarget has equipped) without nSpellId
+// - nDamageType - if set needs to have at least one of the matching damage types as well. Can be DAMAGE_TYPE_PIERCING | DAMAGE_TYPE_SLASHING for either.
 // Will provide automatic feedback to OBJECT_SELF (assumed caster) if nothing is found.
 object GetMeleeWeaponToCastSpellOn(object oTarget, int nSpellId, int nDamageType = -1)
 {
@@ -361,16 +366,22 @@ object GetMeleeWeaponToCastSpellOn(object oTarget, int nSpellId, int nDamageType
     else if (nDamageType != -1)
     {
         string sDamage;
-        if (nDamageType == DAMAGE_TYPE_PIERCING)
+        // Add each string
+        if (nDamageType & DAMAGE_TYPE_PIERCING)
         {
-            sDamage = "piercing";
+            sDamage += "piercing";
         }
-        else
+        if (nDamageType & DAMAGE_TYPE_SLASHING)
         {
-            sDamage = "bludgeoning";
+            if (GetStringLength(sDamage) > 0) sDamage += " or ";
+            sDamage += "slashing";
+        }
+        if (nDamageType & DAMAGE_TYPE_BLUDGEONING)
+        {
+            if (GetStringLength(sDamage) > 0) sDamage += " or ";
+            sDamage += "bludgeoning";
         }
         SendMessageToPC(OBJECT_SELF, "* Spell failed - Target weapon must be a " + sDamage + " type melee item or be a creature with one equipped *");
-
     }
     else
     {
@@ -411,6 +422,50 @@ object GetRangedWeaponToCastSpellOn(object oTarget, int nSpellId)
 
     // Failure message
     SendMessageToPC(OBJECT_SELF, "* Spell Failed - Target must be a ranged weapon or creature with a ranged weapon equipped *");
+    return OBJECT_INVALID;
+}
+
+// Gets an appropriate armor, and optinally shield (either oTarget, or something oTarget has equipped) without nSpellId
+// Will provide automatic feedback to OBJECT_SELF (assumed caster) if nothing is found.
+object GetArmorOrShieldToCastSpellOn(object oTarget, int nSpellId, int bAllowShields = TRUE)
+{
+    if(GetIsObjectValid(oTarget) && GetObjectType(oTarget) == OBJECT_TYPE_ITEM)
+    {
+        if (GetBaseItemType(oTarget) == BASE_ITEM_ARMOR)
+        {
+            return oTarget;
+        }
+        else
+        {
+            if ((bAllowShields) && (GetBaseItemType(oTarget) == BASE_ITEM_LARGESHIELD ||
+                                    GetBaseItemType(oTarget) == BASE_ITEM_SMALLSHIELD ||
+                                    GetBaseItemType(oTarget) == BASE_ITEM_TOWERSHIELD))
+            {
+                return oTarget;
+            }
+        }
+    }
+    else if (GetObjectType(oTarget) == OBJECT_TYPE_CREATURE)
+    {
+        object oArmor = GetItemInSlot(INVENTORY_SLOT_CHEST, oTarget);
+        if (GetIsObjectValid(oArmor) && GetBaseItemType(oArmor) == BASE_ITEM_ARMOR)
+        {
+            return oArmor;
+        }
+        if (bAllowShields)
+        {
+            oArmor = GetItemInSlot(INVENTORY_SLOT_LEFTHAND, oTarget);
+            if (GetIsObjectValid(oArmor) && (GetBaseItemType(oArmor) == BASE_ITEM_LARGESHIELD ||
+                                             GetBaseItemType(oArmor) == BASE_ITEM_SMALLSHIELD ||
+                                             GetBaseItemType(oArmor) == BASE_ITEM_TOWERSHIELD))
+            {
+                return oArmor;
+            }
+        }
+    }
+    // Failure message
+    // 83826 - * Spell Failed - Target must be a valid creature, armor or shield *
+    SendMessageToPCByStrRef(OBJECT_SELF, 83826);
     return OBJECT_INVALID;
 }
 
