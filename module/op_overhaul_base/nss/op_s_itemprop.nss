@@ -34,6 +34,10 @@
     Holy Sword
     Holy Avenger item property.
 
+    Magic Weapon
+    +1 Enchantment
+    Greater Magic Weapon
+    +1 / 3 caster levels (max +5).
 
 */
 //:://////////////////////////////////////////////
@@ -105,6 +109,18 @@ void main()
             // Apply a special VFX
             bSpecialVFX = TRUE;
         break;
+        case SPELL_MAGIC_WEAPON:
+            oTarget = GetMeleeWeaponToCastSpellOn(oTarget, nSpellId);
+            ipProperty1 = ItemPropertyEnhancementBonus(1);
+            nVis = VFX_IMP_SUPER_HEROISM;
+            fDuration = GetDuration(nCasterLevel, MINUTES);
+        break;
+        case SPELL_GREATER_MAGIC_WEAPON:
+            oTarget = GetMeleeWeaponToCastSpellOn(oTarget, nSpellId);
+            ipProperty1 = ItemPropertyEnhancementBonus(min(5, nCasterLevel/3));
+            nVis = VFX_IMP_SUPER_HEROISM;
+            fDuration = GetDuration(nCasterLevel, HOURS);
+        break;
         default:
             OP_Debug("[Item Property spells] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
@@ -137,6 +153,7 @@ void main()
             {
                 ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(nVis), oVFXTarget);
             }
+            // Holy Sword
             if (bSpecialVFX)
             {
                 TLVFXPillar(VFX_IMP_GOOD_HELP, GetLocation(oVFXTarget), 4, 0.0f, 6.0f);

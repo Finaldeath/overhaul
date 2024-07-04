@@ -200,10 +200,8 @@ int ApplySafeItemProperty(object oItem, itemproperty ipProperty, float fDuration
     // Remove any that match the type but are temporary
     int nRemoved = RemoveItemMatchingItemProperty(oItem, ipProperty);
 
-    SpeakString("nRemoved = " + IntToString(nRemoved));
-
     // Remove any that match the spell Id
-    //RemoveItemPropertiesMatchingSpellId(oItem, nSpellId);
+    RemoveItemPropertiesMatchingSpellId(oItem, nSpellId);
 
     ApplyItemProperty(oItem, ipProperty, fDuration, nSpellId, oCaster, nCasterLevel, nSpellSaveDC, nMetaMagic);
 
@@ -274,8 +272,7 @@ int RemoveItemMatchingItemProperty(object oItem, itemproperty ipProperty)
     int nAmount = 0;
     json jArrayOfSpellIds = JsonArray();
 
-    SpeakString("RemoveItemMatchingItemProperty");
-    DebugItemProperties(oItem);
+    //DebugItemProperties(oItem);
 
     itemproperty ipCheck = GetFirstItemProperty(oItem);
     while (GetIsItemPropertyValid(ipCheck))

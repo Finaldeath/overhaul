@@ -31148,7 +31148,7 @@
       "Description": {
         "Index": 3770,
         "EN": {
-          "M": "Caster Level(s): Bard 3, Cleric 4, Paladin 3, Wizard / Sorcerer 3\nInnate Level: 3\nSchool: Transmutation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Creature or Melee Weapon\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nYou empower the touched weapon with a \u002B1 enhancement bonus per 3 caster levels (maximum of \u002B5). You can either directly target the weapon you want to cast this spell on, or you can target a creature, affecting the creature\u0027s main melee weapon.",
+          "M": "Caster Level(s): Bard 3, Cleric 4, Paladin 3, Wizard / Sorcerer 3\nInnate Level: 3\nSchool: Transmutation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Melee Weapon or Creature with equipped Melee Weapon\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nYou empower the touched melee weapon with a \u002B1 enhancement bonus per 3 caster levels (maximum of \u002B5). You can either directly target the weapon you want to cast this spell on, or you can target a creature, affecting the creature\u0027s main melee weapon.",
           "F": "Caster Level(s): Bard 3, Cleric 4, Paladin 3, Wizard / Sorcerer 3\nInnate Level: 3\nSchool: Transmutation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Creature or  Melee Weapon\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nYou empower the touched weapon with a \u002B1 enhancement bonus per 3 caster levels (maximum of \u002B5). You can either directly target the weapon you want to cast this spell on, or you can target a creature, affecting the creature\u0027s main hand weapon."
         },
         "FR": {
@@ -31188,7 +31188,7 @@
         "Creature",
         "Item"
       ],
-      "ImpactScript": "X2_S0_GrMagWeap",
+      "ImpactScript": "op_s_itemprop",
       "InnateLevel": 3,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -42543,7 +42543,7 @@
       "Description": {
         "Index": 3768,
         "EN": {
-          "M": "Caster Level(s): Bard 1, Cleric 1, Paladin 1, Wizard / Sorcerer 1\nInnate Level: 1\nSchool: Transmutation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Melee Weapon or Creature\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nYou empower the touched melee weapon with a \u002B1 enhancement bonus. You can also target another creature to enchant its worn melee weapon.",
+          "M": "Caster Level(s): Bard 1, Cleric 1, Paladin 1, Wizard / Sorcerer 1\nInnate Level: 1\nSchool: Transmutation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Melee Weapon or Creature with equipped Melee Weapon\nDuration: 1 Minute / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nYou empower the touched melee weapon with a \u002B1 enhancement bonus. You can also target another creature to enchant its worn melee weapon.",
           "F": "Caster Level(s): Bard 1, Cleric 1, Paladin 1, Wizard / Sorcerer 1\nInnate Level: 1\nSchool: Transmutation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Melee Weapon or Creature\nDuration: 1 Hour / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nYou empower the touched weapon with a \u002B1 enhancement bonus. "
         },
         "FR": {
@@ -42583,7 +42583,7 @@
         "Creature",
         "Item"
       ],
-      "ImpactScript": "X2_S0_MagcWeap",
+      "ImpactScript": "op_s_itemprop",
       "InnateLevel": 1,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
