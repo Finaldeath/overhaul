@@ -35495,7 +35495,7 @@
       "Description": {
         "Index": 3756,
         "EN": {
-          "M": "Caster Level(s): Paladin 4\nInnate Level: 4\nSchool: Evocation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Melee Weapon or Creature\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nThis spell transforms the target\u0027s melee weapon into a powerful Holy Avenger, a specially blessed weapon that, when wielded by paladin, acts like a \u002B5 holy weapon that dispels magic on hit, delivers an additional \u002B1d6 divine damage against evil aligned creatures and grants the caster a spell resistance of 16.\r\n\r\nThe caster can either target a specific melee weapon in their inventory or a creature to enchant the weapon the creature is wielding. Only melee weapons will be affected, not ranged weapons, creature claws or unarmed attacks.",
+          "M": "Caster Level(s): Paladin 4\nInnate Level: 4\nSchool: Evocation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Melee Weapon or Creature with equipped Melee Weapon\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nThis spell transforms the target\u0027s melee weapon into a powerful Holy Avenger, a specially blessed weapon that, when wielded by paladin, acts like a \u002B5 holy weapon that dispels magic on hit, delivers an additional \u002B1d6 divine damage against evil aligned creatures and grants the caster a spell resistance of 16.\r\n\r\nThe caster can either target a specific melee weapon in their inventory or a creature to enchant the weapon the creature is wielding. Only melee weapons will be affected, not ranged weapons, creature claws or unarmed attacks.",
           "F": "Caster Level(s): Paladin 4\nInnate Level: 4\nSchool: Evocation\nDescriptor(s): Weapon Enchantment\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Melee or Creature\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nThis spell transforms the caster\u0027s melee weapon into a powerful Holy Avenger, a specially blessed weapon that, when wielded by paladin, acts like a \u002B5 holy weapon that dispels magic on hit, delivers an additional \u002B1d6 divine damage against evil aligned creatures and grants the caster a spell resistance of 16."
         },
         "FR": {
@@ -35535,7 +35535,7 @@
         "Creature",
         "Item"
       ],
-      "ImpactScript": "X2_S0_HolySwrd",
+      "ImpactScript": "op_s_itemprop",
       "InnateLevel": 4,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",

@@ -27,6 +27,14 @@
 
     Blade Thirst
     +3 Enchantment Bonus, Blue VFX (for now use Cold)
+
+    Bless Weapon
+    +1 Enchantment and +2d6 vs Undead
+
+    Holy Sword
+    Holy Avenger item property.
+
+
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -42,7 +50,7 @@ void main()
     effect eVis;
     itemproperty ipProperty1, ipProperty2, ipProperty3;
     float fDuration;
-    int nVis = VFX_INVALID;
+    int nVis = VFX_INVALID, bSpecialVFX = FALSE;
 
     switch (nSpellId)
     {
@@ -89,6 +97,18 @@ void main()
             nVis = VFX_IMP_SUPER_HEROISM;
             fDuration = GetDuration(nCasterLevel, ROUNDS);
         break;
+        case SPELL_HOLY_SWORD:
+            oTarget = GetMeleeWeaponToCastSpellOn(oTarget, nSpellId);
+            ipProperty1 = ItemPropertyHolyAvenger();
+            nVis = VFX_IMP_SUPER_HEROISM;
+            fDuration = GetDuration(nCasterLevel, ROUNDS);
+            // Apply a special VFX
+            bSpecialVFX = TRUE;
+        break;
+        default:
+            OP_Debug("[Item Property spells] No valid spell ID passed in: " + IntToString(nSpellId));
+            return;
+        break;
     }
 
     if (GetIsObjectValid(oTarget) && GetObjectType(oTarget) == OBJECT_TYPE_ITEM)
@@ -110,16 +130,17 @@ void main()
             ApplyItemProperty(oTarget, ipProperty3, fDuration, nSpellId, oCaster, nCasterLevel, nSpellSaveDC, nMetaMagic);
 
             // VFX?
+            object oVFXTarget = oTarget;
+            if (GetIsObjectValid(GetItemPossessor(oTarget))) oVFXTarget = GetItemPossessor(oTarget);
+
             if (nVis != VFX_INVALID)
             {
-                if (GetIsObjectValid(GetItemPossessor(oTarget)))
-                {
-                    ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(nVis), GetItemPossessor(oTarget));
-                }
-                else
-                {
-                    ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(nVis), oTarget);
-                }
+                ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(nVis), oVFXTarget);
+            }
+            if (bSpecialVFX)
+            {
+                TLVFXPillar(VFX_IMP_GOOD_HELP, GetLocation(oVFXTarget), 4, 0.0f, 6.0f);
+                DelayCommand(1.0f, ApplyEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_SUPER_HEROISM), GetLocation(oVFXTarget)));
             }
         }
     }

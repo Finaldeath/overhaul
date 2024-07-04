@@ -391,6 +391,10 @@ float GetSpellShapeSize(int nSpellId, int bX = TRUE);
 // CURRENTLY DOES NOT SUPPORT RETANGLES LIKE BLADE BARRIER OR WALL OF FIRE
 int GetIsTargetInAOEAtLocation(int nAOE, int nTargetType = SPELL_TARGET_SELECTIVEHOSTILE, location lCheckTarget = LOCATION_INVALID);
 
+// Create a rising or falling pillar with a certain visual effect. Looks cool
+// but quite expensive on the graphics engine, so don't get too mad with it
+void TLVFXPillar(int nVFX, location lStart, int nIterations=3, float fDelay=0.1f, float fZOffset= 6.0f, float fStepSize = -2.0f);
+
 
 // These global variables are used in most spell scripts and are initialised here to be consistent
 // NB: You can't reuse these variables in the very functions in this list, so we pass them in.
@@ -2442,3 +2446,27 @@ int GetIsTargetInAOEAtLocation(int nAOE, int nTargetType = SPELL_TARGET_SELECTIV
     return FALSE;
 }
 
+// Create a rising or falling pillar with a certain visual effect. Looks cool
+// but quite expensive on the graphics engine, so don't get too mad with it
+void TLVFXPillar(int nVFX, location lStart, int nIterations=3, float fDelay=0.1f, float fZOffset= 6.0f, float fStepSize = -2.0f)
+{
+    vector vLoc = GetPositionFromLocation(lStart);
+    vector vNew = vLoc;
+    vNew.z += fZOffset;
+    location lNew;
+    int nCount;
+
+    for (nCount=0; nCount < nIterations ; nCount ++)
+    {
+        lNew = Location(GetAreaFromLocation(lStart),vNew,0.0f);
+        if (fDelay > 0.0f)
+        {
+            DelayCommand(fDelay*nCount, ApplyEffectAtLocation(DURATION_TYPE_INSTANT,EffectVisualEffect(nVFX),lNew));
+        }
+        else
+        {
+            ApplyEffectAtLocation(DURATION_TYPE_INSTANT,EffectVisualEffect(nVFX),lNew);
+        }
+        vNew.z += fStepSize;
+     }
+}
