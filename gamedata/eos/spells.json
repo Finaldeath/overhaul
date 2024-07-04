@@ -26564,7 +26564,7 @@
       "Description": {
         "Index": 6544,
         "EN": {
-          "M": "Caster Level(s): Bard 3, Cleric 2, Wizard / Sorcerer 3\nInnate Level: 2\nSchool: Divination\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Colossal\nDuration: Instant\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nAll traps within the area of effect become known to the caster of this spell.",
+          "M": "Caster Level(s): Bard 3, Cleric 2, Wizard / Sorcerer 3\nInnate Level: 2\nSchool: Divination\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Colossal\nDuration: Instant\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nAll traps with a DC under 35 within the area of effect become known to the casters party.",
           "F": "Caster Level(s): Bard 3, Cleric 2, Wizard / Sorcerer 3\nInnate Level: 2\nSchool: Divination\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Colossal\nDuration: Instant\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nAll traps within the area of effect become known to the caster of this spell and are disarmed."
         },
         "FR": {
@@ -26603,7 +26603,7 @@
         "Self",
         "Item"
       ],
-      "ImpactScript": "NW_S0_FindTrap",
+      "ImpactScript": "op_s_findtraps",
       "InnateLevel": 3,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -26633,7 +26633,7 @@
       "SubSpell6": null,
       "SubSpell7": null,
       "SubSpell8": null,
-      "Category": "FriendlyEnhancementAoe",
+      "Category": null,
       "ParentSpell": null,
       "Type": "Spell",
       "UseConcentration": true,
