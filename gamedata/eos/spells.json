@@ -23526,7 +23526,7 @@
       "Description": {
         "Index": 1524,
         "EN": {
-          "M": "Caster Level(s): Cleric 8, Druid 9\nInnate Level: 8\nSchool: Evocation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Colossal\nDuration: Instant\nAdditional Counter Spells:\nSave: Reflex 1/2\nSpell Resistance: No\n\nThe caster causes a massive earthquake around himself, causing 10d6 points of bludgeoning damage to all creatures in the area of effect. If they fail the reflex save they are also knocked down for 3 rounds. The caster is not affected by the earthquake.",
+          "M": "Caster Level(s): Cleric 8, Druid 8\nInnate Level: 8\nSchool: Evocation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Colossal except Caster\nDuration: Instant\nAdditional Counter Spells:\nSave: Reflex 1/2 (see text)\nSpell Resistance: No\n\nThe caster causes a massive earthquake around themselves, causing 10d6 points of bludgeoning damage to all creatures in the area of effect. If they fail the reflex save they are also knocked down for 2 rounds.\r\n\r\nIn addition any spellcaster must make a concentration skill check (DC the spell save DC) or have 6 seconds of spell failure due to the moving earth, making them lose their current spell.\r\n\r\nThe caster is not affected by the earthquake.",
           "F": "Caster Level(s): Cleric 8, Druid 9\nInnate Level: 8\nSchool: Evocation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Colossal\nDuration: Instant\nAdditional Counter Spells:\nSave: Reflex 1/2\nSpell Resistance: No\n\nThe caster causes a massive earthquake around himself, causing 1d6 points of damage per caster level (to a maximum of 10d6) to all creatures in the area of effect. The caster is not affected by the earthquake."
         },
         "FR": {
@@ -23566,7 +23566,7 @@
         "Self",
         "Item"
       ],
-      "ImpactScript": "x0_s0_earthquake",
+      "ImpactScript": "op_s_earthquake",
       "InnateLevel": 8,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",

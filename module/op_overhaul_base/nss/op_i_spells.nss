@@ -150,6 +150,9 @@ int DoSavingThrow(object oTarget, object oSaveVersus, int nSavingThrow, int nDC,
 // Returns the modified amount of nDamage based on the saving throw being successful for half (or more if reflex save and feats are involved).
 int DoDamageSavingThrow(int nDamage, object oTarget, object oSaveVersus, int nSavingThrow, int nDC, int nSaveType = SAVING_THROW_TYPE_NONE, float fDelay = 0.0);
 
+// Returns the modified amount of nDamage based on bSaved and the feats oTarget has (Evasion etc.)
+int GetDamageBasedOnFeats(int nDamage, object oTarget, int bSaved);
+
 // Used to route the resist magic checks into this function to check for spell countering by SR, Immunity, Globes or Mantles.
 // Now a simple TRUE if spell resisted/immune/absorbed, or FALSE otherwise.
 // Can now be called in a "non-true spell" so be careful and don't use in monster ability scripts.
@@ -836,27 +839,36 @@ int DoDamageSavingThrow(int nDamage, object oTarget, object oSaveVersus, int nSa
 {
     if (nSavingThrow == SAVING_THROW_REFLEX)
     {
-        if(!DoSavingThrow(oTarget, oSaveVersus, nSavingThrow, nDC, nSaveType, fDelay))
-        {
-            if (GetHasFeat(FEAT_IMPROVED_EVASION, oTarget))
-            {
-                nDamage /= 2;
-            }
-        }
-        else if (GetHasFeat(FEAT_EVASION, oTarget) || GetHasFeat(FEAT_IMPROVED_EVASION, oTarget))
-        {
-            nDamage = 0;
-        }
-        else
-        {
-            nDamage /= 2;
-        }
+        int bSaved = DoSavingThrow(oTarget, oSaveVersus, nSavingThrow, nDC, nSaveType, fDelay);
+
+        nDamage = GetDamageBasedOnFeats(nDamage, oTarget, bSaved);
     }
     else if (DoSavingThrow(oTarget, oSaveVersus, nSavingThrow, nDC, nSaveType, fDelay))
     {
         nDamage /= 2;
     }
 
+    return nDamage;
+}
+
+// Returns the modified amount of nDamage based on bSaved and the feats oTarget has (Evasion etc.)
+int GetDamageBasedOnFeats(int nDamage, object oTarget, int bSaved)
+{
+    if (!bSaved)
+    {
+        if (GetHasFeat(FEAT_IMPROVED_EVASION, oTarget))
+        {
+            nDamage /= 2;
+        }
+    }
+    else if (GetHasFeat(FEAT_EVASION, oTarget) || GetHasFeat(FEAT_IMPROVED_EVASION, oTarget))
+    {
+        nDamage = 0;
+    }
+    else
+    {
+        nDamage /= 2;
+    }
     return nDamage;
 }
 

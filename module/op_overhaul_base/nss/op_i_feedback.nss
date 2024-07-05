@@ -59,6 +59,22 @@ const int STRREF_SOMEONE = 8349;  // Someone
 
 const int STRREF_DISPEL_MAGIC = 791; // Dispel Magic
 
+// Skill check results
+const int STRREF_FAILURE                = 5353;
+const int STRREF_SUCCESS                = 5352;
+const int STRREF_CRITICAL_FAILURE       = 8100;
+const int STRREF_SUCCESS_NOT_POSSIBLE   = 8101;
+const int STRREF_AUTOMATIC_SUCCESS      = 53306;
+const int STRREF_SUCCESS_NEVER_POSSIBLE = 40091;
+const int STRREF_TAKE20                 = 10485;
+// Results to get above TLK strings
+const int SKILL_RESULT_FAILURE                = 0;
+const int SKILL_RESULT_SUCCESS                = 1;
+const int SKILL_RESULT_CRITICAL_FAILURE       = 2;
+const int SKILL_RESULT_SUCCESS_NOT_POSSIBLE   = 3;
+const int SKILL_RESULT_AUTOMATIC_SUCCESS      = 4;
+const int SKILL_RESULT_SUCCESS_NEVER_POSSIBLE = 5;
+
 // Gets the name of oObject if oSenser can see or hear them (and oObject is valid!), else returns "Someone"
 // Returns the name properly in these cases:
 // * oObject isn't a creature
@@ -78,6 +94,10 @@ void SendDispelMagicFeedbackForItem(object oCaster, object oItem, json jArrayOfS
 
 // Sends fake damage messages as per the game format for oTarget and oSource
 void SendFakeDamageFeedbackMessage(object oTarget, object oSource, int nDamage, int nDamageType);
+
+// Provides a game-formatted feedback message for skill. Optionally can have oVersus.
+// - nSkillResult - Use the SKILL_RESULT_ variables
+void SendSkillFeedbackMessage(object oObject, object oVersus, int nSkill, int nSkillResult, int nRoll, int nSkillModifier, int nDC, int bTake20 = FALSE);
 
 
 // Gets the name of oObject if oSenser can see or hear them (and oObject is valid!), else returns "Someone"
@@ -275,3 +295,55 @@ void SendFakeDamageFeedbackMessage(object oTarget, object oSource, int nDamage, 
     OP_Debug("[SendFakeDamageFeedbackMessage] Not implemented yet.");
 }
 
+// Provides a game-formatted feedback message for skill. Optionally can have oVersus. Will not play sound effects (eg for disarm trap)
+// - nSkillResult - Use the SKILL_RESULT_ variables
+void SendSkillFeedbackMessage(object oObject, object oVersus, int nSkill, int nSkillResult, int nRoll, int nSkillModifier, int nDC, int bTake20 = FALSE)
+{
+    // For now we just take nSkillResult. In the future maybe this can just work out the right feedback message from the roll.
+    string sResult;
+    switch (nSkillResult)
+    {
+        case SKILL_RESULT_FAILURE: sResult = GetStringByStrRef(STRREF_FAILURE); break;
+        case SKILL_RESULT_SUCCESS: sResult = GetStringByStrRef(STRREF_SUCCESS); break;
+        case SKILL_RESULT_CRITICAL_FAILURE: sResult = GetStringByStrRef(STRREF_CRITICAL_FAILURE); break;
+        case SKILL_RESULT_SUCCESS_NOT_POSSIBLE: sResult = GetStringByStrRef(STRREF_SUCCESS_NOT_POSSIBLE); break;
+        case SKILL_RESULT_AUTOMATIC_SUCCESS: sResult = GetStringByStrRef(STRREF_AUTOMATIC_SUCCESS); break;
+        case SKILL_RESULT_SUCCESS_NEVER_POSSIBLE: sResult = GetStringByStrRef(STRREF_SUCCESS_NEVER_POSSIBLE); break;
+    }
+
+    string sSkill = GetStringByStrRef(StringToInt(Get2DAString("skills", "Name", nSkill)));
+
+    // Floating text string on oObject regardless of the result type but not sent to log (simplified)
+    FloatingTextStringOnCreature(sSkill + " : *" + sResult + "*", oObject, FALSE, FALSE);
+
+    // Simple message
+    if (nSkillResult == SKILL_RESULT_SUCCESS_NEVER_POSSIBLE)
+    {
+        SendMessageToPC(oObject, FEEDBACK_COLOUR_SKILLS + GetNameOrSomeone(oObject) + " : " + sSkill + " : *" + sResult + "*" + FEEDBACK_COLOUR_END);
+        if (GetIsObjectValid(oVersus)) SendMessageToPC(oVersus, FEEDBACK_COLOUR_SKILLS + GetNameOrSomeone(oObject, oVersus) + " : " + sSkill + " : *" + sResult + "*" + FEEDBACK_COLOUR_END);
+        return;
+    }
+    // Complicated message
+    int nTotal = nRoll + nSkillModifier;
+    // Need this so you get +0
+    string sSign;
+    if (nSkillModifier < 0)
+    {
+        sSign = " -";
+        nSkillModifier = -nSkillModifier;
+    }
+    else
+    {
+        sSign = " +";
+    }
+
+    // 10484 - <CUSTOM0> : <CUSTOM1> : *<CUSTOM2>* : (<CUSTOM3> <CUSTOM4> <CUSTOM5> = <CUSTOM6> vs. DC: <CUSTOM7>)
+    string sMessage = " : " + sSkill + " : *" + sResult + "* : (" + IntToString(nRoll) + sSign + IntToString(nSkillModifier) + " = " + IntToString(nTotal) + " vs. DC: " + IntToString(nDC) + ")";
+    if (bTake20)
+    {
+        sMessage = sMessage + " : " + GetStringByStrRef(STRREF_TAKE20);
+    }
+
+    SendMessageToPC(oObject, FEEDBACK_COLOUR_SKILLS + GetNameOrSomeone(oObject) + sMessage + FEEDBACK_COLOUR_END);
+    if (GetIsObjectValid(oVersus)) SendMessageToPC(oVersus, FEEDBACK_COLOUR_SKILLS + GetNameOrSomeone(oObject, oVersus) + sMessage + FEEDBACK_COLOUR_END);
+}
