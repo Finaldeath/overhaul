@@ -67,10 +67,11 @@ const int SPELL_TARGET_SELECTIVEHOSTILE = 3;  // Selective hostile - IE: Will no
 // Missing saving throw type constant
 const int SAVING_THROW_TYPE_PARALYSIS = 20;
 
-const int SORT_METHOD_NONE      = 0; // Just doesn't bother sorting
-const int SORT_METHOD_LOWEST_HP = 1;
-const int SORT_METHOD_LOWEST_HD = 2;
-const int SORT_METHOD_DISTANCE  = 3;
+const int SORT_METHOD_NONE               = 0; // Just doesn't bother sorting
+const int SORT_METHOD_LOWEST_HP          = 1;
+const int SORT_METHOD_LOWEST_HD          = 2;
+const int SORT_METHOD_DISTANCE           = 3; // Distance to AOE target
+const int SORT_METHOD_DISTANCE_TO_CASTER = 4;
 
 // GetScriptParam settings when a script is executed
 const string SCRIPT_PARAMETER_SPELL_ID    = "SCRIPT_PARAMETER_SPELL_ID";     // Spell Id
@@ -320,7 +321,8 @@ void CureEffects(object oTarget, json jArray, int bSupernaturalRemoval = FALSE);
 //                 SORT_METHOD_NONE      - No sorting (slightly faster)
 //                 SORT_METHOD_LOWEST_HP - Sorts so first object is the lowest HP
 //                 SORT_METHOD_LOWEST_HD - Sorts so first object is the lowest HD
-//                 SORT_METHOD_DISTANCE  - Sorts so the first object is the lowest distance
+//                 SORT_METHOD_DISTANCE  - Sorts so the first object is the lowest distance to AOE target location
+//                 SORT_METHOD_DISTANCE_TO_CASTER - Sorts so first object is lowest distance to caster
 // The other variables can be set, but if not then the current Spell Id will sort the shape and size.
 json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, int nObjectFilter=OBJECT_TYPE_CREATURE, int nShape = -1, float fSize = -1.0, location lArrayTarget=LOCATION_INVALID, int bLineOfSight=TRUE, vector vOrigin=[0.0,0.0,0.0]);
 
@@ -2088,7 +2090,8 @@ const string FIELD_METRIC = "metric";
 //                 SORT_METHOD_NONE      - No sorting (slightly faster)
 //                 SORT_METHOD_LOWEST_HP - Sorts so first object is the lowest HP
 //                 SORT_METHOD_LOWEST_HD - Sorts so first object is the lowest HD
-//                 SORT_METHOD_DISTANCE  - Sorts so the first object is the lowest distance
+//                 SORT_METHOD_DISTANCE  - Sorts so the first object is the lowest distance to AOE target location
+//                 SORT_METHOD_DISTANCE_TO_CASTER - Sorts so first object is lowest distance to caster
 // The other variables can be set, but if not then the current Spell Id will sort the shape and size.
 json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, int nObjectFilter=OBJECT_TYPE_CREATURE, int nShape = -1, float fSize = -1.0, location lArrayTarget=LOCATION_INVALID, int bLineOfSight=TRUE, vector vOrigin=[0.0,0.0,0.0])
 {
@@ -2106,12 +2109,19 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, 
 
     if (fSize == -1.0) fSize = GetSpellShapeSize(nSpellId);
     if (!GetIsObjectValid(GetAreaFromLocation(lArrayTarget))) lArrayTarget = lTarget;
+    if (nShape == SHAPE_CONE || nShape == SHAPE_SPELLCONE || nShape == SHAPE_SPELLCYLINDER)
+    {
+        if (vOrigin.x == 0.0 && vOrigin.y == 0.0 && vOrigin.z == 0.0)
+        {
+            vOrigin = GetPosition(oCaster);
+        }
+    }
 
     json jArray = JsonArray();
 
     // Error checking - we log these might be mistakes in spell scripts
     if (nTargetType < 0 || nTargetType > 3) { OP_Debug("[GetArrayOfTargets] nTargetType invalid: " + IntToString(nTargetType), LOG_LEVEL_ERROR); return jArray; }
-    if (nSortMethod < 0 || nSortMethod > 3) { OP_Debug("[GetArrayOfTargets] nSortMethod invalid: " + IntToString(nSortMethod), LOG_LEVEL_ERROR); return jArray; }
+    if (nSortMethod < 0 || nSortMethod > 4) { OP_Debug("[GetArrayOfTargets] nSortMethod invalid: " + IntToString(nSortMethod), LOG_LEVEL_ERROR); return jArray; }
     if (nShape < 0 || nShape > 4) { OP_Debug("[GetArrayOfTargets] nShape invalid: " + IntToString(nShape), LOG_LEVEL_ERROR); return jArray; }
     if (fSize <= 0.0 || fSize >= 50.0) { OP_Debug("[GetArrayOfTargets] fSize invalid: " + FloatToString(fSize), LOG_LEVEL_ERROR); return jArray; }
     if (!GetIsObjectValid(GetAreaFromLocation(lTarget))) { OP_Debug("[GetArrayOfTargets] lTarget invalid. Area OID: " + ObjectToString(GetAreaFromLocation(lTarget)), LOG_LEVEL_ERROR); return jArray; }
@@ -2138,6 +2148,7 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, 
                     case SORT_METHOD_LOWEST_HP: jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonInt(GetCurrentHitPoints(oObject))); break;
                     case SORT_METHOD_LOWEST_HD: jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonInt(GetHitDice(oObject))); break;
                     case SORT_METHOD_DISTANCE:  jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonFloat(GetDistanceBetweenLocations(lTarget, GetLocation(oObject)))); break;
+                    case SORT_METHOD_DISTANCE_TO_CASTER: jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonFloat(GetDistanceBetween(oCaster, oObject))); break;
                 }
 
                 // Add the value we sort with first and OID second so it's part of the sorting later
@@ -2153,7 +2164,8 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, 
     // SORT_METHOD_NONE doesn't need any sorting (no data to sort)
     if (nSortMethod == SORT_METHOD_LOWEST_HP ||
         nSortMethod == SORT_METHOD_LOWEST_HD ||
-        nSortMethod == SORT_METHOD_DISTANCE)
+        nSortMethod == SORT_METHOD_DISTANCE ||
+        nSortMethod == SORT_METHOD_DISTANCE_TO_CASTER)
     {
         jArray = JsonArrayTransform(jArray, JSON_ARRAY_SORT_ASCENDING);
     }
