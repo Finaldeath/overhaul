@@ -50,7 +50,8 @@
     +1 attack bonus and a +3 sonic damage bonus, defening clang On Hit spell.
     Sonic VFX.
 
-
+    Flame of Faith (was Darkfire)
+    +1 enchantment and 1d6 fire damage.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -81,6 +82,14 @@ void main()
             ipProperty1 = ItemPropertyVisualEffect(ITEM_VISUAL_FIRE);
             ipProperty2 = ItemPropertyDamageBonus(IP_CONST_DAMAGETYPE_FIRE, IP_CONST_DAMAGEBONUS_1d6);
             fDuration = GetDuration(nCasterLevel, MINUTES);
+        break;
+        case SPELL_DARKFIRE: // Flame of Faith
+            oTarget = GetMeleeWeaponToCastSpellOn(oTarget, nSpellId);
+            nVis = VFX_IMP_FLAME_S;
+            ipProperty1 = ItemPropertyEnhancementBonus(1);
+            ipProperty2 = ItemPropertyDamageBonus(IP_CONST_DAMAGETYPE_FIRE, IP_CONST_DAMAGEBONUS_1d6);
+            ipProperty3 = ItemPropertyVisualEffect(ITEM_VISUAL_FIRE);
+            fDuration = GetDuration(nCasterLevel, ROUNDS);
         break;
         case SPELL_BLACKSTAFF:
             oTarget = GetItemToCastSpellOn(oTarget, BASE_ITEM_MAGICSTAFF, nSpellId, BASE_ITEM_QUARTERSTAFF);
