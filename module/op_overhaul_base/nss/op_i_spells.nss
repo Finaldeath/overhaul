@@ -400,6 +400,10 @@ int GetIsTargetInAOEAtLocation(int nAOE, int nTargetType = SPELL_TARGET_SELECTIV
 // but quite expensive on the graphics engine, so don't get too mad with it
 void TLVFXPillar(int nVFX, location lStart, int nIterations=3, float fDelay=0.1f, float fZOffset= 6.0f, float fStepSize = -2.0f);
 
+// Gets the generated AOE. It is specifically one matching the tag, near the target location, that this creator did
+// Then you can sort it with some additional local variables.
+object GetGeneratedAOE(int nAOE);
+
 
 // These global variables are used in most spell scripts and are initialised here to be consistent
 // NB: You can't reuse these variables in the very functions in this list, so we pass them in.
@@ -2492,3 +2496,29 @@ void TLVFXPillar(int nVFX, location lStart, int nIterations=3, float fDelay=0.1f
         vNew.z += fStepSize;
      }
 }
+
+// Gets the generated AOE ground object matching the tag of nAOE. We simply cycle all
+// the objects with the same tag until we meet one without a variable stating we've
+// returned it already, thus this can only work once!
+object GetGeneratedAOE(int nAOE)
+{
+    string sTag = Get2DAString("vfx_persistent", "LABEL", nAOE);
+
+    if (sTag == "") OP_Debug("[GetGeneratedAOE] nAOE has no Label: " + IntToString(nAOE), LOG_LEVEL_ERROR);
+
+    int nNth = 0;
+    object oTagged = GetObjectByTag(sTag, nNth);
+    while (GetIsObjectValid(oTagged))
+    {
+        if (GetObjectType(oTagged) == OBJECT_TYPE_AREA_OF_EFFECT &&
+            GetAreaOfEffectCreator(oTagged) == oCaster &&
+           !GetLocalInt(oTagged, "RETURNED_BY_GetGeneratedAOE"))
+        {
+            SetLocalInt(oTagged, "RETURNED_BY_GetGeneratedAOE", TRUE);
+            return oTagged;
+        }
+        oTagged = GetObjectByTag(sTag, ++nNth);
+    }
+    return OBJECT_INVALID;
+}
+

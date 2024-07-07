@@ -12540,7 +12540,7 @@
       "Index": -1,
       "Overrides": "37c16a33-ff23-4be1-f215-a4450d53e0fe",
       "Disabled": false,
-      "Hint": "Hostile flag, counterspell",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
@@ -12568,7 +12568,7 @@
       "Description": {
         "Index": 6132,
         "EN": {
-          "M": "Caster Level(s): Bard 2, Cleric 2, Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Evocation\nDescriptor(s): Darkness\nComponent(s): Verbal\nRange: Long\nArea of Effect / Target: Huge\nDuration: 1 Round / Level\nAdditional Counter Spells: Light\nSave: None\nSpell Resistance: Yes\n\nAll creatures within the area of effect are shrouded in a haze of darkness which can only be pierced using Ultravision or True Seeing.",
+          "M": "Caster Level(s): Bard 2, Cleric 2, Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Evocation\nDescriptor(s): Darkness\nComponent(s): Verbal\nRange: Long\nArea of Effect / Target: Huge\nDuration: 1 Round / Level\nAdditional Counter Spells: Light\nSave: None\nSpell Resistance: Yes\n\nAll creatures within the area of effect are shrouded in a haze of darkness which blinds all within it (and makes them invisible to those outside of the darkness). The magical darkness can only be pierced using Ultravision or True Seeing.",
           "F": "Caster Level(s): Bard 2, Cleric 2, Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Evocation\nDescriptor(s): Darkness\nComponent(s): Verbal\nRange: Long\nArea of Effect / Target: Huge\nDuration: 1 Round / Level\nAdditional Counter Spells: Light\nSave: None\nSpell Resistance: Yes\n\nAll creatures within the area of effect are shrouded in a haze of darkness which can only be pierced using Ultravision."
         },
         "FR": {
@@ -12609,7 +12609,7 @@
         "Door",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_Darkness",
+      "ImpactScript": "op_s_darkness",
       "InnateLevel": 2,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",
