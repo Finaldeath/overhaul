@@ -50,6 +50,14 @@
 #include "utl_i_item"
 #include "utl_i_strings"
 
+
+// Parameters you can set before executing a spell script (eg if not really firing one, or some other cases like
+// one spell script firing another
+const string SCRIPT_PARAMETER_SPELL_ID    = "SCRIPT_PARAMETER_SPELL_ID";     // Spell Id
+const string SCRIPT_PARAMETER_ILLUSIONARY = "SCRIPT_PARAMETER_ILLUSIONARY";  // Boolean
+const string SCRIPT_PARAMETER_ILLUSIONARY_STRENGTH = "SCRIPT_PARAMETER_ILLUSIONARY_STRENGTH"; // 20 = 20% strength
+const string SCRIPT_PARAMETER_SKIP_SPELL_HOOK = "SCRIPT_PARAMETER_SKIP_SPELL_HOOK"; // Boolean, skips spell script hook
+
 const int ROUNDS  = 0;
 const int MINUTES = 1;
 const int HOURS   = 2;
@@ -73,11 +81,6 @@ const int SORT_METHOD_LOWEST_HD          = 2;
 const int SORT_METHOD_DISTANCE           = 3; // Distance to AOE target
 const int SORT_METHOD_DISTANCE_TO_CASTER = 4;
 
-// GetScriptParam settings when a script is executed
-const string SCRIPT_PARAMETER_SPELL_ID    = "SCRIPT_PARAMETER_SPELL_ID";     // Spell Id
-const string SCRIPT_PARAMETER_ILLUSIONARY = "SCRIPT_PARAMETER_ILLUSIONARY";  // Boolean
-const string SCRIPT_PARAMETER_ILLUSIONARY_STRENGTH = "SCRIPT_PARAMETER_ILLUSIONARY_STRENGTH"; // 20 = 20% strength
-
 // Spell types (UserType column) stored in nSpellType
 const int SPELL_TYPE_INVALID         = 0; // Invalid setting! Error!!!
 const int SPELL_TYPE_SPELL           = 1; // Standard spell.
@@ -87,6 +90,9 @@ const int SPELL_TYPE_ITEM_POWER      = 4; // No resist spell/absorption checks a
 
 // Extra shape types - more may come later for complex spells. Will include links to spells.2da
 const int SHAPE_HSPHERE = 100;
+
+// Fired using FireItemPropertySpellScript
+const string ITEM_PROPERTY_SPELL_SCRIPT = "op_s_itemprop";
 
 // Debug the spell and variables
 void DebugSpellVariables();
@@ -404,6 +410,9 @@ void TLVFXPillar(int nVFX, location lStart, int nIterations=3, float fDelay=0.1f
 // Then you can sort it with some additional local variables.
 object GetGeneratedAOE(int nAOE);
 
+// Fires the ITEM_PROPERTY_SPELL_SCRIPT file, after making sure the spell hook will be ignored using the SPELL_HOOK_IGNORE script parameter
+void FireItemPropertySpellScript();
+
 
 // These global variables are used in most spell scripts and are initialised here to be consistent
 // NB: You can't reuse these variables in the very functions in this list, so we pass them in.
@@ -451,6 +460,10 @@ void DebugSpellVariables()
 // Checks for if the spell hook needs to be executed and execute it and check the return value if so.
 int DoSpellHook()
 {
+    // We can skip this script (eg if fired from another spell that's already done it)
+    string sParam = GetScriptParam(SCRIPT_PARAMETER_SKIP_SPELL_HOOK);
+    if (sParam != "") return FALSE;
+
     // Debug spell if logging enabled
     DebugSpellVariables();
 
@@ -2520,5 +2533,12 @@ object GetGeneratedAOE(int nAOE)
         oTagged = GetObjectByTag(sTag, ++nNth);
     }
     return OBJECT_INVALID;
+}
+
+// Fires the ITEM_PROPERTY_SPELL_SCRIPT file, after making sure the spell hook will be ignored using the SPELL_HOOK_IGNORE script parameter
+void FireItemPropertySpellScript()
+{
+    SetScriptParam(SCRIPT_PARAMETER_SKIP_SPELL_HOOK, "1");
+    ExecuteScript(ITEM_PROPERTY_SPELL_SCRIPT);
 }
 

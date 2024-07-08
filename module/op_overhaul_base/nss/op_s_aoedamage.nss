@@ -40,10 +40,9 @@ void main()
 
     int nDiceNum, nDiceSize, nDamageType, nSavingThrow = -1, nSavingThrowType = SAVING_THROW_TYPE_NONE;
     // Toggles
-    int bImpact = FALSE, bDelayRandom = FALSE;
+    int nImpact = VFX_INVALID, nVis = VFX_INVALID, bDelayRandom = FALSE;
     // Can change to selective hostile
     int nTargetType = SPELL_TARGET_STANDARDHOSTILE;
-    effect eImpact, eVis;
 
     switch (nSpellId)
     {
@@ -54,9 +53,8 @@ void main()
             nDamageType = DAMAGE_TYPE_FIRE;
             nSavingThrow = SAVING_THROW_REFLEX;
             nSavingThrowType = SAVING_THROW_TYPE_FIRE;
-            bImpact = TRUE;
-            eImpact = EffectVisualEffect(VFX_FNF_FIREBALL);
-            eVis = EffectVisualEffect(VFX_IMP_FLAME_M);
+            nImpact = VFX_FNF_FIREBALL;
+            nVis = VFX_IMP_FLAME_M;
         }
         break;
         case SPELL_SCINTILLATING_SPHERE:
@@ -66,9 +64,8 @@ void main()
             nDamageType = DAMAGE_TYPE_ELECTRICAL;
             nSavingThrow = SAVING_THROW_REFLEX;
             nSavingThrowType = SAVING_THROW_TYPE_ELECTRICITY;
-            bImpact = TRUE;
-            eImpact = EffectVisualEffect(VFX_FNF_ELECTRIC_EXPLOSION);
-            eVis = EffectVisualEffect(VFX_IMP_LIGHTNING_S);
+            nImpact = VFX_FNF_ELECTRIC_EXPLOSION;
+            nVis = VFX_IMP_LIGHTNING_S;
         }
         break;
         case SPELL_CONE_OF_COLD:
@@ -78,7 +75,7 @@ void main()
             nDamageType = DAMAGE_TYPE_COLD;
             nSavingThrow = SAVING_THROW_REFLEX;
             nSavingThrowType = SAVING_THROW_TYPE_COLD;
-            eVis = EffectVisualEffect(VFX_IMP_FROST_L);
+            nVis = VFX_IMP_FROST_L;
         }
         break;
         case SPELL_MESTILS_ACID_BREATH:
@@ -88,7 +85,7 @@ void main()
             nDamageType = DAMAGE_TYPE_ACID;
             nSavingThrow = SAVING_THROW_REFLEX;
             nSavingThrowType = SAVING_THROW_TYPE_ACID;
-            eVis = EffectVisualEffect(VFX_IMP_ACID_L);
+            nVis = VFX_IMP_ACID_L;
         }
         break;
         case SPELL_CALL_LIGHTNING:
@@ -101,7 +98,7 @@ void main()
             nDamageType = DAMAGE_TYPE_ELECTRICAL;
             nSavingThrow = SAVING_THROW_REFLEX;
             nSavingThrowType = SAVING_THROW_TYPE_ELECTRICITY;
-            eVis = EffectVisualEffect(VFX_IMP_LIGHTNING_M);
+            nVis = VFX_IMP_LIGHTNING_M;
         }
         break;
         case SPELL_BURNING_HANDS:
@@ -111,7 +108,7 @@ void main()
             nDamageType = DAMAGE_TYPE_FIRE;
             nSavingThrow = SAVING_THROW_REFLEX;
             nSavingThrowType = SAVING_THROW_TYPE_FIRE;
-            eVis = EffectVisualEffect(VFX_IMP_FLAME_S);
+            nVis = VFX_IMP_FLAME_S;
         }
         break;
         default:
@@ -120,7 +117,7 @@ void main()
         break;
     }
 
-    ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, eImpact, lTarget);
+    if (nImpact != VFX_INVALID) ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(nImpact), lTarget);
 
     json jArray = GetArrayOfTargets(nTargetType, SORT_METHOD_DISTANCE, OBJECT_TYPE_CREATURE | OBJECT_TYPE_DOOR | OBJECT_TYPE_PLACEABLE);
     int nIndex;
@@ -147,7 +144,7 @@ void main()
             {
                 effect eDamage = EffectDamage(nDamage, nDamageType);
 
-                DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
+                if (nVis != VFX_INVALID) DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
                 DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDamage, oTarget));
             }
         }

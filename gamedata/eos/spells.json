@@ -6115,7 +6115,7 @@
       "Index": 6,
       "Overrides": "48b568f2-e73f-1403-fdd9-e3c92c7b16c9",
       "Disabled": false,
-      "Hint": "Counterspell",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
@@ -6143,7 +6143,7 @@
       "Description": {
         "Index": 6102,
         "EN": {
-          "M": "Caster Level(s): Cleric 1, Paladin 1\nInnate Level: 1\nSchool: Enchantment\nDescriptor(s): Mind-Affecting\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Colossal or item (bolts)\nDuration: 1 Turn / Level\nAdditional Counter Spells: Bane\nSave: Harmless\nSpell Resistance: No\n\nAll allies within the area of effect gain a \u002B1 bonus to attack rolls, along with a \u002B1 on Will saves against fear.\r\n\r\nAlternatively you can target a stack of bolts to add the Blessed Bolt property which can slay Rakshasa creatures on hit.",
+          "M": "Caster Level(s): Cleric 1, Paladin 1\nInnate Level: 1\nSchool: Enchantment\nDescriptor(s): Mind-Affecting\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Colossal or item (bolts)\nDuration: 1 Minute / Level\nAdditional Counter Spells: Bane\nSave: Harmless\nSpell Resistance: No\n\nAll allies within the area of effect gain a \u002B1 bonus to attack rolls, along with a \u002B1 on Will saves against fear.\r\n\r\nAlternatively you can target a stack of bolts to add the Blessed Bolt property which can slay Rakshasa creatures on hit.",
           "F": "Caster Level(s): Cleric 1, Paladin 1\nInnate Level: 1\nSchool: Enchantment\nDescriptor(s): Mind-Affecting\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Colossal\nDuration: 1 Turn / Level\nAdditional Counter Spells: Bane\nSave: Harmless\nSpell Resistance: No\n\nAll allies within the area of effect gain a \u002B1 bonus to attack rolls, along with a \u002B1 on Will saves against fear."
         },
         "FR": {
@@ -6185,7 +6185,7 @@
         "Item",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_Bless",
+      "ImpactScript": "op_s_buffs",
       "InnateLevel": 1,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -20173,7 +20173,7 @@
       "Description": {
         "Index": 54,
         "EN": {
-          "M": "Caster Level(s): Cleric 1, Paladin 1\nInnate Level: 1\nSchool: Evocation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Turn\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nThe caster gains a \u002B1 bonus to attack and weapon damage rolls for every three caster levels (at least \u002B1, to a maximum of \u002B6).",
+          "M": "Caster Level(s): Cleric 1, Paladin 1\nInnate Level: 1\nSchool: Evocation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Minute\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nThe caster gains a \u002B1 bonus to attack and weapon damage rolls for every three caster levels (at least \u002B1, to a maximum of \u002B3).",
           "F": "Caster Level(s): Cleric 1, Paladin 1\nInnate Level: 1\nSchool: Evocation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Turn\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nThe caster gains a \u002B1 bonus to attack and weapon damage rolls for every three caster levels (at least \u002B1, to a maximum of \u002B5)."
         },
         "FR": {
@@ -20212,7 +20212,7 @@
         "Self",
         "Item"
       ],
-      "ImpactScript": "x0_s0_divfav",
+      "ImpactScript": "op_s_buffs",
       "InnateLevel": 1,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -25088,7 +25088,7 @@
       "TargetTypes": [
         "Self"
       ],
-      "ImpactScript": "op_f_epicmagearm",
+      "ImpactScript": "op_s_buffs",
       "InnateLevel": 10,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -25425,7 +25425,7 @@
         "Self",
         "Item"
       ],
-      "ImpactScript": "NW_S0_EtherVis",
+      "ImpactScript": "op_s_buffs",
       "InnateLevel": 5,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",
@@ -25443,10 +25443,10 @@
       "CastingSound": null,
       "HasProjectile": false,
       "ProjectileModel": null,
-      "ProjectileType": null,
-      "ProjectileSpawnPoint": null,
+      "ProjectileType": "Accelerating",
+      "ProjectileSpawnPoint": "Hand",
       "ProjectileSound": null,
-      "ProjectileOrientation": null,
+      "ProjectileOrientation": "Path",
       "SubSpell1": null,
       "SubSpell2": null,
       "SubSpell3": null,
@@ -25455,7 +25455,7 @@
       "SubSpell6": null,
       "SubSpell7": null,
       "SubSpell8": null,
-      "Category": "FriendlyEnhancementSelf",
+      "Category": "TalentFriendlyProtectionSelf",
       "ParentSpell": null,
       "Type": "Spell",
       "UseConcentration": true,
@@ -25464,7 +25464,7 @@
       "CounterSpell1": null,
       "CounterSpell2": null,
       "HasProjectileVisuals": false,
-      "TargetShape": "Sphere",
+      "TargetShape": null,
       "TargetSizeX": null,
       "TargetSizeY": null,
       "TargetingFlags": []
@@ -29370,7 +29370,8 @@
       "Description": {
         "Index": 6217,
         "EN": {
-          "M": "Caster Level(s): Bard 2, Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Illusion\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Turn / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe caster is surrounded by a ghostly nimbus of light that grants damage reduction 5/\u002B1, prevents all spells of level 1 or lower from affecting the caster, and grants 10% concealment."
+          "M": "Caster Level(s): Bard 2, Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Illusion\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Minute / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe caster is surrounded by a ghostly nimbus of light that grants damage reduction 5/\u002B1, prevents all spells of level 1 or lower from affecting the caster, and grants 10% concealment.",
+          "F": "Caster Level(s): Bard 2, Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Illusion\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Turn / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe caster is surrounded by a ghostly nimbus of light that grants damage reduction 5/\u002B1, prevents all spells of level 1 or lower from affecting the caster, and grants 10% concealment."
         },
         "FR": {
           "M": "Niveau : Barde 2, Magicien / Ensorceleur 2\nNiveau inn\u00E9 : 2\nEcole : Illusion\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : personnelle\nZone d\u0027effet / cible : lanceur\nDur\u00E9e : 1 tour/niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : inoffensif\nR\u00E9sistance \u00E0 la magie : non\n\nLe lanceur est aur\u00E9ol\u00E9 d\u0027une lueur spectrale qui lui conf\u00E8re une r\u00E9duction des d\u00E9g\u00E2ts 5/\u002B1, le prot\u00E8ge contre tous les sorts de niveau 1 ou inf\u00E9rieur et lui fait b\u00E9n\u00E9ficier d\u0027un camouflage de 10 %."
@@ -29408,7 +29409,7 @@
         "Self",
         "Item"
       ],
-      "ImpactScript": "NW_S0_GhostVis",
+      "ImpactScript": "op_s_buffs",
       "InnateLevel": 2,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -29447,7 +29448,7 @@
       "CounterSpell1": null,
       "CounterSpell2": null,
       "HasProjectileVisuals": false,
-      "TargetShape": "Sphere",
+      "TargetShape": null,
       "TargetSizeX": null,
       "TargetSizeY": null,
       "TargetingFlags": []
@@ -30958,7 +30959,7 @@
         "Creature",
         "Item"
       ],
-      "ImpactScript": "op_s_magearmor",
+      "ImpactScript": "op_s_buffs",
       "InnateLevel": 3,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -41753,7 +41754,7 @@
         "Creature",
         "Item"
       ],
-      "ImpactScript": "op_s_magearmor",
+      "ImpactScript": "op_s_buffs",
       "InnateLevel": 1,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -57090,7 +57091,8 @@
       "Description": {
         "Index": 6253,
         "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 7\nInnate Level: 7\nSchool: Illusion\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Turn / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe caster is shrouded in a cloak of shadow that protects them with the following effects:\n\u002B5 natural AC bonus\n10 / \u002B3 Damage reduction\nImmunity to instant death effects\nImmunity to Necromancy spells\nImmunity to Negative Engergy Damage"
+          "M": "Caster Level(s): Wizard / Sorcerer 7\nInnate Level: 7\nSchool: Illusion\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Turn / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe caster is shrouded in a cloak of shadow that protects them with the following effects:\n\u002B5 natural AC bonus\n10 / \u002B3 Damage reduction\nImmunity to instant death effects\nImmunity to Necromancy spells\n\u002B100% Immunity to Negative Energy Damage",
+          "F": "Caster Level(s): Wizard / Sorcerer 7\nInnate Level: 7\nSchool: Illusion\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Turn / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe caster is shrouded in a cloak of shadow that protects them with the following effects:\n\u002B5 natural AC bonus\n10 / \u002B3 Damage reduction\nImmunity to instant death effects\nImmunity to Necromancy spells\nImmunity to Negative Engergy Damage"
         },
         "FR": {
           "M": "Niveau : Magicien / Ensorceleur 7\nNiveau inn\u00E9 :  7\nEcole : Illusion\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : personnelle\nZone d\u0027effet / cible : lanceur\nDur\u00E9e : 1 tour/niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : inoffensif\nR\u00E9sistance \u00E0 la magie : non\n\nLe lanceur est envelopp\u00E9 d\u0027un manteau d\u0027ombres qui le prot\u00E8ge et lui fait b\u00E9n\u00E9ficier des effets suivants :\nBonus de \u002B5 \u00E0 la CA naturelle\nR\u00E9duction des d\u00E9g\u00E2ts 10/\u002B3\nImmunit\u00E9 contre les effets de mort instantan\u00E9s\nImmunit\u00E9 contre les sorts de n\u00E9cromancie\nImmunit\u00E9 contre l\u2019\u00E9nergie n\u00E9gative"
@@ -57128,7 +57130,7 @@
         "Self",
         "Item"
       ],
-      "ImpactScript": "NW_S0_ShadShld",
+      "ImpactScript": "op_s_buffs",
       "InnateLevel": 7,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -63985,7 +63987,7 @@
         "Self",
         "Item"
       ],
-      "ImpactScript": "x0_s0_truestrike",
+      "ImpactScript": "op_s_buffs",
       "InnateLevel": 1,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -64783,7 +64785,8 @@
       "Description": {
         "Index": 2372,
         "EN": {
-          "M": "Caster Level(s): Cleric 9\nInnate Level: 9\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Medium\nDuration: 1 round / level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nAll allies in the area of effect will receive the following bonuses: immunity to negative damage, immunity to level/energy drain, immunity to ability score decreases, immunity to poisons, immunity to diseases and a \u002B4 deflection bonus to AC."
+          "M": "Caster Level(s): Cleric 9\nInnate Level: 9\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Medium\nDuration: 1 round / level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nAll allies in the area of effect will receive the following bonuses: \u002B100% immunity to negative damage, immunity to death magic, immunity to level/energy drain, immunity to ability score decreases, immunity to fear, immunity to poisons, immunity to diseases and a \u002B4 deflection bonus to AC.",
+          "F": "Caster Level(s): Cleric 9\nInnate Level: 9\nSchool: Abjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Medium\nDuration: 1 round / level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nAll allies in the area of effect will receive the following bonuses: immunity to negative damage, immunity to level/energy drain, immunity to ability score decreases, immunity to poisons, immunity to diseases and a \u002B4 deflection bonus to AC."
         },
         "FR": {
           "M": "Niveau : Pr\u00EAtre 9\nNiveau inn\u00E9 : 9\nEcole : Abjuration\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : longue\nZone d\u0027effet / cible : moyenne\nDur\u00E9e : 1 round/niveau\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : aucun\nR\u00E9sistance \u00E0 la magie : non\n\nTous les alli\u00E9s dans la zone d\u0027effet b\u00E9n\u00E9ficient des bonus suivants : Immunit\u00E9 contre l\u0027\u00E9nergie n\u00E9gative, Immunit\u00E9 contre l\u0027absorption de niveau et la perte d\u0027\u00E9nergie, Immunit\u00E9 contre la r\u00E9duction des caract\u00E9ristiques, Immunit\u00E9 contre les poisons, Immunit\u00E9 contre les maladies et un bonus de parade de \u002B4 \u00E0 sa CA"
@@ -64822,9 +64825,10 @@
         "Creature",
         "Area",
         "Item",
+        "Door",
         "Placeable"
       ],
-      "ImpactScript": "x0_s0_udetfoe",
+      "ImpactScript": "op_s_buffs",
       "InnateLevel": 9,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",

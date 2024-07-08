@@ -164,6 +164,12 @@ void main()
             nVis = VFX_IMP_SUPER_HEROISM;
             fDuration = GetDuration(nCasterLevel, ROUNDS);
         break;
+        case SPELL_BLESS:
+            oTarget = GetItemToCastSpellOn(oTarget, BASE_ITEM_BOLT, nSpellId);
+            ipProperty1 = ItemPropertyOnHitCastSpell(IP_CONST_ONHIT_CASTSPELL_ONHIT_SLAYRAKSHASA, 1);
+            nVis = VFX_IMP_HEAD_HOLY;
+            fDuration = GetDuration(nCasterLevel, MINUTES);
+        break;
         default:
             OP_Debug("[Item Property spells] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
