@@ -24,7 +24,7 @@ void main()
                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
     effect eImpact;
     int nVis = VFX_INVALID, nHDLimit, nHDPool;
-    float fDuration;
+    int nDuration;
 
     switch (nSpellId)
     {
@@ -33,7 +33,7 @@ void main()
             nVis = VFX_IMP_SLEEP;
             nHDLimit = 4;
             nHDPool = GetDiceRoll(1, 4, 4);
-            fDuration = GetDuration(nCasterLevel + 5, ROUNDS);
+            nDuration = nCasterLevel + 5;
         break;
         default:
             OP_Debug("[Sleep op_s_sleep] No valid spell ID passed in: " + IntToString(nSpellId));
@@ -77,8 +77,9 @@ void main()
                         {
                             if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_MIND_SPELLS, fDelay))
                             {
-                                if (nVis >= 0) ApplyVisualEffectToObject(nVis, oTarget);
-                                ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
+                                if (nVis >= 0) DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
+                                float fDuration = GetScaledDuration(oTarget, nDuration, ROUNDS);
+                                DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
                             }
                         }
                     }

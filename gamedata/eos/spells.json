@@ -10423,7 +10423,8 @@
       "Description": {
         "Index": 6122,
         "EN": {
-          "M": "Caster Level(s): Bard 3, Wizard / Sorcerer 4\nInnate Level: 3\nSchool: Enchantment\nDescriptor(s): Mind-Affecting\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Large\nDuration: 1 Round / Level\nAdditional Counter Spells: Clarity\nSave: Will Negates\nSpell Resistance: Yes\n\nAffected creatures either wander randomly, attack a random target, or simply stand still."
+          "M": "Caster Level(s): Bard 3, Wizard / Sorcerer 4\nInnate Level: 3\nSchool: Enchantment\nDescriptor(s): Mind-Affecting\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Large\nDuration: 1 Round / Level\nAdditional Counter Spells: Clarity\nSave: Will Negates\nSpell Resistance: Yes\n\nCreatures affected by this spell behave randomly on a 1d10 roll, as indicated on the following table:\r\n\r\n1 - Wander around for 1 round\r\n2-6 - Do nothing for 1 round\r\n7-10 - Attack nearest creature for 1 round",
+          "F": "Caster Level(s): Bard 3, Wizard / Sorcerer 4\nInnate Level: 3\nSchool: Enchantment\nDescriptor(s): Mind-Affecting\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Large\nDuration: 1 Round / Level\nAdditional Counter Spells: Clarity\nSave: Will Negates\nSpell Resistance: Yes\n\nAffected creatures either wander randomly, attack a random target, or simply stand still."
         },
         "FR": {
           "M": "Niveau : Barde 3, Magicien / Ensorceleur 4\nNiveau inn\u00E9 : 3\nEcole : Enchantement\nCat\u00E9gorie(s) : mentale\nComposante(s) : verbale, gestuelle\nPort\u00E9e : moyenne\nZone d\u0027effet / cible : grande\nDur\u00E9e : 1 round/niveau\nContresorts suppl\u00E9mentaires : Clart\u00E9\nJet de sauvegarde : Volont\u00E9, annule\nR\u00E9sistance \u00E0 la magie : oui\n\nLes cr\u00E9atures affect\u00E9es errent sans but, attaquent une cible au hasard  ou restent immobiles."
@@ -10463,7 +10464,7 @@
         "Item",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_Confusion",
+      "ImpactScript": "op_s_confusion",
       "InnateLevel": 3,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -10493,7 +10494,7 @@
       "SubSpell6": null,
       "SubSpell7": null,
       "SubSpell8": null,
-      "Category": "HarmfulAoeDiscriminant",
+      "Category": "HarmfulAoeIndiscriminant",
       "ParentSpell": null,
       "Type": "Spell",
       "UseConcentration": true,
@@ -10509,7 +10510,8 @@
       "TargetSizeX": 5,
       "TargetSizeY": null,
       "TargetingFlags": [
-        "HarmsEnemies"
+        "HarmsEnemies",
+        "HarmsAllies"
       ]
     },
     {
