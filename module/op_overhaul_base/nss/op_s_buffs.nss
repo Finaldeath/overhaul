@@ -45,7 +45,22 @@
     effects, Immunity to Necromancy spells, +100% Immunity to Negative Energy
     Damage. 1 round/level.
 
+    Death Ward
+    Immunity to death magic. 1 hour/level.
 
+    Aura of Vitality
+    +4 Str, Dex, Con for allies, max 1 ally/3 levels. 1 round/level.
+
+    Barkskin
+    Natural AC bonus: Level 1-6: +3, Level 7-12: +4, Levels 13+: +5. 1 hour/level.
+
+    Blood Frenzy
+    The caster gains a +2 bonus to Strength and Constitution and a +1 bonus to
+    Will saves, while suffering a -1 penalty to AC.
+
+    The Ability Score Buffs
+    1d4 + 1 or 2d4 + 1 (Greater version) or Caster Level / 2 (Owl's Insight)
+    bonus to ability score. Removes previous. 1 hour/level.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -61,6 +76,7 @@ void main()
     // Toggles
     int bImpact = FALSE, bDelayRandom = FALSE;
     int nImpact = VFX_INVALID, nVis = VFX_INVALID;
+    int nCreatureLimit = 99999;
     effect eLink;
     float fDuration;
 
@@ -183,6 +199,157 @@ void main()
             fDuration = GetDuration(nCasterLevel, ROUNDS);
         }
         break;
+        case SPELL_DEATH_WARD:
+        {
+            nVis = VFX_IMP_DEATH_WARD;
+            eLink = EffectLinkEffects(EffectImmunity(IMMUNITY_TYPE_DEATH),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+            fDuration = GetDuration(nCasterLevel, HOURS);
+        }
+        break;
+        case SPELL_AURA_OF_VITALITY:
+        {
+            nImpact = VFX_FNF_NATURES_BALANCE; // Needs unique VFX
+            nVis = VFX_IMP_IMPROVE_ABILITY_SCORE;
+            nCreatureLimit = max(1, nCasterLevel/3);
+            bDelayRandom = TRUE;
+            eLink = EffectLinkEffects(EffectAbilityIncrease(ABILITY_STRENGTH, 4),
+                    EffectLinkEffects(EffectAbilityIncrease(ABILITY_DEXTERITY, 4),
+                    EffectLinkEffects(EffectAbilityIncrease(ABILITY_CONSTITUTION, 4),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE))));
+            fDuration = GetDuration(nCasterLevel, ROUNDS);
+        }
+        break;
+        case SPELL_BARKSKIN:
+        {
+            nVis = VFX_IMP_HEAD_NATURE;
+            int nBonus = 3;
+            if (nCasterLevel >= 7 && nCasterLevel <= 12) nBonus = 4;
+            else if (nCasterLevel >= 13) nBonus = 5;
+            eLink = EffectLinkEffects(EffectACIncrease(nBonus, AC_NATURAL_BONUS),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_PROT_BARKSKIN),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+            fDuration = GetDuration(nCasterLevel, HOURS);
+        }
+        break;
+        case SPELL_BLOOD_FRENZY:
+        {
+            nVis = VFX_IMP_IMPROVE_ABILITY_SCORE;
+            int nBonus = 3;
+            if (nCasterLevel >= 7 && nCasterLevel <= 12) nBonus = 4;
+            else if (nCasterLevel >= 13) nBonus = 5;
+            eLink = EffectLinkEffects(EffectAbilityIncrease(ABILITY_STRENGTH, 2),
+                    EffectLinkEffects(EffectAbilityIncrease(ABILITY_CONSTITUTION, 2),
+                    EffectLinkEffects(EffectSavingThrowIncrease(SAVING_THROW_WILL, 1),
+                    EffectLinkEffects(IgnoreEffectImmunity(EffectACDecrease(1, AC_DODGE_BONUS)),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)))));
+            fDuration = GetDuration(nCasterLevel, HOURS);
+
+            // Special!
+            PlayVoiceChat(VOICE_CHAT_BATTLECRY1);
+        }
+        break;
+        case SPELL_BULLS_STRENGTH:
+        case SPELL_GREATER_BULLS_STRENGTH:
+        {
+            nVis = VFX_IMP_IMPROVE_ABILITY_SCORE;
+            int nBonus = nSpellId == SPELL_BULLS_STRENGTH ? GetDiceRoll(1, 4, 1) : GetDiceRoll(2, 4, 1);
+
+            eLink = EffectLinkEffects(EffectAbilityIncrease(ABILITY_STRENGTH, nBonus),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+            fDuration = GetDuration(nCasterLevel, HOURS);
+
+            // Remove previous castings
+            RemoveEffectsFromSpell(oTarget, SPELL_BULLS_STRENGTH);
+            RemoveEffectsFromSpell(oTarget, SPELL_GREATER_BULLS_STRENGTH);
+        }
+        break;
+        case SPELL_CATS_GRACE:
+        case SPELL_GREATER_CATS_GRACE:
+        {
+            nVis = VFX_IMP_IMPROVE_ABILITY_SCORE;
+            int nBonus = nSpellId == SPELL_CATS_GRACE ? GetDiceRoll(1, 4, 1) : GetDiceRoll(2, 4, 1);
+
+            eLink = EffectLinkEffects(EffectAbilityIncrease(ABILITY_DEXTERITY, nBonus),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+            fDuration = GetDuration(nCasterLevel, HOURS);
+
+            // Remove previous castings
+            RemoveEffectsFromSpell(oTarget, SPELL_CATS_GRACE);
+            RemoveEffectsFromSpell(oTarget, SPELL_GREATER_CATS_GRACE);
+        }
+        break;
+        case SPELL_EAGLE_SPLEDOR:
+        case SPELL_GREATER_EAGLE_SPLENDOR:
+        {
+            nVis = VFX_IMP_IMPROVE_ABILITY_SCORE;
+            int nBonus = nSpellId == SPELL_EAGLE_SPLEDOR ? GetDiceRoll(1, 4, 1) : GetDiceRoll(2, 4, 1);
+
+            eLink = EffectLinkEffects(EffectAbilityIncrease(ABILITY_CHARISMA, nBonus),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+            fDuration = GetDuration(nCasterLevel, HOURS);
+
+            // Remove previous castings
+            RemoveEffectsFromSpell(oTarget, SPELL_EAGLE_SPLEDOR);
+            RemoveEffectsFromSpell(oTarget, SPELL_GREATER_EAGLE_SPLENDOR);
+        }
+        break;
+        case SPELL_ENDURANCE:
+        case SPELL_GREATER_ENDURANCE:
+        {
+            nVis = VFX_IMP_IMPROVE_ABILITY_SCORE;
+            int nBonus = nSpellId == SPELL_ENDURANCE ? GetDiceRoll(1, 4, 1) : GetDiceRoll(2, 4, 1);
+
+            eLink = EffectLinkEffects(EffectAbilityIncrease(ABILITY_CONSTITUTION, nBonus),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+            fDuration = GetDuration(nCasterLevel, HOURS);
+
+            // Remove previous castings
+            RemoveEffectsFromSpell(oTarget, SPELL_ENDURANCE);
+            RemoveEffectsFromSpell(oTarget, SPELL_GREATER_ENDURANCE);
+        }
+        break;
+        case SPELL_FOXS_CUNNING:
+        case SPELL_GREATER_FOXS_CUNNING:
+        {
+            nVis = VFX_IMP_IMPROVE_ABILITY_SCORE;
+            int nBonus = nSpellId == SPELL_FOXS_CUNNING ? GetDiceRoll(1, 4, 1) : GetDiceRoll(2, 4, 1);
+
+            eLink = EffectLinkEffects(EffectAbilityIncrease(ABILITY_INTELLIGENCE, nBonus),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+            fDuration = GetDuration(nCasterLevel, HOURS);
+
+            // Remove previous castings
+            RemoveEffectsFromSpell(oTarget, SPELL_FOXS_CUNNING);
+            RemoveEffectsFromSpell(oTarget, SPELL_GREATER_FOXS_CUNNING);
+        }
+        break;
+        case SPELL_OWLS_WISDOM:
+        case SPELL_GREATER_OWLS_WISDOM:
+        case SPELL_OWLS_INSIGHT:
+        {
+            nVis = VFX_IMP_IMPROVE_ABILITY_SCORE;
+            int nBonus;
+
+            if (nSpellId == SPELL_OWLS_INSIGHT)
+            {
+                nBonus = nCasterLevel / 2;
+            }
+            else
+            {
+                nBonus = nSpellId == SPELL_OWLS_WISDOM ? GetDiceRoll(1, 4, 1) : GetDiceRoll(2, 4, 1);
+            }
+
+            eLink = EffectLinkEffects(EffectAbilityIncrease(ABILITY_WISDOM, nBonus),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+            fDuration = GetDuration(nCasterLevel, HOURS);
+
+            // Remove previous castings
+            RemoveEffectsFromSpell(oTarget, SPELL_OWLS_WISDOM);
+            RemoveEffectsFromSpell(oTarget, SPELL_GREATER_OWLS_WISDOM);
+            RemoveEffectsFromSpell(oTarget, SPELL_OWLS_INSIGHT);
+        }
+        break;
         default:
             OP_Debug("[op_s_buffs] No valid spell ID passed in: " + IntToString(nSpellId), LOG_LEVEL_ERROR);
             return;
@@ -195,8 +362,10 @@ void main()
 
         json jArray = GetArrayOfTargets(SPELL_TARGET_ALLALLIES, SORT_METHOD_DISTANCE);
         int nIndex;
-        for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
+        for (nIndex = 0; nIndex < JsonGetLength(jArray) && nCreatureLimit > 0; nIndex++)
         {
+            nCreatureLimit--;
+
             oTarget = GetArrayObject(jArray, nIndex);
 
             SignalSpellCastAt();
