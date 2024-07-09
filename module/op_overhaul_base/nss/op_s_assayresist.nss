@@ -22,14 +22,11 @@ void main()
     if (DoSpellHook()) return;
 
     // TODO: New effect icon just a copy of the spell icon
-    effect eLink =
-        EffectLinkEffects(EffectIcon(EFFECT_ICON_ARCANE_SPELL_FAILURE_GOOD),
-        EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_POSITIVE),
-                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+    effect eLink = EffectLinkEffects(EffectIcon(EFFECT_ICON_ARCANE_SPELL_FAILURE_GOOD),
+                   EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_POSITIVE), // TODO new VFX
+                                     EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
     // We use the effect tag to identify the object affected
     eLink = TagEffect(eLink, ObjectToString(oTarget));
-
-    effect eVis = EffectVisualEffect(VFX_IMP_BREACH);
 
     if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
     {
@@ -38,7 +35,7 @@ void main()
         // Remove existing castings
         RemoveEffectsFromSpell(oCaster, nSpellId);
 
-        ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
+        ApplyVisualEffectToObject(VFX_IMP_BREACH, oTarget); // TODO new VFX
         ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oCaster, GetDuration(nCasterLevel, ROUNDS));
     }
 }

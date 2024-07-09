@@ -74,9 +74,10 @@ void main()
 {
     if (DoSpellHook()) return;
 
-    int bAOE = FALSE, nTotalToAssist = 1000000, bSupernaturalRemoval = FALSE, bApplyLink = FALSE;
+    int nTotalToAssist = 1000000, bSupernaturalRemoval = FALSE, bApplyLink = FALSE;
+    int nVis = VFX_NONE, nImpact = VFX_NONE;
     float fRadius = 0.0, fDuration = 0.0;
-    effect eLink, eVis, eImpact;
+    effect eLink;
 
     // We store what we want to remove in a Json array
     json jArray = JsonArray();
@@ -86,8 +87,6 @@ void main()
         case SPELL_REMOVE_FEAR:
         {
             bSupernaturalRemoval = TRUE;
-            bAOE = TRUE;
-            fRadius = RADIUS_SIZE_MEDIUM;
             nTotalToAssist = max(1, nCasterLevel/4);
 
             fDuration = GetDuration(10, MINUTES);
@@ -95,9 +94,8 @@ void main()
             eLink = EffectLinkEffects(EffectSavingThrowIncrease(SAVING_THROW_WILL, 4, SAVING_THROW_TYPE_FEAR),
                     EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_POSITIVE),
                                       EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
-            eImpact = EffectVisualEffect(VFX_FNF_LOS_HOLY_10);
-
-            eVis = EffectVisualEffect(VFX_IMP_REMOVE_CONDITION);
+            nImpact = VFX_FNF_LOS_HOLY_10;
+            nVis = VFX_IMP_REMOVE_CONDITION;
 
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_FRIGHTENED));
         }
@@ -124,7 +122,7 @@ void main()
         case SPELL_LESSER_RESTORATION:
         {
             bSupernaturalRemoval = FALSE;
-            eVis = EffectVisualEffect(VFX_IMP_RESTORATION_LESSER);
+            nVis = VFX_IMP_RESTORATION_LESSER;
 
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_ABILITY_DECREASE));
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_AC_DECREASE));
@@ -140,7 +138,7 @@ void main()
         case SPELLABILITY_RESTOREATION_OTHER:
         {
             bSupernaturalRemoval = FALSE;
-            eVis = EffectVisualEffect(VFX_IMP_RESTORATION);
+            nVis = VFX_IMP_RESTORATION;
 
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_ABILITY_DECREASE));
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_AC_DECREASE));
@@ -159,7 +157,7 @@ void main()
         case SPELL_GREATER_RESTORATION:
         {
             bSupernaturalRemoval = FALSE;
-            eVis = EffectVisualEffect(VFX_IMP_RESTORATION_GREATER);
+            nVis = VFX_IMP_RESTORATION_GREATER;
 
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_ABILITY_DECREASE));
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_AC_DECREASE));
@@ -189,8 +187,7 @@ void main()
         case SPELL_NEUTRALIZE_POISON:
         {
             bSupernaturalRemoval = TRUE;
-
-            eVis = EffectVisualEffect(VFX_IMP_REMOVE_CONDITION);
+            nVis = VFX_IMP_REMOVE_CONDITION;
 
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_POISON));
         }
@@ -199,8 +196,7 @@ void main()
         case SPELLABILITY_REMOVE_DISEASE: // Paladin feat
         {
             bSupernaturalRemoval = TRUE;
-
-            eVis = EffectVisualEffect(VFX_IMP_REMOVE_CONDITION);
+            nVis = VFX_IMP_REMOVE_CONDITION;
 
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_DISEASE));
         }
@@ -208,8 +204,7 @@ void main()
         case SPELL_REMOVE_BLINDNESS_AND_DEAFNESS:
         {
             bSupernaturalRemoval = TRUE;
-
-            eVis = EffectVisualEffect(VFX_IMP_REMOVE_CONDITION);
+            nVis = VFX_IMP_REMOVE_CONDITION;
 
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_BLINDNESS));
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_DEAF));
@@ -223,22 +218,20 @@ void main()
         break;
     }
 
-    if (bAOE)
+    if (GetSpellIsAreaOfEffect(nSpellId))
     {
         json jArray = GetArrayOfTargets(SPELL_TARGET_ALLALLIES);
 
-        ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, eImpact, lTarget);
+        ApplyVisualEffectAtLocation(nImpact, lTarget);
 
-        SpeakString("nTotalToAssist : " + IntToString(nTotalToAssist));
         int nIndex;
         for (nIndex = 0; nIndex < JsonGetLength(jArray) && nIndex < nTotalToAssist; nIndex++)
         {
             oTarget = GetArrayObject(jArray, nIndex);
 
-            SpeakString("oTarget : " + GetName(oTarget));
             SignalSpellCastAt();
 
-            ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
+            ApplyVisualEffectToObject(nVis, oTarget);
 
             if (bApplyLink == TRUE)
             {
@@ -250,7 +243,7 @@ void main()
     }
     else
     {
-        ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
+        ApplyVisualEffectToObject(nVis, oTarget);
         if (bApplyLink == TRUE)
         {
             ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);

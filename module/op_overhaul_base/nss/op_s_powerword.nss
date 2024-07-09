@@ -38,35 +38,35 @@ void main()
 {
     if (DoSpellHook()) return;
 
-    effect eVis, eLink, eInstant, eImpact;
-    int nHPRemaining, bAOE = FALSE;
+    effect eLink, eInstant;
+    int nHPRemaining, bAOE = FALSE, nImpact = VFX_NONE, nVis = VFX_NONE;
 
     switch (nSpellId)
     {
         case SPELL_POWER_WORD_STUN:
         {
-            eVis = EffectVisualEffect(VFX_IMP_STUN);
+            nImpact = VFX_FNF_PWSTUN;
+            nVis = VFX_IMP_STUN;
             eLink = EffectLinkEffects(EffectStunned(),
                     EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED),
                                       EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
-            eImpact = EffectVisualEffect(VFX_FNF_PWSTUN);
         }
         break;
         case SPELL_POWER_WORD_BLIND:
         {
             bAOE = TRUE;
             nHPRemaining = 200;
-            eVis = EffectVisualEffect(VFX_IMP_BLIND_DEAF_M);
+            nImpact = VFX_FNF_PWBLIND;
+            nVis = VFX_IMP_BLIND_DEAF_M;
             eLink = EffectLinkEffects(EffectBlindness(),
                                       EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
-            eImpact = EffectVisualEffect(VFX_FNF_PWBLIND);
         }
         break;
         case SPELL_POWER_WORD_KILL:
         {
-            eVis = EffectVisualEffect(VFX_IMP_DEATH);
+            nImpact = VFX_FNF_PWKILL;
+            nVis = VFX_IMP_DEATH;
             eInstant = EffectDeath();
-            eImpact = EffectVisualEffect(VFX_FNF_PWKILL);
 
             if (!GetIsObjectValid(oTarget))
             {
@@ -83,11 +83,10 @@ void main()
         break;
     }
 
-    ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, eImpact, lTarget);
+    ApplyVisualEffectAtLocation(nImpact, lTarget);
 
     if (bAOE)
     {
-
         // Sort by lowest HP for Power Word spells
         json jArray = GetArrayOfTargets(SPELL_TARGET_STANDARDHOSTILE, SORT_METHOD_LOWEST_HP);
         int nIndex;
@@ -117,7 +116,7 @@ void main()
                             // Up to 50: Permanent
                             // 51 to 100: 1d4+1 minutes
                             // 101 to 200: 1d4+1 rounds
-                            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
+                            DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
                             if (nCurrentHP <= 50)
                             {
                                 DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_PERMANENT, eLink, oTarget));
@@ -136,7 +135,7 @@ void main()
                             // 20HP limit
                             if (nCurrentHP <= 20)
                             {
-                                DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
+                                DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
                                 DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eInstant, oTarget));
                             }
                         }
@@ -177,7 +176,7 @@ void main()
                                 {
                                     fDuration = GetDuration(GetDiceRoll(1, 4), ROUNDS);
                                 }
-                                ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
+                                ApplyVisualEffectToObject(nVis, oTarget);
                                 ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
                             }
                         }
@@ -186,7 +185,7 @@ void main()
                         {
                             if (nCurrentHP <= 100)
                             {
-                                ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
+                                ApplyVisualEffectToObject(nVis, oTarget);
                                 ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eInstant, oTarget);
                             }
                         }

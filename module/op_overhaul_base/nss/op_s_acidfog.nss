@@ -40,10 +40,8 @@ void main()
                     effect eSlow = TagEffect(EffectMovementSpeedDecrease(50), "AOE" + ObjectToString(OBJECT_SELF));
                     ApplySpellEffectToObject(DURATION_TYPE_PERMANENT, eSlow, oTarget);
                 }
-                effect eVis = EffectVisualEffect(VFX_IMP_ACID_S);
-                effect eDam = EffectDamage(nDamage, DAMAGE_TYPE_ACID);
-                ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
-                ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDam, oTarget);
+                ApplyVisualEffectToObject(VFX_IMP_ACID_S, oTarget);
+                ApplyDamageToObject(oTarget, nDamage, DAMAGE_TYPE_ACID);
             }
         }
         return;
@@ -59,8 +57,6 @@ void main()
     {
         if (!AOECheck()) return;
 
-        effect eVis = EffectVisualEffect(VFX_IMP_ACID_S);
-
         // 2d6 damage to everyone in the AOE, fortitude for half
         oTarget = GetFirstInPersistentObject();
         while (GetIsObjectValid(oTarget))
@@ -70,15 +66,14 @@ void main()
                 float fDelay = GetRandomDelay(0.4, 1.2);
                 if (!DoResistSpell(oTarget, oCaster, fDelay))
                 {
-                    int nDamage = GetDiceRoll(2, 6);
                     // Half damage on save
-                    if (DoSavingThrow(oTarget, oCaster, SAVING_THROW_FORT, nSpellSaveDC, SAVING_THROW_TYPE_ACID, fDelay))
+                    int nDamage = DoDamageSavingThrow(GetDiceRoll(2, 6), oTarget, oCaster, SAVING_THROW_FORT, nSpellSaveDC, SAVING_THROW_TYPE_ACID, fDelay);
+
+                    if (nDamage > 0)
                     {
-                        nDamage /= 2;
+                        DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_ACID_S, oTarget));
+                        DelayCommand(fDelay, ApplyDamageToObject(oTarget, nDamage, DAMAGE_TYPE_ACID));
                     }
-                    effect eDam = EffectDamage(nDamage, DAMAGE_TYPE_ACID);
-                    DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
-                    DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDam, oTarget));
                 }
             }
             oTarget = GetNextInPersistentObject();
@@ -88,10 +83,9 @@ void main()
 
     if (DoSpellHook()) return;
 
-    effect eImpact = EffectVisualEffect(VFX_FNF_GAS_EXPLOSION_ACID);
-    effect eAOE = EffectAreaOfEffect(AOE_PER_FOGACID, "op_s_acidfog", "op_s_acidfog", "op_s_acidfog");
+    ApplyVisualEffectAtLocation(VFX_FNF_GAS_EXPLOSION_ACID, lTarget);
 
-    ApplyEffectAtLocation(DURATION_TYPE_INSTANT, eImpact, lTarget);
+    effect eAOE = EffectAreaOfEffect(AOE_PER_FOGACID, "op_s_acidfog", "op_s_acidfog", "op_s_acidfog");
     ApplyEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, GetDuration(nCasterLevel/2, ROUNDS));
 }
 

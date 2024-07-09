@@ -37,8 +37,7 @@ void main()
 {
     if (DoSpellHook()) return;
 
-    effect eImplode = EffectVisualEffect(VFX_FNF_IMPLOSION);
-    ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, eImplode, lTarget);
+    ApplyVisualEffectAtLocation(VFX_FNF_IMPLOSION, lTarget);
 
     // Bypass magical immunity
     effect eDeath = IgnoreEffectImmunity(EffectDeath(TRUE));

@@ -21,14 +21,13 @@ void main()
     lTarget = GetLocation(oCaster);
     if (GetGender(oCaster) == GENDER_FEMALE)
     {
-        ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_FNF_HOWL_WAR_CRY_FEMALE), lTarget);
+        ApplyVisualEffectAtLocation(VFX_FNF_HOWL_WAR_CRY_FEMALE, lTarget);
     }
     else
     {
-        ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_FNF_HOWL_WAR_CRY), lTarget);
+        ApplyVisualEffectAtLocation(VFX_FNF_HOWL_WAR_CRY, lTarget);
     }
 
-    effect eVis  = EffectVisualEffect(VFX_IMP_IMPROVE_ABILITY_SCORE);
     effect eLink = EffectLinkEffects(EffectSavingThrowIncrease(SAVING_THROW_WILL, 2),
                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
     eLink        = ExtraordinaryEffect(eLink);
@@ -53,7 +52,7 @@ void main()
 
         float fDelay = GetDistanceBetweenLocations(lTarget, GetLocation(oTarget))/25.0;
 
-        DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
+        DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_IMPROVE_ABILITY_SCORE, oTarget));
         DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
     }
 }

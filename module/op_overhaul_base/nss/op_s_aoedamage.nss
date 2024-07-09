@@ -117,7 +117,7 @@ void main()
         break;
     }
 
-    if (nImpact != VFX_INVALID) ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(nImpact), lTarget);
+    ApplyVisualEffectAtLocation(nImpact, lTarget);
 
     json jArray = GetArrayOfTargets(nTargetType, SORT_METHOD_DISTANCE, OBJECT_TYPE_CREATURE | OBJECT_TYPE_DOOR | OBJECT_TYPE_PLACEABLE);
     int nIndex;

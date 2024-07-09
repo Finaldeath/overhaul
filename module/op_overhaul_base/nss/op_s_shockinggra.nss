@@ -46,7 +46,7 @@ void main()
             // Apply the bonus, which shouldn't then apply outside this spell.
             effect eAttackBonus = EffectAttackIncrease(3, ATTACK_BONUS_MISC);
             eAttackBonus = HideEffectIcon(eAttackBonus);
-            ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eAttackBonus, oCaster, 0.0);
+            ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eAttackBonus, oCaster, 0.0);
         }
 
         // Do the touch attack
@@ -61,18 +61,14 @@ void main()
                 // Critical roll
                 if (nTouchAttack == 2) nDamage *= 2;
 
-                effect eVis = EffectVisualEffect(VFX_IMP_LIGHTNING_S);
-                effect eDamage = EffectDamage(nDamage, DAMAGE_TYPE_ELECTRICAL);
-
-                DelayCommand(0.0, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
-                DelayCommand(0.0, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDamage, oTarget));
+                ApplyVisualEffectToObject(VFX_IMP_LIGHTNING_S, oTarget);
+                ApplyDamageToObject(oTarget, nDamage, DAMAGE_TYPE_ELECTRICAL);
             }
         }
         else
         {
             // We miss by firing the VFX as missed
-            effect eVis = EffectVisualEffect(VFX_IMP_LIGHTNING_S, TRUE);
-            ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
+            ApplyVisualEffectToObject(VFX_IMP_LIGHTNING_S, oTarget, TRUE);
 
             // TODO better way would be to generate a new location between the two creatures
 /*
@@ -94,8 +90,7 @@ void main()
 
             //vector vTranslate = Vector(GetRandomDelay(0.5, 1.0), GetRandomDelay(0.5, 1.0), 0.0);
 
-            effect eVis = EffectVisualEffect(VFX_IMP_LIGHTNING_S, FALSE, 1.0, vDiff);
-            ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
+            ApplyVisualEffectToObject(VFX_IMP_LIGHTNING_S, oTarget, FALSE, 0.0, 1.0, vDiff);
 */
         }
     }

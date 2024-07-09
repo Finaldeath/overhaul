@@ -53,7 +53,6 @@ void main()
                                                          EffectVisualEffect(VFX_DUR_PARALYZE_HOLD))));
 
                         ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(nCasterLevel/2, ROUNDS));
-
                     }
                 }
             }

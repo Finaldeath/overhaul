@@ -46,14 +46,14 @@ void main()
         break;
     }
 
-    effect eVis = EffectVisualEffect(VFX_IMP_HEAD_NATURE);
+    int nVis = VFX_IMP_HEAD_NATURE;
     effect eLink = EffectLinkEffects(EffectRegenerate(nHealing, 6.0),
                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
 
     if (GetSpellIsAreaOfEffect(nSpellId))
     {
         // Same AOE effect for each
-        ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_PULSE_NATURE), lTarget);
+        ApplyVisualEffectAtLocation(VFX_IMP_PULSE_NATURE, lTarget);
 
         json jArray = GetArrayOfTargets(SPELL_TARGET_ALLALLIES);
         int nIndex;
@@ -72,7 +72,7 @@ void main()
             // Then we cull all existing regen effects
             RemoveEffectsFromSpell(oTarget, SPELL_ANY, EFFECT_TYPE_REGENERATE);
 
-            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
+            DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
             DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
         }
     }
@@ -88,7 +88,7 @@ void main()
         // Then we cull all existing regen effects
         RemoveEffectsFromSpell(oTarget, SPELL_ANY, EFFECT_TYPE_REGENERATE);
 
-        ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
+        ApplyVisualEffectToObject(nVis, oTarget);
         ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
     }
 }

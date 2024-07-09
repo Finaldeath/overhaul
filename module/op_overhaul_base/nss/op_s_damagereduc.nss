@@ -3,6 +3,8 @@
 //:: op_s_damagereduc
 //:://////////////////////////////////////////////
 /*
+    Q: Should these stack? (and if not stack should the remaining amount be applied to a recast?)
+
     Stoneskin
     10/+5 damage reduction for up to a limit of 10 per caster level, 100 limit.
     Greater Stoneskin
@@ -21,8 +23,8 @@ void main()
 {
     if (DoSpellHook()) return;
 
-    effect eLink, eVis;
-    int bVis = FALSE;
+    effect eLink;
+    int nVis = VFX_NONE;
     float fDuration;
     switch (nSpellId)
     {
@@ -30,8 +32,7 @@ void main()
         case SPELL_SHADES_STONESKIN:
         {
             fDuration = GetDuration(nCasterLevel, HOURS);
-            bVis = TRUE;
-            eVis = EffectVisualEffect(VFX_IMP_SUPER_HEROISM);
+            nVis = VFX_IMP_SUPER_HEROISM;
             eLink = EffectLinkEffects(EffectDamageReduction(10, DAMAGE_POWER_PLUS_FIVE, max(100, nCasterLevel)),
                     EffectLinkEffects(EffectVisualEffect(VFX_DUR_PROT_STONESKIN),
                                       EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
@@ -40,8 +41,7 @@ void main()
         case SPELL_GREATER_STONESKIN:
         {
             fDuration = GetDuration(nCasterLevel, HOURS);
-            bVis = TRUE;
-            eVis = EffectVisualEffect(VFX_IMP_POLYMORPH);
+            nVis = VFX_IMP_POLYMORPH;
             eLink = EffectLinkEffects(EffectDamageReduction(20, DAMAGE_POWER_PLUS_FIVE, max(150, nCasterLevel)),
                     EffectLinkEffects(EffectVisualEffect(VFX_DUR_PROT_GREATER_STONESKIN),
                                       EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
@@ -69,7 +69,7 @@ void main()
     RemoveEffectsFromSpell(oTarget, SPELL_GREATER_STONESKIN);
     RemoveEffectsFromSpell(oTarget, SPELL_PREMONITION);
 
-    if (bVis) ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
+    ApplyVisualEffectToObject(nVis, oTarget);
     ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
 }
 

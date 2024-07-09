@@ -3,6 +3,8 @@
 //:: op_s_buffsaves.nss
 //:://////////////////////////////////////////////
 /*
+    Q: Should we let these stack?
+
     Resistance
     Grants the target creature a +1 bonus to all saving throws.
 
@@ -28,9 +30,9 @@ void main()
     if (DoSpellHook()) return;
 
     // Bonus to increase and duration
-    int bAOE, nMaxTargets;
+    int bAOE, nMaxTargets, nImpact = VFX_NONE, nVis = VFX_NONE;
     float fDuration;
-    effect eImpact, eVis, eLink;
+    effect eLink;
 
     switch (nSpellId)
     {
@@ -39,7 +41,7 @@ void main()
             bAOE = FALSE;
             fDuration = GetDuration(2, MINUTES);
 
-            eVis = EffectVisualEffect(VFX_IMP_HEAD_HOLY);
+            nVis = VFX_IMP_HEAD_HOLY;
             eLink = EffectLinkEffects(EffectSavingThrowIncrease(SAVING_THROW_ALL, 1),
                                       EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
         }
@@ -49,7 +51,7 @@ void main()
             bAOE = FALSE;
             fDuration = GetDuration(nCasterLevel, HOURS);
 
-            eVis = EffectVisualEffect(VFX_IMP_MAGIC_PROTECTION);
+            nVis = VFX_IMP_MAGIC_PROTECTION;
             eLink = EffectLinkEffects(EffectSavingThrowIncrease(SAVING_THROW_ALL, 3),
                                       EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
         }
@@ -59,7 +61,7 @@ void main()
             bAOE = FALSE;
             fDuration = GetDuration(nCasterLevel, HOURS);
 
-            eVis = EffectVisualEffect(VFX_IMP_MAGIC_PROTECTION);
+            nVis = VFX_IMP_MAGIC_PROTECTION;
             eLink = EffectLinkEffects(EffectSavingThrowIncrease(SAVING_THROW_ALL, 6),
                                       EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
         }
@@ -70,8 +72,8 @@ void main()
             nMaxTargets = max(1, nCasterLevel/4);
             fDuration = GetDuration(nCasterLevel, MINUTES);
 
-            eImpact = EffectVisualEffect(VFX_FNF_LOS_NORMAL_10);
-            eVis = EffectVisualEffect(VFX_IMP_MAGIC_PROTECTION);
+            nImpact = VFX_FNF_LOS_NORMAL_10; // TODO new VFX
+            nVis = VFX_IMP_MAGIC_PROTECTION;
             eLink = EffectLinkEffects(EffectSavingThrowIncrease(SAVING_THROW_ALL, 8, SAVING_THROW_TYPE_SPELL),
                     EffectLinkEffects(EffectVisualEffect(VFX_DUR_MAGIC_RESISTANCE),
                                       EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
@@ -88,7 +90,7 @@ void main()
     // Multi target spells
     if (bAOE)
     {
-        ApplyEffectAtLocation(DURATION_TYPE_INSTANT, eImpact, lTarget);
+        ApplyVisualEffectAtLocation(nImpact, lTarget);
 
         json jArray = GetArrayOfTargets(SPELL_TARGET_ALLALLIES);
         int nIndex;
@@ -99,14 +101,14 @@ void main()
 
             float fDelay = GetDistanceBetweenLocations(lTarget, GetLocation(oTarget))/20.0;
 
-            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
+            DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
             DelayCommand(fDelay + 1.0, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
         }
     }
     else
     {
         SignalSpellCastAt();
-        ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
+        ApplyVisualEffectToObject(nVis, oTarget);
         DelayCommand(1.0, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
     }
 }

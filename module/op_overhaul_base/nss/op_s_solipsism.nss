@@ -25,13 +25,10 @@ void main()
 {
     if (DoSpellHook()) return;
 
-    effect eLink =
-        EffectLinkEffects(EffectCutsceneParalyze(),
-        EffectLinkEffects(EffectIcon(EFFECT_ICON_PARALYZE),
-        EffectLinkEffects(EffectVisualEffect(VFX_DUR_AURA_PULSE_YELLOW_WHITE),
-                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));
-
-    effect eVis = EffectVisualEffect(VFX_IMP_HEAD_ODD);
+    effect eLink = EffectLinkEffects(EffectCutsceneParalyze(),
+                   EffectLinkEffects(EffectIcon(EFFECT_ICON_PARALYZE),
+                   EffectLinkEffects(EffectVisualEffect(VFX_DUR_AURA_PULSE_YELLOW_WHITE),
+                                     EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));
 
     if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
     {
@@ -39,11 +36,11 @@ void main()
 
         if (!DoResistSpell(oTarget, oCaster))
         {
-            if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_MIND_SPELLS))
+            if (!GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_MIND_SPELLS, oCaster))
             {
-                if (!GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_MIND_SPELLS, oCaster))
+                if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_MIND_SPELLS))
                 {
-                    ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
+                    ApplyVisualEffectToObject(VFX_IMP_HEAD_ODD, oTarget);
                     ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(nCasterLevel, ROUNDS));
                 }
             }

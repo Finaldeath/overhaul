@@ -51,5 +51,5 @@ void main()
     // Note we don't remove duplicate effects since the AC bonus won't stack since it's no longer dodge based
 
     // Apply the armor bonuses and the VFX impact
-    ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(nCasterLevel, MINUTES));
+    ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(nCasterLevel, MINUTES));
 }

@@ -30,11 +30,12 @@
 
 #include "op_i_spells"
 
-void MindBlank(object oTarget, int bClarity, float fDuration, float fDelay = 0.0);
+void MindBlank(object oTarget, int bClarity, float fDuration);
 
 void main()
 {
     if (DoSpellHook()) return;
+
 
     // For single target spells just do their effects
     if (nSpellId == SPELL_CLARITY)
@@ -48,12 +49,9 @@ void main()
     // For Mind Blank do an AOE version
     else if (nSpellId == SPELL_MIND_BLANK)
     {
-        effect eImpact = EffectVisualEffect(VFX_FNF_LOS_NORMAL_20);
-        ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, eImpact, lTarget);
+        ApplyVisualEffectAtLocation(VFX_FNF_LOS_NORMAL_20, lTarget);
 
         json jArray = GetArrayOfTargets(SPELL_TARGET_ALLALLIES);
-
-        // Loop array
         int nIndex;
         for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
         {
@@ -63,7 +61,7 @@ void main()
 
             float fDelay = GetDistanceBetweenLocations(lTarget, GetLocation(oTarget)) / 20;
 
-            MindBlank(oTarget, FALSE, GetDuration(nCasterLevel, MINUTES), fDelay);
+            DelayCommand(fDelay, MindBlank(oTarget, FALSE, GetDuration(nCasterLevel, MINUTES)));
         }
     }
     else
@@ -72,14 +70,15 @@ void main()
     }
 }
 
-void MindBlank(object oTarget, int bClarity, float fDuration, float fDelay)
+void MindBlank(object oTarget, int bClarity, float fDuration)
 {
     // Same immunity for each
     effect eLink = EffectLinkEffects(EffectImmunity(IMMUNITY_TYPE_MIND_SPELLS),
                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_POSITIVE),
                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
 
-    DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
+    // Immunity link
+    ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
 
     effect eSearch = GetFirstEffect(oTarget);
     while(GetIsEffectValid(eSearch))
@@ -122,9 +121,9 @@ void MindBlank(object oTarget, int bClarity, float fDuration, float fDelay)
             // Apply damage if it's clarity
             if (bClarity)
             {
-                DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectDamage(1), oTarget));
+                ApplyDamageToObject(oTarget, 1);
             }
-            DelayCommand(fDelay, RemoveEffect(oTarget, eSearch));
+            RemoveEffect(oTarget, eSearch);
         }
         eSearch = GetNextEffect(oTarget);
     }

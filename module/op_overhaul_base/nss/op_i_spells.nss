@@ -250,6 +250,16 @@ void ApplyBeamToObject(int nBeam, object oTarget, int bMissEffect = FALSE, int n
 // Usual scale and translate values as well.
 void ApplyVisualEffectToObject(int nVFX, object oTarget, int bMissEffect = FALSE, float fDuration = 0.0, float fScale=1.0f, vector vTranslate=[0.0,0.0,0.0], vector vRotate=[0.0,0.0,0.0]);
 
+// Applies the given VFX effect to oTarget.
+// - nVFX - visualeffects.2da line. Must be not a DUR or BEAM type. Use VFX_NONE to have this function be ignored.
+// - lTarget - Target of the VFX
+// - bMissEffect - VFX hits or not
+// Usual scale and translate values as well.
+void ApplyVisualEffectAtLocation(int nVFX, location lTarget, int bMissEffect = FALSE, float fScale=1.0f, vector vTranslate=[0.0,0.0,0.0], vector vRotate=[0.0,0.0,0.0]);
+
+// Applies damage of the given type. This helps wrapper delayed damage so we can keep at 1 HP if necessary (Harm/Heal).
+void ApplyDamageToObject(object oTarget, int nDamage, int nDamageType=DAMAGE_TYPE_MAGICAL, int nDamagePower=DAMAGE_POWER_NORMAL, int bKeepAt1HP = FALSE);
+
 // Signals a spell cast event.
 // By default if the default parameters are used then the global automatically
 // generated values are used instead.
@@ -1068,7 +1078,7 @@ void DoDispelMagic(object oTarget, int nCasterLevel, int nVis = VFX_INVALID, flo
                 FloatingTextStrRefOnCreature(100929, oCaster);  // "AoE dispelled"
                 if (GetIsObjectValid(GetAreaOfEffectCreator(oTarget)))
                     FloatingTextStrRefOnCreature(100929, GetAreaOfEffectCreator(oTarget));
-                DelayCommand(fDelay, ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_FNF_LOS_NORMAL_10), GetLocation(oTarget)));
+                DelayCommand(fDelay, ApplyVisualEffectAtLocation(VFX_FNF_LOS_NORMAL_10, GetLocation(oTarget)));
                 DestroyObject(oTarget, fDelay);
             }
             else
@@ -1659,6 +1669,40 @@ void ApplyVisualEffectToObject(int nVFX, object oTarget, int bMissEffect = FALSE
     }
 }
 
+// Applies the given VFX effect to oTarget.
+// - nVFX - visualeffects.2da line. Must be not a DUR or BEAM type. Use VFX_NONE to have this function be ignored.
+// - lTarget - Target of the VFX
+// - bMissEffect - VFX hits or not
+// Usual scale and translate values as well.
+void ApplyVisualEffectAtLocation(int nVFX, location lTarget, int bMissEffect = FALSE, float fScale=1.0f, vector vTranslate=[0.0,0.0,0.0], vector vRotate=[0.0,0.0,0.0])
+{
+    if (nVFX == VFX_NONE) return;
+
+    // Validate VFX
+    string sType = Get2DAString("visualeffects", "Type_FD", nVFX);
+    if (sType == "" || sType == "D" || sType == "B") { OP_Debug("[ApplyVisualEffectToObject] VFX invalid or a Beam/Duration type: " + IntToString(nVFX), LOG_LEVEL_ERROR); return; }
+
+    effect eVFX = EffectVisualEffect(nVFX, bMissEffect, fScale, vTranslate, vRotate);
+
+    // Apply VFX
+    ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, eVFX, lTarget);
+}
+
+// Applies damage of the given type. This helps wrapper delayed damage so we can keep at 1 HP if necessary (Harm/Heal).
+void ApplyDamageToObject(object oTarget, int nDamage, int nDamageType=DAMAGE_TYPE_MAGICAL, int nDamagePower=DAMAGE_POWER_NORMAL, int bKeepAt1HP = FALSE)
+{
+    if (bKeepAt1HP)
+    {
+        if (GetCurrentHitPoints(oTarget) - nDamage < 1) nDamage = GetCurrentHitPoints(oTarget) - 1;
+    }
+    if (nDamage > 0)
+    {
+        effect eDamage = EffectDamage(nDamage, nDamageType, nDamagePower);
+
+        // We always delay damage by 0.0 seconds to stop any script loops
+        DelayCommand(0.0, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDamage, oTarget));
+    }
+}
 
 // Signals a spell cast event.
 // By default if the default parameters are used then the global automatically

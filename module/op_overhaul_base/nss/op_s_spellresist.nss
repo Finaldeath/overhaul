@@ -23,20 +23,20 @@ void main()
 {
     if (DoSpellHook()) return;
 
-    int nMaxTargets;
-    effect eVis, eLink, eImpact;
+    int nMaxTargets, nImpact = VFX_NONE, nVis = VFX_NONE;
+    effect eLink;
     switch (nSpellId)
     {
         case SPELL_SPELL_RESISTANCE:
-            eVis = EffectVisualEffect(VFX_IMP_MAGIC_PROTECTION);
+            nVis = VFX_IMP_MAGIC_PROTECTION;
             eLink = EffectLinkEffects(EffectSpellResistanceIncrease(12 + nCasterLevel),
                     EffectLinkEffects(EffectVisualEffect(VFX_DUR_MAGIC_RESISTANCE),
                                       EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
         break;
         case SPELL_MASS_SPELL_RESISTANCE:
             nMaxTargets = nCasterLevel;
-            eImpact = EffectVisualEffect(VFX_FNF_LOS_NORMAL_20);
-            eVis = EffectVisualEffect(VFX_IMP_MAGIC_PROTECTION);
+            nImpact = VFX_FNF_LOS_NORMAL_20;
+            nVis = VFX_IMP_MAGIC_PROTECTION;
             eLink = EffectLinkEffects(EffectSpellResistanceIncrease(12 + nCasterLevel),
                     EffectLinkEffects(EffectVisualEffect(VFX_DUR_MAGIC_RESISTANCE),
                                       EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
@@ -51,7 +51,7 @@ void main()
 
     if (GetSpellIsAreaOfEffect(nSpellId))
     {
-        ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, eImpact, lTarget);
+        ApplyVisualEffectAtLocation(nImpact, lTarget);
 
         json jArray = GetArrayOfTargets(SPELL_TARGET_ALLALLIES);
         int nIndex;
@@ -63,13 +63,13 @@ void main()
 
             float fDelay = GetDistanceBetweenLocations(lTarget, GetLocation(oTarget))/25.0;
 
-            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
+            DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
             DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
         }
     }
     else
     {
-        ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
+        ApplyVisualEffectToObject(nVis, oTarget);
         ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
     }
 }

@@ -21,12 +21,12 @@ void main()
                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED),
                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
     effect eImpact;
-    int nVis = VFX_INVALID;
+    int nVis = VFX_INVALID, nImpact = VFX_INVALID;
 
     switch (nSpellId)
     {
         case SPELL_CONFUSION:
-            eImpact = EffectVisualEffect(VFX_FNF_LOS_NORMAL_20);
+            nImpact = VFX_FNF_LOS_NORMAL_20;
             nVis = VFX_IMP_CONFUSION_S;
         break;
         default:
@@ -38,7 +38,7 @@ void main()
     // AOE?
     if (GetSpellIsAreaOfEffect(nSpellId))
     {
-        ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, eImpact, lTarget);
+        ApplyVisualEffectAtLocation(nImpact, lTarget);
 
         json jArray = GetArrayOfTargets(SPELL_TARGET_STANDARDHOSTILE);
         int nIndex;

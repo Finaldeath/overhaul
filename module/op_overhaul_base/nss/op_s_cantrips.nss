@@ -27,17 +27,17 @@ void main()
 {
     if (DoSpellHook()) return;
 
-    int bDamage = FALSE, nSavingThrow = -1, nSavingThrowType = SAVING_THROW_TYPE_NONE;
-    effect eVis, eDamage, eLink;
+    int nDamage = 0, nDamageType, nSavingThrow = -1, nSavingThrowType = SAVING_THROW_TYPE_NONE, nVis = VFX_NONE;
+    effect eLink;
     float fDuration;
 
     switch (nSpellId)
     {
         case SPELL_ACID_SPLASH:
         {
-            bDamage = TRUE;
-            eVis = EffectVisualEffect(VFX_IMP_ACID_S);
-            eDamage = EffectDamage(GetDiceRoll(1, 4, 1), DAMAGE_TYPE_ACID);
+            nVis = VFX_IMP_ACID_S;
+            nDamage = GetDiceRoll(1, 4, 1);
+            nDamageType = DAMAGE_TYPE_ACID;
         }
         break;
         case SPELL_DAZE:
@@ -46,7 +46,7 @@ void main()
             nSavingThrowType = SAVING_THROW_TYPE_MIND_SPELLS;
             fDuration = GetDuration(2, ROUNDS);
 
-            eVis = EffectVisualEffect(VFX_IMP_DAZED_S);
+            nVis = VFX_IMP_DAZED_S;
             eLink = EffectLinkEffects(EffectDazed(),
                     EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_NEGATIVE),
                                       EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
@@ -54,9 +54,9 @@ void main()
         break;
         case SPELL_ELECTRIC_JOLT:
         {
-            bDamage = TRUE;
-            eVis = EffectVisualEffect(VFX_IMP_LIGHTNING_S);
-            eDamage = EffectDamage(GetDiceRoll(1, 4, 1), DAMAGE_TYPE_ELECTRICAL);
+            nVis = VFX_IMP_LIGHTNING_S;
+            nDamage = GetDiceRoll(1, 4, 1);
+            nDamageType = DAMAGE_TYPE_ELECTRICAL;
         }
         break;
         case SPELL_FLARE:
@@ -64,7 +64,7 @@ void main()
             nSavingThrow = SAVING_THROW_FORT;
             fDuration = GetDuration(10, ROUNDS);
 
-            eVis = EffectVisualEffect(VFX_IMP_FLAME_S);
+            nVis = VFX_IMP_FLAME_S;
             eLink = EffectLinkEffects(EffectAttackDecrease(1),
                                       EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
         }
@@ -74,25 +74,25 @@ void main()
             // TODO Handle item being targeted here!
             fDuration = GetDuration(nCasterLevel, HOURS);
 
-            eVis = EffectVisualEffect(VFX_IMP_MAGBLUE);
+            nVis = VFX_IMP_MAGBLUE;
             eLink = EffectLinkEffects(EffectVisualEffect(VFX_DUR_LIGHT_WHITE_20),
                                       EffectVisualEffect(VFX_DUR_CESSATE_NEUTRAL));
         }
         break;
         case SPELL_RAY_OF_FROST:
         {
-            bDamage = TRUE;
-            eVis = EffectVisualEffect(VFX_IMP_FROST_S);
-            eDamage = EffectDamage(GetDiceRoll(1, 4, 1), DAMAGE_TYPE_COLD);
+            nVis = VFX_IMP_FROST_S;
+            nDamage = GetDiceRoll(1, 4, 1);
+            nDamageType = DAMAGE_TYPE_COLD;
             // Also apply a beam
-            ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, UnyieldingEffect(EffectBeam(VFX_BEAM_COLD, oCaster, BODY_NODE_HAND)), oTarget, 1.7);
+            ApplyBeamToObject(VFX_BEAM_COLD, oTarget);
         }
         break;
         case SPELL_VIRTUE:
         {
             fDuration = GetDuration(nCasterLevel, MINUTES);
 
-            eVis = EffectVisualEffect(VFX_IMP_HOLY_AID);
+            nVis = VFX_IMP_HOLY_AID;
             eLink = EffectLinkEffects(EffectTemporaryHitpoints(1),
                                       EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
         }
@@ -114,17 +114,17 @@ void main()
         if (!bHostile || !DoResistSpell(oTarget, oCaster))
         {
             // Damaging spells
-            if (bDamage)
+            if (nDamage > 0)
             {
-                ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
-                ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDamage, oTarget);
+                ApplyVisualEffectToObject(nVis, oTarget);
+                ApplyDamageToObject(oTarget, nDamage, nDamageType);
             }
             // Duration spells
             else
             {
                 if (nSavingThrow == -1 || !DoSavingThrow(oTarget, oCaster, nSavingThrow, nSpellSaveDC, nSavingThrowType))
                 {
-                    ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
+                    ApplyVisualEffectToObject(nVis, oTarget);
                     ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
                 }
             }

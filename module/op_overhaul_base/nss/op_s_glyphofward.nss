@@ -69,20 +69,15 @@ void GlyphEffect()
         int bDoneBlast = GetLocalInt(OBJECT_SELF, "DONE_BLAST");
         if (bDoneBlast) return;
         SetLocalInt(OBJECT_SELF, "DONE_BLAST", TRUE);
-        DestroyObject(OBJECT_SELF);
+        DestroyObject(OBJECT_SELF, 0.5);
     }
 
     // Max 5d8 damage
     int nDamageDice = min(nCasterLevel/2, 5);
 
-    effect eExplode = EffectVisualEffect(VFX_FNF_ELECTRIC_EXPLOSION);
-    effect eVis     = EffectVisualEffect(VFX_IMP_SONIC);
-
-    ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, eExplode, lTarget);
+    ApplyVisualEffectAtLocation(VFX_FNF_ELECTRIC_EXPLOSION, lTarget);
 
     json jArray = GetArrayOfTargets(SPELL_TARGET_STANDARDHOSTILE, SORT_METHOD_DISTANCE, OBJECT_TYPE_CREATURE | OBJECT_TYPE_DOOR | OBJECT_TYPE_PLACEABLE);
-
-    // Loop array
     int nIndex;
     for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
     {
@@ -97,8 +92,8 @@ void GlyphEffect()
 
             if (nDamage > 0)
             {
-                effect eDamage = EffectDamage(nDamage, DAMAGE_TYPE_SONIC);
-                ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDamage, oTarget);
+                ApplyVisualEffectToObject(VFX_IMP_SONIC, oTarget);
+                ApplyDamageToObject(oTarget, nDamage, DAMAGE_TYPE_SONIC);
             }
         }
     }

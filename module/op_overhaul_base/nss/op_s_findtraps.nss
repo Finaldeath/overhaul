@@ -18,10 +18,7 @@ void main()
 {
     if (DoSpellHook()) return;
 
-    effect eImpact = EffectVisualEffect(VFX_FNF_LOS_NORMAL_30); // TODO replace with better VFX
-    effect eVis = EffectVisualEffect(VFX_IMP_KNOCK); // TODO replace with a better VFX
-
-    ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, eImpact, lTarget);
+    ApplyVisualEffectAtLocation(VFX_FNF_LOS_NORMAL_30, lTarget); // TODO replace with better VFX
 
     // Find the traps or trapped objects
     json jArray = GetArrayOfTargets(SPELL_TARGET_ANYTHING, SORT_METHOD_DISTANCE, OBJECT_TYPE_PLACEABLE | OBJECT_TYPE_DOOR | OBJECT_TYPE_TRIGGER);
@@ -36,7 +33,7 @@ void main()
         {
             float fDelay = GetDistanceBetween(oTarget, oCaster)/20.0;
 
-            DelayCommand(fDelay, ApplyEffectAtLocation(DURATION_TYPE_INSTANT, eVis, GetLocation(oTarget)));
+            DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_KNOCK, oTarget));// TODO replace with a better VFX
             DelayCommand(fDelay + 1.0, SetDetectedByParty(oTarget, oCaster));
         }
     }

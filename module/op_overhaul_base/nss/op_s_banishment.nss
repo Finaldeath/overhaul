@@ -20,10 +20,9 @@ void main()
 
     // Effects
     effect eDeath  = IgnoreEffectImmunity(EffectDeath());
-    effect eVis    = EffectVisualEffect(VFX_IMP_UNSUMMON);
-    effect eImpact = EffectVisualEffect(VFX_IMP_UNSUMMON, FALSE, 5.0);
 
-    ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, eImpact, lTarget);
+    // TODO: Could use a new VFX here
+    ApplyVisualEffectAtLocation(VFX_IMP_UNSUMMON, lTarget, FALSE, 5.0);
 
     // The pool is the number of hit dice of creatures that can be banished
     int nPool = 2 * nCasterLevel;
@@ -54,8 +53,8 @@ void main()
                     SetIsDestroyable(TRUE, FALSE, FALSE, oTarget);
 
                     // This deals with Immortal and Plot flag fine.
+                    DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_UNSUMMON, oTarget));
                     DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDeath, oTarget));
-                    DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
                 }
             }
         }

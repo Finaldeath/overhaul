@@ -27,7 +27,6 @@ void main()
 {
     if (DoSpellHook()) return;
 
-    effect eVis = EffectVisualEffect(VFX_IMP_BLIND_DEAF_M);
     effect eRunScript = EffectRunScriptAutomatic();
     effect eBlindness = TagEffect(UnyieldingEffect(EffectBlindness()), CONE_OF_DIMNESS);
     float fDuration = GetDuration(nCasterLevel, ROUNDS);
@@ -49,7 +48,7 @@ void main()
             {
                 if (!GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_BLINDNESS, oCaster))
                 {
-                    DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
+                    DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_BLIND_DEAF_M, oTarget));
                     DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eRunScript, oTarget, fDuration));
                     DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eBlindness, oTarget, fDuration));
                 }

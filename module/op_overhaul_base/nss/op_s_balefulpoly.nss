@@ -40,10 +40,9 @@ void main()
             if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_FORT, nSpellSaveDC))
             {
                 effect ePolymorph = EffectPolymorph(POLYMORPH_TYPE_CHICKEN, TRUE);
-                effect eVis = EffectVisualEffect(VFX_IMP_POLYMORPH);
                 float fDuration = GetDuration(nCasterLevel, ROUNDS);
 
-                ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
+                ApplyVisualEffectToObject(VFX_IMP_POLYMORPH, oTarget);
                 ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, ePolymorph, oTarget, fDuration);
             }
         }

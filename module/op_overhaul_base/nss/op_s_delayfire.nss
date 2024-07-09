@@ -116,10 +116,9 @@ void DelayedBlastEffect()
     // Max 20d6 damage
     int nDamageDice = min(nCasterLevel, 20);
 
-    effect eExplode = EffectVisualEffect(VFX_FNF_FIREBALL);
-    effect eVis     = EffectVisualEffect(VFX_IMP_FLAME_M);
+    int nVis = VFX_IMP_FLAME_M;
 
-    ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, eExplode, lTarget);
+    ApplyVisualEffectAtLocation(VFX_FNF_FIREBALL, lTarget);
 
     json jArray = GetArrayOfTargets(SPELL_TARGET_STANDARDHOSTILE, SORT_METHOD_DISTANCE, OBJECT_TYPE_CREATURE | OBJECT_TYPE_DOOR | OBJECT_TYPE_PLACEABLE);
     int nIndex;
@@ -142,9 +141,8 @@ void DelayedBlastEffect()
             if (nDamage > 0)
             {
                 // Apply VFX impact and damage effect
-                effect eDam = EffectDamage(nDamage, DAMAGE_TYPE_FIRE);
-                DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
-                DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDam, oTarget));
+                DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
+                DelayCommand(fDelay, ApplyDamageToObject(oTarget, nDamage, DAMAGE_TYPE_FIRE));
             }
         }
     }

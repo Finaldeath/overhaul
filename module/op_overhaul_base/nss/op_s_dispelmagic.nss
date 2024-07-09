@@ -43,7 +43,7 @@ void main()
     else
     {
         // AOE
-        ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_FNF_LOS_NORMAL_20), lTarget);
+        ApplyVisualEffectAtLocation(VFX_FNF_LOS_NORMAL_20, lTarget);
 
         json jArray = GetArrayOfTargets(SPELL_TARGET_ANYTHING, SORT_METHOD_DISTANCE, OBJECT_TYPE_CREATURE | OBJECT_TYPE_AREA_OF_EFFECT);
         int nIndex;

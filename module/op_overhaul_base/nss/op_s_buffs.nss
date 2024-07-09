@@ -68,6 +68,9 @@
     Awaken
     Animal gains +4 Strength, +4 Constitution, +1d10 Wisdom, and +2 to attack
     rolls. 1 hour/level.
+
+    Clairaudience/Clairvoyance
+    +10 bonus to all Spot and Listen checks. 1 round/level.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -394,6 +397,15 @@ void main()
             nRemoveSpell2 = SPELL_MASS_CAMOFLAGE;
         }
         break;
+        case SPELL_CLAIRAUDIENCE_AND_CLAIRVOYANCE:
+        {
+            eLink = EffectLinkEffects(EffectSkillIncrease(SKILL_SPOT, 10),
+                    EffectLinkEffects(EffectSkillIncrease(SKILL_LISTEN, 10),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_MAGICAL_SIGHT),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE))));
+            fDuration = GetDuration(nCasterLevel, ROUNDS);
+        }
+        break;
         default:
             OP_Debug("[op_s_buffs] No valid spell ID passed in: " + IntToString(nSpellId), LOG_LEVEL_ERROR);
             return;
@@ -402,7 +414,7 @@ void main()
 
     if (GetSpellIsAreaOfEffect(nSpellId))
     {
-        if (nImpact != VFX_INVALID) ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(nImpact), lTarget);
+        ApplyVisualEffectAtLocation(nImpact, lTarget);
 
         json jArray = GetArrayOfTargets(SPELL_TARGET_ALLALLIES, SORT_METHOD_DISTANCE);
         int nIndex;

@@ -33,7 +33,7 @@
 
 #include "op_i_spells"
 
-void HealOrHarm(object oTarget, int nVisHeal, int nVisHarm, int nDice, int nHealingStatic, int bAOE, int bDoTouch = FALSE);
+void HealOrHarm(object oTarget, float fDelay, int nVisHeal, int nVisHarm, int nDice, int nStatic, int bAOE, int bDoTouch = FALSE);
 
 void main()
 {
@@ -121,19 +121,15 @@ void main()
         break;
     }
 
-    // Cheat using the 2da info for if it is an AOE or not
-    int bAOE = GetSpellIsAreaOfEffect(nSpellId);
-    if (bAOE)
+    if (GetSpellIsAreaOfEffect(nSpellId))
     {
         // Same AOE effect for each
-        ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_FNF_LOS_HOLY_20), lTarget);
-
-        json jArray = GetArrayOfTargets(SPELL_TARGET_ANYTHING);
+        ApplyVisualEffectAtLocation(VFX_FNF_LOS_HOLY_20, lTarget);
 
         // Mass heal gets touch attacks for balance
         int bTouch = nSpellId == SPELL_MASS_HEAL ? TRUE : FALSE;
 
-        // Loop array
+        json jArray = GetArrayOfTargets(SPELL_TARGET_ANYTHING);
         int nIndex;
         for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
         {
@@ -141,16 +137,16 @@ void main()
 
             float fDelay = GetDistanceBetweenLocations(lTarget, GetLocation(oTarget))/25.0;
 
-            DelayCommand(fDelay, HealOrHarm(oTarget, nVisHeal, nVisHarm, nDice, nHealingStatic, TRUE, bTouch));
+            HealOrHarm(oTarget, fDelay, nVisHeal, nVisHarm, nDice, nHealingStatic, TRUE, bTouch);
         }
     }
     else
     {
-        HealOrHarm(oTarget, nVisHeal, nVisHarm, nDice, nHealingStatic, FALSE, TRUE);
+        HealOrHarm(oTarget, 0.0, nVisHeal, nVisHarm, nDice, nHealingStatic, FALSE, TRUE);
     }
 }
 
-void HealOrHarm(object oTarget, int nVisHeal, int nVisHarm, int nDice, int nHealingStatic, int bAOE, int bDoTouch = FALSE)
+void HealOrHarm(object oTarget, float fDelay, int nVisHeal, int nVisHarm, int nDice, int nStatic, int bAOE, int bDoTouch = FALSE)
 {
     if (GetRacialType(oTarget) == RACIAL_TYPE_CONSTRUCT)
     {
@@ -174,28 +170,27 @@ void HealOrHarm(object oTarget, int nVisHeal, int nVisHarm, int nDice, int nHeal
             }
             if (nTouch)
             {
-                if (!DoResistSpell(oTarget, oCaster))
+                if (!DoResistSpell(oTarget, oCaster, fDelay))
                 {
-                    int nAmount = GetDiceRoll(nDice, 8, nHealingStatic);
+                    int nDamage = GetDiceRoll(nDice, 8, nStatic);
 
                     // Double amount if critical
-                    if (nTouch == 2) nAmount *= 2;
+                    if (nTouch == 2) nDamage *= 2;
 
                     // Will saving throw for half
-                    if (DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_POSITIVE))
-                    {
-                        nAmount /= 2;
-                    }
+                    nDamage = DoDamageSavingThrow(nDamage, oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_POSITIVE, fDelay);
 
-                    // Cap Heal damage
-                    if (nSpellId == SPELL_HEAL || nSpellId == SPELL_MASS_HEAL)
+                    if (nDamage > 0)
                     {
-                        if (GetCurrentHitPoints(oTarget) - nAmount < 1) nAmount = GetCurrentHitPoints(oTarget) - 1;
+                        // Cap Heal damage
+                        int bCapDamage = FALSE;
+                        if (nSpellId == SPELL_HEAL || nSpellId == SPELL_MASS_HEAL)
+                        {
+                            bCapDamage = TRUE;
+                        }
+                        DelayCommand(fDelay, ApplyVisualEffectToObject(nVisHarm, oTarget));
+                        DelayCommand(fDelay, ApplyDamageToObject(oTarget, nDamage, DAMAGE_TYPE_POSITIVE, DAMAGE_POWER_NORMAL, bCapDamage));
                     }
-
-                    effect eDamage = EffectDamage(nAmount, DAMAGE_TYPE_POSITIVE);
-                    ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(nVisHarm), oTarget);
-                    ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDamage, oTarget);
                 }
             }
         }
@@ -205,7 +200,7 @@ void HealOrHarm(object oTarget, int nVisHeal, int nVisHarm, int nDice, int nHeal
         // Heal
         SignalSpellCastAt(oTarget, oCaster, FALSE);
 
-        int nAmount = GetDiceRoll(nDice, 8, nHealingStatic);
+        int nAmount = GetDiceRoll(nDice, 8, nStatic);
 
         ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(nVisHeal), oTarget);
         ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectHeal(nAmount), oTarget);

@@ -22,14 +22,13 @@ void main()
     effect eLink = EffectLinkEffects(EffectSleep(),
                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_NEGATIVE),
                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
-    effect eImpact;
-    int nVis = VFX_INVALID, nHDLimit, nHDPool;
+    int nImpact = VFX_NONE, nVis = VFX_NONE, nHDLimit, nHDPool;
     int nDuration;
 
     switch (nSpellId)
     {
         case SPELL_SLEEP:
-            eImpact = EffectVisualEffect(VFX_FNF_LOS_NORMAL_20);
+            nImpact = VFX_FNF_LOS_NORMAL_20;
             nVis = VFX_IMP_SLEEP;
             nHDLimit = 4;
             nHDPool = GetDiceRoll(1, 4, 4);
@@ -44,7 +43,7 @@ void main()
     // AOE?
     if (GetSpellIsAreaOfEffect(nSpellId))
     {
-        ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, eImpact, lTarget);
+        ApplyVisualEffectAtLocation(nImpact, lTarget);
 
         json jArray = GetArrayOfTargets(SPELL_TARGET_STANDARDHOSTILE, SORT_METHOD_LOWEST_HD);
         int nIndex;
@@ -77,7 +76,7 @@ void main()
                         {
                             if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_MIND_SPELLS, fDelay))
                             {
-                                if (nVis >= 0) DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
+                                DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
                                 float fDuration = GetScaledDuration(oTarget, nDuration, ROUNDS);
                                 DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
                             }

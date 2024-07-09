@@ -60,15 +60,14 @@ void main()
                     if (nTouch == 2) nDamage *= 2;
                 }
 
-                // Apply the damage after a short delay, then test if they're dead from it
+                // Apply the damage after a short delay (Stops script loops), then test if they're dead from it
                 DelayCommand(0.0, ApplyDisintegrate(oTarget, nDamage));
             }
         }
         else
         {
             // Miss beam
-            effect eRay = EffectBeam(VFX_BEAM_DISINTEGRATE, oCaster, BODY_NODE_HAND, TRUE);
-            ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eRay, oTarget, 1.5);
+            ApplyBeamToObject(VFX_BEAM_DISINTEGRATE, oTarget, TRUE, BODY_NODE_HAND, 1.5, oCaster);
         }
     }
 }
@@ -83,8 +82,7 @@ void ApplyDisintegrate(object oTarget, int nDamage)
     // If already dead NPC just apply the beam
     if (GetIsDead(oTarget) && !GetIsPC(oTarget))
     {
-        effect eRay = UnyieldingEffect(EffectBeam(VFX_BEAM_DISINTEGRATE, oCaster, BODY_NODE_HAND));
-        ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eRay, oTarget, 1.5);
+        ApplyBeamToObject(VFX_BEAM_DISINTEGRATE, oTarget, FALSE, BODY_NODE_HAND, 1.5, oCaster);
     }
     // Note the spell will kill when people reach 0 HP so this covers dying anyway
     else if (GetCurrentHitPoints(oTarget) - nDamage <= 0 &&
@@ -97,12 +95,9 @@ void ApplyDisintegrate(object oTarget, int nDamage)
         // Scale of VFX based off target
         float fScale = GetVFXScale(oTarget);
 
-        // Dust effect
-        effect eVis = EffectVisualEffect(30000, FALSE, fScale);
-        ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, eVis, GetLocation(oTarget));
-
-        effect eRay = UnyieldingEffect(EffectBeam(VFX_BEAM_DISINTEGRATE, oCaster, BODY_NODE_HAND));
-        ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eRay, oTarget, 1.5);
+        // Ray and Dust Effect
+        ApplyBeamToObject(VFX_BEAM_DISINTEGRATE, oTarget, FALSE, BODY_NODE_HAND, 1.5, oCaster);
+        ApplyVisualEffectAtLocation(VFX_IMP_DISINTEGRATE, GetLocation(oTarget), FALSE, fScale);
 
         // If PC or henchman we just kill them
         if (GetIsPC(oTarget) || GetAssociateType(oTarget) == ASSOCIATE_TYPE_HENCHMAN)
@@ -132,12 +127,9 @@ void ApplyDisintegrate(object oTarget, int nDamage)
     else
     {
         // Didn't kill, just apply normal damage and a minor VFX
-        effect eRay = UnyieldingEffect(EffectBeam(VFX_BEAM_DISINTEGRATE, oCaster, BODY_NODE_HAND));
-        ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eRay, oTarget, 1.5);
+        ApplyBeamToObject(VFX_BEAM_DISINTEGRATE, oTarget, FALSE, BODY_NODE_HAND, 1.5, oCaster);
 
-        effect eVis    = EffectVisualEffect(VFX_IMP_MAGBLUE);
-        effect eDamage = EffectDamage(nDamage);
-        ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
-        ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDamage, oTarget);
+        ApplyVisualEffectToObject(VFX_IMP_MAGBLUE, oTarget);
+        ApplyDamageToObject(oTarget, nDamage);
     }
 }

@@ -108,13 +108,11 @@ void Charm(float fDelay)
         {
             if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_MIND_SPELLS))
             {
-                effect eVis = EffectVisualEffect(VFX_IMP_CHARM);
-
                 effect eLink = EffectLinkEffects(GetScaledEffect(EffectCharmed(), oTarget),
                                EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_NEGATIVE),
                                                  EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
 
-                DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget));
+                DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_CHARM, oTarget));
                 DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
             }
         }
