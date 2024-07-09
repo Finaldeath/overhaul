@@ -8,6 +8,9 @@
     generally apply one visual and one linked set of buff effects nothing
     too complicated (like mobile AOEs or affecting enemies with things).
 
+    Removes existing castings of that specific spell. Some spells may remove
+    other ones of the same type.
+
     Undeaths Eternal Foe
     All allies in the area of effect will receive the following bonuses: +100%
     immunity to negative damage, immunity to death magic, immunity to
@@ -61,6 +64,10 @@
     The Ability Score Buffs
     1d4 + 1 or 2d4 + 1 (Greater version) or Caster Level / 2 (Owl's Insight)
     bonus to ability score. Removes previous. 1 hour/level.
+
+    Awaken
+    Animal gains +4 Strength, +4 Constitution, +1d10 Wisdom, and +2 to attack
+    rolls. 1 hour/level.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -76,6 +83,7 @@ void main()
     // Toggles
     int bImpact = FALSE, bDelayRandom = FALSE;
     int nImpact = VFX_INVALID, nVis = VFX_INVALID;
+    int nRemoveSpell1 = SPELL_INVALID, nRemoveSpell2 = SPELL_INVALID, nRemoveSpell3 = SPELL_INVALID;
     int nCreatureLimit = 99999;
     effect eLink;
     float fDuration;
@@ -101,6 +109,8 @@ void main()
             eLink = EffectLinkEffects(EffectACIncrease(4, AC_ARMOUR_ENCHANTMENT_BONUS),
                                       EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
             fDuration = GetDuration(nCasterLevel, HOURS);
+
+            nRemoveSpell1 = SPELL_GREATER_MAGE_ARMOR;
         }
         break;
         case SPELL_GREATER_MAGE_ARMOR:
@@ -109,6 +119,8 @@ void main()
             eLink = EffectLinkEffects(EffectACIncrease(6, AC_ARMOUR_ENCHANTMENT_BONUS),
                                       EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
             fDuration = GetDuration(nCasterLevel, HOURS);
+
+            nRemoveSpell1 = SPELL_MAGE_ARMOR;
         }
         break;
         case SPELL_EPIC_MAGE_ARMOR:
@@ -209,6 +221,7 @@ void main()
         break;
         case SPELL_AURA_OF_VITALITY:
         {
+            // Letting this stack with other ability score increases for now
             nImpact = VFX_FNF_NATURES_BALANCE; // Needs unique VFX
             nVis = VFX_IMP_IMPROVE_ABILITY_SCORE;
             nCreatureLimit = max(1, nCasterLevel/3);
@@ -260,8 +273,8 @@ void main()
             fDuration = GetDuration(nCasterLevel, HOURS);
 
             // Remove previous castings
-            RemoveEffectsFromSpell(oTarget, SPELL_BULLS_STRENGTH);
-            RemoveEffectsFromSpell(oTarget, SPELL_GREATER_BULLS_STRENGTH);
+            nRemoveSpell1 = SPELL_BULLS_STRENGTH;
+            nRemoveSpell2 = SPELL_GREATER_BULLS_STRENGTH;
         }
         break;
         case SPELL_CATS_GRACE:
@@ -275,8 +288,8 @@ void main()
             fDuration = GetDuration(nCasterLevel, HOURS);
 
             // Remove previous castings
-            RemoveEffectsFromSpell(oTarget, SPELL_CATS_GRACE);
-            RemoveEffectsFromSpell(oTarget, SPELL_GREATER_CATS_GRACE);
+            nRemoveSpell1 = SPELL_CATS_GRACE;
+            nRemoveSpell2 = SPELL_GREATER_CATS_GRACE;
         }
         break;
         case SPELL_EAGLE_SPLEDOR:
@@ -290,8 +303,8 @@ void main()
             fDuration = GetDuration(nCasterLevel, HOURS);
 
             // Remove previous castings
-            RemoveEffectsFromSpell(oTarget, SPELL_EAGLE_SPLEDOR);
-            RemoveEffectsFromSpell(oTarget, SPELL_GREATER_EAGLE_SPLENDOR);
+            nRemoveSpell1 = SPELL_EAGLE_SPLEDOR;
+            nRemoveSpell2 = SPELL_GREATER_EAGLE_SPLENDOR;
         }
         break;
         case SPELL_ENDURANCE:
@@ -305,8 +318,8 @@ void main()
             fDuration = GetDuration(nCasterLevel, HOURS);
 
             // Remove previous castings
-            RemoveEffectsFromSpell(oTarget, SPELL_ENDURANCE);
-            RemoveEffectsFromSpell(oTarget, SPELL_GREATER_ENDURANCE);
+            nRemoveSpell1 = SPELL_ENDURANCE;
+            nRemoveSpell2 = SPELL_GREATER_ENDURANCE;
         }
         break;
         case SPELL_FOXS_CUNNING:
@@ -320,8 +333,8 @@ void main()
             fDuration = GetDuration(nCasterLevel, HOURS);
 
             // Remove previous castings
-            RemoveEffectsFromSpell(oTarget, SPELL_FOXS_CUNNING);
-            RemoveEffectsFromSpell(oTarget, SPELL_GREATER_FOXS_CUNNING);
+            nRemoveSpell1 = SPELL_FOXS_CUNNING;
+            nRemoveSpell2 = SPELL_GREATER_FOXS_CUNNING;
         }
         break;
         case SPELL_OWLS_WISDOM:
@@ -345,9 +358,40 @@ void main()
             fDuration = GetDuration(nCasterLevel, HOURS);
 
             // Remove previous castings
-            RemoveEffectsFromSpell(oTarget, SPELL_OWLS_WISDOM);
-            RemoveEffectsFromSpell(oTarget, SPELL_GREATER_OWLS_WISDOM);
-            RemoveEffectsFromSpell(oTarget, SPELL_OWLS_INSIGHT);
+            nRemoveSpell1 = SPELL_OWLS_WISDOM;
+            nRemoveSpell2 = SPELL_GREATER_OWLS_WISDOM;
+            nRemoveSpell3 = SPELL_OWLS_INSIGHT;
+        }
+        break;
+        case SPELL_AWAKEN:
+        {
+            if (GetRacialType(oTarget) != RACIAL_TYPE_ANIMAL)
+            {
+                SendMessageToPC(oCaster, "*Awaken can only affect animal targets*");
+                return;
+            }
+            nVis = VFX_IMP_HOLY_AID;
+            int nRandomBonus = GetDiceRoll(1, 10);
+
+            eLink = EffectLinkEffects(EffectAbilityIncrease(ABILITY_STRENGTH, 4),
+                    EffectLinkEffects(EffectAbilityIncrease(ABILITY_CONSTITUTION, 4),
+                    EffectLinkEffects(EffectAbilityIncrease(ABILITY_WISDOM, nRandomBonus),
+                    EffectLinkEffects(EffectAttackIncrease(2),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)))));
+            fDuration = GetDuration(nCasterLevel, HOURS);
+        }
+        break;
+        case SPELL_CAMOFLAGE:
+        case SPELL_MASS_CAMOFLAGE:
+        {
+            nVis = VFX_IMP_IMPROVE_ABILITY_SCORE; // Could use a new VFX or sound at least (hiding sound?)
+            nImpact = VFX_FNF_LOS_HOLY_30; // For Mass version only, again new VFX?
+            eLink = EffectLinkEffects( EffectSkillIncrease(SKILL_HIDE, 10),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+            fDuration = GetDuration(nCasterLevel * 10, MINUTES);
+
+            nRemoveSpell1 = SPELL_CAMOFLAGE;
+            nRemoveSpell2 = SPELL_MASS_CAMOFLAGE;
         }
         break;
         default:
@@ -372,6 +416,12 @@ void main()
 
             float fDelay = bDelayRandom ? GetRandomDelay() : GetDistanceBetweenLocations(GetLocation(oTarget), lTarget)/20.0;
 
+            // Remove previous castings
+            RemoveEffectsFromSpell(oTarget, nSpellId);
+            if (nRemoveSpell1 != SPELL_INVALID) RemoveEffectsFromSpell(oTarget, nRemoveSpell1);
+            if (nRemoveSpell2 != SPELL_INVALID) RemoveEffectsFromSpell(oTarget, nRemoveSpell2);
+            if (nRemoveSpell3 != SPELL_INVALID) RemoveEffectsFromSpell(oTarget, nRemoveSpell3);
+
             if (nVis != VFX_INVALID) DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
             DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
         }
@@ -379,6 +429,12 @@ void main()
     else
     {
         SignalSpellCastAt();
+
+        // Remove previous castings
+        RemoveEffectsFromSpell(oTarget, nSpellId);
+        if (nRemoveSpell1 != SPELL_INVALID) RemoveEffectsFromSpell(oTarget, nRemoveSpell1);
+        if (nRemoveSpell2 != SPELL_INVALID) RemoveEffectsFromSpell(oTarget, nRemoveSpell2);
+        if (nRemoveSpell3 != SPELL_INVALID) RemoveEffectsFromSpell(oTarget, nRemoveSpell3);
 
         ApplyVisualEffectToObject(nVis, oTarget);
         ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);

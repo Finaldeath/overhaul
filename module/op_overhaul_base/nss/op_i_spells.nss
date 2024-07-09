@@ -1773,7 +1773,17 @@ int GetSpellSchool(int nSpellId)
 // Returns TRUE if the spell has targeting defined in the column "TargetShape"
 int GetSpellIsAreaOfEffect(int nSpellId)
 {
-    return (Get2DAString("spells", "TargetShape", nSpellId) != "");
+    // Test is more comprehensive to catch errors
+    if (Get2DAString("spells", "TargetShape", nSpellId) != "")
+    {
+        if (Get2DAString("spells", "TargetSizeX", nSpellId) == "" && Get2DAString("spells", "TargetSizeX", nSpellId) == "")
+        {
+            OP_Debug("[GetSpellIsAreaOfEffect] Spell " + GetSpellName(nSpellId) + " is set with a TargetShape but no valid X or Y size.", LOG_LEVEL_ERROR);
+            return FALSE;
+        }
+        return TRUE;
+    }
+    return FALSE;
 }
 
 // Returns a human readable name for the given effect (eg: "Fear" or "Negative Level").
