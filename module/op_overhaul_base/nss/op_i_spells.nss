@@ -349,7 +349,7 @@ object GetArrayObject(json jArray, int nIndex);
 // Returns a EffectRunScript with extra data appended. Will NOT set an apply script since you can run things in the current script.
 // The data field in the effect will be set with information that isn't set on the effect, and retrieved
 // automatically, eg: nMetaMagic, nSpellSaveDC, nSpellLevel
-// - bAutomatic - Will use current script name + "rs" (eg: op_s_melfsacid -> op_s_melfsacidrs) for both scripts and a 6.0 second interval
+// - bAutomatic - Will use current script name for both scripts and a 6.0 second interval
 effect EffectRunScriptEnhanced(int bAutomatic = TRUE, string sRemovedScript = "", string sInteveralScript = "", float fInterval = 0.0);
 
 // This tags the given effect with JSON_FIELD_* information and returns it
@@ -2290,32 +2290,29 @@ object GetArrayObject(json jArray, int nIndex)
     return OBJECT_INVALID;
 }
 
-
-
 // Returns a EffectRunScript with extra data appended. Will NOT set an apply script since you can run things in the current script.
 // The data field in the effect will be set with information that isn't set on the effect, and retrieved
 // automatically, eg: nMetaMagic, nSpellSaveDC, nSpellLevel
-// - bAutomatic - Will use current script name + "rs" (eg: op_s_melfsacid -> op_s_melfsacidrs) for both scripts and a 6.0 second interval
+// - bAutomatic - Will use current script name for both scripts and a 6.0 second interval
 effect EffectRunScriptEnhanced(int bAutomatic = TRUE, string sRemovedScript = "", string sInteveralScript = "", float fInterval = 0.0)
 {
     if (bAutomatic)
     {
-        sInteveralScript = GetScriptName() + "rs";
-        sRemovedScript = GetScriptName() + "rs";
+        sInteveralScript = GetScriptName();
+        sRemovedScript = GetScriptName();
         fInterval = 6.0;
+    }
 
-        if (GetStringLength(sInteveralScript) > 16)
-        {
-            // Oh no! Return an invalid effect
-            OP_Debug("[EffectRunScriptEnhanced] Script name too long: " + sInteveralScript, LOG_LEVEL_ERROR);
-            return EffectInvalidEffect();
-        }
-
-        if (ResManGetAliasFor(sInteveralScript, RESTYPE_NSS) == "")
-        {
-            OP_Debug("[EffectRunScriptEnhanced] Script not found: " + sInteveralScript, LOG_LEVEL_ERROR);
-            return EffectInvalidEffect();
-        }
+    // These are a bit redundant now but just in case we input bad script names...
+    if (GetStringLength(sInteveralScript) > 16)
+    {
+        OP_Debug("[EffectRunScriptEnhanced] Script name too long: " + sInteveralScript, LOG_LEVEL_ERROR);
+        return EffectInvalidEffect();
+    }
+    if (ResManGetAliasFor(sInteveralScript, RESTYPE_NSS) == "")
+    {
+        OP_Debug("[EffectRunScriptEnhanced] Script not found: " + sInteveralScript, LOG_LEVEL_ERROR);
+        return EffectInvalidEffect();
     }
 
     // Gather some data for later retrieval

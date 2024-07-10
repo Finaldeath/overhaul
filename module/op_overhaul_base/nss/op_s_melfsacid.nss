@@ -17,6 +17,15 @@
 
 void main()
 {
+    // Run script interval for damage
+    if (GetLastRunScriptEffectScriptType() == RUNSCRIPT_EFFECT_SCRIPT_TYPE_ON_INTERVAL)
+    {
+        int nDamage = GetDiceRoll(2, 4);
+        ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_ACID_S), oTarget);
+        ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectDamage(nDamage, DAMAGE_TYPE_ACID), oTarget);
+        return;
+    }
+    // Main script
     if (DoSpellHook()) return;
 
     if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
