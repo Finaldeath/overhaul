@@ -71,6 +71,12 @@
 
     Clairaudience/Clairvoyance
     +10 bonus to all Spot and Listen checks. 1 round/level.
+
+    Expeditious Retreat
+    +50% move speed for 1 minute/level. Cannot be applied if hasted.
+
+    Haste / Mass Haste
+    Haste for 1 round/level. (Mass haste max Caster Level in creatures affected)
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -86,7 +92,7 @@ void main()
     // Toggles
     int bDelayRandom = FALSE;
     int nImpact = VFX_INVALID, nVis = VFX_INVALID;
-    int nRemoveSpell1 = SPELL_INVALID, nRemoveSpell2 = SPELL_INVALID, nRemoveSpell3 = SPELL_INVALID;
+    int nRemoveSpell1 = SPELL_INVALID, nRemoveSpell2 = SPELL_INVALID, nRemoveSpell3 = SPELL_INVALID, nRemoveSpell4 = SPELL_INVALID;
     int nCreatureLimit = 99999;
     effect eLink;
     float fDuration;
@@ -406,6 +412,42 @@ void main()
             fDuration = GetDuration(nCasterLevel, ROUNDS);
         }
         break;
+        case SPELL_EXPEDITIOUS_RETREAT:
+        {
+            // Can't have haste
+            if (GetHasEffectOrItemProperty(oTarget, EFFECT_TYPE_HASTE, ITEM_PROPERTY_HASTE))
+            {
+                SendMessageToPC(oCaster, "*Expeditious Retreat cannot be cast when hasted.*");
+                return;
+            }
+            nVis = VFX_IMP_HASTE; // TODO New VFX
+            eLink = EffectLinkEffects(EffectMovementSpeedIncrease(50),
+                    EffectLinkEffects(EffectRunScriptEnhanced(FALSE, "", "op_rs_checkhaste", 2.0),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+            fDuration = GetDuration(nCasterLevel, MINUTES);
+        }
+        break;
+        case SPELL_HASTE:
+        case SPELL_MASS_HASTE:
+        case SPELL_FEAT_BLINDING_SPEED:
+        {
+            nImpact = VFX_FNF_LOS_NORMAL_30;
+            nCreatureLimit = nCasterLevel;
+            nVis = VFX_IMP_HASTE;
+            eLink = EffectLinkEffects(EffectHaste(),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+            if (nSpellId == SPELL_FEAT_BLINDING_SPEED)
+            {
+                fDuration = GetDuration(10, ROUNDS);
+            }
+            else
+            {
+                fDuration = GetDuration(nCasterLevel, ROUNDS);
+            }
+            // Remove just Expeditious Retreat (and itself) since we can "stack" hastes to supress "slows"
+            nRemoveSpell1 = SPELL_EXPEDITIOUS_RETREAT;
+        }
+        break;
         default:
             OP_Debug("[op_s_buffs] No valid spell ID passed in: " + IntToString(nSpellId), LOG_LEVEL_ERROR);
             return;
@@ -433,6 +475,7 @@ void main()
             if (nRemoveSpell1 != SPELL_INVALID) RemoveEffectsFromSpell(oTarget, nRemoveSpell1);
             if (nRemoveSpell2 != SPELL_INVALID) RemoveEffectsFromSpell(oTarget, nRemoveSpell2);
             if (nRemoveSpell3 != SPELL_INVALID) RemoveEffectsFromSpell(oTarget, nRemoveSpell3);
+            if (nRemoveSpell4 != SPELL_INVALID) RemoveEffectsFromSpell(oTarget, nRemoveSpell4);
 
             if (nVis != VFX_INVALID) DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
             DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
@@ -447,6 +490,7 @@ void main()
         if (nRemoveSpell1 != SPELL_INVALID) RemoveEffectsFromSpell(oTarget, nRemoveSpell1);
         if (nRemoveSpell2 != SPELL_INVALID) RemoveEffectsFromSpell(oTarget, nRemoveSpell2);
         if (nRemoveSpell3 != SPELL_INVALID) RemoveEffectsFromSpell(oTarget, nRemoveSpell3);
+        if (nRemoveSpell4 != SPELL_INVALID) RemoveEffectsFromSpell(oTarget, nRemoveSpell4);
 
         ApplyVisualEffectToObject(nVis, oTarget);
         ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);

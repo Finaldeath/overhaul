@@ -149,7 +149,7 @@
       "Description": {
         "Index": 6096,
         "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Conjuration\nDescriptor(s): Acid\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Large\nDuration: 1 Round / 2 Levels\nAdditional Counter Spells:\nSave: Fortitude (see text)\nSpell Resistance: Yes\n\nAcid Fog creates a thick, clinging, greenish cloud. Creatures entering the cloud must make a Fortitude save or have their movement reduced by 50%, and will take 4d6 acid damage (half if the fortitude save was successful).\r\n\r\nEvery round a creature spends in the cloud, it suffers 2d6 acid damage (half on a successful fortitude save).",
+          "M": "Caster Level(s): Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Conjuration\nDescriptor(s): Acid\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Large\nDuration: 1 Round / 2 Levels\nAdditional Counter Spells:\nSave: None\nSpell Resistance: Yes\n\nAcid Fog creates a thick, clinging, greenish cloud. Creatures entering the cloud have their movement reduced by 50% and take 2d6 acid damage.\r\n\r\nEvery round a creature spends in the cloud, it suffers 2d6 acid damage.",
           "F": "Caster Level(s): Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Conjuration\nDescriptor(s): Acid\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Large\nDuration: 1 Round / 2 Level\nAdditional Counter Spells:\nSave: Fortitude\nSpell Resistance: Yes\n\nAcid Fog creates a thick, clinging, greenish cloud. Creatures entering the cloud take 4d6 acid damage. Creatures inside the cloud must make a Fortitude save or have their movement reduced by 50%. Every round a creature spends in the cloud, it suffers 2d6 acid damage."
         },
         "FR": {
@@ -6453,7 +6453,7 @@
       "Index": -1,
       "Overrides": "af96630a-5a31-220e-8f57-9e3b97b56cba",
       "Disabled": false,
-      "Hint": "General Feat. Several fixes to type, AI type, etc.",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
@@ -6530,7 +6530,7 @@
       "TargetTypes": [
         "Self"
       ],
-      "ImpactScript": "x2_s2_blindspd",
+      "ImpactScript": "op_s_buffs",
       "InnateLevel": 3,
       "ConjurationTime": 1000,
       "ConjuringAnimation": "Head",
@@ -9599,7 +9599,8 @@
       "Description": {
         "Index": 6119,
         "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 5\nInnate Level: 5\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Large\nDuration: 1 Round / 2 Levels\nAdditional Counter Spells:\nSave: Fortitude Special\nSpell Resistance: Yes\n\nA billowing cloud of noxious vapors settles over the area. Its effects vary according to the Hit Dice of the affected creatures:\n1-3 HD: Instant death\n4-6 HD: Fortitude save or death\nOver 6 HD: 1d10 damage/round"
+          "M": "Caster Level(s): Wizard / Sorcerer 5\nInnate Level: 5\nSchool: Conjuration\nDescriptor(s): Poison\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Large\nDuration: 1 Round / 2 Levels\nAdditional Counter Spells:\nSave: Fortitude Special\nSpell Resistance: Yes\n\nA billowing cloud of noxious vapors settles over the area.\r\n\r\nThe effects each round vary according to the Hit Dice of the affected creatures:\n1-3 HD: Instant death\n4-6 HD: Fortitude save vs. poison or death\r\nAnyone who is still alive takes 1d10 acid damage.\r\n\r\nNote being immune to death magic doesn\u0027t protect you from this spell but immunity to poison does.",
+          "F": "Caster Level(s): Wizard / Sorcerer 5\nInnate Level: 5\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Large\nDuration: 1 Round / 2 Levels\nAdditional Counter Spells:\nSave: Fortitude Special\nSpell Resistance: Yes\n\nA billowing cloud of noxious vapors settles over the area. Its effects vary according to the Hit Dice of the affected creatures:\n1-3 HD: Instant death\n4-6 HD: Fortitude save or death\nOver 6 HD: 1d10 damage/round"
         },
         "FR": {
           "M": "Niveau : Magicien / Ensorceleur 5\nNiveau inn\u00E9 : 5\nEcole : Invocation\nCat\u00E9gorie(s) :\nComposante(s) : verbale, gestuelle\nPort\u00E9e : longue\nZone d\u0027effet / cible : grande\nDur\u00E9e : 1 round/2 niveaux\nContresorts suppl\u00E9mentaires :\nJet de sauvegarde : Vigueur, sp\u00E9cial\nR\u00E9sistance \u00E0 la magie : oui\n\nUne brume de vapeurs toxiques recouvre la zone d\u00E9sign\u00E9e. Ses effets d\u00E9pendent des d\u00E9s de vie des cr\u00E9atures affect\u00E9es :\n1-3 DV : mort instantan\u00E9e\n4-6 DV : jet de Vigueur ou mort\nSup\u00E9rieurs \u00E0 6 DV: 1d10 points de d\u00E9g\u00E2ts / round"
@@ -9639,9 +9640,10 @@
         "Creature",
         "Area",
         "Item",
+        "Door",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_CloudKill",
+      "ImpactScript": "op_s_cloudkill",
       "InnateLevel": 5,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",
@@ -25742,7 +25744,7 @@
       "Description": {
         "Index": 2676,
         "EN": {
-          "M": "Caster Level(s): Bard 1, Wizard / Sorcerer 1\nInnate Level: 1\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 round / level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nThe caster becomes 150% faster than their normal movement rate, allowing them to flee from dangerous encounters. This spell has no effect if the caster is already hasted and if hasted the spells effects disappate.",
+          "M": "Caster Level(s): Bard 1, Wizard / Sorcerer 1\nInnate Level: 1\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Minute / Level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nThe caster becomes 50% faster than their normal movement rate, allowing them to flee from dangerous encounters. This spell has no effect if the caster is already hasted and if hasted the spells effects disappate.",
           "F": "Caster Level(s): Bard 1, Wizard / Sorcerer 1\nInnate Level: 1\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 round / level\nAdditional Counter Spells:\nSave: None\nSpell Resistance: No\n\nThe caster becomes 150% faster than their normal movement rate, allowing them to flee from dangerous encounters. This spell has no effect if the caster is already hasted."
         },
         "FR": {
@@ -25781,7 +25783,7 @@
         "Self",
         "Item"
       ],
-      "ImpactScript": "x0_s0_exretreat",
+      "ImpactScript": "op_s_buffs",
       "InnateLevel": 1,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",
@@ -33383,7 +33385,7 @@
         "Creature",
         "Item"
       ],
-      "ImpactScript": "NW_S0_Haste",
+      "ImpactScript": "op_s_buffs",
       "InnateLevel": 3,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -44020,7 +44022,7 @@
       "Description": {
         "Index": 6210,
         "EN": {
-          "M": "Caster Level(s): Bard 6, Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Large\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\r\nAll allies within the area of effect gains Haste which grants \u002B4 bonus to dodge AC, 1 extra action per round (allowing an additional attack or spell to be cast) and has their movement increased by 50%.",
+          "M": "Caster Level(s): Bard 6, Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Large\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\r\nAll allies within the area of effect gains Haste which grants \u002B4 bonus to dodge AC, 1 extra action per round (allowing an additional attack or spell to be cast) and has their movement increased by 50%. You can affect up to 1 creature per caster level.\r\n\r\nIf cast on a creature who is under the Slow effect then it supresses one instance of Slow.",
           "F": "Caster Level(s): Bard 6, Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Enchantment\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Large\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nAll allies within the area of effect gain 1 extra action per round (allowing an additional attack or spell casting) and have their movement speed increased by 50%. "
         },
         "FR": {
@@ -44059,10 +44061,9 @@
         "Self",
         "Creature",
         "Area",
-        "Item",
-        "Placeable"
+        "Item"
       ],
-      "ImpactScript": "NW_S0_MasHaste",
+      "ImpactScript": "op_s_buffs",
       "InnateLevel": 6,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",

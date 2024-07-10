@@ -98,7 +98,9 @@ const string ITEM_PROPERTY_SPELL_SCRIPT = "op_s_itemprop";
 // Debug the spell and variables
 void DebugSpellVariables();
 
-// Checks for if the spell hook needs to be executed and execute it and check the return value if so.
+// Main Spell Hook fired at the top of any spell script.
+// Returns TRUE if the hook did something important, meaning the script shouldn't continue, eg: Crafting, Tensers checks, etc.
+// Returns FALSE if the hook did nothing and we can run the spell script.
 int DoSpellHook();
 
 // Returns TRUE if this is a state script running since we can't test GetCurrentlyRunningEvent
@@ -151,7 +153,7 @@ location GetSpellTargetLocationCalculated(object oTarget);
 // Instead they'll be immune and we'll send appropriate feedback messages.
 //   Returns: 0 if the saving throw roll failed
 //   Returns: 1 if the saving throw roll succeeded
-//   Returns: 2 if the target was immune to the save type specified
+//   Returns: 2 if the target was immune to the save type specified (only checked for Death, Disease, Fear, Mind Spells, Poison, Trap and Paralysis subtypes)
 // Note: If used within an Area of Effect Object Script (On Enter, OnExit, OnHeartbeat), you MUST pass GetAreaOfEffectCreator() into oSaveVersus!
 int DoSavingThrow(object oTarget, object oSaveVersus, int nSavingThrow, int nDC, int nSaveType = SAVING_THROW_TYPE_NONE, float fDelay = 0.0);
 
@@ -210,7 +212,7 @@ float GetDuration(int nDuration, int nDurationType);
 // Checks if the given target is valid to be targeted by oCaster
 int GetSpellTargetValid(object oTarget, object oCaster, int nTargetType);
 
-// Converts a SAVING_THROW_TYPE_* to an IMMUNITY_TYPE_* where these are checked for in the saving throw functions
+// Converts a SAVING_THROW_TYPE_* to an IMMUNITY_TYPE_* where these are checked for in the saving throw functions (Death, Disease, Fear, Mind Spells, Poison, Trap and Paralysis subtypes)
 // else it will be IMMUNITY_TYPE_NONE (0)
 int GetImmunityTypeFromSavingThrowType(int nSaveType);
 
@@ -261,14 +263,30 @@ void ApplyVisualEffectAtLocation(int nVFX, location lTarget, int bMissEffect = F
 // Applies damage of the given type. This helps wrapper delayed damage so we can keep at 1 HP if necessary (Harm/Heal).
 void ApplyDamageToObject(object oTarget, int nDamage, int nDamageType=DAMAGE_TYPE_MAGICAL, int nDamagePower=DAMAGE_POWER_NORMAL, int bKeepAt1HP = FALSE);
 
+// Applies a fully sorted AOE Persistent EffectRunScript for those inside an AOE. This has:
+// - A run script with a 6 second interval script attached that can be used to apply fair "per round" effects and check
+//   if the AOE or creator of the AOE exists still
+// - Attaches a negative cessate VFX
+// - Tags it with the OBJECT_SELF's OID
+// - Makes it extraordinary
+// - Applies it permanently
+void ApplyAOEPersistentRunScriptEffect(object oTarget);
+
+// Applies eEffect with these properties for later tracking:
+// - Tags it with the OBJECT_SELF's OID
+// - Makes it extraordinary
+// - Applies it permanently
+void ApplyAOEPersistentEffect(object oTarget, effect eEffect);
+
 // Signals a spell cast event.
 // By default if the default parameters are used then the global automatically
 // generated values are used instead.
 void SignalSpellCastAt(object oSignalTarget = OBJECT_INVALID, object oSignalCaster = OBJECT_INVALID, int bSignalHostile = -1, int nSignalSpellId = -1);
 
-// Returns TRUE if we are OK running our AOE scripts.
-// Does a check for the AOE creator, and destroys ourself with no effect if they no longer exist.
-// This might be removed later but for now will stop some bugs.
+// Returns TRUE if we are OK running our AOE scripts (or the EffectRunScript created by an AOE).
+// Does a check for the AOE creator, and destroys ourself (or removes the EffectRunScript) if they no longer exist.
+// Call in the OnEnter, OnHeartbeat of an AOE scripts or the Interval of the EffectRunScript created by the AOE.
+// This might be removed later (D&D AOEs should probably persist past their creators death) but for now will stop some bugs and is tidier.
 int AOECheck();
 
 // Gets the scale of the VFX to apply to oCreature. If not a creature it returns 1.0.
@@ -312,6 +330,9 @@ int GetClassHasDomain(object oCreature, int nClass, int nDomain);
 // * sTag - Only checked if not blank
 int GetHasEffect(object oObject, int nEffectType, string sTag = "");
 
+// Returns TRUE if oCreature has at least one effect matching the parameters.
+int GetHasEffectOrItemProperty(object oCreature, int nEffectType, int nItemPropertyType);
+
 // Removes effects from the given spell ID. Returns TRUE if one was removed.
 // * nSpellId - If SPELL_ANY it will remove any spell Id. -1 or SPELL_INVALID is "Invalid spell ID" so technically still a subset of effects.
 // * sTag - If set the tag must match
@@ -320,6 +341,9 @@ int RemoveEffectsFromSpell(object oObject, int nSpellId, int nEffectType = EFFEC
 
 // Finds the duration remaining of the given spell on oObject
 float GetRemainingDurationOfSpell(object oObject, int nSpellId);
+
+// Finds the duration remaining of the given effects of nType on oObject
+float GetRemainingDurationOfEffects(object oObject, int nType);
 
 // Cures a JsonArray of integer effects with some caveats:
 // - oTarget - Creature to cure
@@ -468,7 +492,9 @@ void DebugSpellVariables()
     }
 }
 
-// Checks for if the spell hook needs to be executed and execute it and check the return value if so.
+// Main Spell Hook fired at the top of any spell script.
+// Returns TRUE if the hook did something important, meaning the script shouldn't continue, eg: Crafting, Tensers checks, etc.
+// Returns FALSE if the hook did nothing and we can run the spell script.
 int DoSpellHook()
 {
     // We can skip this script (eg if fired from another spell that's already done it)
@@ -493,7 +519,6 @@ int DoSpellHook()
             return TRUE;
         }
     }
-
 
     // TODO dummy spell hook for now
     return FALSE;
@@ -1474,7 +1499,7 @@ int GetSpellTargetValid(object oTarget, object oCaster, int nTargetType)
     return bReturnValue;
 }
 
-// Converts a SAVING_THROW_TYPE_* to an IMMUNITY_TYPE_* where these are checked for in the saving throw functions
+// Converts a SAVING_THROW_TYPE_* to an IMMUNITY_TYPE_* where these are checked for in the saving throw functions (Death, Disease, Fear, Mind Spells, Poison, Trap and Paralysis subtypes)
 // else it will be IMMUNITY_TYPE_NONE (0)
 int GetImmunityTypeFromSavingThrowType(int nSaveType)
 {
@@ -1727,6 +1752,33 @@ void ApplyDamageToObject(object oTarget, int nDamage, int nDamageType=DAMAGE_TYP
     }
 }
 
+// Applies a fully sorted AOE Persistent EffectRunScript for those inside an AOE. This has:
+// - A run script with a 6 second interval script attached that can be used to apply fair "per round" effects and check
+//   if the AOE or creator of the AOE exists still
+// - Attaches a negative cessate VFX
+// - Tags it with the OBJECT_SELF's OID
+// - Makes it extraordinary
+// - Applies it permanently
+void ApplyAOEPersistentRunScriptEffect(object oTarget)
+{
+    effect eLink = EffectLinkEffects(EffectRunScriptEnhanced(FALSE, "", GetScriptName(), 6.0),
+                                     EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+    eLink = TagEffect(eLink, ObjectToString(OBJECT_SELF));
+    eLink = ExtraordinaryEffect(eLink);
+    ApplySpellEffectToObject(DURATION_TYPE_PERMANENT, eLink, oTarget);
+}
+
+// Applies eEffect with these properties for later tracking:
+// - Tags it with the OBJECT_SELF's OID
+// - Makes it extraordinary
+// - Applies it permanently
+void ApplyAOEPersistentEffect(object oTarget, effect eEffect)
+{
+    eEffect = TagEffect(eEffect, ObjectToString(OBJECT_SELF));
+    eEffect = ExtraordinaryEffect(eEffect);
+    ApplySpellEffectToObject(DURATION_TYPE_PERMANENT, eEffect, oTarget);
+}
+
 // Signals a spell cast event.
 // By default if the default parameters are used then the global automatically
 // generated values are used instead.
@@ -1740,17 +1792,42 @@ void SignalSpellCastAt(object oSignalTarget = OBJECT_INVALID, object oSignalCast
     SignalEvent(oSignalTarget, EventSpellCastAt(oSignalCaster, nSignalSpellId, bSignalHostile));
 }
 
-// Returns TRUE if we are OK running our AOE scripts.
-// Does a check for the AOE creator, and destroys ourself with no effect if they no longer exist.
-// This might be removed later but for now will stop some bugs.
+// Returns TRUE if we are OK running our AOE scripts (or the EffectRunScript created by an AOE).
+// Does a check for the AOE creator, and destroys ourself (or removes the EffectRunScript) if they no longer exist.
+// Call in the OnEnter, OnHeartbeat of an AOE scripts or the Interval of the EffectRunScript created by the AOE.
+// This might be removed later (D&D AOEs should probably persist past their creators death) but for now will stop some bugs and is tidier.
 int AOECheck()
 {
-    object oAOECreator = GetAreaOfEffectCreator();
-
-    if (!GetIsObjectValid(oAOECreator))
+    // If a run script check the effect creator
+    object oAOECreator;
+    if (GetLastRunScriptEffectScriptType() != 0)
     {
-        DestroyObject(OBJECT_SELF);
-        return FALSE;
+        effect eRunScript = GetLastRunScriptEffect();
+        if (!GetIsObjectValid(GetEffectCreator(eRunScript)) ||
+            !GetIsObjectValid(StringToObject(GetEffectTag(eRunScript))))
+        {
+            // Remove this and any linked effects or other effects the AOE applied
+            RemoveEffectsFromSpell(OBJECT_SELF, GetEffectSpellId(eRunScript), EFFECT_TYPE_ALL, GetEffectTag(eRunScript));
+            return FALSE;
+        }
+    }
+    else
+    {
+        int nEvent = GetCurrentlyRunningEvent();
+        if (nEvent == EVENT_SCRIPT_AREAOFEFFECT_ON_HEARTBEAT ||
+            nEvent == EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_ENTER ||
+            nEvent == EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_EXIT)
+        {
+            if (!GetIsObjectValid(GetAreaOfEffectCreator()))
+            {
+                DestroyObject(OBJECT_SELF);
+                return FALSE;
+            }
+        }
+        else
+        {
+            OP_Debug("[AOECheck] Called outside of run script or AOE event?", LOG_LEVEL_ERROR);
+        }
     }
     return TRUE;
 }
@@ -2054,6 +2131,29 @@ int GetHasEffect(object oObject, int nEffectType, string sTag = "")
     return FALSE;
 }
 
+// Returns TRUE if oCreature has at least one effect matching the parameters.
+int GetHasEffectOrItemProperty(object oCreature, int nEffectType, int nItemPropertyType)
+{
+    effect eCheck = GetFirstEffect(oCreature);
+    while (GetIsEffectValid(eCheck))
+    {
+        if (GetEffectType(eCheck, TRUE) == nEffectType)
+        {
+            return TRUE;
+        }
+        eCheck = GetNextEffect(oCreature);
+    }
+    int nSlot;
+    for (nSlot = 0; nSlot < NUM_INVENTORY_SLOTS; nSlot++)
+    {
+        if (GetItemHasItemProperty(GetItemInSlot(nSlot, oCreature), nItemPropertyType))
+        {
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
+
 // Removes effects from the given spell ID. Returns TRUE if one was removed.
 // * nSpellId - If SPELL_ANY it will remove any spell Id. -1 or SPELL_INVALID is "Invalid spell ID" so technically still a subset of effects.
 // * sTag - If set the tag must match
@@ -2089,6 +2189,22 @@ float GetRemainingDurationOfSpell(object oObject, int nSpellId)
         eCheck = GetNextEffect(oObject);
     }
     return 0.0;
+}
+
+// Finds the duration remaining of the given effects of nType on oObject
+float GetRemainingDurationOfEffects(object oObject, int nType)
+{
+    float fReturn = 0.0;
+    effect eCheck = GetFirstEffect(oObject);
+    while (GetIsEffectValid(eCheck))
+    {
+        if (GetEffectType(eCheck, TRUE) == nType)
+        {
+            fReturn += IntToFloat(GetEffectDurationRemaining(eCheck));
+        }
+        eCheck = GetNextEffect(oObject);
+    }
+    return fReturn;
 }
 
 // Cures a JsonArray of integer effects with some caveats:

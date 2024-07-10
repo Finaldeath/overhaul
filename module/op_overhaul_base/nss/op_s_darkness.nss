@@ -21,44 +21,39 @@
 
 void main()
 {
-    if (GetCurrentlyRunningEvent() == EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_ENTER)
+    if (GetLastRunScriptEffectScriptType() == RUNSCRIPT_EFFECT_SCRIPT_TYPE_ON_INTERVAL)
+    {
+        AOECheck();
+    }
+    else if (GetCurrentlyRunningEvent() == EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_ENTER)
     {
         if (!AOECheck()) return;
 
         if (!DoResistSpell(oTarget, oCaster))
         {
-            // Tag darkness effect and apply. Don't apply permanently due to issues
-            // with players exiting the AOE when leaving a MP session. Instead
-            // apply with the maximum duration we will have the AOE be around for.
-            float fDuration = GetDuration(nCasterLevel, ROUNDS) + 0.5;
-
-            effect eLink = EffectLinkEffects(EffectDarkness(),
-                                             EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
-
-            // Extraordinary so dispel magic won't remove it
-            eLink = ExtraordinaryEffect(eLink);
-
-            // Tag so we can remove it cleanly in the case of overlapping AOEs
-            eLink = TagEffect(eLink, ObjectToString(OBJECT_SELF));
-
-            ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
+            ApplyAOEPersistentRunScriptEffect(oTarget);
+            ApplyAOEPersistentEffect(oTarget, EffectDarkness());
         }
-        return;
     }
     else if (GetCurrentlyRunningEvent() == EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_EXIT)
     {
         // Just remove tagged effects
         RemoveEffectsFromSpell(oTarget, SPELL_DARKNESS, EFFECT_TYPE_ALL, ObjectToString(OBJECT_SELF));
-        return;
     }
+    else if (GetCurrentlyRunningEvent() == EVENT_SCRIPT_AREAOFEFFECT_ON_HEARTBEAT)
+    {
+        AOECheck();
+    }
+    else
+    {
+        // Default to the normal spell script.
+        if (DoSpellHook()) return;
 
-    // Default to the normal spell script.
-    if (DoSpellHook()) return;
+        // Set the spell Id - as noted above AOE must be of this spell ID to work right
+        nSpellId = SPELL_DARKNESS;
 
-    // Set the spell Id - as noted above AOE must be of this spell ID to work right
-    nSpellId = SPELL_DARKNESS;
-
-    effect eAOE = EffectAreaOfEffect(AOE_PER_DARKNESS, "op_s_darkness", "", "op_s_darkness");
-    ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, GetDuration(nCasterLevel, ROUNDS));
+        effect eAOE = EffectAreaOfEffect(AOE_PER_DARKNESS, "op_s_darkness", "op_s_darkness", "op_s_darkness");
+        ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, GetDuration(nCasterLevel, ROUNDS));
+    }
 }
 
