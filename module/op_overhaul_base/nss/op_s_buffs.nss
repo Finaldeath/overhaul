@@ -84,7 +84,7 @@ void main()
     if (DoSpellHook()) return;
 
     // Toggles
-    int bImpact = FALSE, bDelayRandom = FALSE;
+    int bDelayRandom = FALSE;
     int nImpact = VFX_INVALID, nVis = VFX_INVALID;
     int nRemoveSpell1 = SPELL_INVALID, nRemoveSpell2 = SPELL_INVALID, nRemoveSpell3 = SPELL_INVALID;
     int nCreatureLimit = 99999;

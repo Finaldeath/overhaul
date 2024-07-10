@@ -27,7 +27,7 @@ void main()
 {
     if (DoSpellHook()) return;
 
-    effect eRunScript = EffectRunScriptAutomatic();
+    effect eRunScript = EffectRunScriptEnhanced();
     effect eBlindness = TagEffect(UnyieldingEffect(EffectBlindness()), CONE_OF_DIMNESS);
     float fDuration = GetDuration(nCasterLevel, ROUNDS);
 

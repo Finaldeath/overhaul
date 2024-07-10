@@ -507,7 +507,8 @@
       "Description": {
         "Index": 6097,
         "EN": {
-          "M": "Caster Level(s): Cleric 2, Paladin 2, Ranger 3\nInnate Level: 2\nSchool: Enchantment\nDescriptor(s): Mind-Affecting\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Turn / Level\nAdditional Counter Spells: Doom\nSave: Harmless\nSpell Resistance: No\n\nThe target gains a \u002B1 bonus to attack rolls, a \u002B1 bonus on saving throws versus fear, and a 1d8 bonus to maximum hit points."
+          "M": "Caster Level(s): Cleric 2, Paladin 2, Ranger 3\nInnate Level: 2\nSchool: Enchantment\nDescriptor(s): Mind-Affecting\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Minute / Level\nAdditional Counter Spells: Doom\nSave: Harmless\nSpell Resistance: No\n\nThe target gains a \u002B1 bonus to attack rolls, a \u002B1 bonus on saving throws versus fear, and a 1d8 bonus to maximum hit points.",
+          "F": "Caster Level(s): Cleric 2, Paladin 2, Ranger 3\nInnate Level: 2\nSchool: Enchantment\nDescriptor(s): Mind-Affecting\nComponent(s): Verbal, Somatic\nRange: Touch\nArea of Effect / Target: Single\nDuration: 1 Turn / Level\nAdditional Counter Spells: Doom\nSave: Harmless\nSpell Resistance: No\n\nThe target gains a \u002B1 bonus to attack rolls, a \u002B1 bonus on saving throws versus fear, and a 1d8 bonus to maximum hit points."
         },
         "FR": {
           "M": "Niveau : Pr\u00EAtre 2, Paladin 2, R\u00F4deur 3\nNiveau inn\u00E9 : 2\nEcole : Enchantement\nCat\u00E9gorie(s) : mentale\nComposante(s) : verbale, gestuelle\nPort\u00E9e : contact\nZone d\u0027effet / cible : 1 cr\u00E9ature\nDur\u00E9e : 1 tour/niveau\nContresorts suppl\u00E9mentaires : Anath\u00E8me\nJet de sauvegarde : inoffensif\nR\u00E9sistance \u00E0 la magie : non\n\nLe sujet b\u00E9n\u00E9ficie d\u0027un bonus de \u002B1 \u00E0 ses jets d\u0027attaque et \u00E0 ses jets de sauvegarde contre la Terreur ainsi que d\u0027un bonus de \u002B1d8 \u00E0 son total de points de vie."
@@ -549,7 +550,7 @@
         "Item",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_Aid",
+      "ImpactScript": "op_s_bufftemphp",
       "InnateLevel": 2,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -585,7 +586,10 @@
       "UseConcentration": true,
       "IsCastSpontaneously": false,
       "IsHostile": false,
-      "CounterSpell1": null,
+      "CounterSpell1": {
+        "ID": "1dc19b7b-7b5a-a5f3-0103-1dc7f08b90ea",
+        "Label": "Doom"
+      },
       "CounterSpell2": null,
       "HasProjectileVisuals": false,
       "TargetShape": null,
@@ -20438,7 +20442,7 @@
         "Self",
         "Item"
       ],
-      "ImpactScript": "NW_S0_DivPower",
+      "ImpactScript": "op_s_bufftemphp",
       "InnateLevel": 4,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",
@@ -63134,7 +63138,7 @@
       "Description": {
         "Index": 6516,
         "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe caster becomes an engine of destruction, gaining 1d6 temporary hit points per caster level, a \u002B4 natural armor AC bonus, a \u002B2d4 Strength enchantment bonus, a \u002B2d4 Dexterity enchantment bonus, a \u002B1 attack bonus per two caster levels (which may give the character an extra attack), \u002B5 Fortitude saving throw bonus, and proficiency in all simple and martial weapons. The caster also is unable to cast spells, having 100% spell failure.",
+          "M": "Caster Level(s): Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe caster becomes an engine of destruction, gaining 1d6 temporary hit points per caster level, a \u002B4 natural armor AC bonus, a \u002B2d4 Strength enchantment bonus, a \u002B2d4 Dexterity enchantment bonus, a \u002B1 attack bonus per two caster levels (which may give the character an extra attack), \u002B5 Fortitude saving throw bonus, and proficiency in all simple and martial weapons. The caster also is unable to cast spells, having 100% spell failure, and cannot use spell casting items (wands, potions, etc.).",
           "F": "Caster Level(s): Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Transmutation\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Caster\nDuration: 1 Round / Level\nAdditional Counter Spells:\nSave: Harmless\nSpell Resistance: No\n\nThe caster becomes an engine of destruction, gaining a \u002B1 attack bonus for every 2 caster levels, a \u002B4 natural armor AC bonus, 20 Strength, 22 Dexterity, 18 Constitution, \u002B5 to their Fortitude saving throws, and \u002B1d6 additional Hit Points per caster level."
         },
         "FR": {
@@ -63175,7 +63179,7 @@
         "Self",
         "Item"
       ],
-      "ImpactScript": "NW_S0_TensTrans",
+      "ImpactScript": "op_s_bufftemphp",
       "InnateLevel": 6,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",

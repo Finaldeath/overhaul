@@ -25,6 +25,8 @@ const string JSON_FIELD_METAMAGIC   = "metamagic";   // Int
 const string JSON_FIELD_CASTERCLASS = "casterclass"; // Int
 const string JSON_FIELD_SPELLLEVEL  = "spelllevel";  // Int
 const string JSON_FIELD_SPONTANEOUS = "spontaneous"; // Int (boolean)
+const string JSON_FIELD_ILLUSIONARY = "illusionary"; // Int (boolean)
+const string JSON_FIELD_ILLUSIONARYSTRENGTH = "illusionarystrength"; // Int (20 = 20%)
 
 // Retrieves if the given sJson string has any data, and if it has it is valid Overhaul data
 // Will NOT print any debug messages on error, just reutrns FALSE.

@@ -26,7 +26,7 @@ void main()
         int nTouch = DoTouchAttack(oTarget, oCaster, TOUCH_RANGED);
 
         // Miss or hit MIRV
-        ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_DUR_MIRV_ACID, (nTouch == 0)), oTarget);
+        ApplyVisualEffectToObject(VFX_DUR_MIRV_ACID, oTarget, (nTouch == 0));
 
         if (nTouch)
         {
@@ -43,7 +43,7 @@ void main()
                 DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_ACID_L), oTarget));
                 DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectDamage(nDamage, DAMAGE_TYPE_ACID), oTarget));
 
-                effect eLink = EffectLinkEffects(EffectRunScriptAutomatic(),
+                effect eLink = EffectLinkEffects(EffectRunScriptEnhanced(),
                                                  EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
                 DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(1 + min(6, nCasterLevel/3), ROUNDS) + 1.0));
             }

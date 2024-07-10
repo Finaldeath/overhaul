@@ -41,6 +41,14 @@ int GetRunScriptSpellLevel(effect eRunScript);
 // Returns 0 if not found
 int GetRunScriptSpontaneous(effect eRunScript);
 
+// Retrieves the run scripts illusionary state (need to be set with EffectRunScriptAutomatic)
+// Returns 0 if not found
+int GetRunScriptIllusionary(effect eRunScript);
+
+// Retrieves the run scripts illusionary strength (need to be set with EffectRunScriptAutomatic)
+// Returns 0 if not found
+int GetRunScriptIllusionaryStrength(effect eRunScript);
+
 
 // Retrieves the run scripts save DC (need to be set with EffectRunScriptAutomatic)
 // Returns 0 if not found
@@ -75,5 +83,19 @@ int GetRunScriptSpellLevel(effect eRunScript)
 int GetRunScriptSpontaneous(effect eRunScript)
 {
     return GetJsonMetadataIntField(GetEffectString(eRunScript, 0), JSON_FIELD_SPONTANEOUS, 0);
+}
+
+// Retrieves the run scripts illusionary state (need to be set with EffectRunScriptAutomatic)
+// Returns 0 if not found
+int GetRunScriptIllusionary(effect eRunScript)
+{
+    return GetJsonMetadataIntField(GetEffectString(eRunScript, 0), JSON_FIELD_ILLUSIONARY, 0);
+}
+
+// Retrieves the run scripts illusionary strength (need to be set with EffectRunScriptAutomatic)
+// Returns 0 if not found
+int GetRunScriptIllusionaryStrength(effect eRunScript)
+{
+    return GetJsonMetadataIntField(GetEffectString(eRunScript, 0), JSON_FIELD_ILLUSIONARYSTRENGTH, 0);
 }
 

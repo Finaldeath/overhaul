@@ -32,7 +32,7 @@ void main()
     effect eLink =
         EffectLinkEffects(EffectKnockdown(),
         EffectLinkEffects(EffectIcon(EFFECT_ICON_KNOCKDOWN),
-        EffectLinkEffects(EffectRunScriptAutomatic(),
+        EffectLinkEffects(EffectRunScriptEnhanced(),
         EffectLinkEffects(EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE),
                           EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED)))));
 

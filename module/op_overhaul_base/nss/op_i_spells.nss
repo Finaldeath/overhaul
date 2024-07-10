@@ -30,6 +30,7 @@
     bSpontaneous - Spontaneously cast or not
     bHostile - Hostile or not (set in spells.2da but some spells can be both!)
     bIllusionary - If a Shadow spell see op_s_shadow.nss (GetSpellTargetValid will do the will save)
+        nIllusionaryStrength - eg: 20 = 20% strength.
 
     If these are altered later they are used in the ApplySpellEffectToObject() and
     ApplySpellEffectAtLocation() functions.
@@ -187,7 +188,7 @@ int GetSpellIsIllusionary();
 
 // Gets the illusionary strength of the current script call. Not relevant if not an
 // illusion spell. 20 would be 20% strength if they save a will save.
-int GetSpellIllusionaryStrength();
+int GetSpellIllusionaryStrength(int bIllusionary);
 
 // Checks if oTarget failed the will save done in GetSpellTargetValid() when they
 // were checked. Can affect GetDiceRoll/GetDuration.
@@ -345,11 +346,11 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, 
 // Gets the given Object stored as FIELD_OBJECTID in jArray at nIndex
 object GetArrayObject(json jArray, int nIndex);
 
-// Returns a EffectRunScript that is automatically configured. Will NOT set an apply script since the given effect is invalid.
+// Returns a EffectRunScript with extra data appended. Will NOT set an apply script since you can run things in the current script.
 // The data field in the effect will be set with information that isn't set on the effect, and retrieved
 // automatically, eg: nMetaMagic, nSpellSaveDC, nSpellLevel
-// * sScript - If not set will use current script name + "rs" (eg: op_s_melfsacid -> op_s_melfsacidrs)
-effect EffectRunScriptAutomatic(float fInterval = 6.0, string sScript = "");
+// - bAutomatic - Will use current script name + "rs" (eg: op_s_melfsacid -> op_s_melfsacidrs) for both scripts and a 6.0 second interval
+effect EffectRunScriptEnhanced(int bAutomatic = TRUE, string sRemovedScript = "", string sInteveralScript = "", float fInterval = 0.0);
 
 // This tags the given effect with JSON_FIELD_* information and returns it
 effect EffectTagWithMetadata(effect eEffect);
@@ -441,7 +442,7 @@ int nSpellLevel  = GetLastSpellLevelCalculated();
 int bSpontaneous = GetSpellCastSpontaneouslyCalculated();
 int bHostile     = GetSpellIsHostile(nSpellId);
 int bIllusionary = GetSpellIsIllusionary();
-int nIllusionaryStrength = GetSpellIllusionaryStrength();
+int nIllusionaryStrength = GetSpellIllusionaryStrength(bIllusionary);
 
 // Debug the spell and variables
 void DebugSpellVariables()
@@ -477,8 +478,22 @@ int DoSpellHook()
     // Debug spell if logging enabled
     DebugSpellVariables();
 
-    // Do not do the hook if this is an illusion spell
+    // Do not do the hook if this is an illusion spell executing it's payload script
     if (bIllusionary) return FALSE;
+
+    // We do not do the spell if it is a true spell and Tensers Transformation is
+    // on the caster (ie user of the item)
+    if (nSpellType == SPELL_TYPE_SPELL)
+    {
+        if (GetHasSpellEffect(SPELL_TENSERS_TRANSFORMATION, oCaster))
+        {
+            FloatingTextStringOnCreature("*Spell casting failed*", oCaster, FALSE);
+            SendMessageToPC(oCaster, "*You cannot cast spells or use spells on items when under the effects of Tensers Transformation*");
+            ApplyVisualEffectToObject(VFX_FNF_SPELL_FAIL_HAND, oCaster);
+            return TRUE;
+        }
+    }
+
 
     // TODO dummy spell hook for now
     return FALSE;
@@ -1256,6 +1271,10 @@ void DoSpellBreach(object oTarget, int nTotal, int nSR, int bVFX = TRUE)
 // Gets if the spell script is illusionary (script param SCRIPT_PARAMETER_ILLUSIONARY set to "1")
 int GetSpellIsIllusionary()
 {
+    if (GetLastRunScriptEffectScriptType() != 0)
+    {
+        return GetRunScriptIllusionary(GetLastRunScriptEffect());
+    }
     string sParam = GetScriptParam(SCRIPT_PARAMETER_ILLUSIONARY);
     if (sParam != "")
     {
@@ -1266,16 +1285,20 @@ int GetSpellIsIllusionary()
 
 // Gets the illusionary strength of the current script call. Not relevant if not an
 // illusion spell. 20 would be 20% strength if they save a will save.
-int GetSpellIllusionaryStrength()
+int GetSpellIllusionaryStrength(int bIllusionary)
 {
-    string sStrength = GetScriptParam(SCRIPT_PARAMETER_ILLUSIONARY_STRENGTH);
-
-    if (sStrength != "")
+    if (bIllusionary)
     {
-        return StringToInt(sStrength);
+        if (GetLastRunScriptEffectScriptType() != 0)
+        {
+            return GetRunScriptIllusionaryStrength(GetLastRunScriptEffect());
+        }
+        string sStrength = GetScriptParam(SCRIPT_PARAMETER_ILLUSIONARY_STRENGTH);
+        if (sStrength != "")
+        {
+            return StringToInt(sStrength);
+        }
     }
-    // Error
-    OP_Debug("[GetIllusionModifiedValue] No script parameter for illusionary strength", LOG_LEVEL_ERROR);
     return 0;
 }
 
@@ -2267,26 +2290,30 @@ object GetArrayObject(json jArray, int nIndex)
     return OBJECT_INVALID;
 }
 
-// Returns a EffectRunScript that is automatically configured. Will NOT set an apply script since the given effect is invalid.
+
+
+// Returns a EffectRunScript with extra data appended. Will NOT set an apply script since you can run things in the current script.
 // The data field in the effect will be set with information that isn't set on the effect, and retrieved
 // automatically, eg: nMetaMagic, nSpellSaveDC, nSpellLevel
-// * sScript - If not set will use current script name + "rs" (eg: op_s_melfsacid -> op_s_melfsacidrs)
-effect EffectRunScriptAutomatic(float fInterval = 6.0, string sScript = "")
+// - bAutomatic - Will use current script name + "rs" (eg: op_s_melfsacid -> op_s_melfsacidrs) for both scripts and a 6.0 second interval
+effect EffectRunScriptEnhanced(int bAutomatic = TRUE, string sRemovedScript = "", string sInteveralScript = "", float fInterval = 0.0)
 {
-    if (sScript == "")
+    if (bAutomatic)
     {
-        sScript = GetScriptName() + "rs";
+        sInteveralScript = GetScriptName() + "rs";
+        sRemovedScript = GetScriptName() + "rs";
+        fInterval = 6.0;
 
-        if (GetStringLength(sScript) > 16)
+        if (GetStringLength(sInteveralScript) > 16)
         {
             // Oh no! Return an invalid effect
-            OP_Debug("[EffectRunScriptAutomatic] Script name too long: " + sScript, LOG_LEVEL_ERROR);
+            OP_Debug("[EffectRunScriptEnhanced] Script name too long: " + sInteveralScript, LOG_LEVEL_ERROR);
             return EffectInvalidEffect();
         }
 
-        if (ResManGetAliasFor(sScript, RESTYPE_NSS) == "")
+        if (ResManGetAliasFor(sInteveralScript, RESTYPE_NSS) == "")
         {
-            OP_Debug("[EffectRunScriptAutomatic] Script not found: " + sScript, LOG_LEVEL_ERROR);
+            OP_Debug("[EffectRunScriptEnhanced] Script not found: " + sInteveralScript, LOG_LEVEL_ERROR);
             return EffectInvalidEffect();
         }
     }
@@ -2306,10 +2333,12 @@ effect EffectRunScriptAutomatic(float fInterval = 6.0, string sScript = "")
     jObject = JsonObjectSet(jObject, JSON_FIELD_CASTERCLASS, JsonInt(nCasterClass));
     jObject = JsonObjectSet(jObject, JSON_FIELD_SPELLLEVEL, JsonInt(nSpellLevel));
     jObject = JsonObjectSet(jObject, JSON_FIELD_SPONTANEOUS, JsonInt(bSpontaneous));
+    jObject = JsonObjectSet(jObject, JSON_FIELD_ILLUSIONARY, JsonInt(bIllusionary));
+    jObject = JsonObjectSet(jObject, JSON_FIELD_ILLUSIONARYSTRENGTH, JsonInt(nIllusionaryStrength));
 
     // We intentionally do not set an applied script which is a little buggy (this effect isn't valid yet) and in any case
     // we can apply anything we want in that script inside the main script applying it.
-    return EffectRunScript("", sScript, sScript, fInterval, JsonDump(jObject));
+    return EffectRunScript("", sRemovedScript, sInteveralScript, fInterval, JsonDump(jObject));
 }
 
 // This tags the given effect with JSON_FIELD_* information and returns it
