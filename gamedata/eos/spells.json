@@ -4859,6 +4859,114 @@
       "TargetingFlags": []
     },
     {
+      "ID": "9ce5fcea-079d-4385-a50d-6d692a322a8c",
+      "Index": -1,
+      "Overrides": "c76442d2-b536-5fce-6e5d-ad578207b82f",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Beholder_Special_Spell_AI",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 84454,
+        "EN": {
+          "M": "Beholder Special Attacks"
+        },
+        "FR": {
+          "M": "Attaques sp\u00E9ciales des Tyrannoeils"
+        },
+        "DE": {
+          "M": "Betrachter Spezialangriffe"
+        },
+        "IT": {
+          "M": "Attacchi speciali beholder"
+        },
+        "ES": {
+          "M": "Ataques especiales de contemplador"
+        },
+        "PL": {
+          "M": "Specjalne ataki Obserwatora"
+        }
+      },
+      "Description": {
+        "Index": null
+      },
+      "AlternativeCastMessage": {
+        "Index": 83839,
+        "EN": {
+          "M": "\u003CCUSTOM0\u003E uses eye rays."
+        },
+        "FR": {
+          "M": "\u003CCUSTOM0\u003E utilise rayons oculaires."
+        },
+        "DE": {
+          "M": "\u003CCUSTOM0\u003E setzt Augententakel ein."
+        },
+        "IT": {
+          "M": "\u003CCUSTOM0\u003E utilizza dei raggi oculari."
+        },
+        "ES": {
+          "M": "\u003CCUSTOM0\u003E usa rayos oculares."
+        },
+        "PL": {
+          "M": "\u003CCUSTOM0\u003E u\u017Cywa promieni z oczu."
+        }
+      },
+      "Icon": "ir_gengaze",
+      "School": "E",
+      "Range": "L",
+      "Components": [
+        "V"
+      ],
+      "AvailableMetaMagic": [],
+      "TargetTypes": [
+        "Creature"
+      ],
+      "ImpactScript": "x2_s1_beholdatt",
+      "InnateLevel": 5,
+      "ConjurationTime": 0,
+      "ConjuringAnimation": "Hand",
+      "ConjurationHeadEffect": null,
+      "ConjurationHandEffect": null,
+      "ConjurationGroundEffect": null,
+      "ConjurationSound": "",
+      "ConjurationMaleSound": null,
+      "ConjurationFemaleSound": null,
+      "CastingAnimation": "Out",
+      "CastTime": 0,
+      "CastingHeadEffect": null,
+      "CastingHandEffect": null,
+      "CastingGroundEffect": null,
+      "CastingSound": null,
+      "HasProjectile": false,
+      "ProjectileModel": null,
+      "ProjectileType": null,
+      "ProjectileSpawnPoint": null,
+      "ProjectileSound": null,
+      "ProjectileOrientation": null,
+      "SubSpell1": null,
+      "SubSpell2": null,
+      "SubSpell3": null,
+      "SubSpell4": null,
+      "SubSpell5": null,
+      "SubSpell6": null,
+      "SubSpell7": null,
+      "SubSpell8": null,
+      "Category": "HarmfulAoeIndiscriminant",
+      "ParentSpell": null,
+      "Type": "CreaturePower",
+      "UseConcentration": false,
+      "IsCastSpontaneously": false,
+      "IsHostile": false,
+      "CounterSpell1": null,
+      "CounterSpell2": null,
+      "HasProjectileVisuals": false,
+      "TargetShape": null,
+      "TargetSizeX": null,
+      "TargetSizeY": null,
+      "TargetingFlags": []
+    },
+    {
       "ID": "23791d7f-b553-4c8f-b2f1-4f83b2ecb6a5",
       "Index": -1,
       "Overrides": "746eb274-6cde-d8e1-24ae-95556708615d",
@@ -52413,7 +52521,7 @@
       "ConjurationHeadEffect": null,
       "ConjurationHandEffect": "vco_smhancold01",
       "ConjurationGroundEffect": null,
-      "ConjurationSound": "vco_smhancold01",
+      "ConjurationSound": "sco_mehancold03",
       "ConjurationMaleSound": "vs_chant_conj_lm",
       "ConjurationFemaleSound": "vs_chant_conj_lf",
       "CastingAnimation": "Out",
@@ -67640,114 +67748,6 @@
         "HarmsAllies",
         "OriginOnSelf"
       ]
-    },
-    {
-      "ID": "9ce5fcea-079d-4385-a50d-6d692a322a8c",
-      "Index": -1,
-      "Overrides": "c76442d2-b536-5fce-6e5d-ad578207b82f",
-      "Disabled": false,
-      "Hint": "",
-      "ScriptConstant": "",
-      "SourceLabel": "Beholder_Special_Spell_AI",
-      "ExtensionValues": {},
-      "Name": {
-        "Index": 84454,
-        "EN": {
-          "M": "Beholder Special Attacks"
-        },
-        "FR": {
-          "M": "Attaques sp\u00E9ciales des Tyrannoeils"
-        },
-        "DE": {
-          "M": "Betrachter Spezialangriffe"
-        },
-        "IT": {
-          "M": "Attacchi speciali beholder"
-        },
-        "ES": {
-          "M": "Ataques especiales de contemplador"
-        },
-        "PL": {
-          "M": "Specjalne ataki Obserwatora"
-        }
-      },
-      "Description": {
-        "Index": null
-      },
-      "AlternativeCastMessage": {
-        "Index": 83839,
-        "EN": {
-          "M": "\u003CCUSTOM0\u003E uses eye rays."
-        },
-        "FR": {
-          "M": "\u003CCUSTOM0\u003E utilise rayons oculaires."
-        },
-        "DE": {
-          "M": "\u003CCUSTOM0\u003E setzt Augententakel ein."
-        },
-        "IT": {
-          "M": "\u003CCUSTOM0\u003E utilizza dei raggi oculari."
-        },
-        "ES": {
-          "M": "\u003CCUSTOM0\u003E usa rayos oculares."
-        },
-        "PL": {
-          "M": "\u003CCUSTOM0\u003E u\u017Cywa promieni z oczu."
-        }
-      },
-      "Icon": "ir_gengaze",
-      "School": "E",
-      "Range": "L",
-      "Components": [
-        "V"
-      ],
-      "AvailableMetaMagic": [],
-      "TargetTypes": [
-        "Creature"
-      ],
-      "ImpactScript": "x2_s1_beholdatt",
-      "InnateLevel": 5,
-      "ConjurationTime": 0,
-      "ConjuringAnimation": "Hand",
-      "ConjurationHeadEffect": null,
-      "ConjurationHandEffect": null,
-      "ConjurationGroundEffect": null,
-      "ConjurationSound": "",
-      "ConjurationMaleSound": null,
-      "ConjurationFemaleSound": null,
-      "CastingAnimation": "Out",
-      "CastTime": 0,
-      "CastingHeadEffect": null,
-      "CastingHandEffect": null,
-      "CastingGroundEffect": null,
-      "CastingSound": null,
-      "HasProjectile": false,
-      "ProjectileModel": null,
-      "ProjectileType": null,
-      "ProjectileSpawnPoint": null,
-      "ProjectileSound": null,
-      "ProjectileOrientation": null,
-      "SubSpell1": null,
-      "SubSpell2": null,
-      "SubSpell3": null,
-      "SubSpell4": null,
-      "SubSpell5": null,
-      "SubSpell6": null,
-      "SubSpell7": null,
-      "SubSpell8": null,
-      "Category": "HarmfulAoeIndiscriminant",
-      "ParentSpell": null,
-      "Type": "CreaturePower",
-      "UseConcentration": false,
-      "IsCastSpontaneously": false,
-      "IsHostile": false,
-      "CounterSpell1": null,
-      "CounterSpell2": null,
-      "HasProjectileVisuals": false,
-      "TargetShape": null,
-      "TargetSizeX": null,
-      "TargetSizeY": null,
-      "TargetingFlags": []
     }
   ]
 }
