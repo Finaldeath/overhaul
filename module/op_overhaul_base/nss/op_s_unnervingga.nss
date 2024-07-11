@@ -20,10 +20,9 @@ void main()
 {
     if (DoSpellHook()) return;
 
-    effect eLink =
-        EffectLinkEffects(EffectAttackDecrease(1),
-        EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_NEGATIVE),
-                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+    effect eLink = EffectLinkEffects(EffectAttackDecrease(1),
+                   EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_NEGATIVE),
+                                     EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
 
     if (GetIsHumanoidCreature(oTarget))
     {

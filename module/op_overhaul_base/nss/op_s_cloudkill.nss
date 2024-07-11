@@ -29,6 +29,8 @@ void main()
 
         if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
         {
+            ApplyAOEPersistentRunScriptEffect(oTarget);
+
             if (!GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_POISON, oCaster))
             {
                 if (!DoResistSpell(oTarget, oCaster))

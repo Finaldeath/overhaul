@@ -1,14 +1,14 @@
 //::///////////////////////////////////////////////
-//:: Polymorph Self
-//:: op_s_polyself.nss
+//:: Polymorph
+//:: op_s_polymorph.nss
 //:://////////////////////////////////////////////
 /*
+    This can cover most of the Polymorph spells so we can tag in additional
+    benefits if we have feats/stuff relating to it.
+
+    Polymorph
     The caster is able to turn himself into one of the following forms:
-    Giant spider
-    Troll
-    Umber hulk
-    Pixie
-    Zombie
+    Giant Spider, Troll, Umber Hulk, Pixie, Zombie
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info

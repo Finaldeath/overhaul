@@ -4,6 +4,8 @@
 //:://////////////////////////////////////////////
 /*
     Now a line of regeneration spells from spell levels 1 and up.
+    Separate script to the general buffs one because of the "extend duration
+    if existing spell exists" occurs and is more complicated.
 
     Regenerate Light / Moderate / Serious / Critical / Massive Wounds
     10 rounds + 1 round/level duration

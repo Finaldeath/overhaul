@@ -77,6 +77,99 @@
 
     Haste / Mass Haste
     Haste for 1 round/level. (Mass haste max Caster Level in creatures affected)
+
+    Resistance
+    Grants the target creature a +1 bonus to all saving throws. 2 minutes.
+
+    Major Resistance
+    +3 to saves. 1 hour/level.
+
+    Superior Resistance
+    +6 to saves. 1 hour/level.
+
+    Protection from Spells
+    Within the area of effect, up to one ally per 4 caster levels receives a
+    +8 bonus on all saving throws against spells. 1 minute/level.
+
+    Death Armor
+    1d4 + 1/2 caster levels negative damage. 1 round/level.
+
+    Wounding Whispers
+    1d6 + 1 / level sonic damage. 1 round/level.
+
+    Elemental Shield
+    1d6 + 1 / level fire damage. 50% immunity to fire and cold. 1 round/level.
+
+    Mestil's Acid Sheath
+    1d6 + 1 / level acid damage, 50% immunity to acid. 1 round/level.
+
+    Stoneskin
+    10/+5 damage reduction for up to a limit of 10 per caster level, 100 limit. 1 hour/level.
+
+    Greater Stoneskin
+    20/+5 damage reduction for up to a limit of 10 per caster level, 150 limit. 1 hour/level.
+
+    Premonition
+    30/+5 damage reduction for up to a limit of 10 per caster level, no limit. 1 hour/level.
+
+    Blur
+    The subject's outline appears blurred. This distortion grants the subject
+    20% concealment. 1 minute/level.
+
+    Entropic Shield
+    A magical field appears around the caster, causing any nearby enemies a
+    20% chance to miss on ranged attacks. 1 minute/level.
+
+    Displacement
+    The target gains 50% concealment, displacing the caster's image several feet
+    to the side, similar to the abilities of a displacer beast. 1 round/level.
+
+    Spell Resistance
+    12 + 1/caster level SR. 1 minute/level.
+
+    Mass Spell Resistance
+    12 +1 caster level to 1 ally/2 levels in the area. 1 minute/level.
+
+    Endure Elements
+    10/- against 20 points of damage. 1 minute/level.
+
+    Resist Elements
+    20/- against 30 points of damage. 1 minute/level.
+
+    Protection from Elements
+    30/- against 40 points of damage. 1 minute/level.
+
+    Energy Buffer
+    40/- against 60 points of damage. 1 minute/level.
+
+    Lesser Spell Mantle
+    Absorb 1d4 + 6 spells. 1 round/level.
+
+    Spell Mantle
+    Absorb 1d8 + 8 spells. 1 round/level.
+
+    Greater Spell Mantle
+    Absorb 1d12 + 10 spells. 1 round/level.
+
+    Darkvision
+    EffectBonusFeat(FEAT_DARKVISION) plus +5 to spot. 1 Hour/Level.
+
+    Ultravision
+    EffectUltravision. 1 Hour/Level.
+
+    See Invisibility
+    EffectSeeInvisible. 1 minute/level.
+
+    True Seeing
+    EffectTrueSeeing. 1 minute/level.
+
+    Minor Globe of Invulnerability
+    A shimmering field of energy prevents all spells of level 3 or lower
+    from affecting the caster. 1 round/level.
+
+    Globe of Invulnerability
+    A shimmering field of energy prevents all spells of level 4 or lower
+    from affecting the caster. 1 round/level.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -446,6 +539,275 @@ void main()
             }
             // Remove just Expeditious Retreat (and itself) since we can "stack" hastes to supress "slows"
             nRemoveSpell1 = SPELL_EXPEDITIOUS_RETREAT;
+        }
+        break;
+        case SPELL_RESISTANCE:
+        {
+            nVis = VFX_IMP_HEAD_HOLY;
+            eLink = EffectLinkEffects(EffectSavingThrowIncrease(SAVING_THROW_ALL, 1),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+            fDuration = GetDuration(2, MINUTES);
+        }
+        break;
+        case SPELL_MAJOR_RESISTANCE:
+        {
+            nVis = VFX_IMP_MAGIC_PROTECTION;
+            eLink = EffectLinkEffects(EffectSavingThrowIncrease(SAVING_THROW_ALL, 3),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+            fDuration = GetDuration(nCasterLevel, HOURS);
+        }
+        break;
+        case SPELL_SUPERIOR_RESISTANCE:
+        {
+            nVis = VFX_IMP_MAGIC_PROTECTION;
+            eLink = EffectLinkEffects(EffectSavingThrowIncrease(SAVING_THROW_ALL, 6),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+            fDuration = GetDuration(nCasterLevel, HOURS);
+        }
+        break;
+        case SPELL_PROTECTION_FROM_SPELLS:
+        {
+            nImpact = VFX_FNF_LOS_NORMAL_10; // TODO new VFX
+            nVis = VFX_IMP_MAGIC_PROTECTION;
+            eLink = EffectLinkEffects(EffectSavingThrowIncrease(SAVING_THROW_ALL, 8, SAVING_THROW_TYPE_SPELL),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_MAGIC_RESISTANCE),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+            nCreatureLimit = max(1, nCasterLevel/4);
+            fDuration = GetDuration(nCasterLevel, MINUTES);
+        }
+        break;
+        case SPELL_DEATH_ARMOR:
+        case SPELL_WOUNDING_WHISPERS:
+        case SPELL_ELEMENTAL_SHIELD:
+        case SPELL_MESTILS_ACID_SHEATH:
+        {
+            int nDamageType, nVFX, nImmunity1 = -1, nImmunity2 = -1;
+            int nStaticDamage = nCasterLevel;
+            switch (nSpellId)
+            {
+                case SPELL_DEATH_ARMOR:
+                    nDamageType = DAMAGE_TYPE_NEGATIVE;
+                    nStaticDamage /= 2;
+                    if (nStaticDamage > 10) nStaticDamage = 10;
+                    nVFX = VFX_DUR_DEATH_ARMOR;
+                case SPELL_WOUNDING_WHISPERS:
+                    nDamageType = DAMAGE_TYPE_SONIC;
+                    nVFX = VFX_DUR_MIND_AFFECTING_POSITIVE; // Really needs a new VFX
+                break;
+                case SPELL_ELEMENTAL_SHIELD:
+                    nDamageType = DAMAGE_TYPE_FIRE;
+                    nVFX = VFX_DUR_ELEMENTAL_SHIELD;
+                    nImmunity1 = DAMAGE_TYPE_COLD;
+                    nImmunity2 = DAMAGE_TYPE_FIRE;
+                break;
+                case SPELL_MESTILS_ACID_SHEATH:
+                    nDamageType = DAMAGE_TYPE_ACID;
+                    nVFX = VFX_DUR_PROT_ACIDSHIELD;
+                    nImmunity1 = DAMAGE_TYPE_ACID;
+                break;
+            }
+            eLink = EffectLinkEffects(EffectDamageShield(nStaticDamage, DAMAGE_BONUS_1d6, nDamageType),
+                    EffectLinkEffects(EffectVisualEffect(nVFX),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+
+            // Optional immunities
+            if (nImmunity1 >= 0) eLink = EffectLinkEffects(eLink, EffectDamageImmunityIncrease(nImmunity1, 50));
+            if (nImmunity2 >= 0) eLink = EffectLinkEffects(eLink, EffectDamageImmunityIncrease(nImmunity2, 50));
+
+            nRemoveSpell1 = SPELL_DEATH_ARMOR;
+            nRemoveSpell2 = SPELL_WOUNDING_WHISPERS;
+            nRemoveSpell3 = SPELL_ELEMENTAL_SHIELD;
+            nRemoveSpell4 = SPELL_MESTILS_ACID_SHEATH;
+
+            fDuration = GetDuration(nCasterLevel, ROUNDS);
+        }
+        break;
+        case SPELL_STONESKIN:
+        {
+            fDuration = GetDuration(nCasterLevel, HOURS);
+            nVis = VFX_IMP_SUPER_HEROISM;
+            eLink = EffectLinkEffects(EffectDamageReduction(10, DAMAGE_POWER_PLUS_FIVE, max(100, nCasterLevel * 10)),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_PROT_STONESKIN),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+        }
+        break;
+        case SPELL_GREATER_STONESKIN:
+        {
+            fDuration = GetDuration(nCasterLevel, HOURS);
+            nVis = VFX_IMP_POLYMORPH;
+            eLink = EffectLinkEffects(EffectDamageReduction(20, DAMAGE_POWER_PLUS_FIVE, max(150, nCasterLevel * 10)),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_PROT_GREATER_STONESKIN),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+        }
+        break;
+        case SPELL_PREMONITION:
+        {
+            fDuration = GetDuration(nCasterLevel, HOURS);
+            eLink = EffectLinkEffects(EffectDamageReduction(30, DAMAGE_POWER_PLUS_FIVE, nCasterLevel * 10),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_PROT_PREMONITION),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+        }
+        break;
+        case SPELL_PROTECTION_FROM_ARROWS:
+        {
+            fDuration = GetDuration(nCasterLevel, MINUTES);
+
+            // Scale of VFX based off target size.
+            // This is experimental. Might revert to 3 set vfx files.
+            // float fScale = 0.5 * fmax(StringToFloat(Get2DAString("appearance", "PREFATCKDIST", GetAppearanceType(oTarget))), 0.8);
+            // SpeakString("scale: " + FloatToString(fScale));
+            float fScale = GetVFXScale(oTarget);
+
+            // DR has a scaling value
+            eLink = EffectLinkEffects(EffectDamageReduction(10, GetDamagePowerPlusValue(min(nCasterLevel / 5 + 1, 5)), min(nCasterLevel * 10, 100), TRUE),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_PROTECTION_FROM_ARROWS, FALSE, fScale),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+        }
+        break;
+        case SPELL_BLUR:
+            nVis = VFX_IMP_AC_BONUS;// TODO new VFX
+            eLink = EffectLinkEffects(EffectConcealment(20),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_BLUR),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+            fDuration = GetDuration(nCasterLevel, MINUTES);
+        break;
+        case SPELL_ENTROPIC_SHIELD:
+            nVis = VFX_IMP_AC_BONUS;// TODO new VFX
+            eLink = EffectLinkEffects(EffectConcealment(20, MISS_CHANCE_TYPE_VS_RANGED),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_GLOW_LIGHT_PURPLE),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+            fDuration = GetDuration(nCasterLevel, MINUTES);
+        break;
+        case SPELL_DISPLACEMENT:
+            nVis = VFX_IMP_AC_BONUS;// TODO new VFX
+            eLink = EffectLinkEffects(EffectConcealment(50, MISS_CHANCE_TYPE_VS_RANGED),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_DISPLACEMENT),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+            fDuration = GetDuration(nCasterLevel, ROUNDS);
+        break;
+        case SPELL_SPELL_RESISTANCE:
+            nVis = VFX_IMP_MAGIC_PROTECTION;
+            eLink = EffectLinkEffects(EffectSpellResistanceIncrease(12 + nCasterLevel),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_MAGIC_RESISTANCE),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+            fDuration = GetDuration(nCasterLevel, MINUTES);
+        break;
+        case SPELL_MASS_SPELL_RESISTANCE:
+            nCreatureLimit = nCasterLevel;
+            nImpact = VFX_FNF_LOS_NORMAL_20;
+            nVis = VFX_IMP_MAGIC_PROTECTION;
+            eLink = EffectLinkEffects(EffectSpellResistanceIncrease(12 + nCasterLevel),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_MAGIC_RESISTANCE),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+            fDuration = GetDuration(nCasterLevel, MINUTES);
+        break;
+        case SPELL_ENDURE_ELEMENTS:
+            eLink = EffectLinkEffects(EffectDamageResistance(DAMAGE_TYPE_ACID | DAMAGE_TYPE_COLD | DAMAGE_TYPE_ELECTRICAL | DAMAGE_TYPE_FIRE | DAMAGE_TYPE_SONIC, 10, 20),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_PROTECTION_ELEMENTS),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+            nVis = VFX_IMP_ELEMENTAL_PROTECTION;
+            fDuration = GetDuration(nCasterLevel, MINUTES);
+        break;
+        case SPELL_RESIST_ELEMENTS:
+            eLink = EffectLinkEffects(EffectDamageResistance(DAMAGE_TYPE_ACID | DAMAGE_TYPE_COLD | DAMAGE_TYPE_ELECTRICAL | DAMAGE_TYPE_FIRE | DAMAGE_TYPE_SONIC, 20, 30),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_PROTECTION_ELEMENTS),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+            nVis = VFX_IMP_ELEMENTAL_PROTECTION;
+            fDuration = GetDuration(nCasterLevel, MINUTES);
+        break;
+        case SPELL_PROTECTION_FROM_ELEMENTS:
+            eLink = EffectLinkEffects(EffectDamageResistance(DAMAGE_TYPE_ACID | DAMAGE_TYPE_COLD | DAMAGE_TYPE_ELECTRICAL | DAMAGE_TYPE_FIRE | DAMAGE_TYPE_SONIC, 30, 40),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_PROTECTION_ELEMENTS),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+            nVis = VFX_IMP_ELEMENTAL_PROTECTION;
+            fDuration = GetDuration(nCasterLevel, MINUTES);
+        break;
+        case SPELL_ENERGY_BUFFER:
+            eLink = EffectLinkEffects(EffectDamageResistance(DAMAGE_TYPE_ACID | DAMAGE_TYPE_COLD | DAMAGE_TYPE_ELECTRICAL | DAMAGE_TYPE_FIRE | DAMAGE_TYPE_SONIC, 40, 60),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_PROTECTION_ELEMENTS),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+            nVis = VFX_IMP_ELEMENTAL_PROTECTION;
+            fDuration = GetDuration(nCasterLevel, MINUTES);
+        break;
+        case SPELL_LESSER_SPELL_MANTLE:
+            eLink = EffectLinkEffects(EffectSpellLevelAbsorption(9, GetDiceRoll(1, 4, 6)),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_SPELLTURNING),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+            fDuration = GetDuration(nCasterLevel, ROUNDS);
+            nRemoveSpell1 = SPELL_SPELL_MANTLE;
+            nRemoveSpell2 = SPELL_GREATER_SPELL_MANTLE;
+        break;
+        case SPELL_SPELL_MANTLE:
+            eLink = EffectLinkEffects(EffectSpellLevelAbsorption(9, GetDiceRoll(1, 8, 8)),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_SPELLTURNING),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+            fDuration = GetDuration(nCasterLevel, ROUNDS);
+            nRemoveSpell1 = SPELL_LESSER_SPELL_MANTLE;
+            nRemoveSpell2 = SPELL_GREATER_SPELL_MANTLE;
+        break;
+        case SPELL_GREATER_SPELL_MANTLE:
+            eLink = EffectLinkEffects(EffectSpellLevelAbsorption(9, GetDiceRoll(1, 12, 10)),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_SPELLTURNING),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+            fDuration = GetDuration(nCasterLevel, ROUNDS);
+            nRemoveSpell1 = SPELL_LESSER_SPELL_MANTLE;
+            nRemoveSpell2 = SPELL_SPELL_MANTLE;
+        break;
+        case SPELL_DARKVISION_PROPER: // New "Darkvision" spell
+        {
+            fDuration = GetDuration(nCasterLevel, HOURS);
+            eLink = EffectLinkEffects(EffectBonusFeat(FEAT_DARKVISION),
+                    EffectLinkEffects(EffectSkillIncrease(SKILL_SPOT, 5),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_MAGICAL_SIGHT),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE))));
+        }
+        break;
+        case SPELL_DARKVISION: // Ultravision
+        {
+            fDuration = GetDuration(nCasterLevel, HOURS);
+            eLink = EffectLinkEffects(EffectUltravision(),
+                    EffectLinkEffects(EffectIcon(EFFECT_ICON_ULTRAVISION),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_ULTRAVISION),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_MAGICAL_SIGHT),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)))));
+        }
+        break;
+        case SPELL_SEE_INVISIBILITY:
+        {
+            fDuration = GetDuration(nCasterLevel, MINUTES);
+            eLink = EffectLinkEffects(EffectSeeInvisible(),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_MAGICAL_SIGHT),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+        }
+        break;
+        case SPELL_TRUE_SEEING:
+        {
+            fDuration = GetDuration(nCasterLevel, MINUTES);
+            eLink = EffectLinkEffects(EffectTrueSeeing(),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_MAGICAL_SIGHT),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+        }
+        break;
+        case SPELL_MINOR_GLOBE_OF_INVULNERABILITY:
+        {
+            fDuration = GetDuration(nCasterLevel, ROUNDS);
+            eLink = EffectLinkEffects(EffectSpellLevelAbsorption(3, 0),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_GLOBE_MINOR),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+            // Add the Globe icon
+            eLink = HideEffectIcon(eLink);
+            eLink = EffectLinkEffects(eLink, EffectIcon(EFFECT_ICON_GLOBE_OF_INVUNERABILITY));
+        }
+        break;
+        case SPELL_GLOBE_OF_INVULNERABILITY:
+        {
+            fDuration = GetDuration(nCasterLevel, ROUNDS);
+            eLink = EffectLinkEffects(EffectSpellLevelAbsorption(4, 0),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_GLOBE_INVULNERABILITY),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+            // Add the Globe icon
+            eLink = HideEffectIcon(eLink);
+            eLink = EffectLinkEffects(eLink, EffectIcon(EFFECT_ICON_GLOBE_OF_INVUNERABILITY));
         }
         break;
         default:

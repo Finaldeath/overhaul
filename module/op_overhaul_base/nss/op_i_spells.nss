@@ -448,6 +448,11 @@ object GetGeneratedAOE(int nAOE);
 // Fires the ITEM_PROPERTY_SPELL_SCRIPT file, after making sure the spell hook will be ignored using the SPELL_HOOK_IGNORE script parameter
 void FireItemPropertySpellScript();
 
+// Retrieves the correct DAMAGE_POWER_PLUS_FIVE constant based on the input integer. Used for EffectDamageReduction and some
+// item properties and other things.
+// Returns DAMAGE_POWER_PLUS_ONE by default.
+int GetDamagePowerPlusValue(int nPower);
+
 
 // These global variables are used in most spell scripts and are initialised here to be consistent
 // NB: You can't reuse these variables in the very functions in this list, so we pass them in.
@@ -2736,5 +2741,36 @@ void FireItemPropertySpellScript()
 {
     SetScriptParam(SCRIPT_PARAMETER_SKIP_SPELL_HOOK, "1");
     ExecuteScript(ITEM_PROPERTY_SPELL_SCRIPT);
+}
+
+// Retrieves the correct DAMAGE_POWER_PLUS_FIVE constant based on the input integer. Used for EffectDamageReduction and some
+// item properties and other things.
+// Returns DAMAGE_POWER_PLUS_ONE by default.
+int GetDamagePowerPlusValue(int nPower)
+{
+    switch (nPower)
+    {
+        case 1:  return DAMAGE_POWER_PLUS_ONE; break;
+        case 2:  return DAMAGE_POWER_PLUS_TWO; break;
+        case 3:  return DAMAGE_POWER_PLUS_THREE; break;
+        case 4:  return DAMAGE_POWER_PLUS_FOUR; break;
+        case 5:  return DAMAGE_POWER_PLUS_FIVE; break;
+        case 6:  return DAMAGE_POWER_PLUS_SIX; break;
+        case 7:  return DAMAGE_POWER_PLUS_SEVEN; break;
+        case 8:  return DAMAGE_POWER_PLUS_EIGHT; break;
+        case 9:  return DAMAGE_POWER_PLUS_NINE; break;
+        case 10: return DAMAGE_POWER_PLUS_TEN; break;
+        case 11: return DAMAGE_POWER_PLUS_ELEVEN; break;
+        case 12: return DAMAGE_POWER_PLUS_TWELVE; break;
+        case 13: return DAMAGE_POWER_PLUS_THIRTEEN; break;
+        case 14: return DAMAGE_POWER_PLUS_FOURTEEN; break;
+        case 15: return DAMAGE_POWER_PLUS_FIFTEEN; break;
+        case 16: return DAMAGE_POWER_PLUS_SIXTEEN; break;
+        case 17: return DAMAGE_POWER_PLUS_SEVENTEEN; break;
+        case 18: return DAMAGE_POWER_PLUS_EIGHTEEN; break;
+        case 19: return DAMAGE_POWER_PLUS_NINTEEN; break;
+        case 20: return DAMAGE_POWER_PLUS_TWENTY; break;
+    }
+    return DAMAGE_POWER_PLUS_ONE;
 }
 
