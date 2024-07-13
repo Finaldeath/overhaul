@@ -160,6 +160,11 @@ int DoSavingThrow(object oTarget, object oSaveVersus, int nSavingThrow, int nDC,
 // Returns the modified amount of nDamage based on the saving throw being successful for half (or more if reflex save and feats are involved).
 int DoDamageSavingThrow(int nDamage, object oTarget, object oSaveVersus, int nSavingThrow, int nDC, int nSaveType = SAVING_THROW_TYPE_NONE, float fDelay = 0.0);
 
+// Does an ability check with feedback to oTarget and oSource (oSource being the thing doing the check).
+// Returns TRUE if oTarget passes the nDC check.
+// If you use the optional ability parameters the highest will be chosen.
+int DoAbiliyCheck(object oTarget, object oSource, int nDC, int nAbilityCheck, int nOptionalAbilityCheck = -1);
+
 // Returns the modified amount of nDamage based on bSaved and the feats oTarget has (Evasion etc.)
 int GetDamageBasedOnFeats(int nDamage, object oTarget, int bSaved);
 
@@ -310,6 +315,9 @@ int GetSpellIsAreaOfEffect(int nSpellId);
 // Returns a human readable name for the given effect (eg: "Fear" or "Negative Level").
 string GetEffectName(effect eEffect);
 
+// Check if oCreature is silenced or deaf
+int GetCanHear(object oCreature);
+
 // Returns TRUE if the given creature is incorporeal (generally based off their appearance).
 int GetIsIncorporeal(object oCreature);
 
@@ -321,6 +329,9 @@ int GetIsHumanoidCreature(object oCreature);
 
 // Returns TRUE if the given creature is mindless (elemental, undead, vermin, construct, ooze)
 int GetIsMindless(object oCreature);
+
+// Returns TRUE if the given creature is flying / floating
+int GetIsFlying(object oCreature);
 
 // Gets if either domain matches the given domain on the given class
 int GetClassHasDomain(object oCreature, int nClass, int nDomain);
@@ -923,6 +934,33 @@ int DoDamageSavingThrow(int nDamage, object oTarget, object oSaveVersus, int nSa
     }
 
     return nDamage;
+}
+
+// Does an ability check with feedback to oTarget and oSource (oSource being the thing doing the check).
+// Returns TRUE if oTarget passes the nDC check.
+// If you use the optional ability parameters the highest will be chosen.
+int DoAbiliyCheck(object oTarget, object oSource, int nDC, int nAbilityCheck, int nOptionalAbilityCheck = -1)
+{
+    // Get best ability score
+    int nAbilityScore = GetAbilityScore(oTarget, nAbilityCheck);
+    int nAbilityUsed = nAbilityCheck;
+    if (nOptionalAbilityCheck != -1)
+    {
+        if (GetAbilityScore(oTarget, nOptionalAbilityCheck) > nAbilityScore)
+        {
+            nAbilityScore = GetAbilityScore(oTarget, nOptionalAbilityCheck);
+            nAbilityUsed = nOptionalAbilityCheck;
+        }
+    }
+
+    // Do check
+    int nRoll = d20();
+    int bResult = (nRoll + nAbilityScore >= nDC);
+
+    // Report result
+    SendAbilityCheckFeedbackMessage(oTarget, oSource, nAbilityUsed, bResult, nRoll, nAbilityScore, nDC);
+
+    return bResult;
 }
 
 // Returns the modified amount of nDamage based on bSaved and the feats oTarget has (Evasion etc.)
@@ -2037,6 +2075,17 @@ string GetEffectName(effect eEffect)
     return "";
 }
 
+// Check if oCreature is silenced or deaf
+int GetCanHear(object oCreature)
+{
+    if (GetHasEffect(oCreature, EFFECT_TYPE_SILENCE) ||
+        GetHasEffect(oCreature, EFFECT_TYPE_DEAF))
+    {
+        return FALSE;
+    }
+    return TRUE;
+}
+
 // Returns TRUE if the given creature is incorporeal (generally based off their appearance).
 int GetIsIncorporeal(object oCreature)
 {
@@ -2090,7 +2139,7 @@ int GetIsHumanoidCreature(object oCreature)
     return FALSE;
 }
 
-// Returns TRUE if the given creature is mindless (elemental, undead, vermin, construct, ooze)
+// Returns TRUE if the given creature is humanoid (base races plus goblins etc.)
 int GetIsMindless(object oCreature)
 {
     switch(GetRacialType(oCreature))
@@ -2104,6 +2153,64 @@ int GetIsMindless(object oCreature)
     }
     return FALSE;
 }
+
+// Returns TRUE if the given creature is flying / floating
+int GetIsFlying(object oCreature)
+{
+    switch(GetAppearanceType(oCreature))
+    {
+        case APPEARANCE_TYPE_ALLIP:
+        case APPEARANCE_TYPE_BAT:
+        case APPEARANCE_TYPE_BAT_HORROR:
+        case APPEARANCE_TYPE_ELEMENTAL_AIR:
+        case APPEARANCE_TYPE_ELEMENTAL_AIR_ELDER:
+        case APPEARANCE_TYPE_FAERIE_DRAGON:
+        case APPEARANCE_TYPE_FALCON:
+        case APPEARANCE_TYPE_FAIRY:
+        case APPEARANCE_TYPE_HELMED_HORROR:
+        case APPEARANCE_TYPE_IMP:
+        case APPEARANCE_TYPE_LANTERN_ARCHON:
+        case APPEARANCE_TYPE_MEPHIT_AIR:
+        case APPEARANCE_TYPE_MEPHIT_DUST:
+        case APPEARANCE_TYPE_MEPHIT_EARTH:
+        case APPEARANCE_TYPE_MEPHIT_FIRE:
+        case APPEARANCE_TYPE_MEPHIT_ICE:
+        case APPEARANCE_TYPE_MEPHIT_MAGMA:
+        case APPEARANCE_TYPE_MEPHIT_OOZE:
+        case APPEARANCE_TYPE_MEPHIT_SALT:
+        case APPEARANCE_TYPE_MEPHIT_STEAM:
+        case APPEARANCE_TYPE_MEPHIT_WATER:
+        case APPEARANCE_TYPE_QUASIT:
+        case APPEARANCE_TYPE_RAVEN:
+        case APPEARANCE_TYPE_SHADOW:
+        case APPEARANCE_TYPE_SHADOW_FIEND:
+        case APPEARANCE_TYPE_SPECTRE:
+        case APPEARANCE_TYPE_WILL_O_WISP:
+        case APPEARANCE_TYPE_WRAITH:
+        case APPEARANCE_TYPE_WYRMLING_BLACK:
+        case APPEARANCE_TYPE_WYRMLING_BLUE:
+        case APPEARANCE_TYPE_WYRMLING_BRASS:
+        case APPEARANCE_TYPE_WYRMLING_BRONZE:
+        case APPEARANCE_TYPE_WYRMLING_COPPER:
+        case APPEARANCE_TYPE_WYRMLING_GOLD:
+        case APPEARANCE_TYPE_WYRMLING_GREEN:
+        case APPEARANCE_TYPE_WYRMLING_RED:
+        case APPEARANCE_TYPE_WYRMLING_SILVER:
+        case APPEARANCE_TYPE_WYRMLING_WHITE:
+        case APPEARANCE_TYPE_ELEMENTAL_WATER:
+        case APPEARANCE_TYPE_ELEMENTAL_WATER_ELDER:
+        case APPEARANCE_TYPE_BEHOLDER:
+        case APPEARANCE_TYPE_BEHOLDER_EYEBALL:
+        case APPEARANCE_TYPE_BEHOLDER_MAGE:
+        case APPEARANCE_TYPE_BEHOLDER_MOTHER:
+        case APPEARANCE_TYPE_HARPY:
+        case APPEARANCE_TYPE_DEMI_LICH:
+            return TRUE;
+        break;
+    }
+    return FALSE;
+}
+
 
 // Gets if either domain matches the given domain on the given class
 int GetClassHasDomain(object oCreature, int nClass, int nDomain)
@@ -2344,7 +2451,23 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, 
 
     // We can accidentially due to maths(TM) target ourselves in the case of cones and cylinders which start on us, so let's not do that.
     int bTargetSelf = TRUE;
-    if (nShape == SHAPE_CONE || nShape == SHAPE_SPELLCONE || nShape == SHAPE_SPELLCYLINDER) bTargetSelf = FALSE;
+    if (nShape == SHAPE_CONE || nShape == SHAPE_SPELLCONE || nShape == SHAPE_SPELLCYLINDER)
+    {
+        bTargetSelf = FALSE;
+    }
+    else
+    {
+        // Target Flags - some spells (eg Wail of the Banshees) can make you be always ignored
+        string sTargetFlags = Get2DAString("spells", "TargetFlags", nSpellId);
+
+        if (sTargetFlags != "")
+        {
+            if (StringToInt(sTargetFlags) & SPELL_TARGETING_FLAGS_IGNORES_SELF)
+            {
+                bTargetSelf = FALSE;
+            }
+        }
+    }
 
     object oObject = GetFirstObjectInShape(nShape, fSize, lTarget, bLineOfSight, nObjectFilter, vOrigin);
     while (GetIsObjectValid(oObject))

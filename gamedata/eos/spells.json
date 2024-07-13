@@ -2729,7 +2729,7 @@
       "Index": 436,
       "Overrides": "80962e9b-cd1f-55ef-2662-957199ac4526",
       "Disabled": false,
-      "Hint": "NEEDS VFX",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
@@ -2757,7 +2757,7 @@
       "Description": {
         "Index": 1586,
         "EN": {
-          "M": "Caster Level(s): Bard 1, Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Transmutation\nDescriptor(s): Sonic\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Spell Cone\nDuration: Instant\nAdditional Counter Spells:\nSave: None\nSpell Resistance: Yes\n\nThe caster creates a deep, resonant vibration that shakes all creatures in the area of effect from their feet if they fail a Strength check (as if the caster had a Strength of 20). Every creature that falls will be knocked down for one round.",
+          "M": "Caster Level(s): Bard 1, Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Transmutation\nDescriptor(s): Sonic\nComponent(s): Verbal, Somatic\nRange: Cone, 11M\r\nArea of Effect / Target: Spell Cone\nDuration: Instant\nAdditional Counter Spells:\nSave: None\nSpell Resistance: Yes\n\r\nYou create a deep, resonant vibration that can shake creatures off their feet as if they were being knocked over. If they are flying or floating they are immune to this effect.\r\n\r\nMake a single Strength check as if your Strength were 20. Creatures in the area make individual opposed Dexterity or Strength checks against your roll. Every creature that falls will be knocked down for one round.",
           "F": "Caster Level(s): Bard 1, Wizard / Sorcerer 2\nInnate Level: 2\nSchool: Transmutation\nDescriptor(s): Sonic\nComponent(s): Verbal, Somatic\nRange: Personal\nArea of Effect / Target: Colossal\nDuration: Instant\nAdditional Counter Spells:\nSave: None\nSpell Resistance: Yes\n\nThe caster creates a deep, resonant vibration that shakes all creatures in the area of effect from their feet if they fail a Strength check (as if the caster had a Strength of 20). Every creature that falls will be knocked down for one round."
         },
         "FR": {
@@ -2781,7 +2781,7 @@
       },
       "Icon": "is_x1bala",
       "School": "T",
-      "Range": "P",
+      "Range": "S",
       "Components": [
         "V",
         "S"
@@ -2794,9 +2794,11 @@
       "TargetTypes": [
         "Creature",
         "Area",
-        "Item"
+        "Item",
+        "Door",
+        "Placeable"
       ],
-      "ImpactScript": "X0_S0_IRONHORN",
+      "ImpactScript": "op_s_aoeeffect",
       "InnateLevel": 2,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -2809,9 +2811,9 @@
       "CastingAnimation": "Out",
       "CastTime": 1700,
       "CastingHeadEffect": null,
-      "CastingHandEffect": null,
+      "CastingHandEffect": "vca_conesonc01",
       "CastingGroundEffect": null,
-      "CastingSound": null,
+      "CastingSound": "sca_conesonc01",
       "HasProjectile": false,
       "ProjectileModel": null,
       "ProjectileType": "Homing",
@@ -2834,7 +2836,7 @@
       "IsHostile": true,
       "CounterSpell1": null,
       "CounterSpell2": null,
-      "HasProjectileVisuals": false,
+      "HasProjectileVisuals": true,
       "TargetShape": "Cone",
       "TargetSizeX": 11,
       "TargetSizeY": null,
@@ -65945,7 +65947,7 @@
         "Area",
         "Item"
       ],
-      "ImpactScript": "NW_S0_WailBansh",
+      "ImpactScript": "op_s_aoeeffect",
       "InnateLevel": 9,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",

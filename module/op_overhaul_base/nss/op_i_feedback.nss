@@ -99,6 +99,12 @@ void SendFakeDamageFeedbackMessage(object oTarget, object oSource, int nDamage, 
 // - nSkillResult - Use the SKILL_RESULT_ variables
 void SendSkillFeedbackMessage(object oObject, object oVersus, int nSkill, int nSkillResult, int nRoll, int nSkillModifier, int nDC, int bTake20 = FALSE);
 
+// Provides a new feedback message for (raw) ability checks
+// - nAbility - should be the ability oObject is using to resist
+// - bResult - TRUE if passed FALSE if not
+// - nRoll - the roll used
+// - nAbilityScore - the ability score of oObject
+void SendAbilityCheckFeedbackMessage(object oObject, object oVersus, int nAbility, int bResult, int nRoll, int nAbilityScore, int nDC);
 
 // Gets the name of oObject if oSenser can see or hear them (and oObject is valid!), else returns "Someone"
 // If not a creature will just get the name. If oObject and oSenser is the same returns the name.
@@ -347,3 +353,23 @@ void SendSkillFeedbackMessage(object oObject, object oVersus, int nSkill, int nS
     SendMessageToPC(oObject, FEEDBACK_COLOUR_SKILLS + GetNameOrSomeone(oObject) + sMessage + FEEDBACK_COLOUR_END);
     if (GetIsObjectValid(oVersus)) SendMessageToPC(oVersus, FEEDBACK_COLOUR_SKILLS + GetNameOrSomeone(oObject, oVersus) + sMessage + FEEDBACK_COLOUR_END);
 }
+
+// Provides a new feedback message for (raw) ability checks
+void SendAbilityCheckFeedbackMessage(object oObject, object oVersus, int nAbility, int bResult, int nRoll, int nAbilityScore, int nDC)
+{
+    string sAbilityName = GetStringByStrRef(StringToInt(Get2DAString("iprp_abilities", "Name", nAbility)));
+
+    string sResult = bResult == TRUE ? GetStringByStrRef(STRREF_SUCCESS) : GetStringByStrRef(STRREF_FAILURE);
+
+    // Floating text string on oObject regardless of the result type but not sent to log (simplified)
+    FloatingTextStringOnCreature(sAbilityName + " : *" + sResult + "*", oObject, FALSE, FALSE);
+
+    // Complicated message like skills
+    int nTotal = nRoll + nAbilityScore;
+
+    string sMessage = " : " + sAbilityName + " Ability Check : *" + sResult + "* : (" + IntToString(nRoll) + " + " + IntToString(nAbilityScore) + " = " + IntToString(nTotal) + " vs. DC: " + IntToString(nDC) + ")";
+
+    SendMessageToPC(oObject, FEEDBACK_COLOUR_SKILLS + GetNameOrSomeone(oObject) + sMessage + FEEDBACK_COLOUR_END);
+    if (GetIsObjectValid(oVersus)) SendMessageToPC(oVersus, FEEDBACK_COLOUR_SKILLS + GetNameOrSomeone(oObject, oVersus) + sMessage + FEEDBACK_COLOUR_END);
+}
+
