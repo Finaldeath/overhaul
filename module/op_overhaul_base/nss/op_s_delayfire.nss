@@ -34,6 +34,10 @@ void main()
         }
         return;
     }
+    else if (GetCurrentlyRunningEvent() == EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_EXIT)
+    {
+        // Nothing
+    }
     else if (GetCurrentlyRunningEvent() == EVENT_SCRIPT_AREAOFEFFECT_ON_HEARTBEAT)
     {
         if (!AOECheck()) return;
@@ -60,40 +64,43 @@ void main()
         }
         return;
     }
-
-    // Default to the normal spell script.
-    if (DoSpellHook()) return;
-
-    // If fired at somewhere that has a enemy in the trigger already, we...just explode. I mean why not?
-    if (GetIsTargetInAOEAtLocation(AOE_PER_DELAY_BLAST_FIREBALL))
+    else
     {
-        DelayedBlastEffect();
-        return;
-    }
 
-    // Declare major variables including Area of Effect Object
-    effect eAOE = EffectAreaOfEffect(AOE_PER_DELAY_BLAST_FIREBALL);
+        // Default to the normal spell script.
+        if (DoSpellHook()) return;
 
-    // Duration depends on the subspell chosen, no Metamagic.
-    float fDuration;
-
-    switch (nSpellId)
-    {
-        case SPELL_DELAYED_BLAST_FIREBALL_1_ROUND: fDuration = 6.0; break;
-        case SPELL_DELAYED_BLAST_FIREBALL_2_ROUNDS: fDuration = 12.0; break;
-        case SPELL_DELAYED_BLAST_FIREBALL_3_ROUNDS: fDuration = 18.0; break;
-        case SPELL_DELAYED_BLAST_FIREBALL_4_ROUNDS: fDuration = 24.0; break;
-        case SPELL_DELAYED_BLAST_FIREBALL_5_ROUNDS: fDuration = 30.0; break;
-        default:
+        // If fired at somewhere that has a enemy in the trigger already, we...just explode. I mean why not?
+        if (GetIsTargetInAOEAtLocation(AOE_PER_DELAY_BLAST_FIREBALL))
         {
-            if (DEBUG_LEVEL >= LOG_LEVEL_ERROR) OP_Debug("[ERROR] Delayed Blast Fireball: Invalid subspell selected.", LOG_LEVEL_ERROR);
+            DelayedBlastEffect();
             return;
         }
-        break;
-    }
 
-    // Add 10.0 seconds so the last heartbeat fires properly.
-    ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, fDuration + 10.0);
+        // Declare major variables including Area of Effect Object
+        effect eAOE = EffectAreaOfEffect(AOE_PER_DELAY_BLAST_FIREBALL, GetScriptName(), GetScriptName(), GetScriptName());
+
+        // Duration depends on the subspell chosen, no Metamagic.
+        float fDuration;
+
+        switch (nSpellId)
+        {
+            case SPELL_DELAYED_BLAST_FIREBALL_1_ROUND: fDuration = 6.0; break;
+            case SPELL_DELAYED_BLAST_FIREBALL_2_ROUNDS: fDuration = 12.0; break;
+            case SPELL_DELAYED_BLAST_FIREBALL_3_ROUNDS: fDuration = 18.0; break;
+            case SPELL_DELAYED_BLAST_FIREBALL_4_ROUNDS: fDuration = 24.0; break;
+            case SPELL_DELAYED_BLAST_FIREBALL_5_ROUNDS: fDuration = 30.0; break;
+            default:
+            {
+                if (DEBUG_LEVEL >= LOG_LEVEL_ERROR) OP_Debug("[ERROR] Delayed Blast Fireball: Invalid subspell selected.", LOG_LEVEL_ERROR);
+                return;
+            }
+            break;
+        }
+
+        // Add 10.0 seconds so the last heartbeat fires properly.
+        ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, fDuration + 10.0);
+    }
 }
 
 void DelayedBlastEffect()
@@ -141,8 +148,7 @@ void DelayedBlastEffect()
             if (nDamage > 0)
             {
                 // Apply VFX impact and damage effect
-                DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
-                DelayCommand(fDelay, ApplyDamageToObject(oTarget, nDamage, DAMAGE_TYPE_FIRE));
+                DelayCommand(fDelay, ApplyDamageWithVFXToObject(oTarget, nVis, nDamage, DAMAGE_TYPE_FIRE));
             }
         }
     }

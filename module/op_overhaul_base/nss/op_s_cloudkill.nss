@@ -20,6 +20,7 @@
 //:://////////////////////////////////////////////
 
 #include "op_i_spells"
+#include "utl_i_timer"
 
 void main()
 {
@@ -27,37 +28,43 @@ void main()
     {
         if (!AOECheck()) return;
 
-        if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
+        if (GetTimerEnded(ObjectToString(oTarget)))
         {
-            ApplyAOEPersistentRunScriptEffect(oTarget);
+            SetTimer(ObjectToString(oTarget), 5);
 
-            if (!GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_POISON, oCaster))
+            if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
             {
-                if (!DoResistSpell(oTarget, oCaster))
+                SignalSpellCastAt();
+                if (!GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_POISON, oCaster))
                 {
-                    int nHitDice = GetHitDice(oTarget);
-                    if (nHitDice <= 3)
+                    float fDelay = GetRandomDelay();
+
+                    if (!DoResistSpell(oTarget, oCaster, fDelay))
                     {
-                        ApplyVisualEffectToObject(VFX_IMP_DEATH, oTarget);
-                        ApplySpellEffectToObject(DURATION_TYPE_INSTANT, IgnoreEffectImmunity(EffectDeath()), oTarget);
-                        return;
-                    }
-                    // Fort save or movement speed decrease (or death if < 6HD)
-                    if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_FORT, nSpellSaveDC, SAVING_THROW_TYPE_POISON))
-                    {
-                        if (nHitDice <= 6)
+                        int nHitDice = GetHitDice(oTarget);
+                        if (nHitDice <= 3)
                         {
                             ApplyVisualEffectToObject(VFX_IMP_DEATH, oTarget);
                             ApplySpellEffectToObject(DURATION_TYPE_INSTANT, IgnoreEffectImmunity(EffectDeath()), oTarget);
                             return;
                         }
+                        // Fort save or death if < 6HD
+                        else if (nHitDice <= 6)
+                        {
+                            if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_FORT, nSpellSaveDC, SAVING_THROW_TYPE_POISON))
+                            {
+                                ApplyVisualEffectToObject(VFX_IMP_DEATH, oTarget);
+                                ApplySpellEffectToObject(DURATION_TYPE_INSTANT, IgnoreEffectImmunity(EffectDeath()), oTarget);
+                                return;
+                            }
+                        }
+
+                        // 1d10 Acid Damage
+                        int nDamage = GetDiceRoll(1, 10);
+
+                        ApplyVisualEffectToObject(VFX_IMP_POISON_L, oTarget);
+                        ApplyDamageToObject(oTarget, nDamage, DAMAGE_TYPE_ACID);
                     }
-
-                    // 1d10 Acid Damage
-                    int nDamage = GetDiceRoll(1, 10);
-
-                    ApplyVisualEffectToObject(VFX_IMP_POISON_L, oTarget);
-                    ApplyDamageToObject(oTarget, nDamage, DAMAGE_TYPE_ACID);
                 }
             }
         }
@@ -68,43 +75,52 @@ void main()
         // Remove all tagged effects with our OID in it as set before
         RemoveEffectsFromSpell(oTarget, nSpellId, EFFECT_TYPE_ALL, ObjectToString(OBJECT_SELF));
     }
-    else if (GetLastRunScriptEffectScriptType() == RUNSCRIPT_EFFECT_SCRIPT_TYPE_ON_INTERVAL)
+    else if (GetCurrentlyRunningEvent() == EVENT_SCRIPT_AREAOFEFFECT_ON_HEARTBEAT)
     {
         if (!AOECheck()) return;
 
-        if (!GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_POISON, oCaster))
+        json jArray = GetArrayOfAOETargets(SPELL_TARGET_STANDARDHOSTILE);
+        int nIndex;
+        for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
         {
-            if (!DoResistSpell(oTarget, oCaster))
+            oTarget = GetArrayObject(jArray, nIndex);
+
+            if (GetTimerEnded(ObjectToString(oTarget)))
             {
-                int nHitDice = GetHitDice(oTarget);
-                if (nHitDice <= 3)
+                SetTimer(ObjectToString(oTarget), 5);
+                SignalSpellCastAt();
+
+                if (!GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_POISON, oCaster))
                 {
-                    ApplyVisualEffectToObject(VFX_IMP_DEATH, oTarget);
-                    ApplySpellEffectToObject(DURATION_TYPE_INSTANT, IgnoreEffectImmunity(EffectDeath()), oTarget);
-                    return;
-                }
-                // Fort save or death if < 6HD
-                if (nHitDice <= 6)
-                {
-                    if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_FORT, nSpellSaveDC, SAVING_THROW_TYPE_POISON))
+                    if (!DoResistSpell(oTarget, oCaster))
                     {
-                        ApplyVisualEffectToObject(VFX_IMP_DEATH, oTarget);
-                        ApplySpellEffectToObject(DURATION_TYPE_INSTANT, IgnoreEffectImmunity(EffectDeath()), oTarget);
-                        return;
+                        int nHitDice = GetHitDice(oTarget);
+                        if (nHitDice <= 3)
+                        {
+                            ApplyVisualEffectToObject(VFX_IMP_DEATH, oTarget);
+                            ApplySpellEffectToObject(DURATION_TYPE_INSTANT, IgnoreEffectImmunity(EffectDeath()), oTarget);
+                            return;
+                        }
+                        // Fort save or death if < 6HD
+                        if (nHitDice <= 6)
+                        {
+                            if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_FORT, nSpellSaveDC, SAVING_THROW_TYPE_POISON))
+                            {
+                                ApplyVisualEffectToObject(VFX_IMP_DEATH, oTarget);
+                                ApplySpellEffectToObject(DURATION_TYPE_INSTANT, IgnoreEffectImmunity(EffectDeath()), oTarget);
+                                return;
+                            }
+                        }
+
+                        // 1d10 Acid Damage
+                        int nDamage = GetDiceRoll(1, 10);
+
+                        ApplyVisualEffectToObject(VFX_IMP_POISON_L, oTarget);
+                        ApplyDamageToObject(oTarget, nDamage, DAMAGE_TYPE_ACID);
                     }
                 }
-
-                // 1d10 Acid Damage
-                int nDamage = GetDiceRoll(1, 10);
-
-                ApplyVisualEffectToObject(VFX_IMP_POISON_L, oTarget);
-                ApplyDamageToObject(oTarget, nDamage, DAMAGE_TYPE_ACID);
             }
         }
-    }
-    else if (GetCurrentlyRunningEvent() == EVENT_SCRIPT_AREAOFEFFECT_ON_HEARTBEAT)
-    {
-        AOECheck();
     }
     else
     {

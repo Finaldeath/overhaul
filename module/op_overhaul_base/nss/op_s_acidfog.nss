@@ -28,15 +28,14 @@ void main()
         if (GetTimerEnded(ObjectToString(oTarget)))
         {
             SetTimer(ObjectToString(oTarget), 5);
+
             if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
             {
-                // Persistent damage
-                ApplyAOEPersistentRunScriptEffect(oTarget);
-
+                SignalSpellCastAt();
                 if (!DoResistSpell(oTarget, oCaster))
                 {
-                    // Always apply decreased movement
                     ApplyAOEPersistentEffect(oTarget, EffectMovementSpeedDecrease(50));
+                    ApplyAOEPersistentRunScriptEffect(oTarget);
 
                     ApplyVisualEffectToObject(VFX_IMP_ACID_S, oTarget);
                     ApplyDamageToObject(oTarget, GetDiceRoll(2, 6), DAMAGE_TYPE_ACID);
@@ -54,18 +53,19 @@ void main()
     {
         if (!AOECheck()) return;
 
-        json jArray = GetArrayOfTargets(SPELL_TARGET_SELECTIVEHOSTILE);
+        json jArray = GetArrayOfAOETargets(SPELL_TARGET_STANDARDHOSTILE);
         int nIndex;
         for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
         {
             oTarget = GetArrayObject(jArray, nIndex);
 
-            float fDelay = GetRandomDelay(0.4, 1.2);
-
             if (GetTimerEnded(ObjectToString(oTarget)))
             {
                 SetTimer(ObjectToString(oTarget), 5);
                 SignalSpellCastAt();
+
+                float fDelay = GetRandomDelay(0.4, 1.2);
+
                 // 2d6 damage to everyone in the AOE
                 if (!DoResistSpell(oTarget, oCaster))
                 {

@@ -38,26 +38,36 @@ void main()
         }
         return;
     }
-
-    // Default to the normal spell script.
-    if (DoSpellHook()) return;
-
-    // Always (even if it instantly goes off) show the warding to appear.
-    ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_DUR_GLYPH_OF_WARDING), lTarget);
-
-    // If fired at somewhere that has a enemy in the trigger already, we...just explode. I mean why not?
-    if (GetIsTargetInAOEAtLocation(AOE_PER_GLYPH_OF_WARDING))
+    else if (GetCurrentlyRunningEvent() == EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_EXIT)
     {
-        GlyphEffect();
-        return;
+        // Intentionally blank
     }
+    else if (GetCurrentlyRunningEvent() == EVENT_SCRIPT_AREAOFEFFECT_ON_HEARTBEAT)
+    {
+        if (!AOECheck()) return;
+    }
+    else
+    {
+        // Default to the normal spell script.
+        if (DoSpellHook()) return;
 
-    // Declare major variables including Area of Effect Object
-    effect eAOE = EffectAreaOfEffect(AOE_PER_GLYPH_OF_WARDING, GetScriptName(), "", "");
+        // Always (even if it instantly goes off) show the warding to appear.
+        ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_DUR_GLYPH_OF_WARDING), lTarget);
 
-    float fDuration = GetDuration(nCasterLevel/2, MINUTES);
+        // If fired at somewhere that has a enemy in the trigger already, we...just explode. I mean why not?
+        if (GetIsTargetInAOEAtLocation(AOE_PER_GLYPH_OF_WARDING))
+        {
+            GlyphEffect();
+            return;
+        }
 
-    ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, fDuration);
+        // Declare major variables including Area of Effect Object
+        effect eAOE = EffectAreaOfEffect(AOE_PER_GLYPH_OF_WARDING, GetScriptName(), GetScriptName(), GetScriptName());
+
+        float fDuration = GetDuration(nCasterLevel/2, MINUTES);
+
+        ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, fDuration);
+    }
 }
 
 void GlyphEffect()
@@ -83,12 +93,16 @@ void GlyphEffect()
     {
         oTarget = GetArrayObject(jArray, nIndex);
 
-        if (!DoResistSpell(oTarget, oCaster))
+        SignalSpellCastAt();
+
+        float fDelay = GetRandomDelay(0.1, 0.3);
+
+        if (!DoResistSpell(oTarget, oCaster, fDelay))
         {
             int nDamage = GetDiceRoll(nDamageDice, 8);
 
             // Reflex adjusted
-            nDamage = GetReflexAdjustedDamage(nDamage, oTarget, nSpellSaveDC, SAVING_THROW_TYPE_SONIC, oCaster);
+            nDamage = DoDamageSavingThrow(nDamage, oTarget, oCaster, SAVING_THROW_REFLEX, nSpellSaveDC, SAVING_THROW_TYPE_SONIC, fDelay);
 
             if (nDamage > 0)
             {

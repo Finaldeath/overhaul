@@ -39,9 +39,13 @@ void main()
     }
     else if (GetCurrentlyRunningEvent() == EVENT_SCRIPT_AREAOFEFFECT_ON_HEARTBEAT)
     {
-        AOECheck();
+        if (!AOECheck()) return;
 
-        json jArray = GetArrayOfTargets(SPELL_TARGET_SELECTIVEHOSTILE);
+        int nCount = 1 + GetLocalInt(OBJECT_SELF, "COUNT");
+        SetLocalInt(OBJECT_SELF, "COUNT", nCount);
+        OP_Debug("Storm of Vengence, Heartbeat Count: " + IntToString(nCount));
+
+        json jArray = GetArrayOfAOETargets(SPELL_TARGET_SELECTIVEHOSTILE);
         int nIndex;
         for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
         {
@@ -63,7 +67,7 @@ void main()
         ApplyVisualEffectAtLocation(VFX_FNF_STORM, lTarget);
 
         effect eAOE = EffectAreaOfEffect(AOE_PER_STORM, GetScriptName(), GetScriptName(), GetScriptName());
-        ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, GetDuration(nCasterLevel/2, ROUNDS));
+        ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, GetDuration(10, ROUNDS));
     }
 }
 

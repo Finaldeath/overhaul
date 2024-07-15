@@ -384,6 +384,17 @@ void CureEffects(object oTarget, json jArray, int bSupernaturalRemoval = FALSE);
 // The other variables can be set, but if not then the current Spell Id will sort the shape and size.
 json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, int nObjectFilter=OBJECT_TYPE_CREATURE, int nShape = -1, float fSize = -1.0, location lArrayTarget=LOCATION_INVALID, int bLineOfSight=TRUE, vector vOrigin=[0.0,0.0,0.0]);
 
+// Loops through the persistent AOE to get all the targets in it. It then sorts them using nSortMethod.
+// * nTargetType - The SPELL_TARGET_* type to check versus oCaster
+// * nSortMethod - The sorting method to apply once all the creatures are added.
+//                 SORT_METHOD_NONE      - No sorting (slightly faster)
+//                 SORT_METHOD_LOWEST_HP - Sorts so first object is the lowest HP
+//                 SORT_METHOD_LOWEST_HD - Sorts so first object is the lowest HD
+//                 SORT_METHOD_DISTANCE  - Sorts so the first object is the lowest distance to AOE target location
+//                 SORT_METHOD_DISTANCE_TO_CASTER - Sorts so first object is lowest distance to caster
+// * bTargetSelf - If FALSE we won't ever get ourself into the array
+json GetArrayOfAOETargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, int nObjectFilter=OBJECT_TYPE_CREATURE, int bTargetSelf=TRUE);
+
 // Gets the given Object stored as FIELD_OBJECTID in jArray at nIndex
 object GetArrayObject(json jArray, int nIndex);
 
@@ -2617,14 +2628,11 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, 
         }
     }
 
-    // For an AOE we just do GetFirst/NextInPersistentShape on OBJECT_SELF.
-    int nScript = GetCurrentlyRunningEvent();
-    if (nScript == EVENT_SCRIPT_AREAOFEFFECT_ON_HEARTBEAT ||
-        nScript == EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_ENTER ||
-        nScript == EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_EXIT)
+    object oObject = GetFirstObjectInShape(nShape, fSize, lTarget, bLineOfSight, nObjectFilter, vOrigin);
+    while (GetIsObjectValid(oObject))
     {
-        object oObject = GetFirstInPersistentObject(OBJECT_SELF);
-        while (GetIsObjectValid(oObject))
+        // Safe area test
+        if (fSafeArea < 0.0 || GetDistanceBetweenLocations(lTarget, GetLocation(oTarget)) > fSafeArea)
         {
             if (GetSpellTargetValid(oObject, oCaster, nTargetType) && (bTargetSelf == TRUE || oObject != oCaster))
             {
@@ -2645,39 +2653,66 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, 
 
                 jArray = JsonArrayInsert(jArray, jObject);
             }
-            oObject = GetNextInPersistentObject(OBJECT_SELF);
         }
+        oObject = GetNextObjectInShape(nShape, fSize, lTarget, bLineOfSight, nObjectFilter, vOrigin);
     }
-    else
+
+    // Sort the array
+    // SORT_METHOD_NONE doesn't need any sorting (no data to sort)
+    if (nSortMethod == SORT_METHOD_LOWEST_HP ||
+        nSortMethod == SORT_METHOD_LOWEST_HD ||
+        nSortMethod == SORT_METHOD_DISTANCE ||
+        nSortMethod == SORT_METHOD_DISTANCE_TO_CASTER)
     {
-        object oObject = GetFirstObjectInShape(nShape, fSize, lTarget, bLineOfSight, nObjectFilter, vOrigin);
-        while (GetIsObjectValid(oObject))
+        jArray = JsonArrayTransform(jArray, JSON_ARRAY_SORT_ASCENDING);
+    }
+
+    return jArray;
+}
+
+// Loops through the persistent AOE to get all the targets in it. It then sorts them using nSortMethod.
+// * nTargetType - The SPELL_TARGET_* type to check versus oCaster
+// * nSortMethod - The sorting method to apply once all the creatures are added.
+//                 SORT_METHOD_NONE      - No sorting (slightly faster)
+//                 SORT_METHOD_LOWEST_HP - Sorts so first object is the lowest HP
+//                 SORT_METHOD_LOWEST_HD - Sorts so first object is the lowest HD
+//                 SORT_METHOD_DISTANCE  - Sorts so the first object is the lowest distance to AOE target location
+//                 SORT_METHOD_DISTANCE_TO_CASTER - Sorts so first object is lowest distance to caster
+// * bTargetSelf - If FALSE we won't ever get ourself into the array
+json GetArrayOfAOETargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, int nObjectFilter=OBJECT_TYPE_CREATURE, int bTargetSelf=TRUE)
+{
+    json jArray = JsonArray();
+
+    // Error checking - we log these might be mistakes in spell scripts
+    if (nTargetType < 0 || nTargetType > 3) { OP_Debug("[GetArrayOfAOETargets] nTargetType invalid: " + IntToString(nTargetType), LOG_LEVEL_ERROR); return jArray; }
+    if (nSortMethod < 0 || nSortMethod > 4) { OP_Debug("[GetArrayOfAOETargets] nSortMethod invalid: " + IntToString(nSortMethod), LOG_LEVEL_ERROR); return jArray; }
+    if (nObjectFilter < 0 || nObjectFilter > 32767) { OP_Debug("[GetArrayOfAOETargets] nObjectFilter invalid: " + IntToString(nObjectFilter), LOG_LEVEL_ERROR); return jArray; }
+    if (bTargetSelf != FALSE && bTargetSelf != TRUE) { OP_Debug("[GetArrayOfAOETargets] bTargetSelf invalid: " + IntToString(bTargetSelf), LOG_LEVEL_ERROR); return jArray; }
+
+    // For an AOE we just do GetFirst/NextInPersistentShape on OBJECT_SELF.
+    object oObject = GetFirstInPersistentObject(OBJECT_SELF);
+    while (GetIsObjectValid(oObject))
+    {
+        if (GetSpellTargetValid(oObject, oCaster, nTargetType) && (bTargetSelf == TRUE || oObject != oCaster))
         {
-            // Safe area test
-            if (fSafeArea < 0.0 || GetDistanceBetweenLocations(lTarget, GetLocation(oTarget)) > fSafeArea)
+            json jObject = JsonObject();
+
+            // Metric depends on what we are sorting
+            switch (nSortMethod)
             {
-                if (GetSpellTargetValid(oObject, oCaster, nTargetType) && (bTargetSelf == TRUE || oObject != oCaster))
-                {
-                    json jObject = JsonObject();
-
-                    // Metric depends on what we are sorting
-                    switch (nSortMethod)
-                    {
-                        //SORT_METHOD_NONE - No need to store anything extra
-                        case SORT_METHOD_LOWEST_HP: jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonInt(GetCurrentHitPoints(oObject))); break;
-                        case SORT_METHOD_LOWEST_HD: jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonInt(GetHitDice(oObject))); break;
-                        case SORT_METHOD_DISTANCE:  jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonFloat(GetDistanceBetweenLocations(lTarget, GetLocation(oObject)))); break;
-                        case SORT_METHOD_DISTANCE_TO_CASTER: jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonFloat(GetDistanceBetween(oCaster, oObject))); break;
-                    }
-
-                    // Add the value we sort with first and OID second so it's part of the sorting later
-                    jObject = JsonObjectSet(jObject, FIELD_OBJECTID, JsonString(ObjectToString(oObject)));
-
-                    jArray = JsonArrayInsert(jArray, jObject);
-                }
+                //SORT_METHOD_NONE - No need to store anything extra
+                case SORT_METHOD_LOWEST_HP: jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonInt(GetCurrentHitPoints(oObject))); break;
+                case SORT_METHOD_LOWEST_HD: jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonInt(GetHitDice(oObject))); break;
+                case SORT_METHOD_DISTANCE:  jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonFloat(GetDistanceBetweenLocations(lTarget, GetLocation(oObject)))); break;
+                case SORT_METHOD_DISTANCE_TO_CASTER: jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonFloat(GetDistanceBetween(oCaster, oObject))); break;
             }
-            oObject = GetNextObjectInShape(nShape, fSize, lTarget, bLineOfSight, nObjectFilter, vOrigin);
+
+            // Add the value we sort with first and OID second so it's part of the sorting later
+            jObject = JsonObjectSet(jObject, FIELD_OBJECTID, JsonString(ObjectToString(oObject)));
+
+            jArray = JsonArrayInsert(jArray, jObject);
         }
+        oObject = GetNextInPersistentObject(OBJECT_SELF);
     }
 
     // Sort the array

@@ -21,13 +21,11 @@
 
 void main()
 {
-    if (GetLastRunScriptEffectScriptType() == RUNSCRIPT_EFFECT_SCRIPT_TYPE_ON_INTERVAL)
-    {
-        AOECheck();
-    }
-    else if (GetCurrentlyRunningEvent() == EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_ENTER)
+    if (GetCurrentlyRunningEvent() == EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_ENTER)
     {
         if (!AOECheck()) return;
+
+        SignalSpellCastAt();
 
         if (!DoResistSpell(oTarget, oCaster))
         {
@@ -37,12 +35,11 @@ void main()
     }
     else if (GetCurrentlyRunningEvent() == EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_EXIT)
     {
-        // Just remove tagged effects
         RemoveEffectsFromSpell(oTarget, SPELL_DARKNESS, EFFECT_TYPE_ALL, ObjectToString(OBJECT_SELF));
     }
     else if (GetCurrentlyRunningEvent() == EVENT_SCRIPT_AREAOFEFFECT_ON_HEARTBEAT)
     {
-        AOECheck();
+        if (!AOECheck()) return;
     }
     else
     {
