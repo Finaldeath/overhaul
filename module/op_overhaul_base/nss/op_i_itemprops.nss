@@ -131,6 +131,9 @@ int GetItemPropertySpellSaveDC(itemproperty ipProperty);
 // Returns 0 if not found
 int GetItemPropertyMetaMagic(itemproperty ipProperty);
 
+// Returns the correct IP_CONST_DAMAGEBONUS_* for the given nBonus.
+int GetItemPropertyDamageBonusConstant(int nBonus);
+
 
 // Debugs the given item and it's properties
 void DebugItemProperties(object oItem)
@@ -805,3 +808,25 @@ int GetItemPropertyMetaMagic(itemproperty ipProperty)
 {
     return GetItemPropertyTaggedIntField(ipProperty, JSON_FIELD_METAMAGIC, 0);
 }
+
+// Returns the correct IP_CONST_DAMAGEBONUS_* for the given nBonus.
+int GetItemPropertyDamageBonusConstant(int nBonus)
+{
+    switch (nBonus)
+    {
+        case 1: return IP_CONST_DAMAGEBONUS_1; break;
+        case 2: return IP_CONST_DAMAGEBONUS_2; break;
+        case 3: return IP_CONST_DAMAGEBONUS_3; break;
+        case 4: return IP_CONST_DAMAGEBONUS_4; break;
+        case 5: return IP_CONST_DAMAGEBONUS_5; break;
+        case 6: return IP_CONST_DAMAGEBONUS_6; break;
+        case 7: return IP_CONST_DAMAGEBONUS_7; break;
+        case 8: return IP_CONST_DAMAGEBONUS_8; break;
+        case 9: return IP_CONST_DAMAGEBONUS_9; break;
+        case 10: return IP_CONST_DAMAGEBONUS_10; break;
+    }
+    // Default/error
+    OP_Debug("[GetItemPropertyDamageBonusConstant] nBonus value: " + IntToString(nBonus) + " not matching constants, returning 1.", LOG_LEVEL_ERROR);
+    return IP_CONST_DAMAGEBONUS_1;
+}
+

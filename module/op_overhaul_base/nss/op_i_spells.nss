@@ -177,7 +177,7 @@ int DoResistSpell(object oTarget, object oCaster, float fDelay = 0.0, int bResis
 int GetAssayResistanceBonus(object oTarget, object oCaster);
 
 // Does a relevant touch attack. Some classes add bonuses to touch attacks, which can be added in here.
-// - nType can be TOUCH_MELEE or TOUCH_RANGED. If TOUCH_NONE it simply returns TRUE so it doesn't do anything.
+// - nType can be TOUCH_MELEE or TOUCH_RANGED. If TOUCH_NONE it simply returns 1 for "hit" with no feedback.
 // Return values:
 // * 0 - Miss
 // * 1 - Hit
@@ -310,6 +310,7 @@ int GetSpellLevel(int nSpellId, int nClass = CLASS_TYPE_INVALID);
 int GetSpellSchool(int nSpellId);
 
 // Returns TRUE if the spell has targeting defined in the column "TargetShape"
+// It also does a check for "Supress with Target" and if that flag is on we are NOT an area of effect if oTarget is valid.
 int GetSpellIsAreaOfEffect(int nSpellId);
 
 // Returns a human readable name for the given effect (eg: "Fear" or "Negative Level").
@@ -1105,9 +1106,8 @@ int GetAssayResistanceBonus(object oTarget, object oCaster)
     return 0;
 }
 
-
 // Does a relevant touch attack. Some classes add bonuses to touch attacks, which can be added in here.
-// - nType can be TOUCH_MELEE or TOUCH_RANGED. If TOUCH_NONE it simply returns TRUE so it doesn't do anything.
+// - nType can be TOUCH_MELEE or TOUCH_RANGED. If TOUCH_NONE it simply returns 1 for "hit" with no feedback.
 // Return values:
 // * 0 - Miss
 // * 1 - Hit
@@ -1115,7 +1115,7 @@ int GetAssayResistanceBonus(object oTarget, object oCaster)
 int DoTouchAttack(object oTarget, object oVersus, int nType, int bDisplayFeedback = TRUE)
 {
     // We just "hit" if TOUCH_NONE.
-    if (nType == TOUCH_NONE) return TRUE;
+    if (nType == TOUCH_NONE) return 1;
 
     // Note: For now we don't use oVersus but it's possible to do this with ExecuteScript/ExecuteScriptChunk.
     if (oVersus != OBJECT_SELF)
@@ -1958,9 +1958,22 @@ int GetSpellSchool(int nSpellId)
 }
 
 // Returns TRUE if the spell has targeting defined in the column "TargetShape"
+// It also does a check for "Supress with Target" and if that flag is on we are NOT an area of effect if oTarget is valid.
 int GetSpellIsAreaOfEffect(int nSpellId)
 {
-    // Test is more comprehensive to catch errors
+    // If we are "supress with target" flag we don't want to be an AOE
+    if (GetIsObjectValid(oTarget))
+    {
+        string sTargetFlags = Get2DAString("spells", "TargetFlags", nSpellId);
+        if (sTargetFlags != "")
+        {
+            if (StringToInt(sTargetFlags) & SPELL_TARGETING_FLAGS_SUPPRESS_WITH_TARGET)
+            {
+                return FALSE;
+            }
+        }
+    }
+    // Test is more comprehensive to catch errors (ie has to have X or Y set)
     if (Get2DAString("spells", "TargetShape", nSpellId) != "")
     {
         if (Get2DAString("spells", "TargetSizeX", nSpellId) == "" && Get2DAString("spells", "TargetSizeX", nSpellId) == "")
@@ -1968,6 +1981,7 @@ int GetSpellIsAreaOfEffect(int nSpellId)
             OP_Debug("[GetSpellIsAreaOfEffect] Spell " + GetSpellName(nSpellId) + " is set with a TargetShape but no valid X or Y size.", LOG_LEVEL_ERROR);
             return FALSE;
         }
+
         return TRUE;
     }
     return FALSE;

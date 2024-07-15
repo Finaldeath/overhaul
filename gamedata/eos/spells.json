@@ -27410,7 +27410,7 @@
       "Description": {
         "Index": 6156,
         "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 3\nInnate Level: 3\nSchool: Conjuration\nDescriptor(s): Fire\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Single or Ammunition\nDuration: Instant or 10 rounds\nAdditional Counter Spells:\nSave: Reflex 1/2\nSpell Resistance: Yes\n\nIf targeting a creature, the caster launches 1 conjured fiery arrow at the target for every 4 caster levels. If a ranged touch attack for an arrow hits, the arrow does 4d6 points of fire damage. Only one spell resistance check is done for all the arrows however.\r\n\r\nAlternatively you can cast this on ammunition in your inventory (arrows, bolts or bullets) to add fire damage equal to half the caster level (up to \u002B10). This enchantment lasts for 1 round per caster level.",
+          "M": "Caster Level(s): Wizard / Sorcerer 3\nInnate Level: 3\nSchool: Conjuration\nDescriptor(s): Fire\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Single or Ammunition\nDuration: Instant or 10 rounds\nAdditional Counter Spells:\nSave: Reflex 1/2\nSpell Resistance: Yes\n\nIf targeting a creature, the caster launches 1 conjured fiery arrow at the target for every 4 caster levels. If a ranged touch attack for an arrow hits, the arrow does 4d6 points of fire damage. Only one spell resistance check is done for all the arrows however.\r\n\r\nIf targeting the ground enemy creatures in the area of effect are targeted by your firey arrows, same as if targeting a single creature. \r\n\r\nAlternatively you can cast this on ammunition in your inventory (arrows, bolts or bullets) to add fire damage equal to half the caster level (up to \u002B10). This enchantment lasts for 1 round per caster level.",
           "F": "Caster Level(s): Wizard / Sorcerer 3\nInnate Level: 3\nSchool: Conjuration\nDescriptor(s): Fire\nComponent(s): Verbal, Somatic\nRange: Medium\nArea of Effect / Target: Single\nDuration: Instant\nAdditional Counter Spells:\nSave: Reflex 1/2\nSpell Resistance: Yes\n\nThe caster launches 1 conjured fiery arrow at the target creature for every 4 caster levels. Each arrow does 4d6 points of damage."
         },
         "FR": {
@@ -27448,11 +27448,12 @@
       ],
       "TargetTypes": [
         "Creature",
+        "Area",
         "Item",
         "Door",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_FlmArrow",
+      "ImpactScript": "op_s_mirv",
       "InnateLevel": 3,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Hand",
@@ -27487,14 +27488,17 @@
       "Type": "Spell",
       "UseConcentration": true,
       "IsCastSpontaneously": false,
-      "IsHostile": false,
+      "IsHostile": true,
       "CounterSpell1": null,
       "CounterSpell2": null,
       "HasProjectileVisuals": false,
-      "TargetShape": null,
-      "TargetSizeX": null,
+      "TargetShape": "Sphere",
+      "TargetSizeX": 10,
       "TargetSizeY": null,
-      "TargetingFlags": []
+      "TargetingFlags": [
+        "HarmsEnemies",
+        "SuppressWithTarget"
+      ]
     },
     {
       "ID": "d3c5702c-d40f-49ea-915e-698a3c51b6f6",

@@ -18,6 +18,16 @@
 
     Issacs Greater Missile Storm
     2d6 damage per missile. Up to 20 missiles. Max 5 per target.
+
+    Flame Arrow
+    If targeting a creature, the caster launches 1 conjured fiery arrow at the
+    target for every 4 caster levels. If a ranged touch attack for an arrow
+    hits, the arrow does 4d6 points of fire damage. Only one spell resistance
+    check is done for all the arrows however.
+
+    Alternatively you can cast this on ammunition in your inventory (arrows,
+    bolts or bullets) to add fire damage equal to half the caster level (up to
+    +10). This enchantment lasts for 1 round per caster level.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -31,6 +41,7 @@ void main()
     if (DoSpellHook()) return;
 
     int nMissiles, nMaxMissilesPerCreature = 99999, nDiceNum, nDiceSize, nDamageBonus, nDamageType, nSavingThrow = -1, nSavingThrowType = SAVING_THROW_TYPE_NONE;
+    int bTouchAttackType = TOUCH_NONE;
     int nVisMissile = VFX_INVALID, nVis = VFX_INVALID;
 
     switch (nSpellId)
@@ -70,6 +81,27 @@ void main()
             nVis = VFX_IMP_MAGBLUE;
         }
         break;
+        case SPELL_FLAME_ARROW:
+        {
+            // If target is an item apply the item effect
+            if (GetIsObjectValid(oTarget) && GetObjectType(oTarget) == OBJECT_TYPE_ITEM)
+            {
+                FireItemPropertySpellScript();
+                return;
+            }
+            nMissiles = 40;//max(1, nCasterLevel/4);
+            // No max per creature!
+            bTouchAttackType = TOUCH_RANGED;
+            nDiceNum = 4;
+            nDiceSize = 6;
+            nDamageBonus = 0;
+            nDamageType = DAMAGE_TYPE_FIRE;
+            nVisMissile = VFX_IMP_MIRV_FLAME;
+            nVis = VFX_IMP_FLAME_S;
+            nSavingThrow = SAVING_THROW_REFLEX;
+            nSavingThrowType = SAVING_THROW_TYPE_FIRE;
+        }
+        break;
         default:
             OP_Debug("[op_s_mirv] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
@@ -89,6 +121,8 @@ void main()
 
             SpeakString("nMissiles: " + IntToString(nMissiles) + " nMissilesPerCreature: " + IntToString(nMissilesPerCreature) + " Creatures: " + IntToString(JsonGetLength(jArray)) + " nExtraMissiles: " + IntToString(nExtraMissiles));
 
+            float fDeltaTime = 0.0;
+
             int nIndex;
             for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
             {
@@ -99,7 +133,6 @@ void main()
                 if (nMissiles > 0)
                 {
                     float fDelay = GetVisualEffectHitDelay(nVisMissile, oTarget, oCaster);
-                    float fDeltaTime = 0.0;
 
                     int bResist = DoResistSpell(oTarget, oCaster, fDelay);
 
@@ -109,12 +142,16 @@ void main()
                     {
                         nMissiles--;
 
-                        DelayCommand(fDeltaTime, ApplyVisualEffectToObject(nVisMissile, oTarget));
+                        int bTouchResult = DoTouchAttack(oTarget, oCaster, bTouchAttackType);
 
-                        if (!bResist)
+                        DelayCommand(fDeltaTime, ApplyVisualEffectToObject(nVisMissile, oTarget, !bTouchResult));
+
+                        if (!bResist && bTouchResult)
                         {
                             // Roll damage
                             int nDamage = GetDiceRoll(nDiceNum, nDiceSize, nDamageBonus);
+
+                            if (bTouchResult == 2) nDamage *= 2;
 
                             // Damage modification based on save (half, with Reflex allowing feats to reduce further)
                             if (nSavingThrow != -1)
@@ -153,12 +190,16 @@ void main()
             int nCnt;
             for (nCnt = 1; nCnt <= nMissiles; nCnt++)
             {
-                DelayCommand(fDeltaTime, ApplyVisualEffectToObject(nVisMissile, oTarget));
+                int bTouchResult = DoTouchAttack(oTarget, oCaster, bTouchAttackType);
 
-                if (!bResist)
+                DelayCommand(fDeltaTime, ApplyVisualEffectToObject(nVisMissile, oTarget, !bTouchResult));
+
+                if (!bResist && bTouchResult)
                 {
                     // Roll damage
                     int nDamage = GetDiceRoll(nDiceNum, nDiceSize);
+
+                    if (bTouchResult == 2) nDamage *= 2;
 
                     // Damage modification based on save (half, with Reflex allowing feats to reduce further)
                     if (nSavingThrow != -1)

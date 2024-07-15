@@ -52,6 +52,12 @@
 
     Flame of Faith (was Darkfire)
     +1 enchantment and 1d6 fire damage.
+
+    Bless
+    Slay Rakasha on bolts.
+
+    Flame Arrow
+    +1/2 caster levels (max +10) to arrows.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -169,6 +175,12 @@ void main()
             ipProperty1 = ItemPropertyOnHitCastSpell(IP_CONST_ONHIT_CASTSPELL_ONHIT_SLAYRAKSHASA, 1);
             nVis = VFX_IMP_HEAD_HOLY;
             fDuration = GetDuration(nCasterLevel, MINUTES);
+        break;
+        case SPELL_FLAME_ARROW:
+            oTarget = GetItemToCastSpellOn(oTarget, BASE_ITEM_ARROW, nSpellId);
+            ipProperty1 = ItemPropertyDamageBonus(IP_CONST_DAMAGETYPE_FIRE, GetItemPropertyDamageBonusConstant(min(10, nCasterLevel/2)));
+            nVis = VFX_IMP_HEAD_FIRE;
+            fDuration = GetDuration(nCasterLevel, ROUNDS);
         break;
         default:
             OP_Debug("[Item Property spells] No valid spell ID passed in: " + IntToString(nSpellId));
