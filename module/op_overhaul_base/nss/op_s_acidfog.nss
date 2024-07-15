@@ -17,6 +17,7 @@
 //:://////////////////////////////////////////////
 
 #include "op_i_spells"
+#include "utl_i_timer"
 
 void main()
 {
@@ -24,18 +25,22 @@ void main()
     {
         if (!AOECheck()) return;
 
-        if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
+        if (GetTimerEnded(ObjectToString(oTarget)))
         {
-            // Persistent damage
-            ApplyAOEPersistentRunScriptEffect(oTarget);
-
-            if (!DoResistSpell(oTarget, oCaster))
+            SetTimer(ObjectToString(oTarget), 5);
+            if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
             {
-                // Always apply decreased movement
-                ApplyAOEPersistentEffect(oTarget, EffectMovementSpeedDecrease(50));
+                // Persistent damage
+                ApplyAOEPersistentRunScriptEffect(oTarget);
 
-                ApplyVisualEffectToObject(VFX_IMP_ACID_S, oTarget);
-                ApplyDamageToObject(oTarget, GetDiceRoll(2, 6), DAMAGE_TYPE_ACID);
+                if (!DoResistSpell(oTarget, oCaster))
+                {
+                    // Always apply decreased movement
+                    ApplyAOEPersistentEffect(oTarget, EffectMovementSpeedDecrease(50));
+
+                    ApplyVisualEffectToObject(VFX_IMP_ACID_S, oTarget);
+                    ApplyDamageToObject(oTarget, GetDiceRoll(2, 6), DAMAGE_TYPE_ACID);
+                }
             }
         }
         return;
@@ -45,20 +50,29 @@ void main()
         // Remove all tagged effects with our OID in it as set above
         RemoveEffectsFromSpell(oTarget, nSpellId, EFFECT_TYPE_ALL, ObjectToString(OBJECT_SELF));
     }
-    else if (GetLastRunScriptEffectScriptType() == RUNSCRIPT_EFFECT_SCRIPT_TYPE_ON_INTERVAL)
+    else if (GetCurrentlyRunningEvent() == EVENT_SCRIPT_AREAOFEFFECT_ON_HEARTBEAT)
     {
         if (!AOECheck()) return;
 
-        // 2d6 damage to everyone in the AOE
-        if (!DoResistSpell(oTarget, oCaster))
+        json jArray = GetArrayOfTargets(SPELL_TARGET_SELECTIVEHOSTILE);
+        int nIndex;
+        for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
         {
-            ApplyVisualEffectToObject(VFX_IMP_ACID_S, oTarget);
-            ApplyDamageToObject(oTarget, GetDiceRoll(2, 6), DAMAGE_TYPE_ACID);
+            oTarget = GetArrayObject(jArray, nIndex);
+
+            float fDelay = GetRandomDelay(0.4, 1.2);
+
+            if (GetTimerEnded(ObjectToString(oTarget)))
+            {
+                SetTimer(ObjectToString(oTarget), 5);
+                SignalSpellCastAt();
+                // 2d6 damage to everyone in the AOE
+                if (!DoResistSpell(oTarget, oCaster))
+                {
+                    AssignCommand(oCaster, DelayCommand(fDelay, ApplyDamageWithVFXToObject(oTarget, VFX_IMP_ACID_S, GetDiceRoll(2, 6), DAMAGE_TYPE_ACID)));
+                }
+            }
         }
-    }
-    else if (GetCurrentlyRunningEvent() == EVENT_SCRIPT_AREAOFEFFECT_ON_HEARTBEAT)
-    {
-        AOECheck();
     }
     else
     {
@@ -66,7 +80,7 @@ void main()
 
         ApplyVisualEffectAtLocation(VFX_FNF_GAS_EXPLOSION_ACID, lTarget);
 
-        effect eAOE = EffectAreaOfEffect(AOE_PER_FOGACID, "op_s_acidfog", "op_s_acidfog", "op_s_acidfog");
+        effect eAOE = EffectAreaOfEffect(AOE_PER_FOGACID, GetScriptName(), GetScriptName(), GetScriptName());
         ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, GetDuration(nCasterLevel/2, ROUNDS));
     }
 }

@@ -269,8 +269,12 @@ void ApplyVisualEffectAtLocation(int nVFX, location lTarget, int bMissEffect = F
 // Applies damage of the given type. This helps wrapper delayed damage so we can keep at 1 HP if necessary (Harm/Heal).
 void ApplyDamageToObject(object oTarget, int nDamage, int nDamageType=DAMAGE_TYPE_MAGICAL, int nDamagePower=DAMAGE_POWER_NORMAL, int bKeepAt1HP = FALSE);
 
+// Applies damage of the given type. This helps wrapper delayed damage so we can keep at 1 HP if necessary (Harm/Heal).
+// * Also applies nVFX (no miss effect or anything special).
+void ApplyDamageWithVFXToObject(object oTarget, int nVFX, int nDamage, int nDamageType=DAMAGE_TYPE_MAGICAL, int nDamagePower=DAMAGE_POWER_NORMAL, int bKeepAt1HP = FALSE);
+
 // Applies a fully sorted AOE Persistent EffectRunScript for those inside an AOE. This has:
-// - A run script with a 6 second interval script attached that can be used to apply fair "per round" effects and check
+// - The run script "op_rs_aoecleanup" with a 6 second interval script attached that can be used to apply fair "per round" effects and check
 //   if the AOE or creator of the AOE exists still
 // - Attaches a negative cessate VFX
 // - Tags it with the OBJECT_SELF's OID
@@ -1906,8 +1910,27 @@ void ApplyDamageToObject(object oTarget, int nDamage, int nDamageType=DAMAGE_TYP
     }
 }
 
+// Applies damage of the given type. This helps wrapper delayed damage so we can keep at 1 HP if necessary (Harm/Heal).
+// * Also applies nVFX (no miss effect or anything special).
+void ApplyDamageWithVFXToObject(object oTarget, int nVFX, int nDamage, int nDamageType=DAMAGE_TYPE_MAGICAL, int nDamagePower=DAMAGE_POWER_NORMAL, int bKeepAt1HP = FALSE)
+{
+    ApplyVisualEffectToObject(nVFX, oTarget);
+
+    if (bKeepAt1HP)
+    {
+        if (GetCurrentHitPoints(oTarget) - nDamage < 1) nDamage = GetCurrentHitPoints(oTarget) - 1;
+    }
+    if (nDamage > 0)
+    {
+        effect eDamage = EffectDamage(nDamage, nDamageType, nDamagePower);
+
+        // We always delay damage by 0.0 seconds to stop any script loops
+        DelayCommand(0.0, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDamage, oTarget));
+    }
+}
+
 // Applies a fully sorted AOE Persistent EffectRunScript for those inside an AOE. This has:
-// - A run script with a 6 second interval script attached that can be used to apply fair "per round" effects and check
+// - The run script "op_rs_aoecleanup" with a 6 second interval script attached that can be used to apply fair "per round" effects and check
 //   if the AOE or creator of the AOE exists still
 // - Attaches a negative cessate VFX
 // - Tags it with the OBJECT_SELF's OID
@@ -1915,7 +1938,7 @@ void ApplyDamageToObject(object oTarget, int nDamage, int nDamageType=DAMAGE_TYP
 // - Applies it permanently
 void ApplyAOEPersistentRunScriptEffect(object oTarget)
 {
-    effect eLink = EffectLinkEffects(EffectRunScriptEnhanced(FALSE, "", GetScriptName(), 6.0),
+    effect eLink = EffectLinkEffects(EffectRunScriptEnhanced(FALSE, "", "op_rs_aoecleanup", 6.0),
                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
     eLink = TagEffect(eLink, ObjectToString(OBJECT_SELF));
     eLink = ExtraordinaryEffect(eLink);
@@ -2594,11 +2617,14 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, 
         }
     }
 
-    object oObject = GetFirstObjectInShape(nShape, fSize, lTarget, bLineOfSight, nObjectFilter, vOrigin);
-    while (GetIsObjectValid(oObject))
+    // For an AOE we just do GetFirst/NextInPersistentShape on OBJECT_SELF.
+    int nScript = GetCurrentlyRunningEvent();
+    if (nScript == EVENT_SCRIPT_AREAOFEFFECT_ON_HEARTBEAT ||
+        nScript == EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_ENTER ||
+        nScript == EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_EXIT)
     {
-        // Safe area test
-        if (fSafeArea < 0.0 || GetDistanceBetweenLocations(lTarget, GetLocation(oTarget)) > fSafeArea)
+        object oObject = GetFirstInPersistentObject(OBJECT_SELF);
+        while (GetIsObjectValid(oObject))
         {
             if (GetSpellTargetValid(oObject, oCaster, nTargetType) && (bTargetSelf == TRUE || oObject != oCaster))
             {
@@ -2619,8 +2645,39 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, 
 
                 jArray = JsonArrayInsert(jArray, jObject);
             }
+            oObject = GetNextInPersistentObject(OBJECT_SELF);
         }
-        oObject = GetNextObjectInShape(nShape, fSize, lTarget, bLineOfSight, nObjectFilter, vOrigin);
+    }
+    else
+    {
+        object oObject = GetFirstObjectInShape(nShape, fSize, lTarget, bLineOfSight, nObjectFilter, vOrigin);
+        while (GetIsObjectValid(oObject))
+        {
+            // Safe area test
+            if (fSafeArea < 0.0 || GetDistanceBetweenLocations(lTarget, GetLocation(oTarget)) > fSafeArea)
+            {
+                if (GetSpellTargetValid(oObject, oCaster, nTargetType) && (bTargetSelf == TRUE || oObject != oCaster))
+                {
+                    json jObject = JsonObject();
+
+                    // Metric depends on what we are sorting
+                    switch (nSortMethod)
+                    {
+                        //SORT_METHOD_NONE - No need to store anything extra
+                        case SORT_METHOD_LOWEST_HP: jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonInt(GetCurrentHitPoints(oObject))); break;
+                        case SORT_METHOD_LOWEST_HD: jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonInt(GetHitDice(oObject))); break;
+                        case SORT_METHOD_DISTANCE:  jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonFloat(GetDistanceBetweenLocations(lTarget, GetLocation(oObject)))); break;
+                        case SORT_METHOD_DISTANCE_TO_CASTER: jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonFloat(GetDistanceBetween(oCaster, oObject))); break;
+                    }
+
+                    // Add the value we sort with first and OID second so it's part of the sorting later
+                    jObject = JsonObjectSet(jObject, FIELD_OBJECTID, JsonString(ObjectToString(oObject)));
+
+                    jArray = JsonArrayInsert(jArray, jObject);
+                }
+            }
+            oObject = GetNextObjectInShape(nShape, fSize, lTarget, bLineOfSight, nObjectFilter, vOrigin);
+        }
     }
 
     // Sort the array
