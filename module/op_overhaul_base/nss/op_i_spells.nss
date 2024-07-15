@@ -20,12 +20,13 @@
     oTarget - The target if any
     lTarget - The target location (or location of oTarget if valid)
     nSpellId - The SPELL_* cast
+    nFeatId - The FEAT_* cast (or -1 if no feat used)
     nSpellType - The SPELL_TYPE_* that nSpellId is
     nSpellSchool - The spell school of nSpellId, used in DoResistSpell and other locations
     nSpellSaveDC - the Spell Save DC (if a proper spell)
+    nCasterClass - Caster class
     nCasterLevel - the Caster Level
     nMetaMagic - Metamagic feat
-    nCasterClass - Caster class
     nSpellLevel - Spell level
     bSpontaneous - Spontaneously cast or not
     bHostile - Hostile or not (set in spells.2da but some spells can be both!)
@@ -127,8 +128,8 @@ int GetSpellIsHostile(int nSpellIdToCheck);
 int GetSpellSaveDCCalculated(object oCaster, int nSpellIdToCheck, object oCastItem, int nSpellType);
 
 // This calculates the spell caster level for any additional bonuses due to feats or similar.
-// For a AOE it uses the stored caster level.
-int GetCasterLevelCalculated(object oCaster, int nSpellIdToCheck);
+// For a AOE pass in it as the oCaster, then it uses the stored caster level.
+int GetCasterLevelCalculated(object oCaster, int nSpellIdToCheck, int nFeatIdToCheck, int nCasterClassToCheck);
 
 // Retrieves the metamagic used, in a spell script, AOE script or run script
 int GetMetaMagicFeatCalculated();
@@ -473,12 +474,13 @@ object oCaster   = GetSpellCaster();
 object oTarget   = GetSpellTargetObjectCalculated();
 location lTarget = GetSpellTargetLocationCalculated(oTarget);
 int nSpellId     = GetSpellIdCalculated();
+int nFeatId      = GetSpellFeatId();
 int nSpellType   = GetSpellType(nSpellId);
 int nSpellSchool = GetSpellSchool(nSpellId);
 int nSpellSaveDC = GetSpellSaveDCCalculated(oCaster, nSpellId, oCastItem, nSpellType);
-int nCasterLevel = GetCasterLevelCalculated(oCaster, nSpellId);
-int nMetaMagic   = GetMetaMagicFeatCalculated();
 int nCasterClass = GetLastSpellCastClassCalculated();
+int nCasterLevel = GetCasterLevelCalculated(oCaster, nSpellId, nFeatId, nCasterClass);
+int nMetaMagic   = GetMetaMagicFeatCalculated();
 int nSpellLevel  = GetLastSpellLevelCalculated();
 int bSpontaneous = GetSpellCastSpontaneouslyCalculated();
 int bHostile     = GetSpellIsHostile(nSpellId);
@@ -703,9 +705,31 @@ int GetSpellSaveDCCalculated(object oCaster, int nSpellIdToCheck, object oCastIt
     return nSpellSaveDC;
 }
 
+// Checks if the given nClass has arcane spell casting (is a spellcaster and that spellcasting is arcane).
+int GetClassIsArcaneCaster(int nClass)
+{
+    if (Get2DAString("classes", "SpellCaster", nClass) == "1" &&
+        Get2DAString("classes", "Arcane", nClass) == "1")
+    {
+        return TRUE;
+    }
+    return FALSE;
+}
+
+// Checks if the given nClass has divine spell casting (is a spellcaster and that spellcasting is divine).
+int GetClassIsDivineCaster(int nClass)
+{
+    if (Get2DAString("classes", "SpellCaster", nClass) == "1" &&
+        Get2DAString("classes", "Arcane", nClass) == "0")
+    {
+        return TRUE;
+    }
+    return FALSE;
+}
+
 // This calculates the spell caster level for any additional bonuses due to feats or similar.
 // For a AOE pass in it as the oCaster, then it uses the stored caster level.
-int GetCasterLevelCalculated(object oCaster, int nSpellIdToCheck)
+int GetCasterLevelCalculated(object oCaster, int nSpellIdToCheck, int nFeatIdToCheck, int nCasterClassToCheck)
 {
     if (nSpellIdToCheck == SPELL_INVALID) return 0;
 
@@ -730,6 +754,93 @@ int GetCasterLevelCalculated(object oCaster, int nSpellIdToCheck)
     int nCasterLevel = GetCasterLevel(oCaster);
 
     // Modifications due to casters feats etc.
+
+    // Main change to base caster level is having a class that applies bonuses like Pale Master
+    // We might have more than one. We check for each one if we are the highest Divine or
+    // Arcane caster. Only bother to do this if we have more than 1 class of course.
+    if (nCasterClassToCheck != CLASS_TYPE_INVALID &&
+        nFeatIdToCheck == -1 &&
+        GetClassByPosition(2, oCaster) != CLASS_TYPE_INVALID)
+    {
+        // Arcane?
+        if (GetClassIsArcaneCaster(nCasterClassToCheck))
+        {
+            // Check we are the highest arcane spell casting class, base on class order
+            int nClassSlot, nHighestArcaneClass = -1, nHighestArcaneClassLevel = 0, nArcSpellLvlModTotal = 0;
+            for (nClassSlot = 1; nClassSlot <= 8; nClassSlot++)
+            {
+                int nClass = GetClassByPosition(nClassSlot, oCaster);
+                if (nClass != CLASS_TYPE_INVALID)
+                {
+                    // If it's arcane caster
+                    if (GetClassIsArcaneCaster(nClass))
+                    {
+                        if (GetLevelByClass(nClass, oCaster) > nHighestArcaneClassLevel)
+                        {
+                            nHighestArcaneClass = nClass;
+                            nHighestArcaneClassLevel = GetLevelByClass(nClass, oCaster);
+                        }
+                    }
+                    else
+                    {
+                        // Check for ArcSpellLvlMod
+                        string sArcSpellLvlMod = Get2DAString("classes", "ArcSpellLvlMod", nClass);
+                        int nArcSpellLvlMod = StringToInt(sArcSpellLvlMod);
+                        if (sArcSpellLvlMod != "" && nArcSpellLvlMod > 0)
+                        {
+                            // Get the bonus. EG: 1 is 1 per level, 2 is 1 at level 2, then 2 at level 3, etc.
+                            int nLevelBonus = (GetLevelByClass(nClass, oCaster) + nArcSpellLvlMod - 1) / nArcSpellLvlMod;
+                            nArcSpellLvlModTotal += nLevelBonus;
+                        }
+                    }
+                }
+            }
+            // Add prestige class levels if it's the highest
+            if (nCasterClassToCheck == nHighestArcaneClass)
+            {
+                nCasterLevel += nArcSpellLvlModTotal;
+            }
+        }
+        // Divine?
+        if (GetClassIsDivineCaster(nCasterClassToCheck))
+        {
+            // Check we are the highest arcane spell casting class, base on class order
+            int nClassSlot, nHighestDivineClass = -1, nHighestDivineClassLevel = 0, nDivSpellLvlModTotal = 0;
+            for (nClassSlot = 1; nClassSlot <= 8; nClassSlot++)
+            {
+                int nClass = GetClassByPosition(nClassSlot, oCaster);
+                if (nClass != CLASS_TYPE_INVALID)
+                {
+                    // If it's arcane caster
+                    if (GetClassIsDivineCaster(nClass))
+                    {
+                        if (GetLevelByClass(nClass, oCaster) > nHighestDivineClassLevel)
+                        {
+                            nHighestDivineClass = nClass;
+                            nHighestDivineClassLevel = GetLevelByClass(nClass, oCaster);
+                        }
+                    }
+                    else
+                    {
+                        // Check for ArcSpellLvlMod
+                        string sDivSpellLvlMod = Get2DAString("classes", "DivSpellLvlMod", nClass);
+                        int nDivSpellLvlMod = StringToInt(sDivSpellLvlMod);
+                        if (sDivSpellLvlMod != "" && nDivSpellLvlMod > 0)
+                        {
+                            // Get the bonus. EG: 1 is 1 per level, 2 is 1 at level 2, then 2 at level 3, etc.
+                            int nLevelBonus = (GetLevelByClass(nClass, oCaster) + nDivSpellLvlMod - 1) / nDivSpellLvlMod;
+                            nDivSpellLvlModTotal += nLevelBonus;
+                        }
+                    }
+                }
+            }
+            // Add prestige class levels if it's the highest
+            if (nCasterClassToCheck == nHighestDivineClass)
+            {
+                nCasterLevel += nDivSpellLvlModTotal;
+            }
+        }
+    }
 
     return nCasterLevel;
 }
