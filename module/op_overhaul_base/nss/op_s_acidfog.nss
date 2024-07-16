@@ -35,7 +35,6 @@ void main()
                 if (!DoResistSpell(oTarget, oCaster))
                 {
                     ApplyAOEPersistentEffect(oTarget, EffectMovementSpeedDecrease(50));
-                    ApplyAOEPersistentRunScriptEffect(oTarget);
 
                     ApplyVisualEffectToObject(VFX_IMP_ACID_S, oTarget);
                     ApplyDamageToObject(oTarget, GetDiceRoll(2, 6), DAMAGE_TYPE_ACID);
@@ -46,8 +45,7 @@ void main()
     }
     else if (GetCurrentlyRunningEvent() == EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_EXIT)
     {
-        // Remove all tagged effects with our OID in it as set above
-        RemoveEffectsFromSpell(oTarget, nSpellId, EFFECT_TYPE_ALL, ObjectToString(OBJECT_SELF));
+        RemovePersistentAOEEffects(oTarget);
     }
     else if (GetCurrentlyRunningEvent() == EVENT_SCRIPT_AREAOFEFFECT_ON_HEARTBEAT)
     {

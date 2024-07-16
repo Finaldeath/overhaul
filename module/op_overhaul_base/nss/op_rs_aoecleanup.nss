@@ -18,6 +18,13 @@
 
 void main()
 {
-    AOECheck();
+    if (GetLastRunScriptEffectScriptType() == RUNSCRIPT_EFFECT_SCRIPT_TYPE_ON_INTERVAL)
+    {
+        AOECheck();
+    }
+    else
+    {
+        OP_Debug("This run script event shouldn't happen: " + IntToString(GetLastRunScriptEffectScriptType()), LOG_LEVEL_ERROR);
+    }
 }
 

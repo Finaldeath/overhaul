@@ -260,8 +260,13 @@ itemproperty GetFirstItemPropertyOnItemWithSpell(int nSpellID, object oItem)
 // Uses 2da & tlk lookups and should work for custom itemproperties too
 string ItemPropertyToString(itemproperty ipItemProperty)
 {
+    if (!GetIsItemPropertyValid(ipItemProperty)) return "Invalid Item Property";
+
     int nIPType  = GetItemPropertyType(ipItemProperty);
-    string sName = GetStringByStrRef(StringToInt(Get2DAString("itempropdef", "GameStrRef", nIPType)));
+    string sStrRef = Get2DAString("itempropdef", "GameStrRef", nIPType);
+    if (sStrRef == "") sStrRef = Get2DAString("itempropdef", "Name", nIPType);
+    string sName = GetStringByStrRef(StringToInt(sStrRef));
+
     if (GetItemPropertySubType(ipItemProperty) != -1)  // nosubtypes
     {
         string sSubTypeResRef = Get2DAString("itempropdef", "SubTypeResRef", nIPType);

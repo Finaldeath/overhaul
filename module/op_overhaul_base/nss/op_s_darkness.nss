@@ -29,13 +29,12 @@ void main()
 
         if (!DoResistSpell(oTarget, oCaster))
         {
-            ApplyAOEPersistentRunScriptEffect(oTarget);
             ApplyAOEPersistentEffect(oTarget, EffectDarkness());
         }
     }
     else if (GetCurrentlyRunningEvent() == EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_EXIT)
     {
-        RemoveEffectsFromSpell(oTarget, SPELL_DARKNESS, EFFECT_TYPE_ALL, ObjectToString(OBJECT_SELF));
+        RemovePersistentAOEEffects(oTarget);
     }
     else if (GetCurrentlyRunningEvent() == EVENT_SCRIPT_AREAOFEFFECT_ON_HEARTBEAT)
     {
@@ -46,9 +45,13 @@ void main()
         // Default to the normal spell script.
         if (DoSpellHook()) return;
 
-        // Set the spell Id - as noted above AOE must be of this spell ID to work right
-        nSpellId = SPELL_DARKNESS;
-
+        // Check the spell Id for now we error and just reset it. Illusion spells shouldn't be setting this to
+        // anything but Darkness.
+        if (nSpellId != SPELL_DARKNESS)
+        {
+            OP_Debug("[op_s_darkness] Somehow this script was called without the Spell Id being SPELL_DARKNESS. nSpellId: " + IntToString(nSpellId), LOG_LEVEL_ERROR);
+            nSpellId = SPELL_DARKNESS;
+        }
         effect eAOE = EffectAreaOfEffect(AOE_PER_DARKNESS, "op_s_darkness", "op_s_darkness", "op_s_darkness");
         ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, GetDuration(nCasterLevel, ROUNDS));
     }

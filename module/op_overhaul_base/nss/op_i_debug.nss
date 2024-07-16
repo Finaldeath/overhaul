@@ -32,6 +32,9 @@ void OP_Debug(string sDebug, int nLogLevel = LOG_LEVEL_INFO)
 {
     if (nLogLevel > DEBUG_LEVEL) return;
 
+    // _ _FUNCTION__, __FILE__,__LINE__, __DATE__ and __TIME__
+    sDebug = "[" + GetScriptName() + "] " + sDebug;
+
     WriteTimestampedLogEntry(sDebug);
 
     switch (nLogLevel)

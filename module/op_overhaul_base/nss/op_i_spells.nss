@@ -273,31 +273,34 @@ void ApplyDamageToObject(object oTarget, int nDamage, int nDamageType=DAMAGE_TYP
 // * Also applies nVFX (no miss effect or anything special).
 void ApplyDamageWithVFXToObject(object oTarget, int nVFX, int nDamage, int nDamageType=DAMAGE_TYPE_MAGICAL, int nDamagePower=DAMAGE_POWER_NORMAL, int bKeepAt1HP = FALSE);
 
-// Applies a fully sorted AOE Persistent EffectRunScript for those inside an AOE. This has:
+// Applies eEffect (should be a single, raw effect) to oTarget, if it hasn't got it from this spell ID AOE already
+// If bApplyRunScript is set, it also attaches the RunScript to remove it later (if no more AOEs are affecting them).
+// NOTE: Not necessarily perfect; eg if failing a save applies a movement speed effect in a given AOE, moving out of that one
+// into the same AOE but one you've passed will retain the movement speed decrease. It will do for now though.
 // - The run script "op_rs_aoecleanup" with a 6 second interval script attached that can be used to apply fair "per round" effects and check
 //   if the AOE or creator of the AOE exists still
 // - Attaches a negative cessate VFX
+// The above and the eEffect:
 // - Tags it with the OBJECT_SELF's OID
 // - Makes it extraordinary
 // - Applies it permanently
-void ApplyAOEPersistentRunScriptEffect(object oTarget);
+// Apply these effects only once (ie OnEnter). Don't tag an effect like this, and it'll be left alone (eg temporary stuns/entangles).
+void ApplyAOEPersistentEffect(object oTarget, effect eEffect, int bApplyRunScript = TRUE);
 
-// Applies eEffect with these properties for later tracking:
-// - Tags it with the OBJECT_SELF's OID
-// - Makes it extraordinary
-// - Applies it permanently
-void ApplyAOEPersistentEffect(object oTarget, effect eEffect);
-
-// Signals a spell cast event.
-// By default if the default parameters are used then the global automatically
-// generated values are used instead.
-void SignalSpellCastAt(object oSignalTarget = OBJECT_INVALID, object oSignalCaster = OBJECT_INVALID, int bSignalHostile = -1, int nSignalSpellId = -1);
+// Removes persistent RunScripts from oTarget that are applies to oTarget tagged with OBJECT_SELF's OID (ie the AOE's).
+// Call in an AOE's OnExit event.
+void RemovePersistentAOEEffects(object oTarget);
 
 // Returns TRUE if we are OK running our AOE scripts (or the EffectRunScript created by an AOE).
 // Does a check for the AOE creator, and destroys ourself (or removes the EffectRunScript) if they no longer exist.
 // Call in the OnEnter, OnHeartbeat of an AOE scripts or the Interval of the EffectRunScript created by the AOE.
 // This might be removed later (D&D AOEs should probably persist past their creators death) but for now will stop some bugs and is tidier.
 int AOECheck();
+
+// Signals a spell cast event.
+// By default if the default parameters are used then the global automatically
+// generated values are used instead.
+void SignalSpellCastAt(object oSignalTarget = OBJECT_INVALID, object oSignalCaster = OBJECT_INVALID, int bSignalHostile = -1, int nSignalSpellId = -1);
 
 // Gets the scale of the VFX to apply to oCreature. If not a creature it returns 1.0.
 float GetVFXScale(object oCreature);
@@ -584,9 +587,9 @@ object GetSpellCastItemCalculated()
     {
         if (!GetIsObjectValid(GetEffectCreator(GetLastRunScriptEffect())))
         {
-            OP_Debug("[GetSpellCaster] Invalid cast item for run script. Applied script?", LOG_LEVEL_ERROR);
+            OP_Debug("[GetSpellCaster] Invalid cast item for run script effect.", LOG_LEVEL_ERROR);
         }
-        return OBJECT_INVALID; // TODO
+        return GetEffectCreator(GetLastRunScriptEffect()); // TODO
     }
     return GetSpellCastItem();
 }
@@ -626,11 +629,10 @@ int GetSpellIdCalculated()
     // If it's a run script we retrieve it from the effect
     if (GetLastRunScriptEffectScriptType() != 0)
     {
-        if (!GetIsEffectValid(GetLastRunScriptEffect()))
+        if (GetEffectType(GetLastRunScriptEffect()) != EFFECT_TYPE_RUNSCRIPT)
         {
-            OP_Debug("[GetSpellIdCalculated] Invalid effect for run script. Applied script?", LOG_LEVEL_ERROR);
+            OP_Debug("[GetSpellIdCalculated] Invalid effect for run script.", LOG_LEVEL_ERROR);
         }
-
         return GetEffectSpellId(GetLastRunScriptEffect());
     }
 
@@ -751,11 +753,10 @@ int GetCasterLevelCalculated(object oCaster, int nSpellIdToCheck, int nFeatIdToC
     // Run script stores the caster level
     if (GetLastRunScriptEffectScriptType() != 0)
     {
-        if (!GetIsEffectValid(GetLastRunScriptEffect()))
+        if (GetEffectType(GetLastRunScriptEffect()) != EFFECT_TYPE_RUNSCRIPT)
         {
-            OP_Debug("[GetCasterLevelCalculated] Invalid effect for run script. Applied script?", LOG_LEVEL_ERROR);
+            OP_Debug("[GetCasterLevelCalculated] Run Script Effect has invalid type.", LOG_LEVEL_ERROR);
         }
-
         // Caster level is stored on the effect itself
         return GetEffectCasterLevel(GetLastRunScriptEffect());
     }
@@ -1940,44 +1941,78 @@ void ApplyDamageWithVFXToObject(object oTarget, int nVFX, int nDamage, int nDama
     }
 }
 
-// Applies a fully sorted AOE Persistent EffectRunScript for those inside an AOE. This has:
+
+// Applies eEffect (should be a single, raw effect) to oTarget, if it hasn't got it from this spell ID AOE already
+// If bApplyRunScript is set, it also attaches the RunScript to remove it later (if no more AOEs are affecting them).
+// NOTE: Not necessarily perfect; eg if failing a save applies a movement speed effect in a given AOE, moving out of that one
+// into the same AOE but one you've passed will retain the movement speed decrease. It will do for now though.
 // - The run script "op_rs_aoecleanup" with a 6 second interval script attached that can be used to apply fair "per round" effects and check
 //   if the AOE or creator of the AOE exists still
 // - Attaches a negative cessate VFX
+// The above and the eEffect:
 // - Tags it with the OBJECT_SELF's OID
 // - Makes it extraordinary
 // - Applies it permanently
-void ApplyAOEPersistentRunScriptEffect(object oTarget)
+// Apply these effects only once (ie OnEnter). Don't tag an effect like this, and it'll be left alone (eg temporary stuns/entangles).
+void ApplyAOEPersistentEffect(object oTarget, effect eEffect, int bApplyRunScript = TRUE)
 {
-    effect eLink = EffectLinkEffects(EffectRunScriptEnhanced(FALSE, "", "op_rs_aoecleanup", 6.0),
-                                     EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
-    eLink = TagEffect(eLink, ObjectToString(OBJECT_SELF));
-    eLink = ExtraordinaryEffect(eLink);
-    ApplySpellEffectToObject(DURATION_TYPE_PERMANENT, eLink, oTarget);
-}
+    if (GetEffectType(eEffect) == EFFECT_TYPE_INVALIDEFFECT)
+    {
+        // Link?
+        OP_Debug("[ApplyAOEPersistentEffect] eEFfect is invalid type. Link or other passed in? should be raw effect", LOG_LEVEL_ERROR);
+        return;
+    }
 
-// Applies eEffect with these properties for later tracking:
-// - Tags it with the OBJECT_SELF's OID
-// - Makes it extraordinary
-// - Applies it permanently
-void ApplyAOEPersistentEffect(object oTarget, effect eEffect)
-{
+    if (bApplyRunScript)
+    {
+        // Apply run script which when removed (or AOE dies) it clears all tagged AOE effects if no
+        // other run scripts from the same spell Id exist
+        effect eLink = EffectLinkEffects(EffectRunScriptEnhanced(FALSE, "", "op_rs_aoecleanup", 6.0),
+                                         EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+        eLink = TagEffect(eLink, ObjectToString(OBJECT_SELF));
+        eLink = ExtraordinaryEffect(eLink);
+        ApplySpellEffectToObject(DURATION_TYPE_PERMANENT, eLink, oTarget);
+    }
+
+    string sTag = ObjectToString(OBJECT_SELF);
+    int nType = GetEffectType(eEffect);
+    effect eCheck = GetFirstEffect(OBJECT_SELF);
+    while (GetIsEffectValid(eCheck))
+    {
+        if (GetEffectType(eCheck) == nType &&
+            GetEffectSpellId(eCheck) == nSpellId)
+        {
+            // If we have any effects already don't apply
+            return;
+        }
+        eCheck = GetNextEffect(OBJECT_SELF);
+    }
     eEffect = TagEffect(eEffect, ObjectToString(OBJECT_SELF));
     eEffect = ExtraordinaryEffect(eEffect);
     ApplySpellEffectToObject(DURATION_TYPE_PERMANENT, eEffect, oTarget);
 }
 
-// Signals a spell cast event.
-// By default if the default parameters are used then the global automatically
-// generated values are used instead.
-void SignalSpellCastAt(object oSignalTarget = OBJECT_INVALID, object oSignalCaster = OBJECT_INVALID, int bSignalHostile = -1, int nSignalSpellId = -1)
+// Removes persistent RunScripts from oTarget that are applies to oTarget tagged with OBJECT_SELF's OID (ie the AOE's).
+// Call in an AOE's OnExit event.
+void RemovePersistentAOEEffects(object oTarget)
 {
-    if (oSignalTarget == OBJECT_INVALID) oSignalTarget = oTarget;
-    if (oSignalCaster == OBJECT_INVALID) oSignalCaster = oCaster;
-    if (nSignalSpellId == -1) nSignalSpellId = nSpellId;
-    if (bSignalHostile == -1) bSignalHostile = bHostile;
+    // Carefully clear effects if last RunScript using this spell Id.
+    string sTag = ObjectToString(OBJECT_SELF);
+    RemoveEffectsFromSpell(oTarget, nSpellId, EFFECT_TYPE_RUNSCRIPT);
 
-    SignalEvent(oSignalTarget, EventSpellCastAt(oSignalCaster, nSignalSpellId, bSignalHostile));
+    effect eCheck = GetFirstEffect(OBJECT_SELF);
+    while (GetIsEffectValid(eCheck))
+    {
+        if (GetEffectType(eCheck) == EFFECT_TYPE_RUNSCRIPT &&
+            GetEffectTag(eCheck) != sTag)
+        {
+            // Don't remove any effects other RunScript from the same spell exist still
+            return;
+        }
+        eCheck = GetNextEffect(OBJECT_SELF);
+    }
+    // Get to this point remove all effects of nSpellId
+    RemoveEffectsFromSpell(OBJECT_SELF, nSpellId, EFFECT_TYPE_ALL, sTag);
 }
 
 // Returns TRUE if we are OK running our AOE scripts (or the EffectRunScript created by an AOE).
@@ -1991,11 +2026,14 @@ int AOECheck()
     if (GetLastRunScriptEffectScriptType() != 0)
     {
         effect eRunScript = GetLastRunScriptEffect();
+        if (GetEffectType(eRunScript) != EFFECT_TYPE_RUNSCRIPT)
+            OP_Debug("[AOECheck] Run Script Effect has invalid type.", LOG_LEVEL_ERROR);
+
         if (!GetIsObjectValid(GetEffectCreator(eRunScript)) ||
             !GetIsObjectValid(StringToObject(GetEffectTag(eRunScript))))
         {
-            // Remove this and any linked effects or other effects the AOE applied
-            RemoveEffectsFromSpell(OBJECT_SELF, GetEffectSpellId(eRunScript), EFFECT_TYPE_ALL, GetEffectTag(eRunScript));
+            // Remove any RunScript effects which are there to track AOE overlaps etc.
+            RemoveEffectsFromSpell(OBJECT_SELF, GetEffectSpellId(eRunScript), EFFECT_TYPE_RUNSCRIPT, GetEffectTag(eRunScript));
             return FALSE;
         }
     }
@@ -2018,6 +2056,19 @@ int AOECheck()
         }
     }
     return TRUE;
+}
+
+// Signals a spell cast event.
+// By default if the default parameters are used then the global automatically
+// generated values are used instead.
+void SignalSpellCastAt(object oSignalTarget = OBJECT_INVALID, object oSignalCaster = OBJECT_INVALID, int bSignalHostile = -1, int nSignalSpellId = -1)
+{
+    if (oSignalTarget == OBJECT_INVALID) oSignalTarget = oTarget;
+    if (oSignalCaster == OBJECT_INVALID) oSignalCaster = oCaster;
+    if (nSignalSpellId == -1) nSignalSpellId = nSpellId;
+    if (bSignalHostile == -1) bSignalHostile = bHostile;
+
+    SignalEvent(oSignalTarget, EventSpellCastAt(oSignalCaster, nSignalSpellId, bSignalHostile));
 }
 
 // Gets the scale of the VFX to apply to oCreature. If not a creature it returns 1.0.
@@ -2765,12 +2816,14 @@ effect EffectRunScriptEnhanced(int bAutomatic = TRUE, string sRemovedScript = ""
     }
 
     // These are a bit redundant now but just in case we input bad script names...
-    if (GetStringLength(sInteveralScript) > 16)
+    if (GetStringLength(sInteveralScript) > 16 ||
+        GetStringLength(sRemovedScript) > 16)
     {
         OP_Debug("[EffectRunScriptEnhanced] Script name too long: " + sInteveralScript, LOG_LEVEL_ERROR);
         return EffectInvalidEffect();
     }
-    if (ResManGetAliasFor(sInteveralScript, RESTYPE_NSS) == "")
+    if (ResManGetAliasFor(sRemovedScript, RESTYPE_NSS) == "" &&
+        ResManGetAliasFor(sInteveralScript, RESTYPE_NSS) == "")
     {
         OP_Debug("[EffectRunScriptEnhanced] Script not found: " + sInteveralScript, LOG_LEVEL_ERROR);
         return EffectInvalidEffect();
