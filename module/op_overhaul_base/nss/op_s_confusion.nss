@@ -18,8 +18,8 @@ void main()
     if (DoSpellHook()) return;
 
     effect eLink = EffectLinkEffects(EffectConfused(),
-                   EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED),
-                                     EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+                                     EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED),
+                                                       EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
     effect eImpact;
     int nVis = VFX_INVALID, nImpact = VFX_INVALID;
 
@@ -27,12 +27,12 @@ void main()
     {
         case SPELL_CONFUSION:
             nImpact = VFX_FNF_LOS_NORMAL_20;
-            nVis = VFX_IMP_CONFUSION_S;
-        break;
+            nVis    = VFX_IMP_CONFUSION_S;
+            break;
         default:
-            OP_Debug("[Confusion op_s_confusion] No valid spell ID passed in: " + IntToString(nSpellId));
+            Debug("[Confusion op_s_confusion] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
-        break;
+            break;
     }
 
     // AOE?
@@ -69,4 +69,3 @@ void main()
         // None yet
     }
 }
-

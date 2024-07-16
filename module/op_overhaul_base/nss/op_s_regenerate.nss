@@ -33,22 +33,28 @@ void main()
     int nHealing, nMaxTargets = 1;
     switch (nSpellId)
     {
-        case SPELL_REGENERATE_LIGHT_WOUNDS:     nHealing = 1; break;
-        case SPELL_REGENERATE_MODERATE_WOUNDS:  nHealing = 2; break;
-        case SPELL_MONSTROUS_REGENERATION:      nHealing = 3; break;
-        case SPELL_REGENERATE_CRITICAL_WOUNDS:  nHealing = 4; break;
-        case SPELL_REGENERATE:                  nHealing = 5; break;
-        case SPELL_REGENERATE_RING:             nHealing = 1; nMaxTargets = max(1, nCasterLevel/2); break;
-        case SPELL_REGENERATE_CIRCLE:           nHealing = 3; nMaxTargets = max(1, nCasterLevel/2); break;
+        case SPELL_REGENERATE_LIGHT_WOUNDS: nHealing = 1; break;
+        case SPELL_REGENERATE_MODERATE_WOUNDS: nHealing = 2; break;
+        case SPELL_MONSTROUS_REGENERATION: nHealing = 3; break;
+        case SPELL_REGENERATE_CRITICAL_WOUNDS: nHealing = 4; break;
+        case SPELL_REGENERATE: nHealing = 5; break;
+        case SPELL_REGENERATE_RING:
+            nHealing    = 1;
+            nMaxTargets = max(1, nCasterLevel / 2);
+            break;
+        case SPELL_REGENERATE_CIRCLE:
+            nHealing    = 3;
+            nMaxTargets = max(1, nCasterLevel / 2);
+            break;
         default:
         {
-            OP_Debug("[Regenerate] Unknown spell ID: " + IntToString(nSpellId), LOG_LEVEL_ERROR);
+            Debug("[Regenerate] Unknown spell ID: " + IntToString(nSpellId), ERROR);
             return;
         }
         break;
     }
 
-    int nVis = VFX_IMP_HEAD_NATURE;
+    int nVis     = VFX_IMP_HEAD_NATURE;
     effect eLink = EffectLinkEffects(EffectRegenerate(nHealing, 6.0),
                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
 
@@ -65,7 +71,7 @@ void main()
 
             SignalSpellCastAt();
 
-            float fDelay = GetDistanceBetweenLocations(lTarget, GetLocation(oTarget))/25.0;
+            float fDelay    = GetDistanceBetweenLocations(lTarget, GetLocation(oTarget)) / 25.0;
             float fDuration = GetDuration(10 + nCasterLevel, ROUNDS);
 
             // We first check for any existing of this exact same level of regen

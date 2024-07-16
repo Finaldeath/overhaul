@@ -31,8 +31,8 @@ void main()
 
     float fDuration = GetDuration(nCasterLevel, MINUTES);
 
-    int nMax = nSpellId == SPELL_GREATER_MAGIC_FANG ? 5 : 1;
-    int nBonus = clamp(nCasterLevel/3, 1, nMax);
+    int nMax   = nSpellId == SPELL_GREATER_MAGIC_FANG ? 5 : 1;
+    int nBonus = clamp(nCasterLevel / 3, 1, nMax);
 
     itemproperty ipBonus = ItemPropertyEnhancementBonus(nBonus);
 
@@ -49,8 +49,8 @@ void main()
         DebugItemProperties(oItem);
 
         json jObject = JsonObject();
-        jObject = JsonObjectSet(jObject, "objectid", JsonString(ObjectToString(oItem)));
-        jArray = JsonArrayInsert(jArray, jObject);
+        jObject      = JsonObjectSet(jObject, "objectid", JsonString(ObjectToString(oItem)));
+        jArray       = JsonArrayInsert(jArray, jObject);
 
         bApplied += ApplySafeItemProperty(oItem, ipBonus, fDuration, nSpellId, oCaster, nCasterLevel, nSpellSaveDC, nMetaMagic);
     }
@@ -61,8 +61,8 @@ void main()
         DebugItemProperties(oItem);
 
         json jObject = JsonObject();
-        jObject = JsonObjectSet(jObject, "objectid", JsonString(ObjectToString(oItem)));
-        jArray = JsonArrayInsert(jArray, jObject);
+        jObject      = JsonObjectSet(jObject, "objectid", JsonString(ObjectToString(oItem)));
+        jArray       = JsonArrayInsert(jArray, jObject);
 
         bApplied += ApplySafeItemProperty(oItem, ipBonus, fDuration, nSpellId, oCaster, nCasterLevel, nSpellSaveDC, nMetaMagic);
     }
@@ -73,8 +73,8 @@ void main()
         DebugItemProperties(oItem);
 
         json jObject = JsonObject();
-        jObject = JsonObjectSet(jObject, "objectid", JsonString(ObjectToString(oItem)));
-        jArray = JsonArrayInsert(jArray, jObject);
+        jObject      = JsonObjectSet(jObject, "objectid", JsonString(ObjectToString(oItem)));
+        jArray       = JsonArrayInsert(jArray, jObject);
 
         bApplied += ApplySafeItemProperty(oItem, ipBonus, fDuration, nSpellId, oCaster, nCasterLevel, nSpellSaveDC, nMetaMagic);
     }
@@ -86,10 +86,10 @@ void main()
         // Magical Item Properties are now dealt with in DoDispelMagic
         // We apply a EffectRunScript that clears the item properties on removal
         // (ie dispel magic, resting)
-        //effect eLink = EffectLinkEffects(EffectTrackItemProperties(jArray),
+        // effect eLink = EffectLinkEffects(EffectTrackItemProperties(jArray),
         //                                 EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
-        //SetItemTrackingID(eLink);
-        //ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
+        // SetItemTrackingID(eLink);
+        // ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
     }
     else
     {
@@ -98,4 +98,3 @@ void main()
         ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_FNF_SPELL_FAIL_HAND), oCaster);
     }
 }
-

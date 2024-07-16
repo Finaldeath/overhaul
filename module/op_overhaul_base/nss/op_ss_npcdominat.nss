@@ -13,6 +13,5 @@
 
 void main()
 {
-    //SpeakString("NPC Dominated State Script");
+    // SpeakString("NPC Dominated State Script");
 }
-

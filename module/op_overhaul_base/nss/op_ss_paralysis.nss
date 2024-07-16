@@ -21,8 +21,7 @@ int GetSavingThrowOfParalysis(int nSlot, object oCreature);
 
 void main()
 {
-    //SpeakString("Paralysis State Script");
-
+    // SpeakString("Paralysis State Script");
 
     // Save against the effect. Noting we only do this on effects which we haven't
     // literally just had occur on us since the script fires instantly.
@@ -38,7 +37,7 @@ void main()
             // Use Cutscene Immobilize (no state script) or similar for that.
             if (GetEffectDurationType(eCheck) != DURATION_TYPE_TEMPORARY)
             {
-                OP_Debug("[op_ss_paralysis] Found Paralysis effect with non-temporary duration. Do not do this!", LOG_LEVEL_ERROR);
+                Debug("[op_ss_paralysis] Found Paralysis effect with non-temporary duration. Do not do this!", ERROR);
             }
             // Duration needs to have ticked down a little
             else if (GetEffectDuration(eCheck) != GetEffectDurationRemaining(eCheck))
@@ -92,7 +91,7 @@ void main()
                     // Fallback Dummy value
                     if (nSpellSaveDC == 0)
                     {
-                        OP_Debug("[op_ss_paralysis] Fallback dummy DC of 13.");
+                        Debug("[op_ss_paralysis] Fallback dummy DC of 13.");
                         nSpellSaveDC = 13;
                     }
                 }

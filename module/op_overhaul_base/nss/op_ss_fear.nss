@@ -13,7 +13,7 @@
 
 void main()
 {
-    //SpeakString("Fear State Script");
+    // SpeakString("Fear State Script");
 
     // Allow the target to recieve commands for the round
     SetCommandable(TRUE);
@@ -22,13 +22,13 @@ void main()
     int nCnt = 1;
 
     // Get the nearest creature to the affected creature
-    object oTarget = GetNearestObject(OBJECT_TYPE_CREATURE, OBJECT_SELF, nCnt);
+    object oTarget  = GetNearestObject(OBJECT_TYPE_CREATURE, OBJECT_SELF, nCnt);
     float fDistance = GetDistanceBetween(OBJECT_SELF, oTarget);
 
     while (GetIsObjectValid(oTarget) && fDistance < 5.0)
     {
         fDistance = GetDistanceBetween(OBJECT_SELF, oTarget);
-        if(GetIsEnemy(oTarget) && fDistance <= 5.0)
+        if (GetIsEnemy(oTarget) && fDistance <= 5.0)
         {
             // Run away if they are an enemy of the target's faction
             ActionMoveAwayFromObject(oTarget, TRUE);
@@ -43,4 +43,3 @@ void main()
     // Disable the ability to recieve commands.
     SetCommandable(FALSE);
 }
-

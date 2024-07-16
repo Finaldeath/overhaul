@@ -15,7 +15,7 @@
 
 void main()
 {
-    //SpeakString("Charm State Script");
+    // SpeakString("Charm State Script");
 
     SetCommandable(TRUE);
 

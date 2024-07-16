@@ -132,4 +132,3 @@ void main()
         ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, GetDuration(nCasterLevel, ROUNDS));
     }
 }
-

@@ -26,7 +26,7 @@ void main()
 
         oTarget = GetEnteringObject();
 
-        if (DEBUG_LEVEL >= LOG_LEVEL_INFO) OP_Debug("[INFO] Delayed Fireball Blast. Entering object: " + GetName(oTarget));
+        if (DEBUG_LEVEL >= INFO) Debug("[INFO] Delayed Fireball Blast. Entering object: " + GetName(oTarget));
 
         if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_SELECTIVEHOSTILE))
         {
@@ -56,7 +56,7 @@ void main()
             case SPELL_DELAYED_BLAST_FIREBALL_5_ROUNDS: nMaxCount = 5; break;
         }
 
-        if (DEBUG_LEVEL >= LOG_LEVEL_INFO) OP_Debug("[INFO] Delayed Fireball Blast. Heartbeat. Count: " + IntToString(nCount) + " Max Count: " + IntToString(nMaxCount));
+        if (DEBUG_LEVEL >= INFO) Debug("[INFO] Delayed Fireball Blast. Heartbeat. Count: " + IntToString(nCount) + " Max Count: " + IntToString(nMaxCount));
 
         if (nCount >= nMaxCount)
         {
@@ -66,7 +66,6 @@ void main()
     }
     else
     {
-
         // Default to the normal spell script.
         if (DoSpellHook()) return;
 
@@ -92,7 +91,7 @@ void main()
             case SPELL_DELAYED_BLAST_FIREBALL_5_ROUNDS: fDuration = 30.0; break;
             default:
             {
-                if (DEBUG_LEVEL >= LOG_LEVEL_ERROR) OP_Debug("[ERROR] Delayed Blast Fireball: Invalid subspell selected.", LOG_LEVEL_ERROR);
+                if (DEBUG_LEVEL >= ERROR) Debug("[ERROR] Delayed Blast Fireball: Invalid subspell selected.", ERROR);
                 return;
             }
             break;

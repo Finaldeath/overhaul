@@ -13,7 +13,7 @@
 
 void main()
 {
-    //SpeakString("Confused State Script");
+    // SpeakString("Confused State Script");
 
     // Make sure the creature is commandable for the round
     SetCommandable(TRUE);
@@ -21,15 +21,15 @@ void main()
     ClearAllActions(TRUE);
     int nRandom = d10();
     // Roll a random int to determine this rounds effects
-    if(nRandom  == 1)
+    if (nRandom == 1)
     {
         ActionRandomWalk();
     }
-    else if (nRandom >= 2 && nRandom  <= 6)
+    else if (nRandom >= 2 && nRandom <= 6)
     {
         ClearAllActions(TRUE);
     }
-    else if(nRandom >= 7 && nRandom <= 10)
+    else if (nRandom >= 7 && nRandom <= 10)
     {
         ActionAttack(GetNearestObject(OBJECT_TYPE_CREATURE));
     }

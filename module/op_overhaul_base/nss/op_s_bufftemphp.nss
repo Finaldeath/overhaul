@@ -49,12 +49,12 @@ void main()
     {
         case SPELL_AID:
         {
-            nVis = VFX_IMP_HOLY_AID;
-            eTempHP = ExtraordinaryEffect(EffectTemporaryHitpoints(GetDiceRoll(1, 8)));
-            eLink = EffectLinkEffects(EffectRunScriptEnhanced(FALSE, "op_rs_removespel"),
-                    EffectLinkEffects(EffectAttackIncrease(1),
-                    EffectLinkEffects(EffectSavingThrowIncrease(SAVING_THROW_ALL, 1, SAVING_THROW_TYPE_FEAR),
-                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE))));
+            nVis      = VFX_IMP_HOLY_AID;
+            eTempHP   = ExtraordinaryEffect(EffectTemporaryHitpoints(GetDiceRoll(1, 8)));
+            eLink     = EffectLinkEffects(EffectRunScriptEnhanced(FALSE, "op_rs_removespel"),
+                                          EffectLinkEffects(EffectAttackIncrease(1),
+                                                            EffectLinkEffects(EffectSavingThrowIncrease(SAVING_THROW_ALL, 1, SAVING_THROW_TYPE_FEAR),
+                                                                              EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE))));
             fDuration = GetDuration(nCasterLevel, MINUTES);
         }
         break;
@@ -66,8 +66,8 @@ void main()
 
             // Sort the BAB and attack bonus
             int nTotalCharacterLevel = GetHitDice(oTarget);
-            int nBAB = GetBaseAttackBonus(oTarget);
-            int nEpicPortionOfBAB = (nTotalCharacterLevel - 19) / 2;
+            int nBAB                 = GetBaseAttackBonus(oTarget);
+            int nEpicPortionOfBAB    = (nTotalCharacterLevel - 19) / 2;
 
             if (nEpicPortionOfBAB < 0)
             {
@@ -76,11 +76,11 @@ void main()
             if (nTotalCharacterLevel > 20)
             {
                 nAttackIncrease = 20 + nEpicPortionOfBAB;
-                if(nBAB - nEpicPortionOfBAB < 11)
+                if (nBAB - nEpicPortionOfBAB < 11)
                 {
                     nBonusAttacks = 2;
                 }
-                else if(nBAB - nEpicPortionOfBAB > 10 && nBAB - nEpicPortionOfBAB < 16)
+                else if (nBAB - nEpicPortionOfBAB > 10 && nBAB - nEpicPortionOfBAB < 16)
                 {
                     nBonusAttacks = 1;
                 }
@@ -88,14 +88,14 @@ void main()
             else
             {
                 nAttackIncrease = nTotalCharacterLevel;
-                nBonusAttacks = ((nTotalCharacterLevel - 1)/5) - ((nBAB - 1) / 5);
+                nBonusAttacks   = ((nTotalCharacterLevel - 1) / 5) - ((nBAB - 1) / 5);
             }
             nAttackIncrease -= nBAB;
 
-            nVis = VFX_IMP_SUPER_HEROISM;
+            nVis    = VFX_IMP_SUPER_HEROISM;
             eTempHP = ExtraordinaryEffect(EffectTemporaryHitpoints(nCasterLevel));
-            eLink = EffectLinkEffects(EffectRunScriptEnhanced(FALSE, "op_rs_removespel"),
-                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+            eLink   = EffectLinkEffects(EffectRunScriptEnhanced(FALSE, "op_rs_removespel"),
+                                        EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
 
             if (nStrengthIncrease > 0) eLink = EffectLinkEffects(eLink, EffectAbilityIncrease(ABILITY_STRENGTH, nStrengthIncrease));
             if (nAttackIncrease > 0) eLink = EffectLinkEffects(eLink, EffectAttackIncrease(nAttackIncrease));
@@ -110,24 +110,24 @@ void main()
         case SPELL_TENSERS_TRANSFORMATION:
         {
             // Similar to Divine Power but different...
-/*
-    Tenser's Transformation
-    The caster becomes an engine of destruction, gaining 1d6 temporary hit
-    points per caster level, a +4 natural armor AC bonus, a +2d4 Strength
-    enchantment bonus, a +2d4 Dexterity enchantment bonus, a +1 attack bonus per
-    two caster levels (which may give the character an extra attack), +5
-    Fortitude saving throw bonus, and proficiency in all simple and martial
-    weapons. The caster also is unable to cast spells, having 100% spell
-    failure, and cannot use spell casting items (wands, potions, etc.).
-*/
-            int nStrengthIncrease = GetDiceRoll(2, 4);
+            /*
+                Tenser's Transformation
+                The caster becomes an engine of destruction, gaining 1d6 temporary hit
+                points per caster level, a +4 natural armor AC bonus, a +2d4 Strength
+                enchantment bonus, a +2d4 Dexterity enchantment bonus, a +1 attack bonus per
+                two caster levels (which may give the character an extra attack), +5
+                Fortitude saving throw bonus, and proficiency in all simple and martial
+                weapons. The caster also is unable to cast spells, having 100% spell
+                failure, and cannot use spell casting items (wands, potions, etc.).
+            */
+            int nStrengthIncrease  = GetDiceRoll(2, 4);
             int nDexterityIncrease = GetDiceRoll(2, 4);
-            int nAttackIncrease = max(1, nCasterLevel/2);
+            int nAttackIncrease    = max(1, nCasterLevel / 2);
             int nBonusAttacks;
 
             // Sort the BAB and attack bonus
-            int nBAB = GetBaseAttackBonus(oTarget);
-            int nNewBAB = nBAB + nAttackIncrease;
+            int nBAB              = GetBaseAttackBonus(oTarget);
+            int nNewBAB           = nBAB + nAttackIncrease;
             int nEpicPortionOfBAB = (nNewBAB - 19) / 2;
 
             if (nEpicPortionOfBAB < 0)
@@ -136,30 +136,30 @@ void main()
             }
             if (nNewBAB > 20)
             {
-                if(nBAB - nEpicPortionOfBAB < 11)
+                if (nBAB - nEpicPortionOfBAB < 11)
                 {
                     nBonusAttacks = 2;
                 }
-                else if(nBAB - nEpicPortionOfBAB > 10 && nBAB - nEpicPortionOfBAB < 16)
+                else if (nBAB - nEpicPortionOfBAB > 10 && nBAB - nEpicPortionOfBAB < 16)
                 {
                     nBonusAttacks = 1;
                 }
             }
             else
             {
-                nBonusAttacks = ((nNewBAB - 1)/5) - ((nBAB - 1) / 5);
+                nBonusAttacks = ((nNewBAB - 1) / 5) - ((nBAB - 1) / 5);
             }
 
-            nVis = VFX_IMP_SUPER_HEROISM;
+            nVis    = VFX_IMP_SUPER_HEROISM;
             eTempHP = ExtraordinaryEffect(EffectTemporaryHitpoints(GetDiceRoll(nCasterLevel, 6)));
-            eLink = EffectLinkEffects(EffectRunScriptEnhanced(FALSE, "op_rs_removespel"),
-                    EffectLinkEffects(EffectSpellFailure(100),
-                    EffectLinkEffects(EffectBonusFeat(FEAT_WEAPON_PROFICIENCY_SIMPLE),
-                    EffectLinkEffects(EffectBonusFeat(FEAT_WEAPON_PROFICIENCY_MARTIAL),
-                    EffectLinkEffects(EffectIcon(EFFECT_ICON_BONUS_FEAT),
-                    EffectLinkEffects(EffectSavingThrowIncrease(SAVING_THROW_FORT, 5),
-                    EffectLinkEffects(EffectACIncrease(4, AC_NATURAL_BONUS),
-                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE))))))));
+            eLink   = EffectLinkEffects(EffectRunScriptEnhanced(FALSE, "op_rs_removespel"),
+                                        EffectLinkEffects(EffectSpellFailure(100),
+                                                          EffectLinkEffects(EffectBonusFeat(FEAT_WEAPON_PROFICIENCY_SIMPLE),
+                                                                            EffectLinkEffects(EffectBonusFeat(FEAT_WEAPON_PROFICIENCY_MARTIAL),
+                                                                                              EffectLinkEffects(EffectIcon(EFFECT_ICON_BONUS_FEAT),
+                                                                                                                EffectLinkEffects(EffectSavingThrowIncrease(SAVING_THROW_FORT, 5),
+                                                                                                                                  EffectLinkEffects(EffectACIncrease(4, AC_NATURAL_BONUS),
+                                                                                                                                                    EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE))))))));
 
             if (nStrengthIncrease > 0) eLink = EffectLinkEffects(eLink, EffectAbilityIncrease(ABILITY_STRENGTH, nStrengthIncrease));
             if (nDexterityIncrease > 0) eLink = EffectLinkEffects(eLink, EffectAbilityIncrease(ABILITY_DEXTERITY, nDexterityIncrease));
@@ -173,9 +173,9 @@ void main()
         }
         break;
         default:
-            OP_Debug("[op_s_buffs] No valid spell ID passed in: " + IntToString(nSpellId), LOG_LEVEL_ERROR);
+            Debug("[op_s_buffs] No valid spell ID passed in: " + IntToString(nSpellId), ERROR);
             return;
-        break;
+            break;
     }
 
     if (GetSpellIsAreaOfEffect(nSpellId))
@@ -192,7 +192,7 @@ void main()
 
             SignalSpellCastAt();
 
-            float fDelay = bDelayRandom ? GetRandomDelay() : GetDistanceBetweenLocations(GetLocation(oTarget), lTarget)/20.0;
+            float fDelay = bDelayRandom ? GetRandomDelay() : GetDistanceBetweenLocations(GetLocation(oTarget), lTarget) / 20.0;
 
             // Remove previous castings
             RemoveEffectsFromSpell(oTarget, nSpellId);
@@ -220,4 +220,3 @@ void main()
         ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
     }
 }
-

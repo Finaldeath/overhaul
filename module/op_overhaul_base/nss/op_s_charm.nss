@@ -53,7 +53,7 @@ void main()
             if (nPool >= GetHitDice(oTarget))
             {
                 nPool -= GetHitDice(oTarget);
-                float fDelay = GetDistanceBetweenLocations(lTarget, GetLocation(oTarget))/20.0;
+                float fDelay = GetDistanceBetweenLocations(lTarget, GetLocation(oTarget)) / 20.0;
                 Charm(fDelay);
             }
         }
@@ -99,7 +99,7 @@ void Charm(float fDelay)
             case SPELL_CHARM_PERSON_OR_ANIMAL:
             {
                 if (!GetIsHumanoidCreature(oTarget) &&
-                     GetRacialType(oTarget) != CLASS_TYPE_ANIMAL) return;
+                    GetRacialType(oTarget) != CLASS_TYPE_ANIMAL) return;
                 fDuration = GetScaledDuration(oTarget, 2 + (nCasterLevel / 3), ROUNDS);
             }
             break;
@@ -109,8 +109,8 @@ void Charm(float fDelay)
             if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_MIND_SPELLS))
             {
                 effect eLink = EffectLinkEffects(GetScaledEffect(EffectCharmed(), oTarget),
-                               EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_NEGATIVE),
-                                                 EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+                                                 EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_NEGATIVE),
+                                                                   EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
 
                 DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_CHARM, oTarget));
                 DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));

@@ -60,11 +60,10 @@ void main()
                 // Unlike Bioware's this one isn't "versus Death" and no bonus +3 randomly to the save DC
                 if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_FORT, nSpellSaveDC, SAVING_THROW_TYPE_NONE, fDelay))
                 {
-                    //Apply death effect and the VFX impact
+                    // Apply death effect and the VFX impact
                     DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDeath, oTarget));
                 }
             }
         }
     }
 }
-

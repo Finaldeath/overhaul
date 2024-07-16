@@ -54,9 +54,8 @@ void main()
 
                 effect eLink = EffectLinkEffects(EffectRunScriptEnhanced(),
                                                  EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
-                DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(1 + min(6, nCasterLevel/3), ROUNDS) + 1.0));
+                DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(1 + min(6, nCasterLevel / 3), ROUNDS) + 1.0));
             }
         }
     }
 }
-

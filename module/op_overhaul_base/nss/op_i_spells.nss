@@ -41,24 +41,23 @@
 //:: https://github.com/Finaldeath/overhaul
 //:://////////////////////////////////////////////
 
+#include "op_i_constants"
 #include "op_i_debug"
 #include "op_i_eosconstant"
-#include "op_i_constants"
 #include "op_i_feats"
+#include "op_i_feedback"
 #include "op_i_itemprops"
 #include "op_i_runscript"
-#include "op_i_feedback"
-#include "utl_i_maths"
 #include "utl_i_item"
+#include "utl_i_maths"
 #include "utl_i_strings"
-
 
 // Parameters you can set before executing a spell script (eg if not really firing one, or some other cases like
 // one spell script firing another
-const string SCRIPT_PARAMETER_SPELL_ID    = "SCRIPT_PARAMETER_SPELL_ID";     // Spell Id
-const string SCRIPT_PARAMETER_ILLUSIONARY = "SCRIPT_PARAMETER_ILLUSIONARY";  // Boolean
-const string SCRIPT_PARAMETER_ILLUSIONARY_STRENGTH = "SCRIPT_PARAMETER_ILLUSIONARY_STRENGTH"; // 20 = 20% strength
-const string SCRIPT_PARAMETER_SKIP_SPELL_HOOK = "SCRIPT_PARAMETER_SKIP_SPELL_HOOK"; // Boolean, skips spell script hook
+const string SCRIPT_PARAMETER_SPELL_ID             = "SCRIPT_PARAMETER_SPELL_ID";              // Spell Id
+const string SCRIPT_PARAMETER_ILLUSIONARY          = "SCRIPT_PARAMETER_ILLUSIONARY";           // Boolean
+const string SCRIPT_PARAMETER_ILLUSIONARY_STRENGTH = "SCRIPT_PARAMETER_ILLUSIONARY_STRENGTH";  // 20 = 20% strength
+const string SCRIPT_PARAMETER_SKIP_SPELL_HOOK      = "SCRIPT_PARAMETER_SKIP_SPELL_HOOK";       // Boolean, skips spell script hook
 
 const int ROUNDS  = 0;
 const int MINUTES = 1;
@@ -77,18 +76,18 @@ const int SPELL_TARGET_SELECTIVEHOSTILE = 3;  // Selective hostile - IE: Will no
 // Missing saving throw type constant
 const int SAVING_THROW_TYPE_PARALYSIS = 20;
 
-const int SORT_METHOD_NONE               = 0; // Just doesn't bother sorting
+const int SORT_METHOD_NONE               = 0;  // Just doesn't bother sorting
 const int SORT_METHOD_LOWEST_HP          = 1;
 const int SORT_METHOD_LOWEST_HD          = 2;
-const int SORT_METHOD_DISTANCE           = 3; // Distance to AOE target
+const int SORT_METHOD_DISTANCE           = 3;  // Distance to AOE target
 const int SORT_METHOD_DISTANCE_TO_CASTER = 4;
 
 // Spell types (UserType column) stored in nSpellType
-const int SPELL_TYPE_INVALID         = 0; // Invalid setting! Error!!!
-const int SPELL_TYPE_SPELL           = 1; // Standard spell.
-const int SPELL_TYPE_CREATURE_POWER  = 2; // Or "Spell ability". Uses HD for resist spell. Checks spell immunity.
-const int SPELL_TYPE_FEAT            = 3; // No resist spell/absorption checks are valid. Checks spell immunity.
-const int SPELL_TYPE_ITEM_POWER      = 4; // No resist spell/absorption checks are valid. Checks spell immunity.
+const int SPELL_TYPE_INVALID        = 0;  // Invalid setting! Error!!!
+const int SPELL_TYPE_SPELL          = 1;  // Standard spell.
+const int SPELL_TYPE_CREATURE_POWER = 2;  // Or "Spell ability". Uses HD for resist spell. Checks spell immunity.
+const int SPELL_TYPE_FEAT           = 3;  // No resist spell/absorption checks are valid. Checks spell immunity.
+const int SPELL_TYPE_ITEM_POWER     = 4;  // No resist spell/absorption checks are valid. Checks spell immunity.
 
 // Extra shape types - more may come later for complex spells. Will include links to spells.2da
 const int SHAPE_HSPHERE = 100;
@@ -257,23 +256,23 @@ void ApplyBeamToObject(int nBeam, object oTarget, int bMissEffect = FALSE, int n
 // - bMissEffect - VFX hits or not
 // - fDuration - If 0.0 it applies it instantly, or applies it for a given duration.
 // Usual scale and translate values as well.
-void ApplyVisualEffectToObject(int nVFX, object oTarget, int bMissEffect = FALSE, float fDuration = 0.0, float fScale=1.0f, vector vTranslate=[0.0,0.0,0.0], vector vRotate=[0.0,0.0,0.0]);
+void ApplyVisualEffectToObject(int nVFX, object oTarget, int bMissEffect = FALSE, float fDuration = 0.0, float fScale = 1.0f, vector vTranslate = [ 0.0, 0.0, 0.0 ], vector vRotate = [ 0.0, 0.0, 0.0 ]);
 
 // Applies the given VFX effect to oTarget.
 // - nVFX - visualeffects.2da line. Must be not a DUR or BEAM type. Use VFX_NONE to have this function be ignored.
 // - lTarget - Target of the VFX
 // - bMissEffect - VFX hits or not
 // Usual scale and translate values as well.
-void ApplyVisualEffectAtLocation(int nVFX, location lTarget, int bMissEffect = FALSE, float fScale=1.0f, vector vTranslate=[0.0,0.0,0.0], vector vRotate=[0.0,0.0,0.0]);
+void ApplyVisualEffectAtLocation(int nVFX, location lTarget, int bMissEffect = FALSE, float fScale = 1.0f, vector vTranslate = [ 0.0, 0.0, 0.0 ], vector vRotate = [ 0.0, 0.0, 0.0 ]);
 
 // Applies damage of the given type. This helps wrapper delayed damage so we can keep at 1 HP if necessary (Harm/Heal).
-void ApplyDamageToObject(object oTarget, int nDamage, int nDamageType=DAMAGE_TYPE_MAGICAL, int nDamagePower=DAMAGE_POWER_NORMAL, int bKeepAt1HP = FALSE);
+void ApplyDamageToObject(object oTarget, int nDamage, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL, int bKeepAt1HP = FALSE);
 
 // Applies damage of the given type. This helps wrapper delayed damage so we can keep at 1 HP if necessary (Harm/Heal).
 // * Also applies nVFX (no miss effect or anything special).
-void ApplyDamageWithVFXToObject(object oTarget, int nVFX, int nDamage, int nDamageType=DAMAGE_TYPE_MAGICAL, int nDamagePower=DAMAGE_POWER_NORMAL, int bKeepAt1HP = FALSE);
+void ApplyDamageWithVFXToObject(object oTarget, int nVFX, int nDamage, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL, int bKeepAt1HP = FALSE);
 
-// Applies eEffect (should be a single, raw effect) to oTarget, if it hasn't got it from this spell ID AOE already
+// Applies eEffect to oTarget, if it hasn't got it from this spell ID AOE already
 // If bApplyRunScript is set, it also attaches the RunScript to remove it later (if no more AOEs are affecting them).
 // NOTE: Not necessarily perfect; eg if failing a save applies a movement speed effect in a given AOE, moving out of that one
 // into the same AOE but one you've passed will retain the movement speed decrease. It will do for now though.
@@ -281,14 +280,14 @@ void ApplyDamageWithVFXToObject(object oTarget, int nVFX, int nDamage, int nDama
 //   if the AOE or creator of the AOE exists still
 // - Attaches a negative cessate VFX
 // The above and the eEffect:
-// - Tags it with the OBJECT_SELF's OID
+// - Tags it with the OBJECT_SELF's OID if RunScript or AOEEFFECT if not
 // - Makes it extraordinary
 // - Applies it permanently
-// Apply these effects only once (ie OnEnter). Don't tag an effect like this, and it'll be left alone (eg temporary stuns/entangles).
+// Apply these effects only once (ie OnEnter). Don't tag an effect as AOEEFFECT, and it'll be left alone (eg temporary stuns/entangles).
 void ApplyAOEPersistentEffect(object oTarget, effect eEffect, int bApplyRunScript = TRUE);
 
 // Removes persistent RunScripts from oTarget that are applies to oTarget tagged with OBJECT_SELF's OID (ie the AOE's).
-// Call in an AOE's OnExit event.
+// Call in an AOE's OnExit event or op_r_aoecleanup.
 void RemovePersistentAOEEffects(object oTarget);
 
 // Returns TRUE if we are OK running our AOE scripts (or the EffectRunScript created by an AOE).
@@ -385,7 +384,7 @@ void CureEffects(object oTarget, json jArray, int bSupernaturalRemoval = FALSE);
 //                 SORT_METHOD_DISTANCE  - Sorts so the first object is the lowest distance to AOE target location
 //                 SORT_METHOD_DISTANCE_TO_CASTER - Sorts so first object is lowest distance to caster
 // The other variables can be set, but if not then the current Spell Id will sort the shape and size.
-json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, int nObjectFilter=OBJECT_TYPE_CREATURE, int nShape = -1, float fSize = -1.0, location lArrayTarget=LOCATION_INVALID, int bLineOfSight=TRUE, vector vOrigin=[0.0,0.0,0.0]);
+json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, int nObjectFilter = OBJECT_TYPE_CREATURE, int nShape = -1, float fSize = -1.0, location lArrayTarget = LOCATION_INVALID, int bLineOfSight = TRUE, vector vOrigin = [ 0.0, 0.0, 0.0 ]);
 
 // Loops through the persistent AOE to get all the targets in it. It then sorts them using nSortMethod.
 // * nTargetType - The SPELL_TARGET_* type to check versus oCaster
@@ -396,7 +395,7 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, 
 //                 SORT_METHOD_DISTANCE  - Sorts so the first object is the lowest distance to AOE target location
 //                 SORT_METHOD_DISTANCE_TO_CASTER - Sorts so first object is lowest distance to caster
 // * bTargetSelf - If FALSE we won't ever get ourself into the array
-json GetArrayOfAOETargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, int nObjectFilter=OBJECT_TYPE_CREATURE, int bTargetSelf=TRUE);
+json GetArrayOfAOETargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, int nObjectFilter = OBJECT_TYPE_CREATURE, int bTargetSelf = TRUE);
 
 // Gets the given Object stored as FIELD_OBJECTID in jArray at nIndex
 object GetArrayObject(json jArray, int nIndex);
@@ -470,7 +469,7 @@ int GetIsTargetInAOEAtLocation(int nAOE, int nTargetType = SPELL_TARGET_SELECTIV
 
 // Create a rising or falling pillar with a certain visual effect. Looks cool
 // but quite expensive on the graphics engine, so don't get too mad with it
-void TLVFXPillar(int nVFX, location lStart, int nIterations=3, float fDelay=0.1f, float fZOffset= 6.0f, float fStepSize = -2.0f);
+void TLVFXPillar(int nVFX, location lStart, int nIterations = 3, float fDelay = 0.1f, float fZOffset = 6.0f, float fStepSize = -2.0f);
 
 // Gets the generated AOE. It is specifically one matching the tag, near the target location, that this creator did
 // Then you can sort it with some additional local variables.
@@ -484,48 +483,48 @@ void FireItemPropertySpellScript();
 // Returns DAMAGE_POWER_PLUS_ONE by default.
 int GetDamagePowerPlusValue(int nPower);
 
-
 // These global variables are used in most spell scripts and are initialised here to be consistent
 // NB: You can't reuse these variables in the very functions in this list, so we pass them in.
-object oCastItem = GetSpellCastItemCalculated();
-object oCaster   = GetSpellCaster();
-object oTarget   = GetSpellTargetObjectCalculated();
-location lTarget = GetSpellTargetLocationCalculated(oTarget);
-int nSpellId     = GetSpellIdCalculated();
-int nFeatId      = GetSpellFeatId();
-int nSpellType   = GetSpellType(nSpellId);
-int nSpellSchool = GetSpellSchool(nSpellId);
-int nSpellSaveDC = GetSpellSaveDCCalculated(oCaster, nSpellId, oCastItem, nSpellType);
-int nCasterClass = GetLastSpellCastClassCalculated();
-int nCasterLevel = GetCasterLevelCalculated(oCaster, nSpellId, nFeatId, nCasterClass);
-int nMetaMagic   = GetMetaMagicFeatCalculated();
-int nSpellLevel  = GetLastSpellLevelCalculated();
-int bSpontaneous = GetSpellCastSpontaneouslyCalculated();
-int bHostile     = GetSpellIsHostile(nSpellId);
-int bIllusionary = GetSpellIsIllusionary();
+object oCastItem         = GetSpellCastItemCalculated();
+object oCaster           = GetSpellCaster();
+object oTarget           = GetSpellTargetObjectCalculated();
+location lTarget         = GetSpellTargetLocationCalculated(oTarget);
+int nSpellId             = GetSpellIdCalculated();
+int nFeatId              = GetSpellFeatId();
+int nSpellType           = GetSpellType(nSpellId);
+int nSpellSchool         = GetSpellSchool(nSpellId);
+int nSpellSaveDC         = GetSpellSaveDCCalculated(oCaster, nSpellId, oCastItem, nSpellType);
+int nCasterClass         = GetLastSpellCastClassCalculated();
+int nCasterLevel         = GetCasterLevelCalculated(oCaster, nSpellId, nFeatId, nCasterClass);
+int nMetaMagic           = GetMetaMagicFeatCalculated();
+int nSpellLevel          = GetLastSpellLevelCalculated();
+int bSpontaneous         = GetSpellCastSpontaneouslyCalculated();
+int bHostile             = GetSpellIsHostile(nSpellId);
+int bIllusionary         = GetSpellIsIllusionary();
 int nIllusionaryStrength = GetSpellIllusionaryStrength(bIllusionary);
 
 // Debug the spell and variables
 void DebugSpellVariables()
 {
-    if (DEBUG_LEVEL >= LOG_LEVEL_INFO)
+    if (DEBUG_LEVEL >= INFO)
     {
-        OP_Debug("[Spell Script] Script:" + GetStringColoredRGB("[" + GetScriptName() +
-                                          "] ID: [" + IntToString(nSpellId) +
-                                          "] Name: [" + GetSpellName(nSpellId) +
-                                          "] Type: [" + IntToString(nSpellType) +
-                                          "] Level: [" + IntToString(nSpellLevel) +
-                                          "] Caster: [" + GetName(oCaster) +
-                                          "] Cast Item: [" + GetName(oCastItem) +
-                                          "] Caster class: [" + IntToString(nCasterClass) +
-                                          "] Spontanously cast: [" + IntToString(bSpontaneous) +
-                                          "] Target: [" + GetName(oTarget) +
-                                          "] Save DC: [" + IntToString(nSpellSaveDC) +
-                                          "] Caster Level: [" + IntToString(nCasterLevel) +
-                                          "] MetaMagic: [" + IntToString(nMetaMagic) +
-                                          "] Hostile: [" + IntToString(bHostile) +
-                                          "] bIllusionary: [" + IntToString(bIllusionary) +
-                                          "] nIllusionaryStrength: [" + IntToString(nIllusionaryStrength) + "]", 255, 255, 255));
+        Debug("[Spell Script] Script:" + GetStringColoredRGB("[" + GetScriptName() +
+                                                                 "] ID: [" + IntToString(nSpellId) +
+                                                                 "] Name: [" + GetSpellName(nSpellId) +
+                                                                 "] Type: [" + IntToString(nSpellType) +
+                                                                 "] Level: [" + IntToString(nSpellLevel) +
+                                                                 "] Caster: [" + GetName(oCaster) +
+                                                                 "] Cast Item: [" + GetName(oCastItem) +
+                                                                 "] Caster class: [" + IntToString(nCasterClass) +
+                                                                 "] Spontanously cast: [" + IntToString(bSpontaneous) +
+                                                                 "] Target: [" + GetName(oTarget) +
+                                                                 "] Save DC: [" + IntToString(nSpellSaveDC) +
+                                                                 "] Caster Level: [" + IntToString(nCasterLevel) +
+                                                                 "] MetaMagic: [" + IntToString(nMetaMagic) +
+                                                                 "] Hostile: [" + IntToString(bHostile) +
+                                                                 "] bIllusionary: [" + IntToString(bIllusionary) +
+                                                                 "] nIllusionaryStrength: [" + IntToString(nIllusionaryStrength) + "]",
+                                                             255, 255, 255));
     }
 }
 
@@ -587,13 +586,12 @@ object GetSpellCastItemCalculated()
     {
         if (!GetIsObjectValid(GetEffectCreator(GetLastRunScriptEffect())))
         {
-            OP_Debug("[GetSpellCaster] Invalid cast item for run script effect.", LOG_LEVEL_ERROR);
+            Debug("[GetSpellCaster] Invalid cast item for run script effect.", ERROR);
         }
-        return GetEffectCreator(GetLastRunScriptEffect()); // TODO
+        return GetEffectCreator(GetLastRunScriptEffect());  // TODO
     }
     return GetSpellCastItem();
 }
-
 
 // This gets the caster, usually OBJECT_SELF, or if an AOE it's GetAreaOfEffectCreator().
 object GetSpellCaster()
@@ -608,7 +606,7 @@ object GetSpellCaster()
     {
         if (!GetIsObjectValid(GetEffectCreator(GetLastRunScriptEffect())))
         {
-            OP_Debug("[GetSpellCaster] Invalid caster for run script. Applied script?", LOG_LEVEL_ERROR);
+            Debug("[GetSpellCaster] Invalid caster for run script. Applied script?", ERROR);
         }
         return GetEffectCreator(GetLastRunScriptEffect());
     }
@@ -631,7 +629,7 @@ int GetSpellIdCalculated()
     {
         if (GetEffectType(GetLastRunScriptEffect()) != EFFECT_TYPE_RUNSCRIPT)
         {
-            OP_Debug("[GetSpellIdCalculated] Invalid effect for run script.", LOG_LEVEL_ERROR);
+            Debug("[GetSpellIdCalculated] Invalid effect for run script.", ERROR);
         }
         return GetEffectSpellId(GetLastRunScriptEffect());
     }
@@ -654,7 +652,7 @@ int GetSpellType(int nSpellIdToCheck)
         case "4": return SPELL_TYPE_ITEM_POWER; break;
     }
     // Something else invalid
-    OP_Debug("[GetSpellType] Invalid UserType column!", LOG_LEVEL_ERROR);
+    Debug("[GetSpellType] Invalid UserType column!", ERROR);
     return SPELL_TYPE_INVALID;
 }
 
@@ -755,7 +753,7 @@ int GetCasterLevelCalculated(object oCaster, int nSpellIdToCheck, int nFeatIdToC
     {
         if (GetEffectType(GetLastRunScriptEffect()) != EFFECT_TYPE_RUNSCRIPT)
         {
-            OP_Debug("[GetCasterLevelCalculated] Run Script Effect has invalid type.", LOG_LEVEL_ERROR);
+            Debug("[GetCasterLevelCalculated] Run Script Effect has invalid type.", ERROR);
         }
         // Caster level is stored on the effect itself
         return GetEffectCasterLevel(GetLastRunScriptEffect());
@@ -793,7 +791,7 @@ int GetCasterLevelCalculated(object oCaster, int nSpellIdToCheck, int nFeatIdToC
                     {
                         if (GetLevelByClass(nClass, oCaster) > nHighestArcaneClassLevel)
                         {
-                            nHighestArcaneClass = nClass;
+                            nHighestArcaneClass      = nClass;
                             nHighestArcaneClassLevel = GetLevelByClass(nClass, oCaster);
                         }
                     }
@@ -801,7 +799,7 @@ int GetCasterLevelCalculated(object oCaster, int nSpellIdToCheck, int nFeatIdToC
                     {
                         // Check for ArcSpellLvlMod
                         string sArcSpellLvlMod = Get2DAString("classes", "ArcSpellLvlMod", nClass);
-                        int nArcSpellLvlMod = StringToInt(sArcSpellLvlMod);
+                        int nArcSpellLvlMod    = StringToInt(sArcSpellLvlMod);
                         if (sArcSpellLvlMod != "" && nArcSpellLvlMod > 0)
                         {
                             // Get the bonus. EG: 1 is 1 per level, 2 is 1 at level 2, then 2 at level 3, etc.
@@ -832,7 +830,7 @@ int GetCasterLevelCalculated(object oCaster, int nSpellIdToCheck, int nFeatIdToC
                     {
                         if (GetLevelByClass(nClass, oCaster) > nHighestDivineClassLevel)
                         {
-                            nHighestDivineClass = nClass;
+                            nHighestDivineClass      = nClass;
                             nHighestDivineClassLevel = GetLevelByClass(nClass, oCaster);
                         }
                     }
@@ -840,7 +838,7 @@ int GetCasterLevelCalculated(object oCaster, int nSpellIdToCheck, int nFeatIdToC
                     {
                         // Check for ArcSpellLvlMod
                         string sDivSpellLvlMod = Get2DAString("classes", "DivSpellLvlMod", nClass);
-                        int nDivSpellLvlMod = StringToInt(sDivSpellLvlMod);
+                        int nDivSpellLvlMod    = StringToInt(sDivSpellLvlMod);
                         if (sDivSpellLvlMod != "" && nDivSpellLvlMod > 0)
                         {
                             // Get the bonus. EG: 1 is 1 per level, 2 is 1 at level 2, then 2 at level 3, etc.
@@ -905,7 +903,6 @@ int GetLastSpellLevelCalculated()
         return GetRunScriptSpellLevel(GetLastRunScriptEffect());
     }
     return GetLastSpellLevel();
-
 }
 
 // Retrieves if the spell was spontaneously ccast, in a spell script or run script.
@@ -938,11 +935,11 @@ object GetSpellTargetObjectCalculated()
     {
         return OBJECT_INVALID;
     }
-    else if(nScript == EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_ENTER)
+    else if (nScript == EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_ENTER)
     {
         return GetEnteringObject();
     }
-    else if(nScript == EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_EXIT)
+    else if (nScript == EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_EXIT)
     {
         return GetExitingObject();
     }
@@ -995,10 +992,10 @@ int DoSavingThrow(object oTarget, object oSaveVersus, int nSavingThrow, int nDC,
 
     if (nSaveType < 0 || nSaveType > SAVING_THROW_TYPE_PARALYSIS)
     {
-        OP_Debug("[ERROR] DoSavingThrow: Invalid saving throw type specified: " + IntToString(nSavingThrow), LOG_LEVEL_ERROR);
+        Debug("[ERROR] DoSavingThrow: Invalid saving throw type specified: " + IntToString(nSavingThrow), ERROR);
     }
 
-    int nVis = VFX_INVALID;
+    int nVis    = VFX_INVALID;
     int nResult = 0;
     if (nSavingThrow == SAVING_THROW_FORT)
     {
@@ -1020,7 +1017,7 @@ int DoSavingThrow(object oTarget, object oSaveVersus, int nSavingThrow, int nDC,
     }
     else
     {
-        OP_Debug("[ERROR] DoSavingThrow: Invalid saving throw specified: " + IntToString(nSavingThrow) + " Auto failure.", LOG_LEVEL_ERROR);
+        Debug("[ERROR] DoSavingThrow: Invalid saving throw specified: " + IntToString(nSavingThrow) + " Auto failure.", ERROR);
     }
     // Apply VFX
     /*
@@ -1071,18 +1068,18 @@ int DoAbiliyCheck(object oTarget, object oSource, int nDC, int nAbilityCheck, in
 {
     // Get best ability score
     int nAbilityScore = GetAbilityScore(oTarget, nAbilityCheck);
-    int nAbilityUsed = nAbilityCheck;
+    int nAbilityUsed  = nAbilityCheck;
     if (nOptionalAbilityCheck != -1)
     {
         if (GetAbilityScore(oTarget, nOptionalAbilityCheck) > nAbilityScore)
         {
             nAbilityScore = GetAbilityScore(oTarget, nOptionalAbilityCheck);
-            nAbilityUsed = nOptionalAbilityCheck;
+            nAbilityUsed  = nOptionalAbilityCheck;
         }
     }
 
     // Do check
-    int nRoll = d20();
+    int nRoll   = d20();
     int bResult = (nRoll + nAbilityScore >= nDC);
 
     // Report result
@@ -1126,7 +1123,7 @@ int DoResistSpell(object oTarget, object oCaster, float fDelay = 0.0, int bResis
     // Error check
     if (!GetIsObjectValid(oTarget) || !GetIsObjectValid(oCaster))
     {
-        OP_Debug("[DoResistSpell] Error, caster or target is invalid. Caster: " + GetName(oCaster) + " Target: " + GetName(oTarget), LOG_LEVEL_ERROR);
+        Debug("[DoResistSpell] Error, caster or target is invalid. Caster: " + GetName(oCaster) + " Target: " + GetName(oTarget), ERROR);
         return FALSE;
     }
 
@@ -1144,7 +1141,7 @@ int DoResistSpell(object oTarget, object oCaster, float fDelay = 0.0, int bResis
         // Spell Absorption (Limited) ie mantles
         if (SpellAbsorptionLimitedCheck(oTarget, oCaster, nSpellId, nSpellSchool, nSpellLevel))
         {
-            OP_Debug("[DoResistSpell] SpellAbsorptionLimitedCheck: TRUE against target: " + GetName(oTarget));
+            Debug("[DoResistSpell] SpellAbsorptionLimitedCheck: TRUE against target: " + GetName(oTarget));
             if (fDelay > 0.5)
             {
                 fDelay = fDelay - 0.1;
@@ -1156,7 +1153,7 @@ int DoResistSpell(object oTarget, object oCaster, float fDelay = 0.0, int bResis
         // Spell Absorption (Unlimited) ie Globes
         if (SpellAbsorptionUnlimitedCheck(oTarget, oCaster, nSpellId, nSpellSchool, nSpellLevel))
         {
-            OP_Debug("[DoResistSpell] SpellAbsorptionUnlimitedCheck: TRUE against target: " + GetName(oTarget));
+            Debug("[DoResistSpell] SpellAbsorptionUnlimitedCheck: TRUE against target: " + GetName(oTarget));
             DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_GLOBE_USE), oTarget));
             return TRUE;
         }
@@ -1165,7 +1162,7 @@ int DoResistSpell(object oTarget, object oCaster, float fDelay = 0.0, int bResis
     // Spell Immunity
     if (SpellImmunityCheck(oTarget, oCaster, nSpellId))
     {
-        OP_Debug("[DoResistSpell] SpellImmunityCheck: TRUE against target: " + GetName(oTarget));
+        Debug("[DoResistSpell] SpellImmunityCheck: TRUE against target: " + GetName(oTarget));
         DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_GLOBE_USE), oTarget));
         return TRUE;
     }
@@ -1173,7 +1170,7 @@ int DoResistSpell(object oTarget, object oCaster, float fDelay = 0.0, int bResis
     if (nSpellType == SPELL_TYPE_SPELL || nSpellType == SPELL_TYPE_CREATURE_POWER)
     {
         // Spell Resistance
-        int nTargetSpellResistance = GetSpellResistance(oTarget);
+        int nTargetSpellResistance  = GetSpellResistance(oTarget);
         int nResistSpellCasterLevel = nCasterLevel;
 
         // Creature powers use the casters HD
@@ -1201,7 +1198,7 @@ int DoResistSpell(object oTarget, object oCaster, float fDelay = 0.0, int bResis
 
         if (SpellResistanceCheck(oTarget, oCaster, nSpellId, nResistSpellCasterLevel, nTargetSpellResistance))
         {
-            OP_Debug("[DoResistSpell] SpellResistanceCheck: TRUE against target: " + GetName(oTarget));
+            Debug("[DoResistSpell] SpellResistanceCheck: TRUE against target: " + GetName(oTarget));
             DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_MAGIC_RESISTANCE_USE), oTarget));
             return TRUE;
         }
@@ -1247,7 +1244,7 @@ int DoTouchAttack(object oTarget, object oVersus, int nType, int bDisplayFeedbac
     // Note: For now we don't use oVersus but it's possible to do this with ExecuteScript/ExecuteScriptChunk.
     if (oVersus != OBJECT_SELF)
     {
-        if (DEBUG_LEVEL >= LOG_LEVEL_ERROR) OP_Debug("[ERROR] DoTouchAttack used when oVersus isn't OBJECT_SELF");
+        if (DEBUG_LEVEL >= ERROR) Debug("[ERROR] DoTouchAttack used when oVersus isn't OBJECT_SELF");
     }
 
     if (nType == TOUCH_MELEE)
@@ -1276,7 +1273,7 @@ void DoDispelMagic(object oTarget, int nCasterLevel, int nVis = VFX_INVALID, flo
             // Non-spell Persistent AOEs cannot be dispelled
             if (nOpposingCasterLevel == 0)
             {
-                OP_Debug("Persistent AOE with no caster level, ignoring, this shouldn't happen.");
+                Debug("Persistent AOE with no caster level, ignoring, this shouldn't happen.");
                 return;
             }
 
@@ -1293,7 +1290,7 @@ void DoDispelMagic(object oTarget, int nCasterLevel, int nVis = VFX_INVALID, flo
             }
             else
             {
-                FloatingTextStrRefOnCreature(100930, oCaster); // "AoE not dispelled"
+                FloatingTextStrRefOnCreature(100930, oCaster);  // "AoE not dispelled"
             }
         }
     }
@@ -1419,7 +1416,7 @@ void DoSpellBreach(object oTarget, int nTotal, int nSR, int bVFX = TRUE)
     jArray = JsonArrayInsert(jArray, JsonInt(SPELL_ETHEREAL_VISAGE));
     jArray = JsonArrayInsert(jArray, JsonInt(SPELL_GLOBE_OF_INVULNERABILITY));
     jArray = JsonArrayInsert(jArray, JsonInt(SPELL_ENERGY_BUFFER));
-    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_ETHEREALNESS)); // Greater Sanctuary
+    jArray = JsonArrayInsert(jArray, JsonInt(SPELL_ETHEREALNESS));  // Greater Sanctuary
     jArray = JsonArrayInsert(jArray, JsonInt(SPELL_MINOR_GLOBE_OF_INVULNERABILITY));
     jArray = JsonArrayInsert(jArray, JsonInt(SPELL_SPELL_RESISTANCE));
     jArray = JsonArrayInsert(jArray, JsonInt(SPELL_STONESKIN));
@@ -1535,8 +1532,7 @@ int GetIllusionModifiedValue(int nValue)
     }
     else
     {
-        OP_Debug("[GetIllusionModifiedValue] No script parameter for illusionary strength");
-
+        Debug("[GetIllusionModifiedValue] No script parameter for illusionary strength");
     }
     return nValue;
 }
@@ -1597,7 +1593,7 @@ float GetDuration(int nDuration, int nDurationType)
     }
     else
     {
-        OP_Debug("[ERROR] Spells GetDuration: Incorrect nDurationType.", LOG_LEVEL_ERROR);
+        Debug("[ERROR] Spells GetDuration: Incorrect nDurationType.", ERROR);
     }
     return fDuration;
 }
@@ -1620,7 +1616,7 @@ int GetSpellTargetValid(object oTarget, object oCaster, int nTargetType)
         // This kind of spell will affect all friendlies and anyone in my party/faction, even if we are upset with each other currently.
         case SPELL_TARGET_ALLALLIES:
         {
-            OP_Debug("[INFO] GetSpellTargetValid: All allies oTarget: " + GetName(oTarget) + " GetIsFriend: " + IntToString(GetIsFriend(oTarget, oCaster)) + " GetFactionEqual: " + IntToString(GetFactionEqual(oTarget, oCaster)), LOG_LEVEL_INFO);
+            Debug("[INFO] GetSpellTargetValid: All allies oTarget: " + GetName(oTarget) + " GetIsFriend: " + IntToString(GetIsFriend(oTarget, oCaster)) + " GetFactionEqual: " + IntToString(GetFactionEqual(oTarget, oCaster)), INFO);
             if (GetIsFriend(oTarget, oCaster) || GetFactionEqual(oTarget, oCaster))
             {
                 bReturnValue = TRUE;
@@ -1629,7 +1625,7 @@ int GetSpellTargetValid(object oTarget, object oCaster, int nTargetType)
         break;
         case SPELL_TARGET_STANDARDHOSTILE:
         {
-            OP_Debug("[INFO] GetSpellTargetValid: Standard hostile oTarget: " + GetName(oTarget) + " GetIsReactionTypeFriendly: " + IntToString(GetIsReactionTypeFriendly(oTarget, oCaster)), LOG_LEVEL_INFO);
+            Debug("[INFO] GetSpellTargetValid: Standard hostile oTarget: " + GetName(oTarget) + " GetIsReactionTypeFriendly: " + IntToString(GetIsReactionTypeFriendly(oTarget, oCaster)), INFO);
             // This has been rewritten. We do a simple check for the reaction type now.
             // Previously there was a lot of checks for henchmen, AOEs that PCs cast, etc.
             if (!GetIsReactionTypeFriendly(oTarget, oCaster))
@@ -1641,7 +1637,7 @@ int GetSpellTargetValid(object oTarget, object oCaster, int nTargetType)
         // Only harms enemies, ever, such as Call Lightning
         case SPELL_TARGET_SELECTIVEHOSTILE:
         {
-            OP_Debug("[INFO] GetSpellTargetValid: Selective hostile oTarget: " + GetName(oTarget) + " GetIsEnemy: " + IntToString(GetIsEnemy(oTarget, oCaster)), LOG_LEVEL_INFO);
+            Debug("[INFO] GetSpellTargetValid: Selective hostile oTarget: " + GetName(oTarget) + " GetIsEnemy: " + IntToString(GetIsEnemy(oTarget, oCaster)), INFO);
             if (GetIsEnemy(oTarget, oCaster))
             {
                 bReturnValue = TRUE;
@@ -1655,7 +1651,7 @@ int GetSpellTargetValid(object oTarget, object oCaster, int nTargetType)
         break;
         default:
         {
-            OP_Debug("[ERROR] GetSpellTargetValid: Invalid input: " + IntToString(nTargetType), LOG_LEVEL_ERROR);
+            Debug("[ERROR] GetSpellTargetValid: Invalid input: " + IntToString(nTargetType), ERROR);
         }
         break;
     }
@@ -1774,7 +1770,7 @@ float GetVisualEffectHitDelay(int nVFX, object oTarget, object oSource)
             return fDist / (3.0 * log(fDist) + 2.0);
         }
     }
-    if (DEBUG_LEVEL >= LOG_LEVEL_ERROR) OP_Debug("[ERROR] GetVisualEffectHitDelay Called with no programmed FX: " + IntToString(nProgrammedVFX), LOG_LEVEL_ERROR);
+    if (DEBUG_LEVEL >= ERROR) Debug("[ERROR] GetVisualEffectHitDelay Called with no programmed FX: " + IntToString(nProgrammedVFX), ERROR);
     // Default is distance / 20
     return GetDistanceBetween(oSource, oTarget) / 20.0;
 }
@@ -1802,9 +1798,9 @@ void ApplySpellEffectToObject(int nDurationType, effect eEffect, object oTarget,
 {
     // Error checking
     if (nDurationType == DURATION_TYPE_TEMPORARY && fDuration <= 0.0)
-        OP_Debug("[ApplySpellEffectToObject] Error: Temporary duration but fDuration is: " + FloatToString(fDuration), LOG_LEVEL_ERROR);
+        Debug("[ApplySpellEffectToObject] Error: Temporary duration but fDuration is: " + FloatToString(fDuration), ERROR);
     else if (nDurationType != DURATION_TYPE_TEMPORARY && fDuration != 0.0)
-        OP_Debug("[ApplySpellEffectToObject] Error: Non-Temporary duration but fDuration is: " + FloatToString(fDuration), LOG_LEVEL_ERROR);
+        Debug("[ApplySpellEffectToObject] Error: Non-Temporary duration but fDuration is: " + FloatToString(fDuration), ERROR);
 
     ApplyEffectToObject(nDurationType, EffectChangeProperties(eEffect, nSpellId, nCasterLevel, oCaster), oTarget, fDuration);
 }
@@ -1814,9 +1810,9 @@ void ApplySpellEffectAtLocation(int nDurationType, effect eEffect, location lTar
 {
     // Error checking
     if (nDurationType == DURATION_TYPE_TEMPORARY && fDuration <= 0.0)
-        OP_Debug("[ApplySpellEffectToObject] Error: Temporary duration but fDuration is: " + FloatToString(fDuration), LOG_LEVEL_ERROR);
+        Debug("[ApplySpellEffectToObject] Error: Temporary duration but fDuration is: " + FloatToString(fDuration), ERROR);
     else if (nDurationType != DURATION_TYPE_TEMPORARY && fDuration != 0.0)
-        OP_Debug("[ApplySpellEffectToObject] Error: Non-Temporary duration but fDuration is: " + FloatToString(fDuration), LOG_LEVEL_ERROR);
+        Debug("[ApplySpellEffectToObject] Error: Non-Temporary duration but fDuration is: " + FloatToString(fDuration), ERROR);
 
     ApplyEffectAtLocation(nDurationType, EffectChangeProperties(eEffect, nSpellId, nCasterLevel, oCaster), lTarget, fDuration);
 }
@@ -1832,9 +1828,17 @@ void ApplyBeamToObject(int nBeam, object oTarget, int bMissEffect = FALSE, int n
 {
     if (nBeam == VFX_NONE) return;
     // Validate nBeam value can be a beam
-    if (Get2DAString("visualeffects", "Type_FD", nBeam) != "B") { OP_Debug("[ApplyBeamToObject] VFX is not Beam type: " + IntToString(nBeam), LOG_LEVEL_ERROR); return; }
+    if (Get2DAString("visualeffects", "Type_FD", nBeam) != "B")
+    {
+        Debug("[ApplyBeamToObject] VFX is not Beam type: " + IntToString(nBeam), ERROR);
+        return;
+    }
     // Technically nBodyPart can be invalid (and thus default to ground/root of the target) but we'll try and keep it sane enough for now
-    if (nBodyPart < 0 || nBodyPart > 11) { OP_Debug("[ApplyBeamToObject] Target nBodyPart is invalid: " + IntToString(nBodyPart), LOG_LEVEL_ERROR); return; }
+    if (nBodyPart < 0 || nBodyPart > 11)
+    {
+        Debug("[ApplyBeamToObject] Target nBodyPart is invalid: " + IntToString(nBodyPart), ERROR);
+        return;
+    }
 
     // Get duration from spells.2da
     if (fDuration == 0.0)
@@ -1848,7 +1852,7 @@ void ApplyBeamToObject(int nBeam, object oTarget, int bMissEffect = FALSE, int n
         }
         else
         {
-            OP_Debug("[ApplyBeamToObject] Cannot find valid CastTime for the duration for nSpellId: " + IntToString(nSpellId), LOG_LEVEL_ERROR);
+            Debug("[ApplyBeamToObject] Cannot find valid CastTime for the duration for nSpellId: " + IntToString(nSpellId), ERROR);
             return;
         }
     }
@@ -1866,13 +1870,17 @@ void ApplyBeamToObject(int nBeam, object oTarget, int bMissEffect = FALSE, int n
 // - bMissEffect - VFX hits or not
 // - fDuration - If 0.0 it applies it instantly, or applies it for a given duration.
 // Usual scale and translate values as well.
-void ApplyVisualEffectToObject(int nVFX, object oTarget, int bMissEffect = FALSE, float fDuration = 0.0, float fScale=1.0f, vector vTranslate=[0.0,0.0,0.0], vector vRotate=[0.0,0.0,0.0])
+void ApplyVisualEffectToObject(int nVFX, object oTarget, int bMissEffect = FALSE, float fDuration = 0.0, float fScale = 1.0f, vector vTranslate = [ 0.0, 0.0, 0.0 ], vector vRotate = [ 0.0, 0.0, 0.0 ])
 {
     if (nVFX == VFX_NONE) return;
 
     // Validate VFX
     string sType = Get2DAString("visualeffects", "Type_FD", nVFX);
-    if (sType == "" || sType == "B") { OP_Debug("[ApplyVisualEffectToObject] VFX invalid or a Beam type: " + IntToString(nVFX), LOG_LEVEL_ERROR); return; }
+    if (sType == "" || sType == "B")
+    {
+        Debug("[ApplyVisualEffectToObject] VFX invalid or a Beam type: " + IntToString(nVFX), ERROR);
+        return;
+    }
 
     effect eVFX = EffectVisualEffect(nVFX, bMissEffect, fScale, vTranslate, vRotate);
 
@@ -1892,13 +1900,17 @@ void ApplyVisualEffectToObject(int nVFX, object oTarget, int bMissEffect = FALSE
 // - lTarget - Target of the VFX
 // - bMissEffect - VFX hits or not
 // Usual scale and translate values as well.
-void ApplyVisualEffectAtLocation(int nVFX, location lTarget, int bMissEffect = FALSE, float fScale=1.0f, vector vTranslate=[0.0,0.0,0.0], vector vRotate=[0.0,0.0,0.0])
+void ApplyVisualEffectAtLocation(int nVFX, location lTarget, int bMissEffect = FALSE, float fScale = 1.0f, vector vTranslate = [ 0.0, 0.0, 0.0 ], vector vRotate = [ 0.0, 0.0, 0.0 ])
 {
     if (nVFX == VFX_NONE) return;
 
     // Validate VFX
     string sType = Get2DAString("visualeffects", "Type_FD", nVFX);
-    if (sType == "" || sType == "D" || sType == "B") { OP_Debug("[ApplyVisualEffectToObject] VFX invalid or a Beam/Duration type: " + IntToString(nVFX), LOG_LEVEL_ERROR); return; }
+    if (sType == "" || sType == "D" || sType == "B")
+    {
+        Debug("[ApplyVisualEffectToObject] VFX invalid or a Beam/Duration type: " + IntToString(nVFX), ERROR);
+        return;
+    }
 
     effect eVFX = EffectVisualEffect(nVFX, bMissEffect, fScale, vTranslate, vRotate);
 
@@ -1907,7 +1919,7 @@ void ApplyVisualEffectAtLocation(int nVFX, location lTarget, int bMissEffect = F
 }
 
 // Applies damage of the given type. This helps wrapper delayed damage so we can keep at 1 HP if necessary (Harm/Heal).
-void ApplyDamageToObject(object oTarget, int nDamage, int nDamageType=DAMAGE_TYPE_MAGICAL, int nDamagePower=DAMAGE_POWER_NORMAL, int bKeepAt1HP = FALSE)
+void ApplyDamageToObject(object oTarget, int nDamage, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL, int bKeepAt1HP = FALSE)
 {
     if (bKeepAt1HP)
     {
@@ -1924,7 +1936,7 @@ void ApplyDamageToObject(object oTarget, int nDamage, int nDamageType=DAMAGE_TYP
 
 // Applies damage of the given type. This helps wrapper delayed damage so we can keep at 1 HP if necessary (Harm/Heal).
 // * Also applies nVFX (no miss effect or anything special).
-void ApplyDamageWithVFXToObject(object oTarget, int nVFX, int nDamage, int nDamageType=DAMAGE_TYPE_MAGICAL, int nDamagePower=DAMAGE_POWER_NORMAL, int bKeepAt1HP = FALSE)
+void ApplyDamageWithVFXToObject(object oTarget, int nVFX, int nDamage, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL, int bKeepAt1HP = FALSE)
 {
     ApplyVisualEffectToObject(nVFX, oTarget);
 
@@ -1941,8 +1953,7 @@ void ApplyDamageWithVFXToObject(object oTarget, int nVFX, int nDamage, int nDama
     }
 }
 
-
-// Applies eEffect (should be a single, raw effect) to oTarget, if it hasn't got it from this spell ID AOE already
+// Applies eEffect to oTarget, if it hasn't got it from this spell ID AOE already
 // If bApplyRunScript is set, it also attaches the RunScript to remove it later (if no more AOEs are affecting them).
 // NOTE: Not necessarily perfect; eg if failing a save applies a movement speed effect in a given AOE, moving out of that one
 // into the same AOE but one you've passed will retain the movement speed decrease. It will do for now though.
@@ -1950,69 +1961,71 @@ void ApplyDamageWithVFXToObject(object oTarget, int nVFX, int nDamage, int nDama
 //   if the AOE or creator of the AOE exists still
 // - Attaches a negative cessate VFX
 // The above and the eEffect:
-// - Tags it with the OBJECT_SELF's OID
+// - Tags it with the OBJECT_SELF's OID if RunScript or AOEEFFECT if not
 // - Makes it extraordinary
 // - Applies it permanently
-// Apply these effects only once (ie OnEnter). Don't tag an effect like this, and it'll be left alone (eg temporary stuns/entangles).
+// Apply these effects only once (ie OnEnter). Don't tag an effect as AOEEFFECT, and it'll be left alone (eg temporary stuns/entangles).
 void ApplyAOEPersistentEffect(object oTarget, effect eEffect, int bApplyRunScript = TRUE)
 {
-    if (GetEffectType(eEffect) == EFFECT_TYPE_INVALIDEFFECT)
-    {
-        // Link?
-        OP_Debug("[ApplyAOEPersistentEffect] eEFfect is invalid type. Link or other passed in? should be raw effect", LOG_LEVEL_ERROR);
-        return;
-    }
-
     if (bApplyRunScript)
     {
         // Apply run script which when removed (or AOE dies) it clears all tagged AOE effects if no
         // other run scripts from the same spell Id exist
-        effect eLink = EffectLinkEffects(EffectRunScriptEnhanced(FALSE, "", "op_rs_aoecleanup", 6.0),
+        effect eLink = EffectLinkEffects(EffectRunScriptEnhanced(FALSE, "op_rs_aoecleanup", "op_rs_aoecleanup", 6.0),
                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
-        eLink = TagEffect(eLink, ObjectToString(OBJECT_SELF));
-        eLink = ExtraordinaryEffect(eLink);
+        eLink        = ExtraordinaryEffect(eLink);
+        eLink        = TagEffect(eLink, ObjectToString(OBJECT_SELF));
         ApplySpellEffectToObject(DURATION_TYPE_PERMANENT, eLink, oTarget);
     }
 
-    string sTag = ObjectToString(OBJECT_SELF);
-    int nType = GetEffectType(eEffect);
-    effect eCheck = GetFirstEffect(OBJECT_SELF);
+    string sTag   = ObjectToString(OBJECT_SELF);
+    effect eCheck = GetFirstEffect(oTarget);
     while (GetIsEffectValid(eCheck))
     {
-        if (GetEffectType(eCheck) == nType &&
-            GetEffectSpellId(eCheck) == nSpellId)
+        if (GetEffectSpellId(eCheck) == nSpellId &&
+            GetEffectTag(eCheck) == "AOEEFFECT")
         {
             // If we have any effects already don't apply
             return;
         }
-        eCheck = GetNextEffect(OBJECT_SELF);
+        eCheck = GetNextEffect(oTarget);
     }
-    eEffect = TagEffect(eEffect, ObjectToString(OBJECT_SELF));
     eEffect = ExtraordinaryEffect(eEffect);
+    eEffect = TagEffect(eEffect, "AOEEFFECT");
     ApplySpellEffectToObject(DURATION_TYPE_PERMANENT, eEffect, oTarget);
 }
 
 // Removes persistent RunScripts from oTarget that are applies to oTarget tagged with OBJECT_SELF's OID (ie the AOE's).
-// Call in an AOE's OnExit event.
+// Call in an AOE's OnExit event or op_r_aoecleanup.
 void RemovePersistentAOEEffects(object oTarget)
 {
+    string sTag;
     // Carefully clear effects if last RunScript using this spell Id.
-    string sTag = ObjectToString(OBJECT_SELF);
-    RemoveEffectsFromSpell(oTarget, nSpellId, EFFECT_TYPE_RUNSCRIPT);
+    if (GetObjectType(OBJECT_SELF) == OBJECT_TYPE_AREA_OF_EFFECT)
+    {
+        sTag = ObjectToString(OBJECT_SELF);
+        RemoveEffectsFromSpell(oTarget, nSpellId, EFFECT_TYPE_RUNSCRIPT);
+    }
+    else
+    {
+        // Assume RunScript
+        sTag = GetEffectTag(GetLastRunScriptEffect());
+    }
 
-    effect eCheck = GetFirstEffect(OBJECT_SELF);
+    effect eCheck = GetFirstEffect(oTarget);
     while (GetIsEffectValid(eCheck))
     {
         if (GetEffectType(eCheck) == EFFECT_TYPE_RUNSCRIPT &&
+            GetEffectSpellId(eCheck) == nSpellId &&
             GetEffectTag(eCheck) != sTag)
         {
-            // Don't remove any effects other RunScript from the same spell exist still
+            // Don't remove any effects if other RunScript from the same spell exist still
             return;
         }
-        eCheck = GetNextEffect(OBJECT_SELF);
+        eCheck = GetNextEffect(oTarget);
     }
-    // Get to this point remove all effects of nSpellId
-    RemoveEffectsFromSpell(OBJECT_SELF, nSpellId, EFFECT_TYPE_ALL, sTag);
+    // Get to this point remove all AOEEFFECT effects of nSpellId
+    RemoveEffectsFromSpell(oTarget, nSpellId, EFFECT_TYPE_ALL, "AOEEFFECT");
 }
 
 // Returns TRUE if we are OK running our AOE scripts (or the EffectRunScript created by an AOE).
@@ -2027,12 +2040,13 @@ int AOECheck()
     {
         effect eRunScript = GetLastRunScriptEffect();
         if (GetEffectType(eRunScript) != EFFECT_TYPE_RUNSCRIPT)
-            OP_Debug("[AOECheck] Run Script Effect has invalid type.", LOG_LEVEL_ERROR);
+            Debug("[AOECheck] Run Script Effect has invalid type.", ERROR);
 
         if (!GetIsObjectValid(GetEffectCreator(eRunScript)) ||
             !GetIsObjectValid(StringToObject(GetEffectTag(eRunScript))))
         {
             // Remove any RunScript effects which are there to track AOE overlaps etc.
+            // This also clears the effects if no other AOEs exist
             RemoveEffectsFromSpell(OBJECT_SELF, GetEffectSpellId(eRunScript), EFFECT_TYPE_RUNSCRIPT, GetEffectTag(eRunScript));
             return FALSE;
         }
@@ -2052,7 +2066,7 @@ int AOECheck()
         }
         else
         {
-            OP_Debug("[AOECheck] Called outside of run script or AOE event?", LOG_LEVEL_ERROR);
+            Debug("[AOECheck] Called outside of run script or AOE event?", ERROR);
         }
     }
     return TRUE;
@@ -2089,7 +2103,7 @@ float GetVFXScale(object oCreature)
                    2.0;
     float fFinal = fmin(fScale, fMax);
 
-    OP_Debug("[GetVFXScale] fScale: " + FloatToString(fScale, 10, 4) + " fMax: " + FloatToString(fMax, 10, 4) + " fFinal: " + FloatToString(fFinal, 10, 4));
+    Debug("[GetVFXScale] fScale: " + FloatToString(fScale, 10, 4) + " fMax: " + FloatToString(fMax, 10, 4) + " fFinal: " + FloatToString(fFinal, 10, 4));
 
     return fFinal;
 }
@@ -2174,7 +2188,7 @@ int GetSpellIsAreaOfEffect(int nSpellId)
     {
         if (Get2DAString("spells", "TargetSizeX", nSpellId) == "" && Get2DAString("spells", "TargetSizeX", nSpellId) == "")
         {
-            OP_Debug("[GetSpellIsAreaOfEffect] Spell " + GetSpellName(nSpellId) + " is set with a TargetShape but no valid X or Y size.", LOG_LEVEL_ERROR);
+            Debug("[GetSpellIsAreaOfEffect] Spell " + GetSpellName(nSpellId) + " is set with a TargetShape but no valid X or Y size.", ERROR);
             return FALSE;
         }
 
@@ -2307,7 +2321,7 @@ int GetIsIncorporeal(object oCreature)
         case APPEARANCE_TYPE_LANTERN_ARCHON:
         case APPEARANCE_TYPE_WILL_O_WISP:
             return TRUE;
-        break;
+            break;
     }
     return FALSE;
 }
@@ -2322,7 +2336,7 @@ int GetIsMetalCreature(object oCreature)
         case APPEARANCE_TYPE_GOLEM_MITHRAL:
         case APPEARANCE_TYPE_HELMED_HORROR:
             return TRUE;
-        break;
+            break;
     }
 
     return FALSE;
@@ -2344,7 +2358,7 @@ int GetIsHumanoidCreature(object oCreature)
         case RACIAL_TYPE_HUMANOID_ORC:
         case RACIAL_TYPE_HUMANOID_REPTILIAN:
             return TRUE;
-        break;
+            break;
     }
     return FALSE;
 }
@@ -2352,7 +2366,7 @@ int GetIsHumanoidCreature(object oCreature)
 // Returns TRUE if the given creature is humanoid (base races plus goblins etc.)
 int GetIsMindless(object oCreature)
 {
-    switch(GetRacialType(oCreature))
+    switch (GetRacialType(oCreature))
     {
         case RACIAL_TYPE_ELEMENTAL:
         case RACIAL_TYPE_UNDEAD:
@@ -2367,7 +2381,7 @@ int GetIsMindless(object oCreature)
 // Returns TRUE if the given creature is flying / floating
 int GetIsFlying(object oCreature)
 {
-    switch(GetAppearanceType(oCreature))
+    switch (GetAppearanceType(oCreature))
     {
         case APPEARANCE_TYPE_ALLIP:
         case APPEARANCE_TYPE_BAT:
@@ -2416,11 +2430,10 @@ int GetIsFlying(object oCreature)
         case APPEARANCE_TYPE_HARPY:
         case APPEARANCE_TYPE_DEMI_LICH:
             return TRUE;
-        break;
+            break;
     }
     return FALSE;
 }
-
 
 // Gets if either domain matches the given domain on the given class
 int GetClassHasDomain(object oCreature, int nClass, int nDomain)
@@ -2482,13 +2495,13 @@ int GetHasEffectOrItemProperty(object oCreature, int nEffectType, int nItemPrope
 // * nEffectType - If set the effect type must match
 int RemoveEffectsFromSpell(object oObject, int nSpellId, int nEffectType = EFFECT_TYPE_ALL, string sTag = "")
 {
-    int bRemoved = FALSE;
+    int bRemoved  = FALSE;
     effect eCheck = GetFirstEffect(oObject);
     while (GetIsEffectValid(eCheck))
     {
-        if ( (nSpellId == SPELL_ANY || GetEffectSpellId(eCheck) == nSpellId) &&
-             (nEffectType == EFFECT_TYPE_ALL || GetEffectType(eCheck, TRUE) == nEffectType) &&
-             (sTag == "" || GetEffectTag(eCheck) == sTag) )
+        if ((nSpellId == SPELL_ANY || GetEffectSpellId(eCheck) == nSpellId) &&
+            (nEffectType == EFFECT_TYPE_ALL || GetEffectType(eCheck, TRUE) == nEffectType) &&
+            (sTag == "" || GetEffectTag(eCheck) == sTag))
         {
             RemoveEffect(oObject, eCheck);
             bRemoved = TRUE;
@@ -2599,7 +2612,7 @@ void CureEffects(object oTarget, json jArray, int bSupernaturalRemoval = FALSE)
 // Removes effects matching the given tag. Returns TRUE if one was removed.
 int RemoveEffectsMatchingTag(object oObject, string sTag)
 {
-    int bRemoved = FALSE;
+    int bRemoved  = FALSE;
     effect eCheck = GetFirstEffect(oObject);
     while (GetIsEffectValid(eCheck))
     {
@@ -2614,7 +2627,7 @@ int RemoveEffectsMatchingTag(object oObject, string sTag)
 }
 
 const string FIELD_OBJECTID = "objectid";
-const string FIELD_METRIC = "metric";
+const string FIELD_METRIC   = "metric";
 
 // Loops through relevant shape to get all the targets in it. It then sorts them using nSortMethod.
 // * nTargetType - The SPELL_TARGET_* type to check versus oCaster
@@ -2625,7 +2638,7 @@ const string FIELD_METRIC = "metric";
 //                 SORT_METHOD_DISTANCE  - Sorts so the first object is the lowest distance to AOE target location
 //                 SORT_METHOD_DISTANCE_TO_CASTER - Sorts so first object is lowest distance to caster
 // The other variables can be set, but if not then the current Spell Id will sort the shape and size.
-json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, int nObjectFilter=OBJECT_TYPE_CREATURE, int nShape = -1, float fSize = -1.0, location lArrayTarget=LOCATION_INVALID, int bLineOfSight=TRUE, vector vOrigin=[0.0,0.0,0.0])
+json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, int nObjectFilter = OBJECT_TYPE_CREATURE, int nShape = -1, float fSize = -1.0, location lArrayTarget = LOCATION_INVALID, int bLineOfSight = TRUE, vector vOrigin = [ 0.0, 0.0, 0.0 ])
 {
     float fSafeArea = -1.0;
     // Get some values if not set
@@ -2634,9 +2647,9 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, 
     if (nShape == SHAPE_HSPHERE)
     {
         // Special case...
-        fSafeArea = GetSpellShapeSize(nSpellId);    // X
-        fSize = GetSpellShapeSize(nSpellId, FALSE); // Y
-        nShape = SHAPE_SPHERE;
+        fSafeArea = GetSpellShapeSize(nSpellId);         // X
+        fSize     = GetSpellShapeSize(nSpellId, FALSE);  // Y
+        nShape    = SHAPE_SPHERE;
     }
 
     if (fSize == -1.0) fSize = GetSpellShapeSize(nSpellId);
@@ -2652,12 +2665,36 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, 
     json jArray = JsonArray();
 
     // Error checking - we log these might be mistakes in spell scripts
-    if (nTargetType < 0 || nTargetType > 3) { OP_Debug("[GetArrayOfTargets] nTargetType invalid: " + IntToString(nTargetType), LOG_LEVEL_ERROR); return jArray; }
-    if (nSortMethod < 0 || nSortMethod > 4) { OP_Debug("[GetArrayOfTargets] nSortMethod invalid: " + IntToString(nSortMethod), LOG_LEVEL_ERROR); return jArray; }
-    if (nShape < 0 || nShape > 4) { OP_Debug("[GetArrayOfTargets] nShape invalid: " + IntToString(nShape), LOG_LEVEL_ERROR); return jArray; }
-    if (fSize <= 0.0 || fSize >= 50.0) { OP_Debug("[GetArrayOfTargets] fSize invalid: " + FloatToString(fSize), LOG_LEVEL_ERROR); return jArray; }
-    if (!GetIsObjectValid(GetAreaFromLocation(lTarget))) { OP_Debug("[GetArrayOfTargets] lTarget invalid. Area OID: " + ObjectToString(GetAreaFromLocation(lTarget)), LOG_LEVEL_ERROR); return jArray; }
-    if (nObjectFilter < 0 || nObjectFilter > 32767) { OP_Debug("[GetArrayOfTargets] nObjectFilter invalid: " + IntToString(nObjectFilter), LOG_LEVEL_ERROR); return jArray; }
+    if (nTargetType < 0 || nTargetType > 3)
+    {
+        Debug("[GetArrayOfTargets] nTargetType invalid: " + IntToString(nTargetType), ERROR);
+        return jArray;
+    }
+    if (nSortMethod < 0 || nSortMethod > 4)
+    {
+        Debug("[GetArrayOfTargets] nSortMethod invalid: " + IntToString(nSortMethod), ERROR);
+        return jArray;
+    }
+    if (nShape < 0 || nShape > 4)
+    {
+        Debug("[GetArrayOfTargets] nShape invalid: " + IntToString(nShape), ERROR);
+        return jArray;
+    }
+    if (fSize <= 0.0 || fSize >= 50.0)
+    {
+        Debug("[GetArrayOfTargets] fSize invalid: " + FloatToString(fSize), ERROR);
+        return jArray;
+    }
+    if (!GetIsObjectValid(GetAreaFromLocation(lTarget)))
+    {
+        Debug("[GetArrayOfTargets] lTarget invalid. Area OID: " + ObjectToString(GetAreaFromLocation(lTarget)), ERROR);
+        return jArray;
+    }
+    if (nObjectFilter < 0 || nObjectFilter > 32767)
+    {
+        Debug("[GetArrayOfTargets] nObjectFilter invalid: " + IntToString(nObjectFilter), ERROR);
+        return jArray;
+    }
 
     // We can accidentially due to maths(TM) target ourselves in the case of cones and cylinders which start on us, so let's not do that.
     int bTargetSelf = TRUE;
@@ -2692,10 +2729,10 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, 
                 // Metric depends on what we are sorting
                 switch (nSortMethod)
                 {
-                    //SORT_METHOD_NONE - No need to store anything extra
+                    // SORT_METHOD_NONE - No need to store anything extra
                     case SORT_METHOD_LOWEST_HP: jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonInt(GetCurrentHitPoints(oObject))); break;
                     case SORT_METHOD_LOWEST_HD: jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonInt(GetHitDice(oObject))); break;
-                    case SORT_METHOD_DISTANCE:  jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonFloat(GetDistanceBetweenLocations(lTarget, GetLocation(oObject)))); break;
+                    case SORT_METHOD_DISTANCE: jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonFloat(GetDistanceBetweenLocations(lTarget, GetLocation(oObject)))); break;
                     case SORT_METHOD_DISTANCE_TO_CASTER: jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonFloat(GetDistanceBetween(oCaster, oObject))); break;
                 }
 
@@ -2730,15 +2767,31 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, 
 //                 SORT_METHOD_DISTANCE  - Sorts so the first object is the lowest distance to AOE target location
 //                 SORT_METHOD_DISTANCE_TO_CASTER - Sorts so first object is lowest distance to caster
 // * bTargetSelf - If FALSE we won't ever get ourself into the array
-json GetArrayOfAOETargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, int nObjectFilter=OBJECT_TYPE_CREATURE, int bTargetSelf=TRUE)
+json GetArrayOfAOETargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, int nObjectFilter = OBJECT_TYPE_CREATURE, int bTargetSelf = TRUE)
 {
     json jArray = JsonArray();
 
     // Error checking - we log these might be mistakes in spell scripts
-    if (nTargetType < 0 || nTargetType > 3) { OP_Debug("[GetArrayOfAOETargets] nTargetType invalid: " + IntToString(nTargetType), LOG_LEVEL_ERROR); return jArray; }
-    if (nSortMethod < 0 || nSortMethod > 4) { OP_Debug("[GetArrayOfAOETargets] nSortMethod invalid: " + IntToString(nSortMethod), LOG_LEVEL_ERROR); return jArray; }
-    if (nObjectFilter < 0 || nObjectFilter > 32767) { OP_Debug("[GetArrayOfAOETargets] nObjectFilter invalid: " + IntToString(nObjectFilter), LOG_LEVEL_ERROR); return jArray; }
-    if (bTargetSelf != FALSE && bTargetSelf != TRUE) { OP_Debug("[GetArrayOfAOETargets] bTargetSelf invalid: " + IntToString(bTargetSelf), LOG_LEVEL_ERROR); return jArray; }
+    if (nTargetType < 0 || nTargetType > 3)
+    {
+        Debug("[GetArrayOfAOETargets] nTargetType invalid: " + IntToString(nTargetType), ERROR);
+        return jArray;
+    }
+    if (nSortMethod < 0 || nSortMethod > 4)
+    {
+        Debug("[GetArrayOfAOETargets] nSortMethod invalid: " + IntToString(nSortMethod), ERROR);
+        return jArray;
+    }
+    if (nObjectFilter < 0 || nObjectFilter > 32767)
+    {
+        Debug("[GetArrayOfAOETargets] nObjectFilter invalid: " + IntToString(nObjectFilter), ERROR);
+        return jArray;
+    }
+    if (bTargetSelf != FALSE && bTargetSelf != TRUE)
+    {
+        Debug("[GetArrayOfAOETargets] bTargetSelf invalid: " + IntToString(bTargetSelf), ERROR);
+        return jArray;
+    }
 
     // For an AOE we just do GetFirst/NextInPersistentShape on OBJECT_SELF.
     object oObject = GetFirstInPersistentObject(OBJECT_SELF);
@@ -2751,10 +2804,10 @@ json GetArrayOfAOETargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANC
             // Metric depends on what we are sorting
             switch (nSortMethod)
             {
-                //SORT_METHOD_NONE - No need to store anything extra
+                // SORT_METHOD_NONE - No need to store anything extra
                 case SORT_METHOD_LOWEST_HP: jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonInt(GetCurrentHitPoints(oObject))); break;
                 case SORT_METHOD_LOWEST_HD: jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonInt(GetHitDice(oObject))); break;
-                case SORT_METHOD_DISTANCE:  jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonFloat(GetDistanceBetweenLocations(lTarget, GetLocation(oObject)))); break;
+                case SORT_METHOD_DISTANCE: jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonFloat(GetDistanceBetweenLocations(lTarget, GetLocation(oObject)))); break;
                 case SORT_METHOD_DISTANCE_TO_CASTER: jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonFloat(GetDistanceBetween(oCaster, oObject))); break;
             }
 
@@ -2796,7 +2849,7 @@ object GetArrayObject(json jArray, int nIndex)
         }
         else
         {
-            OP_Debug("[ERROR] Spell script: " + GetScriptName() + " has target OID is invalid in sorted array loop " + sOID, LOG_LEVEL_ERROR);
+            Debug("[ERROR] Spell script: " + GetScriptName() + " has target OID is invalid in sorted array loop " + sOID, ERROR);
         }
     }
     return OBJECT_INVALID;
@@ -2811,21 +2864,21 @@ effect EffectRunScriptEnhanced(int bAutomatic = TRUE, string sRemovedScript = ""
     if (bAutomatic)
     {
         sInteveralScript = GetScriptName();
-        sRemovedScript = GetScriptName();
-        fInterval = 6.0;
+        sRemovedScript   = GetScriptName();
+        fInterval        = 6.0;
     }
 
     // These are a bit redundant now but just in case we input bad script names...
     if (GetStringLength(sInteveralScript) > 16 ||
         GetStringLength(sRemovedScript) > 16)
     {
-        OP_Debug("[EffectRunScriptEnhanced] Script name too long: " + sInteveralScript, LOG_LEVEL_ERROR);
+        Debug("[EffectRunScriptEnhanced] Script name too long: " + sInteveralScript, ERROR);
         return EffectInvalidEffect();
     }
     if (ResManGetAliasFor(sRemovedScript, RESTYPE_NSS) == "" &&
         ResManGetAliasFor(sInteveralScript, RESTYPE_NSS) == "")
     {
-        OP_Debug("[EffectRunScriptEnhanced] Script not found: " + sInteveralScript, LOG_LEVEL_ERROR);
+        Debug("[EffectRunScriptEnhanced] Script not found: " + sInteveralScript, ERROR);
         return EffectInvalidEffect();
     }
 
@@ -2836,9 +2889,9 @@ effect EffectRunScriptEnhanced(int bAutomatic = TRUE, string sRemovedScript = ""
     json jObject = JsonObject();
 
     jObject = JsonObjectSet(jObject, JSON_FIELD_OVERHAUL, JsonInt(OVERHAUL_VERSION));
-    //jObject = JsonObjectSet(jObject, JSON_FIELD_SPELLID, JsonInt(nSpellId));
-    //jObject = JsonObjectSet(jObject, JSON_FIELD_CREATOR, JsonString(ObjectToString(oCaster)));
-    //jObject = JsonObjectSet(jObject, JSON_FIELD_CASTERLEVEL, JsonInt(nCasterLevel));
+    // jObject = JsonObjectSet(jObject, JSON_FIELD_SPELLID, JsonInt(nSpellId));
+    // jObject = JsonObjectSet(jObject, JSON_FIELD_CREATOR, JsonString(ObjectToString(oCaster)));
+    // jObject = JsonObjectSet(jObject, JSON_FIELD_CASTERLEVEL, JsonInt(nCasterLevel));
     jObject = JsonObjectSet(jObject, JSON_FIELD_SPELLSAVEDC, JsonInt(nSpellSaveDC));
     jObject = JsonObjectSet(jObject, JSON_FIELD_METAMAGIC, JsonInt(nMetaMagic));
     jObject = JsonObjectSet(jObject, JSON_FIELD_CASTERCLASS, JsonInt(nCasterClass));
@@ -2862,9 +2915,9 @@ effect EffectTagWithMetadata(effect eEffect)
     json jObject = JsonObject();
 
     jObject = JsonObjectSet(jObject, JSON_FIELD_OVERHAUL, JsonInt(OVERHAUL_VERSION));
-    //jObject = JsonObjectSet(jObject, JSON_FIELD_SPELLID, JsonInt(nSpellId));
-    //jObject = JsonObjectSet(jObject, JSON_FIELD_CREATOR, JsonString(ObjectToString(oCaster)));
-    //jObject = JsonObjectSet(jObject, JSON_FIELD_CASTERLEVEL, JsonInt(nCasterLevel));
+    // jObject = JsonObjectSet(jObject, JSON_FIELD_SPELLID, JsonInt(nSpellId));
+    // jObject = JsonObjectSet(jObject, JSON_FIELD_CREATOR, JsonString(ObjectToString(oCaster)));
+    // jObject = JsonObjectSet(jObject, JSON_FIELD_CASTERLEVEL, JsonInt(nCasterLevel));
     jObject = JsonObjectSet(jObject, JSON_FIELD_SPELLSAVEDC, JsonInt(nSpellSaveDC));
     jObject = JsonObjectSet(jObject, JSON_FIELD_METAMAGIC, JsonInt(nMetaMagic));
     jObject = JsonObjectSet(jObject, JSON_FIELD_CASTERCLASS, JsonInt(nCasterClass));
@@ -2921,7 +2974,7 @@ effect EffectTrackItemProperties(json jOIDs, int nSpellIdToTrack = SPELL_INVALID
 
     if (sTag == "")
     {
-        OP_Debug("[EffectTrackItemProperties] No OIDs set so can't remove item properties later.", LOG_LEVEL_ERROR);
+        Debug("[EffectTrackItemProperties] No OIDs set so can't remove item properties later.", ERROR);
         return EffectInvalidEffect();
     }
 
@@ -2957,7 +3010,7 @@ effect EffectInvalidEffect()
 effect GetScaledEffect(effect eEffect, object oTarget)
 {
     object oMaster = GetMaster(oTarget);
-    if(GetIsPC(oTarget) || (GetIsObjectValid(oMaster) && GetIsPC(oMaster)))
+    if (GetIsPC(oTarget) || (GetIsObjectValid(oMaster) && GetIsPC(oMaster)))
     {
         int nDiff = GetGameDifficulty();
         switch (GetEffectType(eEffect))
@@ -2993,7 +3046,7 @@ effect GetScaledEffect(effect eEffect, object oTarget)
 float GetScaledDuration(object oTarget, int nDuration, int nDurationType)
 {
     float fDuration = GetDuration(nDuration, nDurationType);
-    float fReturn = fDuration;
+    float fReturn   = fDuration;
     if (GetIsPC(oTarget))
     {
         int nDiff = GetGameDifficulty();
@@ -3035,7 +3088,7 @@ int GetSpellShape(int nSpellId)
             // Yes we have SHAPE_CONE but it needs investigating and we should
             // use this
             return SHAPE_SPELLCONE;
-        break;
+            break;
     }
     return -1;
 }
@@ -3067,7 +3120,7 @@ int GetIsTargetInAOEAtLocation(int nAOE, int nTargetType = SPELL_TARGET_SELECTIV
 
     if (fRadius == 0.0)
     {
-        OP_Debug("[GetTargetInAOEAtLocation] AOE ref: " + IntToString(nAOE) + " has no radius set and this function only supports spheres right now.", LOG_LEVEL_ERROR);
+        Debug("[GetTargetInAOEAtLocation] AOE ref: " + IntToString(nAOE) + " has no radius set and this function only supports spheres right now.", ERROR);
         return FALSE;
     }
     // Simplest way that also adheres to LOS checks
@@ -3081,7 +3134,7 @@ int GetIsTargetInAOEAtLocation(int nAOE, int nTargetType = SPELL_TARGET_SELECTIV
 
 // Create a rising or falling pillar with a certain visual effect. Looks cool
 // but quite expensive on the graphics engine, so don't get too mad with it
-void TLVFXPillar(int nVFX, location lStart, int nIterations=3, float fDelay=0.1f, float fZOffset= 6.0f, float fStepSize = -2.0f)
+void TLVFXPillar(int nVFX, location lStart, int nIterations = 3, float fDelay = 0.1f, float fZOffset = 6.0f, float fStepSize = -2.0f)
 {
     vector vLoc = GetPositionFromLocation(lStart);
     vector vNew = vLoc;
@@ -3089,19 +3142,19 @@ void TLVFXPillar(int nVFX, location lStart, int nIterations=3, float fDelay=0.1f
     location lNew;
     int nCount;
 
-    for (nCount=0; nCount < nIterations ; nCount ++)
+    for (nCount = 0; nCount < nIterations; nCount++)
     {
-        lNew = Location(GetAreaFromLocation(lStart),vNew,0.0f);
+        lNew = Location(GetAreaFromLocation(lStart), vNew, 0.0f);
         if (fDelay > 0.0f)
         {
-            DelayCommand(fDelay*nCount, ApplyEffectAtLocation(DURATION_TYPE_INSTANT,EffectVisualEffect(nVFX),lNew));
+            DelayCommand(fDelay * nCount, ApplyEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(nVFX), lNew));
         }
         else
         {
-            ApplyEffectAtLocation(DURATION_TYPE_INSTANT,EffectVisualEffect(nVFX),lNew);
+            ApplyEffectAtLocation(DURATION_TYPE_INSTANT, EffectVisualEffect(nVFX), lNew);
         }
         vNew.z += fStepSize;
-     }
+    }
 }
 
 // Gets the generated AOE ground object matching the tag of nAOE. We simply cycle all
@@ -3111,15 +3164,15 @@ object GetGeneratedAOE(int nAOE)
 {
     string sTag = Get2DAString("vfx_persistent", "LABEL", nAOE);
 
-    if (sTag == "") OP_Debug("[GetGeneratedAOE] nAOE has no Label: " + IntToString(nAOE), LOG_LEVEL_ERROR);
+    if (sTag == "") Debug("[GetGeneratedAOE] nAOE has no Label: " + IntToString(nAOE), ERROR);
 
-    int nNth = 0;
+    int nNth       = 0;
     object oTagged = GetObjectByTag(sTag, nNth);
     while (GetIsObjectValid(oTagged))
     {
         if (GetObjectType(oTagged) == OBJECT_TYPE_AREA_OF_EFFECT &&
             GetAreaOfEffectCreator(oTagged) == oCaster &&
-           !GetLocalInt(oTagged, "RETURNED_BY_GetGeneratedAOE"))
+            !GetLocalInt(oTagged, "RETURNED_BY_GetGeneratedAOE"))
         {
             SetLocalInt(oTagged, "RETURNED_BY_GetGeneratedAOE", TRUE);
             return oTagged;
@@ -3143,15 +3196,15 @@ int GetDamagePowerPlusValue(int nPower)
 {
     switch (nPower)
     {
-        case 1:  return DAMAGE_POWER_PLUS_ONE; break;
-        case 2:  return DAMAGE_POWER_PLUS_TWO; break;
-        case 3:  return DAMAGE_POWER_PLUS_THREE; break;
-        case 4:  return DAMAGE_POWER_PLUS_FOUR; break;
-        case 5:  return DAMAGE_POWER_PLUS_FIVE; break;
-        case 6:  return DAMAGE_POWER_PLUS_SIX; break;
-        case 7:  return DAMAGE_POWER_PLUS_SEVEN; break;
-        case 8:  return DAMAGE_POWER_PLUS_EIGHT; break;
-        case 9:  return DAMAGE_POWER_PLUS_NINE; break;
+        case 1: return DAMAGE_POWER_PLUS_ONE; break;
+        case 2: return DAMAGE_POWER_PLUS_TWO; break;
+        case 3: return DAMAGE_POWER_PLUS_THREE; break;
+        case 4: return DAMAGE_POWER_PLUS_FOUR; break;
+        case 5: return DAMAGE_POWER_PLUS_FIVE; break;
+        case 6: return DAMAGE_POWER_PLUS_SIX; break;
+        case 7: return DAMAGE_POWER_PLUS_SEVEN; break;
+        case 8: return DAMAGE_POWER_PLUS_EIGHT; break;
+        case 9: return DAMAGE_POWER_PLUS_NINE; break;
         case 10: return DAMAGE_POWER_PLUS_TEN; break;
         case 11: return DAMAGE_POWER_PLUS_ELEVEN; break;
         case 12: return DAMAGE_POWER_PLUS_TWELVE; break;
@@ -3166,4 +3219,3 @@ int GetDamagePowerPlusValue(int nPower)
     }
     return DAMAGE_POWER_PLUS_ONE;
 }
-

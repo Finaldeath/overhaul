@@ -14,8 +14,9 @@
 //:: https://github.com/Finaldeath/overhaul
 //:://////////////////////////////////////////////
 
-#include "op_i_skills"
 #include "op_i_classes"
+#include "op_i_skills"
+
 
 const int FEAT_INVALID = -1;
 
@@ -36,7 +37,6 @@ int GetItemWeaponSpecializationFeat(object oItem);
 // Gets the given weapons Weapon Focus
 int GetItemWeaponFocusFeat(object oItem);
 
-
 // Checks if the given creature has nFeatId learned.
 // jCreature should be ObjectToJson(oCreater)
 int GetHasLearnedFeat(int nFeatId, object oCreature, json jCreature)
@@ -49,7 +49,7 @@ int GetHasLearnedFeat(int nFeatId, object oCreature, json jCreature)
     // Check the FeatList which should be sufficient (we don't care
     // what level something was learned)
     json jFeatList = JsonObjectGet(jCreature, "FeatList");
-    jFeatList = JsonObjectGet(jFeatList, "value");
+    jFeatList      = JsonObjectGet(jFeatList, "value");
 
     int nIndex;
     for (nIndex = 0; nIndex < JsonGetLength(jFeatList); nIndex++)
@@ -79,27 +79,48 @@ int GetHasFeatPrerequisites(int nFeatId, object oCreature, json jCreature, objec
     // MINATTACKBONUS
     sTest = Get2DAString("feat", "MINATTACKBONUS", nFeatId);
     if (sTest != "" && GetBaseAttackBonus(oCreature) < StringToInt(sTest))
-        { SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not meet base attack bonus minimum ("+sTest+")"); return FALSE; }
+    {
+        SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not meet base attack bonus minimum (" + sTest + ")");
+        return FALSE;
+    }
 
     // MINSTR   MINDEX   MININT   MINWIS   MINCON   MINCHA
     sTest = Get2DAString("feat", "MINSTR", nFeatId);
     if (sTest != "" && GetAbilityScore(oCreature, ABILITY_STRENGTH, TRUE) < StringToInt(sTest))
-        { SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not meet strength score minimum ("+sTest+")"); return FALSE; }
+    {
+        SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not meet strength score minimum (" + sTest + ")");
+        return FALSE;
+    }
     sTest = Get2DAString("feat", "MINDEX", nFeatId);
     if (sTest != "" && GetAbilityScore(oCreature, ABILITY_DEXTERITY, TRUE) < StringToInt(sTest))
-        { SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not meet dexterity score minimum ("+sTest+")"); return FALSE; }
+    {
+        SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not meet dexterity score minimum (" + sTest + ")");
+        return FALSE;
+    }
     sTest = Get2DAString("feat", "MININT", nFeatId);
     if (sTest != "" && GetAbilityScore(oCreature, ABILITY_INTELLIGENCE, TRUE) < StringToInt(sTest))
-        { SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not meet intelligence score minimum ("+sTest+")"); return FALSE; }
+    {
+        SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not meet intelligence score minimum (" + sTest + ")");
+        return FALSE;
+    }
     sTest = Get2DAString("feat", "MINWIS", nFeatId);
     if (sTest != "" && GetAbilityScore(oCreature, ABILITY_WISDOM, TRUE) < StringToInt(sTest))
-        { SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not meet wisdom score minimum ("+sTest+")"); return FALSE; }
+    {
+        SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not meet wisdom score minimum (" + sTest + ")");
+        return FALSE;
+    }
     sTest = Get2DAString("feat", "MINCON", nFeatId);
     if (sTest != "" && GetAbilityScore(oCreature, ABILITY_CONSTITUTION, TRUE) < StringToInt(sTest))
-        { SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not meet constitution score minimum ("+sTest+")"); return FALSE; }
+    {
+        SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not meet constitution score minimum (" + sTest + ")");
+        return FALSE;
+    }
     sTest = Get2DAString("feat", "MINCHA", nFeatId);
     if (sTest != "" && GetAbilityScore(oCreature, ABILITY_CHARISMA, TRUE) < StringToInt(sTest))
-        { SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not meet charisma score minimum ("+sTest+")"); return FALSE; }
+    {
+        SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not meet charisma score minimum (" + sTest + ")");
+        return FALSE;
+    }
 
     // MINSPELLLVL
     // Checks for each class:
@@ -121,16 +142,22 @@ int GetHasFeatPrerequisites(int nFeatId, object oCreature, json jCreature, objec
             }
         }
         if (!bFoundCasterClass)
-            SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not meet minimum spell level requirement ("+sTest+")");
+            SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not meet minimum spell level requirement (" + sTest + ")");
     }
 
     // PREREQFEAT1   PREREQFEAT2
     sTest = Get2DAString("feat", "PREREQFEAT1", nFeatId);
     if (sTest != "" && !GetHasLearnedFeat(StringToInt(sTest), oCreature, jCreature))
-        { SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not have required feat ("+GetFeatName(StringToInt(sTest))+")"); return FALSE; }
+    {
+        SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not have required feat (" + GetFeatName(StringToInt(sTest)) + ")");
+        return FALSE;
+    }
     sTest = Get2DAString("feat", "PREREQFEAT2", nFeatId);
     if (sTest != "" && !GetHasLearnedFeat(StringToInt(sTest), oCreature, jCreature))
-        { SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not have required feat ("+GetFeatName(StringToInt(sTest))+")"); return FALSE; }
+    {
+        SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not have required feat (" + GetFeatName(StringToInt(sTest)) + ")");
+        return FALSE;
+    }
 
     // ALLCLASSESCANUSE
     // Need to test then the classes individual lists! fun...
@@ -153,7 +180,6 @@ int GetHasFeatPrerequisites(int nFeatId, object oCreature, json jCreature, objec
             SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not have feat on any of their class feat lists");
     }
 
-
     // OrReqFeat0   OrReqFeat1   OrReqFeat2   OrReqFeat3   OrReqFeat4
     // Any of these are valid, or ignore all if 0 isn't present
     sTest = Get2DAString("feat", "OrReqFeat0", nFeatId);
@@ -161,7 +187,7 @@ int GetHasFeatPrerequisites(int nFeatId, object oCreature, json jCreature, objec
     {
         int bFoundFeat = FALSE;
         string sList;
-        for(nIndex = 0; nIndex <= 4; nIndex++)
+        for (nIndex = 0; nIndex <= 4; nIndex++)
         {
             sTest = Get2DAString("feat", "OrReqFeat" + IntToString(nIndex), nFeatId);
             if (sTest != "")
@@ -182,7 +208,10 @@ int GetHasFeatPrerequisites(int nFeatId, object oCreature, json jCreature, objec
             }
         }
         if (bFoundFeat == FALSE)
-            { SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not have one of the required prerequisite feats ("+sList+")"); return FALSE; }
+        {
+            SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not have one of the required prerequisite feats (" + sList + ")");
+            return FALSE;
+        }
     }
 
     // REQSKILL   ReqSkillMinRanks
@@ -191,11 +220,17 @@ int GetHasFeatPrerequisites(int nFeatId, object oCreature, json jCreature, objec
     {
         int nSkill = StringToInt(sTest);
         if (!GetHasSkill(nSkill, oCreature))
-            { SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not have one of the required skills learned ("+GetSkillName(nSkill)+")"); return FALSE; }
+        {
+            SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not have one of the required skills learned (" + GetSkillName(nSkill) + ")");
+            return FALSE;
+        }
 
         sTest = Get2DAString("feat", "ReqSkillMinRanks", nFeatId);
         if (sTest != "" && GetSkillRank(nSkill, oCreature, TRUE) < StringToInt(sTest))
-            { SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not have one of the required skills ("+GetSkillName(nSkill)+") rank ("+sTest+")"); return FALSE; }
+        {
+            SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not have one of the required skills (" + GetSkillName(nSkill) + ") rank (" + sTest + ")");
+            return FALSE;
+        }
     }
 
     // REQSKILL2   ReqSkillMinRanks2
@@ -204,11 +239,17 @@ int GetHasFeatPrerequisites(int nFeatId, object oCreature, json jCreature, objec
     {
         int nSkill = StringToInt(sTest);
         if (!GetHasSkill(nSkill, oCreature))
-            { SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not have one of the required skills learned ("+GetSkillName(nSkill)+")"); return FALSE; }
+        {
+            SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not have one of the required skills learned (" + GetSkillName(nSkill) + ")");
+            return FALSE;
+        }
 
         sTest = Get2DAString("feat", "ReqSkillMinRanks2", nFeatId);
         if (sTest != "" && GetSkillRank(nSkill, oCreature, TRUE) < StringToInt(sTest))
-            { SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not have one of the required skills ("+GetSkillName(nSkill)+") rank ("+sTest+")"); return FALSE; }
+        {
+            SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not have one of the required skills (" + GetSkillName(nSkill) + ") rank (" + sTest + ")");
+            return FALSE;
+        }
     }
 
     // MinLevel  MinLevelClass
@@ -217,17 +258,26 @@ int GetHasFeatPrerequisites(int nFeatId, object oCreature, json jCreature, objec
     {
         int nLevel = StringToInt(sTest);
         if (GetHitDice(oCreature) < nLevel)
-            { SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not have the required level ("+sTest+")"); return FALSE; }
+        {
+            SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not have the required level (" + sTest + ")");
+            return FALSE;
+        }
 
         sTest = Get2DAString("feat", "MinLevelClass", nFeatId);
         if (sTest != "" && GetLevelByClass(StringToInt(sTest), oCreature) < nLevel)
-            { SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not have the required level ("+IntToString(nLevel)+") in the given class ("+GetClassName(StringToInt(sTest))+")"); return FALSE; }
+        {
+            SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not have the required level (" + IntToString(nLevel) + ") in the given class (" + GetClassName(StringToInt(sTest)) + ")");
+            return FALSE;
+        }
     }
 
     // MaxLevel
     sTest = Get2DAString("feat", "MaxLevel", nFeatId);
     if (sTest != "" && !GetHitDice(oCreature) > StringToInt(sTest))
-        { SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Is too high level. Maximum level is ("+sTest+")"); return FALSE; }
+    {
+        SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Is too high level. Maximum level is (" + sTest + ")");
+        return FALSE;
+    }
 
     // MinFortSave
     sTest = Get2DAString("feat", "MinFortSave", nFeatId);
@@ -237,7 +287,10 @@ int GetHasFeatPrerequisites(int nFeatId, object oCreature, json jCreature, objec
         int nFortitude = JsonGetInt(JsonObjectGet(jCreature, "FortSaveThrow"));
 
         if (nFortitude < StringToInt(sTest))
-            { SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not have the required fortitude saving throw amount ("+sTest+")"); return FALSE; }
+        {
+            SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Does not have the required fortitude saving throw amount (" + sTest + ")");
+            return FALSE;
+        }
     }
 
     // PreReqEpic
@@ -246,7 +299,10 @@ int GetHasFeatPrerequisites(int nFeatId, object oCreature, json jCreature, objec
     {
         int nLevel = StringToInt(sTest);
         if (GetHitDice(oCreature) < 21)
-            { SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Is not epic level."); return FALSE; }
+        {
+            SendMessageToPC(oFeedbackCreature, sFeedbackStart + "Is not epic level.");
+            return FALSE;
+        }
     }
 
     return TRUE;
@@ -284,4 +340,3 @@ int GetItemWeaponFocusFeat(object oItem)
     }
     return FEAT_INVALID;
 }
-

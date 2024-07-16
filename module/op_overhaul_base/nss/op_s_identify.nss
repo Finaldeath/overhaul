@@ -36,7 +36,7 @@ void main()
         // We will identify all items we can with an increased lore value
         int nLore = GetSkillRank(SKILL_LORE, oCaster) + 10 + (nCasterLevel / 2);
 
-        int nMaxValue = 2147483647; // MAXINT ie anything
+        int nMaxValue = MAX_INT;  // ie anything
 
         // We can go over the row limit
         if (nLore <= Get2DARowCount("skillvsitemcost"))
@@ -52,7 +52,7 @@ void main()
             {
                 // Need to identify here to get the true value
                 SetIdentified(oItem, TRUE);
-                if(nMaxValue >= GetGoldPieceValue(oItem))
+                if (nMaxValue >= GetGoldPieceValue(oItem))
                 {
                     SetIdentified(oItem, TRUE);
                     SendMessageToPC(oCaster, "*You identify: " + GetName(oItem) + "*");
@@ -76,7 +76,7 @@ void main()
             nBaseItemType == BASE_ITEM_SCROLL ||
             nBaseItemType == BASE_ITEM_SPELLSCROLL ||
             nBaseItemType == BASE_ITEM_BLANK_POTION ||
-            nBaseItemType == BASE_ITEM_ENCHANTED_POTION||
+            nBaseItemType == BASE_ITEM_ENCHANTED_POTION ||
             nBaseItemType == BASE_ITEM_POTIONS)
         {
             if (GetIsObjectValid(GetItemPossessor(oTarget)))

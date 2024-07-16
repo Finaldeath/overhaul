@@ -46,79 +46,79 @@ void main()
         nMetaMagic = nMetaMagic | METAMAGIC_EMPOWER;
     }
     // * if low or normal difficulty is treated as MAXIMIZED
-    if(GetIsPC(oTarget) && GetGameDifficulty() < GAME_DIFFICULTY_CORE_RULES)
+    if (GetIsPC(oTarget) && GetGameDifficulty() < GAME_DIFFICULTY_CORE_RULES)
     {
         nMetaMagic = nMetaMagic | METAMAGIC_MAXIMIZE;
     }
 
     int nVisHeal, nDice, nHealingStatic;
     int nVisHarm = VFX_IMP_SUNSTRIKE;
-    switch(nSpellId)
+    switch (nSpellId)
     {
         case SPELL_CURE_MINOR_WOUNDS:
-            nDice = 0;
+            nDice          = 0;
             nHealingStatic = 4;
-            nVisHeal = VFX_IMP_HEAD_HEAL;
-        break;
+            nVisHeal       = VFX_IMP_HEAD_HEAL;
+            break;
         case SPELL_CURE_LIGHT_WOUNDS:
-            nDice = 1;
+            nDice          = 1;
             nHealingStatic = min(nCasterLevel, 5);
-            nVisHeal = VFX_IMP_HEALING_S;
-        break;
+            nVisHeal       = VFX_IMP_HEALING_S;
+            break;
         case SPELL_CURE_MODERATE_WOUNDS:
-            nDice = 2;
+            nDice          = 2;
             nHealingStatic = min(nCasterLevel, 10);
-            nVisHeal = VFX_IMP_HEALING_M;
-        break;
+            nVisHeal       = VFX_IMP_HEALING_M;
+            break;
         case SPELL_CURE_SERIOUS_WOUNDS:
-            nDice = 3;
+            nDice          = 3;
             nHealingStatic = min(nCasterLevel, 15);
-            nVisHeal = VFX_IMP_HEALING_L;
-        break;
+            nVisHeal       = VFX_IMP_HEALING_L;
+            break;
         case SPELL_CURE_CRITICAL_WOUNDS:
-            nDice = 4;
+            nDice          = 4;
             nHealingStatic = min(nCasterLevel, 20);
-            nVisHeal = VFX_IMP_HEALING_G;
-        break;
+            nVisHeal       = VFX_IMP_HEALING_G;
+            break;
         case SPELLABILITY_CURE_CRITICAL_WOUNDS_OTHER:
-            nDice = 4;
+            nDice          = 4;
             nHealingStatic = min(nCasterLevel, 20);
-            nVisHeal = VFX_IMP_SUPER_HEROISM;
-        break;
+            nVisHeal       = VFX_IMP_SUPER_HEROISM;
+            break;
         case SPELL_HEAL:
-            nDice = 0;
+            nDice          = 0;
             nHealingStatic = min(nCasterLevel * 10, 150);
-            nVisHeal = VFX_IMP_HEALING_X;
-        break;
+            nVisHeal       = VFX_IMP_HEALING_X;
+            break;
         case SPELL_HEALING_CIRCLE: /* SPELL_MASS_CURE_LIGHT_WOUNDS */
-            nVisHeal = VFX_IMP_HEALING_S;
-            nDice = 1;
+            nVisHeal       = VFX_IMP_HEALING_S;
+            nDice          = 1;
             nHealingStatic = min(25, nCasterLevel);
-        break;
+            break;
         case SPELL_MASS_CURE_MODERATE_WOUNDS:
-            nVisHeal = VFX_IMP_HEALING_M;
-            nDice = 2;
+            nVisHeal       = VFX_IMP_HEALING_M;
+            nDice          = 2;
             nHealingStatic = min(25, nCasterLevel);
-        break;
+            break;
         case SPELL_MASS_CURE_SERIOUS_WOUNDS:
-            nVisHeal = VFX_IMP_HEALING_L;
-            nDice = 2;
+            nVisHeal       = VFX_IMP_HEALING_L;
+            nDice          = 2;
             nHealingStatic = min(25, nCasterLevel);
-        break;
+            break;
         case SPELL_MASS_CURE_CRITICAL_WOUNDS:
-            nVisHeal = VFX_IMP_HEALING_G;
-            nDice = 2;
+            nVisHeal       = VFX_IMP_HEALING_G;
+            nDice          = 2;
             nHealingStatic = min(25, nCasterLevel);
-        break;
+            break;
         case SPELL_MASS_HEAL:
-            nVisHeal = VFX_IMP_HEALING_X;
-            nDice = 0;
+            nVisHeal       = VFX_IMP_HEALING_X;
+            nDice          = 0;
             nHealingStatic = min(250, nCasterLevel * 10);
-        break;
+            break;
         default:
-            OP_Debug("[Cure Wounds op_s_curewounds] No valid spell ID passed in: " + IntToString(nSpellId));
+            Debug("[Cure Wounds op_s_curewounds] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
-        break;
+            break;
     }
 
     if (GetSpellIsAreaOfEffect(nSpellId))
@@ -135,7 +135,7 @@ void main()
         {
             oTarget = GetArrayObject(jArray, nIndex);
 
-            float fDelay = GetDistanceBetweenLocations(lTarget, GetLocation(oTarget))/25.0;
+            float fDelay = GetDistanceBetweenLocations(lTarget, GetLocation(oTarget)) / 25.0;
 
             HealOrHarm(oTarget, fDelay, nVisHeal, nVisHarm, nDice, nHealingStatic, TRUE, bTouch);
         }

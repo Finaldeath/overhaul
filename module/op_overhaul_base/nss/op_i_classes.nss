@@ -26,7 +26,6 @@ int GetCreatureMaximumSpellLevel(object oCreature, int nClass);
 // Does not check ALLCLASSESCANUSE in feat.2da
 int GetClassHasFeatOnTheirFeatList(int nClass, int nFeatId);
 
-
 // Returns the name of the given class, returns "" on error
 string GetClassName(int nClassId)
 {
@@ -42,7 +41,7 @@ string GetClassName(int nClassId)
 // Returns -1 on error
 int GetAbilityScoreConstant(string sAbilityName)
 {
-    switch(HashString(sAbilityName))
+    switch (HashString(sAbilityName))
     {
         case "STR": return ABILITY_STRENGTH; break;
         case "DEX": return ABILITY_DEXTERITY; break;
@@ -64,9 +63,9 @@ int GetCreatureMaximumSpellLevel(object oCreature, int nClass)
 
     // Check the SpellGainTable for the highest one we have
     int nIndex;
-    int nLevel = GetLevelByClass(nClass, oCreature);
+    int nLevel             = GetLevelByClass(nClass, oCreature);
     string sSpellGainTable = Get2DAString("classes", "SpellCaster", nClass);
-    int nAbilityScore = GetAbilityScoreConstant(Get2DAString("classes", "PrimaryAbil", nClass));
+    int nAbilityScore      = GetAbilityScoreConstant(Get2DAString("classes", "PrimaryAbil", nClass));
 
     // Format is "SpellLevelX"
     int nHighestLevel = -1;

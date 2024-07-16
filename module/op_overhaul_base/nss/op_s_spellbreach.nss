@@ -27,7 +27,7 @@ void main()
     if (DoSpellHook()) return;
 
     int nTotal = nSpellId == SPELL_GREATER_SPELL_BREACH ? 4 : 2;
-    int nSR = nSpellId == SPELL_GREATER_SPELL_BREACH ? 5 : 3;
+    int nSR    = nSpellId == SPELL_GREATER_SPELL_BREACH ? 5 : 3;
 
     if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
     {
@@ -36,4 +36,3 @@ void main()
         DoSpellBreach(oTarget, nTotal, nSR);
     }
 }
-

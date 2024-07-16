@@ -35,36 +35,36 @@ void main()
     {
         case SPELL_ACID_SPLASH:
         {
-            nVis = VFX_IMP_ACID_S;
-            nDamage = GetDiceRoll(1, 4, 1);
+            nVis        = VFX_IMP_ACID_S;
+            nDamage     = GetDiceRoll(1, 4, 1);
             nDamageType = DAMAGE_TYPE_ACID;
         }
         break;
         case SPELL_DAZE:
         {
-            nSavingThrow = SAVING_THROW_WILL;
+            nSavingThrow     = SAVING_THROW_WILL;
             nSavingThrowType = SAVING_THROW_TYPE_MIND_SPELLS;
-            fDuration = GetDuration(2, ROUNDS);
+            fDuration        = GetDuration(2, ROUNDS);
 
-            nVis = VFX_IMP_DAZED_S;
+            nVis  = VFX_IMP_DAZED_S;
             eLink = EffectLinkEffects(EffectDazed(),
-                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_NEGATIVE),
-                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+                                      EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_NEGATIVE),
+                                                        EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
         }
         break;
         case SPELL_ELECTRIC_JOLT:
         {
-            nVis = VFX_IMP_LIGHTNING_S;
-            nDamage = GetDiceRoll(1, 4, 1);
+            nVis        = VFX_IMP_LIGHTNING_S;
+            nDamage     = GetDiceRoll(1, 4, 1);
             nDamageType = DAMAGE_TYPE_ELECTRICAL;
         }
         break;
         case SPELL_FLARE:
         {
             nSavingThrow = SAVING_THROW_FORT;
-            fDuration = GetDuration(10, ROUNDS);
+            fDuration    = GetDuration(10, ROUNDS);
 
-            nVis = VFX_IMP_FLAME_S;
+            nVis  = VFX_IMP_FLAME_S;
             eLink = EffectLinkEffects(EffectAttackDecrease(1),
                                       EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
         }
@@ -74,15 +74,15 @@ void main()
             // TODO Handle item being targeted here!
             fDuration = GetDuration(nCasterLevel, HOURS);
 
-            nVis = VFX_IMP_MAGBLUE;
+            nVis  = VFX_IMP_MAGBLUE;
             eLink = EffectLinkEffects(EffectVisualEffect(VFX_DUR_LIGHT_WHITE_20),
                                       EffectVisualEffect(VFX_DUR_CESSATE_NEUTRAL));
         }
         break;
         case SPELL_RAY_OF_FROST:
         {
-            nVis = VFX_IMP_FROST_S;
-            nDamage = GetDiceRoll(1, 4, 1);
+            nVis        = VFX_IMP_FROST_S;
+            nDamage     = GetDiceRoll(1, 4, 1);
             nDamageType = DAMAGE_TYPE_COLD;
             // Also apply a beam
             ApplyBeamToObject(VFX_BEAM_COLD, oTarget);
@@ -92,14 +92,14 @@ void main()
         {
             fDuration = GetDuration(nCasterLevel, MINUTES);
 
-            nVis = VFX_IMP_HOLY_AID;
+            nVis  = VFX_IMP_HOLY_AID;
             eLink = EffectLinkEffects(EffectTemporaryHitpoints(1),
                                       EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
         }
         break;
         default:
         {
-            OP_Debug("[Cantrips] Unknown spell ID: " + IntToString(nSpellId), LOG_LEVEL_ERROR);
+            Debug("[Cantrips] Unknown spell ID: " + IntToString(nSpellId), ERROR);
             return;
         }
         break;
@@ -131,4 +131,3 @@ void main()
         }
     }
 }
-

@@ -87,15 +87,15 @@ void main()
         case SPELL_REMOVE_FEAR:
         {
             bSupernaturalRemoval = TRUE;
-            nTotalToAssist = max(1, nCasterLevel/4);
+            nTotalToAssist       = max(1, nCasterLevel / 4);
 
-            fDuration = GetDuration(10, MINUTES);
+            fDuration  = GetDuration(10, MINUTES);
             bApplyLink = TRUE;
-            eLink = EffectLinkEffects(EffectSavingThrowIncrease(SAVING_THROW_WILL, 4, SAVING_THROW_TYPE_FEAR),
-                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_POSITIVE),
-                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
-            nImpact = VFX_FNF_LOS_HOLY_10;
-            nVis = VFX_IMP_REMOVE_CONDITION;
+            eLink      = EffectLinkEffects(EffectSavingThrowIncrease(SAVING_THROW_WILL, 4, SAVING_THROW_TYPE_FEAR),
+                                           EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_POSITIVE),
+                                                             EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+            nImpact    = VFX_FNF_LOS_HOLY_10;
+            nVis       = VFX_IMP_REMOVE_CONDITION;
 
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_FRIGHTENED));
         }
@@ -104,14 +104,14 @@ void main()
         {
             bSupernaturalRemoval = TRUE;
 
-            fDuration = GetDuration(nCasterLevel, MINUTES);
+            fDuration  = GetDuration(nCasterLevel, MINUTES);
             bApplyLink = TRUE;
-            eLink = EffectLinkEffects(EffectImmunity(IMMUNITY_TYPE_PARALYSIS),
-                    EffectLinkEffects(EffectImmunity(IMMUNITY_TYPE_ENTANGLE),
-                    EffectLinkEffects(EffectImmunity(IMMUNITY_TYPE_SLOW),
-                    EffectLinkEffects(EffectImmunity(IMMUNITY_TYPE_MOVEMENT_SPEED_DECREASE),
-                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_FREEDOM_OF_MOVEMENT),
-                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE))))));
+            eLink      = EffectLinkEffects(EffectImmunity(IMMUNITY_TYPE_PARALYSIS),
+                                           EffectLinkEffects(EffectImmunity(IMMUNITY_TYPE_ENTANGLE),
+                                                             EffectLinkEffects(EffectImmunity(IMMUNITY_TYPE_SLOW),
+                                                                               EffectLinkEffects(EffectImmunity(IMMUNITY_TYPE_MOVEMENT_SPEED_DECREASE),
+                                                                                                 EffectLinkEffects(EffectVisualEffect(VFX_DUR_FREEDOM_OF_MOVEMENT),
+                                                                                                                   EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE))))));
 
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_PARALYZE));
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_ENTANGLE));
@@ -122,7 +122,7 @@ void main()
         case SPELL_LESSER_RESTORATION:
         {
             bSupernaturalRemoval = FALSE;
-            nVis = VFX_IMP_RESTORATION_LESSER;
+            nVis                 = VFX_IMP_RESTORATION_LESSER;
 
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_ABILITY_DECREASE));
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_AC_DECREASE));
@@ -138,7 +138,7 @@ void main()
         case SPELLABILITY_RESTOREATION_OTHER:
         {
             bSupernaturalRemoval = FALSE;
-            nVis = VFX_IMP_RESTORATION;
+            nVis                 = VFX_IMP_RESTORATION;
 
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_ABILITY_DECREASE));
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_AC_DECREASE));
@@ -157,7 +157,7 @@ void main()
         case SPELL_GREATER_RESTORATION:
         {
             bSupernaturalRemoval = FALSE;
-            nVis = VFX_IMP_RESTORATION_GREATER;
+            nVis                 = VFX_IMP_RESTORATION_GREATER;
 
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_ABILITY_DECREASE));
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_AC_DECREASE));
@@ -187,16 +187,16 @@ void main()
         case SPELL_NEUTRALIZE_POISON:
         {
             bSupernaturalRemoval = TRUE;
-            nVis = VFX_IMP_REMOVE_CONDITION;
+            nVis                 = VFX_IMP_REMOVE_CONDITION;
 
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_POISON));
         }
         break;
         case SPELL_REMOVE_DISEASE:
-        case SPELLABILITY_REMOVE_DISEASE: // Paladin feat
+        case SPELLABILITY_REMOVE_DISEASE:  // Paladin feat
         {
             bSupernaturalRemoval = TRUE;
-            nVis = VFX_IMP_REMOVE_CONDITION;
+            nVis                 = VFX_IMP_REMOVE_CONDITION;
 
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_DISEASE));
         }
@@ -204,7 +204,7 @@ void main()
         case SPELL_REMOVE_BLINDNESS_AND_DEAFNESS:
         {
             bSupernaturalRemoval = TRUE;
-            nVis = VFX_IMP_REMOVE_CONDITION;
+            nVis                 = VFX_IMP_REMOVE_CONDITION;
 
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_BLINDNESS));
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_DEAF));
@@ -212,7 +212,7 @@ void main()
         break;
         default:
         {
-            OP_Debug("[Cure Effects] Unknown spell ID: " + IntToString(nSpellId), LOG_LEVEL_ERROR);
+            Debug("[Cure Effects] Unknown spell ID: " + IntToString(nSpellId), ERROR);
             return;
         }
         break;
@@ -252,4 +252,3 @@ void main()
         CureEffects(oTarget, jArray, bSupernaturalRemoval);
     }
 }
-

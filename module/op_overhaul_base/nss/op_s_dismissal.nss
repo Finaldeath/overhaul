@@ -21,8 +21,8 @@ void main()
     if (DoSpellHook()) return;
 
     // Effects
-    effect eDeath  = IgnoreEffectImmunity(EffectDeath());
-    effect eVis    = EffectVisualEffect(VFX_IMP_UNSUMMON);
+    effect eDeath = IgnoreEffectImmunity(EffectDeath());
+    effect eVis   = EffectVisualEffect(VFX_IMP_UNSUMMON);
 
     if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
     {
@@ -55,4 +55,3 @@ void main()
         }
     }
 }
-

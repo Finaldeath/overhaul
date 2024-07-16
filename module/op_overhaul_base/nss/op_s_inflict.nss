@@ -22,51 +22,52 @@
 
 #include "op_i_spells"
 
+// Do Harm or Heal as needed
 void HarmOrHeal(object oTarget, float fDelay, int nVisHeal, int nVisHarm, int nDice, int nStatic, int bAOE, int bDoTouch = FALSE);
 
 void main()
 {
     if (DoSpellHook()) return;
 
-    // TODO better VFX not reusing the heal ones
-
+    // TDO: VAriants of nVisHarm and better nVisHeal for healing undead
     int nVisHeal, nVisHarm, nDice, nStatic;
-    switch(nSpellId)
+
+    switch (nSpellId)
     {
         case SPELL_INFLICT_MINOR_WOUNDS:
-            nDice = 0;
-            nStatic = 4;
+            nDice =    0;
+            nStatic =  4;
             nVisHeal = VFX_IMP_HEAD_HEAL;
             nVisHarm = VFX_IMP_NEGATIVE_ENERGY;
         break;
         case SPELL_INFLICT_LIGHT_WOUNDS:
-            nDice = 1;
-            nStatic = min(nCasterLevel, 5);
+            nDice =    1;
+            nStatic =  min(nCasterLevel, 5);
             nVisHeal = VFX_IMP_HEALING_S;
             nVisHarm = VFX_IMP_NEGATIVE_ENERGY;
         break;
         case SPELL_INFLICT_MODERATE_WOUNDS:
-            nDice = 2;
-            nStatic = min(nCasterLevel, 10);
+            nDice =    2;
+            nStatic =  min(nCasterLevel, 10);
             nVisHeal = VFX_IMP_HEALING_M;
             nVisHarm = VFX_IMP_NEGATIVE_ENERGY;
         break;
         case SPELL_INFLICT_SERIOUS_WOUNDS:
-            nDice = 3;
-            nStatic = min(nCasterLevel, 15);
+            nDice =    3;
+            nStatic =  min(nCasterLevel, 15);
             nVisHeal = VFX_IMP_HEALING_L;
             nVisHarm = VFX_IMP_NEGATIVE_ENERGY;
         break;
         case SPELL_INFLICT_CRITICAL_WOUNDS:
-            nDice = 4;
-            nStatic = min(nCasterLevel, 20);
+            nDice =    4;
+            nStatic =  min(nCasterLevel, 20);
             nVisHeal = VFX_IMP_HEALING_G;
             nVisHarm = VFX_IMP_NEGATIVE_ENERGY;
         break;
         case SPELL_HARM:
         case SPELLABILITY_HARM_SELF:
-            nDice = 0;
-            nStatic = min(nCasterLevel * 10, 150);
+            nDice =    0;
+            nStatic =  min(nCasterLevel * 10, 150);
             nVisHeal = VFX_IMP_HEALING_X;
             nVisHarm = VFX_IMP_HARM;
         break;
@@ -98,7 +99,7 @@ void main()
         break;
         */
         default:
-            OP_Debug("[Inflict Wounds op_s_inflict] No valid spell ID passed in: " + IntToString(nSpellId) + " name: " + GetSpellName(nSpellId));
+            Debug("[Inflict Wounds op_s_inflict] No valid spell ID passed in: " + IntToString(nSpellId) + " name: " + GetSpellName(nSpellId));
             return;
         break;
     }
@@ -234,3 +235,4 @@ void HarmOrHeal(object oTarget, float fDelay, int nVisHeal, int nVisHarm, int nD
         }
     }
 }
+

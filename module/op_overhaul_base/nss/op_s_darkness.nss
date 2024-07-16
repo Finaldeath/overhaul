@@ -49,11 +49,10 @@ void main()
         // anything but Darkness.
         if (nSpellId != SPELL_DARKNESS)
         {
-            OP_Debug("[op_s_darkness] Somehow this script was called without the Spell Id being SPELL_DARKNESS. nSpellId: " + IntToString(nSpellId), LOG_LEVEL_ERROR);
+            Debug("[op_s_darkness] Somehow this script was called without the Spell Id being SPELL_DARKNESS. nSpellId: " + IntToString(nSpellId), ERROR);
             nSpellId = SPELL_DARKNESS;
         }
         effect eAOE = EffectAreaOfEffect(AOE_PER_DARKNESS, "op_s_darkness", "op_s_darkness", "op_s_darkness");
         ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, GetDuration(nCasterLevel, ROUNDS));
     }
 }
-

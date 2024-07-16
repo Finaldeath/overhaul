@@ -47,10 +47,10 @@ void main()
     float fDur = GetDuration(d3(1), ROUNDS);
 
     effect eLink = EffectLinkEffects(EffectKnockdown(),
-                   EffectLinkEffects(EffectIcon(EFFECT_ICON_KNOCKDOWN),
-                   EffectLinkEffects(EffectRunScriptEnhanced(),
-                   EffectLinkEffects(EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE),
-                                     EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED)))));
+                                     EffectLinkEffects(EffectIcon(EFFECT_ICON_KNOCKDOWN),
+                                                       EffectLinkEffects(EffectRunScriptEnhanced(),
+                                                                         EffectLinkEffects(EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE),
+                                                                                           EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED)))));
 
     // Ignore knockdown resistance
     eLink = IgnoreEffectImmunity(eLink);

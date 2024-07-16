@@ -29,4 +29,3 @@ void main()
     // and the effect to work properly.
     DelayCommand(0.75, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, EffectTimeStop(), oTarget, 9.0));
 }
-

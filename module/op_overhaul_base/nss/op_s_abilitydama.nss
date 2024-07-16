@@ -27,9 +27,9 @@ void main()
 
     effect eLink;
     int nBeam = VFX_NONE, nVis = VFX_NONE;
-    float fDuration = 0.0;
+    float fDuration   = 0.0;
     int nDurationType = DURATION_TYPE_TEMPORARY;
-    int nTouchType = TOUCH_NONE;
+    int nTouchType    = TOUCH_NONE;
     int nImmunityType = IMMUNITY_TYPE_NONE;
     int nSavingThrow = -1, nSavingThrowType = SAVING_THROW_TYPE_NONE;
 
@@ -37,14 +37,14 @@ void main()
     {
         case SPELL_FEEBLEMIND:
         {
-            nImmunityType = IMMUNITY_TYPE_MIND_SPELLS;
-            nSavingThrow = SAVING_THROW_WILL;
+            nImmunityType    = IMMUNITY_TYPE_MIND_SPELLS;
+            nSavingThrow     = SAVING_THROW_WILL;
             nSavingThrowType = SAVING_THROW_TYPE_MIND_SPELLS;
-            nVis = VFX_IMP_REDUCE_ABILITY_SCORE;
-            nBeam = VFX_BEAM_MIND;
-            int nDamage = GetDiceRoll(max(1, nCasterLevel/4), 4);
-            eLink = EffectLinkEffects(EffectAbilityDecrease(ABILITY_INTELLIGENCE, nDamage),
-                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            nVis             = VFX_IMP_REDUCE_ABILITY_SCORE;
+            nBeam            = VFX_BEAM_MIND;
+            int nDamage      = GetDiceRoll(max(1, nCasterLevel / 4), 4);
+            eLink            = EffectLinkEffects(EffectAbilityDecrease(ABILITY_INTELLIGENCE, nDamage),
+                                                 EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
 
             // Supernatural effect
             eLink = SupernaturalEffect(eLink);
@@ -54,21 +54,21 @@ void main()
         break;
         case SPELL_RAY_OF_ENFEEBLEMENT:
         {
-            nSavingThrow = SAVING_THROW_FORT;
+            nSavingThrow     = SAVING_THROW_FORT;
             nSavingThrowType = SAVING_THROW_TYPE_NEGATIVE;
-            nVis = VFX_IMP_REDUCE_ABILITY_SCORE;
-            nBeam = VFX_BEAM_ODD;
-            int nDamage = GetDiceRoll(1, 6, min(5, nCasterLevel/2));
-            eLink = EffectLinkEffects(EffectAbilityDecrease(ABILITY_STRENGTH, nDamage),
-                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            nVis             = VFX_IMP_REDUCE_ABILITY_SCORE;
+            nBeam            = VFX_BEAM_ODD;
+            int nDamage      = GetDiceRoll(1, 6, min(5, nCasterLevel / 2));
+            eLink            = EffectLinkEffects(EffectAbilityDecrease(ABILITY_STRENGTH, nDamage),
+                                                 EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
 
             fDuration = GetDuration(nCasterLevel, ROUNDS);
         }
         break;
         default:
-            OP_Debug("[Ability Damage] No valid spell ID passed in: " + IntToString(nSpellId));
+            Debug("[Ability Damage] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
-        break;
+            break;
     }
 
     // Touch attack
@@ -103,4 +103,3 @@ void main()
         }
     }
 }
-

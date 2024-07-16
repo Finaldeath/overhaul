@@ -48,11 +48,11 @@ void main()
                     if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC))
                     {
                         effect eLink = EffectLinkEffects(EffectParalyze(),
-                                       EffectLinkEffects(EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE),
-                                       EffectLinkEffects(EffectVisualEffect(VFX_DUR_PARALYZED),
-                                                         EffectVisualEffect(VFX_DUR_PARALYZE_HOLD))));
+                                                         EffectLinkEffects(EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE),
+                                                                           EffectLinkEffects(EffectVisualEffect(VFX_DUR_PARALYZED),
+                                                                                             EffectVisualEffect(VFX_DUR_PARALYZE_HOLD))));
 
-                        ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(nCasterLevel/2, ROUNDS));
+                        ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(nCasterLevel / 2, ROUNDS));
                     }
                 }
             }
@@ -64,15 +64,27 @@ void main()
     // Get the summon to use depends on alignment and the spell ID
     effect eSummon;
 
-    switch(nSpellId)
+    switch (nSpellId)
     {
         case SPELL_LESSER_PLANAR_BINDING:
         {
             switch (GetAlignmentGoodEvil(oCaster))
             {
-                case ALIGNMENT_EVIL: { eSummon = EffectSummonCreature("NW_S_IMP", VFX_FNF_SUMMON_GATE, 3.0); } break;
-                case ALIGNMENT_GOOD: { eSummon = EffectSummonCreature("NW_S_CLANTERN", VFX_FNF_SUMMON_CELESTIAL, 3.0); } break;
-                case ALIGNMENT_NEUTRAL: { eSummon = EffectSummonCreature("NW_S_SLAADRED", VFX_FNF_SUMMON_MONSTER_3, 3.0); } break;
+                case ALIGNMENT_EVIL:
+                {
+                    eSummon = EffectSummonCreature("NW_S_IMP", VFX_FNF_SUMMON_GATE, 3.0);
+                }
+                break;
+                case ALIGNMENT_GOOD:
+                {
+                    eSummon = EffectSummonCreature("NW_S_CLANTERN", VFX_FNF_SUMMON_CELESTIAL, 3.0);
+                }
+                break;
+                case ALIGNMENT_NEUTRAL:
+                {
+                    eSummon = EffectSummonCreature("NW_S_SLAADRED", VFX_FNF_SUMMON_MONSTER_3, 3.0);
+                }
+                break;
             }
         }
         break;
@@ -81,9 +93,21 @@ void main()
         {
             switch (GetAlignmentGoodEvil(oCaster))
             {
-                case ALIGNMENT_EVIL: { eSummon = EffectSummonCreature("NW_S_SUCCUBUS", VFX_FNF_SUMMON_GATE, 3.0); } break;
-                case ALIGNMENT_GOOD: { eSummon = EffectSummonCreature("NW_S_CHOUND", VFX_FNF_SUMMON_CELESTIAL, 3.0); } break;
-                case ALIGNMENT_NEUTRAL: { eSummon = EffectSummonCreature("NW_S_SLAADGRN", VFX_FNF_SUMMON_MONSTER_3, 3.0); } break;
+                case ALIGNMENT_EVIL:
+                {
+                    eSummon = EffectSummonCreature("NW_S_SUCCUBUS", VFX_FNF_SUMMON_GATE, 3.0);
+                }
+                break;
+                case ALIGNMENT_GOOD:
+                {
+                    eSummon = EffectSummonCreature("NW_S_CHOUND", VFX_FNF_SUMMON_CELESTIAL, 3.0);
+                }
+                break;
+                case ALIGNMENT_NEUTRAL:
+                {
+                    eSummon = EffectSummonCreature("NW_S_SLAADGRN", VFX_FNF_SUMMON_MONSTER_3, 3.0);
+                }
+                break;
             }
         }
         break;
@@ -91,15 +115,27 @@ void main()
         {
             switch (GetAlignmentGoodEvil(oCaster))
             {
-                case ALIGNMENT_EVIL: { eSummon = EffectSummonCreature("NW_S_VROCK", VFX_FNF_SUMMON_GATE, 3.0); } break;
-                case ALIGNMENT_GOOD: { eSummon = EffectSummonCreature("NW_S_CTRUMPET", VFX_FNF_SUMMON_CELESTIAL, 3.0); } break;
-                case ALIGNMENT_NEUTRAL: { eSummon = EffectSummonCreature("NW_S_SLAADDETH", VFX_FNF_SUMMON_MONSTER_3, 3.0); } break;
+                case ALIGNMENT_EVIL:
+                {
+                    eSummon = EffectSummonCreature("NW_S_VROCK", VFX_FNF_SUMMON_GATE, 3.0);
+                }
+                break;
+                case ALIGNMENT_GOOD:
+                {
+                    eSummon = EffectSummonCreature("NW_S_CTRUMPET", VFX_FNF_SUMMON_CELESTIAL, 3.0);
+                }
+                break;
+                case ALIGNMENT_NEUTRAL:
+                {
+                    eSummon = EffectSummonCreature("NW_S_SLAADDETH", VFX_FNF_SUMMON_MONSTER_3, 3.0);
+                }
+                break;
             }
         }
         break;
         default:
         {
-            OP_Debug("[Planar Binding] Unknown spell ID: " + IntToString(nSpellId), LOG_LEVEL_ERROR);
+            Debug("[Planar Binding] Unknown spell ID: " + IntToString(nSpellId), ERROR);
             return;
         }
         break;
@@ -110,4 +146,3 @@ void main()
 
     ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eSummon, lTarget, GetDuration(nCasterLevel, HOURS));
 }
-

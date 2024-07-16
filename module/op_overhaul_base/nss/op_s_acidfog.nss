@@ -36,8 +36,7 @@ void main()
                 {
                     ApplyAOEPersistentEffect(oTarget, EffectMovementSpeedDecrease(50));
 
-                    ApplyVisualEffectToObject(VFX_IMP_ACID_S, oTarget);
-                    ApplyDamageToObject(oTarget, GetDiceRoll(2, 6), DAMAGE_TYPE_ACID);
+                    ApplyDamageWithVFXToObject(oTarget, VFX_IMP_ACID_S, GetDiceRoll(2, 6), DAMAGE_TYPE_ACID);
                 }
             }
         }
@@ -79,7 +78,6 @@ void main()
         ApplyVisualEffectAtLocation(VFX_FNF_GAS_EXPLOSION_ACID, lTarget);
 
         effect eAOE = EffectAreaOfEffect(AOE_PER_FOGACID, GetScriptName(), GetScriptName(), GetScriptName());
-        ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, GetDuration(nCasterLevel/2, ROUNDS));
+        ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, GetDuration(nCasterLevel / 2, ROUNDS));
     }
 }
-

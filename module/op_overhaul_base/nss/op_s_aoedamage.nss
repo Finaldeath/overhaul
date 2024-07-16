@@ -48,73 +48,73 @@ void main()
     {
         case SPELL_FIREBALL:
         {
-            nDiceNum = max(10, nCasterLevel);
-            nDiceSize = 6;
-            nDamageType = DAMAGE_TYPE_FIRE;
-            nSavingThrow = SAVING_THROW_REFLEX;
+            nDiceNum         = max(10, nCasterLevel);
+            nDiceSize        = 6;
+            nDamageType      = DAMAGE_TYPE_FIRE;
+            nSavingThrow     = SAVING_THROW_REFLEX;
             nSavingThrowType = SAVING_THROW_TYPE_FIRE;
-            nImpact = VFX_FNF_FIREBALL;
-            nVis = VFX_IMP_FLAME_M;
+            nImpact          = VFX_FNF_FIREBALL;
+            nVis             = VFX_IMP_FLAME_M;
         }
         break;
         case SPELL_SCINTILLATING_SPHERE:
         {
-            nDiceNum = max(10, nCasterLevel);
-            nDiceSize = 6;
-            nDamageType = DAMAGE_TYPE_ELECTRICAL;
-            nSavingThrow = SAVING_THROW_REFLEX;
+            nDiceNum         = max(10, nCasterLevel);
+            nDiceSize        = 6;
+            nDamageType      = DAMAGE_TYPE_ELECTRICAL;
+            nSavingThrow     = SAVING_THROW_REFLEX;
             nSavingThrowType = SAVING_THROW_TYPE_ELECTRICITY;
-            nImpact = VFX_FNF_ELECTRIC_EXPLOSION;
-            nVis = VFX_IMP_LIGHTNING_S;
+            nImpact          = VFX_FNF_ELECTRIC_EXPLOSION;
+            nVis             = VFX_IMP_LIGHTNING_S;
         }
         break;
         case SPELL_CONE_OF_COLD:
         {
-            nDiceNum = max(15, nCasterLevel);
-            nDiceSize = 6;
-            nDamageType = DAMAGE_TYPE_COLD;
-            nSavingThrow = SAVING_THROW_REFLEX;
+            nDiceNum         = max(15, nCasterLevel);
+            nDiceSize        = 6;
+            nDamageType      = DAMAGE_TYPE_COLD;
+            nSavingThrow     = SAVING_THROW_REFLEX;
             nSavingThrowType = SAVING_THROW_TYPE_COLD;
-            nVis = VFX_IMP_FROST_L;
+            nVis             = VFX_IMP_FROST_L;
         }
         break;
         case SPELL_MESTILS_ACID_BREATH:
         {
-            nDiceNum = max(10, nCasterLevel);
-            nDiceSize = 6;
-            nDamageType = DAMAGE_TYPE_ACID;
-            nSavingThrow = SAVING_THROW_REFLEX;
+            nDiceNum         = max(10, nCasterLevel);
+            nDiceSize        = 6;
+            nDamageType      = DAMAGE_TYPE_ACID;
+            nSavingThrow     = SAVING_THROW_REFLEX;
             nSavingThrowType = SAVING_THROW_TYPE_ACID;
-            nVis = VFX_IMP_ACID_L;
+            nVis             = VFX_IMP_ACID_L;
         }
         break;
         case SPELL_CALL_LIGHTNING:
         {
-            nTargetType = SPELL_TARGET_SELECTIVEHOSTILE;
+            nTargetType  = SPELL_TARGET_SELECTIVEHOSTILE;
             bDelayRandom = TRUE;
 
-            nDiceNum = max(10, nCasterLevel);
-            nDiceSize = 6;
-            nDamageType = DAMAGE_TYPE_ELECTRICAL;
-            nSavingThrow = SAVING_THROW_REFLEX;
+            nDiceNum         = max(10, nCasterLevel);
+            nDiceSize        = 6;
+            nDamageType      = DAMAGE_TYPE_ELECTRICAL;
+            nSavingThrow     = SAVING_THROW_REFLEX;
             nSavingThrowType = SAVING_THROW_TYPE_ELECTRICITY;
-            nVis = VFX_IMP_LIGHTNING_M;
+            nVis             = VFX_IMP_LIGHTNING_M;
         }
         break;
         case SPELL_BURNING_HANDS:
         {
-            nDiceNum = max(5, nCasterLevel);
-            nDiceSize = 4;
-            nDamageType = DAMAGE_TYPE_FIRE;
-            nSavingThrow = SAVING_THROW_REFLEX;
+            nDiceNum         = max(5, nCasterLevel);
+            nDiceSize        = 4;
+            nDamageType      = DAMAGE_TYPE_FIRE;
+            nSavingThrow     = SAVING_THROW_REFLEX;
             nSavingThrowType = SAVING_THROW_TYPE_FIRE;
-            nVis = VFX_IMP_FLAME_S;
+            nVis             = VFX_IMP_FLAME_S;
         }
         break;
         default:
-            OP_Debug("[op_s_aoedamage] No valid spell ID passed in: " + IntToString(nSpellId));
+            Debug("[op_s_aoedamage] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
-        break;
+            break;
     }
 
     ApplyVisualEffectAtLocation(nImpact, lTarget);
@@ -127,7 +127,7 @@ void main()
 
         SignalSpellCastAt();
 
-        float fDelay = bDelayRandom ? GetRandomDelay(0.4, 1.75) : GetDistanceBetweenLocations(GetLocation(oTarget), lTarget)/20.0;
+        float fDelay = bDelayRandom ? GetRandomDelay(0.4, 1.75) : GetDistanceBetweenLocations(GetLocation(oTarget), lTarget) / 20.0;
 
         if (!DoResistSpell(oTarget, oCaster, fDelay))
         {
@@ -150,4 +150,3 @@ void main()
         }
     }
 }
-

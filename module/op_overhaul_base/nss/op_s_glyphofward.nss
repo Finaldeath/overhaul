@@ -30,7 +30,7 @@ void main()
 
         oTarget = GetEnteringObject();
 
-        if (DEBUG_LEVEL >= LOG_LEVEL_INFO) OP_Debug("[INFO] Glyph of Warding. Entering object: " + GetName(oTarget));
+        if (DEBUG_LEVEL >= INFO) Debug("[INFO] Glyph of Warding. Entering object: " + GetName(oTarget));
 
         if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_SELECTIVEHOSTILE))
         {
@@ -64,7 +64,7 @@ void main()
         // Declare major variables including Area of Effect Object
         effect eAOE = EffectAreaOfEffect(AOE_PER_GLYPH_OF_WARDING, GetScriptName(), GetScriptName(), GetScriptName());
 
-        float fDuration = GetDuration(nCasterLevel/2, MINUTES);
+        float fDuration = GetDuration(nCasterLevel / 2, MINUTES);
 
         ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, fDuration);
     }
@@ -83,7 +83,7 @@ void GlyphEffect()
     }
 
     // Max 5d8 damage
-    int nDamageDice = min(nCasterLevel/2, 5);
+    int nDamageDice = min(nCasterLevel / 2, 5);
 
     ApplyVisualEffectAtLocation(VFX_FNF_ELECTRIC_EXPLOSION, lTarget);
 
@@ -112,5 +112,3 @@ void GlyphEffect()
         }
     }
 }
-
-

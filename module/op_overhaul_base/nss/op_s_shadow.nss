@@ -38,7 +38,7 @@ void main()
     // If already illusionary we exit.
     if (bIllusionary)
     {
-        OP_Debug("[op_s_shadow] Recursive illusion call to this script?", LOG_LEVEL_ERROR);
+        Debug("[op_s_shadow] Recursive illusion call to this script?", ERROR);
         return;
     }
 
@@ -47,38 +47,83 @@ void main()
     switch (nSpellId)
     {
         // Shadow Conjuration; 20% effective, max level 3
-        case SPELL_SHADOW_CONJURATION_DARKNESS:      nStrength = 20; nNewSpellId = SPELL_DARKNESS; break;
-        case SPELL_SHADOW_CONJURATION_INIVSIBILITY:  nStrength = 20; nNewSpellId = SPELL_INVISIBILITY; break;
-        case SPELL_SHADOW_CONJURATION_MAGE_ARMOR:    nStrength = 20; nNewSpellId = SPELL_MAGE_ARMOR; break;
-        case SPELL_SHADOW_CONJURATION_MAGIC_MISSILE: nStrength = 20; nNewSpellId = SPELL_MAGIC_MISSILE; break;
-        case SPELL_SHADOW_CONJURATION_SUMMON_SHADOW: nStrength = 20; nNewSpellId = SPELL_SUMMON_CREATURE_III; break;
+        case SPELL_SHADOW_CONJURATION_DARKNESS:
+            nStrength   = 20;
+            nNewSpellId = SPELL_DARKNESS;
+            break;
+        case SPELL_SHADOW_CONJURATION_INIVSIBILITY:
+            nStrength   = 20;
+            nNewSpellId = SPELL_INVISIBILITY;
+            break;
+        case SPELL_SHADOW_CONJURATION_MAGE_ARMOR:
+            nStrength   = 20;
+            nNewSpellId = SPELL_MAGE_ARMOR;
+            break;
+        case SPELL_SHADOW_CONJURATION_MAGIC_MISSILE:
+            nStrength   = 20;
+            nNewSpellId = SPELL_MAGIC_MISSILE;
+            break;
+        case SPELL_SHADOW_CONJURATION_SUMMON_SHADOW:
+            nStrength   = 20;
+            nNewSpellId = SPELL_SUMMON_CREATURE_III;
+            break;
 
         // Greater Shadow Conjuration; 60% effective, max level 6
-        case SPELL_GREATER_SHADOW_CONJURATION_ACID_ARROW:    nStrength = 60; nNewSpellId = SPELL_MELFS_ACID_ARROW; break;
-        case SPELL_GREATER_SHADOW_CONJURATION_MINOR_GLOBE:   nStrength = 60; nNewSpellId = SPELL_MINOR_GLOBE_OF_INVULNERABILITY; break;
-        case SPELL_GREATER_SHADOW_CONJURATION_MIRROR_IMAGE:  nStrength = 60; nNewSpellId = SPELL_GHOSTLY_VISAGE; break; // Pour one out for Mirror Image
-        case SPELL_GREATER_SHADOW_CONJURATION_WEB:           nStrength = 60; nNewSpellId = SPELL_WEB; break;
-        case SPELL_GREATER_SHADOW_CONJURATION_SUMMON_SHADOW: nStrength = 60; nNewSpellId = SPELL_SUMMON_CREATURE_VI; break;
+        case SPELL_GREATER_SHADOW_CONJURATION_ACID_ARROW:
+            nStrength   = 60;
+            nNewSpellId = SPELL_MELFS_ACID_ARROW;
+            break;
+        case SPELL_GREATER_SHADOW_CONJURATION_MINOR_GLOBE:
+            nStrength   = 60;
+            nNewSpellId = SPELL_MINOR_GLOBE_OF_INVULNERABILITY;
+            break;
+        case SPELL_GREATER_SHADOW_CONJURATION_MIRROR_IMAGE:
+            nStrength   = 60;
+            nNewSpellId = SPELL_GHOSTLY_VISAGE;
+            break;  // Pour one out for Mirror Image
+        case SPELL_GREATER_SHADOW_CONJURATION_WEB:
+            nStrength   = 60;
+            nNewSpellId = SPELL_WEB;
+            break;
+        case SPELL_GREATER_SHADOW_CONJURATION_SUMMON_SHADOW:
+            nStrength   = 60;
+            nNewSpellId = SPELL_SUMMON_CREATURE_VI;
+            break;
 
         // Shades; 80% effective, max level 8
-        case SPELL_SHADES_CONE_OF_COLD:  nStrength = 80; nNewSpellId = SPELL_CONE_OF_COLD; break;
-        case SPELL_SHADES_FIREBALL:      nStrength = 80; nNewSpellId = SPELL_FIREBALL; break;
-        case SPELL_SHADES_STONESKIN:     nStrength = 80; nNewSpellId = SPELL_STONESKIN; break;
-        case SPELL_SHADES_WALL_OF_FIRE:  nStrength = 80; nNewSpellId = SPELL_WALL_OF_FIRE; break;
-        case SPELL_SHADES_SUMMON_SHADOW: nStrength = 80; nNewSpellId = SPELL_SUMMON_CREATURE_VIII; break;
+        case SPELL_SHADES_CONE_OF_COLD:
+            nStrength   = 80;
+            nNewSpellId = SPELL_CONE_OF_COLD;
+            break;
+        case SPELL_SHADES_FIREBALL:
+            nStrength   = 80;
+            nNewSpellId = SPELL_FIREBALL;
+            break;
+        case SPELL_SHADES_STONESKIN:
+            nStrength   = 80;
+            nNewSpellId = SPELL_STONESKIN;
+            break;
+        case SPELL_SHADES_WALL_OF_FIRE:
+            nStrength   = 80;
+            nNewSpellId = SPELL_WALL_OF_FIRE;
+            break;
+        case SPELL_SHADES_SUMMON_SHADOW:
+            nStrength   = 80;
+            nNewSpellId = SPELL_SUMMON_CREATURE_VIII;
+            break;
 
         // The base spells should never be cast directly!
         case SPELL_SHADOW_CONJURATION:
         case SPELL_GREATER_SHADOW_CONJURATION:
         case SPELL_SHADES:
         {
-            OP_Debug("[Shadow Spells] Directly casting parent spell. ID: " + IntToString(nSpellId), LOG_LEVEL_ERROR);
+            Debug("[Shadow Spells] Directly casting parent spell. ID: " + IntToString(nSpellId), ERROR);
             return;
         }
         break;
         default:
         {
-            OP_Debug("[Shadow Spells] Unknown spell ID: " + IntToString(nSpellId), LOG_LEVEL_ERROR);
+            Debug("[Shadow Spells] Unknown spell ID: " + IntToString(nSpellId), ERROR);
             return;
         }
         break;
@@ -90,7 +135,7 @@ void main()
     // Validate
     if (ResManGetAliasFor(sScript, RESTYPE_NSS) == "")
     {
-        OP_Debug("[op_s_shadow] Spell script for target spell not found: " + sScript, LOG_LEVEL_ERROR);
+        Debug("[op_s_shadow] Spell script for target spell not found: " + sScript, ERROR);
         return;
     }
 
@@ -104,4 +149,3 @@ void main()
 
     // Done, no real cleanup needed (hopefully)
 }
-

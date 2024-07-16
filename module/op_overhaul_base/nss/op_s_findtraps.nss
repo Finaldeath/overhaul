@@ -18,7 +18,7 @@ void main()
 {
     if (DoSpellHook()) return;
 
-    ApplyVisualEffectAtLocation(VFX_FNF_LOS_NORMAL_30, lTarget); // TODO replace with better VFX
+    ApplyVisualEffectAtLocation(VFX_FNF_LOS_NORMAL_30, lTarget);  // TODO replace with better VFX
 
     // Find the traps or trapped objects
     json jArray = GetArrayOfTargets(SPELL_TARGET_ANYTHING, SORT_METHOD_DISTANCE, OBJECT_TYPE_PLACEABLE | OBJECT_TYPE_DOOR | OBJECT_TYPE_TRIGGER);
@@ -31,9 +31,9 @@ void main()
 
         if (GetIsTrapped(oTarget) && GetTrapDetectDC(oTarget) < 35)
         {
-            float fDelay = GetDistanceBetween(oTarget, oCaster)/20.0;
+            float fDelay = GetDistanceBetween(oTarget, oCaster) / 20.0;
 
-            DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_KNOCK, oTarget));// TODO replace with a better VFX
+            DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_KNOCK, oTarget));  // TODO replace with a better VFX
             DelayCommand(fDelay + 1.0, SetDetectedByParty(oTarget, oCaster));
         }
     }
@@ -54,7 +54,7 @@ void SetDetectedByParty(object oTrap, object oCaster)
     else
     {
         // Just friends in the area
-        int nNth = 1;
+        int nNth       = 1;
         object oMember = GetNearestCreature(CREATURE_TYPE_REPUTATION, REPUTATION_TYPE_FRIEND, oCaster, nNth);
         while (GetIsObjectValid(oMember))
         {

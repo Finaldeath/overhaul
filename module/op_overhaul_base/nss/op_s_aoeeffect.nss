@@ -49,7 +49,7 @@ void main()
     // VFX
     int nImpact = VFX_NONE, nVis = VFX_NONE, nDamVis = VFX_NONE, bDelayRandom = FALSE;
     // Can change to selective hostile
-    int nTargetType = SPELL_TARGET_STANDARDHOSTILE;
+    int nTargetType    = SPELL_TARGET_STANDARDHOSTILE;
     int nCreatureLimit = 99999;
 
     switch (nSpellId)
@@ -57,34 +57,34 @@ void main()
         case SPELL_BALAGARNSIRONHORN:
         {
             nStrengthCheckRoll = d20() + 20;
-            nImmunity = IMMUNITY_TYPE_KNOCKDOWN;
-            bImmuneIfFlying = TRUE;
-            nImpact = VFX_FNF_SCREEN_SHAKE;
-            nVis = VFX_IMP_HEAD_NATURE;
-            eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectKnockdown()),
-                    EffectLinkEffects(EffectIcon(EFFECT_ICON_KNOCKDOWN),
-                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
-            fDuration = 6.0;
+            nImmunity          = IMMUNITY_TYPE_KNOCKDOWN;
+            bImmuneIfFlying    = TRUE;
+            nImpact            = VFX_FNF_SCREEN_SHAKE;
+            nVis               = VFX_IMP_HEAD_NATURE;
+            eLink              = EffectLinkEffects(IgnoreEffectImmunity(EffectKnockdown()),
+                                                   EffectLinkEffects(EffectIcon(EFFECT_ICON_KNOCKDOWN),
+                                                                     EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            fDuration          = 6.0;
         }
         break;
         case SPELL_WAIL_OF_THE_BANSHEE:
         {
-            nImmunity = IMMUNITY_TYPE_DEATH;
+            nImmunity           = IMMUNITY_TYPE_DEATH;
             bImmuneIfCannotHear = TRUE;
-            nSavingThrow = SAVING_THROW_FORT;
-            nSavingThrowType = SAVING_THROW_TYPE_DEATH;
-            nImpact = VFX_FNF_WAIL_O_BANSHEES;
-            nVis = VFX_IMP_DEATH;
-            eLink = IgnoreEffectImmunity(EffectDeath());
-            fDuration = 0.0;
-            fExtraDelay = 3.0;
-            nCreatureLimit = nCasterLevel;
+            nSavingThrow        = SAVING_THROW_FORT;
+            nSavingThrowType    = SAVING_THROW_TYPE_DEATH;
+            nImpact             = VFX_FNF_WAIL_O_BANSHEES;
+            nVis                = VFX_IMP_DEATH;
+            eLink               = IgnoreEffectImmunity(EffectDeath());
+            fDuration           = 0.0;
+            fExtraDelay         = 3.0;
+            nCreatureLimit      = nCasterLevel;
         }
         break;
         default:
-            OP_Debug("[op_s_aoeeffect] No valid spell ID passed in: " + IntToString(nSpellId));
+            Debug("[op_s_aoeeffect] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
-        break;
+            break;
     }
 
     ApplyVisualEffectAtLocation(nImpact, lTarget);
@@ -97,7 +97,7 @@ void main()
 
         SignalSpellCastAt();
 
-        float fDelay = bDelayRandom ? GetRandomDelay(0.4, 1.75) : GetDistanceBetweenLocations(GetLocation(oTarget), lTarget)/20.0;
+        float fDelay = bDelayRandom ? GetRandomDelay(0.4, 1.75) : GetDistanceBetweenLocations(GetLocation(oTarget), lTarget) / 20.0;
 
         fDelay += fExtraDelay;
 
@@ -107,9 +107,9 @@ void main()
 
             if (!DoResistSpell(oTarget, oCaster, fDelay))
             {
-                if((nImmunity != -1 || !GetIsImmuneWithFeedback(oTarget, nImmunity, oCaster)) &&
-                   (!bImmuneIfFlying || !GetIsFlying(oTarget)) &&
-                   (!bImmuneIfCannotHear || GetCanHear(oTarget)))
+                if ((nImmunity != -1 || !GetIsImmuneWithFeedback(oTarget, nImmunity, oCaster)) &&
+                    (!bImmuneIfFlying || !GetIsFlying(oTarget)) &&
+                    (!bImmuneIfCannotHear || GetCanHear(oTarget)))
                 {
                     // Saving throw or strength check?
                     int bSaved = FALSE;
@@ -154,4 +154,3 @@ void main()
         }
     }
 }
-

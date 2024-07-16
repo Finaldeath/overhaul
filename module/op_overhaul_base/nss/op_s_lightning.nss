@@ -23,14 +23,15 @@ void main()
 {
     if (DoSpellHook()) return;
 
-    int nDamageDice, nTargetType, nSortMethod, nObjectType, nMaxTargets = 10000;
-    int nVis = VFX_IMP_LIGHTNING_S;
-    int nBeam = VFX_BEAM_LIGHTNING;
     object oFirstTarget = OBJECT_INVALID, oPreviousTarget;
+    int nDamageDice, nTargetType, nSortMethod, nObjectType, nMaxTargets = 10000;
+    int nVis  = VFX_IMP_LIGHTNING_S;
+    int nBeam = VFX_BEAM_LIGHTNING;
+
     switch (nSpellId)
     {
         case SPELL_CHAIN_LIGHTNING:
-            nDamageDice = min(10, nCasterLevel/2);
+            nDamageDice = min(10, nCasterLevel / 2);
             nTargetType = SPELL_TARGET_SELECTIVEHOSTILE;
             nSortMethod = SORT_METHOD_DISTANCE;
             nObjectType = OBJECT_TYPE_CREATURE;
@@ -41,7 +42,7 @@ void main()
 
             SignalSpellCastAt();
 
-            oFirstTarget = oTarget;
+            oFirstTarget    = oTarget;
             oPreviousTarget = oTarget;
 
             ApplyBeamToObject(nBeam, oTarget, FALSE, BODY_NODE_HAND);
@@ -51,7 +52,7 @@ void main()
                 if (!DoResistSpell(oTarget, oCaster))
                 {
                     int nDamage = GetDiceRoll(min(20, nCasterLevel), 6);
-                    nDamage = DoDamageSavingThrow(nDamage, oTarget, oCaster, SAVING_THROW_REFLEX, nSpellSaveDC, SAVING_THROW_TYPE_ELECTRICITY);
+                    nDamage     = DoDamageSavingThrow(nDamage, oTarget, oCaster, SAVING_THROW_REFLEX, nSpellSaveDC, SAVING_THROW_TYPE_ELECTRICITY);
 
                     if (nDamage > 0)
                     {
@@ -60,19 +61,18 @@ void main()
                     }
                 }
             }
-        break;
+            break;
         case SPELL_LIGHTNING_BOLT:
             nDamageDice = min(10, nCasterLevel);
             nTargetType = SPELL_TARGET_STANDARDHOSTILE;
             nSortMethod = SORT_METHOD_DISTANCE_TO_CASTER;
             nObjectType = OBJECT_TYPE_CREATURE | OBJECT_TYPE_DOOR | OBJECT_TYPE_PLACEABLE;
-        break;
+            break;
     }
 
-
     float fDelay = 0.0;
-    int nCount = 0;
-    json jArray = GetArrayOfTargets(nTargetType, nSortMethod, nObjectType);
+    int nCount   = 0;
+    json jArray  = GetArrayOfTargets(nTargetType, nSortMethod, nObjectType);
 
     // Chain Lightning: Remove first target if present and then clear up to nMaxTargets
     if (GetIsObjectValid(oFirstTarget))
@@ -135,4 +135,3 @@ void main()
         }
     }
 }
-

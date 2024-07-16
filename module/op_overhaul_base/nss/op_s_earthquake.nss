@@ -34,9 +34,9 @@ void main()
 
     int nVis = VFX_IMP_HEAD_NATURE;
     // Extraordinary effects since they're "natural" and no SR applies
-    effect eLink = EffectLinkEffects(EffectKnockdown(),
-                                     EffectIcon(EFFECT_ICON_KNOCKDOWN));
-    eLink = ExtraordinaryEffect(eLink);
+    effect eLink         = EffectLinkEffects(EffectKnockdown(),
+                                             EffectIcon(EFFECT_ICON_KNOCKDOWN));
+    eLink                = ExtraordinaryEffect(eLink);
     effect eSpellFailure = ExtraordinaryEffect(EffectSpellFailure(100));
 
     json jArray = GetArrayOfTargets(SPELL_TARGET_STANDARDHOSTILE, SORT_METHOD_DISTANCE, OBJECT_TYPE_CREATURE | OBJECT_TYPE_DOOR | OBJECT_TYPE_PLACEABLE);
@@ -87,4 +87,3 @@ void main()
         }
     }
 }
-

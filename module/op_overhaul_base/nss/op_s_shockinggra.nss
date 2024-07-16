@@ -45,7 +45,7 @@ void main()
         {
             // Apply the bonus, which shouldn't then apply outside this spell.
             effect eAttackBonus = EffectAttackIncrease(3, ATTACK_BONUS_MISC);
-            eAttackBonus = HideEffectIcon(eAttackBonus);
+            eAttackBonus        = HideEffectIcon(eAttackBonus);
             ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eAttackBonus, oCaster, 0.0);
         }
 
@@ -56,7 +56,7 @@ void main()
             if (!DoResistSpell(oTarget, oCaster))
             {
                 int nBonusDamage = min(nCasterLevel, 20);
-                int nDamage = GetDiceRoll(1, 8, nBonusDamage);
+                int nDamage      = GetDiceRoll(1, 8, nBonusDamage);
 
                 // Critical roll
                 if (nTouchAttack == 2) nDamage *= 2;
@@ -71,28 +71,27 @@ void main()
             ApplyVisualEffectToObject(VFX_IMP_LIGHTNING_S, oTarget, TRUE);
 
             // TODO better way would be to generate a new location between the two creatures
-/*
+            /*
 
-            //location lAhead = GenerateNewLocation(oCaster, 1.5, GetFacing(oCaster), GetFacing(oCaster));
+                        //location lAhead = GenerateNewLocation(oCaster, 1.5, GetFacing(oCaster), GetFacing(oCaster));
 
-            vector vCaster = GetPosition(oCaster);
-            vector vTarget = GetPosition(oTarget);
-            vector vDiff = Vector((vTarget.x + vCaster.x) / 2.0, (vTarget.y + vCaster.y) / 2.0, (vTarget.z + vCaster.z) / 2.0);
-            vDiff = vDiff - vTarget;
+                        vector vCaster = GetPosition(oCaster);
+                        vector vTarget = GetPosition(oTarget);
+                        vector vDiff = Vector((vTarget.x + vCaster.x) / 2.0, (vTarget.y + vCaster.y) / 2.0, (vTarget.z + vCaster.z) / 2.0);
+                        vDiff = vDiff - vTarget;
 
-            //vector vDiff = GetPosition(oTarget) - GetPosition(oCaster);
-            //vDiff = Vector(vDiff.x/2, vDiff.y/2, vDiff.z/2);
+                        //vector vDiff = GetPosition(oTarget) - GetPosition(oCaster);
+                        //vDiff = Vector(vDiff.x/2, vDiff.y/2, vDiff.z/2);
 
-            vector vNormalized = VectorNormalize(vDiff);
+                        vector vNormalized = VectorNormalize(vDiff);
 
-            SpeakString("vCaster: " + VectorToString(vCaster) + " vTarget: " + VectorToString(vTarget));
-            SpeakString("vDiff: " + VectorToString(vDiff) + " vNormalized: " + VectorToString(vNormalized));
+                        SpeakString("vCaster: " + VectorToString(vCaster) + " vTarget: " + VectorToString(vTarget));
+                        SpeakString("vDiff: " + VectorToString(vDiff) + " vNormalized: " + VectorToString(vNormalized));
 
-            //vector vTranslate = Vector(GetRandomDelay(0.5, 1.0), GetRandomDelay(0.5, 1.0), 0.0);
+                        //vector vTranslate = Vector(GetRandomDelay(0.5, 1.0), GetRandomDelay(0.5, 1.0), 0.0);
 
-            ApplyVisualEffectToObject(VFX_IMP_LIGHTNING_S, oTarget, FALSE, 0.0, 1.0, vDiff);
-*/
+                        ApplyVisualEffectToObject(VFX_IMP_LIGHTNING_S, oTarget, FALSE, 0.0, 1.0, vDiff);
+            */
         }
     }
 }
-

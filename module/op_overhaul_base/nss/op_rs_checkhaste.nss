@@ -20,4 +20,3 @@ void main()
         RemoveEffectsFromSpell(OBJECT_SELF, nSpellId);
     }
 }
-

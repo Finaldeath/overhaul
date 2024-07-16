@@ -25,8 +25,9 @@
 //:: https://github.com/Finaldeath/overhaul
 //:://////////////////////////////////////////////
 
-#include "op_i_spells"
 #include "op_i_feats"
+#include "op_i_spells"
+
 
 // Check if we want to obtain nFeatId (ie we haven't got, and we can take it)
 int CheckIfWeWantFeat(int nFeatId, object oCreature, json jCreature, object oFeedbackCreature);
@@ -95,9 +96,9 @@ void main()
 
     effect eLink =
         EffectLinkEffects(EffectBonusFeat(nFeatToApply),
-        EffectLinkEffects(EffectImmunity(EFFECT_ICON_BONUS_FEAT),
-        EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_POSITIVE),
-                          EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE))));
+                          EffectLinkEffects(EffectImmunity(EFFECT_ICON_BONUS_FEAT),
+                                            EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_POSITIVE),
+                                                              EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE))));
 
     ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
 }
@@ -223,7 +224,7 @@ json GetArrayOfFeats(int nSpellId, json jFeatArray)
         default:
         {
             object oRightItem = GetItemInSlot(INVENTORY_SLOT_RIGHTHAND, oTarget);
-            object oLeftItem = GetItemInSlot(INVENTORY_SLOT_LEFTHAND, oTarget);
+            object oLeftItem  = GetItemInSlot(INVENTORY_SLOT_LEFTHAND, oTarget);
 
             if (!GetIsObjectValid(oRightItem))
             {
@@ -236,7 +237,7 @@ json GetArrayOfFeats(int nSpellId, json jFeatArray)
             // Two weapons
             // Double sided weapons
             else if ((GetItemIsWeapon(oRightItem) && GetItemIsWeapon(oLeftItem)) ||
-                      StringToInt(Get2DAString("baseitems", "WeaponWield", GetBaseItemType(oRightItem))) == 8)
+                     StringToInt(Get2DAString("baseitems", "WeaponWield", GetBaseItemType(oRightItem))) == 8)
             {
                 jFeatArray = GetArrayOfFeats(SPELL_HEROICS_TWOWEAPON_FIGHTING_FEAT, jFeatArray);
                 jFeatArray = GetArrayOfFeats(SPELL_HEROICS_MELEE_ACTIVE_FEAT, jFeatArray);
@@ -258,12 +259,11 @@ json GetArrayOfFeats(int nSpellId, json jFeatArray)
                 jFeatArray = GetArrayOfFeats(SPELL_HEROICS_MELEE_MODE_FEAT, jFeatArray);
                 jFeatArray = GetArrayOfFeats(SPELL_HEROICS_WEAPON_FEAT, jFeatArray);
                 jFeatArray = GetArrayOfFeats(SPELL_HEROICS_DEFENSIVE_FEAT, jFeatArray);
-                jFeatArray = GetArrayOfFeats(SPELL_HEROICS_UNARMED_FEAT, jFeatArray); // Why not
-                jFeatArray = GetArrayOfFeats(SPELL_HEROICS_TWOWEAPON_FIGHTING_FEAT, jFeatArray); // Sure, throw it in
+                jFeatArray = GetArrayOfFeats(SPELL_HEROICS_UNARMED_FEAT, jFeatArray);             // Why not
+                jFeatArray = GetArrayOfFeats(SPELL_HEROICS_TWOWEAPON_FIGHTING_FEAT, jFeatArray);  // Sure, throw it in
             }
         }
         break;
     }
     return jFeatArray;
 }
-

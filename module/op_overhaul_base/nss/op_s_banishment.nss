@@ -19,7 +19,7 @@ void main()
     if (DoSpellHook()) return;
 
     // Effects
-    effect eDeath  = IgnoreEffectImmunity(EffectDeath());
+    effect eDeath = IgnoreEffectImmunity(EffectDeath());
 
     // TODO: Could use a new VFX here
     ApplyVisualEffectAtLocation(VFX_IMP_UNSUMMON, lTarget, FALSE, 5.0);

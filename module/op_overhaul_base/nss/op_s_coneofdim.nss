@@ -55,7 +55,7 @@ void main()
 
             // Miss Chance applied for the rest of the duration
             effect eLink = EffectLinkEffects(EffectMissChance(20), EffectIcon(EFFECT_ICON_MISS_CHANCE));
-            eLink = TagEffect(UnyieldingEffect(eLink), TAG_CONE_OF_DIMNESS);
+            eLink        = TagEffect(UnyieldingEffect(eLink), TAG_CONE_OF_DIMNESS);
             ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDurationRemaining);
             return;
         }
@@ -80,7 +80,7 @@ void main()
 
     effect eRunScript = EffectRunScriptEnhanced();
     effect eBlindness = TagEffect(UnyieldingEffect(EffectBlindness()), TAG_CONE_OF_DIMNESS);
-    float fDuration = GetDuration(nCasterLevel, ROUNDS);
+    float fDuration   = GetDuration(nCasterLevel, ROUNDS);
 
     json jArray = GetArrayOfTargets(SPELL_TARGET_STANDARDHOSTILE);
     int nIndex;
@@ -91,7 +91,7 @@ void main()
         SignalSpellCastAt();
 
         // Get the distance between the target and caster to delay the application of effects
-        float fDelay = GetDistanceBetween(oCaster, oTarget)/20.0;
+        float fDelay = GetDistanceBetween(oCaster, oTarget) / 20.0;
 
         if (!DoResistSpell(oTarget, oCaster, fDelay))
         {
@@ -107,4 +107,3 @@ void main()
         }
     }
 }
-

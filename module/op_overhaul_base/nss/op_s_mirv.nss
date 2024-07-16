@@ -48,37 +48,37 @@ void main()
     {
         case SPELL_MAGIC_MISSILE:
         {
-            nMissiles = min((nCasterLevel + 1) / 2, 5);
-            nDiceNum = 1;
-            nDiceSize = 4;
+            nMissiles    = min((nCasterLevel + 1) / 2, 5);
+            nDiceNum     = 1;
+            nDiceSize    = 4;
             nDamageBonus = 1;
-            nDamageType = DAMAGE_TYPE_MAGICAL;
-            nVisMissile = VFX_IMP_MIRV;
-            nVis = VFX_IMP_MAGBLUE;
+            nDamageType  = DAMAGE_TYPE_MAGICAL;
+            nVisMissile  = VFX_IMP_MIRV;
+            nVis         = VFX_IMP_MAGBLUE;
         }
         break;
         case SPELL_ISAACS_LESSER_MISSILE_STORM:
         {
-            nMissiles = min(nCasterLevel, 10);
+            nMissiles               = min(nCasterLevel, 10);
             nMaxMissilesPerCreature = 5;
-            nDiceNum = 1;
-            nDiceSize = 6;
-            nDamageBonus = 0;
-            nDamageType = DAMAGE_TYPE_MAGICAL;
-            nVisMissile = VFX_IMP_MIRV;
-            nVis = VFX_IMP_MAGBLUE;
+            nDiceNum                = 1;
+            nDiceSize               = 6;
+            nDamageBonus            = 0;
+            nDamageType             = DAMAGE_TYPE_MAGICAL;
+            nVisMissile             = VFX_IMP_MIRV;
+            nVis                    = VFX_IMP_MAGBLUE;
         }
         break;
         case SPELL_ISAACS_GREATER_MISSILE_STORM:
         {
-            nMissiles = min(nCasterLevel, 20);
+            nMissiles               = min(nCasterLevel, 20);
             nMaxMissilesPerCreature = 5;
-            nDiceNum = 2;
-            nDiceSize = 6;
-            nDamageBonus = 0;
-            nDamageType = DAMAGE_TYPE_MAGICAL;
-            nVisMissile = VFX_IMP_MIRV;
-            nVis = VFX_IMP_MAGBLUE;
+            nDiceNum                = 2;
+            nDiceSize               = 6;
+            nDamageBonus            = 0;
+            nDamageType             = DAMAGE_TYPE_MAGICAL;
+            nVisMissile             = VFX_IMP_MIRV;
+            nVis                    = VFX_IMP_MAGBLUE;
         }
         break;
         case SPELL_FLAME_ARROW:
@@ -89,23 +89,23 @@ void main()
                 FireItemPropertySpellScript();
                 return;
             }
-            nMissiles = 40;//max(1, nCasterLevel/4);
+            nMissiles = 40;  // max(1, nCasterLevel/4);
             // No max per creature!
             bTouchAttackType = TOUCH_RANGED;
-            nDiceNum = 4;
-            nDiceSize = 6;
-            nDamageBonus = 0;
-            nDamageType = DAMAGE_TYPE_FIRE;
-            nVisMissile = VFX_IMP_MIRV_FLAME;
-            nVis = VFX_IMP_FLAME_S;
-            nSavingThrow = SAVING_THROW_REFLEX;
+            nDiceNum         = 4;
+            nDiceSize        = 6;
+            nDamageBonus     = 0;
+            nDamageType      = DAMAGE_TYPE_FIRE;
+            nVisMissile      = VFX_IMP_MIRV_FLAME;
+            nVis             = VFX_IMP_FLAME_S;
+            nSavingThrow     = SAVING_THROW_REFLEX;
             nSavingThrowType = SAVING_THROW_TYPE_FIRE;
         }
         break;
         default:
-            OP_Debug("[op_s_mirv] No valid spell ID passed in: " + IntToString(nSpellId));
+            Debug("[op_s_mirv] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
-        break;
+            break;
     }
 
     if (GetSpellIsAreaOfEffect(nSpellId))
@@ -116,7 +116,7 @@ void main()
         if (JsonGetLength(jArray) > 0)
         {
             int nMissilesPerCreature = max(1, nMissiles / JsonGetLength(jArray));
-            int nExtraMissiles = nMissiles - (nMissilesPerCreature * JsonGetLength(jArray));
+            int nExtraMissiles       = nMissiles - (nMissilesPerCreature * JsonGetLength(jArray));
             if (nMissilesPerCreature > nMaxMissilesPerCreature) nMissilesPerCreature = nMaxMissilesPerCreature;
 
             SpeakString("nMissiles: " + IntToString(nMissiles) + " nMissilesPerCreature: " + IntToString(nMissilesPerCreature) + " Creatures: " + IntToString(JsonGetLength(jArray)) + " nExtraMissiles: " + IntToString(nExtraMissiles));
@@ -181,7 +181,7 @@ void main()
             // Fire cast spell at event for the specified target
             SignalSpellCastAt();
 
-            float fDelay = GetVisualEffectHitDelay(nVisMissile, oTarget, oCaster);
+            float fDelay     = GetVisualEffectHitDelay(nVisMissile, oTarget, oCaster);
             float fDeltaTime = 0.0;
 
             int bResist = DoResistSpell(oTarget, oCaster, fDelay);

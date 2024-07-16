@@ -36,7 +36,6 @@ void main()
 {
     if (DoSpellHook()) return;
 
-
     // For single target spells just do their effects
     if (nSpellId == SPELL_CLARITY)
     {
@@ -66,7 +65,7 @@ void main()
     }
     else
     {
-        OP_Debug("[Mind Blank Spell Script] Error: Invalid spell ID", LOG_LEVEL_ERROR);
+        Debug("[Mind Blank Spell Script] Error: Invalid spell ID", ERROR);
     }
 }
 
@@ -74,14 +73,14 @@ void MindBlank(object oTarget, int bClarity, float fDuration)
 {
     // Same immunity for each
     effect eLink = EffectLinkEffects(EffectImmunity(IMMUNITY_TYPE_MIND_SPELLS),
-                   EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_POSITIVE),
-                                     EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+                                     EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_POSITIVE),
+                                                       EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
 
     // Immunity link
     ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
 
     effect eSearch = GetFirstEffect(oTarget);
-    while(GetIsEffectValid(eSearch))
+    while (GetIsEffectValid(eSearch))
     {
         int bValid = FALSE;
         switch (GetEffectType(eSearch, TRUE))

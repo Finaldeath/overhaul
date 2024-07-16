@@ -20,24 +20,24 @@ void main()
     if (DoSpellHook()) return;
 
     effect eLink = EffectLinkEffects(EffectSleep(),
-                   EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_NEGATIVE),
-                                     EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+                                     EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_NEGATIVE),
+                                                       EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
     int nImpact = VFX_NONE, nVis = VFX_NONE, nHDLimit, nHDPool;
     int nDuration;
 
     switch (nSpellId)
     {
         case SPELL_SLEEP:
-            nImpact = VFX_FNF_LOS_NORMAL_20;
-            nVis = VFX_IMP_SLEEP;
-            nHDLimit = 4;
-            nHDPool = GetDiceRoll(1, 4, 4);
+            nImpact   = VFX_FNF_LOS_NORMAL_20;
+            nVis      = VFX_IMP_SLEEP;
+            nHDLimit  = 4;
+            nHDPool   = GetDiceRoll(1, 4, 4);
             nDuration = nCasterLevel + 5;
-        break;
+            break;
         default:
-            OP_Debug("[Sleep op_s_sleep] No valid spell ID passed in: " + IntToString(nSpellId));
+            Debug("[Sleep op_s_sleep] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
-        break;
+            break;
     }
 
     // AOE?
@@ -61,14 +61,14 @@ void main()
             if (GetRacialType(oTarget) != RACIAL_TYPE_UNDEAD &&
                 GetRacialType(oTarget) != RACIAL_TYPE_CONSTRUCT &&
                 nHD <= nHDLimit &&
-               !GetHasEffect(oTarget, EFFECT_TYPE_SLEEP))
+                !GetHasEffect(oTarget, EFFECT_TYPE_SLEEP))
             {
                 // Must be enough points in the pool
                 if (nHDPool >= nHD)
                 {
                     nHDPool -= nHD;
 
-                    float fDelay = GetDistanceBetweenLocations(GetLocation(oTarget), lTarget)/20.0;
+                    float fDelay = GetDistanceBetweenLocations(GetLocation(oTarget), lTarget) / 20.0;
 
                     if (!DoResistSpell(oTarget, oCaster, fDelay))
                     {
@@ -91,4 +91,3 @@ void main()
         // None yet
     }
 }
-

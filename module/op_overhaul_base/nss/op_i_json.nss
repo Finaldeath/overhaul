@@ -13,20 +13,20 @@
 #include "op_i_debug"
 
 // General check for valid JSON
-const string JSON_FIELD_OVERHAUL    = "overhaul";    // Int
-const int OVERHAUL_VERSION     = 1;            // Matching check for FIELD_OVERHAUL
+const string JSON_FIELD_OVERHAUL = "overhaul";  // Int
+const int OVERHAUL_VERSION       = 1;           // Matching check for FIELD_OVERHAUL
 
 // Fields for the Json tag storage on item properties and run script effects
-const string JSON_FIELD_SPELLID     = "spellid";     // Int
-const string JSON_FIELD_CREATOR     = "creator";     // String (OID)
-const string JSON_FIELD_CASTERLEVEL = "casterlevel"; // Int
-const string JSON_FIELD_SPELLSAVEDC = "spellsavedc"; // Int
-const string JSON_FIELD_METAMAGIC   = "metamagic";   // Int
-const string JSON_FIELD_CASTERCLASS = "casterclass"; // Int
-const string JSON_FIELD_SPELLLEVEL  = "spelllevel";  // Int
-const string JSON_FIELD_SPONTANEOUS = "spontaneous"; // Int (boolean)
-const string JSON_FIELD_ILLUSIONARY = "illusionary"; // Int (boolean)
-const string JSON_FIELD_ILLUSIONARYSTRENGTH = "illusionarystrength"; // Int (20 = 20%)
+const string JSON_FIELD_SPELLID             = "spellid";              // Int
+const string JSON_FIELD_CREATOR             = "creator";              // String (OID)
+const string JSON_FIELD_CASTERLEVEL         = "casterlevel";          // Int
+const string JSON_FIELD_SPELLSAVEDC         = "spellsavedc";          // Int
+const string JSON_FIELD_METAMAGIC           = "metamagic";            // Int
+const string JSON_FIELD_CASTERCLASS         = "casterclass";          // Int
+const string JSON_FIELD_SPELLLEVEL          = "spelllevel";           // Int
+const string JSON_FIELD_SPONTANEOUS         = "spontaneous";          // Int (boolean)
+const string JSON_FIELD_ILLUSIONARY         = "illusionary";          // Int (boolean)
+const string JSON_FIELD_ILLUSIONARYSTRENGTH = "illusionarystrength";  // Int (20 = 20%)
 
 // Retrieves if the given sJson string has any data, and if it has it is valid Overhaul data
 // Will NOT print any debug messages on error, just reutrns FALSE.
@@ -44,7 +44,6 @@ object GetJsonMetadataObjectField(string sJson, string sField);
 
 // Checks if there are any matches for nData in jArray
 int GetArrayMatchesInt(json jArray, int nData);
-
 
 // Retrieves if the given sJson string has any data, and if it has it is valid Overhaul data
 // Will NOT print any debug messages on error, just reutrns FALSE.
@@ -77,20 +76,20 @@ int GetJsonMetadataIntField(string sJson, string sField, int nDefault = 0)
     // Any data?
     if (sJson == "")
     {
-        OP_Debug("[GetJsonMetadataIntField] Error: No data input.", LOG_LEVEL_ERROR);
+        Debug("[GetJsonMetadataIntField] Error: No data input.", ERROR);
         return nDefault;
     }
     json jObject = JsonParse(sJson);
 
     if (JsonGetType(jObject) == JSON_TYPE_NULL)
     {
-        OP_Debug("[GetJsonMetadataIntField] No found valid Json. Error: " + JsonGetError(jObject), LOG_LEVEL_ERROR);
+        Debug("[GetJsonMetadataIntField] No found valid Json. Error: " + JsonGetError(jObject), ERROR);
         return nDefault;
     }
     // Is it overhaul?
     if (JsonGetInt(JsonObjectGet(jObject, JSON_FIELD_OVERHAUL)) != OVERHAUL_VERSION)
     {
-        OP_Debug("[GetJsonMetadataIntField] Json found but not Overhaul. Error: " + JsonGetError(jObject), LOG_LEVEL_ERROR);
+        Debug("[GetJsonMetadataIntField] Json found but not Overhaul. Error: " + JsonGetError(jObject), ERROR);
         return nDefault;
     }
 
@@ -110,20 +109,20 @@ object GetJsonMetadataObjectField(string sJson, string sField)
     // Any data?
     if (sJson == "")
     {
-        OP_Debug("[GetJsonMetadataObjectField] Error: No data input.", LOG_LEVEL_ERROR);
+        Debug("[GetJsonMetadataObjectField] Error: No data input.", ERROR);
         return OBJECT_INVALID;
     }
     json jObject = JsonParse(sJson);
 
     if (JsonGetType(jObject) == JSON_TYPE_NULL)
     {
-        OP_Debug("[GetJsonMetadataObjectField] No found valid Json. Error: " + JsonGetError(jObject), LOG_LEVEL_ERROR);
+        Debug("[GetJsonMetadataObjectField] No found valid Json. Error: " + JsonGetError(jObject), ERROR);
         return OBJECT_INVALID;
     }
     // Is it overhaul?
     if (JsonGetInt(JsonObjectGet(jObject, JSON_FIELD_OVERHAUL)) != OVERHAUL_VERSION)
     {
-        OP_Debug("[GetJsonMetadataObjectField] Json found but not Overhaul. Error: " + JsonGetError(jObject), LOG_LEVEL_ERROR);
+        Debug("[GetJsonMetadataObjectField] Json found but not Overhaul. Error: " + JsonGetError(jObject), ERROR);
         return OBJECT_INVALID;
     }
 
@@ -149,11 +148,10 @@ int GetArrayMatchesInt(json jArray, int nData)
     int nIndex;
     for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
     {
-        if(JsonGetInt(JsonArrayGet(jArray, nIndex)) == nData)
+        if (JsonGetInt(JsonArrayGet(jArray, nIndex)) == nData)
         {
             return TRUE;
         }
     }
     return FALSE;
 }
-

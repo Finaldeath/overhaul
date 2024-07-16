@@ -35,11 +35,11 @@
 //:://////////////////////////////////////////////
 
 #include "op_i_constants"
-#include "op_i_feedback"
 #include "op_i_debug"
+#include "op_i_feedback"
 #include "op_i_json"
-#include "utl_i_itemprop"
 #include "utl_i_item"
+#include "utl_i_itemprop"
 
 // Debugs the given item and it's properties
 void DebugItemProperties(object oItem);
@@ -134,13 +134,12 @@ int GetItemPropertyMetaMagic(itemproperty ipProperty);
 // Returns the correct IP_CONST_DAMAGEBONUS_* for the given nBonus.
 int GetItemPropertyDamageBonusConstant(int nBonus);
 
-
 // Debugs the given item and it's properties
 void DebugItemProperties(object oItem)
 {
-    OP_Debug("Debugging item properties of: " + GetName(oItem));
+    Debug("Debugging item properties of: " + GetName(oItem));
     itemproperty ipCheck = GetFirstItemProperty(oItem);
-    int nCount = 1;
+    int nCount           = 1;
     while (GetIsItemPropertyValid(ipCheck))
     {
         string sDebug = "  Item Property [" + IntToString(nCount) +
@@ -155,7 +154,7 @@ void DebugItemProperties(object oItem)
                         "] Spell Save DC: [" + IntToString(GetItemPropertySpellSaveDC(ipCheck)) +
                         "]";
 
-        OP_Debug(sDebug);
+        Debug(sDebug);
         nCount++;
         ipCheck = GetNextItemProperty(oItem);
     }
@@ -195,8 +194,16 @@ int GetCanApplySafeItemProperty(object oItem, itemproperty ipProperty)
 int ApplySafeItemProperty(object oItem, itemproperty ipProperty, float fDuration, int nSpellId, object oCaster, int nCasterLevel, int nSpellSaveDC, int nMetaMagic)
 {
     // Error checking
-    if (!GetIsItemPropertyValid(ipProperty)) { OP_Debug("[ApplySafeItemProperty] Invalid input item property."); return FALSE; }
-    if (fDuration <= 0.0) { OP_Debug("[ApplySafeItemProperty] Invalid fDuration: " + FloatToString(fDuration)); return FALSE; }
+    if (!GetIsItemPropertyValid(ipProperty))
+    {
+        Debug("[ApplySafeItemProperty] Invalid input item property.");
+        return FALSE;
+    }
+    if (fDuration <= 0.0)
+    {
+        Debug("[ApplySafeItemProperty] Invalid fDuration: " + FloatToString(fDuration));
+        return FALSE;
+    }
 
     // First for some item properties we want to make sure no item properties of this type exist
     if (!GetCanApplySafeItemProperty(oItem, ipProperty))
@@ -230,22 +237,21 @@ void ApplyItemProperty(object oItem, itemproperty ipProperty, float fDuration, i
     AddItemProperty(DURATION_TYPE_TEMPORARY, ipProperty, oItem, fDuration);
 }
 
-
 // Returns TRUE if there are any item properties matching the given property
 int GetItemHasMatchingItemProperty(object oItem, itemproperty ipProperty, int nDurationType = DURATION_TYPE_TEMPORARY, int bCheckSubType = TRUE, int bCheckCostTable = TRUE, int bCheckParam1Value = TRUE)
 {
-    int nType = GetItemPropertyType(ipProperty);
-    int nSubType = GetItemPropertySubType(ipProperty);
+    int nType           = GetItemPropertyType(ipProperty);
+    int nSubType        = GetItemPropertySubType(ipProperty);
     int nCostTableValue = GetItemPropertyCostTableValue(ipProperty);
-    int nParam1Value = GetItemPropertyParam1Value(ipProperty);
+    int nParam1Value    = GetItemPropertyParam1Value(ipProperty);
 
     itemproperty ipCheck = GetFirstItemProperty(oItem);
     while (GetIsItemPropertyValid(ipCheck))
     {
         if (GetItemPropertyType(ipCheck) == nType &&
-           (!bCheckSubType || GetItemPropertySubType(ipCheck) == nSubType) &&
-           (!bCheckCostTable || GetItemPropertyCostTableValue(ipCheck) == nCostTableValue) &&
-           (!bCheckParam1Value || GetItemPropertyParam1Value(ipCheck) == nParam1Value))
+            (!bCheckSubType || GetItemPropertySubType(ipCheck) == nSubType) &&
+            (!bCheckCostTable || GetItemPropertyCostTableValue(ipCheck) == nCostTableValue) &&
+            (!bCheckParam1Value || GetItemPropertyParam1Value(ipCheck) == nParam1Value))
         {
             return TRUE;
         }
@@ -275,11 +281,11 @@ int GetItemHasSpellCastOnIt(object oItem, int nSpellId)
 // If it has a spell Id it will then also remove all properties matching the given spell Id
 int RemoveItemMatchingItemProperty(object oItem, itemproperty ipProperty)
 {
-    int nType = GetItemPropertyType(ipProperty);
-    int nAmount = 0;
+    int nType             = GetItemPropertyType(ipProperty);
+    int nAmount           = 0;
     json jArrayOfSpellIds = JsonArray();
 
-    //DebugItemProperties(oItem);
+    // DebugItemProperties(oItem);
 
     itemproperty ipCheck = GetFirstItemProperty(oItem);
     while (GetIsItemPropertyValid(ipCheck))
@@ -316,11 +322,21 @@ int GetItemDoesDamageType(object oItem, int nDamageType)
 {
     switch (StringToInt(Get2DAString("baseitems", "WeaponType", GetBaseItemType(oItem))))
     {
-        case 1: if (nDamageType & DAMAGE_TYPE_PIERCING) return TRUE; break; // 1 = Piercing
-        case 2: if (nDamageType & DAMAGE_TYPE_BLUDGEONING) return TRUE; break; // 2 = Bludgeoning
-        case 3: if (nDamageType & DAMAGE_TYPE_SLASHING) return TRUE; break; // 3 = Slashing
-        case 4: if (nDamageType & DAMAGE_TYPE_SLASHING || nDamageType & DAMAGE_TYPE_PIERCING) return TRUE; break; // 4 = Slashing and Piercing
-        case 5: if (nDamageType & DAMAGE_TYPE_PIERCING || nDamageType & DAMAGE_TYPE_BLUDGEONING) return TRUE; break; // 5 = Piercing and Bludgeoning
+        case 1:
+            if (nDamageType & DAMAGE_TYPE_PIERCING) return TRUE;
+            break;  // 1 = Piercing
+        case 2:
+            if (nDamageType & DAMAGE_TYPE_BLUDGEONING) return TRUE;
+            break;  // 2 = Bludgeoning
+        case 3:
+            if (nDamageType & DAMAGE_TYPE_SLASHING) return TRUE;
+            break;  // 3 = Slashing
+        case 4:
+            if (nDamageType & DAMAGE_TYPE_SLASHING || nDamageType & DAMAGE_TYPE_PIERCING) return TRUE;
+            break;  // 4 = Slashing and Piercing
+        case 5:
+            if (nDamageType & DAMAGE_TYPE_PIERCING || nDamageType & DAMAGE_TYPE_BLUDGEONING) return TRUE;
+            break;  // 5 = Piercing and Bludgeoning
     }
     return FALSE;
 }
@@ -432,7 +448,7 @@ object GetRangedWeaponToCastSpellOn(object oTarget, int nSpellId)
 // Will provide automatic feedback to OBJECT_SELF (assumed caster) if nothing is found.
 object GetArmorOrShieldToCastSpellOn(object oTarget, int nSpellId, int bAllowShields = TRUE)
 {
-    if(GetIsObjectValid(oTarget) && GetObjectType(oTarget) == OBJECT_TYPE_ITEM)
+    if (GetIsObjectValid(oTarget) && GetObjectType(oTarget) == OBJECT_TYPE_ITEM)
     {
         if (GetBaseItemType(oTarget) == BASE_ITEM_ARMOR)
         {
@@ -480,7 +496,7 @@ object GetEquippableItemToCastSpellOn(object oTarget, int nSpellId)
     if (GetObjectType(oTarget) == OBJECT_TYPE_ITEM)
     {
         // If directly targeted it doesn't matter if it's already got the spell Id
-        if (Get2DAString("baseitems","EquipableSlots", GetBaseItemType(oTarget)) != "0x00000")
+        if (Get2DAString("baseitems", "EquipableSlots", GetBaseItemType(oTarget)) != "0x00000")
         {
             return oTarget;
         }
@@ -494,8 +510,8 @@ object GetEquippableItemToCastSpellOn(object oTarget, int nSpellId)
             object oItem = GetItemInSlot(nSlot, oTarget);
 
             if (GetIsObjectValid(oItem) &&
-                Get2DAString("baseitems","EquipableSlots", GetBaseItemType(oItem)) != "0x00000" &&
-               !GetItemHasSpellCastOnIt(oItem, nSpellId))
+                Get2DAString("baseitems", "EquipableSlots", GetBaseItemType(oItem)) != "0x00000" &&
+                !GetItemHasSpellCastOnIt(oItem, nSpellId))
             {
                 return oItem;
             }
@@ -564,8 +580,8 @@ int DispelMagicalItemProperties(object oItem, object oCaster, int nCasterLevel, 
     {
         // Find first valid item
         object oPossessor = GetItemPossessor(oItem);
-        int nSlot = INVENTORY_SLOT_CWEAPON_L;
-        oItem = GetItemInSlot(nSlot, oPossessor);
+        int nSlot         = INVENTORY_SLOT_CWEAPON_L;
+        oItem             = GetItemInSlot(nSlot, oPossessor);
 
         if (!GetIsObjectValid(oItem))
         {
@@ -576,7 +592,7 @@ int DispelMagicalItemProperties(object oItem, object oCaster, int nCasterLevel, 
 
                 if (!GetIsObjectValid(oItem))
                 {
-                    OP_Debug("[DispelMagicalItemProperties] No valid creature weapons but want to dispel them? oPossessor: " + GetName(oPossessor));
+                    Debug("[DispelMagicalItemProperties] No valid creature weapons but want to dispel them? oPossessor: " + GetName(oPossessor));
                     return 0;
                 }
             }
@@ -584,7 +600,7 @@ int DispelMagicalItemProperties(object oItem, object oCaster, int nCasterLevel, 
         if (nSlot == INVENTORY_SLOT_CWEAPON_L)
         {
             oSecondItem = GetItemInSlot(++nSlot, oPossessor);
-            oThirdItem = GetItemInSlot(++nSlot, oPossessor);
+            oThirdItem  = GetItemInSlot(++nSlot, oPossessor);
         }
         else if (nSlot == INVENTORY_SLOT_CWEAPON_R)
         {
@@ -641,7 +657,7 @@ int DispelMagicalItemProperties(object oItem, object oCaster, int nCasterLevel, 
 string GetItemPropertyDurationString(itemproperty ipProperty)
 {
     string sReturn;
-    switch(GetItemPropertyDurationType(ipProperty))
+    switch (GetItemPropertyDurationType(ipProperty))
     {
         case DURATION_TYPE_TEMPORARY: sReturn = "Temporary (Duration total: " + IntToString(GetItemPropertyDuration(ipProperty)) + ", Duration remaining: " + IntToString(GetItemPropertyDurationRemaining(ipProperty)) + ")"; break;
         case DURATION_TYPE_PERMANENT: sReturn = "Permanent"; break;
@@ -695,7 +711,7 @@ itemproperty ApplyItemPropertyTaggedInfo(itemproperty ipProperty, int nSpellId, 
     jObject = JsonObjectSet(jObject, JSON_FIELD_SPELLSAVEDC, JsonInt(nSpellSaveDC));
     jObject = JsonObjectSet(jObject, JSON_FIELD_METAMAGIC, JsonInt(nMetaMagic));
 
-    OP_Debug("[ApplyItemPropertyTaggedInfo] Setting JSON:" + JsonDump(jObject));
+    Debug("[ApplyItemPropertyTaggedInfo] Setting JSON:" + JsonDump(jObject));
 
     return TagItemProperty(ipProperty, JsonDump(jObject));
 }
@@ -710,18 +726,18 @@ int GetItemPropertyTaggedIntField(itemproperty ipProperty, string sField, int nD
     // Lots of items won't have this tagged so exit early!
     if (sTag == "") return nDefault;
 
-    //OP_Debug("[GetItemPropertySpellId] TAG:" + sTag);
+    // Debug("[GetItemPropertySpellId] TAG:" + sTag);
     json jObject = JsonParse(sTag);
 
     if (JsonGetType(jObject) == JSON_TYPE_NULL)
     {
-        OP_Debug("[GetItemPropertyTaggedIntField] No found valid Json. Error: " + JsonGetError(jObject), LOG_LEVEL_ERROR);
+        Debug("[GetItemPropertyTaggedIntField] No found valid Json. Error: " + JsonGetError(jObject), ERROR);
         return nDefault;
     }
     // Is it overhaul?
     if (JsonGetInt(JsonObjectGet(jObject, JSON_FIELD_OVERHAUL)) != OVERHAUL_VERSION)
     {
-        OP_Debug("[GetItemPropertyTaggedIntField] Json found but not Overhaul. Error: " + JsonGetError(jObject), LOG_LEVEL_ERROR);
+        Debug("[GetItemPropertyTaggedIntField] Json found but not Overhaul. Error: " + JsonGetError(jObject), ERROR);
         return nDefault;
     }
 
@@ -743,18 +759,18 @@ object GetItemPropertyTaggedObjectField(itemproperty ipProperty, string sField)
     // Lots of items won't have this tagged so exit early!
     if (sTag == "") return OBJECT_INVALID;
 
-    //OP_Debug("[GetItemPropertySpellId] TAG:" + sTag);
+    // Debug("[GetItemPropertySpellId] TAG:" + sTag);
     json jObject = JsonParse(sTag);
 
     if (JsonGetType(jObject) == JSON_TYPE_NULL)
     {
-        OP_Debug("[GetItemPropertyTaggedObjectField] No found valid Json. Error: " + JsonGetError(jObject), LOG_LEVEL_ERROR);
+        Debug("[GetItemPropertyTaggedObjectField] No found valid Json. Error: " + JsonGetError(jObject), ERROR);
         return OBJECT_INVALID;
     }
     // Is it overhaul?
     if (JsonGetInt(JsonObjectGet(jObject, JSON_FIELD_OVERHAUL)) != OVERHAUL_VERSION)
     {
-        OP_Debug("[GetItemPropertyTaggedObjectField] Json found but not Overhaul. Error: " + JsonGetError(jObject), LOG_LEVEL_ERROR);
+        Debug("[GetItemPropertyTaggedObjectField] Json found but not Overhaul. Error: " + JsonGetError(jObject), ERROR);
         return OBJECT_INVALID;
     }
 
@@ -826,7 +842,6 @@ int GetItemPropertyDamageBonusConstant(int nBonus)
         case 10: return IP_CONST_DAMAGEBONUS_10; break;
     }
     // Default/error
-    OP_Debug("[GetItemPropertyDamageBonusConstant] nBonus value: " + IntToString(nBonus) + " not matching constants, returning 1.", LOG_LEVEL_ERROR);
+    Debug("[GetItemPropertyDamageBonusConstant] nBonus value: " + IntToString(nBonus) + " not matching constants, returning 1.", ERROR);
     return IP_CONST_DAMAGEBONUS_1;
 }
-

@@ -48,9 +48,9 @@ void main()
             if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_PARALYSIS))
             {
                 effect eLink = EffectLinkEffects(EffectParalyze(),
-                               EffectLinkEffects(EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE),
-                               EffectLinkEffects(EffectVisualEffect(VFX_DUR_PARALYZED),
-                                                 EffectVisualEffect(VFX_DUR_PARALYZE_HOLD))));
+                                                 EffectLinkEffects(EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE),
+                                                                   EffectLinkEffects(EffectVisualEffect(VFX_DUR_PARALYZED),
+                                                                                     EffectVisualEffect(VFX_DUR_PARALYZE_HOLD))));
 
                 // See op_ss_paralysis for why we're storing metadata for this effect
                 eLink = EffectTagWithMetadata(eLink);
@@ -61,6 +61,4 @@ void main()
             }
         }
     }
-
 }
-

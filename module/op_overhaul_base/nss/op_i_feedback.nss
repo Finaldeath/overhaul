@@ -15,17 +15,17 @@
 #include "utl_i_strings"
 
 // Colour codes
-const string FEEDBACK_COLOUR_FEEDBACK   = "<c\xFF\xFF\x01>"; // Yellow
-const string FEEDBACK_COLOUR_COMBAT     = "<c\xFF\x66\x01>"; // Orange
-const string FEEDBACK_COLOUR_MAGIC      = "<c\xCC\x77\xFF>"; // Purple
-const string FEEDBACK_COLOUR_SKILLS     = "<c\x01\x66\xFF>"; // Dark Blue
-const string FEEDBACK_COLOUR_SAVING     = "<c\x66\xCC\xFF>"; // Pale Blue
-const string FEEDBACK_COLOUR_SAVESTATUS = "<c\x20\xFF\x20>"; // some kind of green.
-const string FEEDBACK_COLOUR_PAUSESTATE = "<c\xFF\x01\x01>"; // bright red.
-const string FEEDBACK_COLOUR_CLIENTNAME = "<c\x99\xFF\xFF>"; // Cyan blue? (Client creature name)
-const string FEEDBACK_COLOUR_OTHERNAME  = "<c\xCC\x99\xCC>"; // Disgusting purple (other creature names)
-const string FEEDBACK_COLOUR_DRAIN      = "<c\xFF\x01\x01>"; // horrifically sad, depressing, and draining red
-const string FEEDBACK_COLOUR_HINT       = "<c\xFF\xFF\x01>"; // For Loadscreen Hints. Yellow.
+const string FEEDBACK_COLOUR_FEEDBACK   = "<c\xFF\xFF\x01>";  // Yellow
+const string FEEDBACK_COLOUR_COMBAT     = "<c\xFF\x66\x01>";  // Orange
+const string FEEDBACK_COLOUR_MAGIC      = "<c\xCC\x77\xFF>";  // Purple
+const string FEEDBACK_COLOUR_SKILLS     = "<c\x01\x66\xFF>";  // Dark Blue
+const string FEEDBACK_COLOUR_SAVING     = "<c\x66\xCC\xFF>";  // Pale Blue
+const string FEEDBACK_COLOUR_SAVESTATUS = "<c\x20\xFF\x20>";  // some kind of green.
+const string FEEDBACK_COLOUR_PAUSESTATE = "<c\xFF\x01\x01>";  // bright red.
+const string FEEDBACK_COLOUR_CLIENTNAME = "<c\x99\xFF\xFF>";  // Cyan blue? (Client creature name)
+const string FEEDBACK_COLOUR_OTHERNAME  = "<c\xCC\x99\xCC>";  // Disgusting purple (other creature names)
+const string FEEDBACK_COLOUR_DRAIN      = "<c\xFF\x01\x01>";  // horrifically sad, depressing, and draining red
+const string FEEDBACK_COLOUR_HINT       = "<c\xFF\xFF\x01>";  // For Loadscreen Hints. Yellow.
 
 const string FEEDBACK_COLOUR_END = "</c>";
 
@@ -57,7 +57,7 @@ const int STRREF_IMMUNITY_STUN                  = 62466;  //<CUSTOM0> : Immune t
 
 const int STRREF_SOMEONE = 8349;  // Someone
 
-const int STRREF_DISPEL_MAGIC = 791; // Dispel Magic
+const int STRREF_DISPEL_MAGIC = 791;  // Dispel Magic
 
 // Skill check results
 const int STRREF_FAILURE                = 5353;
@@ -171,12 +171,11 @@ void SendImmunityFeedback(object oCaster, object oTarget, int nImmunityType)
         default:
         {
             // EG: IMMUNITY_TYPE_NONE (0) or other values we do no messages. This should not occur though.
-            if (DEBUG_LEVEL >= LOG_LEVEL_ERROR) OP_Debug("[ERROR] SendImmunityFeedback: Invalid nImmunityType: " + IntToString(nImmunityType));
+            if (DEBUG_LEVEL >= ERROR) Debug("[ERROR] SendImmunityFeedback: Invalid nImmunityType: " + IntToString(nImmunityType));
             return;
         }
         break;
     }
-
 
     // Send the feedback to the caster
     string sTargetName = GetNameOrSomeone(oTarget, oCaster);
@@ -294,11 +293,10 @@ void SendFakeDamageFeedbackMessage(object oTarget, object oSource, int nDamage, 
 
     // Need to use damagetypegroups.2da 2da to get RGB info now
 
-
-    //TLK string:
-    //STRREF_FEEDBACK_COMPLEX_DAMAGE 10466
-    // <CUSTOM0> damages <CUSTOM1>: <CUSTOM2>
-    OP_Debug("[SendFakeDamageFeedbackMessage] Not implemented yet.");
+    // TLK string:
+    // STRREF_FEEDBACK_COMPLEX_DAMAGE 10466
+    //  <CUSTOM0> damages <CUSTOM1>: <CUSTOM2>
+    Debug("[SendFakeDamageFeedbackMessage] Not implemented yet.");
 }
 
 // Provides a game-formatted feedback message for skill. Optionally can have oVersus. Will not play sound effects (eg for disarm trap)
@@ -335,7 +333,7 @@ void SendSkillFeedbackMessage(object oObject, object oVersus, int nSkill, int nS
     string sSign;
     if (nSkillModifier < 0)
     {
-        sSign = " -";
+        sSign          = " -";
         nSkillModifier = -nSkillModifier;
     }
     else
@@ -372,4 +370,3 @@ void SendAbilityCheckFeedbackMessage(object oObject, object oVersus, int nAbilit
     SendMessageToPC(oObject, FEEDBACK_COLOUR_SKILLS + GetNameOrSomeone(oObject) + sMessage + FEEDBACK_COLOUR_END);
     if (GetIsObjectValid(oVersus)) SendMessageToPC(oVersus, FEEDBACK_COLOUR_SKILLS + GetNameOrSomeone(oObject, oVersus) + sMessage + FEEDBACK_COLOUR_END);
 }
-

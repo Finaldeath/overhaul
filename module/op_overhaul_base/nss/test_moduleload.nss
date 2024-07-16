@@ -23,9 +23,9 @@ void main()
     DelayCommand(0.0, CheckColumnData("spells", "CastGrndVisual", RESTYPE_MDL));
     DelayCommand(0.0, CheckColumnData("spells", "CastGrndVisual", RESTYPE_MDL));
 
-//    CheckSpellsColumn("CastGrndVisual", RESTYPE_MDL);
-//    CheckSpellsColumn("CastGrndVisual", RESTYPE_MDL);
-//    CheckSpellsColumn("CastGrndVisual", RESTYPE_MDL);
+    //    CheckSpellsColumn("CastGrndVisual", RESTYPE_MDL);
+    //    CheckSpellsColumn("CastGrndVisual", RESTYPE_MDL);
+    //    CheckSpellsColumn("CastGrndVisual", RESTYPE_MDL);
 }
 
 void CheckColumnData(string s2da, string sColumn, int nResType)
@@ -40,7 +40,7 @@ void CheckColumnData(string s2da, string sColumn, int nResType)
         {
             if (ResManGetAliasFor(sData, nResType) == "")
             {
-                WriteTimestampedLogEntry("["+s2da+" check] Column: " +sColumn + " row: " +IntToString(nRow) + " hasn't got this data: " + sData);
+                WriteTimestampedLogEntry("[" + s2da + " check] Column: " + sColumn + " row: " + IntToString(nRow) + " hasn't got this data: " + sData);
             }
         }
     }

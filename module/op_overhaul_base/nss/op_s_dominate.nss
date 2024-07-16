@@ -35,8 +35,8 @@ void main()
     eControl = IgnoreEffectImmunity(eControl);
 
     effect eLink = EffectLinkEffects(eControl,
-                   EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DOMINATED),
-                                     EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+                                     EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DOMINATED),
+                                                       EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
 
     effect eVis = EffectVisualEffect(VFX_IMP_DOMINATE_S);
 
@@ -56,7 +56,7 @@ void main()
             {
                 if (!GetIsHumanoidCreature(oTarget)) return;
 
-                fDuration = GetDuration(2 + (nCasterLevel/3), ROUNDS);
+                fDuration = GetDuration(2 + (nCasterLevel / 3), ROUNDS);
             }
             break;
             case SPELL_DOMINATE_ANIMAL:
@@ -76,7 +76,7 @@ void main()
             break;
             default:
             {
-                OP_Debug("[op_s_dominate] Unknown spell ID: " + IntToString(nSpellId), LOG_LEVEL_ERROR);
+                Debug("[op_s_dominate] Unknown spell ID: " + IntToString(nSpellId), ERROR);
                 return;
             }
             break;
@@ -90,8 +90,8 @@ void main()
             {
                 // Check immunities - noting Control Undead ignores these
                 if (nSpellId == SPELL_CONTROL_UNDEAD ||
-                   (!GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_DOMINATE, oCaster) &&
-                    !GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_MIND_SPELLS, oCaster)))
+                    (!GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_DOMINATE, oCaster) &&
+                     !GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_MIND_SPELLS, oCaster)))
                 {
                     ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
                     ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
@@ -100,4 +100,3 @@ void main()
         }
     }
 }
-

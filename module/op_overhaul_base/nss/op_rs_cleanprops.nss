@@ -19,14 +19,14 @@ void main()
     // If this run script isn't the right one to run, we exit
     if (!GetItemTrackingIDMatches(GetLastRunScriptEffect()))
     {
-        OP_Debug("[Run Script: Clean Item Properties] No longer current removal script, exiting.", LOG_LEVEL_INFO);
+        Debug("[Run Script: Clean Item Properties] No longer current removal script, exiting.", INFO);
         return;
     }
 
     if (nSpellId == -1 ||
         GetLastRunScriptEffectScriptType() != RUNSCRIPT_EFFECT_SCRIPT_TYPE_ON_REMOVED)
     {
-        OP_Debug("[Run Script: Clean Item Properties] No spell Id or script not firing in On Removed slot.", LOG_LEVEL_ERROR);
+        Debug("[Run Script: Clean Item Properties] No spell Id or script not firing in On Removed slot.", ERROR);
         return;
     }
 
@@ -35,7 +35,7 @@ void main()
 
     if (sTag == "")
     {
-        OP_Debug("[Run Script: Clean Item Properties] No item data stored.", LOG_LEVEL_ERROR);
+        Debug("[Run Script: Clean Item Properties] No item data stored.", ERROR);
         return;
     }
 
@@ -63,4 +63,3 @@ void main()
         }
     }
 }
-

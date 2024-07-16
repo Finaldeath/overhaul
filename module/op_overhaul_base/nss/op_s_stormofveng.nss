@@ -43,7 +43,7 @@ void main()
 
         int nCount = 1 + GetLocalInt(OBJECT_SELF, "COUNT");
         SetLocalInt(OBJECT_SELF, "COUNT", nCount);
-        OP_Debug("Storm of Vengence, Heartbeat Count: " + IntToString(nCount));
+        Debug("Storm of Vengence, Heartbeat Count: " + IntToString(nCount));
 
         json jArray = GetArrayOfAOETargets(SPELL_TARGET_SELECTIVEHOSTILE);
         int nIndex;
@@ -85,8 +85,8 @@ void DoStorm(float fDelay)
         {
             // We don't tag this so it lasts past the end of the AOE
             effect eLink = EffectLinkEffects(EffectStunned(),
-                           EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED),
-                                             EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+                                             EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED),
+                                                               EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
 
             // Damage and stun
             AssignCommand(oCaster, DelayCommand(fDelay, ApplyDamageWithVFXToObject(oTarget, VFX_IMP_LIGHTNING_M, nElectricalDamage, DAMAGE_TYPE_ELECTRICAL)));
@@ -95,7 +95,7 @@ void DoStorm(float fDelay)
         else
         {
             // Just damage (half)
-            AssignCommand(oCaster, DelayCommand(fDelay, ApplyDamageWithVFXToObject(oTarget, VFX_IMP_LIGHTNING_M, nElectricalDamage/2, DAMAGE_TYPE_ELECTRICAL)));
+            AssignCommand(oCaster, DelayCommand(fDelay, ApplyDamageWithVFXToObject(oTarget, VFX_IMP_LIGHTNING_M, nElectricalDamage / 2, DAMAGE_TYPE_ELECTRICAL)));
         }
     }
 }

@@ -22,9 +22,12 @@ void main()
     {
         AOECheck();
     }
+    else if (GetLastRunScriptEffectScriptType() == RUNSCRIPT_EFFECT_SCRIPT_TYPE_ON_REMOVED)
+    {
+        RemovePersistentAOEEffects(OBJECT_SELF);
+    }
     else
     {
-        OP_Debug("This run script event shouldn't happen: " + IntToString(GetLastRunScriptEffectScriptType()), LOG_LEVEL_ERROR);
+        Debug("This run script event shouldn't happen: " + IntToString(GetLastRunScriptEffectScriptType()), ERROR);
     }
 }
-

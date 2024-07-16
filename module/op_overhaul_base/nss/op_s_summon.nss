@@ -40,12 +40,36 @@ void main()
     effect eSummon;
     switch (nSpellId)
     {
-        case SPELL_SUMMON_CREATURE_I:        { eSummon = EffectSummonCreature("NW_S_badgerdire", VFX_FNF_SUMMON_MONSTER_1); } break;
-        case SPELL_SUMMON_CREATURE_II:       { eSummon = EffectSummonCreature("NW_S_BOARDIRE", VFX_FNF_SUMMON_MONSTER_1); } break;
-        case SPELL_SUMMON_CREATURE_III:      { eSummon = EffectSummonCreature("NW_S_WOLFDIRE", VFX_FNF_SUMMON_MONSTER_1); } break;
-        case SPELL_SUMMON_CREATURE_IV:       { eSummon = EffectSummonCreature("NW_S_SPIDDIRE", VFX_FNF_SUMMON_MONSTER_2); } break;
-        case SPELL_SUMMON_CREATURE_V:        { eSummon = EffectSummonCreature("NW_S_beardire", VFX_FNF_SUMMON_MONSTER_2); } break;
-        case SPELL_SUMMON_CREATURE_VI:       { eSummon = EffectSummonCreature("NW_S_diretiger", VFX_FNF_SUMMON_MONSTER_2); } break;
+        case SPELL_SUMMON_CREATURE_I:
+        {
+            eSummon = EffectSummonCreature("NW_S_badgerdire", VFX_FNF_SUMMON_MONSTER_1);
+        }
+        break;
+        case SPELL_SUMMON_CREATURE_II:
+        {
+            eSummon = EffectSummonCreature("NW_S_BOARDIRE", VFX_FNF_SUMMON_MONSTER_1);
+        }
+        break;
+        case SPELL_SUMMON_CREATURE_III:
+        {
+            eSummon = EffectSummonCreature("NW_S_WOLFDIRE", VFX_FNF_SUMMON_MONSTER_1);
+        }
+        break;
+        case SPELL_SUMMON_CREATURE_IV:
+        {
+            eSummon = EffectSummonCreature("NW_S_SPIDDIRE", VFX_FNF_SUMMON_MONSTER_2);
+        }
+        break;
+        case SPELL_SUMMON_CREATURE_V:
+        {
+            eSummon = EffectSummonCreature("NW_S_beardire", VFX_FNF_SUMMON_MONSTER_2);
+        }
+        break;
+        case SPELL_SUMMON_CREATURE_VI:
+        {
+            eSummon = EffectSummonCreature("NW_S_diretiger", VFX_FNF_SUMMON_MONSTER_2);
+        }
+        break;
         case SPELL_SUMMON_CREATURE_VII:
         {
             switch (d3())
@@ -75,12 +99,36 @@ void main()
                 case 3: eSummon = EffectSummonCreature("NW_S_FIREELDER", VFX_FNF_SUMMON_MONSTER_3); break;
             }
         }
-        case SPELL_ELEMENTAL_SWARM:          { eSummon = EffectSwarm(FALSE, "NW_SW_AIRGREAT", "NW_SW_WATERGREAT","NW_SW_EARTHGREAT","NW_SW_FIREGREAT"); } break;
-        case SPELLABILITY_SUMMON_BAATEZU:    { eSummon = EffectSummonCreature("x2_erinyes", VFX_FNF_SUMMON_MONSTER_3); } break;
-        case SPELLABILITY_SUMMON_CELESTIAL:  { eSummon = EffectSummonCreature("NW_S_CLANTERN", VFX_FNF_SUMMON_MONSTER_3); } break;
-        case SPELLABILITY_SUMMON_MEPHIT:     { eSummon = EffectSummonCreature("NW_S_MEPSTEAM", VFX_FNF_SUMMON_MONSTER_1); } break;
-        case SPELLABILITY_SUMMON_SLAAD:      { eSummon = EffectSummonCreature("NW_S_SLAADRED", VFX_FNF_SUMMON_MONSTER_3); } break;
-        case SPELLABILITY_SUMMON_TANARRI:    { eSummon = EffectSummonCreature("NW_S_SUCCUBUS", VFX_FNF_SUMMON_MONSTER_3); } break;
+        case SPELL_ELEMENTAL_SWARM:
+        {
+            eSummon = EffectSwarm(FALSE, "NW_SW_AIRGREAT", "NW_SW_WATERGREAT", "NW_SW_EARTHGREAT", "NW_SW_FIREGREAT");
+        }
+        break;
+        case SPELLABILITY_SUMMON_BAATEZU:
+        {
+            eSummon = EffectSummonCreature("x2_erinyes", VFX_FNF_SUMMON_MONSTER_3);
+        }
+        break;
+        case SPELLABILITY_SUMMON_CELESTIAL:
+        {
+            eSummon = EffectSummonCreature("NW_S_CLANTERN", VFX_FNF_SUMMON_MONSTER_3);
+        }
+        break;
+        case SPELLABILITY_SUMMON_MEPHIT:
+        {
+            eSummon = EffectSummonCreature("NW_S_MEPSTEAM", VFX_FNF_SUMMON_MONSTER_1);
+        }
+        break;
+        case SPELLABILITY_SUMMON_SLAAD:
+        {
+            eSummon = EffectSummonCreature("NW_S_SLAADRED", VFX_FNF_SUMMON_MONSTER_3);
+        }
+        break;
+        case SPELLABILITY_SUMMON_TANARRI:
+        {
+            eSummon = EffectSummonCreature("NW_S_SUCCUBUS", VFX_FNF_SUMMON_MONSTER_3);
+        }
+        break;
     }
 
     // All summon effects are Extraordinary to prevent usual dispel magic. Instead
@@ -97,4 +145,3 @@ void main()
         ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eSummon, oTarget, GetDuration(24, HOURS));
     }
 }
-

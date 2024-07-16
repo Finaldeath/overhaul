@@ -78,41 +78,41 @@ void main()
     switch (nSpellId)
     {
         case SPELL_CONTINUAL_FLAME:
-            oTarget = GetEquippableItemToCastSpellOn(oTarget, nSpellId);
+            oTarget     = GetEquippableItemToCastSpellOn(oTarget, nSpellId);
             ipProperty1 = ItemPropertyLight(IP_CONST_LIGHTBRIGHTNESS_BRIGHT, IP_CONST_LIGHTCOLOR_WHITE);
-            fDuration = MAX_FLOAT; // "Permanent"
-        break;
+            fDuration   = MAX_FLOAT;  // "Permanent"
+            break;
         case SPELL_FLAME_WEAPON:
-            oTarget = GetMeleeWeaponToCastSpellOn(oTarget, nSpellId);
-            nVis = VFX_IMP_PULSE_FIRE;
+            oTarget     = GetMeleeWeaponToCastSpellOn(oTarget, nSpellId);
+            nVis        = VFX_IMP_PULSE_FIRE;
             ipProperty1 = ItemPropertyVisualEffect(ITEM_VISUAL_FIRE);
             ipProperty2 = ItemPropertyDamageBonus(IP_CONST_DAMAGETYPE_FIRE, IP_CONST_DAMAGEBONUS_1d6);
-            fDuration = GetDuration(nCasterLevel, MINUTES);
-        break;
-        case SPELL_DARKFIRE: // Flame of Faith
-            oTarget = GetMeleeWeaponToCastSpellOn(oTarget, nSpellId);
-            nVis = VFX_IMP_FLAME_S;
+            fDuration   = GetDuration(nCasterLevel, MINUTES);
+            break;
+        case SPELL_DARKFIRE:  // Flame of Faith
+            oTarget     = GetMeleeWeaponToCastSpellOn(oTarget, nSpellId);
+            nVis        = VFX_IMP_FLAME_S;
             ipProperty1 = ItemPropertyEnhancementBonus(1);
             ipProperty2 = ItemPropertyDamageBonus(IP_CONST_DAMAGETYPE_FIRE, IP_CONST_DAMAGEBONUS_1d6);
             ipProperty3 = ItemPropertyVisualEffect(ITEM_VISUAL_FIRE);
-            fDuration = GetDuration(nCasterLevel, ROUNDS);
-        break;
+            fDuration   = GetDuration(nCasterLevel, ROUNDS);
+            break;
         case SPELL_BLACKSTAFF:
-            oTarget = GetItemToCastSpellOn(oTarget, BASE_ITEM_MAGICSTAFF, nSpellId, BASE_ITEM_QUARTERSTAFF);
-            nVis = VFX_IMP_EVIL_HELP;
+            oTarget     = GetItemToCastSpellOn(oTarget, BASE_ITEM_MAGICSTAFF, nSpellId, BASE_ITEM_QUARTERSTAFF);
+            nVis        = VFX_IMP_EVIL_HELP;
             ipProperty1 = ItemPropertyVisualEffect(ITEM_VISUAL_EVIL);
             ipProperty2 = ItemPropertyEnhancementBonus(4);
             ipProperty3 = ItemPropertyOnHitCastSpell(IP_CONST_ONHIT_CASTSPELL_ONHIT_BLACKSTAFF, nCasterLevel);
-            fDuration = GetDuration(nCasterLevel, MINUTES);
-        break;
+            fDuration   = GetDuration(nCasterLevel, MINUTES);
+            break;
         case SPELL_BLADE_THIRST:
-            oTarget = GetMeleeWeaponToCastSpellOn(oTarget, nSpellId, DAMAGE_TYPE_SLASHING);
-            nVis = VFX_IMP_SUPER_HEROISM;
-            ipProperty1 = ItemPropertyVisualEffect(ITEM_VISUAL_COLD); // TODO Update VFX
+            oTarget     = GetMeleeWeaponToCastSpellOn(oTarget, nSpellId, DAMAGE_TYPE_SLASHING);
+            nVis        = VFX_IMP_SUPER_HEROISM;
+            ipProperty1 = ItemPropertyVisualEffect(ITEM_VISUAL_COLD);  // TODO Update VFX
             ipProperty2 = ItemPropertyEnhancementBonus(3);
             ipProperty3 = ItemPropertyLight(IP_CONST_LIGHTBRIGHTNESS_BRIGHT, IP_CONST_LIGHTCOLOR_BLUE);
-            fDuration = GetDuration(nCasterLevel, ROUNDS);
-        break;
+            fDuration   = GetDuration(nCasterLevel, ROUNDS);
+            break;
         case SPELL_BLESS_WEAPON:
             // Two choices for target: Directly targeting some bolts, or targeting a melee weapon
             if (GetBaseItemType(oTarget) == BASE_ITEM_BOLT)
@@ -121,71 +121,71 @@ void main()
             }
             else
             {
-                oTarget = GetMeleeWeaponToCastSpellOn(oTarget, nSpellId);
+                oTarget     = GetMeleeWeaponToCastSpellOn(oTarget, nSpellId);
                 ipProperty1 = ItemPropertyVisualEffect(ITEM_VISUAL_HOLY);
                 ipProperty2 = ItemPropertyEnhancementBonus(1);
                 ipProperty3 = ItemPropertyDamageBonusVsRace(IP_CONST_RACIALTYPE_UNDEAD, IP_CONST_DAMAGETYPE_DIVINE, IP_CONST_DAMAGEBONUS_2d6);
             }
-            nVis = VFX_IMP_SUPER_HEROISM;
+            nVis      = VFX_IMP_SUPER_HEROISM;
             fDuration = GetDuration(nCasterLevel, ROUNDS);
-        break;
+            break;
         case SPELL_HOLY_SWORD:
-            oTarget = GetMeleeWeaponToCastSpellOn(oTarget, nSpellId);
+            oTarget     = GetMeleeWeaponToCastSpellOn(oTarget, nSpellId);
             ipProperty1 = ItemPropertyHolyAvenger();
-            nVis = VFX_IMP_SUPER_HEROISM;
-            fDuration = GetDuration(nCasterLevel, ROUNDS);
+            nVis        = VFX_IMP_SUPER_HEROISM;
+            fDuration   = GetDuration(nCasterLevel, ROUNDS);
             // Apply a special VFX
             bSpecialVFX = TRUE;
-        break;
+            break;
         case SPELL_MAGIC_WEAPON:
-            oTarget = GetMeleeWeaponToCastSpellOn(oTarget, nSpellId);
+            oTarget     = GetMeleeWeaponToCastSpellOn(oTarget, nSpellId);
             ipProperty1 = ItemPropertyEnhancementBonus(1);
-            nVis = VFX_IMP_SUPER_HEROISM;
-            fDuration = GetDuration(nCasterLevel, MINUTES);
-        break;
+            nVis        = VFX_IMP_SUPER_HEROISM;
+            fDuration   = GetDuration(nCasterLevel, MINUTES);
+            break;
         case SPELL_GREATER_MAGIC_WEAPON:
-            oTarget = GetMeleeWeaponToCastSpellOn(oTarget, nSpellId);
-            ipProperty1 = ItemPropertyEnhancementBonus(min(5, nCasterLevel/4));
-            nVis = VFX_IMP_SUPER_HEROISM;
-            fDuration = GetDuration(nCasterLevel, HOURS);
-        break;
+            oTarget     = GetMeleeWeaponToCastSpellOn(oTarget, nSpellId);
+            ipProperty1 = ItemPropertyEnhancementBonus(min(5, nCasterLevel / 4));
+            nVis        = VFX_IMP_SUPER_HEROISM;
+            fDuration   = GetDuration(nCasterLevel, HOURS);
+            break;
         case SPELL_MAGIC_VESTMENT:
-            oTarget = GetArmorOrShieldToCastSpellOn(oTarget, nSpellId, TRUE);
-            ipProperty1 = ItemPropertyACBonus(min(5, nCasterLevel/4));
-            nVis = VFX_IMP_GLOBE_USE;
-            fDuration = GetDuration(nCasterLevel, HOURS);
-        break;
+            oTarget     = GetArmorOrShieldToCastSpellOn(oTarget, nSpellId, TRUE);
+            ipProperty1 = ItemPropertyACBonus(min(5, nCasterLevel / 4));
+            nVis        = VFX_IMP_GLOBE_USE;
+            fDuration   = GetDuration(nCasterLevel, HOURS);
+            break;
         case SPELL_KEEN_EDGE:
-            oTarget = GetMeleeWeaponToCastSpellOn(oTarget, nSpellId, DAMAGE_TYPE_PIERCING | DAMAGE_TYPE_SLASHING);
+            oTarget     = GetMeleeWeaponToCastSpellOn(oTarget, nSpellId, DAMAGE_TYPE_PIERCING | DAMAGE_TYPE_SLASHING);
             ipProperty1 = ItemPropertyKeen();
-            nVis = VFX_IMP_SUPER_HEROISM;
-            fDuration = GetDuration(nCasterLevel * 10, MINUTES);
-        break;
+            nVis        = VFX_IMP_SUPER_HEROISM;
+            fDuration   = GetDuration(nCasterLevel * 10, MINUTES);
+            break;
         case SPELL_DEAFENING_CLANG:
-            oTarget = GetMeleeWeaponToCastSpellOn(oTarget, nSpellId);
+            oTarget     = GetMeleeWeaponToCastSpellOn(oTarget, nSpellId);
             ipProperty1 = ItemPropertyOnHitCastSpell(IP_CONST_ONHIT_CASTSPELL_DEAFENING_CLNG, 5);
             ipProperty2 = ItemPropertyAttackBonus(1);
             ipProperty3 = ItemPropertyDamageBonus(IP_CONST_DAMAGETYPE_SONIC, IP_CONST_DAMAGEBONUS_3);
             ipProperty4 = ItemPropertyVisualEffect(ITEM_VISUAL_SONIC);
-            nVis = VFX_IMP_SUPER_HEROISM;
-            fDuration = GetDuration(nCasterLevel, ROUNDS);
-        break;
+            nVis        = VFX_IMP_SUPER_HEROISM;
+            fDuration   = GetDuration(nCasterLevel, ROUNDS);
+            break;
         case SPELL_BLESS:
-            oTarget = GetItemToCastSpellOn(oTarget, BASE_ITEM_BOLT, nSpellId);
+            oTarget     = GetItemToCastSpellOn(oTarget, BASE_ITEM_BOLT, nSpellId);
             ipProperty1 = ItemPropertyOnHitCastSpell(IP_CONST_ONHIT_CASTSPELL_ONHIT_SLAYRAKSHASA, 1);
-            nVis = VFX_IMP_HEAD_HOLY;
-            fDuration = GetDuration(nCasterLevel, MINUTES);
-        break;
+            nVis        = VFX_IMP_HEAD_HOLY;
+            fDuration   = GetDuration(nCasterLevel, MINUTES);
+            break;
         case SPELL_FLAME_ARROW:
-            oTarget = GetItemToCastSpellOn(oTarget, BASE_ITEM_ARROW, nSpellId);
-            ipProperty1 = ItemPropertyDamageBonus(IP_CONST_DAMAGETYPE_FIRE, GetItemPropertyDamageBonusConstant(min(10, nCasterLevel/2)));
-            nVis = VFX_IMP_HEAD_FIRE;
-            fDuration = GetDuration(nCasterLevel, ROUNDS);
-        break;
+            oTarget     = GetItemToCastSpellOn(oTarget, BASE_ITEM_ARROW, nSpellId);
+            ipProperty1 = ItemPropertyDamageBonus(IP_CONST_DAMAGETYPE_FIRE, GetItemPropertyDamageBonusConstant(min(10, nCasterLevel / 2)));
+            nVis        = VFX_IMP_HEAD_FIRE;
+            fDuration   = GetDuration(nCasterLevel, ROUNDS);
+            break;
         default:
-            OP_Debug("[Item Property spells] No valid spell ID passed in: " + IntToString(nSpellId));
+            Debug("[Item Property spells] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
-        break;
+            break;
     }
 
     if (GetIsObjectValid(oTarget) && GetObjectType(oTarget) == OBJECT_TYPE_ITEM)
@@ -225,4 +225,3 @@ void main()
         }
     }
 }
-

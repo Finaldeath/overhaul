@@ -46,38 +46,38 @@ void main()
         case SPELL_POWER_WORD_STUN:
         {
             nImpact = VFX_FNF_PWSTUN;
-            nVis = VFX_IMP_STUN;
-            eLink = EffectLinkEffects(EffectStunned(),
-                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED),
-                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            nVis    = VFX_IMP_STUN;
+            eLink   = EffectLinkEffects(EffectStunned(),
+                                        EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED),
+                                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
         }
         break;
         case SPELL_POWER_WORD_BLIND:
         {
-            bAOE = TRUE;
+            bAOE         = TRUE;
             nHPRemaining = 200;
-            nImpact = VFX_FNF_PWBLIND;
-            nVis = VFX_IMP_BLIND_DEAF_M;
-            eLink = EffectLinkEffects(EffectBlindness(),
-                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            nImpact      = VFX_FNF_PWBLIND;
+            nVis         = VFX_IMP_BLIND_DEAF_M;
+            eLink        = EffectLinkEffects(EffectBlindness(),
+                                             EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
         }
         break;
         case SPELL_POWER_WORD_KILL:
         {
-            nImpact = VFX_FNF_PWKILL;
-            nVis = VFX_IMP_DEATH;
+            nImpact  = VFX_FNF_PWKILL;
+            nVis     = VFX_IMP_DEATH;
             eInstant = EffectDeath();
 
             if (!GetIsObjectValid(oTarget))
             {
-                bAOE = TRUE;
+                bAOE         = TRUE;
                 nHPRemaining = 200;
             }
         }
         break;
         default:
         {
-            OP_Debug("[Power Word Spells] Unknown spell ID: " + IntToString(nSpellId), LOG_LEVEL_ERROR);
+            Debug("[Power Word Spells] Unknown spell ID: " + IntToString(nSpellId), ERROR);
             return;
         }
         break;
@@ -196,4 +196,3 @@ void main()
         }
     }
 }
-

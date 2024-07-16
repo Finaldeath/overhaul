@@ -47,8 +47,7 @@ void main()
                 if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_FORT, nSpellSaveDC))
                 {
                     // Limit damage to 40d6
-                    int nDamageDice = min(nCasterLevel * 2, 40);
-                    nDamage         = GetDiceRoll(nDamageDice, 6);
+                    nDamage = GetDiceRoll(min(nCasterLevel * 2, 40), 6);
 
                     // Critical hit?
                     if (nTouch == 2) nDamage *= 2;

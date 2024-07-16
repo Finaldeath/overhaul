@@ -63,10 +63,10 @@ void main()
                                         {
                                             if (nSpellLevel > nChosenSpellLevel)
                                             {
-                                                nClassToClear = nClass;
+                                                nClassToClear     = nClass;
                                                 nChosenSpellLevel = nSpellLevel;
-                                                bMemorised = TRUE;
-                                                bDoneClass = TRUE;
+                                                bMemorised        = TRUE;
+                                                bDoneClass        = TRUE;
                                             }
                                         }
                                     }
@@ -89,11 +89,11 @@ void main()
                                             {
                                                 if (nSpellLevel > nChosenSpellLevel)
                                                 {
-                                                    nClassToClear = nClass;
+                                                    nClassToClear     = nClass;
                                                     nChosenSpellLevel = nSpellLevel;
-                                                    nChosenSpellId = nSpellId;
-                                                    bMemorised = FALSE;
-                                                    bDoneClass = TRUE;
+                                                    nChosenSpellId    = nSpellId;
+                                                    bMemorised        = FALSE;
+                                                    bDoneClass        = TRUE;
                                                 }
                                             }
                                         }
@@ -116,7 +116,7 @@ void main()
                                                 if (nLevel > nBestSpellLevel)
                                                 {
                                                     nBestSpellLevel = nLevel;
-                                                    nBestSpellId = nSpellId;
+                                                    nBestSpellId    = nSpellId;
                                                     // Max spell slot? stop early
                                                     if (nLevel >= 9)
                                                     {
@@ -129,11 +129,11 @@ void main()
                                     // Use what we found - potentially
                                     if (nBestSpellLevel > nChosenSpellLevel)
                                     {
-                                        bMemorised = FALSE;
-                                        bDoneClass = TRUE;
-                                        nClassToClear = nClass;
+                                        bMemorised        = FALSE;
+                                        bDoneClass        = TRUE;
+                                        nClassToClear     = nClass;
                                         nChosenSpellLevel = nBestSpellLevel;
-                                        nChosenSpellId = nBestSpellId;
+                                        nChosenSpellId    = nBestSpellId;
                                     }
                                 }
                             }
@@ -175,4 +175,3 @@ void main()
         }
     }
 }
-

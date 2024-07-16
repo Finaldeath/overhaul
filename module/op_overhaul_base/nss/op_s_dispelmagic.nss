@@ -27,10 +27,13 @@ void main()
     int bBreach = FALSE;
     switch (nSpellId)
     {
-        case SPELL_LESSER_DISPEL:             nCasterLevel = min(nCasterLevel, 5); break;
-        case SPELL_DISPEL_MAGIC:              nCasterLevel = min(nCasterLevel, 10); break;
-        case SPELL_GREATER_DISPELLING:        nCasterLevel = min(nCasterLevel, 15); break;
-        case SPELL_MORDENKAINENS_DISJUNCTION: nCasterLevel = min(nCasterLevel, 40); bBreach = TRUE; break;
+        case SPELL_LESSER_DISPEL: nCasterLevel = min(nCasterLevel, 5); break;
+        case SPELL_DISPEL_MAGIC: nCasterLevel = min(nCasterLevel, 10); break;
+        case SPELL_GREATER_DISPELLING: nCasterLevel = min(nCasterLevel, 15); break;
+        case SPELL_MORDENKAINENS_DISJUNCTION:
+            nCasterLevel = min(nCasterLevel, 40);
+            bBreach      = TRUE;
+            break;
     }
 
     int nVis = VFX_IMP_HEAD_SONIC;
@@ -49,10 +52,9 @@ void main()
         int nIndex;
         for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
         {
-            oTarget = GetArrayObject(jArray, nIndex);
-            float fDelay = GetDistanceBetweenLocations(lTarget, GetLocation(oTarget))/20;
+            oTarget      = GetArrayObject(jArray, nIndex);
+            float fDelay = GetDistanceBetweenLocations(lTarget, GetLocation(oTarget)) / 20;
             DoDispelMagic(oTarget, nCasterLevel, nVis, fDelay, FALSE, bBreach);
         }
     }
 }
-

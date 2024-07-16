@@ -23,7 +23,7 @@ void main()
 
     effect eLink = EffectLinkEffects(EffectSpellResistanceDecrease(nSRDecrease),
                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
-    effect eVis = EffectVisualEffect(VFX_IMP_BREACH);
+    effect eVis  = EffectVisualEffect(VFX_IMP_BREACH);
 
     // Save DC gets a bonus
     nSpellSaveDC += nCasterLevel;
@@ -34,8 +34,6 @@ void main()
         {
             ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
             ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(nCasterLevel, MINUTES));
-
         }
     }
 }
-

@@ -26,9 +26,9 @@ void main()
     if (DoSpellHook()) return;
 
     effect eLink = EffectLinkEffects(EffectCutsceneParalyze(),
-                   EffectLinkEffects(EffectIcon(EFFECT_ICON_PARALYZE),
-                   EffectLinkEffects(EffectVisualEffect(VFX_DUR_AURA_PULSE_YELLOW_WHITE),
-                                     EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));
+                                     EffectLinkEffects(EffectIcon(EFFECT_ICON_PARALYZE),
+                                                       EffectLinkEffects(EffectVisualEffect(VFX_DUR_AURA_PULSE_YELLOW_WHITE),
+                                                                         EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));
 
     if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
     {
@@ -47,4 +47,3 @@ void main()
         }
     }
 }
-

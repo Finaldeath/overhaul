@@ -36,7 +36,7 @@ void main()
 
     if (nCasterLevel == 0)
     {
-        if (DEBUG_LEVEL >= LOG_LEVEL_ERROR) OP_Debug("[ERROR] Command the Horde no class levels in Eye of Gruumsh. Script called in error?");
+        if (DEBUG_LEVEL >= ERROR) Debug("[ERROR] Command the Horde no class levels in Eye of Gruumsh. Script called in error?");
         return;
     }
 
@@ -50,7 +50,7 @@ void main()
 
         SignalSpellCastAt();
 
-        float fDelay = GetDistanceBetweenLocations(lTarget, GetLocation(oTarget))/25.0;
+        float fDelay = GetDistanceBetweenLocations(lTarget, GetLocation(oTarget)) / 25.0;
 
         DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_IMPROVE_ABILITY_SCORE, oTarget));
         DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));

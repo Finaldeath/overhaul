@@ -20,7 +20,7 @@ const string TIMER_DEAFENING_CLANG = "TIMER_DEAFENING_CLANG";
 
 void main()
 {
-    SpeakString("caster: "+ GetName(oCaster));
+    SpeakString("caster: " + GetName(oCaster));
     // Cannot happen more than once every 6 seconds. Timer can be on us.
     if (GetTimerEnded(TIMER_DEAFENING_CLANG))
     {
@@ -36,10 +36,10 @@ void main()
                     if (!GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_DEAFNESS, oCaster))
                     {
                         nSpellSaveDC = nCasterLevel + 10;
-                        if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC,  SAVING_THROW_TYPE_SONIC))
+                        if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_SONIC))
                         {
                             float fDuration = GetDuration(nCasterLevel, ROUNDS);
-                            effect eDeaf = EffectDeaf();
+                            effect eDeaf    = EffectDeaf();
                             ApplyVisualEffectToObject(VFX_IMP_BLIND_DEAF_M, oTarget);
                             ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eDeaf, oTarget, fDuration);
                             // 85388 Deafened!
@@ -51,4 +51,3 @@ void main()
         }
     }
 }
-

@@ -33,7 +33,7 @@ void main()
                     !GetIsIncorporeal(oTarget) &&
                     !DoResistSpell(oTarget, oCaster))
                 {
-                    int nSlow = 65 - (GetAbilityScore(oTarget, ABILITY_STRENGTH)*2);
+                    int nSlow = 65 - (GetAbilityScore(oTarget, ABILITY_STRENGTH) * 2);
                     if (nSlow <= 0)
                     {
                         nSlow = 1;
@@ -93,7 +93,6 @@ void main()
         if (DoSpellHook()) return;
 
         effect eAOE = EffectAreaOfEffect(AOE_PER_WEB, GetScriptName(), GetScriptName(), GetScriptName());
-        ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, GetDuration(nCasterLevel/2, ROUNDS));
+        ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, GetDuration(nCasterLevel / 2, ROUNDS));
     }
 }
-

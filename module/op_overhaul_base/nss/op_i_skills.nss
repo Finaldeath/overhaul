@@ -18,7 +18,6 @@ string GetSkillName(int nSkillId);
 // Does an opposing skill back with feedback
 int GetOpposingSkillCheck(object oCreature, object oVersus, int nSkill, int nDC, int bTake20 = FALSE);
 
-
 // Returns the name of the given skill, returns "" on error
 string GetSkillName(int nSkillId)
 {
