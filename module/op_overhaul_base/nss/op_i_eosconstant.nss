@@ -70,6 +70,9 @@ const int FEAT_SIGHT_OF_GRUUMSH = 487;
 const int FEAT_SMOOTH_TALK = 385;
 const int FEAT_SWING_BLINDLY_EYE_OF_GRUUMSH = 483;
 
+// Area Effects
+const int AOE_PER_AOE_MOB_BLANK = 30000;
+
 // Soundsets
 const int SOUNDSET_CAT_HOUSECAT = 30019;
 const int SOUNDSET_FEMALE_ADVENTURER_BARD = 30013;

@@ -397,9 +397,22 @@ void SendGrappleCheckFeedbackMessage(object oObject, object oVersus, int bResult
 
     // Complicated message like skills
     int nTotalObject = nObjectRoll + nObjectBAB + nObjectStrength + nObjectSizeModifier;
+    int nTotalObjectModifiers = nObjectBAB + nObjectStrength + nObjectSizeModifier;
     int nTotalVersus = nVersusRoll + nVersusBAB + nVersusStrength + nVersusSizeModifier;
+    int nTotalVersusModifiers = nVersusBAB + nVersusStrength + nVersusSizeModifier;
 
-    // Format all the things with +/- as needed
+    // Shorter version (just d20 + modifiers)
+    string sMessage = " : Grapple Check : *" + sResult +
+                                                "* : (" + IntToString(nObjectRoll) +
+                                                           GetPositiveOrNegativeSign(nTotalObjectModifiers) + IntToString(abs(nTotalObjectModifiers)) +
+                                                " = " + IntToString(nTotalObject) +
+                                                " vs. " +  IntToString(nVersusRoll) +
+                                                           GetPositiveOrNegativeSign(nTotalVersusModifiers) + IntToString(abs(nTotalVersusModifiers)) +
+                                                " = " + IntToString(nTotalVersus) +
+                                                ")";
+
+    // Original version: Format all the things with +/- as needed
+    /*
     string sMessage = " : Opposed Grapple Check : *" + sResult + "* : (" + IntToString(nObjectRoll) +
                                                                            GetPositiveOrNegativeSign(nObjectBAB) + IntToString(abs(nObjectBAB)) +
                                                                            GetPositiveOrNegativeSign(nObjectStrength) + IntToString(abs(nObjectStrength)) +
@@ -411,7 +424,7 @@ void SendGrappleCheckFeedbackMessage(object oObject, object oVersus, int bResult
                                                                GetPositiveOrNegativeSign(nVersusSizeModifier) + IntToString(abs(nVersusSizeModifier)) +
                                                 " = " + IntToString(nTotalVersus) +
                                                 ")";
-
+    */
     SendMessageToPC(oObject, FEEDBACK_COLOUR_SKILLS + GetNameOrSomeone(oObject) + sMessage + FEEDBACK_COLOUR_END);
     if (GetIsObjectValid(oVersus) && oVersus != oTarget) SendMessageToPC(oVersus, FEEDBACK_COLOUR_SKILLS + GetNameOrSomeone(oObject, oVersus) + sMessage + FEEDBACK_COLOUR_END);
 }

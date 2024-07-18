@@ -42,7 +42,7 @@ void main()
         }
 
         // If concealed we just leave it no more saves
-        if (GetHasEffect(oTarget, EFFECT_TYPE_MISS_CHANCE, TAG_CONE_OF_DIMNESS))
+        if (GetHasEffect(oTarget, EFFECT_TYPE_MISS_CHANCE, nSpellId, TAG_CONE_OF_DIMNESS))
         {
             return;
         }
@@ -61,7 +61,7 @@ void main()
         }
 
         // Apply blindness if not already applied
-        if (!GetHasEffect(oTarget, EFFECT_TYPE_BLINDNESS, TAG_CONE_OF_DIMNESS))
+        if (!GetHasEffect(oTarget, EFFECT_TYPE_BLINDNESS, nSpellId, TAG_CONE_OF_DIMNESS))
         {
             effect eBlindness = TagEffect(UnyieldingEffect(EffectBlindness()), TAG_CONE_OF_DIMNESS);
             ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eBlindness, oTarget, fDurationRemaining);

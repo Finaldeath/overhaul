@@ -282,7 +282,7 @@ void ApplyDamageWithVFXToObject(object oTarget, int nVFX, int nDamage, int nDama
 // The above and the eEffect:
 // - Tags it with the OBJECT_SELF's OID if RunScript or AOEEFFECT if not
 // - Makes it extraordinary
-// - Applies it permanently
+// - Applies it for a very long temporary duration
 // Apply these effects only once (ie OnEnter). Don't tag an effect as AOEEFFECT, and it'll be left alone (eg temporary stuns/entangles).
 void ApplyAOEPersistentEffect(object oTarget, effect eEffect, int bApplyRunScript = TRUE);
 
@@ -347,7 +347,7 @@ int GetClassHasDomain(object oCreature, int nClass, int nDomain);
 // Returns TRUE if oObject has at least one effect matching the parameters.
 // * nEffectType - Can be EFFECT_TYPE_ALL to be ignored
 // * sTag - Only checked if not blank
-int GetHasEffect(object oObject, int nEffectType, string sTag = "");
+int GetHasEffect(object oObject, int nEffectType, int nSpellId = SPELL_ANY, string sTag = "");
 
 // Returns TRUE if oCreature has at least one effect matching the parameters.
 int GetHasEffectOrItemProperty(object oCreature, int nEffectType, int nItemPropertyType);
@@ -1968,13 +1968,13 @@ void ApplyDamageWithVFXToObject(object oTarget, int nVFX, int nDamage, int nDama
 // The above and the eEffect:
 // - Tags it with the OBJECT_SELF's OID if RunScript or AOEEFFECT if not
 // - Makes it extraordinary
-// - Applies it permanently
+// - Applies it for a very long temporary duration
 // Apply these effects only once (ie OnEnter). Don't tag an effect as AOEEFFECT, and it'll be left alone (eg temporary stuns/entangles).
 void ApplyAOEPersistentEffect(object oTarget, effect eEffect, int bApplyRunScript = TRUE)
 {
     if (bApplyRunScript)
     {
-        if (!GetHasEffect(oTarget, EFFECT_TYPE_RUNSCRIPT, ObjectToString(OBJECT_SELF)))
+        if (!GetHasEffect(oTarget, EFFECT_TYPE_RUNSCRIPT, SPELL_ANY, ObjectToString(OBJECT_SELF)))
         {
             // Apply run script which when removed (or AOE dies) it clears all tagged AOE effects if no
             // other run scripts from the same spell Id exist
@@ -2000,7 +2000,8 @@ void ApplyAOEPersistentEffect(object oTarget, effect eEffect, int bApplyRunScrip
     }
     eEffect = ExtraordinaryEffect(eEffect);
     eEffect = TagEffect(eEffect, "AOEEFFECT");
-    ApplySpellEffectToObject(DURATION_TYPE_PERMANENT, eEffect, oTarget);
+    // We apply things "for a long time" since no AOE should be permanent. This helps with state scripts like Paralysis
+    ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eEffect, oTarget, 10000.0);
 }
 
 // Removes persistent RunScripts from oTarget that are applies to oTarget tagged with OBJECT_SELF's OID (ie the AOE's).
@@ -2457,16 +2458,19 @@ int GetClassHasDomain(object oCreature, int nClass, int nDomain)
 // Returns TRUE if oObject has at least one effect matching the parameters.
 // * nEffectType - Can be EFFECT_TYPE_ALL to be ignored
 // * sTag - Only checked if not blank
-int GetHasEffect(object oObject, int nEffectType, string sTag = "")
+int GetHasEffect(object oObject, int nEffectType, int nSpellId = SPELL_ANY, string sTag = "")
 {
     effect eCheck = GetFirstEffect(oObject);
     while (GetIsEffectValid(eCheck))
     {
         if (nEffectType == EFFECT_TYPE_ALL || GetEffectType(eCheck, TRUE) == nEffectType)
         {
-            if (sTag == "" || GetEffectTag(eCheck) == sTag)
+            if (nSpellId == SPELL_ANY || GetEffectSpellId(eCheck) == nSpellId)
             {
-                return TRUE;
+                if (sTag == "" || GetEffectTag(eCheck) == sTag)
+                {
+                    return TRUE;
+                }
             }
         }
         eCheck = GetNextEffect(oObject);
