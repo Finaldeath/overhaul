@@ -83,6 +83,9 @@ const int SKILL_RESULT_SUCCESS_NEVER_POSSIBLE = 5;
 // This is formatted as per the game formatting (cyan for players, purple for other things)
 string GetNameOrSomeone(object oObject, object oSenser = OBJECT_INVALID);
 
+// Provides the string " + " or " - " to input into string feedback messages.
+string GetPositiveOrNegativeSign(int nInteger);
+
 // Provide some feedback formatted to the games method of showing immunity feedback
 void SendImmunityFeedback(object oCaster, object oTarget, int nImmunityType);
 
@@ -106,6 +109,9 @@ void SendSkillFeedbackMessage(object oObject, object oVersus, int nSkill, int nS
 // - nAbilityScore - the ability score of oObject
 void SendAbilityCheckFeedbackMessage(object oObject, object oVersus, int nAbility, int bResult, int nRoll, int nAbilityScore, int nDC);
 
+// Provides a new feedback message for grapple checks
+void SendGrappleCheckFeedbackMessage(object oObject, object oVersus, int bResult, int nObjectRoll, int nObjectBAB, int nObjectStrength, int nObjectSizeModifier, int nVersusRoll, int nVersusBAB, int nVersusStrength, int nVersusSizeModifier);
+
 // Gets the name of oObject if oSenser can see or hear them (and oObject is valid!), else returns "Someone"
 // If not a creature will just get the name. If oObject and oSenser is the same returns the name.
 // This is formatted as per the game formatting (cyan for players, purple for other things)
@@ -124,6 +130,16 @@ string GetNameOrSomeone(object oObject, object oSenser)
         }
     }
     return GetStringByStrRef(STRREF_SOMEONE);
+}
+
+// Provides the string " + " or " - " to input into string feedback messages.
+string GetPositiveOrNegativeSign(int nInteger)
+{
+    if (nInteger >= 0)
+    {
+        return " + ";
+    }
+    return " - ";
 }
 
 // Provide some feedback formatted to the games method of showing immunity feedback
@@ -179,7 +195,7 @@ void SendImmunityFeedback(object oCaster, object oTarget, int nImmunityType)
 
     // Send the feedback to the caster
     string sTargetName = GetNameOrSomeone(oTarget, oCaster);
-    if (GetIsObjectValid(oCaster))
+    if (GetIsObjectValid(oCaster) && oCaster != oTarget)
     {
         // No string ref available for immunity feedback we  do our own; Bioware didn't provide feedback on several of them (besides in spell scripts a VFX).
         if (nStrRef == 0)
@@ -225,7 +241,7 @@ void SendDispelMagicFeedback(object oCaster, object oTarget, json jArrayOfSpellI
         sSpellNames += GetStringByStrRef(StringToInt(Get2DAString("spells", "Name", nSpellId)));
     }
     // Caster version
-    if (GetIsObjectValid(oCaster))
+    if (GetIsObjectValid(oCaster) && oCaster != oTarget)
     {
         SendMessageToPC(oCaster, FEEDBACK_COLOUR_MAGIC + GetStringByStrRef(STRREF_DISPEL_MAGIC) + FEEDBACK_COLOUR_END + " : " + GetNameOrSomeone(oTarget, oCaster) + " : " + FEEDBACK_COLOUR_MAGIC + sSpellNames + FEEDBACK_COLOUR_END);
     }
@@ -264,7 +280,7 @@ void SendDispelMagicFeedbackForItem(object oCaster, object oItem, json jArrayOfS
     if (GetIsObjectValid(oTarget))
     {
         // Caster version
-        if (GetIsObjectValid(oCaster))
+        if (GetIsObjectValid(oCaster) && oCaster != oTarget)
         {
             SendMessageToPC(oCaster, FEEDBACK_COLOUR_MAGIC + GetStringByStrRef(STRREF_DISPEL_MAGIC) + FEEDBACK_COLOUR_END + " : " + sItemName + " (possessed by " + GetNameOrSomeone(oTarget, oCaster) + ") : " + FEEDBACK_COLOUR_MAGIC + sSpellNames + FEEDBACK_COLOUR_END);
         }
@@ -349,7 +365,7 @@ void SendSkillFeedbackMessage(object oObject, object oVersus, int nSkill, int nS
     }
 
     SendMessageToPC(oObject, FEEDBACK_COLOUR_SKILLS + GetNameOrSomeone(oObject) + sMessage + FEEDBACK_COLOUR_END);
-    if (GetIsObjectValid(oVersus)) SendMessageToPC(oVersus, FEEDBACK_COLOUR_SKILLS + GetNameOrSomeone(oObject, oVersus) + sMessage + FEEDBACK_COLOUR_END);
+    if (GetIsObjectValid(oVersus) && oVersus != oTarget) SendMessageToPC(oVersus, FEEDBACK_COLOUR_SKILLS + GetNameOrSomeone(oObject, oVersus) + sMessage + FEEDBACK_COLOUR_END);
 }
 
 // Provides a new feedback message for (raw) ability checks
@@ -365,8 +381,37 @@ void SendAbilityCheckFeedbackMessage(object oObject, object oVersus, int nAbilit
     // Complicated message like skills
     int nTotal = nRoll + nAbilityScore;
 
-    string sMessage = " : " + sAbilityName + " Ability Check : *" + sResult + "* : (" + IntToString(nRoll) + " + " + IntToString(nAbilityScore) + " = " + IntToString(nTotal) + " vs. DC: " + IntToString(nDC) + ")";
+    string sMessage = " : " + sAbilityName + " Ability Check : *" + sResult + "* : (" + IntToString(nRoll) + GetPositiveOrNegativeSign(nAbilityScore) + IntToString(nAbilityScore) + " = " + IntToString(nTotal) + " vs. DC: " + IntToString(nDC) + ")";
 
     SendMessageToPC(oObject, FEEDBACK_COLOUR_SKILLS + GetNameOrSomeone(oObject) + sMessage + FEEDBACK_COLOUR_END);
-    if (GetIsObjectValid(oVersus)) SendMessageToPC(oVersus, FEEDBACK_COLOUR_SKILLS + GetNameOrSomeone(oObject, oVersus) + sMessage + FEEDBACK_COLOUR_END);
+    if (GetIsObjectValid(oVersus) && oVersus != oTarget) SendMessageToPC(oVersus, FEEDBACK_COLOUR_SKILLS + GetNameOrSomeone(oObject, oVersus) + sMessage + FEEDBACK_COLOUR_END);
+}
+
+// Provides a new feedback message for grapple checks
+void SendGrappleCheckFeedbackMessage(object oObject, object oVersus, int bResult, int nObjectRoll, int nObjectBAB, int nObjectStrength, int nObjectSizeModifier, int nVersusRoll, int nVersusBAB, int nVersusStrength, int nVersusSizeModifier)
+{
+    string sResult = bResult == TRUE ? GetStringByStrRef(STRREF_SUCCESS) : GetStringByStrRef(STRREF_FAILURE);
+
+    // Floating text string on oObject regardless of the result type but not sent to log (simplified)
+    FloatingTextStringOnCreature("Grapple : *" + sResult + "*", oObject, FALSE, FALSE);
+
+    // Complicated message like skills
+    int nTotalObject = nObjectRoll + nObjectBAB + nObjectStrength + nObjectSizeModifier;
+    int nTotalVersus = nVersusRoll + nVersusBAB + nVersusStrength + nVersusSizeModifier;
+
+    // Format all the things with +/- as needed
+    string sMessage = " : Opposed Grapple Check : *" + sResult + "* : (" + IntToString(nObjectRoll) +
+                                                                           GetPositiveOrNegativeSign(nObjectBAB) + IntToString(abs(nObjectBAB)) +
+                                                                           GetPositiveOrNegativeSign(nObjectStrength) + IntToString(abs(nObjectStrength)) +
+                                                                           GetPositiveOrNegativeSign(nObjectSizeModifier) + IntToString(abs(nObjectSizeModifier)) +
+                                                " = " + IntToString(nTotalObject) +
+                                                " vs. " +  IntToString(nVersusRoll) +
+                                                               GetPositiveOrNegativeSign(nVersusBAB) + IntToString(abs(nVersusBAB)) +
+                                                               GetPositiveOrNegativeSign(nVersusStrength) + IntToString(abs(nVersusStrength)) +
+                                                               GetPositiveOrNegativeSign(nVersusSizeModifier) + IntToString(abs(nVersusSizeModifier)) +
+                                                " = " + IntToString(nTotalVersus) +
+                                                ")";
+
+    SendMessageToPC(oObject, FEEDBACK_COLOUR_SKILLS + GetNameOrSomeone(oObject) + sMessage + FEEDBACK_COLOUR_END);
+    if (GetIsObjectValid(oVersus) && oVersus != oTarget) SendMessageToPC(oVersus, FEEDBACK_COLOUR_SKILLS + GetNameOrSomeone(oObject, oVersus) + sMessage + FEEDBACK_COLOUR_END);
 }

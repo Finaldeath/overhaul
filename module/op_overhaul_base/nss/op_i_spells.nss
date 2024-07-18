@@ -483,6 +483,11 @@ void FireItemPropertySpellScript();
 // Returns DAMAGE_POWER_PLUS_ONE by default.
 int GetDamagePowerPlusValue(int nPower);
 
+// Does a grapple check based on the input characteristics along with feedback to the target/caster
+//   Grapple checks are made with an opposed roll; caster: 1d20 + caster level (to a maximum of 20) +
+//   4 (tentacle's strength modifier) + 4 (tentacle' size modifier) vs. target: 1d20 + base attack bonus + strength modifier + size modifier.
+int DoGrapple(object oTarget, object oCaster, int nCasterBABRoll, int nCasterStrength, int nCasterSize);
+
 // These global variables are used in most spell scripts and are initialised here to be consistent
 // NB: You can't reuse these variables in the very functions in this list, so we pass them in.
 object oCastItem         = GetSpellCastItemCalculated();
@@ -1969,13 +1974,16 @@ void ApplyAOEPersistentEffect(object oTarget, effect eEffect, int bApplyRunScrip
 {
     if (bApplyRunScript)
     {
-        // Apply run script which when removed (or AOE dies) it clears all tagged AOE effects if no
-        // other run scripts from the same spell Id exist
-        effect eLink = EffectLinkEffects(EffectRunScriptEnhanced(FALSE, "op_rs_aoecleanup", "op_rs_aoecleanup", 6.0),
-                                         EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
-        eLink        = ExtraordinaryEffect(eLink);
-        eLink        = TagEffect(eLink, ObjectToString(OBJECT_SELF));
-        ApplySpellEffectToObject(DURATION_TYPE_PERMANENT, eLink, oTarget);
+        if (!GetHasEffect(oTarget, EFFECT_TYPE_RUNSCRIPT, ObjectToString(OBJECT_SELF)))
+        {
+            // Apply run script which when removed (or AOE dies) it clears all tagged AOE effects if no
+            // other run scripts from the same spell Id exist
+            effect eLink = EffectLinkEffects(EffectRunScriptEnhanced(FALSE, "op_rs_aoecleanup", "op_rs_aoecleanup", 6.0),
+                                             EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            eLink        = ExtraordinaryEffect(eLink);
+            eLink        = TagEffect(eLink, ObjectToString(OBJECT_SELF));
+            ApplySpellEffectToObject(DURATION_TYPE_PERMANENT, eLink, oTarget);
+        }
     }
 
     string sTag   = ObjectToString(OBJECT_SELF);
@@ -3219,3 +3227,38 @@ int GetDamagePowerPlusValue(int nPower)
     }
     return DAMAGE_POWER_PLUS_ONE;
 }
+
+
+// Does a grapple check based on the input characteristics along with feedback to the target/caster
+//   Grapple checks are made with an opposed roll; caster: 1d20 + caster level (to a maximum of 20) +
+//   4 (tentacle's strength modifier) + 4 (tentacle' size modifier) vs. target: 1d20 + base attack bonus + strength modifier + size modifier.
+int DoGrapple(object oTarget, object oVersus, int nVersusBAB, int nVersusStrength, int nVersusSize)
+{
+    // Amount to beat
+    int nVersusRoll = d20();
+
+    // Do check
+    int nRoll = d20();
+    int nBAB  = GetBaseAttackBonus(oTarget);
+    int nStrength = GetAbilityScore(oTarget, ABILITY_STRENGTH);
+
+    // Size bonus/penalty
+    int nSize = 0;
+    switch (GetCreatureSize(oTarget))
+    {
+        case CREATURE_SIZE_TINY: nSize = -8; break;
+        case CREATURE_SIZE_SMALL: nSize = -4; break;
+        case CREATURE_SIZE_MEDIUM: nSize = 0; break;
+        case CREATURE_SIZE_LARGE: nSize = 4; break;
+        case CREATURE_SIZE_HUGE: nSize = 8; break;
+    }
+
+    int bResult = (nRoll + nBAB + nStrength + nSize >=  nVersusRoll + nVersusBAB + nVersusStrength + nVersusSize);
+
+    // Report result
+    SendGrappleCheckFeedbackMessage(oTarget, oVersus, bResult, nRoll, nBAB, nStrength, nSize, nVersusRoll, nVersusBAB, nVersusStrength, nVersusSize);
+
+    return bResult;
+}
+
+
