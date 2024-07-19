@@ -25,22 +25,22 @@ void main()
     {
         if (!AOECheck()) return;
 
-        if (GetTimerEnded(ObjectToString(oTarget)))
+        if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
         {
-            SetTimer(ObjectToString(oTarget), 5);
+            ApplyAOEPersistentEffect(oTarget, EffectMovementSpeedDecrease(50));
 
-            if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
+            SignalSpellCastAt();
+
+            if (GetTimerEnded(ObjectToString(oTarget)))
             {
-                SignalSpellCastAt();
+                SetTimer(ObjectToString(oTarget), 5);
+
                 if (!DoResistSpell(oTarget, oCaster))
                 {
-                    ApplyAOEPersistentEffect(oTarget, EffectMovementSpeedDecrease(50));
-
                     ApplyDamageWithVFXToObject(oTarget, VFX_IMP_ACID_S, GetDiceRoll(2, 6), DAMAGE_TYPE_ACID);
                 }
             }
         }
-        return;
     }
     else if (GetCurrentlyRunningEvent() == EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_EXIT)
     {

@@ -41,9 +41,9 @@ void main()
     {
         if (!AOECheck()) return;
 
-        int nCount = 1 + GetLocalInt(OBJECT_SELF, "COUNT");
-        SetLocalInt(OBJECT_SELF, "COUNT", nCount);
-        Debug("Storm of Vengence, Heartbeat Count: " + IntToString(nCount));
+        //int nCount = 1 + GetLocalInt(OBJECT_SELF, "COUNT");
+        //SetLocalInt(OBJECT_SELF, "COUNT", nCount);
+        //Debug("Storm of Vengence, Heartbeat Count: " + IntToString(nCount));
 
         json jArray = GetArrayOfAOETargets(SPELL_TARGET_SELECTIVEHOSTILE);
         int nIndex;

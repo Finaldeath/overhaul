@@ -149,7 +149,7 @@
       "Description": {
         "Index": 6096,
         "EN": {
-          "M": "Caster Level(s): Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Conjuration\nDescriptor(s): Acid\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Large\nDuration: 1 Round / 2 Levels\nAdditional Counter Spells:\nSave: None\nSpell Resistance: Yes\n\nAcid Fog creates a thick, clinging, greenish cloud. Creatures entering the cloud have their movement reduced by 50% and take 2d6 acid damage.\r\n\r\nEvery round a creature spends in the cloud, it suffers 2d6 acid damage.",
+          "M": "Caster Level(s): Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Conjuration\nDescriptor(s): Acid\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Large\nDuration: 1 Round / 2 Levels\nAdditional Counter Spells:\nSave: None\nSpell Resistance: Yes\n\nAcid Fog creates a thick, clinging, greenish cloud. Creatures entering the cloud have their movement reduced by 50% (no spell resistance applies) and take 2d6 acid damage.\r\n\r\nEvery round a creature spends in the cloud, it suffers 2d6 acid damage.",
           "F": "Caster Level(s): Wizard / Sorcerer 6\nInnate Level: 6\nSchool: Conjuration\nDescriptor(s): Acid\nComponent(s): Verbal, Somatic\nRange: Long\nArea of Effect / Target: Large\nDuration: 1 Round / 2 Level\nAdditional Counter Spells:\nSave: Fortitude\nSpell Resistance: Yes\n\nAcid Fog creates a thick, clinging, greenish cloud. Creatures entering the cloud take 4d6 acid damage. Creatures inside the cloud must make a Fortitude save or have their movement reduced by 50%. Every round a creature spends in the cloud, it suffers 2d6 acid damage."
         },
         "FR": {
@@ -30081,7 +30081,7 @@
       "Description": {
         "Index": 6163,
         "EN": {
-          "M": "Caster Level(s): Bard 1, Druid 1, Ranger 1, Wizard / Sorcerer 1\nInnate Level: 1\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Medium\nDuration: 2 Rounds \u002B 1 / 3 Levels\nAdditional Counter Spells: Freedom of Movement\nSave: Reflex partial\nSpell Resistance: Yes\n\nA churning field of oil and grease fills the target area, causing all within to either fall down or move at a reduced speed.  Those entering the area who walk on the grease are slowed by 50% if the spell affects them. Those slowed and affected by the grease then must make a reflex save every round or be knocked down for 4 seconds.",
+          "M": "Caster Level(s): Bard 1, Druid 1, Ranger 1, Wizard / Sorcerer 1\nInnate Level: 1\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Medium\nDuration: 2 Rounds \u002B 1 / 3 Levels\nAdditional Counter Spells: Freedom of Movement\nSave: Reflex partial\nSpell Resistance: No\n\nA churning field of oil and grease fills the target area, causing all within to either fall down or move at a reduced speed.  Those entering the area who walk on the grease are slowed by 50%. Those in the grease then must make a reflex save every round or be knocked down for 4 seconds.",
           "F": "Caster Level(s): Bard 1, Druid 1, Ranger 1, Wizard / Sorcerer 1\nInnate Level: 1\nSchool: Conjuration\nDescriptor(s):\nComponent(s): Verbal, Somatic\nRange: Short\nArea of Effect / Target: Medium\nDuration: 2 Rounds \u002B 1 / 3 Levels\nAdditional Counter Spells: Freedom of Movement\nSave: Reflex\nSpell Resistance: Yes\n\nA churning field of oil and grease fills the target area, causing all within to either fall down or move at a reduced speed."
         },
         "FR": {
@@ -30122,7 +30122,7 @@
         "Item",
         "Placeable"
       ],
-      "ImpactScript": "NW_S0_Grease",
+      "ImpactScript": "op_s_grease",
       "InnateLevel": 1,
       "ConjurationTime": 1500,
       "ConjuringAnimation": "Head",
