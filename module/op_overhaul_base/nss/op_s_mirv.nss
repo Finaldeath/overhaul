@@ -28,6 +28,14 @@
     Alternatively you can cast this on ammunition in your inventory (arrows,
     bolts or bullets) to add fire damage equal to half the caster level (up to
     +10). This enchantment lasts for 1 round per caster level.
+
+    Ball Lightning
+    Balls of lightning (one per caster level, maximum 15) appear and target any hostile
+    creature in the area of effect. If there are more creatures than balls of
+    lightning, only the closest targets will be damaged. If there are more
+    balls of lightning than creatures, the excess balls of lighning disappear.
+    Each ball of lightning explodes for 1d6 points of electricity damage per
+    caster level (max 15d6).
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -100,6 +108,20 @@ void main()
             nVis             = VFX_IMP_FLAME_S;
             nSavingThrow     = SAVING_THROW_REFLEX;
             nSavingThrowType = SAVING_THROW_TYPE_FIRE;
+        }
+        break;
+        case SPELL_BALL_LIGHTNING:
+        {
+            nMissiles               = min(15, nCasterLevel);
+            nMaxMissilesPerCreature = 1;
+            nDiceNum                = min(15, nCasterLevel);
+            nDiceSize               = 6;
+            nDamageBonus            = 0;
+            nDamageType             = DAMAGE_TYPE_ELECTRICAL;
+            nVisMissile             = VFX_IMP_MIRV_ELECTRIC;
+            nVis                    = VFX_IMP_LIGHTNING_S;
+            nSavingThrow            = SAVING_THROW_REFLEX;
+            nSavingThrowType        = SAVING_THROW_TYPE_ELECTRICITY;
         }
         break;
         default:
