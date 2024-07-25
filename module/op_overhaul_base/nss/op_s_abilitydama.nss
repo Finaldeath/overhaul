@@ -86,9 +86,9 @@ void main()
             if (!DoResistSpell(oTarget, oCaster))
             {
                 // Since some effects may have a different immunity check...
-                if (!GetIsImmuneWithFeedback(oTarget, nImmunityType, oCaster))
+                if (!GetIsImmuneWithFeedback(oTarget, oCaster, nImmunityType))
                 {
-                    if (nSavingThrow == -1 || !DoSavingThrow(oTarget, oCaster, nSavingThrow, nSpellSaveDC, nSavingThrowType))
+                    if (!DoSavingThrow(oTarget, oCaster, nSavingThrow, nSpellSaveDC, nSavingThrowType))
                     {
                         ApplyVisualEffectToObject(nVis, oTarget);
                         ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);

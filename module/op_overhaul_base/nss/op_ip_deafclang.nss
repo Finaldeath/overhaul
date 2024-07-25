@@ -33,7 +33,7 @@ void main()
             {
                 if (!DoResistSpell(oTarget, oCaster))
                 {
-                    if (!GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_DEAFNESS, oCaster))
+                    if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_DEAFNESS))
                     {
                         nSpellSaveDC = nCasterLevel + 10;
                         if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_SONIC))

@@ -36,7 +36,7 @@ void main()
 
         if (!DoResistSpell(oTarget, oCaster))
         {
-            if (!GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_MIND_SPELLS, oCaster))
+            if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_MIND_SPELLS))
             {
                 if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_MIND_SPELLS))
                 {

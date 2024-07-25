@@ -41,7 +41,7 @@ void main()
     int nStrengthCheckRoll = -1;
     // Saving throw and immunity?
     int nSavingThrow = -1, nSavingThrowType = SAVING_THROW_TYPE_NONE;
-    int nImmunity = -1, bImmuneIfFlying = FALSE, bImmuneIfCannotHear = FALSE;
+    int nImmunity = IMMUNITY_TYPE_NONE, bImmuneIfFlying = FALSE, bImmuneIfCannotHear = FALSE;
     // Effect we apply on a failed save
     effect eLink;
     // If duration is 0.0 apply eLink instantly
@@ -107,7 +107,7 @@ void main()
 
             if (!DoResistSpell(oTarget, oCaster, fDelay))
             {
-                if ((nImmunity != -1 || !GetIsImmuneWithFeedback(oTarget, nImmunity, oCaster)) &&
+                if (!GetIsImmuneWithFeedback(oTarget, oCaster, nImmunity) &&
                     (!bImmuneIfFlying || !GetIsFlying(oTarget)) &&
                     (!bImmuneIfCannotHear || GetCanHear(oTarget)))
                 {

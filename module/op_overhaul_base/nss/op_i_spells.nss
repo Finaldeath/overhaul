@@ -76,6 +76,9 @@ const int SPELL_TARGET_SELECTIVEHOSTILE = 3;  // Selective hostile - IE: Will no
 // Missing saving throw type constant
 const int SAVING_THROW_TYPE_PARALYSIS = 20;
 
+// DoSavingThrow does nothing if this is passed.
+const int SAVING_THROW_NONE = -1;
+
 const int SORT_METHOD_NONE               = 0;  // Just doesn't bother sorting
 const int SORT_METHOD_LOWEST_HP          = 1;
 const int SORT_METHOD_LOWEST_HD          = 2;
@@ -224,7 +227,7 @@ int GetImmunityTypeFromSavingThrowType(int nSaveType);
 // Check and do immunity for the given immunity type.
 // It also provides feedback to the given creatures if valid, and the game usually gives such feedback.
 // If nImmunityType is IMMUNITY_TYPE_NONE this automatically fails (ie they're not immune).
-int GetIsImmuneWithFeedback(object oCreature, int nImmunityType, object oVersus = OBJECT_INVALID);
+int GetIsImmuneWithFeedback(object oCreature, object oVersus, int nImmunityType);
 
 // This allows the application of a random delay to effects based on time parameters passed in.
 float GetRandomDelay(float fMinimumTime = 0.4, float MaximumTime = 1.1);
@@ -998,6 +1001,8 @@ location GetSpellTargetLocationCalculated(object oTarget)
 // Note: If used within an Area of Effect Object Script (On Enter, OnExit, OnHeartbeat), you MUST pass GetAreaOfEffectCreator() into oSaveVersus!
 int DoSavingThrow(object oTarget, object oSaveVersus, int nSavingThrow, int nDC, int nSaveType = SAVING_THROW_TYPE_NONE, float fDelay = 0.0)
 {
+    if (nSavingThrow == SAVING_THROW_NONE) return 0;
+
     // Sanity check
     nDC = clamp(nDC, 1, 255);
 
@@ -1712,7 +1717,7 @@ int GetImmunityTypeFromSavingThrowType(int nSaveType)
 // Check and do immunity for the given immunity type.
 // It also provides feedback to the given creatures if valid.
 // If nImmunityType is IMMUNITY_TYPE_NONE this automatically fails (ie they're not immune).
-int GetIsImmuneWithFeedback(object oCreature, int nImmunityType, object oVersus = OBJECT_INVALID)
+int GetIsImmuneWithFeedback(object oCreature, object oVersus, int nImmunityType)
 {
     if (nImmunityType == IMMUNITY_TYPE_NONE) return FALSE;
 

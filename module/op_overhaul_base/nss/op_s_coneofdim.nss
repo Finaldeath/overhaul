@@ -34,7 +34,7 @@ void main()
         float fDurationRemaining = IntToFloat(GetEffectDurationRemaining(eRunScript)) + 1.0;
 
         // If immune check
-        if (GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_BLINDNESS, oCaster))
+        if (GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_BLINDNESS))
         {
             RemoveEffect(oTarget, eRunScript);
             RemoveEffectsFromSpell(oTarget, SPELL_CONE_OF_DIMNESS, EFFECT_TYPE_ALL, TAG_CONE_OF_DIMNESS);
@@ -47,8 +47,8 @@ void main()
             return;
         }
 
-        // Saving throw check
-        if (DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_MIND_SPELLS))
+        // Saving throw check - if we fail apply the further effects
+        if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_MIND_SPELLS))
         {
             // Remove all related tagged effects
             RemoveEffectsFromSpell(oTarget, SPELL_CONE_OF_DIMNESS, EFFECT_TYPE_BLINDNESS, TAG_CONE_OF_DIMNESS);
@@ -97,7 +97,7 @@ void main()
         {
             if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_MIND_SPELLS, fDelay))
             {
-                if (!GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_BLINDNESS, oCaster))
+                if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_BLINDNESS))
                 {
                     DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_BLIND_DEAF_M, oTarget));
                     DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eRunScript, oTarget, fDuration));

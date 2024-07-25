@@ -29,7 +29,7 @@ void main()
                 SignalSpellCastAt();
                 if (!DoResistSpell(oTarget, oCaster))
                 {
-                    if (!GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_PARALYSIS, oCaster))
+                    if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_PARALYSIS))
                     {
                         if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_PARALYSIS))
                         {
@@ -67,7 +67,7 @@ void main()
                 {
                     if (!DoResistSpell(oTarget, oCaster))
                     {
-                        if (!GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_PARALYSIS, oCaster))
+                        if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_PARALYSIS))
                         {
                             if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_PARALYSIS))
                             {

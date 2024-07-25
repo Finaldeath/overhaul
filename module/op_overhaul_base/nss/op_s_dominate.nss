@@ -90,8 +90,8 @@ void main()
             {
                 // Check immunities - noting Control Undead ignores these
                 if (nSpellId == SPELL_CONTROL_UNDEAD ||
-                    (!GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_DOMINATE, oCaster) &&
-                     !GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_MIND_SPELLS, oCaster)))
+                    (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_DOMINATE) &&
+                     !GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_MIND_SPELLS)))
                 {
                     ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
                     ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);

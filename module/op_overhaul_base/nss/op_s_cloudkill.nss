@@ -35,7 +35,7 @@ void main()
             if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
             {
                 SignalSpellCastAt();
-                if (!GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_POISON, oCaster))
+                if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_POISON))
                 {
                     float fDelay = GetRandomDelay();
 
@@ -90,7 +90,7 @@ void main()
                 SetTimer(ObjectToString(oTarget), 5);
                 SignalSpellCastAt();
 
-                if (!GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_POISON, oCaster))
+                if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_POISON))
                 {
                     if (!DoResistSpell(oTarget, oCaster))
                     {

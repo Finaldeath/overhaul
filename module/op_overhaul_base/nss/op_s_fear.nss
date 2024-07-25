@@ -77,7 +77,7 @@ void main()
 
                 if (!DoResistSpell(oTarget, oCaster, fDelay))
                 {
-                    if (!GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_FEAR, oCaster))
+                    if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_FEAR))
                     {
                         if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_FEAR, fDelay))
                         {
@@ -111,7 +111,7 @@ void main()
         {
             if (!DoResistSpell(oTarget, oCaster))
             {
-                if (!GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_FEAR, oCaster))
+                if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_FEAR))
                 {
                     if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_FEAR))
                     {

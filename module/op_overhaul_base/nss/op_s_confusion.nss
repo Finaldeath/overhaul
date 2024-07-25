@@ -52,7 +52,7 @@ void main()
 
             if (!DoResistSpell(oTarget, oCaster, fDelay))
             {
-                if (!GetIsImmuneWithFeedback(oTarget, EFFECT_TYPE_CONFUSED, oCaster))
+                if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_CONFUSED))
                 {
                     if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_MIND_SPELLS, fDelay))
                     {
