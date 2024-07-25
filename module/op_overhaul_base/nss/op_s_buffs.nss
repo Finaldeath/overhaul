@@ -170,6 +170,12 @@
     Globe of Invulnerability
     A shimmering field of energy prevents all spells of level 4 or lower
     from affecting the caster. 1 round/level.
+
+    Invisibility
+    Invisibility, 1 minute/level.
+
+    Improved Invisibility
+    Invisibility and 50% concealment, 1 minute/level.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -189,6 +195,10 @@ void main()
     int nCreatureLimit = 99999;
     effect eLink;
     float fDuration;
+
+    // This is enabled for things like Improved Invisibility
+    int bSecondLink = FALSE;
+    effect eSecondLink;
 
     switch (nSpellId)
     {
@@ -814,6 +824,23 @@ void main()
             eLink = EffectLinkEffects(eLink, EffectIcon(EFFECT_ICON_GLOBE_OF_INVUNERABILITY));
         }
         break;
+        case SPELL_INVISIBILITY:
+        {
+            fDuration = GetDuration(nCasterLevel, MINUTES);
+            eLink     = EffectLinkEffects(EffectInvisibility(INVISIBILITY_TYPE_NORMAL),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+        }
+        break;
+        case SPELL_IMPROVED_INVISIBILITY:
+        {
+            fDuration = GetDuration(nCasterLevel, MINUTES);
+            eLink     = EffectLinkEffects(EffectRunScriptEnhanced(FALSE, "op_rs_removespel"),
+                                          EffectLinkEffects(EffectConcealment(50),
+                                                            EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+            bSecondLink = TRUE;
+            eSecondLink = ExtraordinaryEffect(EffectInvisibility(INVISIBILITY_TYPE_NORMAL));
+        }
+        break;
         default:
             Debug("[op_s_buffs] No valid spell ID passed in: " + IntToString(nSpellId), ERROR);
             return;
@@ -845,6 +872,7 @@ void main()
 
             if (nVis != VFX_INVALID) DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
             DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
+            if (bSecondLink) DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eSecondLink, oTarget, fDuration));
         }
     }
     else
@@ -860,5 +888,6 @@ void main()
 
         ApplyVisualEffectToObject(nVis, oTarget);
         ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
+        if (bSecondLink) ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eSecondLink, oTarget, fDuration);
     }
 }
