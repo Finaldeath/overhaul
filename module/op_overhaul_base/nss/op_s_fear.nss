@@ -81,9 +81,9 @@ void main()
 
                 if (!DoResistSpell(oTarget, oCaster, fDelay))
                 {
-                    if (!GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_SLEEP, oCaster))
+                    if (!GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_FEAR, oCaster))
                     {
-                        if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_MIND_SPELLS, fDelay))
+                        if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_FEAR, fDelay))
                         {
                             DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
                             float fDuration = GetScaledDuration(oTarget, nDuration, ROUNDS);
@@ -104,9 +104,9 @@ void main()
         {
             if (!DoResistSpell(oTarget, oCaster))
             {
-                if (!GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_SLEEP, oCaster))
+                if (!GetIsImmuneWithFeedback(oTarget, IMMUNITY_TYPE_FEAR, oCaster))
                 {
-                    if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_MIND_SPELLS))
+                    if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_FEAR))
                     {
                         ApplyVisualEffectToObject(nVis, oTarget);
                         float fDuration = GetScaledDuration(oTarget, nDuration, ROUNDS);
