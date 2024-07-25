@@ -27,6 +27,7 @@ void main()
     if (DoSpellHook()) return;
 
     effect eLink;
+    int bUseLink = FALSE;
     int nImpact = VFX_NONE, nVis = VFX_NONE, nHDLimit = 99999;
     int nDuration;
 
@@ -37,19 +38,14 @@ void main()
             // We probably should link the effects here to the state script, or perhaps tie it to one spell ID. But leaving it simple for now.
             // One other issue is fear generally just stops you moving at all. We'd need to open fear up to be on/off to have the damage
             // and attack penalties even mean anything.
-            eLink = EffectLinkEffects(EffectFrightened(),
-                    EffectLinkEffects(EffectDamageDecrease(2, DAMAGE_TYPE_BLUDGEONING | DAMAGE_TYPE_SLASHING | DAMAGE_TYPE_PIERCING),
-                    EffectLinkEffects(EffectAttackDecrease(2),
-                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_FEAR),
-                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)))));
+            eLink = EffectLinkEffects(EffectDamageDecrease(2, DAMAGE_TYPE_BLUDGEONING | DAMAGE_TYPE_SLASHING | DAMAGE_TYPE_PIERCING),
+                                      EffectAttackDecrease(2));
+            bUseLink = TRUE;
             nHDLimit  = 5;
             // NB: can't metamagic the d4
             nDuration = d4();
             break;
         case SPELL_FEAR:
-            eLink = EffectLinkEffects(EffectFrightened(),
-                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_FEAR),
-                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
             nDuration = nCasterLevel;
             break;
         default:
@@ -87,7 +83,18 @@ void main()
                         {
                             DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
                             float fDuration = GetScaledDuration(oTarget, nDuration, ROUNDS);
-                            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
+                            effect eFear = GetScaledEffect(EffectFrightened(), oTarget);
+
+                            effect eApply = EffectLinkEffects(eFear,
+                                            EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_FEAR),
+                                                              EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+
+                            if (bUseLink)
+                            {
+                                eApply = EffectLinkEffects(eApply, eLink);
+                            }
+
+                            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eApply, oTarget, fDuration));
                         }
                     }
                 }
@@ -110,6 +117,16 @@ void main()
                     {
                         ApplyVisualEffectToObject(nVis, oTarget);
                         float fDuration = GetScaledDuration(oTarget, nDuration, ROUNDS);
+                        effect eFear = GetScaledEffect(EffectFrightened(), oTarget);
+
+                        effect eApply = EffectLinkEffects(eFear,
+                                        EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_FEAR),
+                                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+
+                        if (bUseLink)
+                        {
+                            eApply = EffectLinkEffects(eApply, eLink);
+                        }
                         ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
                     }
                 }
