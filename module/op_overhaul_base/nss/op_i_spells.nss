@@ -341,6 +341,12 @@ int GetIsMindless(object oCreature);
 // Returns TRUE if the given creature is flying / floating
 int GetIsFlying(object oCreature);
 
+// Returns TRUE if the given creature is living (not undead, not construct)
+int GetIsLiving(object oCreature);
+
+// Returns TRUE if the given creature is a water elemental (Based on appearance)
+int GetIsWaterElemental(object oCreature);
+
 // Gets if either domain matches the given domain on the given class
 int GetClassHasDomain(object oCreature, int nClass, int nDomain);
 
@@ -2440,6 +2446,32 @@ int GetIsFlying(object oCreature)
         case APPEARANCE_TYPE_DEMI_LICH:
             return TRUE;
             break;
+    }
+    return FALSE;
+}
+
+// Returns TRUE if the given creature is living (not undead, not construct)
+int GetIsLiving(object oCreature)
+{
+    switch (GetRacialType(oCreature))
+    {
+        case RACIAL_TYPE_CONSTRUCT:
+        case RACIAL_TYPE_UNDEAD:
+            return FALSE;
+        break;
+    }
+    return TRUE;
+}
+
+// Returns TRUE if the given creature is a water elemental (Based on appearance)
+int GetIsWaterElemental(object oCreature)
+{
+    switch (GetAppearanceType(oCreature))
+    {
+        case APPEARANCE_TYPE_ELEMENTAL_WATER:
+        case APPEARANCE_TYPE_ELEMENTAL_WATER_ELDER:
+            return TRUE;
+        break;
     }
     return FALSE;
 }

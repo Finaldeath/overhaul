@@ -26,6 +26,9 @@
 
     Burning Hands
     1d4 fire damage per level, maximum 5d4.
+
+    Horrid Wilting
+    1d8 magic damage/level to max of 25d8. Water elementals get +2 save DC.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -40,7 +43,8 @@ void main()
 
     int nDiceNum, nDiceSize, nDamageType, nSavingThrow = -1, nSavingThrowType = SAVING_THROW_TYPE_NONE;
     // Toggles
-    int nImpact = VFX_INVALID, nVis = VFX_INVALID, bDelayRandom = FALSE;
+    int nImpact = VFX_INVALID, nVis = VFX_INVALID, bDelayRandom = FALSE, bMustBeLiving = FALSE, bWaterElementalBonusDC = FALSE;
+    float fRandomMin = 0.4, fRandoMax = 1.1;
     // Can change to selective hostile
     int nTargetType = SPELL_TARGET_STANDARDHOSTILE;
 
@@ -48,7 +52,7 @@ void main()
     {
         case SPELL_FIREBALL:
         {
-            nDiceNum         = max(10, nCasterLevel);
+            nDiceNum         = min(10, nCasterLevel);
             nDiceSize        = 6;
             nDamageType      = DAMAGE_TYPE_FIRE;
             nSavingThrow     = SAVING_THROW_REFLEX;
@@ -59,7 +63,7 @@ void main()
         break;
         case SPELL_SCINTILLATING_SPHERE:
         {
-            nDiceNum         = max(10, nCasterLevel);
+            nDiceNum         = min(10, nCasterLevel);
             nDiceSize        = 6;
             nDamageType      = DAMAGE_TYPE_ELECTRICAL;
             nSavingThrow     = SAVING_THROW_REFLEX;
@@ -70,7 +74,7 @@ void main()
         break;
         case SPELL_CONE_OF_COLD:
         {
-            nDiceNum         = max(15, nCasterLevel);
+            nDiceNum         = min(15, nCasterLevel);
             nDiceSize        = 6;
             nDamageType      = DAMAGE_TYPE_COLD;
             nSavingThrow     = SAVING_THROW_REFLEX;
@@ -80,7 +84,7 @@ void main()
         break;
         case SPELL_MESTILS_ACID_BREATH:
         {
-            nDiceNum         = max(10, nCasterLevel);
+            nDiceNum         = min(10, nCasterLevel);
             nDiceSize        = 6;
             nDamageType      = DAMAGE_TYPE_ACID;
             nSavingThrow     = SAVING_THROW_REFLEX;
@@ -93,7 +97,7 @@ void main()
             nTargetType  = SPELL_TARGET_SELECTIVEHOSTILE;
             bDelayRandom = TRUE;
 
-            nDiceNum         = max(10, nCasterLevel);
+            nDiceNum         = min(10, nCasterLevel);
             nDiceSize        = 6;
             nDamageType      = DAMAGE_TYPE_ELECTRICAL;
             nSavingThrow     = SAVING_THROW_REFLEX;
@@ -103,12 +107,27 @@ void main()
         break;
         case SPELL_BURNING_HANDS:
         {
-            nDiceNum         = max(5, nCasterLevel);
+            nDiceNum         = min(5, nCasterLevel);
             nDiceSize        = 4;
             nDamageType      = DAMAGE_TYPE_FIRE;
             nSavingThrow     = SAVING_THROW_REFLEX;
             nSavingThrowType = SAVING_THROW_TYPE_FIRE;
             nVis             = VFX_IMP_FLAME_S;
+        }
+        break;
+        case SPELL_HORRID_WILTING:
+        {
+            nDiceNum         = min(25, nCasterLevel);
+            nDiceSize        = 8;
+            nDamageType      = DAMAGE_TYPE_MAGICAL;
+            nSavingThrow     = SAVING_THROW_FORT;
+            nImpact          = VFX_FNF_HORRID_WILTING;
+            nVis             = VFX_IMP_NEGATIVE_ENERGY;
+            bDelayRandom     = TRUE;
+            fRandomMin       = 1.5;
+            fRandoMax        = 2.5;
+            bMustBeLiving    = TRUE;
+            bWaterElementalBonusDC = TRUE;
         }
         break;
         default:
@@ -129,23 +148,31 @@ void main()
 
         float fDelay = bDelayRandom ? GetRandomDelay(0.4, 1.75) : GetDistanceBetweenLocations(GetLocation(oTarget), lTarget) / 20.0;
 
-        if (!DoResistSpell(oTarget, oCaster, fDelay))
+        // Immunity checks
+        if (!bMustBeLiving || GetIsLiving(oTarget))
         {
-            // Roll damage
-            int nDamage = GetDiceRoll(nDiceNum, nDiceSize);
-
-            // Damage modification based on save (half, with Reflex allowing feats to reduce further)
-            if (nSavingThrow != -1)
+            if (!DoResistSpell(oTarget, oCaster, fDelay))
             {
-                nDamage = DoDamageSavingThrow(nDamage, oTarget, oCaster, nSavingThrow, nSpellSaveDC, nSavingThrowType, fDelay);
-            }
+                // Roll damage
+                int nDamage = GetDiceRoll(nDiceNum, nDiceSize);
 
-            if (nDamage > 0)
-            {
-                effect eDamage = EffectDamage(nDamage, nDamageType);
+                // Damage modification based on save (half, with Reflex allowing feats to reduce further)
+                if (nSavingThrow != -1)
+                {
+                    int nSaveDC = nSpellSaveDC;
 
-                if (nVis != VFX_INVALID) DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
-                DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDamage, oTarget));
+                    if (bWaterElementalBonusDC && GetIsWaterElemental(oTarget)) nSaveDC += 2;
+
+                    nDamage = DoDamageSavingThrow(nDamage, oTarget, oCaster, nSavingThrow, nSpellSaveDC, nSavingThrowType, fDelay);
+                }
+
+                if (nDamage > 0)
+                {
+                    effect eDamage = EffectDamage(nDamage, nDamageType);
+
+                    if (nVis != VFX_INVALID) DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
+                    DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDamage, oTarget));
+                }
             }
         }
     }
