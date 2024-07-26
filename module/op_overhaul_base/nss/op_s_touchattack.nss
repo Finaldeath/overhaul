@@ -11,6 +11,27 @@
     touch attack deals 1d4 points of cold damage per level (maximum of 5d4).
     Regardless ofif it hits, it does an additional 1 cold damage in a small
     area around the target.
+
+    Shocking Grasp
+    The character's successful melee touch attack deals 1d8 points of electrical
+    damage +1 point per caster level (maximum +20). When delivering the jolt,
+    the character gains a +3 attack bonus if the opponent is wearing metal
+    armor (AC 4 or above), or made out of metal such as a Iron Golem.
+
+    Searing light
+    The character projects a blast of light from the character's open palm. The
+    character must succeed at a ranged touch attack to strike the character's target.
+
+    The divine damage inflicted is based on the target's racial type:
+    Undead: 1d8 per caster level, to a maximum of 10d8
+    Construct and inanimate objects: 1d6 for every 2 caster levels, to a maximum of 5d6
+    Other: 1d8 per 2 caster levels, to a maximum of 5d8
+
+    Healing Sting
+    You inflict 1d12 points of negative damage +1 per caster level (maximum
+    1d12+10) to the living creature on a successful melee touch attack, and
+    gain an equal amount of hit points. You may not gain more Hit Points than
+    your maximum with the Healing Sting.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -31,11 +52,14 @@ void main()
 
     // Damage > 0 gets it saved
     int nDamageType, nDamage = 0;
+    int bHeal = FALSE;
 
     // Effect to apply if target is hit.
     int bApplyEffect = FALSE;
     effect eLink;
-    int nVis;
+    float fDuration;
+
+    int nVis = VFX_NONE, nBeam = VFX_NONE;
 
     switch (nSpellId)
     {
@@ -46,27 +70,53 @@ void main()
             nDamageType = DAMAGE_TYPE_COLD;
             nVis = VFX_IMP_FROST_S;
             // TODO: Maybe a beam visual attack or MIRV here
-
-            // Regardless of hit or miss we do 1 cold damage in the area of effect
-            json jArray = GetArrayOfTargets(SPELL_TARGET_STANDARDHOSTILE, SORT_METHOD_DISTANCE, OBJECT_TYPE_CREATURE | OBJECT_TYPE_PLACEABLE | OBJECT_TYPE_DOOR);
-            int nIndex;
-            for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
+        }
+        break;
+        case SPELL_SHOCKING_GRASP:
+        {
+            // If a metal creature or in "Metal armor" (AC 4 or above)
+            if (GetIsMetalCreature(oTarget) ||
+                GetArmorBaseACValue(GetItemInSlot(INVENTORY_SLOT_CHEST, oTarget)) >= 4)
             {
-                object oAOETarget = GetArrayObject(jArray, nIndex);
+                nBonusToHit = 3;
+            }
 
-                float fDelay = GetDistanceBetweenLocations(GetLocation(oTarget), lTarget) / 20.0;
+            nTouchAttackType = TOUCH_MELEE;
+            nDamage = GetDiceRoll(1, 8, min(nCasterLevel, 20));
+            nDamageType = DAMAGE_TYPE_ELECTRICAL;
+            nVis = VFX_IMP_LIGHTNING_S;
+        }
+        break;
+        case SPELL_SEARING_LIGHT:
+        {
+            // Default damage for inanimate and constructs
+            nDamage = GetDiceRoll(min(nCasterLevel/2, 5), 6);
 
-                if (oAOETarget == oTarget)
+            if (GetObjectType(oTarget) == OBJECT_TYPE_CREATURE)
+            {
+                if (GetRacialType(oTarget) == RACIAL_TYPE_UNDEAD)
                 {
-                    // No need for more signal event or VFX
-                    DelayCommand(fDelay, ApplyDamageToObject(oAOETarget, 1, DAMAGE_TYPE_COLD));
+                    nDamage = GetDiceRoll(min(nCasterLevel, 10), 8);
                 }
-                else
+                else if (GetRacialType(oTarget) != RACIAL_TYPE_UNDEAD)
                 {
-                    SignalSpellCastAt(oAOETarget);
-                    DelayCommand(fDelay, ApplyDamageWithVFXToObject(oAOETarget, nVis, 1, DAMAGE_TYPE_COLD));
+                    nDamage = GetDiceRoll(min(nCasterLevel/2, 5), 8);
                 }
             }
+
+            nTouchAttackType = TOUCH_RANGED;
+            nDamageType = DAMAGE_TYPE_DIVINE;
+            nVis = VFX_IMP_SUNSTRIKE;
+            nBeam = VFX_BEAM_HOLY;
+        }
+        break;
+        case SPELL_HEALING_STING:
+        {
+            nTouchAttackType = TOUCH_MELEE;
+            nDamage = GetDiceRoll(1, 12, min(nCasterLevel, 10));
+            nDamageType = DAMAGE_TYPE_NEGATIVE;
+            nVis = VFX_IMP_NEGATIVE_ENERGY;
+            bHeal = TRUE;
         }
         break;
         default:
@@ -75,17 +125,29 @@ void main()
             break;
     }
 
-
+    int bResist;
 
     if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
     {
         SignalSpellCastAt();
 
+        if (nBonusToHit > nBonusToHit)
+        {
+            // Apply the bonus, which shouldn't then apply outside this spell, I hope.
+            effect eAttackBonus = EffectAttackIncrease(nBonusToHit, ATTACK_BONUS_MISC);
+            eAttackBonus        = HideEffectIcon(eAttackBonus);
+            ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eAttackBonus, oCaster, 0.0);
+        }
+
         int nTouch = DoTouchAttack(oTarget, oCaster, nTouchAttackType);
 
         if (nTouch)
         {
-            if (!DoResistSpell(oTarget, oCaster))
+            ApplyBeamToObject(nBeam, oTarget, TRUE);
+
+            bResist = DoResistSpell(oTarget, oCaster);
+
+            if (!bResist)
             {
                 if (!GetIsImmuneWithFeedback(oTarget, oCaster, nImmunity))
                 {
@@ -93,17 +155,64 @@ void main()
 
                     if (nDamage > 0)
                     {
+                        if (nTouch == 2) nDamage *= 2;
+
                         nDamage = GetDamageBasedOnFeats(nDamage, oTarget, bSaved);
+
                         if (nDamage > 0)
                         {
-                            ApplyDamageWithVFXToObject(oTarget, nVis, nDamage, nDamageType);
+                            if (bHeal)
+                            {
+                                ApplyDamageWithVFXToObjectAndDrain(oTarget, oCaster, nVis, nDamage, nDamageType);
+                            }
+                            else
+                            {
+                                ApplyDamageWithVFXToObject(oTarget, nVis, nDamage, nDamageType);
+                            }
                         }
                     }
                     if (bApplyEffect && !bSaved)
                     {
-
+                        ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
                     }
                 }
+            }
+        }
+        else
+        {
+            if (nBeam)
+            {
+                ApplyBeamToObject(nBeam, oTarget, TRUE);
+            }
+            else
+            {
+                ApplyVisualEffectToObject(nVis, oTarget, TRUE);
+            }
+        }
+    }
+    // Ice Dagger extra bonus damage AOE
+    if (nSpellId == SPELL_ICE_DAGGER)
+    {
+        // Regardless of hit or miss we do 1 cold damage in the area of effect
+        json jArray = GetArrayOfTargets(SPELL_TARGET_STANDARDHOSTILE, SORT_METHOD_DISTANCE, OBJECT_TYPE_CREATURE | OBJECT_TYPE_PLACEABLE | OBJECT_TYPE_DOOR);
+        int nIndex;
+        for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
+        {
+            object oAOETarget = GetArrayObject(jArray, nIndex);
+
+            float fDelay = GetDistanceBetweenLocations(GetLocation(oTarget), lTarget) / 20.0;
+
+            if (oAOETarget == oTarget)
+            {
+                if (bResist == FALSE)
+                {
+                    DelayCommand(fDelay, ApplyDamageToObject(oAOETarget, 1, DAMAGE_TYPE_COLD));
+                }
+            }
+            else if (!DoResistSpell(oAOETarget, oCaster, fDelay))
+            {
+                SignalSpellCastAt(oAOETarget);
+                DelayCommand(fDelay, ApplyDamageWithVFXToObject(oAOETarget, nVis, 1, DAMAGE_TYPE_COLD));
             }
         }
     }

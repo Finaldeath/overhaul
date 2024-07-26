@@ -271,6 +271,10 @@ void ApplyVisualEffectAtLocation(int nVFX, location lTarget, int bMissEffect = F
 // Applies damage of the given type. This helps wrapper delayed damage so we can keep at 1 HP if necessary (Harm/Heal).
 void ApplyDamageToObject(object oTarget, int nDamage, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL, int bKeepAt1HP = FALSE);
 
+// Applies damage of the given type, and heals up to the damage done to oCaster (after resistances/immunities).
+// Must be a creature for it it work.
+void ApplyDamageWithVFXToObjectAndDrain(object oTarget, object oCaster, int nVFX, int nDamage, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL);
+
 // Applies damage of the given type. This helps wrapper delayed damage so we can keep at 1 HP if necessary (Harm/Heal).
 // * Also applies nVFX (no miss effect or anything special).
 void ApplyDamageWithVFXToObject(object oTarget, int nVFX, int nDamage, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL, int bKeepAt1HP = FALSE);
@@ -1948,6 +1952,33 @@ void ApplyDamageToObject(object oTarget, int nDamage, int nDamageType = DAMAGE_T
         // We always delay damage by 0.0 seconds to stop any script loops
         DelayCommand(0.0, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDamage, oTarget));
     }
+}
+
+// Private function for the below to work in a DelayCommand
+void DamageAndDrain(object oTarget, object oCaster, int nDamage, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL)
+{
+    int nOriginalHP = GetCurrentHitPoints(oTarget);
+    ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectDamage(nDamage, nDamageType, nDamagePower), oTarget);
+
+    // Amount to heal. If dead we use 0 HP since NPCs have to magically go to -10 when they die.
+    int nCurrentHP = GetIsDead(oTarget) ? 0 : GetCurrentHitPoints(oTarget);
+
+    int nAmountToHeal = nOriginalHP - nCurrentHP;
+
+    // Don't heal if the target isn't a creature to drain
+    if (GetObjectType(oTarget) == OBJECT_TYPE_CREATURE && nAmountToHeal > 0)
+    {
+        ApplyVisualEffectToObject(VFX_IMP_HEALING_M, oCaster);
+        ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectHeal(nAmountToHeal), oCaster);
+    }
+}
+
+// Applies damage of the given type, and heals up to the damage done to oCaster (after resistances/immunities).
+// Must be a creature for it it work.
+void ApplyDamageWithVFXToObjectAndDrain(object oTarget, object oCaster, int nVFX, int nDamage, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL)
+{
+    ApplyVisualEffectToObject(nVFX, oTarget);
+    DelayCommand(0.0, DamageAndDrain(oTarget, oCaster, nDamage, nDamageType, nDamagePower));
 }
 
 // Applies damage of the given type. This helps wrapper delayed damage so we can keep at 1 HP if necessary (Harm/Heal).
