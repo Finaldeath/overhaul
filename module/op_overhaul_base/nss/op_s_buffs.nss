@@ -112,6 +112,9 @@
     Premonition
     30/+5 damage reduction for up to a limit of 10 per caster level, no limit. 1 hour/level.
 
+    Epic Warding
+    50/+20 damage reduction for 1 round per level.
+
     Blur
     The subject's outline appears blurred. This distortion grants the subject
     20% concealment. 1 minute/level.
@@ -238,7 +241,7 @@ void main()
         case SPELL_EPIC_MAGE_ARMOR:
         {
             // Need to rework the DUR VFX model properly and have a VIS version added
-            // since the current version applies a effect right on the casters head
+            // since the current version is used for Epic Warding. Perhaps do some recolouring.
             nVis  = VFX_DUR_PROT_EPIC_ARMOR;
             eLink = EffectLinkEffects(EffectACIncrease(20, AC_ARMOUR_ENCHANTMENT_BONUS),
                                       EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
@@ -657,8 +660,18 @@ void main()
         case SPELL_PREMONITION:
         {
             fDuration = GetDuration(nCasterLevel, HOURS);
-            eLink     = EffectLinkEffects(EffectDamageReduction(30, DAMAGE_POWER_PLUS_FIVE, nCasterLevel * 10),
+            eLink     = EffectLinkEffects(EffectDamageReduction(50, DAMAGE_POWER_PLUS_TWENTY, nCasterLevel * 50),
                                           EffectLinkEffects(EffectVisualEffect(VFX_DUR_PROT_PREMONITION),
+                                                            EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+        }
+        break;
+        case SPELL_EPIC_WARDING:
+        {
+            // Note the VFX for this is Epic Mage Armor but as a duration, don't like how the VFX hits the head so much, might move lower/higher.
+            // Colours are pretty good for this to be like Premonition etc.
+            fDuration = GetDuration(nCasterLevel, ROUNDS);
+            eLink     = EffectLinkEffects(EffectDamageReduction(30, DAMAGE_POWER_PLUS_FIVE, nCasterLevel * 10),
+                                          EffectLinkEffects(EffectVisualEffect(VFX_DUR_PROT_EPIC_ARMOR),
                                                             EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
         }
         break;

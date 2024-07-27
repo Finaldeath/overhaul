@@ -33,9 +33,29 @@
 
 #include "op_i_spells"
 
+// Get the last summon and fire a VFX at it
+void VisualAtSummonsLocation(int nVFX)
+{
+    int nNth = 1;
+    object oLastValid;
+    object oSummon = GetAssociate(ASSOCIATE_TYPE_SUMMONED, oCaster, nNth);
+    while (GetIsObjectValid(oSummon))
+    {
+        oLastValid = oSummon;
+        oSummon = GetAssociate(ASSOCIATE_TYPE_SUMMONED, oCaster, ++nNth);
+    }
+    if (GetIsObjectValid(oLastValid))
+    {
+        ApplyVisualEffectAtLocation(nVFX, GetLocation(oLastValid));
+    }
+}
+
 void main()
 {
     if (DoSpellHook()) return;
+
+    // For now they're all getting 24 hour durations by default, may change
+    float fDuration = GetDuration(24, HOURS);
 
     effect eSummon;
     switch (nSpellId)
@@ -129,19 +149,39 @@ void main()
             eSummon = EffectSummonCreature("NW_S_SUCCUBUS", VFX_FNF_SUMMON_MONSTER_3);
         }
         break;
+        case SPELL_EPIC_DRAGON_KNIGHT:
+        {
+            eSummon = EffectSummonCreature("x2_s_drgred001", VFX_FNF_SUMMONDRAGON, 0.0, TRUE);
+            fDuration = GetDuration(20, ROUNDS);
+
+            // Extra VFX of them landing
+            DelayCommand(1.0, VisualAtSummonsLocation(VFX_IMP_DUST_EXPLOSION));
+        }
+        break;
+        case SPELL_EPIC_MUMMY_DUST:
+        {
+            eSummon = EffectSummonCreature("X2_S_MUMMYWARR", VFX_FNF_SUMMON_EPIC_UNDEAD, 1.0f);
+            fDuration = GetDuration(24, HOURS);
+        }
+        break;
+        default:
+        {
+            Debug("[op_s_aoeeffect] No valid spell ID passed in: " + IntToString(nSpellId));
+            return;
+        }
+        break;
     }
 
     // All summon effects are Extraordinary to prevent usual dispel magic. Instead
-    // the summon itself can be targeted by dispel magic and may disappear.
+    // the summon itself can be targeted by dispel magic and may disappear (except level 10 / epic spells).
     eSummon = ExtraordinaryEffect(eSummon);
 
-    // For now they're all getting 24 hour durations
     if (GetEffectType(eSummon, TRUE) == EFFECT_TYPE_SUMMON_CREATURE)
     {
-        ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eSummon, lTarget, GetDuration(24, HOURS));
+        ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eSummon, lTarget, fDuration);
     }
     else
     {
-        ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eSummon, oTarget, GetDuration(24, HOURS));
+        ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eSummon, oTarget, fDuration);
     }
 }

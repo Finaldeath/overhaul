@@ -97,7 +97,7 @@ void main()
                 FireItemPropertySpellScript();
                 return;
             }
-            nMissiles = 40;  // max(1, nCasterLevel/4);
+            nMissiles = max(1, nCasterLevel/4);
             // No max per creature!
             bTouchAttackType = TOUCH_RANGED;
             nDiceNum         = 4;

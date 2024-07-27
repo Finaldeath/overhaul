@@ -185,6 +185,7 @@ const int SPELL_GREATER_SHADOW_CONJURATION        = 71;
 const int SPELL_SHADES                            = 158;
 const int SPELL_SHADOW_CONJURATION                = 159;
 const int SPELL_FEAT_BLINDING_SPEED               = 647;
+const int SPELL_EPIC_WARDING                      = 695;
 const int SPELLABILITY_CURE_CRITICAL_WOUNDS_OTHER = 567;
 const int SPELLABILITY_RESTOREATION_OTHER         = 568;
 const int SPELLABILITY_SUMMON_BAATEZU             = 701;

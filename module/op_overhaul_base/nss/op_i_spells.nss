@@ -127,7 +127,7 @@ int GetSpellIsHostile(int nSpellIdToCheck);
 
 // This calculates the spell save DC for the given spell adding in bonuses and penalties as required
 // For a AOE it uses the stored DC.
-int GetSpellSaveDCCalculated(object oCaster, int nSpellIdToCheck, object oCastItem, int nSpellType);
+int GetSpellSaveDCCalculated(object oCaster, int nSpellIdToCheck, int nFeatId, object oCastItem, int nSpellType);
 
 // This calculates the spell caster level for any additional bonuses due to feats or similar.
 // For a AOE pass in it as the oCaster, then it uses the stored caster level.
@@ -512,7 +512,7 @@ int nSpellId             = GetSpellIdCalculated();
 int nFeatId              = GetSpellFeatId();
 int nSpellType           = GetSpellType(nSpellId);
 int nSpellSchool         = GetSpellSchool(nSpellId);
-int nSpellSaveDC         = GetSpellSaveDCCalculated(oCaster, nSpellId, oCastItem, nSpellType);
+int nSpellSaveDC         = GetSpellSaveDCCalculated(oCaster, nSpellId, nFeatId, oCastItem, nSpellType);
 int nCasterClass         = GetLastSpellCastClassCalculated();
 int nCasterLevel         = GetCasterLevelCalculated(oCaster, nSpellId, nFeatId, nCasterClass);
 int nMetaMagic           = GetMetaMagicFeatCalculated();
@@ -692,10 +692,10 @@ int GetSpellIsHostile(int nSpellIdToCheck)
 }
 
 // This calculates the spell save DC for the given spell adding in bonuses and penalties as required
-// For a AOE it uses the stored DC on the AOE object then uses oCaster to change the value.
-int GetSpellSaveDCCalculated(object oCaster, int nSpellIdToCheck, object oCastItem, int nSpellType)
+// For a AOE it uses the stored DC.
+int GetSpellSaveDCCalculated(object oCaster, int nSpellId, int nFeatId, object oCastItem, int nSpellType)
 {
-    if (nSpellIdToCheck == SPELL_INVALID) return 0;
+    if (nSpellId == SPELL_INVALID) return 0;
 
     if (GetIsObjectValid(oCastItem) && nSpellType == SPELL_TYPE_ITEM_POWER)
     {
@@ -727,6 +727,51 @@ int GetSpellSaveDCCalculated(object oCaster, int nSpellIdToCheck, object oCastIt
         // We can calculate these changes I think, safely, more or less, without storing
         // the save DC on the AOE somehow.
         return GetSpellSaveDC();
+    }
+    else if (nFeatId != FEAT_INVALID)
+    {
+        // Feat used, we'll default to GetSpellSaveDC for now.
+    }
+    else if (GetSpellLevel(nSpellId) == 10)
+    {
+        // Epic Spells get a special calculation;
+        // * 20 + ability score of the caster
+        // For now we just get the highest spellcasting class. Can make it more constrained or
+        // accurate (checking feat lists with Json) later
+        int nClassPosition, nHighestCasterClass = CLASS_TYPE_INVALID, nHighestCasterClassLevel = 0;
+        for (nClassPosition = 1; nClassPosition <= 8; nClassPosition++)
+        {
+            int nClass = GetClassByPosition(nClassPosition, oCaster);
+            if (nClass != -1)
+            {
+                if (Get2DAString("classes", "SpellCaster", nClass) == "1")
+                {
+                    if (GetLevelByClass(nClass, oCaster) > nHighestCasterClassLevel)
+                    {
+                        nHighestCasterClass = nClass;
+                        nHighestCasterClassLevel = GetLevelByClass(nClass, oCaster);
+                    }
+                }
+            }
+        }
+        // Dummy fallback (eg DM casting/cheat cast, use first class slot)
+        if (nHighestCasterClass == CLASS_TYPE_INVALID)
+        {
+            nHighestCasterClass = GetClassByPosition(0, oCaster);
+        }
+        // Now use the class to get the data
+        // Not a spellcaster? oh well!
+        int nAbilityModifier = 0;
+        switch (HashString(Get2DAString("classes", "SpellcastingAbil", nHighestCasterClass)))
+        {
+            case "STR": nAbilityModifier = GetAbilityModifier(ABILITY_STRENGTH, oCaster); break;
+            case "DEX": nAbilityModifier = GetAbilityModifier(ABILITY_DEXTERITY, oCaster); break;
+            case "CON": nAbilityModifier = GetAbilityModifier(ABILITY_CONSTITUTION, oCaster); break;
+            case "WIS": nAbilityModifier = GetAbilityModifier(ABILITY_WISDOM, oCaster); break;
+            case "INT": nAbilityModifier = GetAbilityModifier(ABILITY_INTELLIGENCE, oCaster); break;
+            case "CHA": nAbilityModifier = GetAbilityModifier(ABILITY_CHARISMA, oCaster); break;
+        }
+        return 20 + nAbilityModifier;
     }
 
     // Default fallback is a spell script which can have altered values for the save DC
@@ -1148,6 +1193,9 @@ int DoResistSpell(object oTarget, object oCaster, float fDelay = 0.0, int bResis
         return FALSE;
     }
 
+    // Epic spells do not get spell resistance or immunity
+    if (GetSpellLevel(nSpellId) == 10) return FALSE;
+
     // Checks are done based on the nSpellType;
     // - SPELL_TYPE_SPELL           - Standard spell
     // - SPELL_TYPE_CREATURE_POWER  - Or "Spell ability". Uses HD for resist spell. Checks spell immunity.
@@ -1356,13 +1404,18 @@ void DoDispelMagic(object oTarget, int nCasterLevel, int nVis = VFX_INVALID, flo
                 // See if it matches
                 if (GetEffectObject(eCheck, 1) == oTarget)
                 {
-                    // We dispel using this effects caster level
-                    if (d20() + nCasterLevel >= 11 + GetEffectCasterLevel(eCheck))
+                    // Spell Id should not be from an Epic spell (undispellable)
+                    // -1 is fine (unknown spell level)
+                    if (GetEffectTaggedSpellLevel(eCheck) <= 9)
                     {
-                        RemoveEffect(oMaster, eCheck);
-                        // Return since this should not remove the summoned creature itself (or swarm if appropriate)
-                        // For now keeping this simple.
-                        return;
+                        // We dispel using this effects caster level
+                        if (d20() + nCasterLevel >= 11 + GetEffectCasterLevel(eCheck))
+                        {
+                            RemoveEffect(oMaster, eCheck);
+                            // Return since this should not remove the summoned creature itself (or swarm if appropriate)
+                            // For now keeping this simple.
+                            return;
+                        }
                     }
                 }
             }

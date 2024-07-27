@@ -1,9 +1,10 @@
 //::///////////////////////////////////////////////
 //:: AOE Damage Spells
-//:: op_s_aoedamage
+//:: op_s_damage
 //:://////////////////////////////////////////////
 /*
-    Generally reflex-based damage only spells and spell abilties.
+    Generally reflex-based damage only spells and spell abilties. But it supports
+    basic damage vs. save, etc.
 
     2da holds the AOE information and we can plumb in the rest in a switch
     statement.
@@ -29,6 +30,11 @@
 
     Horrid Wilting
     1d8 magic damage/level to max of 25d8. Water elementals get +2 save DC.
+
+    ----
+
+    Greater Ruin
+    The caster deals 35d6 positive damage to a single target. Fortitude half.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -43,10 +49,12 @@ void main()
 
     int nDiceNum, nDiceSize, nDamageType, nSavingThrow = -1, nSavingThrowType = SAVING_THROW_TYPE_NONE;
     // Toggles
-    int nImpact = VFX_INVALID, nVis = VFX_INVALID, bDelayRandom = FALSE, bMustBeLiving = FALSE, bWaterElementalBonusDC = FALSE;
-    float fRandomMin = 0.4, fRandoMax = 1.1;
+    int nImpact = VFX_NONE, nVis = VFX_NONE, bDelayRandom = FALSE, bMustBeLiving = FALSE, bWaterElementalBonusDC = FALSE;
+    // Delay variables
+    float fDelayOverride = 0.0, fRandomMin = 0.4, fRandomMax = 1.1;
     // Can change to selective hostile
     int nTargetType = SPELL_TARGET_STANDARDHOSTILE;
+
 
     switch (nSpellId)
     {
@@ -125,13 +133,30 @@ void main()
             nVis             = VFX_IMP_NEGATIVE_ENERGY;
             bDelayRandom     = TRUE;
             fRandomMin       = 1.5;
-            fRandoMax        = 2.5;
+            fRandomMax       = 2.5;
             bMustBeLiving    = TRUE;
             bWaterElementalBonusDC = TRUE;
         }
         break;
+        case SPELL_EPIC_RUIN:
+        {
+            nDiceNum         = 35;
+            nDiceSize        = 6;
+            nDamageType      = DAMAGE_TYPE_DIVINE;
+            nSavingThrow     = SAVING_THROW_FORT;
+            nImpact          = VFX_FNF_SCREEN_SHAKE;
+            nVis             = VFX_COM_BLOOD_CRT_RED;
+            fDelayOverride   = 1.3;
+                // This was used in the original Bioware script, not sure why, is a static delay for the VFX now (taken from vim_ruin.mdl)
+                // GetDistanceBetween(oTarget, oCaster)/(3.0 * log(GetDistanceBetween(oTarget, oCaster)) + 2.0);
+
+            // Special visuals
+            ApplyVisualEffectToObject(VFX_FNF_GREATER_RUIN, oTarget);
+            DelayCommand(fDelayOverride, ApplyVisualEffectToObject(VFX_COM_CHUNK_BONE_MEDIUM, oTarget));
+        }
+        break;
         default:
-            Debug("[op_s_aoedamage] No valid spell ID passed in: " + IntToString(nSpellId));
+            Debug("[op_s_damage] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
             break;
     }
@@ -146,7 +171,15 @@ void main()
 
         SignalSpellCastAt();
 
-        float fDelay = bDelayRandom ? GetRandomDelay(0.4, 1.75) : GetDistanceBetweenLocations(GetLocation(oTarget), lTarget) / 20.0;
+        float fDelay = 0.0;
+        if (fDelayOverride != 0.0)
+        {
+            fDelay = fDelayOverride;
+        }
+        else if (GetSpellIsAreaOfEffect(nSpellId))
+        {
+            fDelay = bDelayRandom ? GetRandomDelay(fRandomMin, fRandomMax) : GetDistanceBetweenLocations(GetLocation(oTarget), lTarget) / 20.0;
+        }
 
         // Immunity checks
         if (!bMustBeLiving || GetIsLiving(oTarget))
@@ -163,7 +196,7 @@ void main()
 
                     if (bWaterElementalBonusDC && GetIsWaterElemental(oTarget)) nSaveDC += 2;
 
-                    nDamage = DoDamageSavingThrow(nDamage, oTarget, oCaster, nSavingThrow, nSpellSaveDC, nSavingThrowType, fDelay);
+                    nDamage = DoDamageSavingThrow(nDamage, oTarget, oCaster, nSavingThrow, nSaveDC, nSavingThrowType, fDelay);
                 }
 
                 if (nDamage > 0)
@@ -177,3 +210,4 @@ void main()
         }
     }
 }
+
