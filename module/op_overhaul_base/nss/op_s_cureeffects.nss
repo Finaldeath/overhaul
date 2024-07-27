@@ -80,7 +80,7 @@ void main()
     effect eLink;
 
     // We store what we want to remove in a Json array
-    json jArray = JsonArray();
+    json jRemoveEffectsArray = JsonArray();
 
     switch (nSpellId)
     {
@@ -97,7 +97,7 @@ void main()
             nImpact    = VFX_FNF_LOS_HOLY_10;
             nVis       = VFX_IMP_REMOVE_CONDITION;
 
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_FRIGHTENED));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_FRIGHTENED));
         }
         break;
         case SPELL_FREEDOM_OF_MOVEMENT:
@@ -113,10 +113,10 @@ void main()
                                                                                                  EffectLinkEffects(EffectVisualEffect(VFX_DUR_FREEDOM_OF_MOVEMENT),
                                                                                                                    EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE))))));
 
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_PARALYZE));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_ENTANGLE));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_SLOW));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_MOVEMENT_SPEED_DECREASE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_PARALYZE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_ENTANGLE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_SLOW));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_MOVEMENT_SPEED_DECREASE));
         }
         break;
         case SPELL_LESSER_RESTORATION:
@@ -124,14 +124,14 @@ void main()
             bSupernaturalRemoval = FALSE;
             nVis                 = VFX_IMP_RESTORATION_LESSER;
 
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_ABILITY_DECREASE));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_AC_DECREASE));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_ATTACK_DECREASE));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_DAMAGE_DECREASE));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_DAMAGE_IMMUNITY_DECREASE));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_SAVING_THROW_DECREASE));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_SPELL_RESISTANCE_DECREASE));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_SKILL_DECREASE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_ABILITY_DECREASE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_AC_DECREASE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_ATTACK_DECREASE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_DAMAGE_DECREASE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_DAMAGE_IMMUNITY_DECREASE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_SAVING_THROW_DECREASE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_SPELL_RESISTANCE_DECREASE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_SKILL_DECREASE));
         }
         break;
         case SPELL_RESTORATION:
@@ -140,18 +140,18 @@ void main()
             bSupernaturalRemoval = FALSE;
             nVis                 = VFX_IMP_RESTORATION;
 
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_ABILITY_DECREASE));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_AC_DECREASE));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_ATTACK_DECREASE));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_DAMAGE_DECREASE));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_DAMAGE_IMMUNITY_DECREASE));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_SAVING_THROW_DECREASE));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_SPELL_RESISTANCE_DECREASE));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_SKILL_DECREASE));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_BLINDNESS));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_DEAF));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_PARALYZE));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_NEGATIVELEVEL));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_ABILITY_DECREASE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_AC_DECREASE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_ATTACK_DECREASE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_DAMAGE_DECREASE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_DAMAGE_IMMUNITY_DECREASE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_SAVING_THROW_DECREASE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_SPELL_RESISTANCE_DECREASE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_SKILL_DECREASE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_BLINDNESS));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_DEAF));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_PARALYZE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_NEGATIVELEVEL));
         }
         break;
         case SPELL_GREATER_RESTORATION:
@@ -159,29 +159,29 @@ void main()
             bSupernaturalRemoval = FALSE;
             nVis                 = VFX_IMP_RESTORATION_GREATER;
 
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_ABILITY_DECREASE));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_AC_DECREASE));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_ATTACK_DECREASE));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_DAMAGE_DECREASE));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_DAMAGE_IMMUNITY_DECREASE));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_SAVING_THROW_DECREASE));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_SPELL_RESISTANCE_DECREASE));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_SKILL_DECREASE));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_BLINDNESS));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_DEAF));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_CURSE));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_DISEASE));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_POISON));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_PARALYZE));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_CHARMED));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_DOMINATED));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_DAZED));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_CONFUSED));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_FRIGHTENED));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_NEGATIVELEVEL));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_PARALYZE));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_SLOW));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_STUNNED));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_ABILITY_DECREASE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_AC_DECREASE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_ATTACK_DECREASE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_DAMAGE_DECREASE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_DAMAGE_IMMUNITY_DECREASE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_SAVING_THROW_DECREASE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_SPELL_RESISTANCE_DECREASE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_SKILL_DECREASE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_BLINDNESS));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_DEAF));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_CURSE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_DISEASE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_POISON));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_PARALYZE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_CHARMED));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_DOMINATED));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_DAZED));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_CONFUSED));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_FRIGHTENED));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_NEGATIVELEVEL));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_PARALYZE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_SLOW));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_STUNNED));
         }
         break;
         case SPELL_NEUTRALIZE_POISON:
@@ -189,7 +189,7 @@ void main()
             bSupernaturalRemoval = TRUE;
             nVis                 = VFX_IMP_REMOVE_CONDITION;
 
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_POISON));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_POISON));
         }
         break;
         case SPELL_REMOVE_DISEASE:
@@ -198,7 +198,7 @@ void main()
             bSupernaturalRemoval = TRUE;
             nVis                 = VFX_IMP_REMOVE_CONDITION;
 
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_DISEASE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_DISEASE));
         }
         break;
         case SPELL_REMOVE_BLINDNESS_AND_DEAFNESS:
@@ -206,8 +206,8 @@ void main()
             bSupernaturalRemoval = TRUE;
             nVis                 = VFX_IMP_REMOVE_CONDITION;
 
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_BLINDNESS));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_DEAF));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_BLINDNESS));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_DEAF));
         }
         break;
         default:
@@ -218,37 +218,26 @@ void main()
         break;
     }
 
-    if (GetSpellIsAreaOfEffect(nSpellId))
+    ApplyVisualEffectAtLocation(nImpact, lTarget);
+
+    int nTargetType = SPELL_TARGET_ANYTHING;
+    if (GetSpellIsAreaOfEffect(nSpellId)) nTargetType = SPELL_TARGET_ALLALLIES;
+
+    json jArray = GetArrayOfTargets(nTargetType);
+    int nIndex;
+    for (nIndex = 0; nIndex < JsonGetLength(jArray) && nIndex < nTotalToAssist; nIndex++)
     {
-        json jArray = GetArrayOfTargets(SPELL_TARGET_ALLALLIES);
+        oTarget = GetArrayObject(jArray, nIndex);
 
-        ApplyVisualEffectAtLocation(nImpact, lTarget);
+        SignalSpellCastAt();
 
-        int nIndex;
-        for (nIndex = 0; nIndex < JsonGetLength(jArray) && nIndex < nTotalToAssist; nIndex++)
-        {
-            oTarget = GetArrayObject(jArray, nIndex);
-
-            SignalSpellCastAt();
-
-            ApplyVisualEffectToObject(nVis, oTarget);
-
-            if (bApplyLink == TRUE)
-            {
-                ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
-            }
-
-            CureEffects(oTarget, jArray, bSupernaturalRemoval);
-        }
-    }
-    else
-    {
         ApplyVisualEffectToObject(nVis, oTarget);
+
         if (bApplyLink == TRUE)
         {
             ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
         }
 
-        CureEffects(oTarget, jArray, bSupernaturalRemoval);
+        CureEffects(oTarget, jRemoveEffectsArray, bSupernaturalRemoval);
     }
 }

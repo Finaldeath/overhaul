@@ -31,6 +31,9 @@ void main()
     if (DoSpellHook()) return;
 
     int nHealing, nMaxTargets = 1;
+    int nImpact = VFX_NONE;
+    int nVis     = VFX_IMP_HEAD_NATURE;
+
     switch (nSpellId)
     {
         case SPELL_REGENERATE_LIGHT_WOUNDS: nHealing = 1; break;
@@ -41,10 +44,12 @@ void main()
         case SPELL_REGENERATE_RING:
             nHealing    = 1;
             nMaxTargets = max(1, nCasterLevel / 2);
+            nImpact = VFX_IMP_PULSE_NATURE;
             break;
         case SPELL_REGENERATE_CIRCLE:
             nHealing    = 3;
             nMaxTargets = max(1, nCasterLevel / 2);
+            nImpact = VFX_IMP_PULSE_NATURE;
             break;
         default:
         {
@@ -54,40 +59,21 @@ void main()
         break;
     }
 
-    int nVis     = VFX_IMP_HEAD_NATURE;
     effect eLink = EffectLinkEffects(EffectRegenerate(nHealing, 6.0),
                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
 
-    if (GetSpellIsAreaOfEffect(nSpellId))
+    // Same AOE effect for each
+    ApplyVisualEffectAtLocation(nImpact, lTarget);
+
+    json jArray = GetArrayOfTargets(SPELL_TARGET_ALLALLIES);
+    int nIndex;
+    for (nIndex = 0; nIndex < JsonGetLength(jArray) && nIndex < nMaxTargets; nIndex++)
     {
-        // Same AOE effect for each
-        ApplyVisualEffectAtLocation(VFX_IMP_PULSE_NATURE, lTarget);
+        oTarget = GetArrayObject(jArray, nIndex);
 
-        json jArray = GetArrayOfTargets(SPELL_TARGET_ALLALLIES);
-        int nIndex;
-        for (nIndex = 0; nIndex < JsonGetLength(jArray) && nIndex < nMaxTargets; nIndex++)
-        {
-            oTarget = GetArrayObject(jArray, nIndex);
-
-            SignalSpellCastAt();
-
-            float fDelay    = GetDistanceBetweenLocations(lTarget, GetLocation(oTarget)) / 25.0;
-            float fDuration = GetDuration(10 + nCasterLevel, ROUNDS);
-
-            // We first check for any existing of this exact same level of regen
-            fDuration += GetRemainingDurationOfRegen(oTarget, nHealing);
-
-            // Then we cull all existing regen effects
-            RemoveEffectsFromSpell(oTarget, SPELL_ANY, EFFECT_TYPE_REGENERATE);
-
-            DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
-            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
-        }
-    }
-    else
-    {
         SignalSpellCastAt();
 
+        float fDelay    = GetDistanceBetweenLocations(lTarget, GetLocation(oTarget)) / 25.0;
         float fDuration = GetDuration(10 + nCasterLevel, ROUNDS);
 
         // We first check for any existing of this exact same level of regen
@@ -96,8 +82,8 @@ void main()
         // Then we cull all existing regen effects
         RemoveEffectsFromSpell(oTarget, SPELL_ANY, EFFECT_TYPE_REGENERATE);
 
-        ApplyVisualEffectToObject(nVis, oTarget);
-        ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
+        DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
+        DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
     }
 }
 

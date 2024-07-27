@@ -178,36 +178,19 @@ void main()
             break;
     }
 
-    if (GetSpellIsAreaOfEffect(nSpellId))
+    ApplyVisualEffectAtLocation(nImpact, lTarget);
+
+    json jArray = GetArrayOfTargets(SPELL_TARGET_ALLALLIES, SORT_METHOD_DISTANCE);
+    int nIndex;
+    for (nIndex = 0; nIndex < JsonGetLength(jArray) && nCreatureLimit > 0; nIndex++)
     {
-        ApplyVisualEffectAtLocation(nImpact, lTarget);
+        nCreatureLimit--;
 
-        json jArray = GetArrayOfTargets(SPELL_TARGET_ALLALLIES, SORT_METHOD_DISTANCE);
-        int nIndex;
-        for (nIndex = 0; nIndex < JsonGetLength(jArray) && nCreatureLimit > 0; nIndex++)
-        {
-            nCreatureLimit--;
+        oTarget = GetArrayObject(jArray, nIndex);
 
-            oTarget = GetArrayObject(jArray, nIndex);
-
-            SignalSpellCastAt();
-
-            float fDelay = bDelayRandom ? GetRandomDelay() : GetDistanceBetweenLocations(GetLocation(oTarget), lTarget) / 20.0;
-
-            // Remove previous castings
-            RemoveEffectsFromSpell(oTarget, nSpellId);
-            if (nRemoveSpell1 != SPELL_INVALID) RemoveEffectsFromSpell(oTarget, nRemoveSpell1);
-            if (nRemoveSpell2 != SPELL_INVALID) RemoveEffectsFromSpell(oTarget, nRemoveSpell2);
-            if (nRemoveSpell3 != SPELL_INVALID) RemoveEffectsFromSpell(oTarget, nRemoveSpell3);
-
-            if (nVis != VFX_INVALID) DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
-            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eTempHP, oTarget, fDuration));
-            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
-        }
-    }
-    else
-    {
         SignalSpellCastAt();
+
+        float fDelay = bDelayRandom ? GetRandomDelay() : GetDistanceBetweenLocations(GetLocation(oTarget), lTarget) / 20.0;
 
         // Remove previous castings
         RemoveEffectsFromSpell(oTarget, nSpellId);
@@ -215,8 +198,8 @@ void main()
         if (nRemoveSpell2 != SPELL_INVALID) RemoveEffectsFromSpell(oTarget, nRemoveSpell2);
         if (nRemoveSpell3 != SPELL_INVALID) RemoveEffectsFromSpell(oTarget, nRemoveSpell3);
 
-        ApplyVisualEffectToObject(nVis, oTarget);
-        ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eTempHP, oTarget, fDuration);
-        ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
+        if (nVis != VFX_INVALID) DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
+        DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eTempHP, oTarget, fDuration));
+        DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
     }
 }

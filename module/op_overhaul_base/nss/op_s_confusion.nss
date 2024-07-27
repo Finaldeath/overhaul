@@ -21,13 +21,16 @@ void main()
                                      EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED),
                                                        EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
     effect eImpact;
+    int nTargetType = SPELL_TARGET_STANDARDHOSTILE;
     int nVis = VFX_INVALID, nImpact = VFX_INVALID;
+    int bDelayRandom = FALSE;
 
     switch (nSpellId)
     {
         case SPELL_CONFUSION:
             nImpact = VFX_FNF_LOS_NORMAL_20;
             nVis    = VFX_IMP_CONFUSION_S;
+            bDelayRandom = TRUE;
             break;
         default:
             Debug("[Confusion op_s_confusion] No valid spell ID passed in: " + IntToString(nSpellId));
@@ -35,37 +38,29 @@ void main()
             break;
     }
 
-    // AOE?
-    if (GetSpellIsAreaOfEffect(nSpellId))
+    ApplyVisualEffectAtLocation(nImpact, lTarget);
+
+    json jArray = GetArrayOfTargets(nTargetType);
+    int nIndex;
+    for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
     {
-        ApplyVisualEffectAtLocation(nImpact, lTarget);
+        oTarget = GetArrayObject(jArray, nIndex);
 
-        json jArray = GetArrayOfTargets(SPELL_TARGET_STANDARDHOSTILE);
-        int nIndex;
-        for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
+        SignalSpellCastAt();
+
+        float fDelay = bDelayRandom ? GetRandomDelay() : GetDistanceBetweenLocations(GetLocation(oTarget), lTarget) / 20.0;
+
+        if (!DoResistSpell(oTarget, oCaster, fDelay))
         {
-            oTarget = GetArrayObject(jArray, nIndex);
-
-            SignalSpellCastAt();
-
-            float fDelay = GetRandomDelay();
-
-            if (!DoResistSpell(oTarget, oCaster, fDelay))
+            if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_CONFUSED))
             {
-                if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_CONFUSED))
+                if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_MIND_SPELLS, fDelay))
                 {
-                    if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_MIND_SPELLS, fDelay))
-                    {
-                        if (nVis >= 0) DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
-                        float fDuration = GetScaledDuration(oTarget, nCasterLevel, ROUNDS);
-                        DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
-                    }
+                    if (nVis >= 0) DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
+                    float fDuration = GetScaledDuration(oTarget, nCasterLevel, ROUNDS);
+                    DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
                 }
             }
         }
-    }
-    else
-    {
-        // None yet
     }
 }

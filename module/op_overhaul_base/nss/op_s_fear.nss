@@ -54,68 +54,31 @@ void main()
             break;
     }
 
-    // AOE?
-    if (GetSpellIsAreaOfEffect(nSpellId))
+    ApplyVisualEffectAtLocation(nImpact, lTarget);
+
+    json jArray = GetArrayOfTargets(SPELL_TARGET_STANDARDHOSTILE, SORT_METHOD_LOWEST_HD);
+    int nIndex;
+    for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
     {
-        ApplyVisualEffectAtLocation(nImpact, lTarget);
+        oTarget = GetArrayObject(jArray, nIndex);
 
-        json jArray = GetArrayOfTargets(SPELL_TARGET_STANDARDHOSTILE, SORT_METHOD_LOWEST_HD);
-        int nIndex;
-        for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
-        {
-            oTarget = GetArrayObject(jArray, nIndex);
-
-            SignalSpellCastAt();
-
-            int nHD = GetHitDice(oTarget);
-
-            // We always signal event to anyone in the AOE, but these cases
-            // stop the spell applying entirely (and don't affect the HD pool)
-            if (nHD <= nHDLimit)
-            {
-                float fDelay = GetDistanceBetweenLocations(GetLocation(oTarget), lTarget) / 20.0;
-
-                if (!DoResistSpell(oTarget, oCaster, fDelay))
-                {
-                    if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_FEAR))
-                    {
-                        if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_FEAR, fDelay))
-                        {
-                            DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
-                            float fDuration = GetScaledDuration(oTarget, nDuration, ROUNDS);
-                            effect eFear = GetScaledEffect(EffectFrightened(), oTarget);
-
-                            effect eApply = EffectLinkEffects(eFear,
-                                            EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_FEAR),
-                                                              EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
-
-                            if (bUseLink)
-                            {
-                                eApply = EffectLinkEffects(eApply, eLink);
-                            }
-
-                            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eApply, oTarget, fDuration));
-                        }
-                    }
-                }
-            }
-        }
-    }
-    else
-    {
         SignalSpellCastAt();
 
         int nHD = GetHitDice(oTarget);
 
+        // We always signal event to anyone in the AOE, but these cases
+        // stop the spell applying entirely (and don't affect the HD pool)
         if (nHD <= nHDLimit)
         {
-            if (!DoResistSpell(oTarget, oCaster))
+            float fDelay = GetDistanceBetweenLocations(GetLocation(oTarget), lTarget) / 20.0;
+
+            if (!DoResistSpell(oTarget, oCaster, fDelay))
             {
                 if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_FEAR))
                 {
-                    if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_FEAR))
+                    if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_FEAR, fDelay))
                     {
-                        ApplyVisualEffectToObject(nVis, oTarget);
+                        DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
                         float fDuration = GetScaledDuration(oTarget, nDuration, ROUNDS);
                         effect eFear = GetScaledEffect(EffectFrightened(), oTarget);
 
@@ -127,10 +90,12 @@ void main()
                         {
                             eApply = EffectLinkEffects(eApply, eLink);
                         }
-                        ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
+
+                        DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eApply, oTarget, fDuration));
                     }
                 }
             }
         }
     }
 }
+

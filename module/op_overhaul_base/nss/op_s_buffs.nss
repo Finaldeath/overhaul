@@ -190,7 +190,7 @@ void main()
 
     // Toggles
     int bDelayRandom = FALSE;
-    int nImpact = VFX_INVALID, nVis = VFX_INVALID;
+    int nImpact = VFX_NONE, nVis = VFX_NONE;
     int nRemoveSpell1 = SPELL_INVALID, nRemoveSpell2 = SPELL_INVALID, nRemoveSpell3 = SPELL_INVALID, nRemoveSpell4 = SPELL_INVALID;
     int nCreatureLimit = 99999;
     effect eLink;
@@ -847,37 +847,19 @@ void main()
             break;
     }
 
-    if (GetSpellIsAreaOfEffect(nSpellId))
+    ApplyVisualEffectAtLocation(nImpact, lTarget);
+
+    json jArray = GetArrayOfTargets(SPELL_TARGET_ALLALLIES, SORT_METHOD_DISTANCE);
+    int nIndex;
+    for (nIndex = 0; nIndex < JsonGetLength(jArray) && nCreatureLimit > 0; nIndex++)
     {
-        ApplyVisualEffectAtLocation(nImpact, lTarget);
+        nCreatureLimit--;
 
-        json jArray = GetArrayOfTargets(SPELL_TARGET_ALLALLIES, SORT_METHOD_DISTANCE);
-        int nIndex;
-        for (nIndex = 0; nIndex < JsonGetLength(jArray) && nCreatureLimit > 0; nIndex++)
-        {
-            nCreatureLimit--;
+        oTarget = GetArrayObject(jArray, nIndex);
 
-            oTarget = GetArrayObject(jArray, nIndex);
-
-            SignalSpellCastAt();
-
-            float fDelay = bDelayRandom ? GetRandomDelay() : GetDistanceBetweenLocations(GetLocation(oTarget), lTarget) / 20.0;
-
-            // Remove previous castings
-            RemoveEffectsFromSpell(oTarget, nSpellId);
-            if (nRemoveSpell1 != SPELL_INVALID) RemoveEffectsFromSpell(oTarget, nRemoveSpell1);
-            if (nRemoveSpell2 != SPELL_INVALID) RemoveEffectsFromSpell(oTarget, nRemoveSpell2);
-            if (nRemoveSpell3 != SPELL_INVALID) RemoveEffectsFromSpell(oTarget, nRemoveSpell3);
-            if (nRemoveSpell4 != SPELL_INVALID) RemoveEffectsFromSpell(oTarget, nRemoveSpell4);
-
-            if (nVis != VFX_INVALID) DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
-            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
-            if (bSecondLink) DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eSecondLink, oTarget, fDuration));
-        }
-    }
-    else
-    {
         SignalSpellCastAt();
+
+        float fDelay = bDelayRandom ? GetRandomDelay() : GetDistanceBetweenLocations(GetLocation(oTarget), lTarget) / 20.0;
 
         // Remove previous castings
         RemoveEffectsFromSpell(oTarget, nSpellId);
@@ -886,8 +868,8 @@ void main()
         if (nRemoveSpell3 != SPELL_INVALID) RemoveEffectsFromSpell(oTarget, nRemoveSpell3);
         if (nRemoveSpell4 != SPELL_INVALID) RemoveEffectsFromSpell(oTarget, nRemoveSpell4);
 
-        ApplyVisualEffectToObject(nVis, oTarget);
-        ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
-        if (bSecondLink) ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eSecondLink, oTarget, fDuration);
+        if (nVis != VFX_INVALID) DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
+        DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
+        if (bSecondLink) DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eSecondLink, oTarget, fDuration));
     }
 }

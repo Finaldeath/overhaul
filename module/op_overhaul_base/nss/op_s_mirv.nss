@@ -130,115 +130,68 @@ void main()
             break;
     }
 
-    if (GetSpellIsAreaOfEffect(nSpellId))
+    int nTargetType = SPELL_TARGET_STANDARDHOSTILE;
+    if (GetSpellIsAreaOfEffect(nSpellId)) nTargetType = SPELL_TARGET_SELECTIVEHOSTILE;
+
+    json jArray = GetArrayOfTargets(nTargetType, SORT_METHOD_DISTANCE, OBJECT_TYPE_CREATURE);
+    // Work out how many per creature, but need at least 1 :) stops divide by 0 issues.
+    if (JsonGetLength(jArray) > 0)
     {
-        json jArray = GetArrayOfTargets(SPELL_TARGET_SELECTIVEHOSTILE, SORT_METHOD_DISTANCE, OBJECT_TYPE_CREATURE);
+        int nMissilesPerCreature = max(1, nMissiles / JsonGetLength(jArray));
+        int nExtraMissiles       = nMissiles - (nMissilesPerCreature * JsonGetLength(jArray));
+        if (nMissilesPerCreature > nMaxMissilesPerCreature) nMissilesPerCreature = nMaxMissilesPerCreature;
 
-        // Work out how many per creature, but need at least 1 :)
-        if (JsonGetLength(jArray) > 0)
+        SpeakString("nMissiles: " + IntToString(nMissiles) + " nMissilesPerCreature: " + IntToString(nMissilesPerCreature) + " Creatures: " + IntToString(JsonGetLength(jArray)) + " nExtraMissiles: " + IntToString(nExtraMissiles));
+
+        float fDeltaTime = 0.0;
+
+        int nIndex;
+        for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
         {
-            int nMissilesPerCreature = max(1, nMissiles / JsonGetLength(jArray));
-            int nExtraMissiles       = nMissiles - (nMissilesPerCreature * JsonGetLength(jArray));
-            if (nMissilesPerCreature > nMaxMissilesPerCreature) nMissilesPerCreature = nMaxMissilesPerCreature;
+            oTarget = GetArrayObject(jArray, nIndex);
 
-            SpeakString("nMissiles: " + IntToString(nMissiles) + " nMissilesPerCreature: " + IntToString(nMissilesPerCreature) + " Creatures: " + IntToString(JsonGetLength(jArray)) + " nExtraMissiles: " + IntToString(nExtraMissiles));
-
-            float fDeltaTime = 0.0;
-
-            int nIndex;
-            for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
-            {
-                oTarget = GetArrayObject(jArray, nIndex);
-
-                SignalSpellCastAt();
-
-                if (nMissiles > 0)
-                {
-                    float fDelay = GetVisualEffectHitDelay(nVisMissile, oTarget, oCaster);
-
-                    int bResist = DoResistSpell(oTarget, oCaster, fDelay);
-
-                    // Sort each missile in turn
-                    int nCnt;
-                    for (nCnt = 1; nCnt <= nMissilesPerCreature && nMissiles > 0; nCnt++)
-                    {
-                        nMissiles--;
-
-                        int bTouchResult = DoTouchAttack(oTarget, oCaster, bTouchAttackType);
-
-                        DelayCommand(fDeltaTime, ApplyVisualEffectToObject(nVisMissile, oTarget, !bTouchResult));
-
-                        if (!bResist && bTouchResult)
-                        {
-                            // Roll damage
-                            int nDamage = GetDiceRoll(nDiceNum, nDiceSize, nDamageBonus);
-
-                            if (bTouchResult == 2) nDamage *= 2;
-
-                            // Damage modification based on save (half, with Reflex allowing feats to reduce further)
-                            if (nSavingThrow != -1)
-                            {
-                                nDamage = DoDamageSavingThrow(nDamage, oTarget, oCaster, nSavingThrow, nSpellSaveDC, nSavingThrowType, fDelay);
-                            }
-
-                            if (nDamage > 0)
-                            {
-                                effect eDamage = EffectDamage(nDamage, nDamageType);
-
-                                if (nVis != VFX_INVALID) DelayCommand(fDelay + fDeltaTime, ApplyVisualEffectToObject(nVis, oTarget));
-                                DelayCommand(fDelay + fDeltaTime, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDamage, oTarget));
-                            }
-                        }
-                        // Add a little more to the delay
-                        fDeltaTime += 0.1;
-                    }
-                }
-            }
-        }
-    }
-    else
-    {
-        if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
-        {
-            // Fire cast spell at event for the specified target
             SignalSpellCastAt();
 
-            float fDelay     = GetVisualEffectHitDelay(nVisMissile, oTarget, oCaster);
-            float fDeltaTime = 0.0;
-
-            int bResist = DoResistSpell(oTarget, oCaster, fDelay);
-
-            // Sort each missile in turn
-            int nCnt;
-            for (nCnt = 1; nCnt <= nMissiles; nCnt++)
+            if (nMissiles > 0)
             {
-                int bTouchResult = DoTouchAttack(oTarget, oCaster, bTouchAttackType);
+                float fDelay = GetVisualEffectHitDelay(nVisMissile, oTarget, oCaster);
 
-                DelayCommand(fDeltaTime, ApplyVisualEffectToObject(nVisMissile, oTarget, !bTouchResult));
+                int bResist = DoResistSpell(oTarget, oCaster, fDelay);
 
-                if (!bResist && bTouchResult)
+                // Sort each missile in turn
+                int nCnt;
+                for (nCnt = 1; nCnt <= nMissilesPerCreature && nMissiles > 0; nCnt++)
                 {
-                    // Roll damage
-                    int nDamage = GetDiceRoll(nDiceNum, nDiceSize);
+                    nMissiles--;
 
-                    if (bTouchResult == 2) nDamage *= 2;
+                    int bTouchResult = DoTouchAttack(oTarget, oCaster, bTouchAttackType);
 
-                    // Damage modification based on save (half, with Reflex allowing feats to reduce further)
-                    if (nSavingThrow != -1)
+                    DelayCommand(fDeltaTime, ApplyVisualEffectToObject(nVisMissile, oTarget, !bTouchResult));
+
+                    if (!bResist && bTouchResult)
                     {
-                        nDamage = DoDamageSavingThrow(nDamage, oTarget, oCaster, nSavingThrow, nSpellSaveDC, nSavingThrowType, fDelay);
-                    }
+                        // Roll damage
+                        int nDamage = GetDiceRoll(nDiceNum, nDiceSize, nDamageBonus);
 
-                    if (nDamage > 0)
-                    {
-                        effect eDamage = EffectDamage(nDamage, nDamageType);
+                        if (bTouchResult == 2) nDamage *= 2;
 
-                        if (nVis != VFX_INVALID) DelayCommand(fDelay + fDeltaTime, ApplyVisualEffectToObject(nVis, oTarget));
-                        DelayCommand(fDelay + fDeltaTime, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDamage, oTarget));
+                        // Damage modification based on save (half, with Reflex allowing feats to reduce further)
+                        if (nSavingThrow != -1)
+                        {
+                            nDamage = DoDamageSavingThrow(nDamage, oTarget, oCaster, nSavingThrow, nSpellSaveDC, nSavingThrowType, fDelay);
+                        }
+
+                        if (nDamage > 0)
+                        {
+                            effect eDamage = EffectDamage(nDamage, nDamageType);
+
+                            if (nVis != VFX_INVALID) DelayCommand(fDelay + fDeltaTime, ApplyVisualEffectToObject(nVis, oTarget));
+                            DelayCommand(fDelay + fDeltaTime, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDamage, oTarget));
+                        }
                     }
+                    // Add a little more to the delay
+                    fDeltaTime += 0.1;
                 }
-                // Add a little more to the delay
-                fDeltaTime += 0.1;
             }
         }
     }

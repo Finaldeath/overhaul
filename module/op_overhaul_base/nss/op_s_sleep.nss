@@ -40,54 +40,46 @@ void main()
             break;
     }
 
-    // AOE?
-    if (GetSpellIsAreaOfEffect(nSpellId))
+    ApplyVisualEffectAtLocation(nImpact, lTarget);
+
+    json jArray = GetArrayOfTargets(SPELL_TARGET_STANDARDHOSTILE, SORT_METHOD_LOWEST_HD);
+    int nIndex;
+    for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
     {
-        ApplyVisualEffectAtLocation(nImpact, lTarget);
+        oTarget = GetArrayObject(jArray, nIndex);
 
-        json jArray = GetArrayOfTargets(SPELL_TARGET_STANDARDHOSTILE, SORT_METHOD_LOWEST_HD);
-        int nIndex;
-        for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
+        SignalSpellCastAt();
+
+        int nHD = GetHitDice(oTarget);
+
+        // We always signal event to anyone in the AOE, but these cases
+        // stop the spell applying entirely (and don't affect the HD pool)
+        // While immunity doesn't stop the pool being used up.
+        if (GetRacialType(oTarget) != RACIAL_TYPE_UNDEAD &&
+            GetRacialType(oTarget) != RACIAL_TYPE_CONSTRUCT &&
+            nHD <= nHDLimit &&
+            !GetHasEffect(oTarget, EFFECT_TYPE_SLEEP))
         {
-            oTarget = GetArrayObject(jArray, nIndex);
-
-            SignalSpellCastAt();
-
-            int nHD = GetHitDice(oTarget);
-
-            // We always signal event to anyone in the AOE, but these cases
-            // stop the spell applying entirely (and don't affect the HD pool)
-            // While immunity doesn't stop the pool being used up.
-            if (GetRacialType(oTarget) != RACIAL_TYPE_UNDEAD &&
-                GetRacialType(oTarget) != RACIAL_TYPE_CONSTRUCT &&
-                nHD <= nHDLimit &&
-                !GetHasEffect(oTarget, EFFECT_TYPE_SLEEP))
+            // Must be enough points in the pool
+            if (nHDPool >= nHD)
             {
-                // Must be enough points in the pool
-                if (nHDPool >= nHD)
+                nHDPool -= nHD;
+
+                float fDelay = GetDistanceBetweenLocations(GetLocation(oTarget), lTarget) / 20.0;
+
+                if (!DoResistSpell(oTarget, oCaster, fDelay))
                 {
-                    nHDPool -= nHD;
-
-                    float fDelay = GetDistanceBetweenLocations(GetLocation(oTarget), lTarget) / 20.0;
-
-                    if (!DoResistSpell(oTarget, oCaster, fDelay))
+                    if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_SLEEP))
                     {
-                        if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_SLEEP))
+                        if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_MIND_SPELLS, fDelay))
                         {
-                            if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_MIND_SPELLS, fDelay))
-                            {
-                                DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
-                                float fDuration = GetScaledDuration(oTarget, nDuration, ROUNDS);
-                                DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
-                            }
+                            DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
+                            float fDuration = GetScaledDuration(oTarget, nDuration, ROUNDS);
+                            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
                         }
                     }
                 }
             }
         }
-    }
-    else
-    {
-        // None yet
     }
 }

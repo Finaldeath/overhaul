@@ -388,7 +388,8 @@ float GetRemainingDurationOfEffects(object oObject, int nType);
 // - bSuperanturalRemoval - If FALSE it will not remove Supernatural effects.
 void CureEffects(object oTarget, json jArray, int bSupernaturalRemoval = FALSE);
 
-// Loops through relevant shape to get all the targets in it. It then sorts them using nSortMethod.
+// If a single target spell checks for nTargetType against global oTarget and adds them to a single object array if so.
+// Else if AOE loops through relevant shape to get all the targets in it. It then sorts them using nSortMethod.
 // * nTargetType - The SPELL_TARGET_* type to check versus oCaster
 // * nSortMethod - The sorting method to apply once all the creatures are added.
 //                 SORT_METHOD_NONE      - No sorting (slightly faster)
@@ -2709,7 +2710,8 @@ int RemoveEffectsMatchingTag(object oObject, string sTag)
 const string FIELD_OBJECTID = "objectid";
 const string FIELD_METRIC   = "metric";
 
-// Loops through relevant shape to get all the targets in it. It then sorts them using nSortMethod.
+// If a single target spell checks for nTargetType against global oTarget and adds them to a single object array if so.
+// Else if AOE loops through relevant shape to get all the targets in it. It then sorts them using nSortMethod.
 // * nTargetType - The SPELL_TARGET_* type to check versus oCaster
 // * nSortMethod - The sorting method to apply once all the creatures are added.
 //                 SORT_METHOD_NONE      - No sorting (slightly faster)
@@ -2720,6 +2722,23 @@ const string FIELD_METRIC   = "metric";
 // The other variables can be set, but if not then the current Spell Id will sort the shape and size.
 json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, int nObjectFilter = OBJECT_TYPE_CREATURE, int nShape = -1, float fSize = -1.0, location lArrayTarget = LOCATION_INVALID, int bLineOfSight = TRUE, vector vOrigin = [ 0.0, 0.0, 0.0 ])
 {
+    json jArray = JsonArray();
+
+    // If single target we just check and return oTarget
+    if (!GetSpellIsAreaOfEffect(nSpellId))
+    {
+        if (GetSpellTargetValid(oTarget, oCaster, nTargetType))
+        {
+            json jObject = JsonObject();
+
+            // Just OID no need to sort
+            jObject = JsonObjectSet(jObject, FIELD_OBJECTID, JsonString(ObjectToString(oTarget)));
+
+            jArray = JsonArrayInsert(jArray, jObject);
+        }
+        return jArray;
+    }
+
     float fSafeArea = -1.0;
     // Get some values if not set
     if (nShape == -1) nShape = GetSpellShape(nSpellId);
@@ -2741,8 +2760,6 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, 
             vOrigin = GetPosition(oCaster);
         }
     }
-
-    json jArray = JsonArray();
 
     // Error checking - we log these might be mistakes in spell scripts
     if (nTargetType < 0 || nTargetType > 3)
