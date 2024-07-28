@@ -19241,6 +19241,104 @@
       "UseActionQueue": true
     },
     {
+      "ID": "c3c3f57c-54af-4206-a118-f0359cf97558",
+      "Index": -1,
+      "Overrides": "84dac605-e6c3-a626-8acb-f7ab00c43b56",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_EPIC_SPELL_DRAGON_KNIGHT",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8671,
+        "EN": {
+          "M": "Epic Spell: Dragon Knight"
+        },
+        "FR": {
+          "M": "Sort \u00E9pique : Chevalier dragon"
+        },
+        "DE": {
+          "M": "Epischer Zauber: Drachenritter"
+        },
+        "IT": {
+          "M": "Incantesimo epico: cavaliere del drago"
+        },
+        "ES": {
+          "M": "Conjuro \u00E9pico: Caballero drag\u00F3n"
+        },
+        "PL": {
+          "M": "Epicki czar: Smoczy rycerz"
+        }
+      },
+      "Description": {
+        "Index": 8672,
+        "EN": {
+          "M": "Type of Feat: Epic Spell\nPrerequisite: 21st level, the ability to cast 9th level spells and 22 ranks in spellcraft.\nSpecifics: The caster summons a powerful adult red dragon to the targeted location to fight on his side. The dragon is summoned for 10 rounds.\nUse: Cast.",
+          "F": "Type of Feat: Epic Spell\nPrerequisite: 21st level, the ability to cast 9th level spells and 22 ranks in spellcraft.\nSpecifics: The caster summons a powerful adult red dragon to the targeted location to fight on his side.\nUse: Cast."
+        },
+        "FR": {
+          "M": "Type de don : sort \u00E9pique\nConditions : 21\u00E8me niveau, possibilit\u00E9 de lancer des sorts de niveau 9 et rang 22 en connaissance des sorts.\nFonctionnement : Le lanceur de sorts invoque un puissant dragon rouge adulte \u00E0 l\u0027endroit d\u00E9sign\u00E9, pour qu\u0027il combatte \u00E0 ses c\u00F4t\u00E9s.\nUtilisation : doit \u00EAtre lanc\u00E9."
+        },
+        "DE": {
+          "M": "Art des Talents: Epischer Zauber\nVoraussetzung: 21. Stufe, F\u00E4higkeit, Zauber des 9. Grades zu wirken, 22 Fertigkeitsr\u00E4nge in Zauberkunde.\nVorteil: Der Charakter kann einen m\u00E4chtigen Erwachsenen Roten Drachen an der gew\u00FCnschten Stelle herbeizaubern. Der Drache k\u00E4mpft an seiner Seite.\nGebrauch: Zaubern."
+        },
+        "IT": {
+          "M": "Tipo di talento: incantesimo epico.\nPrerequisiti: livello 21, capacit\u00E0 di lanciare incantesimi di livello 9, 22 gradi in Sapienza magica.\nDescrizione: l\u0027incantatore evoca un potente drago rosso adulto, nella posizione indicata, che combatte al suo fianco.\nUso: lancio."
+        },
+        "ES": {
+          "M": "Tipo de dote: Conjuro \u00E9pico\nPrerrequisito: Nivel 21\u00BA, la aptitud de lanzar conjuros de nivel 9 y 22 rangos en Conocimiento de conjuros.\nDetalles: El personaje convoca a un poderoso drag\u00F3n rojo adulto en el lugar se\u00F1alado para que luche a su lado.\nUso: Lanzada."
+        },
+        "PL": {
+          "M": "Rodzaj Atutu: epicki czar\nWymagania: 21. poziom, zdolno\u015B\u0107 rzucania czar\u00F3w 9. poziomu i 22 punkty Czaroznawstwa.\nOpis: Rzucaj\u0105cy przywo\u0142uje w wybranym miejscu pot\u0119\u017Cnego, doros\u0142ego czerwonego smoka, kt\u00F3ry b\u0119dzie walczy\u0142 po jego stronie.\nU\u017Cywanie: rzucenie."
+        }
+      },
+      "Icon": "ife_x2spdraknt",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": 9,
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": {
+        "ID": "c9a87ecf-9cfb-95d1-569f-eee7ede757f4",
+        "Label": "Epic Spell: Dragon Knight"
+      },
+      "SuccessorFeat": null,
+      "CRModifier": 1,
+      "UsesPerDay": 1,
+      "MasterFeat": {
+        "ID": "492d1226-9576-750c-b8d2-33bcd2e07e2f",
+        "Label": "Epic Spell"
+      },
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": {
+        "ID": "6a0c921d-73c6-4e7e-c24d-7c3b2873e527",
+        "Label": "Spellcraft"
+      },
+      "RequiredSkill1Minimum": 22,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "Magical",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": true,
+      "UseActionQueue": true
+    },
+    {
       "ID": "e9f23d45-eba9-4b38-8533-7970f952ea94",
       "Index": -1,
       "Overrides": "2b79e109-5a41-8a5f-5263-77ff72e14c5d",
@@ -19327,6 +19425,396 @@
         "Label": "Spellcraft"
       },
       "RequiredSkill1Minimum": 26,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "Magical",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": true,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "408e74dd-8000-46e9-b118-b15f09c4e50f",
+      "Index": -1,
+      "Overrides": "e6194ef4-f6d2-5dd6-4107-247b799ee761",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_EPIC_SPELL_EPIC_WARDING",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 83607,
+        "EN": {
+          "M": "Epic Spell: Epic Warding"
+        },
+        "FR": {
+          "M": "Sort \u00E9pique : Garde \u00E9pique"
+        },
+        "DE": {
+          "M": "Epischer Zauber: Epischer Schutz"
+        },
+        "IT": {
+          "M": "Incantesimo epico: interdizione epica"
+        },
+        "ES": {
+          "M": "Conjuro \u00E9pico: Custodia \u00E9pica"
+        },
+        "PL": {
+          "M": "Epicki czar: Epicka tarcza"
+        }
+      },
+      "Description": {
+        "Index": 83608,
+        "EN": {
+          "M": "Type of Feat: Epic Spell\nPrerequisite: Epic Level Caster, the ability to cast 9th level spells and 34 ranks in spellcraft\nSpecifics: The spell conjures a powerful magical ward around the caster protecting against all  bludgeoning, piercing and slashing damage. It grants damage reduction 50/\u002B20 for 1 round per level.\nUse: Cast."
+        },
+        "FR": {
+          "M": "Type de don : sort \u00E9pique\nConditions : lanceur de sorts \u00E9pique, possibilit\u00E9 de lancer des sorts de 9\u00E8me niveau ou rang 34 en Art de la magie\nFonctionnement : Ce sort invoque une puissante protection magique autour du lanceur, qui le prot\u00E8ge contre tous les d\u00E9g\u00E2ts tranchants, contondants ou perforants. Il octroie une R\u00E9duction des d\u00E9g\u00E2ts de 50/\u002B20 pendant 1 round par niveau.\nUtilisation : doit \u00EAtre lanc\u00E9."
+        },
+        "DE": {
+          "M": "Art des Talents: Epischer Zauber\nVoraussetzung: 21. Stufe, F\u00E4higkeit, Zauber des 9. Grades zu wirken, 34 Fertigkeitsr\u00E4nge in Zauberkunde.\nVorteil: Der Zauber erschafft einen m\u00E4chtigen magischen Schutz um den Charakter, der ihn vor Schaden durch Hieb-, Stich- und Wuchtwaffen sch\u00FCtzt. Der Charakter erh\u00E4lt f\u00FCr 1 Runde pro Stufe Schadensreduzierung 50/\u002B20.\nGebrauch: Zaubern."
+        },
+        "IT": {
+          "M": "Tipo di talento: incantesimo epico.\nPrerequisiti: incantatore di livello epico, capacit\u00E0 di lanciare incantesimi di livello 9, 34 gradi in Sapienza magica.\nDettagli: l\u0027incantatore evoca una robusta barriera magica intorno a s\u00E9, che lo protegge dai danni da impatto, da penetrazione e da taglio. La barriera fornisce riduzione del danno 50/\u002B20 per 1 turno a livello.\nUso: lancio."
+        },
+        "ES": {
+          "M": "Tipo de dote: Conjuro \u00E9pico\nPrerrequisito: Lanzador de conjuros \u00E9pico, la aptitud de lanzar conjuros de nivel 9\u00BA y 34 rangos en Conocimiento de conjuros.\nDetalles: El sortilegio conjura una poderosa custodia m\u00E1gica en torno al lanzador que le protege contra todo da\u00F1o contundente, penetrante y cortante. Proporciona una reducci\u00F3n del da\u00F1o de 50/\u002B20 durante un asalto por nivel.\nUso: Lanzada."
+        },
+        "PL": {
+          "M": "Rodzaj Atutu: Epicki czar\nWymagania: posta\u0107 czaruj\u0105ca epickiego poziomu, zdolno\u015B\u0107 rzucania czar\u00F3w 9. poziomu i 34 punkty Czaroznawstwa.\nOpis: Ten czar przywo\u0142uje pot\u0119\u017Cn\u0105 magiczn\u0105 os\u0142on\u0119 wok\u00F3\u0142 rzucaj\u0105cego, kt\u00F3ra chroni przed wszystkimi obra\u017Ceniami siecznymi, k\u0142uj\u0105cymi i obuchowymi. Zapewnia odporno\u015B\u0107 na obra\u017Cenia 50/\u002B20 na 1 rund\u0119 na poziom.\nU\u017Cywanie: po rzuceniu."
+        }
+      },
+      "Icon": "ife_x2epicward",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": 9,
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": "TalentFriendlyProtectionSelf",
+      "OnUseEffect": {
+        "ID": "288c1b2b-3c5e-62a5-ea0d-669fa8623f5f",
+        "Label": "Epic Spell: Epic Warding"
+      },
+      "SuccessorFeat": null,
+      "CRModifier": 1,
+      "UsesPerDay": 1,
+      "MasterFeat": {
+        "ID": "492d1226-9576-750c-b8d2-33bcd2e07e2f",
+        "Label": "Epic Spell"
+      },
+      "TargetSelf": true,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": {
+        "ID": "6a0c921d-73c6-4e7e-c24d-7c3b2873e527",
+        "Label": "Spellcraft"
+      },
+      "RequiredSkill1Minimum": 34,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "Magical",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": true,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "a65da353-7ae6-4055-8c62-6a8411415c9d",
+      "Index": -1,
+      "Overrides": "f4c46c40-b0ec-8da9-1574-313eb2ae9b99",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_EPIC_SPELL_RUIN",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8677,
+        "EN": {
+          "M": "Epic Spell: Greater Ruin"
+        },
+        "FR": {
+          "M": "Sort \u00E9pique : Ruine supr\u00EAme"
+        },
+        "DE": {
+          "M": "Epischer Zauber: M\u00E4chtige Vernichtung"
+        },
+        "IT": {
+          "M": "Incantesimo epico: rovina superiore"
+        },
+        "ES": {
+          "M": "Conjuro \u00E9pico: Ruina mayor"
+        },
+        "PL": {
+          "M": "Epicki czar: Wielkie zniszczenie"
+        }
+      },
+      "Description": {
+        "Index": 8678,
+        "EN": {
+          "M": "Type of Feat: Epic Spell\nPrerequisites: 21st level, the ability to cast 9th level spells and 25 ranks in spellcraft.\nSpecifics: The caster deals 35d6 energy damage to a single target.\nSave: Fortitude for half damage.\nUse: Cast."
+        },
+        "FR": {
+          "M": "Type de don : sort \u00E9pique\nConditions : 21\u00E8me niveau, possibilit\u00E9 de lancer des sorts de niveau 9 et rang 25 en connaissance des sorts.\nFonctionnement : Le lanceur de sorts inflige 35d6 points de d\u00E9g\u00E2ts \u00E0 une victime.\nJet de sauvegarde : Vigueur pour demi-d\u00E9g\u00E2ts.\nUtilisation : doit \u00EAtre lanc\u00E9."
+        },
+        "DE": {
+          "M": "Art des Talents: Epischer Zauber\nVoraussetzung: 21. Stufe, F\u00E4higkeit, Zauber des 9. Grades zu wirken, 25 Fertigkeitsr\u00E4nge in Zauberkunde.\nVorteil: Der Magieanwender richtet 35W6 Punkte Energieschaden bei einem Ziel an.\nRettungswurf: Z\u00E4higkeitswurf f\u00FCr halben Schaden.\nGebrauch: Zaubern."
+        },
+        "IT": {
+          "M": "Tipo di talento: incantesimo epico.\nPrerequisiti: livello 21, capacit\u00E0 di lanciare incantesimi di livello 9, 25 gradi in Sapienza magica.\nDescrizione: l\u0027incantatore provoca 35d6 danni energetici a un singolo bersaglio.\nUso: lancio."
+        },
+        "ES": {
+          "M": "Tipo de dote: Conjuro \u00E9pico\nPrerrequisito: Nivel 21\u00BA, la aptitud de lanzar conjuros de nivel 9 y 25 rangos en Conocimiento de conjuros.\nDetalles: El lanzador inflige 35d6 de da\u00F1o por energ\u00EDa contra un solo objetivo.\nUso: Lanzada."
+        },
+        "PL": {
+          "M": "Rodzaj Atutu: epicki czar\nWymagania: 21. poziom, zdolno\u015B\u0107 rzucania czar\u00F3w 9. poziomu i 25 punkt\u00F3w Czaroznawstwa.\nOpis: Rzucaj\u0105cy zadaje 35k6 obra\u017Ce\u0144 energetycznych jednemu celowi.\nRzut obronny: Wytrwa\u0142o\u015B\u0107 zmniejsza obra\u017Cenia o po\u0142ow\u0119.\nU\u017Cywanie: rzucenie."
+        }
+      },
+      "Icon": "ife_x2spruin",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": 9,
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": {
+        "ID": "2560b063-4b62-c84e-ce65-948e2893a0f6",
+        "Label": "Epic Spell: Greater Ruin"
+      },
+      "SuccessorFeat": null,
+      "CRModifier": 1,
+      "UsesPerDay": 1,
+      "MasterFeat": {
+        "ID": "492d1226-9576-750c-b8d2-33bcd2e07e2f",
+        "Label": "Epic Spell"
+      },
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": {
+        "ID": "6a0c921d-73c6-4e7e-c24d-7c3b2873e527",
+        "Label": "Spellcraft"
+      },
+      "RequiredSkill1Minimum": 25,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "Magical",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": true,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "faa98e4d-5d15-4b06-89f5-5014b8aa53a1",
+      "Index": -1,
+      "Overrides": "d0db277a-b7e2-d189-8e8f-3a1ab55d1adf",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_EPIC_SPELL_HELLBALL",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8673,
+        "EN": {
+          "M": "Epic Spell: Hellball"
+        },
+        "FR": {
+          "M": "Sort \u00E9pique : Orbe infernal"
+        },
+        "DE": {
+          "M": "Epischer Zauber: H\u00F6lleninferno"
+        },
+        "IT": {
+          "M": "Incantesimo epico: sfera infernale"
+        },
+        "ES": {
+          "M": "Conjuro \u00E9pico: Bola infernal"
+        },
+        "PL": {
+          "M": "Epicki czar: Piekielna kula"
+        }
+      },
+      "Description": {
+        "Index": 8674,
+        "EN": {
+          "M": "Type of Feat: Epic Spell\nPrerequisites: 21st level, the ability to cast 9th level spells and 32 ranks in spellcraft\nSpecifics: The caster creates a ball of energy that does 10d6 points of acid, fire, electrical and sonic damage to all targets in its blast radius. They are also knocked prone for 1 round.\r\nSave: Reflex for half damage but no save for the knockdown. Hellball additionally ignores Evasion and Improved Evasion.\nUse: Cast.",
+          "F": "Type of Feat: Epic Spell\nPrerequisites: 21st level, the ability to cast 9th level spells and 32 ranks in spellcraft\nSpecifics: The caster creates a ball of energy that does 10d6 points of acid, fire, electrical and sonic damage to all targets in its blast radius.\nUse: Cast."
+        },
+        "FR": {
+          "M": "Type de don : sort \u00E9pique\nConditions : 21\u00E8me niveau, possibilit\u00E9 de lancer des sorts de niveau 9 et rang 32 en connaissance des sorts.\nFonctionnement : Le lanceur de sorts cr\u00E9e une boule d\u0027\u00E9nergie infligeant 10d6 points de d\u00E9g\u00E2ts soniques, d\u0027acide, de feu et d\u0027\u00E9lectricit\u00E9 sur tout ce qui se trouve dans la zone d\u0027effet.\nUtilisation : doit \u00EAtre lanc\u00E9."
+        },
+        "DE": {
+          "M": "Art des Talents: Epischer Zauber\nVoraussetzung: 21. Stufe, F\u00E4higkeit, Zauber des 9. Grades zu wirken, 32 Fertigkeitsr\u00E4nge in Zauberkunde.\nVorteil: Der Charakter erschafft eine kugelf\u00F6rmige Energieentladung, die 10W6 Punkte S\u00E4ure-, Feuer-, Elektrizit\u00E4ts- und Schallschaden bei allen Zielen im Wirkungsbereich verursacht.\nGebrauch: Zaubern."
+        },
+        "IT": {
+          "M": "Tipo di talento: incantesimo epico.\nPrerequisiti: livello 21, capacit\u00E0 di lanciare incantesimi di livello 9, 32 gradi in Sapienza magica.\nDescrizione: l\u0027incantatore crea una sfera di energia che provoca 10d6 punti danno da acido, fuoco, elettricit\u00E0 e suono a tutti i bersagli situati nel raggio dell\u0027esplosione.\nUso: lancio."
+        },
+        "ES": {
+          "M": "Tipo de dote: Conjuro \u00E9pico\nPrerrequisito: Nivel 21\u00BA, la aptitud de lanzar conjuros de nivel 9 y 32 rangos en Conocimiento de conjuros.\nDetalles: El lanzador crea una bola de energ\u00EDa que inflige 10d6 puntos de da\u00F1o por \u00E1cido, fuego, electricidad y sonido a todos los objetivos que se encuentren en el radio de la deflagraci\u00F3n.\nUso: Lanzada."
+        },
+        "PL": {
+          "M": "Rodzaj Atutu: epicki czar\nWymagania: 21. poziom, zdolno\u015B\u0107 rzucania czar\u00F3w 9. poziomu i 32 punkty Czaroznawstwa.\nOpis: Rzucaj\u0105cy tworzy kul\u0119 energii, kt\u00F3ra zadaje 10k6 obra\u017Ce\u0144 od ognia, kwasu, elektryczno\u015Bci i d\u017Awi\u0119ku wszystkim celom w obszarze wybuchu.\nU\u017Cywanie: rzucenie."
+        }
+      },
+      "Icon": "ife_x2sphellbal",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": 9,
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": {
+        "ID": "8b4ef45e-53a1-6b80-0175-f932fdeca114",
+        "Label": "Epic Spell: Hellball"
+      },
+      "SuccessorFeat": null,
+      "CRModifier": 1,
+      "UsesPerDay": 1,
+      "MasterFeat": {
+        "ID": "492d1226-9576-750c-b8d2-33bcd2e07e2f",
+        "Label": "Epic Spell"
+      },
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": {
+        "ID": "6a0c921d-73c6-4e7e-c24d-7c3b2873e527",
+        "Label": "Spellcraft"
+      },
+      "RequiredSkill1Minimum": 32,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "Magical",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": true,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "f83c3387-02b9-48b7-81ac-1fe33effe8b7",
+      "Index": -1,
+      "Overrides": "fb2e331b-5ec4-8aed-9ef6-501ea5e5fa92",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_EPIC_SPELL_MUMMY_DUST",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8669,
+        "EN": {
+          "M": "Epic Spell: Mummy Dust"
+        },
+        "FR": {
+          "M": "Sort \u00E9pique : Poussi\u00E8re de momie"
+        },
+        "DE": {
+          "M": "Epischer Zauber: Mumienstaub"
+        },
+        "IT": {
+          "M": "Incantesimo epico: polvere di mummia"
+        },
+        "ES": {
+          "M": "Conjuro \u00E9pico: Polvo de momia"
+        },
+        "PL": {
+          "M": "Epicki czar: Py\u0142 mumii"
+        }
+      },
+      "Description": {
+        "Index": 8670,
+        "EN": {
+          "M": "Type of Feat: Epic Spell\nPrerequisite: 21st level, the ability to cast 9th level spells and 15 ranks in spellcraft.\nSpecifics: The caster summons a powerful mummy warrior to do their bidding. The mummy is summoned for 24 hours.\nUse: Cast.",
+          "F": "Type of Feat: Epic Spell\nPrerequisite: 21st level, the ability to cast 9th level spells and 15 ranks in spellcraft.\nSpecifics: The caster summons a powerful mummy warrior to do their bidding.\nUse: Cast."
+        },
+        "FR": {
+          "M": "Type de don : sort \u00E9pique\nConditions : 21\u00E8me niveau, possibilit\u00E9 de lancer des sorts de niveau 9 et rang 15 en Art de la magie.\nFonctionnement : Le lanceur de sorts invoque une puissante momie guerri\u00E8re qui lui est soumise.\nUtilisation : doit \u00EAtre lanc\u00E9."
+        },
+        "DE": {
+          "M": "Art des Talents: Epischer Zauber\nVoraussetzung: 21. Stufe, F\u00E4higkeit, Zauber des 9. Grades zu wirken und 15 Fertigkeitsr\u00E4nge in Zauberkunde.\nVorteil: Der Magieanwender kann einen m\u00E4chtigen Mumienkrieger herbeizaubern, der seinem Willen gehorcht.\nGebrauch: Zauber wirken."
+        },
+        "IT": {
+          "M": "Tipo di talento: epico\nPrerequisiti: livello 21, capacit\u00E0 di lanciare incantesimi di livello 9, 15 gradi in Sapienza magica\nDettagli: l\u0027incantatore evoca una potente mummia guerriera, che ubbidisce al suo volere.\nUso: lancio"
+        },
+        "ES": {
+          "M": "Tipo de dote: Conjuro \u00E9pico\nPrerrequisito: nivel 21\u00BA, la aptitud de lanzar conjuros de nivel 9\u00BA y 15 rangos en Conocimiento de conjuros.\nDetalles: el lanzador invoca a una poderosa momia combatiente para que haga su voluntad.\nUso: Lanzado."
+        },
+        "PL": {
+          "M": "Rodzaj atutu: Epickie zakl\u0119cie\nWymagania: 21. poziom, zdolno\u015B\u0107 rzucania zakl\u0119\u0107 9. poziomu i umiej\u0119tno\u015B\u0107 Czaroznastwa na poziomie 15.\nOpis: rzucaj\u0105cy przyzywa pot\u0119\u017Cnego wojownika - mumi\u0119, aby wykonywa\u0142 jego polecenia.\nU\u017Cywanie: rzucanie."
+        }
+      },
+      "Icon": "ife_x2spmumdst",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": 9,
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": {
+        "ID": "2c7f54ce-dbbc-f208-5a37-e3fb172034a0",
+        "Label": "Epic Spell: Mummy Dust"
+      },
+      "SuccessorFeat": null,
+      "CRModifier": 1,
+      "UsesPerDay": 1,
+      "MasterFeat": {
+        "ID": "492d1226-9576-750c-b8d2-33bcd2e07e2f",
+        "Label": "Epic Spell"
+      },
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": {
+        "ID": "6a0c921d-73c6-4e7e-c24d-7c3b2873e527",
+        "Label": "Spellcraft"
+      },
+      "RequiredSkill1Minimum": 15,
       "RequiredSkill2": null,
       "RequiredSkill2Minimum": null,
       "ToolsetCategory": "Magical",
@@ -37862,493 +38350,6 @@
       "MaxLevel": null,
       "MinFortitudeSave": null,
       "RequiresEpic": false,
-      "UseActionQueue": true
-    },
-    {
-      "ID": "c3c3f57c-54af-4206-a118-f0359cf97558",
-      "Index": -1,
-      "Overrides": "84dac605-e6c3-a626-8acb-f7ab00c43b56",
-      "Disabled": false,
-      "Hint": "",
-      "ScriptConstant": "",
-      "SourceLabel": "FEAT_EPIC_SPELL_DRAGON_KNIGHT",
-      "ExtensionValues": {},
-      "Name": {
-        "Index": 8671,
-        "EN": {
-          "M": "Epic Spell: Dragon Knight"
-        },
-        "FR": {
-          "M": "Sort \u00E9pique : Chevalier dragon"
-        },
-        "DE": {
-          "M": "Epischer Zauber: Drachenritter"
-        },
-        "IT": {
-          "M": "Incantesimo epico: cavaliere del drago"
-        },
-        "ES": {
-          "M": "Conjuro \u00E9pico: Caballero drag\u00F3n"
-        },
-        "PL": {
-          "M": "Epicki czar: Smoczy rycerz"
-        }
-      },
-      "Description": {
-        "Index": 8672,
-        "EN": {
-          "M": "Type of Feat: Epic Spell\nPrerequisite: 21st level, the ability to cast 9th level spells and 22 ranks in spellcraft.\nSpecifics: The caster summons a powerful adult red dragon to the targeted location to fight on his side. The dragon is summoned for 10 rounds.\nUse: Cast.",
-          "F": "Type of Feat: Epic Spell\nPrerequisite: 21st level, the ability to cast 9th level spells and 22 ranks in spellcraft.\nSpecifics: The caster summons a powerful adult red dragon to the targeted location to fight on his side.\nUse: Cast."
-        },
-        "FR": {
-          "M": "Type de don : sort \u00E9pique\nConditions : 21\u00E8me niveau, possibilit\u00E9 de lancer des sorts de niveau 9 et rang 22 en connaissance des sorts.\nFonctionnement : Le lanceur de sorts invoque un puissant dragon rouge adulte \u00E0 l\u0027endroit d\u00E9sign\u00E9, pour qu\u0027il combatte \u00E0 ses c\u00F4t\u00E9s.\nUtilisation : doit \u00EAtre lanc\u00E9."
-        },
-        "DE": {
-          "M": "Art des Talents: Epischer Zauber\nVoraussetzung: 21. Stufe, F\u00E4higkeit, Zauber des 9. Grades zu wirken, 22 Fertigkeitsr\u00E4nge in Zauberkunde.\nVorteil: Der Charakter kann einen m\u00E4chtigen Erwachsenen Roten Drachen an der gew\u00FCnschten Stelle herbeizaubern. Der Drache k\u00E4mpft an seiner Seite.\nGebrauch: Zaubern."
-        },
-        "IT": {
-          "M": "Tipo di talento: incantesimo epico.\nPrerequisiti: livello 21, capacit\u00E0 di lanciare incantesimi di livello 9, 22 gradi in Sapienza magica.\nDescrizione: l\u0027incantatore evoca un potente drago rosso adulto, nella posizione indicata, che combatte al suo fianco.\nUso: lancio."
-        },
-        "ES": {
-          "M": "Tipo de dote: Conjuro \u00E9pico\nPrerrequisito: Nivel 21\u00BA, la aptitud de lanzar conjuros de nivel 9 y 22 rangos en Conocimiento de conjuros.\nDetalles: El personaje convoca a un poderoso drag\u00F3n rojo adulto en el lugar se\u00F1alado para que luche a su lado.\nUso: Lanzada."
-        },
-        "PL": {
-          "M": "Rodzaj Atutu: epicki czar\nWymagania: 21. poziom, zdolno\u015B\u0107 rzucania czar\u00F3w 9. poziomu i 22 punkty Czaroznawstwa.\nOpis: Rzucaj\u0105cy przywo\u0142uje w wybranym miejscu pot\u0119\u017Cnego, doros\u0142ego czerwonego smoka, kt\u00F3ry b\u0119dzie walczy\u0142 po jego stronie.\nU\u017Cywanie: rzucenie."
-        }
-      },
-      "Icon": "ife_x2spdraknt",
-      "MinAttackBonus": null,
-      "MinStr": null,
-      "MinDex": null,
-      "MinInt": null,
-      "MinWis": null,
-      "MinCon": null,
-      "MinCha": null,
-      "MinSpellLevel": 9,
-      "RequiredFeat1": null,
-      "RequiredFeat2": null,
-      "UseableByAllClasses": false,
-      "Category": null,
-      "OnUseEffect": {
-        "ID": "c9a87ecf-9cfb-95d1-569f-eee7ede757f4",
-        "Label": "Epic Spell: Dragon Knight"
-      },
-      "SuccessorFeat": null,
-      "CRModifier": 1,
-      "UsesPerDay": 1,
-      "MasterFeat": {
-        "ID": "492d1226-9576-750c-b8d2-33bcd2e07e2f",
-        "Label": "Epic Spell"
-      },
-      "TargetSelf": false,
-      "RequiredFeatSelection1": null,
-      "RequiredFeatSelection2": null,
-      "RequiredFeatSelection3": null,
-      "RequiredFeatSelection4": null,
-      "RequiredFeatSelection5": null,
-      "RequiredSkill1": {
-        "ID": "6a0c921d-73c6-4e7e-c24d-7c3b2873e527",
-        "Label": "Spellcraft"
-      },
-      "RequiredSkill1Minimum": 22,
-      "RequiredSkill2": null,
-      "RequiredSkill2Minimum": null,
-      "ToolsetCategory": "Magical",
-      "IsHostile": false,
-      "MinLevel": null,
-      "MinLevelClass": null,
-      "MaxLevel": null,
-      "MinFortitudeSave": null,
-      "RequiresEpic": true,
-      "UseActionQueue": true
-    },
-    {
-      "ID": "408e74dd-8000-46e9-b118-b15f09c4e50f",
-      "Index": -1,
-      "Overrides": "e6194ef4-f6d2-5dd6-4107-247b799ee761",
-      "Disabled": false,
-      "Hint": "",
-      "ScriptConstant": "",
-      "SourceLabel": "FEAT_EPIC_SPELL_EPIC_WARDING",
-      "ExtensionValues": {},
-      "Name": {
-        "Index": 83607,
-        "EN": {
-          "M": "Epic Spell: Epic Warding"
-        },
-        "FR": {
-          "M": "Sort \u00E9pique : Garde \u00E9pique"
-        },
-        "DE": {
-          "M": "Epischer Zauber: Epischer Schutz"
-        },
-        "IT": {
-          "M": "Incantesimo epico: interdizione epica"
-        },
-        "ES": {
-          "M": "Conjuro \u00E9pico: Custodia \u00E9pica"
-        },
-        "PL": {
-          "M": "Epicki czar: Epicka tarcza"
-        }
-      },
-      "Description": {
-        "Index": 83608,
-        "EN": {
-          "M": "Type of Feat: Epic Spell\nPrerequisite: Epic Level Caster, the ability to cast 9th level spells and 34 ranks in spellcraft\nSpecifics: The spell conjures a powerful magical ward around the caster protecting against all  bludgeoning, piercing and slashing damage. It grants damage reduction 50/\u002B20 for 1 round per level.\nUse: Cast."
-        },
-        "FR": {
-          "M": "Type de don : sort \u00E9pique\nConditions : lanceur de sorts \u00E9pique, possibilit\u00E9 de lancer des sorts de 9\u00E8me niveau ou rang 34 en Art de la magie\nFonctionnement : Ce sort invoque une puissante protection magique autour du lanceur, qui le prot\u00E8ge contre tous les d\u00E9g\u00E2ts tranchants, contondants ou perforants. Il octroie une R\u00E9duction des d\u00E9g\u00E2ts de 50/\u002B20 pendant 1 round par niveau.\nUtilisation : doit \u00EAtre lanc\u00E9."
-        },
-        "DE": {
-          "M": "Art des Talents: Epischer Zauber\nVoraussetzung: 21. Stufe, F\u00E4higkeit, Zauber des 9. Grades zu wirken, 34 Fertigkeitsr\u00E4nge in Zauberkunde.\nVorteil: Der Zauber erschafft einen m\u00E4chtigen magischen Schutz um den Charakter, der ihn vor Schaden durch Hieb-, Stich- und Wuchtwaffen sch\u00FCtzt. Der Charakter erh\u00E4lt f\u00FCr 1 Runde pro Stufe Schadensreduzierung 50/\u002B20.\nGebrauch: Zaubern."
-        },
-        "IT": {
-          "M": "Tipo di talento: incantesimo epico.\nPrerequisiti: incantatore di livello epico, capacit\u00E0 di lanciare incantesimi di livello 9, 34 gradi in Sapienza magica.\nDettagli: l\u0027incantatore evoca una robusta barriera magica intorno a s\u00E9, che lo protegge dai danni da impatto, da penetrazione e da taglio. La barriera fornisce riduzione del danno 50/\u002B20 per 1 turno a livello.\nUso: lancio."
-        },
-        "ES": {
-          "M": "Tipo de dote: Conjuro \u00E9pico\nPrerrequisito: Lanzador de conjuros \u00E9pico, la aptitud de lanzar conjuros de nivel 9\u00BA y 34 rangos en Conocimiento de conjuros.\nDetalles: El sortilegio conjura una poderosa custodia m\u00E1gica en torno al lanzador que le protege contra todo da\u00F1o contundente, penetrante y cortante. Proporciona una reducci\u00F3n del da\u00F1o de 50/\u002B20 durante un asalto por nivel.\nUso: Lanzada."
-        },
-        "PL": {
-          "M": "Rodzaj Atutu: Epicki czar\nWymagania: posta\u0107 czaruj\u0105ca epickiego poziomu, zdolno\u015B\u0107 rzucania czar\u00F3w 9. poziomu i 34 punkty Czaroznawstwa.\nOpis: Ten czar przywo\u0142uje pot\u0119\u017Cn\u0105 magiczn\u0105 os\u0142on\u0119 wok\u00F3\u0142 rzucaj\u0105cego, kt\u00F3ra chroni przed wszystkimi obra\u017Ceniami siecznymi, k\u0142uj\u0105cymi i obuchowymi. Zapewnia odporno\u015B\u0107 na obra\u017Cenia 50/\u002B20 na 1 rund\u0119 na poziom.\nU\u017Cywanie: po rzuceniu."
-        }
-      },
-      "Icon": "ife_x2epicward",
-      "MinAttackBonus": null,
-      "MinStr": null,
-      "MinDex": null,
-      "MinInt": null,
-      "MinWis": null,
-      "MinCon": null,
-      "MinCha": null,
-      "MinSpellLevel": 9,
-      "RequiredFeat1": null,
-      "RequiredFeat2": null,
-      "UseableByAllClasses": false,
-      "Category": "TalentFriendlyProtectionSelf",
-      "OnUseEffect": {
-        "ID": "288c1b2b-3c5e-62a5-ea0d-669fa8623f5f",
-        "Label": "Epic Spell: Epic Warding"
-      },
-      "SuccessorFeat": null,
-      "CRModifier": 1,
-      "UsesPerDay": 1,
-      "MasterFeat": {
-        "ID": "492d1226-9576-750c-b8d2-33bcd2e07e2f",
-        "Label": "Epic Spell"
-      },
-      "TargetSelf": true,
-      "RequiredFeatSelection1": null,
-      "RequiredFeatSelection2": null,
-      "RequiredFeatSelection3": null,
-      "RequiredFeatSelection4": null,
-      "RequiredFeatSelection5": null,
-      "RequiredSkill1": {
-        "ID": "6a0c921d-73c6-4e7e-c24d-7c3b2873e527",
-        "Label": "Spellcraft"
-      },
-      "RequiredSkill1Minimum": 34,
-      "RequiredSkill2": null,
-      "RequiredSkill2Minimum": null,
-      "ToolsetCategory": "Magical",
-      "IsHostile": false,
-      "MinLevel": null,
-      "MinLevelClass": null,
-      "MaxLevel": null,
-      "MinFortitudeSave": null,
-      "RequiresEpic": true,
-      "UseActionQueue": true
-    },
-    {
-      "ID": "a65da353-7ae6-4055-8c62-6a8411415c9d",
-      "Index": -1,
-      "Overrides": "f4c46c40-b0ec-8da9-1574-313eb2ae9b99",
-      "Disabled": false,
-      "Hint": "",
-      "ScriptConstant": "",
-      "SourceLabel": "FEAT_EPIC_SPELL_RUIN",
-      "ExtensionValues": {},
-      "Name": {
-        "Index": 8677,
-        "EN": {
-          "M": "Epic Spell: Greater Ruin"
-        },
-        "FR": {
-          "M": "Sort \u00E9pique : Ruine supr\u00EAme"
-        },
-        "DE": {
-          "M": "Epischer Zauber: M\u00E4chtige Vernichtung"
-        },
-        "IT": {
-          "M": "Incantesimo epico: rovina superiore"
-        },
-        "ES": {
-          "M": "Conjuro \u00E9pico: Ruina mayor"
-        },
-        "PL": {
-          "M": "Epicki czar: Wielkie zniszczenie"
-        }
-      },
-      "Description": {
-        "Index": 8678,
-        "EN": {
-          "M": "Type of Feat: Epic Spell\nPrerequisites: 21st level, the ability to cast 9th level spells and 25 ranks in spellcraft.\nSpecifics: The caster deals 35d6 energy damage to a single target.\nSave: Fortitude for half damage.\nUse: Cast."
-        },
-        "FR": {
-          "M": "Type de don : sort \u00E9pique\nConditions : 21\u00E8me niveau, possibilit\u00E9 de lancer des sorts de niveau 9 et rang 25 en connaissance des sorts.\nFonctionnement : Le lanceur de sorts inflige 35d6 points de d\u00E9g\u00E2ts \u00E0 une victime.\nJet de sauvegarde : Vigueur pour demi-d\u00E9g\u00E2ts.\nUtilisation : doit \u00EAtre lanc\u00E9."
-        },
-        "DE": {
-          "M": "Art des Talents: Epischer Zauber\nVoraussetzung: 21. Stufe, F\u00E4higkeit, Zauber des 9. Grades zu wirken, 25 Fertigkeitsr\u00E4nge in Zauberkunde.\nVorteil: Der Magieanwender richtet 35W6 Punkte Energieschaden bei einem Ziel an.\nRettungswurf: Z\u00E4higkeitswurf f\u00FCr halben Schaden.\nGebrauch: Zaubern."
-        },
-        "IT": {
-          "M": "Tipo di talento: incantesimo epico.\nPrerequisiti: livello 21, capacit\u00E0 di lanciare incantesimi di livello 9, 25 gradi in Sapienza magica.\nDescrizione: l\u0027incantatore provoca 35d6 danni energetici a un singolo bersaglio.\nUso: lancio."
-        },
-        "ES": {
-          "M": "Tipo de dote: Conjuro \u00E9pico\nPrerrequisito: Nivel 21\u00BA, la aptitud de lanzar conjuros de nivel 9 y 25 rangos en Conocimiento de conjuros.\nDetalles: El lanzador inflige 35d6 de da\u00F1o por energ\u00EDa contra un solo objetivo.\nUso: Lanzada."
-        },
-        "PL": {
-          "M": "Rodzaj Atutu: epicki czar\nWymagania: 21. poziom, zdolno\u015B\u0107 rzucania czar\u00F3w 9. poziomu i 25 punkt\u00F3w Czaroznawstwa.\nOpis: Rzucaj\u0105cy zadaje 35k6 obra\u017Ce\u0144 energetycznych jednemu celowi.\nRzut obronny: Wytrwa\u0142o\u015B\u0107 zmniejsza obra\u017Cenia o po\u0142ow\u0119.\nU\u017Cywanie: rzucenie."
-        }
-      },
-      "Icon": "ife_x2spruin",
-      "MinAttackBonus": null,
-      "MinStr": null,
-      "MinDex": null,
-      "MinInt": null,
-      "MinWis": null,
-      "MinCon": null,
-      "MinCha": null,
-      "MinSpellLevel": 9,
-      "RequiredFeat1": null,
-      "RequiredFeat2": null,
-      "UseableByAllClasses": false,
-      "Category": null,
-      "OnUseEffect": {
-        "ID": "2560b063-4b62-c84e-ce65-948e2893a0f6",
-        "Label": "Epic Spell: Greater Ruin"
-      },
-      "SuccessorFeat": null,
-      "CRModifier": 1,
-      "UsesPerDay": 1,
-      "MasterFeat": {
-        "ID": "492d1226-9576-750c-b8d2-33bcd2e07e2f",
-        "Label": "Epic Spell"
-      },
-      "TargetSelf": false,
-      "RequiredFeatSelection1": null,
-      "RequiredFeatSelection2": null,
-      "RequiredFeatSelection3": null,
-      "RequiredFeatSelection4": null,
-      "RequiredFeatSelection5": null,
-      "RequiredSkill1": {
-        "ID": "6a0c921d-73c6-4e7e-c24d-7c3b2873e527",
-        "Label": "Spellcraft"
-      },
-      "RequiredSkill1Minimum": 25,
-      "RequiredSkill2": null,
-      "RequiredSkill2Minimum": null,
-      "ToolsetCategory": "Magical",
-      "IsHostile": false,
-      "MinLevel": null,
-      "MinLevelClass": null,
-      "MaxLevel": null,
-      "MinFortitudeSave": null,
-      "RequiresEpic": true,
-      "UseActionQueue": true
-    },
-    {
-      "ID": "faa98e4d-5d15-4b06-89f5-5014b8aa53a1",
-      "Index": -1,
-      "Overrides": "d0db277a-b7e2-d189-8e8f-3a1ab55d1adf",
-      "Disabled": false,
-      "Hint": "",
-      "ScriptConstant": "",
-      "SourceLabel": "FEAT_EPIC_SPELL_HELLBALL",
-      "ExtensionValues": {},
-      "Name": {
-        "Index": 8673,
-        "EN": {
-          "M": "Epic Spell: Hellball"
-        },
-        "FR": {
-          "M": "Sort \u00E9pique : Orbe infernal"
-        },
-        "DE": {
-          "M": "Epischer Zauber: H\u00F6lleninferno"
-        },
-        "IT": {
-          "M": "Incantesimo epico: sfera infernale"
-        },
-        "ES": {
-          "M": "Conjuro \u00E9pico: Bola infernal"
-        },
-        "PL": {
-          "M": "Epicki czar: Piekielna kula"
-        }
-      },
-      "Description": {
-        "Index": 8674,
-        "EN": {
-          "M": "Type of Feat: Epic Spell\nPrerequisites: 21st level, the ability to cast 9th level spells and 32 ranks in spellcraft\nSpecifics: The caster creates a ball of energy that does 10d6 points of acid, fire, electrical and sonic damage to all targets in its blast radius.\nUse: Cast."
-        },
-        "FR": {
-          "M": "Type de don : sort \u00E9pique\nConditions : 21\u00E8me niveau, possibilit\u00E9 de lancer des sorts de niveau 9 et rang 32 en connaissance des sorts.\nFonctionnement : Le lanceur de sorts cr\u00E9e une boule d\u0027\u00E9nergie infligeant 10d6 points de d\u00E9g\u00E2ts soniques, d\u0027acide, de feu et d\u0027\u00E9lectricit\u00E9 sur tout ce qui se trouve dans la zone d\u0027effet.\nUtilisation : doit \u00EAtre lanc\u00E9."
-        },
-        "DE": {
-          "M": "Art des Talents: Epischer Zauber\nVoraussetzung: 21. Stufe, F\u00E4higkeit, Zauber des 9. Grades zu wirken, 32 Fertigkeitsr\u00E4nge in Zauberkunde.\nVorteil: Der Charakter erschafft eine kugelf\u00F6rmige Energieentladung, die 10W6 Punkte S\u00E4ure-, Feuer-, Elektrizit\u00E4ts- und Schallschaden bei allen Zielen im Wirkungsbereich verursacht.\nGebrauch: Zaubern."
-        },
-        "IT": {
-          "M": "Tipo di talento: incantesimo epico.\nPrerequisiti: livello 21, capacit\u00E0 di lanciare incantesimi di livello 9, 32 gradi in Sapienza magica.\nDescrizione: l\u0027incantatore crea una sfera di energia che provoca 10d6 punti danno da acido, fuoco, elettricit\u00E0 e suono a tutti i bersagli situati nel raggio dell\u0027esplosione.\nUso: lancio."
-        },
-        "ES": {
-          "M": "Tipo de dote: Conjuro \u00E9pico\nPrerrequisito: Nivel 21\u00BA, la aptitud de lanzar conjuros de nivel 9 y 32 rangos en Conocimiento de conjuros.\nDetalles: El lanzador crea una bola de energ\u00EDa que inflige 10d6 puntos de da\u00F1o por \u00E1cido, fuego, electricidad y sonido a todos los objetivos que se encuentren en el radio de la deflagraci\u00F3n.\nUso: Lanzada."
-        },
-        "PL": {
-          "M": "Rodzaj Atutu: epicki czar\nWymagania: 21. poziom, zdolno\u015B\u0107 rzucania czar\u00F3w 9. poziomu i 32 punkty Czaroznawstwa.\nOpis: Rzucaj\u0105cy tworzy kul\u0119 energii, kt\u00F3ra zadaje 10k6 obra\u017Ce\u0144 od ognia, kwasu, elektryczno\u015Bci i d\u017Awi\u0119ku wszystkim celom w obszarze wybuchu.\nU\u017Cywanie: rzucenie."
-        }
-      },
-      "Icon": "ife_x2sphellbal",
-      "MinAttackBonus": null,
-      "MinStr": null,
-      "MinDex": null,
-      "MinInt": null,
-      "MinWis": null,
-      "MinCon": null,
-      "MinCha": null,
-      "MinSpellLevel": 9,
-      "RequiredFeat1": null,
-      "RequiredFeat2": null,
-      "UseableByAllClasses": false,
-      "Category": null,
-      "OnUseEffect": {
-        "ID": "8b4ef45e-53a1-6b80-0175-f932fdeca114",
-        "Label": "Epic Spell: Hellball"
-      },
-      "SuccessorFeat": null,
-      "CRModifier": 1,
-      "UsesPerDay": 1,
-      "MasterFeat": {
-        "ID": "492d1226-9576-750c-b8d2-33bcd2e07e2f",
-        "Label": "Epic Spell"
-      },
-      "TargetSelf": false,
-      "RequiredFeatSelection1": null,
-      "RequiredFeatSelection2": null,
-      "RequiredFeatSelection3": null,
-      "RequiredFeatSelection4": null,
-      "RequiredFeatSelection5": null,
-      "RequiredSkill1": {
-        "ID": "6a0c921d-73c6-4e7e-c24d-7c3b2873e527",
-        "Label": "Spellcraft"
-      },
-      "RequiredSkill1Minimum": 32,
-      "RequiredSkill2": null,
-      "RequiredSkill2Minimum": null,
-      "ToolsetCategory": "Magical",
-      "IsHostile": false,
-      "MinLevel": null,
-      "MinLevelClass": null,
-      "MaxLevel": null,
-      "MinFortitudeSave": null,
-      "RequiresEpic": true,
-      "UseActionQueue": true
-    },
-    {
-      "ID": "f83c3387-02b9-48b7-81ac-1fe33effe8b7",
-      "Index": -1,
-      "Overrides": "fb2e331b-5ec4-8aed-9ef6-501ea5e5fa92",
-      "Disabled": false,
-      "Hint": "",
-      "ScriptConstant": "",
-      "SourceLabel": "FEAT_EPIC_SPELL_MUMMY_DUST",
-      "ExtensionValues": {},
-      "Name": {
-        "Index": 8669,
-        "EN": {
-          "M": "Epic Spell: Mummy Dust"
-        },
-        "FR": {
-          "M": "Sort \u00E9pique : Poussi\u00E8re de momie"
-        },
-        "DE": {
-          "M": "Epischer Zauber: Mumienstaub"
-        },
-        "IT": {
-          "M": "Incantesimo epico: polvere di mummia"
-        },
-        "ES": {
-          "M": "Conjuro \u00E9pico: Polvo de momia"
-        },
-        "PL": {
-          "M": "Epicki czar: Py\u0142 mumii"
-        }
-      },
-      "Description": {
-        "Index": 8670,
-        "EN": {
-          "M": "Type of Feat: Epic Spell\nPrerequisite: 21st level, the ability to cast 9th level spells and 15 ranks in spellcraft.\nSpecifics: The caster summons a powerful mummy warrior to do their bidding. The mummy is summoned for 24 hours.\nUse: Cast.",
-          "F": "Type of Feat: Epic Spell\nPrerequisite: 21st level, the ability to cast 9th level spells and 15 ranks in spellcraft.\nSpecifics: The caster summons a powerful mummy warrior to do their bidding.\nUse: Cast."
-        },
-        "FR": {
-          "M": "Type de don : sort \u00E9pique\nConditions : 21\u00E8me niveau, possibilit\u00E9 de lancer des sorts de niveau 9 et rang 15 en Art de la magie.\nFonctionnement : Le lanceur de sorts invoque une puissante momie guerri\u00E8re qui lui est soumise.\nUtilisation : doit \u00EAtre lanc\u00E9."
-        },
-        "DE": {
-          "M": "Art des Talents: Epischer Zauber\nVoraussetzung: 21. Stufe, F\u00E4higkeit, Zauber des 9. Grades zu wirken und 15 Fertigkeitsr\u00E4nge in Zauberkunde.\nVorteil: Der Magieanwender kann einen m\u00E4chtigen Mumienkrieger herbeizaubern, der seinem Willen gehorcht.\nGebrauch: Zauber wirken."
-        },
-        "IT": {
-          "M": "Tipo di talento: epico\nPrerequisiti: livello 21, capacit\u00E0 di lanciare incantesimi di livello 9, 15 gradi in Sapienza magica\nDettagli: l\u0027incantatore evoca una potente mummia guerriera, che ubbidisce al suo volere.\nUso: lancio"
-        },
-        "ES": {
-          "M": "Tipo de dote: Conjuro \u00E9pico\nPrerrequisito: nivel 21\u00BA, la aptitud de lanzar conjuros de nivel 9\u00BA y 15 rangos en Conocimiento de conjuros.\nDetalles: el lanzador invoca a una poderosa momia combatiente para que haga su voluntad.\nUso: Lanzado."
-        },
-        "PL": {
-          "M": "Rodzaj atutu: Epickie zakl\u0119cie\nWymagania: 21. poziom, zdolno\u015B\u0107 rzucania zakl\u0119\u0107 9. poziomu i umiej\u0119tno\u015B\u0107 Czaroznastwa na poziomie 15.\nOpis: rzucaj\u0105cy przyzywa pot\u0119\u017Cnego wojownika - mumi\u0119, aby wykonywa\u0142 jego polecenia.\nU\u017Cywanie: rzucanie."
-        }
-      },
-      "Icon": "ife_x2spmumdst",
-      "MinAttackBonus": null,
-      "MinStr": null,
-      "MinDex": null,
-      "MinInt": null,
-      "MinWis": null,
-      "MinCon": null,
-      "MinCha": null,
-      "MinSpellLevel": 9,
-      "RequiredFeat1": null,
-      "RequiredFeat2": null,
-      "UseableByAllClasses": false,
-      "Category": null,
-      "OnUseEffect": {
-        "ID": "2c7f54ce-dbbc-f208-5a37-e3fb172034a0",
-        "Label": "Epic Spell: Mummy Dust"
-      },
-      "SuccessorFeat": null,
-      "CRModifier": 1,
-      "UsesPerDay": 1,
-      "MasterFeat": {
-        "ID": "492d1226-9576-750c-b8d2-33bcd2e07e2f",
-        "Label": "Epic Spell"
-      },
-      "TargetSelf": false,
-      "RequiredFeatSelection1": null,
-      "RequiredFeatSelection2": null,
-      "RequiredFeatSelection3": null,
-      "RequiredFeatSelection4": null,
-      "RequiredFeatSelection5": null,
-      "RequiredSkill1": {
-        "ID": "6a0c921d-73c6-4e7e-c24d-7c3b2873e527",
-        "Label": "Spellcraft"
-      },
-      "RequiredSkill1Minimum": 15,
-      "RequiredSkill2": null,
-      "RequiredSkill2Minimum": null,
-      "ToolsetCategory": "Magical",
-      "IsHostile": false,
-      "MinLevel": null,
-      "MinLevelClass": null,
-      "MaxLevel": null,
-      "MinFortitudeSave": null,
-      "RequiresEpic": true,
       "UseActionQueue": true
     }
   ]

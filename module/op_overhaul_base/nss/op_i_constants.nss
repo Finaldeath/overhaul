@@ -124,6 +124,7 @@ const int VFX_SCENE_MARKET_2              = 456;
 const int VFX_SCENE_GAZEBO                = 457;
 const int VFX_SCENE_WAGON                 = 458;
 const int VFX_SCENE_SEWER_WATER           = 461;
+const int VFX_FNF_HELLBALL                = 464;
 const int VFX_CONJ_MIND                   = 466;
 const int VFX_CONJ_FIRE                   = 467;
 const int VFX_DUR_BARD_SONG_SILENT        = 468;
