@@ -16,6 +16,7 @@
 
 #include "op_i_classes"
 #include "op_i_skills"
+#include "utl_i_2da"
 
 
 const int FEAT_INVALID = -1;
@@ -36,6 +37,9 @@ int GetItemWeaponSpecializationFeat(object oItem);
 
 // Gets the given weapons Weapon Focus
 int GetItemWeaponFocusFeat(object oItem);
+
+// Gets the bonus for spell focus feats for the given spell school on oCreature
+int GetSpellFocusBonus(object oCreature, int nSpellSchool);
 
 // Checks if the given creature has nFeatId learned.
 // jCreature should be ObjectToJson(oCreater)
@@ -339,4 +343,152 @@ int GetItemWeaponFocusFeat(object oItem)
         return StringToInt(sFeat);
     }
     return FEAT_INVALID;
+}
+
+const string FEAT_SPELL_FOCUS_BONUS = "FEAT_SPELL_FOCUS_BONUS";
+const string FEAT_GREATER_SPELL_FOCUS_BONUS = "FEAT_GREATER_SPELL_FOCUS_BONUS";
+const string FEAT_EPIC_SPELL_FOCUS_BONUS = "FEAT_EPIC_SPELL_FOCUS_BONUS";
+
+// Gets the bonus for spell focus feats for the given spell school on oCreature
+int GetSpellFocusBonus(object oCreature, int nSpellSchool)
+{
+    int nBonusType = 0;
+    switch (nSpellSchool)
+    {
+        case SPELL_SCHOOL_ABJURATION:
+        {
+            if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_ABJURATION, oCreature))
+            {
+                nBonusType = 3;
+            }
+            else if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_ABJURATION, oCreature))
+            {
+                nBonusType = 2;
+            }
+            else if (GetHasFeat(FEAT_SPELL_FOCUS_ABJURATION, oCreature))
+            {
+                nBonusType = 1;
+            }
+        }
+        break;
+        case SPELL_SCHOOL_CONJURATION:
+        {
+            if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_CONJURATION, oCreature))
+            {
+                nBonusType = 3;
+            }
+            else if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_CONJURATION, oCreature))
+            {
+                nBonusType = 2;
+            }
+            else if (GetHasFeat(FEAT_SPELL_FOCUS_CONJURATION, oCreature))
+            {
+                nBonusType = 1;
+            }
+        }
+        break;
+        case SPELL_SCHOOL_DIVINATION:
+        {
+            if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_DIVINATION, oCreature))
+            {
+                nBonusType = 3;
+            }
+            else if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_DIVINATION, oCreature))
+            {
+                nBonusType = 2;
+            }
+            else if (GetHasFeat(FEAT_SPELL_FOCUS_DIVINATION, oCreature))
+            {
+                nBonusType = 1;
+            }
+        }
+        break;
+        case SPELL_SCHOOL_ENCHANTMENT:
+        {
+            if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_ENCHANTMENT, oCreature))
+            {
+                nBonusType = 3;
+            }
+            else if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_ENCHANTMENT, oCreature))
+            {
+                nBonusType = 2;
+            }
+            else if (GetHasFeat(FEAT_SPELL_FOCUS_ENCHANTMENT, oCreature))
+            {
+                nBonusType = 1;
+            }
+        }
+        break;
+        case SPELL_SCHOOL_EVOCATION:
+        {
+            if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_EVOCATION, oCreature))
+            {
+                nBonusType = 3;
+            }
+            else if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_EVOCATION, oCreature))
+            {
+                nBonusType = 2;
+            }
+            else if (GetHasFeat(FEAT_SPELL_FOCUS_EVOCATION, oCreature))
+            {
+                nBonusType = 1;
+            }
+        }
+        break;
+        case SPELL_SCHOOL_ILLUSION:
+        {
+            if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_ILLUSION, oCreature))
+            {
+                nBonusType = 3;
+            }
+            else if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_ILLUSION, oCreature))
+            {
+                nBonusType = 2;
+            }
+            else if (GetHasFeat(FEAT_SPELL_FOCUS_ILLUSION, oCreature))
+            {
+                nBonusType = 1;
+            }
+        }
+        break;
+        case SPELL_SCHOOL_NECROMANCY:
+        {
+            if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_NECROMANCY, oCreature))
+            {
+                nBonusType = 3;
+            }
+            else if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_NECROMANCY, oCreature))
+            {
+                nBonusType = 2;
+            }
+            else if (GetHasFeat(FEAT_SPELL_FOCUS_NECROMANCY, oCreature))
+            {
+                nBonusType = 1;
+            }
+        }
+        break;
+        case SPELL_SCHOOL_TRANSMUTATION:
+        {
+            if (GetHasFeat(FEAT_EPIC_SPELL_FOCUS_TRANSMUTATION, oCreature))
+            {
+                nBonusType = 3;
+            }
+            else if (GetHasFeat(FEAT_GREATER_SPELL_FOCUS_TRANSMUTATION, oCreature))
+            {
+                nBonusType = 2;
+            }
+            else if (GetHasFeat(FEAT_SPELL_FOCUS_TRANSMUTATION, oCreature))
+            {
+                nBonusType = 1;
+            }
+        }
+        break;
+    }
+    switch (nBonusType)
+    {
+        case 1: return GetRulesetInt(FEAT_SPELL_FOCUS_BONUS);         break;
+        case 2: return GetRulesetInt(FEAT_GREATER_SPELL_FOCUS_BONUS); break;
+        case 3: return GetRulesetInt(FEAT_EPIC_SPELL_FOCUS_BONUS);    break;
+    }
+    return 0;
 }

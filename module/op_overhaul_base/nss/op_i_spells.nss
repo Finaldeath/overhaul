@@ -728,14 +728,10 @@ int GetSpellSaveDCCalculated(object oCaster, int nSpellId, int nFeatId, object o
         // the save DC on the AOE somehow.
         return GetSpellSaveDC();
     }
-    else if (nFeatId != FEAT_INVALID)
-    {
-        // Feat used, we'll default to GetSpellSaveDC for now.
-    }
     else if (GetSpellLevel(nSpellId) == 10)
     {
         // Epic Spells get a special calculation;
-        // * 20 + ability score of the caster
+        // * 20 + ability score of the caster + evocation feats
         // For now we just get the highest spellcasting class. Can make it more constrained or
         // accurate (checking feat lists with Json) later
         int nClassPosition, nHighestCasterClass = CLASS_TYPE_INVALID, nHighestCasterClassLevel = 0;
@@ -771,7 +767,10 @@ int GetSpellSaveDCCalculated(object oCaster, int nSpellId, int nFeatId, object o
             case "INT": nAbilityModifier = GetAbilityModifier(ABILITY_INTELLIGENCE, oCaster); break;
             case "CHA": nAbilityModifier = GetAbilityModifier(ABILITY_CHARISMA, oCaster); break;
         }
-        return 20 + nAbilityModifier;
+        int nSpellSchool = GetSpellSchool(nSpellId);
+        int nFeatBonus = GetSpellFocusBonus(oCaster, nSpellSchool);
+
+        return 20 + nAbilityModifier + nFeatBonus;
     }
 
     // Default fallback is a spell script which can have altered values for the save DC
