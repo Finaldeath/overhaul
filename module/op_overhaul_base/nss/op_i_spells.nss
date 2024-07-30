@@ -731,9 +731,9 @@ int GetSpellSaveDCCalculated(object oCaster, int nSpellId, int nFeatId, object o
     else if (GetSpellLevel(nSpellId) == 10)
     {
         // Epic Spells get a special calculation;
-        // * 20 + ability score of the caster + evocation feats
+        // * 20 (10 + level 10 spell) + ability score of the caster + evocation feats
         // For now we just get the highest spellcasting class. Can make it more constrained or
-        // accurate (checking feat lists with Json) later
+        // accurate (checking feat lists with Json, ie who took the feat) later
         int nClassPosition, nHighestCasterClass = CLASS_TYPE_INVALID, nHighestCasterClassLevel = 0;
         for (nClassPosition = 1; nClassPosition <= 8; nClassPosition++)
         {
