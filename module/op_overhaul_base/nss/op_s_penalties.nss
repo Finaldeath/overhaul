@@ -7,6 +7,11 @@
 
     Slow
     EffectSlow(), 1 round/level. Colossal, 1 Creature / Level
+
+    Bane
+    Bane fills the caster's enemies with fear and doubt. They suffer a -1
+    penalty on their attack rolls and a -1 penalty on saving throws against
+    fear. 1 minute/level. Additionally it will dispel Bless.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -24,6 +29,9 @@ void main()
     float fDuration;
     int nSavingThrow = SAVING_THROW_NONE, nSavingThrowType = SAVING_THROW_TYPE_NONE;
     int nImmunity = IMMUNITY_TYPE_NONE;
+
+    // If set will remove the given spell Id on the targets affected (after saves etc.)
+    int nRemoveSpellId = SPELL_INVALID;
 
     // Toggles
     int bDelayRandom = FALSE;
@@ -45,6 +53,19 @@ void main()
             nVis            = VFX_IMP_SLOW;
             eLink           = EffectLinkEffects(EffectSlow(), EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
             fDuration       = GetDuration(nCasterLevel, ROUNDS);
+            break;
+        case SPELL_BANE:
+            nTargetType      = SPELL_TARGET_SELECTIVEHOSTILE;
+            nSavingThrow     = SAVING_THROW_WILL;
+            nSavingThrowType = SAVING_THROW_TYPE_MIND_SPELLS;
+            nImmunity        = IMMUNITY_TYPE_MIND_SPELLS;
+            nImpact          = VFX_FNF_LOS_EVIL_30;
+            nVis             = VFX_IMP_HEAD_EVIL;
+            eLink            = EffectLinkEffects(EffectAttackDecrease(1),
+                               EffectLinkEffects(EffectSavingThrowDecrease(SAVING_THROW_ALL, 1, SAVING_THROW_TYPE_FEAR),
+                                                 EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            fDuration        = GetDuration(nCasterLevel, MINUTES);
+            nRemoveSpellId   = SPELL_BLESS;
             break;
         default:
             Debug("[op_s_penalties] No valid spell ID passed in: " + IntToString(nSpellId));
@@ -88,6 +109,7 @@ void main()
                     {
                         if (!DoSavingThrow(oTarget, oCaster, nSavingThrow, nSpellSaveDC, nSavingThrowType, fDelay))
                         {
+                            if (nRemoveSpellId != SPELL_INVALID) RemoveEffectsFromSpell(oTarget, nRemoveSpellId);
                             DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
                             DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
                         }
