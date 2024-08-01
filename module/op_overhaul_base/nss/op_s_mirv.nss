@@ -1,6 +1,6 @@
 //::///////////////////////////////////////////////
-//:: Magic Missile
-//:: op_s_magicmissil.nss
+//:: MIRV spells
+//:: op_s_mirv.nss
 //:://////////////////////////////////////////////
 /*
     MIRV spells, ie Magic Missile, Missile Storms, Flame Arrow etc.
@@ -36,6 +36,9 @@
     balls of lightning than creatures, the excess balls of lighning disappear.
     Each ball of lightning explodes for 1d6 points of electricity damage per
     caster level (max 15d6).
+
+    Firebrand
+    As Ball Lightning but fire damage.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -122,6 +125,20 @@ void main()
             nVis                    = VFX_IMP_LIGHTNING_S;
             nSavingThrow            = SAVING_THROW_REFLEX;
             nSavingThrowType        = SAVING_THROW_TYPE_ELECTRICITY;
+        }
+        break;
+        case SPELL_FIREBRAND:
+        {
+            nMissiles               = min(15, nCasterLevel);
+            nMaxMissilesPerCreature = 1;
+            nDiceNum                = min(15, nCasterLevel);
+            nDiceSize               = 6;
+            nDamageBonus            = 0;
+            nDamageType             = DAMAGE_TYPE_FIRE;
+            nVisMissile             = VFX_IMP_MIRV_FIREBALL;
+            nVis                    = VFX_IMP_FLAME_M;
+            nSavingThrow            = SAVING_THROW_REFLEX;
+            nSavingThrowType        = SAVING_THROW_TYPE_FIRE;
         }
         break;
         default:
