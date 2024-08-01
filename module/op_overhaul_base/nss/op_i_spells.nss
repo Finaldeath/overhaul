@@ -84,6 +84,7 @@ const int SORT_METHOD_LOWEST_HP          = 1;
 const int SORT_METHOD_LOWEST_HD          = 2;
 const int SORT_METHOD_DISTANCE           = 3;  // Distance to AOE target
 const int SORT_METHOD_DISTANCE_TO_CASTER = 4;
+const int SORT_METHOD_RANDOM             = 5;
 
 // Spell types (UserType column) stored in nSpellType
 const int SPELL_TYPE_INVALID        = 0;  // Invalid setting! Error!!!
@@ -404,6 +405,7 @@ void CureEffects(object oTarget, json jArray, int bSupernaturalRemoval = FALSE);
 //                 SORT_METHOD_LOWEST_HD - Sorts so first object is the lowest HD
 //                 SORT_METHOD_DISTANCE  - Sorts so the first object is the lowest distance to AOE target location
 //                 SORT_METHOD_DISTANCE_TO_CASTER - Sorts so first object is lowest distance to caster
+//                 SORT_METHOD_RANDOM    - Intentionally randomises the targets (useful to make it look cooler for Chain Lighting etc.)
 // The other variables can be set, but if not then the current Spell Id will sort the shape and size.
 json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, int nObjectFilter = OBJECT_TYPE_CREATURE, int nShape = -1, float fSize = -1.0, location lArrayTarget = LOCATION_INVALID, int bLineOfSight = TRUE, vector vOrigin = [ 0.0, 0.0, 0.0 ]);
 
@@ -415,6 +417,7 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, 
 //                 SORT_METHOD_LOWEST_HD - Sorts so first object is the lowest HD
 //                 SORT_METHOD_DISTANCE  - Sorts so the first object is the lowest distance to AOE target location
 //                 SORT_METHOD_DISTANCE_TO_CASTER - Sorts so first object is lowest distance to caster
+//                 SORT_METHOD_RANDOM    - Intentionally randomises the targets (useful to make it look cooler for Chain Lighting etc.)
 // * bTargetSelf - If FALSE we won't ever get ourself into the array
 json GetArrayOfAOETargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, int nObjectFilter = OBJECT_TYPE_CREATURE, int bTargetSelf = TRUE);
 
@@ -2788,6 +2791,7 @@ const string FIELD_METRIC   = "metric";
 //                 SORT_METHOD_LOWEST_HD - Sorts so first object is the lowest HD
 //                 SORT_METHOD_DISTANCE  - Sorts so the first object is the lowest distance to AOE target location
 //                 SORT_METHOD_DISTANCE_TO_CASTER - Sorts so first object is lowest distance to caster
+//                 SORT_METHOD_RANDOM    - Intentionally randomises the targets (useful to make it look cooler for Chain Lighting etc.)
 // The other variables can be set, but if not then the current Spell Id will sort the shape and size.
 json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, int nObjectFilter = OBJECT_TYPE_CREATURE, int nShape = -1, float fSize = -1.0, location lArrayTarget = LOCATION_INVALID, int bLineOfSight = TRUE, vector vOrigin = [ 0.0, 0.0, 0.0 ])
 {
@@ -2836,7 +2840,7 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, 
         Debug("[GetArrayOfTargets] nTargetType invalid: " + IntToString(nTargetType), ERROR);
         return jArray;
     }
-    if (nSortMethod < 0 || nSortMethod > 4)
+    if (nSortMethod < 0 || nSortMethod > 5)
     {
         Debug("[GetArrayOfTargets] nSortMethod invalid: " + IntToString(nSortMethod), ERROR);
         return jArray;
@@ -2895,7 +2899,7 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, 
                 // Metric depends on what we are sorting
                 switch (nSortMethod)
                 {
-                    // SORT_METHOD_NONE - No need to store anything extra
+                    // SORT_METHOD_NONE or RANDOM - No need to store anything extra
                     case SORT_METHOD_LOWEST_HP: jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonInt(GetCurrentHitPoints(oObject))); break;
                     case SORT_METHOD_LOWEST_HD: jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonInt(GetHitDice(oObject))); break;
                     case SORT_METHOD_DISTANCE: jObject = JsonObjectSet(jObject, FIELD_METRIC, JsonFloat(GetDistanceBetweenLocations(lTarget, GetLocation(oObject)))); break;
@@ -2920,6 +2924,10 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, 
     {
         jArray = JsonArrayTransform(jArray, JSON_ARRAY_SORT_ASCENDING);
     }
+    else if (nSortMethod == SORT_METHOD_RANDOM)
+    {
+        jArray = JsonArrayTransform(jArray, JSON_ARRAY_SHUFFLE);
+    }
 
     return jArray;
 }
@@ -2932,6 +2940,7 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, 
 //                 SORT_METHOD_LOWEST_HD - Sorts so first object is the lowest HD
 //                 SORT_METHOD_DISTANCE  - Sorts so the first object is the lowest distance to AOE target location
 //                 SORT_METHOD_DISTANCE_TO_CASTER - Sorts so first object is lowest distance to caster
+//                 SORT_METHOD_RANDOM    - Intentionally randomises the targets (useful to make it look cooler for Chain Lighting etc.)
 // * bTargetSelf - If FALSE we won't ever get ourself into the array
 json GetArrayOfAOETargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, int nObjectFilter = OBJECT_TYPE_CREATURE, int bTargetSelf = TRUE)
 {
@@ -2943,7 +2952,7 @@ json GetArrayOfAOETargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANC
         Debug("[GetArrayOfAOETargets] nTargetType invalid: " + IntToString(nTargetType), ERROR);
         return jArray;
     }
-    if (nSortMethod < 0 || nSortMethod > 4)
+    if (nSortMethod < 0 || nSortMethod > 5)
     {
         Debug("[GetArrayOfAOETargets] nSortMethod invalid: " + IntToString(nSortMethod), ERROR);
         return jArray;

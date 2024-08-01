@@ -11,6 +11,10 @@
     Chain Lightning
     Up to 20d6 to primary target then up to 10d6 for each secondary. Selective
     hostile.
+
+    Gedlee's Electric Loop
+    1d6/2 caster levels, 5d6 max damage. If failed reflex save, Will save or
+    stunned for 1 round. Decided to make selective hostile.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -28,39 +32,17 @@ void main()
     int nVis  = VFX_IMP_LIGHTNING_S;
     int nBeam = VFX_BEAM_LIGHTNING;
 
+    // Extra stun for Loop
+    int bExtraStun = FALSE;
+
     switch (nSpellId)
     {
         case SPELL_CHAIN_LIGHTNING:
             nDamageDice = min(10, nCasterLevel / 2);
             nTargetType = SPELL_TARGET_SELECTIVEHOSTILE;
-            nSortMethod = SORT_METHOD_DISTANCE;
+            nSortMethod = SORT_METHOD_RANDOM;
             nObjectType = OBJECT_TYPE_CREATURE;
             nMaxTargets = nCasterLevel;
-
-            // Target gets first damage/bolt so if not present, exit!
-            if (!GetIsObjectValid(oTarget)) return;
-
-            SignalSpellCastAt();
-
-            oFirstTarget    = oTarget;
-            oPreviousTarget = oTarget;
-
-            ApplyBeamToObject(nBeam, oTarget, FALSE, BODY_NODE_HAND);
-
-            if (GetSpellTargetValid(oTarget, oCaster, nTargetType))
-            {
-                if (!DoResistSpell(oTarget, oCaster))
-                {
-                    int nDamage = GetDiceRoll(min(20, nCasterLevel), 6);
-                    nDamage     = DoDamageSavingThrow(nDamage, oTarget, oCaster, SAVING_THROW_REFLEX, nSpellSaveDC, SAVING_THROW_TYPE_ELECTRICITY);
-
-                    if (nDamage > 0)
-                    {
-                        ApplyVisualEffectToObject(nVis, oTarget);
-                        ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectDamage(nDamage, DAMAGE_TYPE_ELECTRICAL), oTarget);
-                    }
-                }
-            }
             break;
         case SPELL_LIGHTNING_BOLT:
             nDamageDice = min(10, nCasterLevel);
@@ -68,32 +50,46 @@ void main()
             nSortMethod = SORT_METHOD_DISTANCE_TO_CASTER;
             nObjectType = OBJECT_TYPE_CREATURE | OBJECT_TYPE_DOOR | OBJECT_TYPE_PLACEABLE;
             break;
+        case SPELL_GEDLEES_ELECTRIC_LOOP:
+            nDamageDice = clamp(nCasterLevel/2, 1, 5);
+            nTargetType = SPELL_TARGET_SELECTIVEHOSTILE;
+            nSortMethod = SORT_METHOD_RANDOM;
+            nObjectType = OBJECT_TYPE_CREATURE;
+            bExtraStun  = TRUE;
+            break;
+        default:
+            Debug("[op_s_lightning] No valid spell ID passed in: " + IntToString(nSpellId));
+            return;
+            break;
     }
 
     float fDelay = 0.0;
     int nCount   = 0;
     json jArray  = GetArrayOfTargets(nTargetType, nSortMethod, nObjectType);
 
-    // Chain Lightning: Remove first target if present and then clear up to nMaxTargets
-    if (GetIsObjectValid(oFirstTarget))
+    // If it's targeted against a specific person and the sort method is random, we will put them at the front
+    if (nSortMethod == SORT_METHOD_RANDOM && GetIsObjectValid(oTarget))
     {
+        // Find existing target
         int nIndex;
-        for (nIndex = 0; nIndex < JsonGetLength(jArray) && nCount < nMaxTargets; nIndex++)
+        for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
         {
-            oTarget = GetArrayObject(jArray, nIndex);
+            object oArrayTarget = GetArrayObject(jArray, nIndex);
 
-            if (oTarget == oFirstTarget)
+            if (oArrayTarget == oTarget)
             {
                 jArray = JsonArrayDel(jArray, nIndex);
                 break;
             }
         }
-        // Get first amount
-        jArray = JsonArrayGetRange(jArray, 0, nMaxTargets);
-
-        // Shuffle so the VFX looks cooler
-        jArray = JsonArrayTransform(jArray, JSON_ARRAY_SHUFFLE);
+        // Add to start
+        json jObject = JsonObject();
+        jObject = JsonObjectSet(jObject, FIELD_OBJECTID, JsonString(ObjectToString(oTarget)));
+        jArray = JsonArrayInsert(jArray, jObject, 0);
     }
+
+    // Limit to nMaxTargets
+    jArray = JsonArrayGetRange(jArray, 0, nMaxTargets - 1);
 
     int nIndex;
     for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
@@ -123,7 +119,9 @@ void main()
             int nDamage = GetDiceRoll(nDamageDice, 6);
 
             // Damage modification based on save (half, with Reflex allowing feats to reduce further)
-            nDamage = DoDamageSavingThrow(nDamage, oTarget, oCaster, SAVING_THROW_REFLEX, nSpellSaveDC, SAVING_THROW_TYPE_ELECTRICITY, fDelay);
+            int bReflexSave = DoSavingThrow(oTarget, oCaster, SAVING_THROW_REFLEX, nSpellSaveDC, SAVING_THROW_TYPE_ELECTRICITY, fDelay);
+
+            nDamage = GetDamageBasedOnFeats(nDamage, oTarget, bReflexSave);
 
             if (nDamage > 0)
             {
@@ -131,6 +129,14 @@ void main()
 
                 DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
                 DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDamage, oTarget));
+            }
+            if (bExtraStun && bReflexSave == FALSE)
+            {
+                if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_ELECTRICITY, fDelay))
+                {
+                    effect eStun = EffectLinkEffects(EffectStunned(), EffectVisualEffect(VFX_IMP_STUN));
+                    DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eStun, oTarget, 6.0));
+                }
             }
         }
     }

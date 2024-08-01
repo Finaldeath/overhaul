@@ -49,7 +49,7 @@ void main()
 
     int nDiceNum, nDiceSize, nDamageType, nSavingThrow = -1, nSavingThrowType = SAVING_THROW_TYPE_NONE;
     // Toggles
-    int nImpact = VFX_NONE, nVis = VFX_NONE, bDelayRandom = FALSE, bMustBeLiving = FALSE, bWaterElementalBonusDC = FALSE;
+    int nImpact = VFX_NONE, nVis = VFX_NONE, nBeam = VFX_NONE, bDelayRandom = FALSE, bMustBeLiving = FALSE, bWaterElementalBonusDC = FALSE;
     // Delay variables
     float fDelayOverride = 0.0, fRandomMin = 0.4, fRandomMax = 1.1;
     // Can change to selective hostile
@@ -155,6 +155,18 @@ void main()
             DelayCommand(fDelayOverride, ApplyVisualEffectToObject(VFX_COM_CHUNK_BONE_MEDIUM, oTarget));
         }
         break;
+        case SPELL_FLAME_LASH:
+        {
+            nDiceNum         = max(2, 1 + (nCasterLevel/3));
+            nDiceSize        = 6;
+            nDamageType      = DAMAGE_TYPE_FIRE;
+            nSavingThrow     = SAVING_THROW_REFLEX;
+            nSavingThrowType = SAVING_THROW_TYPE_FIRE;
+            nVis             = VFX_IMP_FLAME_S;
+            nBeam            = VFX_BEAM_FIRE_LASH;
+            fDelayOverride   = 1.0;
+        }
+        break;
         default:
             Debug("[op_s_damage] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
@@ -180,6 +192,9 @@ void main()
         {
             fDelay = bDelayRandom ? GetRandomDelay(fRandomMin, fRandomMax) : GetDistanceBetweenLocations(GetLocation(oTarget), lTarget) / 20.0;
         }
+
+        // Beam gets applied regardless
+        ApplyBeamToObject(nBeam, oTarget);
 
         // Immunity checks
         if (!bMustBeLiving || GetIsLiving(oTarget))
