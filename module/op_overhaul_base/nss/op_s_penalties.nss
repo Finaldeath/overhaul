@@ -18,6 +18,10 @@
 
     Mass Blindness/Deafness
     AOE as per blindness/deafness.
+
+    Doom
+    The target creature receives a -2 modifier to all attack rolls, damage
+    rolls, saving throws, ability checks and skill checks.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -93,6 +97,16 @@ void main()
             eLink            = EffectLinkEffects(EffectBlindness(),
                                EffectLinkEffects(EffectDeaf(),
                                                  EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            fDuration        = GetDuration(nCasterLevel, ROUNDS);
+            break;
+        case SPELL_DOOM:
+            nSavingThrow     = SAVING_THROW_FORT;
+            nVis             = VFX_IMP_DOOM;
+            eLink            = EffectLinkEffects(EffectSavingThrowDecrease(SAVING_THROW_ALL, 2),
+                               EffectLinkEffects(EffectAttackDecrease(2),
+                               EffectLinkEffects(EffectDamageDecrease(2, DAMAGE_TYPE_BLUDGEONING | DAMAGE_TYPE_SLASHING | DAMAGE_TYPE_PIERCING),
+                               EffectLinkEffects(EffectSkillDecrease(SKILL_ALL_SKILLS, 2),
+                                                 EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)))));
             fDuration        = GetDuration(nCasterLevel, ROUNDS);
             break;
         default:
