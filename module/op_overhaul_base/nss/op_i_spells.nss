@@ -268,6 +268,13 @@ void ApplyVisualEffectToObject(int nVFX, object oTarget, int bMissEffect = FALSE
 // Usual scale and translate values as well.
 void ApplyVisualEffectAtLocation(int nVFX, location lTarget, int bMissEffect = FALSE, float fScale = 1.0f, vector vTranslate = [ 0.0, 0.0, 0.0 ], vector vRotate = [ 0.0, 0.0, 0.0 ]);
 
+// Applies the given VFX effect at oTargets current location. Safer to use on CreateObject or in a DelayCommand if oTarget is moving.
+// - nVFX - visualeffects.2da line. Must be not a DUR or BEAM type. Use VFX_NONE to have this function be ignored.
+// - lTarget - Target of the VFX
+// - bMissEffect - VFX hits or not
+// Usual scale and translate values as well.
+void ApplyVisualEffectAtObjectsLocation(int nVFX, object oTarget, int bMissEffect = FALSE, float fScale = 1.0f, vector vTranslate = [ 0.0, 0.0, 0.0 ], vector vRotate = [ 0.0, 0.0, 0.0 ]);
+
 // Applies damage of the given type. This helps wrapper delayed damage so we can keep at 1 HP if necessary (Harm/Heal).
 void ApplyDamageToObject(object oTarget, int nDamage, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL, int bKeepAt1HP = FALSE);
 
@@ -1989,6 +1996,16 @@ void ApplyVisualEffectAtLocation(int nVFX, location lTarget, int bMissEffect = F
 
     // Apply VFX
     ApplySpellEffectAtLocation(DURATION_TYPE_INSTANT, eVFX, lTarget);
+}
+
+// Applies the given VFX effect at oTargets current location. Safer to use on CreateObject or in a DelayCommand if oTarget is moving.
+// - nVFX - visualeffects.2da line. Must be not a DUR or BEAM type. Use VFX_NONE to have this function be ignored.
+// - lTarget - Target of the VFX
+// - bMissEffect - VFX hits or not
+// Usual scale and translate values as well.
+void ApplyVisualEffectAtObjectsLocation(int nVFX, object oTarget, int bMissEffect = FALSE, float fScale = 1.0f, vector vTranslate = [ 0.0, 0.0, 0.0 ], vector vRotate = [ 0.0, 0.0, 0.0 ])
+{
+    ApplyVisualEffectAtLocation(nVFX, GetLocation(oTarget), bMissEffect, fScale, vTranslate, vRotate);
 }
 
 // Applies damage of the given type. This helps wrapper delayed damage so we can keep at 1 HP if necessary (Harm/Heal).

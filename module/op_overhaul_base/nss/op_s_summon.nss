@@ -58,6 +58,11 @@ void main()
     float fDuration = GetDuration(24, HOURS);
 
     effect eSummon;
+
+    // If set this will spawn the given creature
+    string sSpawn = "";
+    int nVis = VFX_NONE;
+
     switch (nSpellId)
     {
         case SPELL_SUMMON_CREATURE_I:
@@ -164,6 +169,23 @@ void main()
             fDuration = GetDuration(24, HOURS);
         }
         break;
+        case SPELL_GATE:
+        {
+            if(GetHasSpellEffect(SPELL_PROTECTION_FROM_EVIL, oCaster) ||
+               GetHasSpellEffect(SPELL_MAGIC_CIRCLE_AGAINST_EVIL, oCaster) ||
+               GetHasSpellEffect(SPELL_HOLY_AURA, oCaster))
+            {
+                eSummon = EffectSummonCreature("NW_S_BALOR", VFX_FNF_SUMMON_GATE, 3.0);
+                fDuration = GetDuration(24, ROUNDS);
+            }
+            else
+            {
+                nVis = VFX_FNF_SUMMON_GATE;
+                sSpawn = "NW_S_BALOR_EVIL";
+            }
+
+        }
+        break;
         default:
         {
             Debug("[op_s_aoeeffect] No valid spell ID passed in: " + IntToString(nSpellId));
@@ -172,16 +194,24 @@ void main()
         break;
     }
 
-    // All summon effects are Extraordinary to prevent usual dispel magic. Instead
-    // the summon itself can be targeted by dispel magic and may disappear (except level 10 / epic spells).
-    eSummon = ExtraordinaryEffect(eSummon);
-
-    if (GetEffectType(eSummon, TRUE) == EFFECT_TYPE_SUMMON_CREATURE)
+    if (sSpawn != "")
     {
-        ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eSummon, lTarget, fDuration);
+        object oCreature = CreateObject(OBJECT_TYPE_CREATURE, sSpawn, GetSpellTargetLocation());
+        DelayCommand(0.5, ApplyVisualEffectAtObjectsLocation(nVis, oCreature));
     }
     else
     {
-        ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eSummon, oTarget, fDuration);
+        // All summon effects are Extraordinary to prevent usual dispel magic. Instead
+        // the summon itself can be targeted by dispel magic and may disappear (except level 10 / epic spells).
+        eSummon = ExtraordinaryEffect(eSummon);
+
+        if (GetEffectType(eSummon, TRUE) == EFFECT_TYPE_SUMMON_CREATURE)
+        {
+            ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eSummon, lTarget, fDuration);
+        }
+        else
+        {
+            ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eSummon, oTarget, fDuration);
+        }
     }
 }
