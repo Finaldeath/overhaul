@@ -12,6 +12,12 @@
     Bane fills the caster's enemies with fear and doubt. They suffer a -1
     penalty on their attack rolls and a -1 penalty on saving throws against
     fear. 1 minute/level. Additionally it will dispel Bless.
+
+    Blindness/Deafness
+    Apply both to targert 1 round/level fotitude negates.
+
+    Mass Blindness/Deafness
+    AOE as per blindness/deafness.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -28,7 +34,7 @@ void main()
     int nImpact = VFX_NONE, nVis = VFX_NONE, nCreatureLimit, nHDLimit, nHDPool = MAX_INT;
     float fDuration;
     int nSavingThrow = SAVING_THROW_NONE, nSavingThrowType = SAVING_THROW_TYPE_NONE;
-    int nImmunity = IMMUNITY_TYPE_NONE;
+    int nImmunity1 = IMMUNITY_TYPE_NONE, nImmunity2 = IMMUNITY_TYPE_NONE;
 
     // If set will remove the given spell Id on the targets affected (after saves etc.)
     int nRemoveSpellId = SPELL_INVALID;
@@ -47,7 +53,7 @@ void main()
         case SPELL_SLOW:
             nTargetType     = SPELL_TARGET_SELECTIVEHOSTILE;
             nSavingThrow    = SAVING_THROW_WILL;
-            nImmunity       = IMMUNITY_TYPE_SLOW;
+            nImmunity1       = IMMUNITY_TYPE_SLOW;
             nCreatureLimit  = nCasterLevel;
             nImpact         = VFX_FNF_LOS_NORMAL_30;
             nVis            = VFX_IMP_SLOW;
@@ -58,7 +64,7 @@ void main()
             nTargetType      = SPELL_TARGET_SELECTIVEHOSTILE;
             nSavingThrow     = SAVING_THROW_WILL;
             nSavingThrowType = SAVING_THROW_TYPE_MIND_SPELLS;
-            nImmunity        = IMMUNITY_TYPE_MIND_SPELLS;
+            nImmunity1        = IMMUNITY_TYPE_MIND_SPELLS;
             nImpact          = VFX_FNF_LOS_EVIL_30;
             nVis             = VFX_IMP_HEAD_EVIL;
             eLink            = EffectLinkEffects(EffectAttackDecrease(1),
@@ -66,6 +72,28 @@ void main()
                                                  EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
             fDuration        = GetDuration(nCasterLevel, MINUTES);
             nRemoveSpellId   = SPELL_BLESS;
+            break;
+        case SPELL_BLINDNESS_AND_DEAFNESS:
+            nSavingThrow     = SAVING_THROW_FORT;
+            nImmunity1       = IMMUNITY_TYPE_BLINDNESS;
+            nImmunity2       = IMMUNITY_TYPE_DEAFNESS;
+            nVis             = VFX_IMP_BLIND_DEAF_M;
+            eLink            = EffectLinkEffects(EffectBlindness(),
+                               EffectLinkEffects(EffectDeaf(),
+                                                 EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            fDuration        = GetDuration(nCasterLevel, ROUNDS);
+            break;
+        case SPELL_MASS_BLINDNESS_AND_DEAFNESS:
+            nTargetType      = SPELL_TARGET_SELECTIVEHOSTILE;
+            nSavingThrow     = SAVING_THROW_FORT;
+            nImmunity1       = IMMUNITY_TYPE_BLINDNESS;
+            nImmunity2       = IMMUNITY_TYPE_DEAFNESS;
+            nImpact          = VFX_FNF_BLINDDEAF;
+            nVis             = VFX_IMP_BLIND_DEAF_M;
+            eLink            = EffectLinkEffects(EffectBlindness(),
+                               EffectLinkEffects(EffectDeaf(),
+                                                 EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            fDuration        = GetDuration(nCasterLevel, ROUNDS);
             break;
         default:
             Debug("[op_s_penalties] No valid spell ID passed in: " + IntToString(nSpellId));
@@ -105,7 +133,7 @@ void main()
 
                 if (!DoResistSpell(oTarget, oCaster, fDelay))
                 {
-                    if (!GetIsImmuneWithFeedback(oTarget, oCaster, nImmunity))
+                    if (!GetIsImmuneWithFeedback(oTarget, oCaster, nImmunity1) && !GetIsImmuneWithFeedback(oTarget, oCaster, nImmunity2))
                     {
                         if (!DoSavingThrow(oTarget, oCaster, nSavingThrow, nSpellSaveDC, nSavingThrowType, fDelay))
                         {
