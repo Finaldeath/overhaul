@@ -303,7 +303,8 @@ void ApplyAOEPersistentEffect(object oTarget, effect eEffect, int bApplyRunScrip
 
 // Removes persistent RunScripts from oTarget that are applies to oTarget tagged with OBJECT_SELF's OID (ie the AOE's).
 // Call in an AOE's OnExit event or op_r_aoecleanup.
-void RemovePersistentAOEEffects(object oTarget);
+// Returns the amount of persistent effects tagged. So if 1+ it is the last AOE they've exited of this type.
+int RemovePersistentAOEEffects(object oTarget);
 
 // Returns TRUE if we are OK running our AOE scripts (or the EffectRunScript created by an AOE).
 // Does a check for the AOE creator, and destroys ourself (or removes the EffectRunScript) if they no longer exist.
@@ -2121,7 +2122,8 @@ void ApplyAOEPersistentEffect(object oTarget, effect eEffect, int bApplyRunScrip
 
 // Removes persistent RunScripts from oTarget that are applies to oTarget tagged with OBJECT_SELF's OID (ie the AOE's).
 // Call in an AOE's OnExit event or op_r_aoecleanup.
-void RemovePersistentAOEEffects(object oTarget)
+// Returns the amount of persistent effects tagged. So if 1+ it is the last AOE they've exited of this type.
+int RemovePersistentAOEEffects(object oTarget)
 {
     string sTag;
     // Carefully clear effects if last RunScript using this spell Id.
@@ -2144,12 +2146,12 @@ void RemovePersistentAOEEffects(object oTarget)
             GetEffectTag(eCheck) != sTag)
         {
             // Don't remove any effects if other RunScript from the same spell exist still
-            return;
+            return 0;
         }
         eCheck = GetNextEffect(oTarget);
     }
     // Get to this point remove all AOEEFFECT effects of nSpellId
-    RemoveEffectsFromSpell(oTarget, nSpellId, EFFECT_TYPE_ALL, "AOEEFFECT");
+    return RemoveEffectsFromSpell(oTarget, nSpellId, EFFECT_TYPE_ALL, "AOEEFFECT");
 }
 
 // Returns TRUE if we are OK running our AOE scripts (or the EffectRunScript created by an AOE).
