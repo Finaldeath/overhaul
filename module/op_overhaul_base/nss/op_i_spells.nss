@@ -73,9 +73,6 @@ const int SPELL_TARGET_ALLALLIES        = 1;  // Allies only
 const int SPELL_TARGET_STANDARDHOSTILE  = 2;  // Standard hostile - IE: Will hit allies in certain PvP
 const int SPELL_TARGET_SELECTIVEHOSTILE = 3;  // Selective hostile - IE: Will not hit allies
 
-// Missing saving throw type constant
-const int SAVING_THROW_TYPE_PARALYSIS = 20;
-
 // DoSavingThrow does nothing if this is passed.
 const int SAVING_THROW_NONE = -1;
 
