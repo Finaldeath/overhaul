@@ -58,8 +58,9 @@ void main()
     float fDuration = GetDuration(24, HOURS);
 
     effect eSummon;
+    int nImpact = VFX_NONE;
 
-    // If set this will spawn the given creature
+    // If set this will spawn the given creature (and optionally the nVis applied)
     string sSpawn = "";
     int nVis = VFX_NONE;
 
@@ -186,6 +187,160 @@ void main()
 
         }
         break;
+        case SPELL_ANIMATE_DEAD:
+        case SPELLABILITY_PM_ANIMATE_DEAD:
+        {
+            if (nCasterLevel <= 5)
+            {
+                eSummon = EffectSummonCreature("NW_S_ZOMBTYRANT",VFX_FNF_SUMMON_UNDEAD);
+            }
+            else if (nCasterLevel <= 9)
+            {
+                eSummon = EffectSummonCreature("NW_S_SKELWARR",VFX_FNF_SUMMON_UNDEAD);
+            }
+            else
+            {
+                eSummon = EffectSummonCreature("NW_S_SKELCHIEF",VFX_FNF_SUMMON_UNDEAD);
+            }
+            fDuration = GetDuration(24, ROUNDS);
+        }
+        break;
+        case SPELLABILITY_PM_SUMMON_UNDEAD:
+        {
+            nImpact = VFX_FNF_LOS_EVIL_10;
+            nCasterLevel = GetLevelByClass(CLASS_TYPE_PALE_MASTER, oCaster);
+            fDuration = GetDuration(14 + nCasterLevel, HOURS);
+            if (nCasterLevel <= 5)
+            {
+                eSummon = EffectSummonCreature("NW_S_GHOUL",VFX_IMP_HARM,0.0f,0);
+            }
+            else if (nCasterLevel == 6)
+            {
+                eSummon = EffectSummonCreature("NW_S_SHADOW",VFX_IMP_HARM,0.0f,0);
+            }
+            else if (nCasterLevel == 7)
+            {
+                eSummon = EffectSummonCreature("NW_S_GHAST",VFX_IMP_HARM,0.0f,1);
+            }
+            else if (nCasterLevel == 8)
+            {
+                eSummon = EffectSummonCreature("NW_S_WIGHT",VFX_FNF_SUMMON_UNDEAD,0.0f,1);
+            }
+            else // if (nCasterLevel >= 9)
+            {
+                eSummon = EffectSummonCreature("X2_S_WRAITH",VFX_FNF_SUMMON_UNDEAD,0.0f,1);
+            }
+        }
+        break;
+        case SPELLABILITY_PM_SUMMON_GREATER_UNDEAD:
+        {
+            nImpact = VFX_FNF_LOS_EVIL_10;
+            nCasterLevel = GetLevelByClass(CLASS_TYPE_PALE_MASTER, oCaster);
+            fDuration = GetDuration(14 + nCasterLevel, HOURS);
+            if (nCasterLevel >= 30)
+            {
+                // * Demi Lich
+                eSummon = EffectSummonCreature("X2_S_LICH_30",VFX_FNF_SUMMON_EPIC_UNDEAD,0.0f,1);
+            }
+            else if (nCasterLevel >= 28)
+            {
+                // * Mega Alhoon
+                eSummon = EffectSummonCreature("x2_s_lich_26",VFX_FNF_SUMMON_EPIC_UNDEAD,0.0f,1);
+            }
+            else if (nCasterLevel >= 26)
+            {
+                // * Alhoon
+                eSummon = EffectSummonCreature("X2_S_LICH_24",VFX_FNF_SUMMON_EPIC_UNDEAD,0.0f,1);
+            }
+            else if (nCasterLevel >= 24)
+            {
+                // * Lich
+                eSummon = EffectSummonCreature("X2_S_LICH_22",VFX_FNF_SUMMON_EPIC_UNDEAD,0.0f,0);
+            }
+            else if (nCasterLevel >= 22)
+            {
+                // * Lich
+                eSummon = EffectSummonCreature("X2_S_LICH_20",VFX_FNF_SUMMON_EPIC_UNDEAD,0.0f,0);
+            }
+            else if (nCasterLevel >= 20)
+            {
+                // * Skeleton Blackguard
+                eSummon = EffectSummonCreature("x2_s_bguard_18",VFX_IMP_HARM,0.0f,0);
+            }
+            else if (nCasterLevel >= 18)
+            {
+                // * Vampire Mage
+                eSummon = EffectSummonCreature("x2_s_vamp_18",VFX_FNF_SUMMON_UNDEAD,0.0f,1);
+            }
+            else if (nCasterLevel >= 16)
+            {
+                // * Ghoul King
+                eSummon = EffectSummonCreature("X2_S_GHOUL_16",VFX_IMP_HARM,0.0f,0);
+            }
+            else if (nCasterLevel >= 14)
+            {
+                // * Greater Bodak
+                eSummon = EffectSummonCreature("X2_S_BODAK_14",VFX_IMP_HARM,0.0f,0);
+            }
+            else if (nCasterLevel >= 12)
+            {
+                // * Vampire Rogue
+                eSummon = EffectSummonCreature("X2_S_VAMP_10",VFX_FNF_SUMMON_UNDEAD,0.0f,1);
+            }
+            else if (nCasterLevel >= 10)
+            {
+                // Specture
+                eSummon = EffectSummonCreature("X2_S_SPECTRE_10",VFX_FNF_SUMMON_UNDEAD, 0.0f,1);
+            }
+            else
+            {
+                // * Mummy
+                eSummon = EffectSummonCreature("X2_S_MUMMY_9",VFX_IMP_HARM, 0.0f,0);
+            }
+        }
+        break;
+        case SPELL_CREATE_UNDEAD:
+        {
+            if (nCasterLevel <= 11)
+            {
+                eSummon = EffectSummonCreature("NW_S_GHOUL",VFX_FNF_SUMMON_UNDEAD);
+            }
+            else if ((nCasterLevel >= 12) && (nCasterLevel <= 13))
+            {
+                eSummon = EffectSummonCreature("NW_S_GHAST",VFX_FNF_SUMMON_UNDEAD);
+            }
+            else if ((nCasterLevel >= 14) && (nCasterLevel <= 15))
+            {
+                eSummon = EffectSummonCreature("NW_S_WIGHT",VFX_FNF_SUMMON_UNDEAD);
+            }
+            else if ((nCasterLevel >= 16))
+            {
+                eSummon = EffectSummonCreature("NW_S_SPECTRE",VFX_FNF_SUMMON_UNDEAD);
+            }
+            fDuration = GetDuration(24, ROUNDS);
+        }
+        break;
+        case SPELL_CREATE_GREATER_UNDEAD:
+        {
+            if (nCasterLevel <= 15)
+            {
+                eSummon = EffectSummonCreature("NW_S_VAMPIRE",VFX_FNF_SUMMON_UNDEAD);
+            }
+            else if ((nCasterLevel >= 16) && (nCasterLevel <= 17))
+            {
+                eSummon = EffectSummonCreature("NW_S_DOOMKGHT",VFX_FNF_SUMMON_UNDEAD);
+            }
+            else if ((nCasterLevel >= 18) && (nCasterLevel <= 19))
+            {
+                eSummon = EffectSummonCreature("NW_S_LICH",VFX_FNF_SUMMON_UNDEAD);
+            }
+            else
+            {
+                eSummon = EffectSummonCreature("NW_S_MUMCLERIC",VFX_FNF_SUMMON_UNDEAD);
+            }
+            fDuration = GetDuration(24, ROUNDS);
+        }
+        break;
         default:
         {
             Debug("[op_s_aoeeffect] No valid spell ID passed in: " + IntToString(nSpellId));
@@ -213,5 +368,6 @@ void main()
         {
             ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eSummon, oTarget, fDuration);
         }
+        ApplyVisualEffectAtLocation(nImpact, lTarget);
     }
 }

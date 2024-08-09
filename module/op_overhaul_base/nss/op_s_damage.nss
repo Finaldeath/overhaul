@@ -31,6 +31,9 @@
     Horrid Wilting
     1d8 magic damage/level to max of 25d8. Water elementals get +2 save DC.
 
+    Meteor Swarm
+    20d6 fire damage, special AOE not affecting centre point.
+
     ----
 
     Greater Ruin
@@ -165,6 +168,18 @@ void main()
             nVis             = VFX_IMP_FLAME_S;
             nBeam            = VFX_BEAM_FIRE_LASH;
             fDelayOverride   = 1.0;
+        }
+        break;
+        case SPELL_METEOR_SWARM:
+        {
+            nDiceNum         = 20;
+            nDiceSize        = 6;
+            nDamageType      = DAMAGE_TYPE_FIRE;
+            nSavingThrow     = SAVING_THROW_REFLEX;
+            nSavingThrowType = SAVING_THROW_TYPE_FIRE;
+            nImpact          = VFX_FNF_METEOR_SWARM;
+            nVis             = VFX_IMP_FLAME_M;
+            bDelayRandom     = TRUE;
         }
         break;
         default:

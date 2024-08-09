@@ -2818,7 +2818,7 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, 
     if (nShape == SHAPE_HSPHERE)
     {
         // Special case...
-        fSafeArea = GetSpellShapeSize(nSpellId);         // X
+        fSafeArea = GetSpellShapeSize(nSpellId, TRUE);   // X
         fSize     = GetSpellShapeSize(nSpellId, FALSE);  // Y
         nShape    = SHAPE_SPHERE;
     }
@@ -2888,8 +2888,7 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, 
     object oObject = GetFirstObjectInShape(nShape, fSize, lTarget, bLineOfSight, nObjectFilter, vOrigin);
     while (GetIsObjectValid(oObject))
     {
-        // Safe area test
-        if (fSafeArea < 0.0 || GetDistanceBetweenLocations(lTarget, GetLocation(oTarget)) > fSafeArea)
+        if (fSafeArea < 0.0 || GetDistanceBetweenLocations(lTarget, GetLocation(oObject)) > fSafeArea)
         {
             if (GetSpellTargetValid(oObject, oCaster, nTargetType) && (bTargetSelf == TRUE || oObject != oCaster))
             {
@@ -3246,7 +3245,7 @@ int GetSpellShape(int nSpellId)
     switch (HashString(Get2DAString("spells", "TargetShape", nSpellId)))
     {
         case "sphere": return SHAPE_SPHERE; break;
-        case "hspere": return SHAPE_HSPHERE; break;
+        case "hsphere": return SHAPE_HSPHERE; break;
         case "rectangle":
         {
             // There are 2 options, CUBE (same on each side, a kind of "square fireball")
@@ -3272,7 +3271,7 @@ int GetSpellShape(int nSpellId)
 // If bX is false gets the TargetSizeY value
 float GetSpellShapeSize(int nSpellId, int bX = TRUE)
 {
-    string sColumn = bX ? "TargetSizeX" : "TargetSizeY";
+    string sColumn = bX == TRUE ? "TargetSizeX" : "TargetSizeY";
 
     string sSize = Get2DAString("spells", sColumn, nSpellId);
 
