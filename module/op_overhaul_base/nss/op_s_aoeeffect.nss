@@ -48,6 +48,7 @@ void main()
     float fDuration = 0.0, fExtraDelay;
     // VFX
     int nImpact = VFX_NONE, nVis = VFX_NONE, nDamVis = VFX_NONE, bDelayRandom = FALSE;
+    float fImpactScale = 1.0;
     // Can change to selective hostile
     int nTargetType    = SPELL_TARGET_STANDARDHOSTILE;
     int nCreatureLimit = 99999;
@@ -81,13 +82,27 @@ void main()
             nCreatureLimit      = nCasterLevel;
         }
         break;
+        case SPELL_BOMBARDMENT:
+        {
+            nSavingThrow   = SAVING_THROW_REFLEX;
+            nImpact        = VFX_FNF_METEOR_SWARM; // TODO update to less firey VFX
+            fImpactScale   = 0.5; // Make it smaller due to altered AOE sizing
+            nVis           = VFX_IMP_FLAME_M;      // TODO update to less firey VFX
+            eLink          = EffectLinkEffects(EffectKnockdown(), EffectIcon(EFFECT_ICON_KNOCKDOWN));
+            fDuration      = 12.0;
+            bDelayRandom   = TRUE;
+            nDamageType    = DAMAGE_TYPE_BLUDGEONING;
+            nDiceNum       = min(20, nCasterLevel);
+            nDiceSize      = 8;
+        }
+        break;
         default:
             Debug("[op_s_aoeeffect] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
             break;
     }
 
-    ApplyVisualEffectAtLocation(nImpact, lTarget);
+    ApplyVisualEffectAtLocation(nImpact, lTarget, FALSE, fImpactScale);
 
     json jArray = GetArrayOfTargets(nTargetType, SORT_METHOD_DISTANCE, OBJECT_TYPE_CREATURE);
     int nIndex;
