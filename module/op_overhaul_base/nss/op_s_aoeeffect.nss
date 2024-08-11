@@ -21,6 +21,13 @@
     The character emits a terrible scream that kills creatures that hear it
     (except for the character).
 
+    Bombardment
+    Damage and knockdown.
+
+    Prayer
+    All allies within the area of effect gain +1 to attack and damage rolls,
+    skill checks, and saving throws. Enemies receive -1 penalties to the same.
+
     All creatures that are not deaf or silenced within the area of effect must
     succeed at a Fortitude save or die, to a maximum of 1 enemy per caster level.
 */
@@ -52,6 +59,12 @@ void main()
     // Can change to selective hostile
     int nTargetType    = SPELL_TARGET_STANDARDHOSTILE;
     int nCreatureLimit = 99999;
+
+    // These effects are applied in a second loop of only real allies (Prayer and
+    // the like).
+    int bAlliedLink = FALSE;
+    int nAlliedVis;
+    effect eAlliedLink;
 
     switch (nSpellId)
     {
@@ -94,6 +107,26 @@ void main()
             nDamageType    = DAMAGE_TYPE_BLUDGEONING;
             nDiceNum       = min(20, nCasterLevel);
             nDiceSize      = 8;
+        }
+        break;
+        case SPELL_PRAYER:
+        {
+            nTargetType      = SPELL_TARGET_SELECTIVEHOSTILE;
+            nImpact          = VFX_FNF_LOS_HOLY_30;
+            nVis             = VFX_IMP_DOOM;
+            eLink            = EffectLinkEffects(EffectAttackDecrease(1),
+                               EffectLinkEffects(EffectSavingThrowDecrease(SAVING_THROW_ALL, 1),
+                               EffectLinkEffects(EffectDamageDecrease(1, DAMAGE_TYPE_BLUDGEONING | DAMAGE_TYPE_SLASHING | DAMAGE_TYPE_PIERCING),
+                               EffectLinkEffects(EffectSkillDecrease(SKILL_ALL_SKILLS, 1),
+                                                 EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)))));
+            fDuration        = GetDuration(nCasterLevel, ROUNDS);
+            bAlliedLink      = TRUE;
+            nAlliedVis       = VFX_IMP_HOLY_AID;
+            eAlliedLink      = EffectLinkEffects(EffectAttackIncrease(1),
+                               EffectLinkEffects(EffectSavingThrowIncrease(SAVING_THROW_ALL, 1),
+                               EffectLinkEffects(EffectDamageIncrease(1, DAMAGE_TYPE_BLUDGEONING | DAMAGE_TYPE_SLASHING | DAMAGE_TYPE_PIERCING),
+                               EffectLinkEffects(EffectSkillIncrease(SKILL_ALL_SKILLS, 1),
+                                                 EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)))));
         }
         break;
         default:
@@ -165,6 +198,31 @@ void main()
                         }
                     }
                 }
+            }
+        }
+    }
+
+    // We do a second loop for allies if we have a link to apply to them.
+    if (bAlliedLink)
+    {
+        jArray = GetArrayOfTargets(SPELL_TARGET_ALLALLIES, SORT_METHOD_DISTANCE, OBJECT_TYPE_CREATURE);
+        for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
+        {
+            oTarget = GetArrayObject(jArray, nIndex);
+
+            SignalSpellCastAt();
+
+            float fDelay = bDelayRandom ? GetRandomDelay(0.4, 1.75) : GetDistanceBetweenLocations(GetLocation(oTarget), lTarget) / 20.0;
+
+            fDelay += fExtraDelay;
+
+            if (nCreatureLimit > 0)
+            {
+                nCreatureLimit--;
+
+                if (nAlliedVis != VFX_INVALID) DelayCommand(fDelay, ApplyVisualEffectToObject(nAlliedVis, oTarget));
+
+                DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eAlliedLink, oTarget, fDuration));
             }
         }
     }
