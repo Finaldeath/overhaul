@@ -20,6 +20,8 @@
     Wail of the Banshee
     The character emits a terrible scream that kills creatures that hear it
     (except for the character).
+    All creatures that are not deaf or silenced within the area of effect must
+    succeed at a Fortitude save or die, to a maximum of 1 enemy per caster level.
 
     Bombardment
     Damage and knockdown.
@@ -28,8 +30,9 @@
     All allies within the area of effect gain +1 to attack and damage rolls,
     skill checks, and saving throws. Enemies receive -1 penalties to the same.
 
-    All creatures that are not deaf or silenced within the area of effect must
-    succeed at a Fortitude save or die, to a maximum of 1 enemy per caster level.
+    War Cry
+    The caster lets out a powerful shout that grants the Bard a +2 bonus to
+    attack and damage. All enemies within the area of effect are stricken with fear.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -127,6 +130,36 @@ void main()
                                EffectLinkEffects(EffectDamageIncrease(1, DAMAGE_TYPE_BLUDGEONING | DAMAGE_TYPE_SLASHING | DAMAGE_TYPE_PIERCING),
                                EffectLinkEffects(EffectSkillIncrease(SKILL_ALL_SKILLS, 1),
                                                  EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)))));
+        }
+        break;
+        case SPELL_WAR_CRY:
+        {
+            if (GetGender(oCaster) == GENDER_FEMALE)
+            {
+                nImpact = VFX_FNF_HOWL_WAR_CRY_FEMALE;
+            }
+            else
+            {
+                nImpact = VFX_FNF_HOWL_WAR_CRY;
+            }
+
+            bImmuneIfCannotHear = TRUE;
+            nImmunity        = IMMUNITY_TYPE_FEAR;
+            nSavingThrow     = SAVING_THROW_WILL;
+            nSavingThrowType = SAVING_THROW_TYPE_FEAR;
+            nTargetType      = SPELL_TARGET_SELECTIVEHOSTILE;
+            fDuration        = RoundsToSeconds(4);
+            eLink            = EffectLinkEffects(EffectFrightened(),
+                               EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_FEAR),
+                                                 EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+
+            eAlliedLink      = EffectLinkEffects(EffectAttackIncrease(2),
+                               EffectLinkEffects(EffectDamageIncrease(2, DAMAGE_TYPE_BLUDGEONING | DAMAGE_TYPE_SLASHING | DAMAGE_TYPE_PIERCING),
+                                                 EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+
+            // Apply some effects just to the caster/shouter
+            ApplyVisualEffectToObject(VFX_IMP_HEAD_SONIC, oCaster);
+            ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eAlliedLink, oCaster, GetDuration(nCasterLevel, ROUNDS));
         }
         break;
         default:
