@@ -14,6 +14,12 @@
     per caster level (to a maximum of 150 points at 15th level). If the creature
     successfully saves, harm deals half this amount, but it cannot reduce the
     target’s hit points to less than 1.
+
+    AOE versions:
+    Mass Inflict Light Wounds    1d8 + 1/caster level (max 25)
+    Mass Inflict Moderate Wounds 2d8 + 1/caster level (max 30)
+    Mass Inflict Serious Wounds  3d8 + 1/caster level (max 35)
+    Mass Inflict Critical Wounds 4d8 + 1/caster level (max 40)
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -71,26 +77,27 @@ void main()
             nVisHeal = VFX_IMP_HEALING_X;
             nVisHarm = VFX_IMP_HARM;
         break;
-        /*
-        case SPELL_HEALING_CIRCLE:
+        case SPELL_CIRCLE_OF_DOOM:// ie now SPELL_MASS_INFLICT_LIGHT_WONUDS
+            nDice =    1;
+            nStatic =  min(nCasterLevel, 25);
             nVisHeal = VFX_IMP_HEALING_S;
-            nDice = 1;
-            nStatic = min(25, nCasterLevel);
+            nVisHarm = VFX_IMP_NEGATIVE_ENERGY;
         break;
-        case SPELL_MASS_CURE_MODERATE_WOUNDS:
+        /*
+        case SPELL_MASS_INFLICT_MODERATE_WOUNDS:
             nVisHeal = VFX_IMP_HEALING_M;
             nDice = 2;
-            nStatic = min(25, nCasterLevel);
+            nStatic = min(30, nCasterLevel);
         break;
-        case SPELL_MASS_CURE_SERIOUS_WOUNDS:
+        case SPELL_MASS_INFLICT_SERIOUS_WOUNDS:
             nVisHeal = VFX_IMP_HEALING_L;
             nDice = 2;
-            nStatic = min(25, nCasterLevel);
+            nStatic = min(35, nCasterLevel);
         break;
-        case SPELL_MASS_CURE_CRITICAL_WOUNDS:
+        case SPELL_MASS_INFLICT_CRITICAL_WOUNDS:
             nVisHeal = VFX_IMP_HEALING_G;
             nDice = 2;
-            nStatic = min(25, nCasterLevel);
+            nStatic = min(40, nCasterLevel);
         break;
         case SPELL_MASS_HARM:
             nVisHeal = VFX_IMP_HEALING_X;
@@ -117,12 +124,12 @@ void main()
     if (GetSpellIsAreaOfEffect(nSpellId))
     {
         // Same AOE effect for each
-        ApplyVisualEffectAtLocation(VFX_FNF_LOS_HOLY_20, lTarget);
+        ApplyVisualEffectAtLocation(VFX_FNF_LOS_EVIL_20, lTarget);
 
         json jArray = GetArrayOfTargets(SPELL_TARGET_ANYTHING);
 
-        // Mass spells gets touch attacks for balance
-        int bTouch = TRUE;
+        // Mass Harm spells gets touch attacks for balance, otherwise no touch
+        int bTouch = FALSE;
 
         // Loop array
         int nIndex;
