@@ -83,7 +83,6 @@ void main()
             nVisHeal = VFX_IMP_HEALING_S;
             nVisHarm = VFX_IMP_NEGATIVE_ENERGY;
         break;
-        /*
         case SPELL_MASS_INFLICT_MODERATE_WOUNDS:
             nVisHeal = VFX_IMP_HEALING_M;
             nDice = 2;
@@ -99,6 +98,7 @@ void main()
             nDice = 2;
             nStatic = min(40, nCasterLevel);
         break;
+        /*
         case SPELL_MASS_HARM:
             nVisHeal = VFX_IMP_HEALING_X;
             nDice = 0;
