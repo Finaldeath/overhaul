@@ -121,7 +121,7 @@ void main()
             // Damage modification based on save (half, with Reflex allowing feats to reduce further)
             int bReflexSave = DoSavingThrow(oTarget, oCaster, SAVING_THROW_REFLEX, nSpellSaveDC, SAVING_THROW_TYPE_ELECTRICITY, fDelay);
 
-            nDamage = GetDamageBasedOnFeats(nDamage, oTarget, bReflexSave);
+            nDamage = GetDamageBasedOnFeats(nDamage, oTarget, SAVING_THROW_REFLEX, bReflexSave);
 
             if (nDamage > 0)
             {

@@ -100,7 +100,7 @@ void DoCombustImpact(string sTag)
 
         if (!bSaved)
         {
-            int nDamage = GetDamageBasedOnFeats(GetDiceRoll(1, 6, min(10, nCasterLevel)), oTarget, bSaved);
+            int nDamage = GetDamageBasedOnFeats(GetDiceRoll(1, 6, min(10, nCasterLevel)), oTarget, SAVING_THROW_REFLEX, bSaved);
 
             if (nDamage > 0)
             {

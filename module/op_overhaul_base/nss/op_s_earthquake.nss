@@ -56,7 +56,7 @@ void main()
 
             int nDamage = GetDiceRoll(10, 6);
 
-            nDamage = GetDamageBasedOnFeats(nDamage, oTarget, bSaved);
+            nDamage = GetDamageBasedOnFeats(nDamage, oTarget, SAVING_THROW_REFLEX, bSaved);
 
             // Damage
             if (nDamage > 0)

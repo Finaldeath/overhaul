@@ -157,7 +157,7 @@ void main()
                     {
                         if (nTouch == 2) nDamage *= 2;
 
-                        nDamage = GetDamageBasedOnFeats(nDamage, oTarget, bSaved);
+                        nDamage = GetDamageBasedOnFeats(nDamage, oTarget, nSavingThrow, bSaved);
 
                         if (nDamage > 0)
                         {

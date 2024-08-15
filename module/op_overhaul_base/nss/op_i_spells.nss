@@ -170,7 +170,9 @@ int DoDamageSavingThrow(int nDamage, object oTarget, object oSaveVersus, int nSa
 int DoAbiliyCheck(object oTarget, object oSource, int nDC, int nAbilityCheck, int nOptionalAbilityCheck = -1);
 
 // Returns the modified amount of nDamage based on bSaved and the feats oTarget has (Evasion etc.)
-int GetDamageBasedOnFeats(int nDamage, object oTarget, int bSaved);
+// * nSavingThrowType - SAVING_THROW_REFLEX affects the feats, and other types may affect
+//                      it in the future.
+int GetDamageBasedOnFeats(int nDamage, object oTarget, int nSavingThrowType, int bSaved);
 
 // Used to route the resist magic checks into this function to check for spell countering by SR, Immunity, Globes or Mantles.
 // Now a simple TRUE if spell resisted/immune/absorbed, or FALSE otherwise.
@@ -1126,18 +1128,9 @@ int DoSavingThrow(object oTarget, object oSaveVersus, int nSavingThrow, int nDC,
 // Returns the modified amount of nDamage based on the saving throw being successful for half (or more if reflex save and feats are involved).
 int DoDamageSavingThrow(int nDamage, object oTarget, object oSaveVersus, int nSavingThrow, int nDC, int nSaveType = SAVING_THROW_TYPE_NONE, float fDelay = 0.0)
 {
-    if (nSavingThrow == SAVING_THROW_REFLEX)
-    {
-        int bSaved = DoSavingThrow(oTarget, oSaveVersus, nSavingThrow, nDC, nSaveType, fDelay);
+    int bSaved = DoSavingThrow(oTarget, oSaveVersus, nSavingThrow, nDC, nSaveType, fDelay);
 
-        nDamage = GetDamageBasedOnFeats(nDamage, oTarget, bSaved);
-    }
-    else if (DoSavingThrow(oTarget, oSaveVersus, nSavingThrow, nDC, nSaveType, fDelay))
-    {
-        nDamage /= 2;
-    }
-
-    return nDamage;
+    return GetDamageBasedOnFeats(nDamage, oTarget, nSavingThrow, bSaved);
 }
 
 // Does an ability check with feedback to oTarget and oSource (oSource being the thing doing the check).
@@ -1168,20 +1161,29 @@ int DoAbiliyCheck(object oTarget, object oSource, int nDC, int nAbilityCheck, in
 }
 
 // Returns the modified amount of nDamage based on bSaved and the feats oTarget has (Evasion etc.)
-int GetDamageBasedOnFeats(int nDamage, object oTarget, int bSaved)
+// * nSavingThrowType - SAVING_THROW_REFLEX affects the feats, and other types may affect
+//                      it in the future.
+int GetDamageBasedOnFeats(int nDamage, object oTarget, int nSavingThrowType, int bSaved)
 {
-    if (!bSaved)
+    if (nSavingThrowType == SAVING_THROW_REFLEX)
     {
-        if (GetHasFeat(FEAT_IMPROVED_EVASION, oTarget))
+        if (!bSaved)
+        {
+            if (GetHasFeat(FEAT_IMPROVED_EVASION, oTarget))
+            {
+                nDamage /= 2;
+            }
+        }
+        else if (GetHasFeat(FEAT_EVASION, oTarget) || GetHasFeat(FEAT_IMPROVED_EVASION, oTarget))
+        {
+            nDamage = 0;
+        }
+        else
         {
             nDamage /= 2;
         }
     }
-    else if (GetHasFeat(FEAT_EVASION, oTarget) || GetHasFeat(FEAT_IMPROVED_EVASION, oTarget))
-    {
-        nDamage = 0;
-    }
-    else
+    else if (bSaved)
     {
         nDamage /= 2;
     }

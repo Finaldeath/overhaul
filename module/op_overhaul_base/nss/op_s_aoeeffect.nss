@@ -209,7 +209,7 @@ void main()
                     {
                         int nDamage = GetDiceRoll(nDiceNum, nDiceSize);
 
-                        if (nSavingThrow == SAVING_THROW_REFLEX) nDamage = GetDamageBasedOnFeats(nDamage, oTarget, bSaved);
+                        nDamage = GetDamageBasedOnFeats(nDamage, oTarget, SAVING_THROW_REFLEX, bSaved);
 
                         if (nDamage > 0)
                         {

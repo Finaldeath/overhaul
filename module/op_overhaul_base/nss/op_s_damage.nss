@@ -34,6 +34,12 @@
     Meteor Swarm
     20d6 fire damage, special AOE not affecting centre point.
 
+    Ice Storm
+    No save. All creatures in the area of effect take 3d6 points of bludgeoning
+    damage and 2d6 points of cold damage. Ice Storm will do an additional 1d6
+    cold damage per additional 3 caster levels to a maximum of 8d6 cold damage
+    at level 18.
+
     ----
 
     Greater Ruin
@@ -51,6 +57,7 @@ void main()
     if (DoSpellHook()) return;
 
     int nDiceNum, nDiceSize, nDamageType, nSavingThrow = -1, nSavingThrowType = SAVING_THROW_TYPE_NONE;
+    int nDiceNum2, nDiceSize2, nDamageType2 = 0;
     // Toggles
     int nImpact = VFX_NONE, nVis = VFX_NONE, nBeam = VFX_NONE, bDelayRandom = FALSE, bMustBeLiving = FALSE, bWaterElementalBonusDC = FALSE;
     // Delay variables
@@ -182,6 +189,19 @@ void main()
             bDelayRandom     = TRUE;
         }
         break;
+        case SPELL_ICE_STORM:
+        {
+            nDiceNum         = 3;
+            nDiceSize        = 6;
+            nDamageType      = DAMAGE_TYPE_BLUDGEONING;
+            nDiceNum2        = 2 + (min(20, nCasterLevel) / 3);
+            nDiceSize2       = 6;
+            nDamageType2     = DAMAGE_TYPE_COLD;
+            nImpact          = VFX_FNF_ICESTORM;
+            nVis             = VFX_IMP_FROST_S;
+            bDelayRandom     = TRUE;
+        }
+        break;
         default:
             Debug("[op_s_damage] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
@@ -218,6 +238,11 @@ void main()
             {
                 // Roll damage
                 int nDamage = GetDiceRoll(nDiceNum, nDiceSize);
+                int nDamage2 = 0;
+                if (nDamageType2 > 0)
+                {
+                    nDamage2 = GetDiceRoll(nDiceNum2, nDiceSize2);
+                }
 
                 // Damage modification based on save (half, with Reflex allowing feats to reduce further)
                 if (nSavingThrow != -1)
@@ -226,7 +251,14 @@ void main()
 
                     if (bWaterElementalBonusDC && GetIsWaterElemental(oTarget)) nSaveDC += 2;
 
-                    nDamage = DoDamageSavingThrow(nDamage, oTarget, oCaster, nSavingThrow, nSaveDC, nSavingThrowType, fDelay);
+                    int bSaved = DoSavingThrow(oTarget, oCaster, nSavingThrow, nSaveDC, nSavingThrowType, fDelay);
+
+                    nDamage = GetDamageBasedOnFeats(nDamage, oTarget, nSavingThrow, bSaved);
+
+                    if (nDamage2 > 0)
+                    {
+                        nDamage2 = GetDamageBasedOnFeats(nDamage2, oTarget, nSavingThrow, bSaved);
+                    }
                 }
 
                 if (nDamage > 0)
@@ -234,6 +266,11 @@ void main()
                     effect eDamage = EffectDamage(nDamage, nDamageType);
 
                     if (nVis != VFX_INVALID) DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
+                    DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDamage, oTarget));
+                }
+                if (nDamage2 > 0)
+                {
+                    effect eDamage = EffectDamage(nDamage2, nDamageType2);
                     DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDamage, oTarget));
                 }
             }
