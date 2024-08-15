@@ -93,6 +93,9 @@ const int SPELL_TYPE_ITEM_POWER     = 4;  // No resist spell/absorption checks a
 // Extra shape types - more may come later for complex spells. Will include links to spells.2da
 const int SHAPE_HSPHERE = 100;
 
+// Tag used for persistent effects applied by AOEs, eg movement speed decreases on enter
+const string TAG_AOEEFFECT = "AOEEFFECT";
+
 // Fired using FireItemPropertySpellScript
 const string ITEM_PROPERTY_SPELL_SCRIPT = "op_s_itemprop";
 
@@ -338,6 +341,9 @@ string GetEffectName(effect eEffect);
 
 // Check if oCreature is silenced or deaf
 int GetCanHear(object oCreature);
+
+// Check if oCreature is silenced
+int GetCanSpeak(object oCreature);
 
 // Returns TRUE if the given creature is incorporeal (generally based off their appearance).
 int GetIsIncorporeal(object oCreature);
@@ -2104,7 +2110,7 @@ void ApplyAOEPersistentEffect(object oTarget, effect eEffect, int bApplyRunScrip
     while (GetIsEffectValid(eCheck))
     {
         if (GetEffectSpellId(eCheck) == nSpellId &&
-            GetEffectTag(eCheck) == "AOEEFFECT")
+            GetEffectTag(eCheck) == TAG_AOEEFFECT)
         {
             // If we have any effects already don't apply
             return;
@@ -2112,7 +2118,7 @@ void ApplyAOEPersistentEffect(object oTarget, effect eEffect, int bApplyRunScrip
         eCheck = GetNextEffect(oTarget);
     }
     eEffect = ExtraordinaryEffect(eEffect);
-    eEffect = TagEffect(eEffect, "AOEEFFECT");
+    eEffect = TagEffect(eEffect, TAG_AOEEFFECT);
     // We apply things "for a long time" since no AOE should be permanent. This helps with state scripts like Paralysis
     ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eEffect, oTarget, 10000.0);
 }
@@ -2148,7 +2154,7 @@ int RemovePersistentAOEEffects(object oTarget)
         eCheck = GetNextEffect(oTarget);
     }
     // Get to this point remove all AOEEFFECT effects of nSpellId
-    return RemoveEffectsFromSpell(oTarget, nSpellId, EFFECT_TYPE_ALL, "AOEEFFECT");
+    return RemoveEffectsFromSpell(oTarget, nSpellId, EFFECT_TYPE_ALL, TAG_AOEEFFECT);
 }
 
 // Returns TRUE if we are OK running our AOE scripts (or the EffectRunScript created by an AOE).
@@ -2427,6 +2433,16 @@ int GetCanHear(object oCreature)
 {
     if (GetHasEffect(oCreature, EFFECT_TYPE_SILENCE) ||
         GetHasEffect(oCreature, EFFECT_TYPE_DEAF))
+    {
+        return FALSE;
+    }
+    return TRUE;
+}
+
+// Check if oCreature is silenced
+int GetCanSpeak(object oCreature)
+{
+    if (GetHasEffect(oCreature, EFFECT_TYPE_SILENCE))
     {
         return FALSE;
     }
