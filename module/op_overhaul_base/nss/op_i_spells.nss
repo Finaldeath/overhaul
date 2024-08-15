@@ -246,7 +246,7 @@ void ApplySpellEffectAtLocation(int nDurationType, effect eEffect, location lTar
 // - nBeam - visualeffects.2da line (is checked if it is a beam)
 // - oTarget - Target of the beam
 // - bMissEffect - Beam hits or not
-// - nBodyPart - BODY_NODE_* the beam hits (default: HAND)
+// - nBodyPart - BODY_NODE_* the beam originates from (default: HAND)
 // - fDuration - If 0.0 it isues the nSpellId's spells.2da CastTime value to look proper
 // - oEffector - The source of the beam. Defaults to oCaster if invalid.
 void ApplyBeamToObject(int nBeam, object oTarget, int bMissEffect = FALSE, int nBodyPart = BODY_NODE_HAND, float fDuration = 0.0, object oEffector = OBJECT_INVALID);
@@ -1902,7 +1902,7 @@ void ApplySpellEffectAtLocation(int nDurationType, effect eEffect, location lTar
 // - nBeam - visualeffects.2da line (is checked if it is a beam). Use VFX_NONE if you don't want this to do anything.
 // - oTarget - Target of the beam
 // - bMissEffect - Beam hits or not
-// - nBodyPart - BODY_NODE_* the beam hits (default: HAND)
+// - nBodyPart - BODY_NODE_* the beam originates from (default: HAND)
 // - fDuration - If 0.0 it isues the nSpellId's spells.2da CastTime value to look proper
 // - oEffector - The source of the beam. Defaults to oCaster if invalid.
 void ApplyBeamToObject(int nBeam, object oTarget, int bMissEffect = FALSE, int nBodyPart = BODY_NODE_HAND, float fDuration = 0.0, object oEffector = OBJECT_INVALID)
