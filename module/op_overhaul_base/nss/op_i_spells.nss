@@ -130,6 +130,9 @@ int GetSpellIsHostile(int nSpellIdToCheck);
 // For a AOE it uses the stored DC.
 int GetSpellSaveDCCalculated(object oCaster, int nSpellIdToCheck, int nFeatId, object oCastItem, int nSpellType);
 
+// Gets the given classes ability modifier or 0 if not a spellcasting class
+int GetClassSpellcasterAbilityModifier(int nClass);
+
 // This calculates the spell caster level for any additional bonuses due to feats or similar.
 // For a AOE pass in it as the oCaster, then it uses the stored caster level.
 int GetCasterLevelCalculated(object oCaster, int nSpellIdToCheck, int nFeatIdToCheck, int nCasterClassToCheck);
@@ -513,10 +516,33 @@ void FireItemPropertySpellScript();
 // Returns DAMAGE_POWER_PLUS_ONE by default.
 int GetDamagePowerPlusValue(int nPower);
 
+// Gets the creature size modifier for grapple and bull rush
+// If oCreature is invalid it uses nCreatureSize
+int GetCreatureSizeModifier(object oCreature = OBJECT_INVALID, int nCreatureSize = CREATURE_SIZE_MEDIUM);
+
+// Gets the creature size modifier for attack rolls
+// If oCreature is invalid it uses nCreatureSize
+int GetCreatureSizeAttackModifier(object oCreature = OBJECT_INVALID, int nCreatureSize = CREATURE_SIZE_MEDIUM);
+
 // Does a grapple check based on the input characteristics along with feedback to the target/caster
-//   Grapple checks are made with an opposed roll; caster: 1d20 + caster level (to a maximum of 20) +
-//   4 (tentacle's strength modifier) + 4 (tentacle' size modifier) vs. target: 1d20 + base attack bonus + strength modifier + size modifier.
-int DoGrapple(object oTarget, object oCaster, int nCasterBABRoll, int nCasterStrength, int nCasterSize);
+// Grapple checks are made with an opposed roll;
+//     oGrappler: 1d20 + bab + strength modifier + size modifier
+// vs. oGrappled: 1d20 + base attack bonus + strength modifier + size modifier.
+// Returns TRUE if oGrappler manages to grapple oGrappled (ties go to oTarget)
+int DoGrappleCheck(object oGrappled, object oGrappler, int nGrapplerBAB, int nGrapplerStrengthModifier, int nGrapplerSize = CREATURE_SIZE_MEDIUM);
+
+// Bull rush checks are made with an opposed roll;
+//   oBullRusher: 1d20 + strength modifier + size modifier + charge bonus
+// vs. oDefender: 1d20 + strength modifier + size modifier.
+// Returns TRUE if oTarget is rushed by oBullRusher (ties defender wins)
+int DoBullRushCheck(object oDefender, object oBullRusher, int nBullRusherStrengthModifier, int nBullRusherSize = CREATURE_SIZE_MEDIUM, int nBullRusherChargeBonus = 2);
+
+// Attack checks are made with an opposed roll (with a critical only on a 20);
+//   oAttacker: 1d20 + BAB (or caster level) + ability modifier (strength or if a spell can be int, etc.)
+//              + misc modifier (eg: Bigby hand size modifier, attack bonuses, etc.) + size modifier
+// vs. oTarget: AC
+// Returns 0 on miss, 1 on hit or 2 on critical hit
+int DoAttackRoll(object oTarget, object oAttacker, int nAttackerBAB, int nAttackerAbilityModifier, int nAttackerMiscModifier, int nAttackerSize = CREATURE_SIZE_MEDIUM);
 
 // These global variables are used in most spell scripts and are initialised here to be consistent
 // NB: You can't reuse these variables in the very functions in this list, so we pass them in.
@@ -773,16 +799,7 @@ int GetSpellSaveDCCalculated(object oCaster, int nSpellId, int nFeatId, object o
         }
         // Now use the class to get the data
         // Not a spellcaster? oh well!
-        int nAbilityModifier = 0;
-        switch (HashString(Get2DAString("classes", "SpellcastingAbil", nHighestCasterClass)))
-        {
-            case "STR": nAbilityModifier = GetAbilityModifier(ABILITY_STRENGTH, oCaster); break;
-            case "DEX": nAbilityModifier = GetAbilityModifier(ABILITY_DEXTERITY, oCaster); break;
-            case "CON": nAbilityModifier = GetAbilityModifier(ABILITY_CONSTITUTION, oCaster); break;
-            case "WIS": nAbilityModifier = GetAbilityModifier(ABILITY_WISDOM, oCaster); break;
-            case "INT": nAbilityModifier = GetAbilityModifier(ABILITY_INTELLIGENCE, oCaster); break;
-            case "CHA": nAbilityModifier = GetAbilityModifier(ABILITY_CHARISMA, oCaster); break;
-        }
+        int nAbilityModifier = GetClassSpellcasterAbilityModifier(nHighestCasterClass);
         int nSpellSchool = GetSpellSchool(nSpellId);
         int nFeatBonus = GetSpellFocusBonus(oCaster, nSpellSchool);
 
@@ -797,6 +814,23 @@ int GetSpellSaveDCCalculated(object oCaster, int nSpellId, int nFeatId, object o
     // Need to save it back to AOE's...somehow
 
     return nSpellSaveDC;
+}
+
+// Gets the given classes ability modifier or 0 if not a spellcasting class
+int GetClassSpellcasterAbilityModifier(int nClass)
+{
+    // Not a spellcaster? oh well!
+    int nAbilityModifier = 0;
+    switch (HashString(Get2DAString("classes", "SpellcastingAbil", nClass)))
+    {
+        case "STR": nAbilityModifier = GetAbilityModifier(ABILITY_STRENGTH, oCaster); break;
+        case "DEX": nAbilityModifier = GetAbilityModifier(ABILITY_DEXTERITY, oCaster); break;
+        case "CON": nAbilityModifier = GetAbilityModifier(ABILITY_CONSTITUTION, oCaster); break;
+        case "WIS": nAbilityModifier = GetAbilityModifier(ABILITY_WISDOM, oCaster); break;
+        case "INT": nAbilityModifier = GetAbilityModifier(ABILITY_INTELLIGENCE, oCaster); break;
+        case "CHA": nAbilityModifier = GetAbilityModifier(ABILITY_CHARISMA, oCaster); break;
+    }
+    return nAbilityModifier;
 }
 
 // Checks if the given nClass has arcane spell casting (is a spellcaster and that spellcasting is arcane).
@@ -3411,37 +3445,132 @@ int GetDamagePowerPlusValue(int nPower)
     return DAMAGE_POWER_PLUS_ONE;
 }
 
-
-// Does a grapple check based on the input characteristics along with feedback to the target/caster
-//   Grapple checks are made with an opposed roll; caster: 1d20 + caster level (to a maximum of 20) +
-//   4 (tentacle's strength modifier) + 4 (tentacle' size modifier) vs. target: 1d20 + base attack bonus + strength modifier + size modifier.
-int DoGrapple(object oTarget, object oVersus, int nVersusBAB, int nVersusStrength, int nVersusSize)
+// Gets the creature size modifier for grapple and bull rush
+// If oCreature is invalid it uses nCreatureSize
+int GetCreatureSizeModifier(object oCreature = OBJECT_INVALID, int nCreatureSize = CREATURE_SIZE_MEDIUM)
 {
-    // Amount to beat
-    int nVersusRoll = d20();
-
-    // Do check
-    int nRoll = d20();
-    int nBAB  = GetBaseAttackBonus(oTarget);
-    int nStrength = GetAbilityScore(oTarget, ABILITY_STRENGTH);
-
-    // Size bonus/penalty
-    int nSize = 0;
+    if (GetIsObjectValid(oCreature))
+    {
+        nCreatureSize = GetCreatureSize(oTarget);
+    }
+    int nModifier = 0;
     switch (GetCreatureSize(oTarget))
     {
-        case CREATURE_SIZE_TINY: nSize = -8; break;
-        case CREATURE_SIZE_SMALL: nSize = -4; break;
-        case CREATURE_SIZE_MEDIUM: nSize = 0; break;
-        case CREATURE_SIZE_LARGE: nSize = 4; break;
-        case CREATURE_SIZE_HUGE: nSize = 8; break;
+        case CREATURE_SIZE_TINY: nModifier = -8; break;
+        case CREATURE_SIZE_SMALL: nModifier = -4; break;
+        case CREATURE_SIZE_MEDIUM: nModifier = 0; break;
+        case CREATURE_SIZE_LARGE: nModifier = 4; break;
+        case CREATURE_SIZE_HUGE: nModifier = 8; break;
     }
+    return nModifier;
+}
 
-    int bResult = (nRoll + nBAB + nStrength + nSize >=  nVersusRoll + nVersusBAB + nVersusStrength + nVersusSize);
+// Gets the creature size modifier for attack rolls
+// If oCreature is invalid it uses nCreatureSize
+int GetCreatureSizeAttackModifier(object oCreature = OBJECT_INVALID, int nCreatureSize = CREATURE_SIZE_MEDIUM)
+{
+    if (GetIsObjectValid(oCreature))
+    {
+        nCreatureSize = GetCreatureSize(oTarget);
+    }
+    int nModifier = 0;
+    switch (GetCreatureSize(oTarget))
+    {
+        case CREATURE_SIZE_TINY: nModifier = 2; break;
+        case CREATURE_SIZE_SMALL: nModifier = 1; break;
+        case CREATURE_SIZE_MEDIUM: nModifier = 0; break;
+        case CREATURE_SIZE_LARGE: nModifier = -1; break;
+        case CREATURE_SIZE_HUGE: nModifier = -2; break;
+    }
+    return nModifier;
+}
+
+// Does a grapple check based on the input characteristics along with feedback to the target/caster
+// Grapple checks are made with an opposed roll;
+//     oGrappler: 1d20 + bab + strength modifier + size modifier
+// vs. oGrappled: 1d20 + base attack bonus + strength modifier + size modifier.
+// Returns TRUE if oGrappler manages to grapple oGrappled (ties go to oGrappled)
+int DoGrappleCheck(object oGrappled, object oGrappler, int nGrapplerBAB, int nGrapplerStrengthModifier, int nGrapplerSize = CREATURE_SIZE_MEDIUM)
+{
+    // oGrappler variables
+    int nGrapplerRoll = d20();
+    int nGrapplerSizeModifier = GetCreatureSizeModifier(OBJECT_INVALID, nGrapplerSize);
+    int nGrapplerModifiers = nGrapplerBAB + nGrapplerStrengthModifier + nGrapplerSizeModifier;
+
+    // oGrappled variables
+    int nGrappledRoll = d20();
+    int nGrappledBAB  = GetBaseAttackBonus(oGrappled);
+    int nGrappledStrength = GetAbilityModifier(ABILITY_STRENGTH, oGrappled);
+    int nGrappledSize = GetCreatureSizeModifier(oGrappled);
+    int nGrappledModifiers = nGrappledBAB + nGrappledStrength + nGrappledSize;
+
+    int bResult = (nGrapplerRoll + nGrapplerBAB + nGrapplerStrengthModifier + nGrapplerSizeModifier > nGrappledRoll + nGrappledModifiers);
 
     // Report result
-    SendGrappleCheckFeedbackMessage(oTarget, oVersus, bResult, nRoll, nBAB, nStrength, nSize, nVersusRoll, nVersusBAB, nVersusStrength, nVersusSize);
+    SendGrappleCheckFeedbackMessage(oGrappled, oGrappler, bResult, nGrappledRoll, nGrappledModifiers, nGrapplerRoll, nGrapplerModifiers);
 
     return bResult;
+}
+
+// Bull rush checks are made with an opposed roll;
+//   oBullRusher: 1d20 + strength modifier + size modifier + charge bonus
+// vs. oDefender: 1d20 + strength modifier + size modifier.
+// Returns TRUE if oDefender is rushed by oBullRusher (ties defender wins)
+int DoBullRushCheck(object oDefender, object oBullRusher, int nBullRusherStrengthModifier, int nBullRusherSize = CREATURE_SIZE_MEDIUM, int nBullRusherChargeBonus = 2)
+{
+    // oBullRusher variables
+    int nBullRusherRoll = d20();
+    int nBullRusherSizeModifier = GetCreatureSizeModifier(OBJECT_INVALID, nBullRusherSize);
+
+    // oDefender variables
+    int nDefenderRoll = d20();
+    int nDefenderStrengthModifier = GetAbilityModifier(ABILITY_STRENGTH, oDefender);
+    int nDefenderSizeModifier = GetCreatureSizeModifier(oDefender);
+
+    int bResult = (nBullRusherRoll + nBullRusherStrengthModifier + nBullRusherSizeModifier + nBullRusherChargeBonus > nDefenderRoll + nDefenderStrengthModifier + nDefenderSizeModifier);
+
+    // Report result
+    SendBullRushCheckFeedbackMessage(oDefender, oBullRusher, bResult, nDefenderRoll, nDefenderStrengthModifier + nDefenderSizeModifier, nBullRusherRoll, nBullRusherStrengthModifier + nBullRusherSizeModifier + nBullRusherChargeBonus);
+
+    return bResult;
+}
+
+// Attack checks are made with an opposed roll (with a critical only on a 20);
+//   oAttacker: 1d20 + BAB (or caster level) + ability modifier (strength or if a spell can be int, etc.)
+//              + misc modifier (eg: Bigby hand size modifier, attack bonuses, etc.) + size modifier
+// vs. oTarget: AC
+// Returns 0 on miss, 1 on hit or 2 on critical hit
+int DoAttackRoll(object oTarget, object oAttacker, int nAttackerBAB, int nAttackerAbilityModifier, int nAttackerMiscModifier, int nAttackerSize = CREATURE_SIZE_MEDIUM)
+{
+    // Versus variables
+    int nAttackerRoll = d20();
+    int nAttackerSizeModifier = GetCreatureSizeAttackModifier(OBJECT_INVALID, nAttackerSize);
+    int nModifiers = nAttackerAbilityModifier + nAttackerMiscModifier + nAttackerSizeModifier;
+
+    // Target variables
+    int nAC = GetAC(oTarget); // TODO: Add on bonuses of AC vs. oVersus as if an actual attack
+
+    int nResult = (nAttackerRoll + nModifiers >= nAC);
+
+    // 20 is critical
+    if (nAttackerRoll == 20)
+    {
+        nResult = 2;
+    }
+
+    // For now just hit/miss/critical.
+    int nAttackResult = ATTACK_RESULT_MISS;
+    switch (nResult)
+    {
+        case 0: nAttackResult = ATTACK_RESULT_MISS; break;
+        case 1: nAttackResult = ATTACK_RESULT_HIT_SUCCESSFUL; break;
+        case 2: nAttackResult = ATTACK_RESULT_CRITICAL_HIT; break;
+    }
+
+    // Report result
+    SendAttackRollFeedbackMessage(oTarget, oAttacker, nAttackResult, nAC, nAttackerRoll, nModifiers);
+
+    return nResult;
 }
 
 

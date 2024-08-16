@@ -74,6 +74,31 @@ const int SKILL_RESULT_CRITICAL_FAILURE       = 2;
 const int SKILL_RESULT_SUCCESS_NOT_POSSIBLE   = 3;
 const int SKILL_RESULT_AUTOMATIC_SUCCESS      = 4;
 const int SKILL_RESULT_SUCCESS_NEVER_POSSIBLE = 5;
+// Attack roll results
+const int STRREF_HIT                  = 511;
+const int STRREF_PARRIED              = 1463;
+const int STRREF_CRITICAL_HIT         = 5224;
+const int STRREF_MISS                 = 514;
+const int STRREF_RESISTED             = 53241; // for ATTACK_RESISTED
+const int STRREF_FAILED               = 53300; // for ATTACK_FAILED
+const int STRREF_AUTOMATIC_HIT        = 61628;
+const int STRREF_TARGET_CONCEALED     = 62337;
+const int STRREF_ATTACKER_MISS_CHANCE = 62336;
+const int STRREF_DEVASTATING_CRITICAL = 1769;
+// Results to get above TLK strings (not implemented yet, only HIT and MISS are)
+const int ATTACK_RESULT_INVALID              = 0;
+const int ATTACK_RESULT_HIT_SUCCESSFUL       = 1;
+const int ATTACK_RESULT_PARRIED              = 2;
+const int ATTACK_RESULT_CRITICAL_HIT         = 3;
+const int ATTACK_RESULT_MISS                 = 4;
+const int ATTACK_RESULT_ATTACK_RESISTED      = 5;
+const int ATTACK_RESULT_ATTACK_FAILED        = 6;
+const int ATTACK_RESULT_AUTOMATIC_HIT        = 7;
+const int ATTACK_RESULT_TARGET_CONCEALED     = 8;
+const int ATTACK_RESULT_ATTACKER_MISS_CHANCE = 9;
+const int ATTACK_RESULT_DEVASTATING_CRITICAL = 10;
+
+const int STRREF_VERSUS = 7603; // "vs."
 
 // Gets the name of oObject if oSenser can see or hear them (and oObject is valid!), else returns "Someone"
 // Returns the name properly in these cases:
@@ -110,7 +135,15 @@ void SendSkillFeedbackMessage(object oObject, object oVersus, int nSkill, int nS
 void SendAbilityCheckFeedbackMessage(object oObject, object oVersus, int nAbility, int bResult, int nRoll, int nAbilityScore, int nDC);
 
 // Provides a new feedback message for grapple checks
-void SendGrappleCheckFeedbackMessage(object oObject, object oVersus, int bResult, int nObjectRoll, int nObjectBAB, int nObjectStrength, int nObjectSizeModifier, int nVersusRoll, int nVersusBAB, int nVersusStrength, int nVersusSizeModifier);
+void SendGrappleCheckFeedbackMessage(object oGrappled, object oGrappler, int bResult, int nGrappledRoll, int nGrappledModifiers, int nGrapplerRoll, int nGrapplerModifiers);
+
+// Provides a new feedback message for bull rush checks
+void SendBullRushCheckFeedbackMessage(object oDefender, object oBullRusher, int bResult, int nDefenderRoll, int nDefenderModifier, int nBullRusherRoll, int nBullRusherModifier);
+
+// Provides a new feedback message for attack roll checks. Note does not
+// provide critical hit feedback as part of the message.
+// Use ATTACK_RESULT constants for nAttackResult
+void SendAttackRollFeedbackMessage(object oTarget, object oAttacker, int nAttackResult, int nTargetAC, int nAttackerRoll, int nAttackerModifier);
 
 // Gets the name of oObject if oSenser can see or hear them (and oObject is valid!), else returns "Someone"
 // If not a creature will just get the name. If oObject and oSenser is the same returns the name.
@@ -118,15 +151,15 @@ void SendGrappleCheckFeedbackMessage(object oObject, object oVersus, int bResult
 string GetNameOrSomeone(object oObject, object oSenser)
 {
     // If oObject is valid and oCaster knows of them use that name, else use "Someone" TLK string
-    if (GetIsObjectValid(oTarget) && (!GetIsObjectValid(oSenser) || oObject == oSenser || GetObjectType(oTarget) != OBJECT_TYPE_CREATURE || GetObjectSeen(oSenser, oTarget) || GetObjectHeard(oSenser, oTarget)))
+    if (GetIsObjectValid(oObject) && (!GetIsObjectValid(oSenser) || oObject == oSenser || GetObjectType(oObject) != OBJECT_TYPE_CREATURE || GetObjectSeen(oSenser, oObject) || GetObjectHeard(oSenser, oObject)))
     {
-        if (GetIsPC(oTarget))
+        if (GetIsPC(oObject))
         {
-            return FEEDBACK_COLOUR_CLIENTNAME + GetName(oTarget) + FEEDBACK_COLOUR_END;
+            return FEEDBACK_COLOUR_CLIENTNAME + GetName(oObject) + FEEDBACK_COLOUR_END;
         }
         else
         {
-            return FEEDBACK_COLOUR_OTHERNAME + GetName(oTarget) + FEEDBACK_COLOUR_END;
+            return FEEDBACK_COLOUR_OTHERNAME + GetName(oObject) + FEEDBACK_COLOUR_END;
         }
     }
     return GetStringByStrRef(STRREF_SOMEONE);
@@ -388,43 +421,138 @@ void SendAbilityCheckFeedbackMessage(object oObject, object oVersus, int nAbilit
 }
 
 // Provides a new feedback message for grapple checks
-void SendGrappleCheckFeedbackMessage(object oObject, object oVersus, int bResult, int nObjectRoll, int nObjectBAB, int nObjectStrength, int nObjectSizeModifier, int nVersusRoll, int nVersusBAB, int nVersusStrength, int nVersusSizeModifier)
+void SendGrappleCheckFeedbackMessage(object oGrappled, object oGrappler, int bResult, int nGrappledRoll, int nGrappledModifiers, int nGrapplerRoll, int nGrapplerModifiers)
 {
-    string sResult = bResult == TRUE ? GetStringByStrRef(STRREF_SUCCESS) : GetStringByStrRef(STRREF_FAILURE);
+    // 2478 = *Target Grappled!*
+    // 83309 = *Target evades grapple attempt*
+    string sResult = bResult == TRUE ? GetStringByStrRef(2478) : GetStringByStrRef(83309);
 
     // Floating text string on oObject regardless of the result type but not sent to log (simplified)
-    FloatingTextStringOnCreature("Grapple : *" + sResult + "*", oObject, FALSE, FALSE);
-
-    // Complicated message like skills
-    int nTotalObject = nObjectRoll + nObjectBAB + nObjectStrength + nObjectSizeModifier;
-    int nTotalObjectModifiers = nObjectBAB + nObjectStrength + nObjectSizeModifier;
-    int nTotalVersus = nVersusRoll + nVersusBAB + nVersusStrength + nVersusSizeModifier;
-    int nTotalVersusModifiers = nVersusBAB + nVersusStrength + nVersusSizeModifier;
+    FloatingTextStringOnCreature(sResult, oGrappled, FALSE, FALSE);
 
     // Shorter version (just d20 + modifiers)
-    string sMessage = " : Grapple Check : *" + sResult +
-                                                "* : (" + IntToString(nObjectRoll) +
-                                                           GetPositiveOrNegativeSign(nTotalObjectModifiers) + IntToString(abs(nTotalObjectModifiers)) +
-                                                " = " + IntToString(nTotalObject) +
-                                                " vs. " +  IntToString(nVersusRoll) +
-                                                           GetPositiveOrNegativeSign(nTotalVersusModifiers) + IntToString(abs(nTotalVersusModifiers)) +
-                                                " = " + IntToString(nTotalVersus) +
+    string sMessage = " : " + sResult +
+                                                " : (" + IntToString(nGrapplerRoll) +
+                                                           GetPositiveOrNegativeSign(nGrapplerModifiers) + IntToString(abs(nGrapplerModifiers)) +
+                                                " = " + IntToString(nGrapplerRoll + nGrapplerModifiers) +
+                                                " vs. " +  IntToString(nGrappledRoll) +
+                                                           GetPositiveOrNegativeSign(nGrappledModifiers) + IntToString(abs(nGrappledModifiers)) +
+                                                " = " + IntToString(nGrappledRoll + nGrappledModifiers) +
                                                 ")";
 
-    // Original version: Format all the things with +/- as needed
-    /*
-    string sMessage = " : Opposed Grapple Check : *" + sResult + "* : (" + IntToString(nObjectRoll) +
-                                                                           GetPositiveOrNegativeSign(nObjectBAB) + IntToString(abs(nObjectBAB)) +
-                                                                           GetPositiveOrNegativeSign(nObjectStrength) + IntToString(abs(nObjectStrength)) +
-                                                                           GetPositiveOrNegativeSign(nObjectSizeModifier) + IntToString(abs(nObjectSizeModifier)) +
-                                                " = " + IntToString(nTotalObject) +
-                                                " vs. " +  IntToString(nVersusRoll) +
-                                                               GetPositiveOrNegativeSign(nVersusBAB) + IntToString(abs(nVersusBAB)) +
-                                                               GetPositiveOrNegativeSign(nVersusStrength) + IntToString(abs(nVersusStrength)) +
-                                                               GetPositiveOrNegativeSign(nVersusSizeModifier) + IntToString(abs(nVersusSizeModifier)) +
-                                                " = " + IntToString(nTotalVersus) +
-                                                ")";
-    */
-    SendMessageToPC(oObject, FEEDBACK_COLOUR_SKILLS + GetNameOrSomeone(oObject) + sMessage + FEEDBACK_COLOUR_END);
-    if (GetIsObjectValid(oVersus) && oVersus != oTarget) SendMessageToPC(oVersus, FEEDBACK_COLOUR_SKILLS + GetNameOrSomeone(oObject, oVersus) + sMessage + FEEDBACK_COLOUR_END);
+    if (GetIsObjectValid(oGrappled))
+    {
+        SendMessageToPC(oGrappled, FEEDBACK_COLOUR_COMBAT + GetNameOrSomeone(oGrappler, oGrappled) + " " + GetStringByStrRef(STRREF_VERSUS) + " " + GetNameOrSomeone(oGrappled) + sMessage + FEEDBACK_COLOUR_END);
+    }
+    if (GetIsObjectValid(oGrappler) && oGrappler != oGrappled)
+    {
+        SendMessageToPC(oGrappler, FEEDBACK_COLOUR_COMBAT + GetNameOrSomeone(oGrappler) + " " + GetStringByStrRef(STRREF_VERSUS) + " " + GetNameOrSomeone(oGrappled, oGrappler) + sMessage + FEEDBACK_COLOUR_END);
+    }
 }
+
+// Provides a new feedback message for bull rush checks
+void SendBullRushCheckFeedbackMessage(object oDefender, object oBullRusher, int bResult, int nDefenderRoll, int nDefenderModifier, int nBullRusherRoll, int nBullRusherModifier)
+{
+    // 8966 Bull Rush Successful
+    // 8967 Bull Rush Failed
+    string sResult = bResult == TRUE ? GetStringByStrRef(8966) : GetStringByStrRef(8967);
+
+    // Floating text string on oDefender regardless of the result type but not sent to log (simplified)
+    FloatingTextStringOnCreature("Bull Rush : *" + sResult + "*", oDefender, FALSE, FALSE);
+
+    // Shorter version (just d20 + modifiers)
+    string sMessage = " : *" + sResult +
+                                                "* : (" + IntToString(nBullRusherRoll) +
+                                                           GetPositiveOrNegativeSign(nBullRusherModifier) + IntToString(abs(nBullRusherModifier)) +
+                                                " = " + IntToString(nBullRusherRoll + nBullRusherModifier) +
+                                                " vs. " +  IntToString(nDefenderRoll) +
+                                                           GetPositiveOrNegativeSign(nDefenderModifier) + IntToString(abs(nDefenderModifier)) +
+                                                " = " + IntToString(nDefenderRoll + nDefenderModifier) +
+                                                ")";
+
+    if (GetIsObjectValid(oDefender))
+    {
+        SendMessageToPC(oDefender, FEEDBACK_COLOUR_COMBAT + GetNameOrSomeone(oBullRusher, oDefender) + " " + GetStringByStrRef(STRREF_VERSUS) + " " + GetNameOrSomeone(oDefender) + sMessage + FEEDBACK_COLOUR_END);
+    }
+    if (GetIsObjectValid(oBullRusher) && oBullRusher != oDefender)
+    {
+        SendMessageToPC(oBullRusher, FEEDBACK_COLOUR_COMBAT + GetNameOrSomeone(oBullRusher) + " " + GetStringByStrRef(STRREF_VERSUS) + " " + GetNameOrSomeone(oDefender, oBullRusher) + sMessage + FEEDBACK_COLOUR_END);
+    }
+}
+
+// Provides a new feedback message for attack roll checks. Note does not
+// provide critical hit feedback as part of the message.
+// Use ATTACK_RESULT constants for nAttackResult
+void SendAttackRollFeedbackMessage(object oTarget, object oAttacker, int nAttackResult, int nTargetAC, int nAttackerRoll, int nAttackerModifier)
+{
+    string sResult;
+    switch (nAttackResult)
+    {
+        case ATTACK_RESULT_HIT_SUCCESSFUL: sResult = GetStringByStrRef(STRREF_HIT); break;
+        case ATTACK_RESULT_PARRIED: sResult = GetStringByStrRef(STRREF_PARRIED); break;
+        case ATTACK_RESULT_CRITICAL_HIT: sResult = GetStringByStrRef(STRREF_CRITICAL_HIT); break;
+        case ATTACK_RESULT_MISS: sResult = GetStringByStrRef(STRREF_MISS); break;
+        case ATTACK_RESULT_ATTACK_RESISTED: sResult = GetStringByStrRef(STRREF_RESISTED); break;
+        case ATTACK_RESULT_ATTACK_FAILED: sResult = GetStringByStrRef(STRREF_FAILED); break;
+        case ATTACK_RESULT_AUTOMATIC_HIT: sResult = GetStringByStrRef(STRREF_AUTOMATIC_HIT); break;
+        case ATTACK_RESULT_TARGET_CONCEALED: sResult = GetStringByStrRef(STRREF_TARGET_CONCEALED); break;
+        case ATTACK_RESULT_ATTACKER_MISS_CHANCE: sResult = GetStringByStrRef(STRREF_ATTACKER_MISS_CHANCE); break;
+        case ATTACK_RESULT_DEVASTATING_CRITICAL: sResult = GetStringByStrRef(STRREF_DEVASTATING_CRITICAL); break;
+        default: // OP_Debug()
+        break;
+    }
+
+    // Floating text string on oObject regardless of the result type but not sent to log (simplified)
+    FloatingTextStringOnCreature("Attack : *" + sResult + "*", oTarget, FALSE, FALSE);
+
+    // Game version (no combat debugging) there isn't actually a use for nTargetAC:
+    // 10470   <CUSTOM0> attacks <CUSTOM1> : *<CUSTOM2>* : (<CUSTOM3> <CUSTOM4> <CUSTOM5> = <CUSTOM6><CUSTOM7>)
+    // <CUSTOM0> oVersus
+    // <CUSTOM1> oTarget
+    // <CUSTOM2> Attack result text ("Hit")
+    // <CUSTOM3> To hit roll
+    // <CUSTOM4> The sign (+/-)
+    // <CUSTOM5> To hit modifier
+    // <CUSTOM6> Total
+    // <CUSTOM7> Info if a thread (ignored in this case).
+
+    // Replace parts other than Custom 1/2.
+    string sMessage = GetStringByStrRef(10470);
+    sMessage = RegExpReplace("<CUSTOM2>", sMessage, sResult, REGEXP_BASIC);
+    sMessage = RegExpReplace("<CUSTOM3>", sMessage, IntToString(nAttackerRoll), REGEXP_BASIC);
+    sMessage = RegExpReplace("<CUSTOM4>", sMessage, GetPositiveOrNegativeSign(nAttackerModifier), REGEXP_BASIC);
+    sMessage = RegExpReplace("<CUSTOM5>", sMessage, IntToString(abs(nAttackerModifier)), REGEXP_BASIC);
+    sMessage = RegExpReplace("<CUSTOM6>", sMessage, IntToString(nAttackerRoll + nAttackerModifier), REGEXP_BASIC);
+    sMessage = RegExpReplace("<CUSTOM7>", sMessage, "", REGEXP_BASIC);
+
+    // Send the feedback to oAttacker
+    if (GetIsObjectValid(oAttacker) && oAttacker != oTarget)
+    {
+        // Replace <CUSTOM1> with the given named target
+        string sAttackerMessage = RegExpReplace("<CUSTOM1>", sMessage, GetNameOrSomeone(oTarget, oAttacker), REGEXP_BASIC);
+
+        // Colour message orange
+        sAttackerMessage = FEEDBACK_COLOUR_COMBAT + sAttackerMessage + FEEDBACK_COLOUR_END;
+
+        // Then we put in CUSTOM0 the attacker, with different colours
+        sAttackerMessage = RegExpReplace("<CUSTOM0>", sAttackerMessage, GetNameOrSomeone(oAttacker), REGEXP_BASIC);
+
+        SendMessageToPC(oAttacker, sAttackerMessage);
+    }
+
+    // Same for the target except always use their name
+    if (GetIsObjectValid(oTarget))
+    {
+        // Replace <CUSTOM1> with the given named target
+        string sTargetMessage = RegExpReplace("<CUSTOM1>", sMessage, GetNameOrSomeone(oTarget), REGEXP_BASIC);
+
+        // Colour message orange
+        sTargetMessage = FEEDBACK_COLOUR_COMBAT + sTargetMessage + FEEDBACK_COLOUR_END;
+
+        // Then we put in CUSTOM0 the attacker, with different colours
+        sTargetMessage = RegExpReplace("<CUSTOM0>", sTargetMessage, GetNameOrSomeone(oAttacker, oTarget), REGEXP_BASIC);
+
+        SendMessageToPC(oTarget, sTargetMessage);
+    }
+}
+

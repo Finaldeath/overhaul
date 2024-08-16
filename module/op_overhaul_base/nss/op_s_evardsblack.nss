@@ -96,7 +96,7 @@ void DoTentacle(float fDelay)
 {
     if (!DoResistSpell(oTarget, oCaster, fDelay, FALSE, TRUE, FALSE))
     {
-        if (!DoGrapple(oTarget, oCaster, min(20, nCasterLevel), 4, 4))
+        if (DoGrappleCheck(oTarget, oCaster, min(20, nCasterLevel), 4, CREATURE_SIZE_LARGE))
         {
             // Standing around, not quite Entangle but near to it
             effect eLink = EffectLinkEffects(EffectCutsceneImmobilize(),
