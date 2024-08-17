@@ -117,6 +117,7 @@ object GetSpellCastItemCalculated();
 object GetSpellCaster();
 
 // This gets the spell ID but overrides it if we are calling a spell with ExecuteScript
+// or in the case a Master spell is called we subsitute a random subspell (AI casting weirdness)
 int GetSpellIdCalculated();
 
 // This gets the SPELL_TYPE_* the spell ID is classified as (UserType column)
@@ -675,6 +676,7 @@ object GetSpellCaster()
 }
 
 // This gets the spell ID but overrides it if we are calling a spell with ExecuteScript
+// or in the case a Master spell is called we subsitute a random subspell (AI casting weirdness)
 int GetSpellIdCalculated()
 {
     if (GetIsStateScript()) return SPELL_INVALID;
@@ -695,8 +697,41 @@ int GetSpellIdCalculated()
         return GetEffectSpellId(GetLastRunScriptEffect());
     }
 
-    // Else it's a spell script or AOE script
-    return GetSpellId();
+    // Get the main spell Id from spell script/AOE script
+    // TODO: Maybe add some error checks here (shouldn't be anything other than
+    // a spell script or a AOE script at this point!)
+    int nReturn = GetSpellId();
+
+    // If it is a master spell we need to randomly get a subspell
+    string sSubSpell = Get2DAString("spells", "SubRadSpell1", nReturn);
+
+    if (sSubSpell != "")
+    {
+        // Randomise depending on the highest one
+        int nSubSpell, nHighestSubSpell = 1;
+        for (nSubSpell = 8; nSubSpell >= 1; nSubSpell--)
+        {
+            if (Get2DAString("spells", "SubRadSpell" + IntToString(nSubSpell), nReturn) != "")
+            {
+                nHighestSubSpell = nSubSpell;
+                break;
+            }
+        }
+        // Randomise choice
+        int nChoice = Random(nHighestSubSpell) + 1;
+        sSubSpell = Get2DAString("spells", "SubRadSpell" + IntToString(nChoice), nReturn);
+
+        if (sSubSpell == "")
+        {
+            Debug("[GetSpellIdCalculated] Error: Found random subspell to be invalid? Column: SubRadSpell" + IntToString(nChoice), ERROR);
+        }
+        else
+        {
+            Debug("[GetSpellIdCalculated] Info: Replaced master spell with subspell: " + sSubSpell);
+            nReturn = StringToInt(sSubSpell);
+        }
+    }
+    return nReturn;
 }
 
 // This gets the SPELL_TYPE_* the spell ID is classified as (UserType column)
