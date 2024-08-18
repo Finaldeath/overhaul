@@ -1769,57 +1769,69 @@ int GetSpellTargetValid(object oTarget, object oCaster, int nTargetType)
 
     int bReturnValue = FALSE;
 
-    switch (nTargetType)
+    // Check what can be actually tested / has saving throws to do
+    int nObjectType = GetObjectType(oTarget);
+    if (nObjectType == OBJECT_TYPE_CREATURE ||
+        nObjectType == OBJECT_TYPE_DOOR ||
+        nObjectType == OBJECT_TYPE_PLACEABLE)
     {
-        // This kind of spell will affect all friendlies and anyone in my party/faction, even if we are upset with each other currently.
-        case SPELL_TARGET_ALLALLIES:
+        switch (nTargetType)
         {
-            Debug("[INFO] GetSpellTargetValid: All allies oTarget: " + GetName(oTarget) + " GetIsFriend: " + IntToString(GetIsFriend(oTarget, oCaster)) + " GetFactionEqual: " + IntToString(GetFactionEqual(oTarget, oCaster)), INFO);
-            if (GetIsFriend(oTarget, oCaster) || GetFactionEqual(oTarget, oCaster))
+            // This kind of spell will affect all friendlies and anyone in my party/faction, even if we are upset with each other currently.
+            case SPELL_TARGET_ALLALLIES:
+            {
+                Debug("[INFO] GetSpellTargetValid: All allies oTarget: " + GetName(oTarget) + " GetIsFriend: " + IntToString(GetIsFriend(oTarget, oCaster)) + " GetFactionEqual: " + IntToString(GetFactionEqual(oTarget, oCaster)), INFO);
+                if (GetIsFriend(oTarget, oCaster) || GetFactionEqual(oTarget, oCaster))
+                {
+                    bReturnValue = TRUE;
+                }
+            }
+            break;
+            case SPELL_TARGET_STANDARDHOSTILE:
+            {
+                Debug("[INFO] GetSpellTargetValid: Standard hostile oTarget: " + GetName(oTarget) + " GetIsReactionTypeFriendly: " + IntToString(GetIsReactionTypeFriendly(oTarget, oCaster)), INFO);
+                // This has been rewritten. We do a simple check for the reaction type now.
+                // Previously there was a lot of checks for henchmen, AOEs that PCs cast, etc.
+                if (!GetIsReactionTypeFriendly(oTarget, oCaster))
+                {
+                    bReturnValue = TRUE;
+                }
+            }
+            break;
+            // Only harms enemies, ever, such as Call Lightning
+            case SPELL_TARGET_SELECTIVEHOSTILE:
+            {
+                Debug("[INFO] GetSpellTargetValid: Selective hostile oTarget: " + GetName(oTarget) + " GetIsEnemy: " + IntToString(GetIsEnemy(oTarget, oCaster)), INFO);
+                if (GetIsEnemy(oTarget, oCaster))
+                {
+                    bReturnValue = TRUE;
+                }
+            }
+            break;
+            case SPELL_TARGET_ANYTHING:
             {
                 bReturnValue = TRUE;
             }
-        }
-        break;
-        case SPELL_TARGET_STANDARDHOSTILE:
-        {
-            Debug("[INFO] GetSpellTargetValid: Standard hostile oTarget: " + GetName(oTarget) + " GetIsReactionTypeFriendly: " + IntToString(GetIsReactionTypeFriendly(oTarget, oCaster)), INFO);
-            // This has been rewritten. We do a simple check for the reaction type now.
-            // Previously there was a lot of checks for henchmen, AOEs that PCs cast, etc.
-            if (!GetIsReactionTypeFriendly(oTarget, oCaster))
+            break;
+            default:
             {
-                bReturnValue = TRUE;
+                Debug("[ERROR] GetSpellTargetValid: Invalid input: " + IntToString(nTargetType), ERROR);
             }
+            break;
         }
-        break;
-        // Only harms enemies, ever, such as Call Lightning
-        case SPELL_TARGET_SELECTIVEHOSTILE:
-        {
-            Debug("[INFO] GetSpellTargetValid: Selective hostile oTarget: " + GetName(oTarget) + " GetIsEnemy: " + IntToString(GetIsEnemy(oTarget, oCaster)), INFO);
-            if (GetIsEnemy(oTarget, oCaster))
-            {
-                bReturnValue = TRUE;
-            }
-        }
-        break;
-        case SPELL_TARGET_ANYTHING:
-        {
-            bReturnValue = TRUE;
-        }
-        break;
-        default:
-        {
-            Debug("[ERROR] GetSpellTargetValid: Invalid input: " + IntToString(nTargetType), ERROR);
-        }
-        break;
-    }
 
-    // If valid we do a will save for illusion spells
-    if (bReturnValue)
+        // If valid we do a will save for illusion spells
+        if (bReturnValue)
+        {
+            DoIllusionSavingThrow(oTarget, oCaster);
+        }
+    }
+    else
     {
-        DoIllusionSavingThrow(oTarget, oCaster);
+        // Likely AOE or Item, which can be affected by certain AOE scripts or whatnot
+        // We always assume these are valid targets (note cannot do illusion saving throw)
+        bReturnValue = TRUE;
     }
-
     return bReturnValue;
 }
 
