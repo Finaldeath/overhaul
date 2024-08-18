@@ -2067,7 +2067,6 @@ void ApplyVisualEffectAtLocation(int nVFX, location lTarget, int bMissEffect = F
     if (sType == "" || sType == "D" || sType == "B")
     {
         Debug("[ApplyVisualEffectToObject] VFX invalid or a Beam/Duration type: " + IntToString(nVFX), ERROR);
-        return;
     }
 
     effect eVFX = EffectVisualEffect(nVFX, bMissEffect, fScale, vTranslate, vRotate);
