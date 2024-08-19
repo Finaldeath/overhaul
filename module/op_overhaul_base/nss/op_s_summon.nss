@@ -34,21 +34,9 @@
 #include "op_i_spells"
 
 // Get the last summon and fire a VFX at it
-void VisualAtSummonsLocation(int nVFX)
-{
-    int nNth = 1;
-    object oLastValid;
-    object oSummon = GetAssociate(ASSOCIATE_TYPE_SUMMONED, oCaster, nNth);
-    while (GetIsObjectValid(oSummon))
-    {
-        oLastValid = oSummon;
-        oSummon = GetAssociate(ASSOCIATE_TYPE_SUMMONED, oCaster, ++nNth);
-    }
-    if (GetIsObjectValid(oLastValid))
-    {
-        ApplyVisualEffectAtLocation(nVFX, GetLocation(oLastValid));
-    }
-}
+void VisualAtSummonsLocation(int nVFX);
+// Creates the weapon that the creature will be using.
+void CreatePersistentBlade(string sSummonResref, int nAttackBonus, float fDuration);
 
 void main()
 {
@@ -341,6 +329,13 @@ void main()
             fDuration = GetDuration(24, ROUNDS);
         }
         break;
+        case SPELL_SHELGARNS_PERSISTENT_BLADE:
+        {
+            fDuration = GetDuration(max(1, nCasterLevel/2), MINUTES);
+            eSummon = EffectSummonCreature("X2_S_FAERIE001", VFX_FNF_SUMMON_MONSTER_1);
+            DelayCommand(1.0, CreatePersistentBlade("X2_S_FAERIE001", nCasterAbilityModifier/2, fDuration));
+        }
+        break;
         default:
         {
             Debug("[op_s_aoeeffect] No valid spell ID passed in: " + IntToString(nSpellId));
@@ -371,3 +366,55 @@ void main()
         ApplyVisualEffectAtLocation(nImpact, lTarget);
     }
 }
+
+// Get the last summon and fire a VFX at it
+void VisualAtSummonsLocation(int nVFX)
+{
+    int nNth = 1;
+    object oLastValid;
+    object oSummon = GetAssociate(ASSOCIATE_TYPE_SUMMONED, oCaster, nNth);
+    while (GetIsObjectValid(oSummon))
+    {
+        oLastValid = oSummon;
+        oSummon = GetAssociate(ASSOCIATE_TYPE_SUMMONED, oCaster, ++nNth);
+    }
+    if (GetIsObjectValid(oLastValid))
+    {
+        ApplyVisualEffectAtLocation(nVFX, GetLocation(oLastValid));
+    }
+}
+
+// Creates the weapon that the creature will be using.
+void CreatePersistentBlade(string sSummonResref, int nAttackBonus, float fDuration)
+{
+    // Find the right summon
+    object oBlade, oSummon = GetAssociate(ASSOCIATE_TYPE_SUMMONED);
+    while (GetIsObjectValid(oSummon))
+    {
+        if (GetResRef(oSummon) == GetStringLowerCase(sSummonResref) &&
+           !GetLocalInt(oSummon, "SETUP_DONE"))
+        {
+            SetLocalInt(oSummon, "SETUP_DONE", TRUE);
+            oBlade = oSummon;
+            break;
+        }
+    }
+
+    if (GetIsObjectValid(oBlade))
+    {
+        // TODO: Have the template include the blade already, like...why not?
+
+        // Create item on the creature, epuip it and add properties.
+        object oWeapon = CreateItemOnObject("NW_WSWDG001", oBlade);
+        // GZ: Fix for weapon being dropped when killed
+        SetDroppableFlag(oWeapon, FALSE);
+        AssignCommand(oBlade, ActionEquipItem(oWeapon, INVENTORY_SLOT_RIGHTHAND));
+        // GZ: Check to prevent invalid item properties from being applies
+        if (nAttackBonus > 0)
+        {
+            AddItemProperty(DURATION_TYPE_TEMPORARY, ItemPropertyAttackBonus(nAttackBonus), oWeapon,fDuration);
+        }
+        AddItemProperty(DURATION_TYPE_TEMPORARY, ItemPropertyDamageReduction(IP_CONST_DAMAGEREDUCTION_1, 5), oWeapon, fDuration);
+    }
+}
+

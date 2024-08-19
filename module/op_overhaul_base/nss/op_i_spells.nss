@@ -26,6 +26,7 @@
     nSpellSaveDC - the Spell Save DC (if a proper spell)
     nCasterClass - Caster class
     nCasterLevel - the Caster Level
+    nCasterAbilityModifier - The casters ability modifier bonus (eg Clerics Wisdom of 20, this would be 5).
     nMetaMagic - Metamagic feat
     nSpellLevel - Spell level
     bSpontaneous - Spontaneously cast or not
@@ -132,7 +133,8 @@ int GetSpellIsHostile(int nSpellIdToCheck);
 int GetSpellSaveDCCalculated(object oCaster, int nSpellIdToCheck, int nFeatId, object oCastItem, int nSpellType);
 
 // Gets the given classes ability modifier or 0 if not a spellcasting class
-int GetClassSpellcasterAbilityModifier(int nClass);
+// If oCastItem is valid we'll use the default stat modifier, 16, used for items currently.
+int GetClassSpellcasterAbilityModifier(int nClass, object oCastItem = OBJECT_INVALID);
 
 // This calculates the spell caster level for any additional bonuses due to feats or similar.
 // For a AOE pass in it as the oCaster, then it uses the stored caster level.
@@ -547,23 +549,24 @@ int DoAttackRoll(object oTarget, object oAttacker, int nAttackerBAB, int nAttack
 
 // These global variables are used in most spell scripts and are initialised here to be consistent
 // NB: You can't reuse these variables in the very functions in this list, so we pass them in.
-object oCastItem         = GetSpellCastItemCalculated();
-object oCaster           = GetSpellCaster();
-object oTarget           = GetSpellTargetObjectCalculated();
-location lTarget         = GetSpellTargetLocationCalculated(oTarget);
-int nSpellId             = GetSpellIdCalculated();
-int nFeatId              = GetSpellFeatId();
-int nSpellType           = GetSpellType(nSpellId);
-int nSpellSchool         = GetSpellSchool(nSpellId);
-int nSpellSaveDC         = GetSpellSaveDCCalculated(oCaster, nSpellId, nFeatId, oCastItem, nSpellType);
-int nCasterClass         = GetLastSpellCastClassCalculated();
-int nCasterLevel         = GetCasterLevelCalculated(oCaster, nSpellId, nFeatId, nCasterClass);
-int nMetaMagic           = GetMetaMagicFeatCalculated();
-int nSpellLevel          = GetLastSpellLevelCalculated();
-int bSpontaneous         = GetSpellCastSpontaneouslyCalculated();
-int bHostile             = GetSpellIsHostile(nSpellId);
-int bIllusionary         = GetSpellIsIllusionary();
-int nIllusionaryStrength = GetSpellIllusionaryStrength(bIllusionary);
+object oCastItem           = GetSpellCastItemCalculated();
+object oCaster             = GetSpellCaster();
+object oTarget             = GetSpellTargetObjectCalculated();
+location lTarget           = GetSpellTargetLocationCalculated(oTarget);
+int nSpellId               = GetSpellIdCalculated();
+int nFeatId                = GetSpellFeatId();
+int nSpellType             = GetSpellType(nSpellId);
+int nSpellSchool           = GetSpellSchool(nSpellId);
+int nSpellSaveDC           = GetSpellSaveDCCalculated(oCaster, nSpellId, nFeatId, oCastItem, nSpellType);
+int nCasterClass           = GetLastSpellCastClassCalculated();
+int nCasterLevel           = GetCasterLevelCalculated(oCaster, nSpellId, nFeatId, nCasterClass);
+int nCasterAbilityModifier = GetClassSpellcasterAbilityModifier(nCasterClass, oCastItem);
+int nMetaMagic             = GetMetaMagicFeatCalculated();
+int nSpellLevel            = GetLastSpellLevelCalculated();
+int bSpontaneous           = GetSpellCastSpontaneouslyCalculated();
+int bHostile               = GetSpellIsHostile(nSpellId);
+int bIllusionary           = GetSpellIsIllusionary();
+int nIllusionaryStrength   = GetSpellIllusionaryStrength(bIllusionary);
 
 // Debug the spell and variables
 void DebugSpellVariables()
@@ -852,8 +855,12 @@ int GetSpellSaveDCCalculated(object oCaster, int nSpellId, int nFeatId, object o
 }
 
 // Gets the given classes ability modifier or 0 if not a spellcasting class
-int GetClassSpellcasterAbilityModifier(int nClass)
+// If oCastItem is valid we'll use the default stat modifier, 16, used for items currently.
+int GetClassSpellcasterAbilityModifier(int nClass, object oCastItem = OBJECT_INVALID)
 {
+    // Use a stat modifier of 3 (for a base 16 stat) if casting from an item right now
+    if (GetIsObjectValid(oCastItem)) return 3;
+
     // Not a spellcaster? oh well!
     int nAbilityModifier = 0;
     switch (HashString(Get2DAString("classes", "SpellcastingAbil", nClass)))
@@ -1733,6 +1740,13 @@ int GetDiceRoll(int nNumberOfDice, int nDiceSize, int nBonus = 0, int bApplyMeta
 // Metamagic is applied automatically
 float GetDuration(int nDuration, int nDurationType)
 {
+    // We sometimes put in say, nCasterLevel/2 as nDuration. We log this and change it to 1.
+    if (nDuration <= 0)
+    {
+        nDuration = 1;
+        Debug("[GetDuration] nDuration is: " + IntToString(nDuration), ERROR);
+    }
+
     float fDuration = 0.0;
     // Resolve metamagic
     if (nMetaMagic & METAMAGIC_EXTEND)
