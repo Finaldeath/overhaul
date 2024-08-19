@@ -27,9 +27,12 @@ void main()
 
         if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
         {
-            ApplyAOEPersistentEffect(oTarget, EffectMovementSpeedDecrease(50));
-
             SignalSpellCastAt();
+
+            if (GetAffectedByIllusion(oTarget))
+            {
+                ApplyAOEPersistentEffect(oTarget, EffectMovementSpeedDecrease(50));
+            }
 
             if (GetTimerEnded(ObjectToString(oTarget)))
             {

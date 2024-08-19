@@ -214,6 +214,7 @@ int GetSpellIllusionaryStrength(int bIllusionary);
 int GetTargetIllusionarySave(object oTarget);
 
 // Does (and stores) the Will saving throw for illusion saves.
+// For now only affects spells marked as Hostile.
 void DoIllusionSavingThrow(object oTarget, object oCaster);
 
 // Gets a modified value for nValue (minimum 1). Use if GetTargetIllusionarySave is TRUE.
@@ -1731,7 +1732,7 @@ void DoIllusionSavingThrow(object oTarget, object oCaster)
     // This resets things for the next call if not illusionary
     int bSave = FALSE;
 
-    if (bIllusionary)
+    if (bIllusionary && GetSpellIsHostile(nSpellId))
     {
         // Maybe a mind spell? Not sure. For now we'll leave it as is.
         bSave = DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC);
@@ -1767,6 +1768,8 @@ int GetAffectedByIllusion(object oTarget)
         // If nStrength is 40, we need to roll 41 or higher to not be affected.
         if (d100() > nIllusionaryStrength)
         {
+            // Some feedback to the player making the save
+            SendMessageToPC(oTarget, "*You manage to see " + GetSpellName(nSpellId) + " as a mere illusion and are unaffected by some or all of its effects.*");
             return FALSE;
         }
     }
@@ -1944,6 +1947,8 @@ int GetSpellTargetValid(object oTarget, object oCaster, int nTargetType)
 
         // If valid we do a will save for illusion spells
         // Doors and placeables automatically fail this. Sorry dudes you just don't have a mind.
+        // TBH this could go somewhere better since it'll fire a lot for things that we don't test
+        // (eg friendly spell).
         if (bReturnValue && nObjectType == OBJECT_TYPE_CREATURE)
         {
             DoIllusionSavingThrow(oTarget, oCaster);

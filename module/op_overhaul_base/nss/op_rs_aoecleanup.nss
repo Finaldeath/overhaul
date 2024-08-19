@@ -28,6 +28,6 @@ void main()
     }
     else
     {
-        Debug("This run script event shouldn't happen: " + IntToString(GetLastRunScriptEffectScriptType()), ERROR);
+        Debug("[op_rs_aoecleanup] This run script event shouldn't happen: " + IntToString(GetLastRunScriptEffectScriptType()), ERROR);
     }
 }

@@ -68,10 +68,9 @@ void main()
     int bImmuneToEffectsIfCannotHear = FALSE; // Still does damage
     // Effect we apply on a failed save
     effect eLink;
-    // If duration is 0.0 apply eLink instantly
-    float fDuration = 0.0, fExtraDelay;
-    // Special duration calculation. Not maximised or empowered.
-    int nDurationDice, nDurationDiceSize;
+    float fExtraDelay = 0.0;
+    // Duration calculation. If 0 it applies eLink instantly. Not maximised or empowered.
+    int nDurationBase, nDurationType, nDurationDice, nDurationDiceSize;
     // VFX
     int nImpact = VFX_NONE, nVis = VFX_NONE, nDamVis = VFX_NONE, bDelayRandom = FALSE;
     float fImpactScale = 1.0;
@@ -97,7 +96,8 @@ void main()
             eLink              = EffectLinkEffects(IgnoreEffectImmunity(EffectKnockdown()),
                                                    EffectLinkEffects(EffectIcon(EFFECT_ICON_KNOCKDOWN),
                                                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
-            fDuration          = 6.0;
+            nDurationBase      = 1;
+            nDurationType      = ROUNDS;
         }
         break;
         case SPELL_WAIL_OF_THE_BANSHEE:
@@ -109,7 +109,6 @@ void main()
             nImpact             = VFX_FNF_WAIL_O_BANSHEES;
             nVis                = VFX_IMP_DEATH;
             eLink               = IgnoreEffectImmunity(EffectDeath());
-            fDuration           = 0.0;
             fExtraDelay         = 3.0;
             nCreatureLimit      = nCasterLevel;
         }
@@ -122,7 +121,8 @@ void main()
             nVis           = VFX_IMP_FLAME_M;      // TODO update to less firey VFX
             nEffectOnlyImmunity = IMMUNITY_TYPE_KNOCKDOWN;
             eLink          = EffectLinkEffects(IgnoreEffectImmunity(EffectKnockdown()), EffectIcon(EFFECT_ICON_KNOCKDOWN));
-            fDuration      = 12.0;
+            nDurationBase  = 2;
+            nDurationType  = ROUNDS;
             bDelayRandom   = TRUE;
             nDamageType    = DAMAGE_TYPE_BLUDGEONING;
             nDiceNum       = min(20, nCasterLevel);
@@ -139,7 +139,8 @@ void main()
                                EffectLinkEffects(EffectDamageDecrease(1, DAMAGE_TYPE_BLUDGEONING | DAMAGE_TYPE_SLASHING | DAMAGE_TYPE_PIERCING),
                                EffectLinkEffects(EffectSkillDecrease(SKILL_ALL_SKILLS, 1),
                                                  EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)))));
-            fDuration        = GetDuration(nCasterLevel, ROUNDS);
+            nDurationBase = nCasterLevel;
+            nDurationType = ROUNDS;
             bAlliedLink      = TRUE;
             nAlliedVis       = VFX_IMP_HOLY_AID;
             eAlliedLink      = EffectLinkEffects(EffectAttackIncrease(1),
@@ -165,7 +166,8 @@ void main()
             nSavingThrow     = SAVING_THROW_WILL;
             nSavingThrowType = SAVING_THROW_TYPE_FEAR;
             nTargetType      = SPELL_TARGET_SELECTIVEHOSTILE;
-            fDuration        = RoundsToSeconds(4);
+            nDurationBase = 4;
+            nDurationType = ROUNDS;
             eLink            = EffectLinkEffects(EffectFrightened(),
                                EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_FEAR),
                                                  EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
@@ -191,6 +193,7 @@ void main()
                                                  EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
             nDurationDice    = 1;
             nDurationDiceSize = 6;
+            nDurationType  = ROUNDS;
             nDamageType    = DAMAGE_TYPE_DIVINE;
             nDiceNum       = clamp(nCasterLevel/2, 1, 5);
             nDiceSize      = 8;
@@ -208,7 +211,8 @@ void main()
             eLink            = EffectLinkEffects(IgnoreEffectImmunity(EffectStunned()),
                                EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_NEGATIVE),
                                                  EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
-            fDuration        = 12.0;
+            nDurationBase = 2;
+            nDurationType = ROUNDS;
             nDamageType      = DAMAGE_TYPE_SONIC;
             nDiceNum         = 1;
             nDiceSize        = 8;
@@ -277,10 +281,11 @@ void main()
                     {
                         if (nVis != VFX_INVALID) DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
 
-                        // Randomise duration?
-                        if (nDurationDice > 0)
+                        // Got duration?
+                        float fDuration = 0.0;
+                        if (nDurationDice > 0 || nDurationBase > 0)
                         {
-                            fDuration = RoundsToSeconds(GetDiceRoll(nDurationDice, nDurationDiceSize, 0, FALSE));
+                            float fDuration = GetDuration(GetDiceRoll(nDurationDice, nDurationDiceSize, nDurationBase, FALSE), nDurationType);
                         }
 
                         if (fDuration == 0.0)
@@ -316,6 +321,12 @@ void main()
                 nCreatureLimit--;
 
                 if (nAlliedVis != VFX_INVALID) DelayCommand(fDelay, ApplyVisualEffectToObject(nAlliedVis, oTarget));
+
+                float fDuration = 0.0;
+                if (nDurationDice > 0 || nDurationBase > 0)
+                {
+                    float fDuration = GetDuration(GetDiceRoll(nDurationDice, nDurationDiceSize, nDurationBase, FALSE), nDurationType);
+                }
 
                 DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eAlliedLink, oTarget, fDuration));
             }
