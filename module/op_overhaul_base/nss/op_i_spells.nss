@@ -141,7 +141,7 @@ int GetClassSpellcasterAbilityModifier(int nClass, object oCastItem = OBJECT_INV
 int GetCasterLevelCalculated(object oCaster, int nSpellIdToCheck, int nFeatIdToCheck, int nCasterClassToCheck);
 
 // Retrieves the metamagic used, in a spell script, AOE script or run script
-int GetMetaMagicFeatCalculated();
+int GetMetaMagicFeatCalculated(int nSpellId, int bIllusion);
 
 // Retrieves the spell casting class, in a spell script or run script. AOEs won't store this yet.
 int GetLastSpellCastClassCalculated();
@@ -564,6 +564,9 @@ int DoAttackRoll(object oTarget, object oAttacker, int nAttackerBAB, int nAttack
 
 // These global variables are used in most spell scripts and are initialised here to be consistent
 // NB: You can't reuse these variables in the very functions in this list, so we pass them in.
+int bIllusionary           = GetSpellIsIllusionary();
+int nIllusionaryStrength   = GetSpellIllusionaryStrength(bIllusionary);
+int bDoneSpellTargetValid  = FALSE; // If true we've done GetSpellTargetValid at least once. Debugs illusion functions.
 object oCastItem           = GetSpellCastItemCalculated();
 object oCaster             = GetSpellCaster();
 object oTarget             = GetSpellTargetObjectCalculated();
@@ -576,13 +579,10 @@ int nSpellSaveDC           = GetSpellSaveDCCalculated(oCaster, nSpellId, nFeatId
 int nCasterClass           = GetLastSpellCastClassCalculated();
 int nCasterLevel           = GetCasterLevelCalculated(oCaster, nSpellId, nFeatId, nCasterClass);
 int nCasterAbilityModifier = GetClassSpellcasterAbilityModifier(nCasterClass, oCastItem);
-int nMetaMagic             = GetMetaMagicFeatCalculated();
+int nMetaMagic             = GetMetaMagicFeatCalculated(nSpellId, bIllusionary);
 int nSpellLevel            = GetLastSpellLevelCalculated();
 int bSpontaneous           = GetSpellCastSpontaneouslyCalculated();
 int bHostile               = GetSpellIsHostile(nSpellId);
-int bIllusionary           = GetSpellIsIllusionary();
-int nIllusionaryStrength   = GetSpellIllusionaryStrength(bIllusionary);
-int bDoneSpellTargetValid  = FALSE; // If true we've done GetSpellTargetValid at least once. Debugs illusion functions.
 
 // Debug the spell and variables
 void DebugSpellVariables()
@@ -622,7 +622,11 @@ int DoSpellHook()
     DebugSpellVariables();
 
     // Do not do the hook if this is an illusion spell executing it's payload script
-    if (bIllusionary) return FALSE;
+    if (bIllusionary)
+    {
+        // While we  don't do anything else we do validate the metamagic we have versus what we are allowed when nMetaMagic is calculated.
+        return FALSE;
+    }
 
     // We do not do the spell if it is a true spell and Tensers Transformation is
     // on the caster (ie user of the item)
@@ -637,7 +641,9 @@ int DoSpellHook()
         }
     }
 
-    // TODO dummy spell hook for now
+    // TODO Need to have:
+    // * Item crafting (scrolls/potions)
+    // * Cases spells shouldn't be able to be cast (null magic areas)
     return FALSE;
 }
 
@@ -1031,23 +1037,43 @@ int GetCasterLevelCalculated(object oCaster, int nSpellIdToCheck, int nFeatIdToC
 }
 
 // Retrieves the metamagic used, in a spell script, AOE script or run script
-int GetMetaMagicFeatCalculated()
+int GetMetaMagicFeatCalculated(int nSpellId, int bIllusion)
 {
     if (GetIsStateScript()) return METAMAGIC_NONE;
 
+    int nMetaMagic;
+
     if (GetLastRunScriptEffectScriptType() != 0)
     {
+        // Stored properly
         return GetRunScriptMetaMagic(GetLastRunScriptEffect());
     }
     // If we are an Area of Effect we can get it from ourselves now
     else if (GetObjectType(OBJECT_SELF) == OBJECT_TYPE_AREA_OF_EFFECT)
     {
         // This hasn't got an override yet. Won't matter until it does.
-        return GetMetaMagicFeat();
+        nMetaMagic = GetMetaMagicFeat();
     }
-    int nMetaMagic = GetMetaMagicFeat();
+    else
+    {
+        // Normal spell etc.
+        nMetaMagic = GetMetaMagicFeat();
+    }
 
     // Apply any automatic metamagic or changes to metamagic here
+
+    // For illusion spells we alter the metamagic to match at most what the parent spell has.
+    if (bIllusion)
+    {
+        int nCurrentMetaMagic = HexStringToInt(Get2DAString("spells", "MetaMagic", nSpellId));
+
+        // Just & bitwise it
+        int nTest = nMetaMagic;
+        nMetaMagic = nMetaMagic & nCurrentMetaMagic;
+
+        // Debug
+        if (nMetaMagic != nTest) Debug("[GetMetaMagicFeatCalculated] Illusion MetaMagic altered.");
+    }
 
     return nMetaMagic;
 }
@@ -1644,6 +1670,8 @@ void DoSpellBreach(object oTarget, int nTotal, int nSR, int bVFX = TRUE)
 // Gets if the spell script is illusionary (script param SCRIPT_PARAMETER_ILLUSIONARY set to "1")
 int GetSpellIsIllusionary()
 {
+    if (GetIsStateScript()) return FALSE;
+
     if (GetLastRunScriptEffectScriptType() != 0)
     {
         return GetRunScriptIllusionary(GetLastRunScriptEffect());
@@ -1660,6 +1688,8 @@ int GetSpellIsIllusionary()
 // illusion spell. 20 would be 20% strength if they save a will save.
 int GetSpellIllusionaryStrength(int bIllusionary)
 {
+    if (GetIsStateScript()) return 0;
+
     if (bIllusionary)
     {
         if (GetLastRunScriptEffectScriptType() != 0)
@@ -1679,6 +1709,8 @@ int GetSpellIllusionaryStrength(int bIllusionary)
 // were checked. Can affect GetDiceRoll/GetDuration.
 int GetTargetIllusionarySave(object oTarget)
 {
+    if (GetIsStateScript()) return FALSE;
+
     if (!bDoneSpellTargetValid)
     {
         Debug("[GetTargetIllusionarySave] Called before we've tested anyone for illusion saves.", ERROR);
@@ -1694,6 +1726,8 @@ int GetTargetIllusionarySave(object oTarget)
 // Does (and stores) the Will saving throw for illusion saves.
 void DoIllusionSavingThrow(object oTarget, object oCaster)
 {
+    if (GetIsStateScript()) return;
+
     // This resets things for the next call if not illusionary
     int bSave = FALSE;
 
@@ -1708,6 +1742,8 @@ void DoIllusionSavingThrow(object oTarget, object oCaster)
 // Gets a modified value for nValue (minimum 1). Use if GetTargetIllusionarySave is TRUE.
 int GetIllusionModifiedValue(int nValue)
 {
+    if (GetIsStateScript()) return nValue;
+
     if (nIllusionaryStrength != 0)
     {
         // 10 * 20 = 200, / 100 =

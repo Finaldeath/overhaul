@@ -20,7 +20,6 @@ const string TIMER_DEAFENING_CLANG = "TIMER_DEAFENING_CLANG";
 
 void main()
 {
-    SpeakString("caster: " + GetName(oCaster));
     // Cannot happen more than once every 6 seconds. Timer can be on us.
     if (GetTimerEnded(TIMER_DEAFENING_CLANG))
     {
