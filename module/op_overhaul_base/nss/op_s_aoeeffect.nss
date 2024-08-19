@@ -33,6 +33,12 @@
     War Cry
     The caster lets out a powerful shout that grants the Bard a +2 bonus to
     attack and damage. All enemies within the area of effect are stricken with fear.
+
+    Hammer of the Gods
+    The caster smites a group of creatures with divine light for 1d8 points of
+    damage for every two caster levels, to a maximum of 5d8. Any creature in
+    the area that make a Will save take half damage and avoid being dazed for
+    1d6 rounds (the random duration cannot be extended, empowered or maximized).
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -56,6 +62,8 @@ void main()
     effect eLink;
     // If duration is 0.0 apply eLink instantly
     float fDuration = 0.0, fExtraDelay;
+    // Special duration calculation. Not maximised or empowered.
+    int nDurationDice, nDurationDiceSize;
     // VFX
     int nImpact = VFX_NONE, nVis = VFX_NONE, nDamVis = VFX_NONE, bDelayRandom = FALSE;
     float fImpactScale = 1.0;
@@ -162,6 +170,22 @@ void main()
             ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eAlliedLink, oCaster, GetDuration(nCasterLevel, ROUNDS));
         }
         break;
+        case SPELL_HAMMER_OF_THE_GODS:
+        {
+            nSavingThrow     = SAVING_THROW_WILL;
+            nSavingThrowType = SAVING_THROW_TYPE_DIVINE;
+            nImpact          = VFX_FNF_STRIKE_HOLY;
+            nVis             = VFX_IMP_DIVINE_STRIKE_HOLY;
+            eLink            = EffectLinkEffects(EffectDazed(),
+                               EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_NEGATIVE),
+                                                 EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            nDurationDice    = 1;
+            nDurationDiceSize = 6;
+            nDamageType    = DAMAGE_TYPE_DIVINE;
+            nDiceNum       = clamp(nCasterLevel/2, 1, 5);
+            nDiceSize      = 8;
+        }
+        break;
         default:
             Debug("[op_s_aoeeffect] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
@@ -209,7 +233,10 @@ void main()
                     {
                         int nDamage = GetDiceRoll(nDiceNum, nDiceSize);
 
-                        nDamage = GetDamageBasedOnFeats(nDamage, oTarget, SAVING_THROW_REFLEX, bSaved);
+                        if (nSavingThrow != -1)
+                        {
+                            nDamage = GetDamageBasedOnFeats(nDamage, oTarget, nSavingThrow, bSaved);
+                        }
 
                         if (nDamage > 0)
                         {
@@ -221,6 +248,13 @@ void main()
                     if (!bSaved)
                     {
                         if (nVis != VFX_INVALID) DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
+
+                        // Randomise duration?
+                        if (nDurationDice > 0)
+                        {
+                            fDuration = RoundsToSeconds(GetDiceRoll(nDurationDice, nDurationDiceSize, 0, FALSE));
+                        }
+
                         if (fDuration == 0.0)
                         {
                             DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eLink, oTarget));

@@ -216,8 +216,8 @@ void DoIllusionSavingThrow(object oTarget, object oCaster);
 
 // Applies metamagic to the given dice roll
 // eg GetDiceRoll(4, 6, 8) will roll 4d6 and add 8 to the final roll
-// Metamagic is applied automatically (alter with the global nMetaMagic) alongside illusion changes
-int GetDiceRoll(int nNumberOfDice, int nDiceSize, int nBonus = 0);
+// Metamagic is applied automatically (alter with the global nMetaMagic or stop with bApplyMetamagic) alongside illusion changes
+int GetDiceRoll(int nNumberOfDice, int nDiceSize, int nBonus = 0, int bApplyMetamagic = TRUE);
 
 // Applies metamagic to the given duration
 // * nType - The conversion used, ROUNDS (6 seconds), MINUTES ("1 turn" in old NWN = 1 minute/10 rounds) or HOURS (module dependant)
@@ -1697,22 +1697,25 @@ int GetIllusionModifiedValue(int nValue)
 
 // Applies metamagic to the given dice roll
 // eg GetDiceRoll(4, 6, 8) will roll 4d6 and add 8 to the final roll
-// Metamagic is applied automatically (alter with the global nMetaMagic)
-int GetDiceRoll(int nNumberOfDice, int nDiceSize, int nBonus = 0)
+// Metamagic is applied automatically (alter with the global nMetaMagic or stop with bApplyMetamagic) alongside illusion changes
+int GetDiceRoll(int nNumberOfDice, int nDiceSize, int nBonus = 0, int bApplyMetamagic = TRUE)
 {
     int i, nDamage = 0;
     for (i = 1; i <= nNumberOfDice; i++)
     {
         nDamage += Random(nDiceSize) + 1;
     }
-    // Resolve metamagic. Maximize and Empower don't stack.
-    if (nMetaMagic & METAMAGIC_MAXIMIZE)
+    if (bApplyMetamagic)
     {
-        nDamage = nDiceSize * nNumberOfDice;
-    }
-    else if (nMetaMagic & METAMAGIC_EMPOWER)
-    {
-        nDamage += nDamage / 2;
+        // Resolve metamagic. Maximize and Empower don't stack.
+        if (nMetaMagic & METAMAGIC_MAXIMIZE)
+        {
+            nDamage = nDiceSize * nNumberOfDice;
+        }
+        else if (nMetaMagic & METAMAGIC_EMPOWER)
+        {
+            nDamage += nDamage / 2;
+        }
     }
     // Add bonus if any
     nDamage += nBonus;
