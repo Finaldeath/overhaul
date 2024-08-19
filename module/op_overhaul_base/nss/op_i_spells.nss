@@ -170,8 +170,8 @@ int DoDamageSavingThrow(int nDamage, object oTarget, object oSaveVersus, int nSa
 
 // Does an ability check with feedback to oTarget and oSource (oSource being the thing doing the check).
 // Returns TRUE if oTarget passes the nDC check.
-// If you use the optional ability parameters the highest will be chosen.
-int DoAbiliyCheck(object oTarget, object oSource, int nDC, int nAbilityCheck, int nOptionalAbilityCheck = -1);
+// If you use the optional ability parameters the highest will be chosen (eg put in Strength and Dexterity highest of both will be used).
+int DoAbilityCheck(object oTarget, object oSource, int nDC, int nAbilityCheck, int nOptionalAbilityCheck = -1);
 
 // Returns the modified amount of nDamage based on bSaved and the feats oTarget has (Evasion etc.)
 // * nSavingThrowType - SAVING_THROW_REFLEX affects the feats, and other types may affect
@@ -1203,18 +1203,18 @@ int DoDamageSavingThrow(int nDamage, object oTarget, object oSaveVersus, int nSa
 }
 
 // Does an ability check with feedback to oTarget and oSource (oSource being the thing doing the check).
-// Returns TRUE if oTarget passes the nDC check.
+// Returns TRUE if oTarget passes the nDC check. nDC is usually d20 + ability modifier.
 // If you use the optional ability parameters the highest will be chosen.
-int DoAbiliyCheck(object oTarget, object oSource, int nDC, int nAbilityCheck, int nOptionalAbilityCheck = -1)
+int DoAbilityCheck(object oTarget, object oSource, int nDC, int nAbilityCheck, int nOptionalAbilityCheck = -1)
 {
-    // Get best ability score
-    int nAbilityScore = GetAbilityScore(oTarget, nAbilityCheck);
+    // Get best ability modifier
+    int nAbilityScore = GetAbilityModifier(nAbilityCheck, oTarget);
     int nAbilityUsed  = nAbilityCheck;
     if (nOptionalAbilityCheck != -1)
     {
-        if (GetAbilityScore(oTarget, nOptionalAbilityCheck) > nAbilityScore)
+        if (GetAbilityModifier(nOptionalAbilityCheck, oTarget) > nAbilityScore)
         {
-            nAbilityScore = GetAbilityScore(oTarget, nOptionalAbilityCheck);
+            nAbilityScore = GetAbilityModifier(nOptionalAbilityCheck, oTarget);
             nAbilityUsed  = nOptionalAbilityCheck;
         }
     }

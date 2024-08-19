@@ -127,12 +127,12 @@ void SendFakeDamageFeedbackMessage(object oTarget, object oSource, int nDamage, 
 // - nSkillResult - Use the SKILL_RESULT_ variables
 void SendSkillFeedbackMessage(object oObject, object oVersus, int nSkill, int nSkillResult, int nRoll, int nSkillModifier, int nDC, int bTake20 = FALSE);
 
-// Provides a new feedback message for (raw) ability checks
+// Provides a new feedback message for ability checks (d20 + ability modifier)
 // - nAbility - should be the ability oObject is using to resist
 // - bResult - TRUE if passed FALSE if not
 // - nRoll - the roll used
-// - nAbilityScore - the ability score of oObject
-void SendAbilityCheckFeedbackMessage(object oObject, object oVersus, int nAbility, int bResult, int nRoll, int nAbilityScore, int nDC);
+// - nAbilityModifier - the ability modifier of oObject
+void SendAbilityCheckFeedbackMessage(object oObject, object oVersus, int nAbility, int bResult, int nRoll, int nAbilityModifier, int nDC);
 
 // Provides a new feedback message for grapple checks
 void SendGrappleCheckFeedbackMessage(object oGrappled, object oGrappler, int bResult, int nGrappledRoll, int nGrappledModifiers, int nGrapplerRoll, int nGrapplerModifiers);
@@ -401,8 +401,12 @@ void SendSkillFeedbackMessage(object oObject, object oVersus, int nSkill, int nS
     if (GetIsObjectValid(oVersus) && oVersus != oTarget) SendMessageToPC(oVersus, FEEDBACK_COLOUR_SKILLS + GetNameOrSomeone(oObject, oVersus) + sMessage + FEEDBACK_COLOUR_END);
 }
 
-// Provides a new feedback message for (raw) ability checks
-void SendAbilityCheckFeedbackMessage(object oObject, object oVersus, int nAbility, int bResult, int nRoll, int nAbilityScore, int nDC)
+// Provides a new feedback message for ability checks (d20 + ability modifier)
+// - nAbility - should be the ability oObject is using to resist
+// - bResult - TRUE if passed FALSE if not
+// - nRoll - the roll used
+// - nAbilityModifier - the ability modifier of oObject
+void SendAbilityCheckFeedbackMessage(object oObject, object oVersus, int nAbility, int bResult, int nRoll, int nAbilityModifier, int nDC)
 {
     string sAbilityName = GetStringByStrRef(StringToInt(Get2DAString("iprp_abilities", "Name", nAbility)));
 
@@ -412,9 +416,9 @@ void SendAbilityCheckFeedbackMessage(object oObject, object oVersus, int nAbilit
     FloatingTextStringOnCreature(sAbilityName + " : *" + sResult + "*", oObject, FALSE, FALSE);
 
     // Complicated message like skills
-    int nTotal = nRoll + nAbilityScore;
+    int nTotal = nRoll + nAbilityModifier;
 
-    string sMessage = " : " + sAbilityName + " Ability Check : *" + sResult + "* : (" + IntToString(nRoll) + GetPositiveOrNegativeSign(nAbilityScore) + IntToString(nAbilityScore) + " = " + IntToString(nTotal) + " vs. DC: " + IntToString(nDC) + ")";
+    string sMessage = " : " + sAbilityName + " Ability Check : *" + sResult + "* : (" + IntToString(nRoll) + GetPositiveOrNegativeSign(nAbilityModifier) + IntToString(nAbilityModifier) + " = " + IntToString(nTotal) + " vs. DC: " + IntToString(nDC) + ")";
 
     SendMessageToPC(oObject, FEEDBACK_COLOUR_SKILLS + GetNameOrSomeone(oObject) + sMessage + FEEDBACK_COLOUR_END);
     if (GetIsObjectValid(oVersus) && oVersus != oTarget) SendMessageToPC(oVersus, FEEDBACK_COLOUR_SKILLS + GetNameOrSomeone(oObject, oVersus) + sMessage + FEEDBACK_COLOUR_END);

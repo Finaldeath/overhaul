@@ -53,6 +53,7 @@ void main()
 
     // Optional damage?
     int nDamageType = -1, nDiceNum, nDiceSize;
+    int bSaveForDamage = TRUE;
     // Strength ability check result?
     int nStrengthCheckRoll = -1;
     // Saving throw and immunity?
@@ -81,7 +82,7 @@ void main()
     {
         case SPELL_BALAGARNSIRONHORN:
         {
-            nStrengthCheckRoll = d20() + 20;
+            nStrengthCheckRoll = d20() + 5; // 20 Strength is +5
             nImmunity          = IMMUNITY_TYPE_KNOCKDOWN;
             bImmuneIfFlying    = TRUE;
             nImpact            = VFX_FNF_SCREEN_SHAKE;
@@ -225,7 +226,7 @@ void main()
                     else if (nStrengthCheckRoll != -1)
                     {
                         // Ability check
-                        bSaved = DoAbiliyCheck(oTarget, oCaster, nStrengthCheckRoll, ABILITY_STRENGTH, ABILITY_DEXTERITY);
+                        bSaved = DoAbilityCheck(oTarget, oCaster, nStrengthCheckRoll, ABILITY_STRENGTH, ABILITY_DEXTERITY);
                     }
 
                     // Damage?
@@ -233,7 +234,7 @@ void main()
                     {
                         int nDamage = GetDiceRoll(nDiceNum, nDiceSize);
 
-                        if (nSavingThrow != -1)
+                        if (bSaveForDamage && nSavingThrow != -1)
                         {
                             nDamage = GetDamageBasedOnFeats(nDamage, oTarget, nSavingThrow, bSaved);
                         }
