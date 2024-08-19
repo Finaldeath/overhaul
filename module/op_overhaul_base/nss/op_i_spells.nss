@@ -347,7 +347,7 @@ int GetSpellIsAreaOfEffect(int nSpellId);
 // Returns a human readable name for the given effect (eg: "Fear" or "Negative Level").
 string GetEffectName(effect eEffect);
 
-// Check if oCreature is silenced or deaf
+// Check if oCreature is not silenced or deaf
 int GetCanHear(object oCreature);
 
 // Check if oCreature is silenced
@@ -2527,7 +2527,7 @@ string GetEffectName(effect eEffect)
     return "";
 }
 
-// Check if oCreature is silenced or deaf
+// Check if oCreature is not silenced or deaf
 int GetCanHear(object oCreature)
 {
     if (GetHasEffect(oCreature, EFFECT_TYPE_SILENCE) ||

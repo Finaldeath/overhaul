@@ -39,6 +39,11 @@
     damage for every two caster levels, to a maximum of 5d8. Any creature in
     the area that make a Will save take half damage and avoid being dazed for
     1d6 rounds (the random duration cannot be extended, empowered or maximized).
+
+    Sound Burst
+    All creatures within the area of effect take 1d8 points of sonic damage and
+    must make a Will save or be stunned for 2 rounds.
+    Creatures that cannot hear are not stunned but are still damaged.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -58,7 +63,9 @@ void main()
     int nStrengthCheckRoll = -1;
     // Saving throw and immunity?
     int nSavingThrow = -1, nSavingThrowType = SAVING_THROW_TYPE_NONE;
-    int nImmunity = IMMUNITY_TYPE_NONE, bImmuneIfFlying = FALSE, bImmuneIfCannotHear = FALSE;
+    int nImmunity = IMMUNITY_TYPE_NONE, nEffectOnlyImmunity = IMMUNITY_TYPE_NONE;
+    int bImmuneIfFlying = FALSE, bImmuneIfCannotHear = FALSE;
+    int bImmuneToEffectsIfCannotHear = FALSE; // Still does damage
     // Effect we apply on a failed save
     effect eLink;
     // If duration is 0.0 apply eLink instantly
@@ -113,7 +120,8 @@ void main()
             nImpact        = VFX_FNF_METEOR_SWARM; // TODO update to less firey VFX
             fImpactScale   = 0.5; // Make it smaller due to altered AOE sizing
             nVis           = VFX_IMP_FLAME_M;      // TODO update to less firey VFX
-            eLink          = EffectLinkEffects(EffectKnockdown(), EffectIcon(EFFECT_ICON_KNOCKDOWN));
+            nEffectOnlyImmunity = IMMUNITY_TYPE_KNOCKDOWN;
+            eLink          = EffectLinkEffects(IgnoreEffectImmunity(EffectKnockdown()), EffectIcon(EFFECT_ICON_KNOCKDOWN));
             fDuration      = 12.0;
             bDelayRandom   = TRUE;
             nDamageType    = DAMAGE_TYPE_BLUDGEONING;
@@ -177,7 +185,8 @@ void main()
             nSavingThrowType = SAVING_THROW_TYPE_DIVINE;
             nImpact          = VFX_FNF_STRIKE_HOLY;
             nVis             = VFX_IMP_DIVINE_STRIKE_HOLY;
-            eLink            = EffectLinkEffects(EffectDazed(),
+            nEffectOnlyImmunity = IMMUNITY_TYPE_DAZED;
+            eLink            = EffectLinkEffects(IgnoreEffectImmunity(EffectDazed()),
                                EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_NEGATIVE),
                                                  EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
             nDurationDice    = 1;
@@ -185,6 +194,24 @@ void main()
             nDamageType    = DAMAGE_TYPE_DIVINE;
             nDiceNum       = clamp(nCasterLevel/2, 1, 5);
             nDiceSize      = 8;
+        }
+        break;
+        case SPELL_SOUND_BURST:
+        {
+            nSavingThrow     = SAVING_THROW_WILL;
+            nSavingThrowType = SAVING_THROW_TYPE_SONIC;
+            bImmuneToEffectsIfCannotHear = TRUE;
+            bSaveForDamage   = FALSE;
+            nImpact          = VFX_FNF_SOUND_BURST;
+            nVis             = VFX_IMP_SONIC;
+            nEffectOnlyImmunity = IMMUNITY_TYPE_STUN;
+            eLink            = EffectLinkEffects(IgnoreEffectImmunity(EffectStunned()),
+                               EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_NEGATIVE),
+                                                 EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            fDuration        = 12.0;
+            nDamageType      = DAMAGE_TYPE_SONIC;
+            nDiceNum         = 1;
+            nDiceSize        = 8;
         }
         break;
         default:
@@ -246,7 +273,7 @@ void main()
                         }
                     }
 
-                    if (!bSaved)
+                    if (!bSaved && !GetIsImmuneWithFeedback(oTarget, oCaster, nEffectOnlyImmunity) && (!bImmuneToEffectsIfCannotHear || GetCanHear(oTarget)))
                     {
                         if (nVis != VFX_INVALID) DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
 
