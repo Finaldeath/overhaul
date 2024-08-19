@@ -27,11 +27,12 @@ void main()
 
     effect eLink;
     int nBeam = VFX_NONE, nVis = VFX_NONE;
-    float fDuration   = 0.0;
-    int nDurationType = DURATION_TYPE_TEMPORARY;
     int nTouchType    = TOUCH_NONE;
     int nImmunityType = IMMUNITY_TYPE_NONE;
     int nSavingThrow = -1, nSavingThrowType = SAVING_THROW_TYPE_NONE;
+    int nAbilityToDecrease, nDice, nDiceSize;
+    int bSupernatural = FALSE;
+    int nDuration, nDurationType = ROUNDS;
 
     switch (nSpellId)
     {
@@ -42,14 +43,12 @@ void main()
             nSavingThrowType = SAVING_THROW_TYPE_MIND_SPELLS;
             nVis             = VFX_IMP_REDUCE_ABILITY_SCORE;
             nBeam            = VFX_BEAM_MIND;
-            int nDamage      = GetDiceRoll(max(1, nCasterLevel / 4), 4);
-            eLink            = EffectLinkEffects(EffectAbilityDecrease(ABILITY_INTELLIGENCE, nDamage),
-                                                 EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
-
-            // Supernatural effect
-            eLink = SupernaturalEffect(eLink);
-
-            fDuration = GetDuration(nCasterLevel / 2, ROUNDS);
+            nDice            = max(1, nCasterLevel / 4);
+            nDiceSize        = 4;
+            nAbilityToDecrease = ABILITY_INTELLIGENCE;
+            bSupernatural    = TRUE;
+            nDuration        = nCasterLevel / 2;
+            nDurationType    = ROUNDS;
         }
         break;
         case SPELL_RAY_OF_ENFEEBLEMENT:
@@ -62,7 +61,8 @@ void main()
             eLink            = EffectLinkEffects(EffectAbilityDecrease(ABILITY_STRENGTH, nDamage),
                                                  EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
 
-            fDuration = GetDuration(nCasterLevel, ROUNDS);
+            nDuration        = nCasterLevel;
+            nDurationType    = ROUNDS;
         }
         break;
         default:
@@ -91,6 +91,18 @@ void main()
                     if (!DoSavingThrow(oTarget, oCaster, nSavingThrow, nSpellSaveDC, nSavingThrowType))
                     {
                         ApplyVisualEffectToObject(nVis, oTarget);
+
+                        float fDuration = GetDuration(nDuration, nDurationType);
+                        int nDamage = GetDiceRoll(nDice, nDiceSize);
+
+                        eLink = EffectLinkEffects(EffectAbilityDecrease(ABILITY_INTELLIGENCE, nDamage),
+                                                  EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+
+                        if (bSupernatural)
+                        {
+                            eLink = SupernaturalEffect(eLink);
+                        }
+
                         ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
                     }
                 }

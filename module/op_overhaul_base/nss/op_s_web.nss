@@ -42,7 +42,7 @@ void main()
                     {
                         nSlow = 99;
                     }
-                    ApplyAOEPersistentEffect(oTarget, EffectMovementSpeedDecrease(nSlow));
+                    ApplyAOEPersistentEffect(oTarget, EffectMovementSpeedDecrease(GetStaticValue(nSlow)));
 
                     if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_REFLEX, nSpellSaveDC))
                     {
@@ -78,7 +78,8 @@ void main()
                     !GetIsIncorporeal(oTarget) &&
                     !DoResistSpell(oTarget, oCaster))
                 {
-                    if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_REFLEX, nSpellSaveDC))
+                    if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_REFLEX, nSpellSaveDC) &&
+                         GetAffectedByIllusion(oTarget))
                     {
                         effect eLink = EffectLinkEffects(EffectEntangle(),
                                                          EffectVisualEffect(VFX_DUR_WEB));

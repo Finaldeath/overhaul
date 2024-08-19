@@ -43,9 +43,6 @@ void main()
         nSpellSaveDC -= 4;
     }
 
-    // Usually 1 round/level but Bioware limited to 1d3 rounds. Might up it sometime...
-    float fDur = GetDuration(d3(1), ROUNDS);
-
     effect eLink = EffectLinkEffects(EffectKnockdown(),
                                      EffectLinkEffects(EffectIcon(EFFECT_ICON_KNOCKDOWN),
                                                        EffectLinkEffects(EffectRunScriptEnhanced(),
@@ -66,10 +63,13 @@ void main()
             {
                 if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_MIND_SPELLS))
                 {
+                    // Usually 1 round/level but Bioware limited to 1d3 rounds. Might up it sometime...
+                    float fDuration = GetDuration(d3(1), ROUNDS);
+
                     // Sets the animations
                     SetLaughAnimations(oTarget, "tlklaugh");
                     ExecuteScriptChunk("PlayVoiceChat(VOICE_CHAT_LAUGH);", oTarget);
-                    ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDur);
+                    ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
                 }
             }
         }

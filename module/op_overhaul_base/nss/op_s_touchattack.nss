@@ -45,13 +45,14 @@ void main()
     if (DoSpellHook()) return;
 
     int nTouchAttackType = TOUCH_NONE;
+    int nDice, nDiceSize, nStatic;
     int nBonusToHit = 0;
     // Saving throw and immunity?
     int nSavingThrow = SAVING_THROW_NONE, nSavingThrowType = SAVING_THROW_TYPE_NONE;
     int nImmunity = IMMUNITY_TYPE_NONE;
 
     // Damage > 0 gets it saved
-    int nDamageType, nDamage = 0;
+    int nDamageType;
     int bHeal = FALSE;
 
     // Effect to apply if target is hit.
@@ -66,7 +67,8 @@ void main()
         case SPELL_ICE_DAGGER:
         {
             nTouchAttackType = TOUCH_RANGED;
-            nDamage = GetDiceRoll(min(5, nCasterLevel), 4);
+            nDice = min(5, nCasterLevel);
+            nDiceSize = 4;
             nDamageType = DAMAGE_TYPE_COLD;
             nVis = VFX_IMP_FROST_S;
             // TODO: Maybe a beam visual attack or MIRV here
@@ -82,7 +84,9 @@ void main()
             }
 
             nTouchAttackType = TOUCH_MELEE;
-            nDamage = GetDiceRoll(1, 8, min(nCasterLevel, 20));
+            nDice = 1;
+            nDiceSize = 8;
+            nStatic = min(nCasterLevel, 20);
             nDamageType = DAMAGE_TYPE_ELECTRICAL;
             nVis = VFX_IMP_LIGHTNING_S;
         }
@@ -90,17 +94,20 @@ void main()
         case SPELL_SEARING_LIGHT:
         {
             // Default damage for inanimate and constructs
-            nDamage = GetDiceRoll(min(nCasterLevel/2, 5), 6);
+            nDice = min(nCasterLevel/2, 5);
+            nDiceSize = 6;
 
             if (GetObjectType(oTarget) == OBJECT_TYPE_CREATURE)
             {
                 if (GetRacialType(oTarget) == RACIAL_TYPE_UNDEAD)
                 {
-                    nDamage = GetDiceRoll(min(nCasterLevel, 10), 8);
+                    nDice = min(nCasterLevel, 10);
+                    nDiceSize = 8;
                 }
-                else if (GetRacialType(oTarget) != RACIAL_TYPE_UNDEAD)
+                else if (GetRacialType(oTarget) != RACIAL_TYPE_CONSTRUCT)
                 {
-                    nDamage = GetDiceRoll(min(nCasterLevel/2, 5), 8);
+                    nDice = min(nCasterLevel/2, 5);
+                    nDiceSize = 8;
                 }
             }
 
@@ -113,7 +120,9 @@ void main()
         case SPELL_HEALING_STING:
         {
             nTouchAttackType = TOUCH_MELEE;
-            nDamage = GetDiceRoll(1, 12, min(nCasterLevel, 10));
+            nDice = 1;
+            nDiceSize = 12;
+            nStatic = min(nCasterLevel, 10);
             nDamageType = DAMAGE_TYPE_NEGATIVE;
             nVis = VFX_IMP_NEGATIVE_ENERGY;
             bHeal = TRUE;
@@ -153,8 +162,10 @@ void main()
                 {
                     int bSaved = DoSavingThrow(oTarget, oCaster, nSavingThrow, nSpellSaveDC, nSavingThrowType);
 
-                    if (nDamage > 0)
+                    if (nDice > 0 || nStatic > 0)
                     {
+                        int nDamage = GetDiceRoll(nDice, nDiceSize, nStatic);
+
                         if (nTouch == 2) nDamage *= 2;
 
                         nDamage = GetDamageBasedOnFeats(nDamage, oTarget, nSavingThrow, bSaved);

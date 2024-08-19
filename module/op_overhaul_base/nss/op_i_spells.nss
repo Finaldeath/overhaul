@@ -210,21 +210,36 @@ int GetSpellIsIllusionary();
 int GetSpellIllusionaryStrength(int bIllusionary);
 
 // Checks if oTarget failed the will save done in GetSpellTargetValid() when they
-// were checked. Can affect GetDiceRoll/GetDuration.
+// were checked. Can affect GetStaticValue/GetDiceRoll/GetDuration.
 int GetTargetIllusionarySave(object oTarget);
 
 // Does (and stores) the Will saving throw for illusion saves.
 void DoIllusionSavingThrow(object oTarget, object oCaster);
 
-// Applies metamagic to the given dice roll
-// eg GetDiceRoll(4, 6, 8) will roll 4d6 and add 8 to the final roll
-// Metamagic is applied automatically (alter with the global nMetaMagic or stop with bApplyMetamagic) alongside illusion changes
-int GetDiceRoll(int nNumberOfDice, int nDiceSize, int nBonus = 0, int bApplyMetamagic = TRUE);
+// Gets a modified value for nValue (minimum 1). Use if GetTargetIllusionarySave is TRUE.
+int GetIllusionModifiedValue(int nValue);
 
-// Applies metamagic to the given duration
+// Checks if oTarget is affected by the current spell (if it's an illusion).
+// If they save and it's 40% strong then 40% chance to be affected.
+// Use those spells which have a single type of effect (Eg Death, or Web's per-round effect) to not apply at all.
+// For spells with a variable duration or damage use GetDuration and GetDiceRoll/GetStaticValue instead.
+int GetAffectedByIllusion(object oTarget);
+
+// This gets a static numeric value, usually it just returns nValue but if it's an illusion spell it can return
+// Run this AFTER GetArrayOfTargets/GetSpellTargetValid since that does the illusion save (if needed).
+int GetStaticValue(int nValue);
+
+// Applies metamagic to the given dice roll. Run this AFTER GetArrayOfTargets/GetSpellTargetValid since that does the illusion save (if needed).
+// eg GetDiceRoll(4, 6, 8) will roll 4d6 and add 8 to the final roll
+// Metamagic is applied automatically unless bApplyMetaMagic is FALSE.
+// Illusion changes are applied if it is from an illusion spell and they passed a save.
+int GetDiceRoll(int nNumberOfDice, int nDiceSize, int nBonus = 0, int bApplyMetaMagic = TRUE);
+
+// Applies metamagic to the given duration. Run this AFTER GetArrayOfTargets/GetSpellTargetValid since that does the illusion save (if needed).
 // * nType - The conversion used, ROUNDS (6 seconds), MINUTES ("1 turn" in old NWN = 1 minute/10 rounds) or HOURS (module dependant)
-// Metamagic is applied automatically alongside illusion changes
-float GetDuration(int nDuration, int nDurationType);
+// Metamagic is applied automatically unless bApplyMetaMagic is FALSE.
+// Illusion changes are applied if it is from an illusion spell and they passed a save.
+float GetDuration(int nDuration, int nDurationType, int bApplyMetaMagic = TRUE);
 
 // Checks if the given target is valid to be targeted by oCaster
 int GetSpellTargetValid(object oTarget, object oCaster, int nTargetType);
@@ -567,6 +582,7 @@ int bSpontaneous           = GetSpellCastSpontaneouslyCalculated();
 int bHostile               = GetSpellIsHostile(nSpellId);
 int bIllusionary           = GetSpellIsIllusionary();
 int nIllusionaryStrength   = GetSpellIllusionaryStrength(bIllusionary);
+int bDoneSpellTargetValid  = FALSE; // If true we've done GetSpellTargetValid at least once. Debugs illusion functions.
 
 // Debug the spell and variables
 void DebugSpellVariables()
@@ -1663,6 +1679,11 @@ int GetSpellIllusionaryStrength(int bIllusionary)
 // were checked. Can affect GetDiceRoll/GetDuration.
 int GetTargetIllusionarySave(object oTarget)
 {
+    if (!bDoneSpellTargetValid)
+    {
+        Debug("[GetTargetIllusionarySave] Called before we've tested anyone for illusion saves.", ERROR);
+    }
+
     if (bIllusionary)
     {
         return GetLocalInt(oTarget, "ILLUSIONARY_SAVING_THROW_STATE");
@@ -1684,16 +1705,13 @@ void DoIllusionSavingThrow(object oTarget, object oCaster)
     SetLocalInt(oTarget, "ILLUSIONARY_SAVING_THROW_STATE", bSave);
 }
 
-// Gets a modified value for nValue (minimum 1)
+// Gets a modified value for nValue (minimum 1). Use if GetTargetIllusionarySave is TRUE.
 int GetIllusionModifiedValue(int nValue)
 {
-    // Gets the illusion strength (eg "20" means 20% power)
-    string sStrength = GetScriptParam(SCRIPT_PARAMETER_ILLUSIONARY_STRENGTH);
-
-    if (sStrength != "")
+    if (nIllusionaryStrength != 0)
     {
         // 10 * 20 = 200, / 100 =
-        nValue = FloatToInt(IntToFloat(nValue) * (StringToFloat(sStrength) / 100.0));
+        nValue = FloatToInt(IntToFloat(nValue) * (IntToFloat(nIllusionaryStrength) / 100.0));
     }
     else
     {
@@ -1702,17 +1720,53 @@ int GetIllusionModifiedValue(int nValue)
     return nValue;
 }
 
-// Applies metamagic to the given dice roll
-// eg GetDiceRoll(4, 6, 8) will roll 4d6 and add 8 to the final roll
-// Metamagic is applied automatically (alter with the global nMetaMagic or stop with bApplyMetamagic) alongside illusion changes
-int GetDiceRoll(int nNumberOfDice, int nDiceSize, int nBonus = 0, int bApplyMetamagic = TRUE)
+// Checks if oTarget is affected by the current spell (if it's an illusion).
+// If they save and it's 40% strong then 40% chance to be affected.
+// Use those spells which have a single type of effect (Eg Death, or Web's per-round effect) to not apply at all.
+// For spells with a variable duration or damage use GetDuration and GetDiceRoll/GetStaticValue instead.
+int GetAffectedByIllusion(object oTarget)
 {
+    if (GetTargetIllusionarySave(oTarget))
+    {
+        // If nStrength is 40, we need to roll 41 or higher to not be affected.
+        if (d100() > nIllusionaryStrength)
+        {
+            return FALSE;
+        }
+    }
+    return TRUE;
+}
+
+// This gets a static numeric value, usually it just returns nValue but if it's an illusion spell it can return
+// Run this AFTER GetArrayOfTargets/GetSpellTargetValid since that does the illusion save (if needed).
+int GetStaticValue(int nValue)
+{
+    // Illusion alteration
+    if (GetTargetIllusionarySave(oTarget))
+    {
+        nValue = GetIllusionModifiedValue(nValue);
+    }
+    return nValue;
+}
+
+// Applies metamagic to the given dice roll. Run this AFTER GetArrayOfTargets/GetSpellTargetValid since that does the illusion save (if needed).
+// eg GetDiceRoll(4, 6, 8) will roll 4d6 and add 8 to the final roll
+// Metamagic is applied automatically unless bApplyMetaMagic is FALSE.
+// Illusion changes are applied if it is from an illusion spell and they passed a save.
+int GetDiceRoll(int nNumberOfDice, int nDiceSize, int nBonus = 0, int bApplyMetaMagic = TRUE)
+{
+    // If we have 0 dice, it is still "valid" but we should consider using GetStaticValue.
+    if (nNumberOfDice <= 0)
+    {
+        Debug("[GetDiceRoll] nNumberOfDice is 0 or less. Consider using GetStaticValue() instead.");
+    }
+
     int i, nDamage = 0;
     for (i = 1; i <= nNumberOfDice; i++)
     {
         nDamage += Random(nDiceSize) + 1;
     }
-    if (bApplyMetamagic)
+    if (bApplyMetaMagic)
     {
         // Resolve metamagic. Maximize and Empower don't stack.
         if (nMetaMagic & METAMAGIC_MAXIMIZE)
@@ -1737,22 +1791,34 @@ int GetDiceRoll(int nNumberOfDice, int nDiceSize, int nBonus = 0, int bApplyMeta
 
 // Applies metamagic to the given duration
 // * nType - The conversion used, ROUNDS (6 seconds), MINUTES ("1 turn" in old NWN = 1 minute/10 rounds) or HOURS (module dependant)
-// Metamagic is applied automatically
-float GetDuration(int nDuration, int nDurationType)
+// Metamagic is applied automatically unless bApplyMetaMagic is FALSE.
+// Illusion changes are applied if it is from an illusion spell and they passed a save.
+float GetDuration(int nDuration, int nDurationType, int bApplyMetaMagic = TRUE)
 {
     // We sometimes put in say, nCasterLevel/2 as nDuration. We log this and change it to 1.
     if (nDuration <= 0)
     {
         nDuration = 1;
-        Debug("[GetDuration] nDuration is: " + IntToString(nDuration), ERROR);
+        Debug("[GetDuration] nDuration is too low: " + IntToString(nDuration), ERROR);
     }
 
     float fDuration = 0.0;
-    // Resolve metamagic
-    if (nMetaMagic & METAMAGIC_EXTEND)
+
+    if (bApplyMetaMagic)
     {
-        nDuration *= 2;
+        // Resolve metamagic
+        if (nMetaMagic & METAMAGIC_EXTEND)
+        {
+            nDuration *= 2;
+        }
     }
+
+    // Illusion alteration
+    if (GetTargetIllusionarySave(oTarget))
+    {
+        nDuration = GetIllusionModifiedValue(nDuration);
+    }
+
     // Return the right duration
     if (nDurationType == ROUNDS)
     {
@@ -1768,7 +1834,7 @@ float GetDuration(int nDuration, int nDurationType)
     }
     else
     {
-        Debug("[ERROR] Spells GetDuration: Incorrect nDurationType.", ERROR);
+        Debug("[ERROR] Spells GetDuration: Incorrect nDurationType: " + IntToString(nDurationType), ERROR);
     }
     return fDuration;
 }
@@ -1778,6 +1844,9 @@ float GetDuration(int nDuration, int nDurationType)
 // if the target is valid.
 int GetSpellTargetValid(object oTarget, object oCaster, int nTargetType)
 {
+    // Set global saying we've done this
+    bDoneSpellTargetValid = TRUE;
+
     // If dead, not a valid target
     if (GetIsDead(oTarget))
     {
@@ -1838,7 +1907,8 @@ int GetSpellTargetValid(object oTarget, object oCaster, int nTargetType)
         }
 
         // If valid we do a will save for illusion spells
-        if (bReturnValue)
+        // Doors and placeables automatically fail this. Sorry dudes you just don't have a mind.
+        if (bReturnValue && nObjectType == OBJECT_TYPE_CREATURE)
         {
             DoIllusionSavingThrow(oTarget, oCaster);
         }
