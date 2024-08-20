@@ -76,7 +76,7 @@ void main()
             // Even though the spell is "Hostile" for PvP purposes we'll leave it as being non-hostile
             // This stops the charm effect being removed (right away), and keeps to the behaviour to how
             // Bioware's spells worked
-            SignalSpellCastAt(oTarget, oCaster, FALSE);
+            SignalSpellCastAt(oTarget, oCaster, SIGNAL_HOSTILE_FALSE_BUT_REALLY_TRUE);
 
             // Validate target and set duration and some other variables if needed
             float fDuration;

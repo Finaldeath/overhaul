@@ -32,9 +32,9 @@ void main()
 
         if (nAmountDamageDone < 1000 && GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
         {
-            ApplyAOEPersistentEffect(oTarget, EffectMovementSpeedDecrease(50));
-
             SignalSpellCastAt();
+
+            ApplyAOEPersistentEffect(oTarget, EffectMovementSpeedDecrease(GetStaticValue(50)));
 
             if (GetTimerEnded(ObjectToString(oTarget)))
             {

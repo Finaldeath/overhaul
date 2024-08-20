@@ -100,6 +100,11 @@ const string TAG_AOEEFFECT = "AOEEFFECT";
 // Fired using FireItemPropertySpellScript
 const string ITEM_PROPERTY_SPELL_SCRIPT = "op_s_itemprop";
 
+// For SignalSpellCastAt
+const int SIGNAL_HOSTILE_TRUE = TRUE;
+const int SIGNAL_HOSTILE_FALSE = FALSE;
+const int SIGNAL_HOSTILE_FALSE_BUT_REALLY_TRUE = 2;  // Special for things like Charm etc. for illusion saves
+
 // Debug the spell and variables
 void DebugSpellVariables();
 
@@ -339,6 +344,8 @@ int AOECheck();
 // Signals a spell cast event.
 // By default if the default parameters are used then the global automatically
 // generated values are used instead.
+// * bSignalHostile - If not -1 use SIGNAL_HOSTILE_TRUE, SIGNAL_HOSTILE_FALSE and SIGNAL_HOSTILE_FALSE_BUT_REALLY_TRUE as values so that
+//                    illusion saves are done correctly.
 void SignalSpellCastAt(object oSignalTarget = OBJECT_INVALID, object oSignalCaster = OBJECT_INVALID, int bSignalHostile = -1, int nSignalSpellId = -1);
 
 // Gets the scale of the VFX to apply to oCreature. If not a creature it returns 1.0.
@@ -1725,6 +1732,7 @@ int GetTargetIllusionarySave(object oTarget)
 }
 
 // Does (and stores) the Will saving throw for illusion saves.
+// For now only affects spells marked as Hostile.
 void DoIllusionSavingThrow(object oTarget, object oCaster)
 {
     if (GetIsStateScript()) return;
@@ -1943,15 +1951,6 @@ int GetSpellTargetValid(object oTarget, object oCaster, int nTargetType)
                 Debug("[ERROR] GetSpellTargetValid: Invalid input: " + IntToString(nTargetType), ERROR);
             }
             break;
-        }
-
-        // If valid we do a will save for illusion spells
-        // Doors and placeables automatically fail this. Sorry dudes you just don't have a mind.
-        // TBH this could go somewhere better since it'll fire a lot for things that we don't test
-        // (eg friendly spell).
-        if (bReturnValue && nObjectType == OBJECT_TYPE_CREATURE)
-        {
-            DoIllusionSavingThrow(oTarget, oCaster);
         }
     }
     else
@@ -2414,12 +2413,36 @@ int AOECheck()
 // Signals a spell cast event.
 // By default if the default parameters are used then the global automatically
 // generated values are used instead.
+// * bSignalHostile - If not -1 use SIGNAL_HOSTILE_TRUE, SIGNAL_HOSTILE_FALSE and SIGNAL_HOSTILE_FALSE_BUT_REALLY_TRUE as values so that
+//                    illusion saves are done correctly.
 void SignalSpellCastAt(object oSignalTarget = OBJECT_INVALID, object oSignalCaster = OBJECT_INVALID, int bSignalHostile = -1, int nSignalSpellId = -1)
 {
+    int bIllusionSaveForced = FALSE;
     if (oSignalTarget == OBJECT_INVALID) oSignalTarget = oTarget;
     if (oSignalCaster == OBJECT_INVALID) oSignalCaster = oCaster;
     if (nSignalSpellId == -1) nSignalSpellId = nSpellId;
-    if (bSignalHostile == -1) bSignalHostile = bHostile;
+    if (bSignalHostile == -1)
+    {
+        bSignalHostile = bHostile;
+    }
+    else if (bSignalHostile == SIGNAL_HOSTILE_TRUE ||
+             bSignalHostile == SIGNAL_HOSTILE_FALSE)
+    {
+        // Ignored, value is correct (TRUE or FALSE)
+    }
+    else if (bSignalHostile == SIGNAL_HOSTILE_FALSE_BUT_REALLY_TRUE)
+    {
+        bSignalHostile = FALSE;
+        bIllusionSaveForced = TRUE;
+    }
+
+    // Do a illusion saving throw now, before any effects are triggered.
+    // Doors and placeables automatically fail this. Sorry dudes you just don't have a mind.
+    // Done here since we know oSignalTarget is being affected by a hostile spell in context of the script
+    if (bSignalHostile || bIllusionSaveForced && GetObjectType(oSignalTarget) == OBJECT_TYPE_CREATURE)
+    {
+        DoIllusionSavingThrow(oSignalTarget, oSignalCaster);
+    }
 
     SignalEvent(oSignalTarget, EventSpellCastAt(oSignalCaster, nSignalSpellId, bSignalHostile));
 }

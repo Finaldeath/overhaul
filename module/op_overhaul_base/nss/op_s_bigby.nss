@@ -70,7 +70,7 @@ void main()
     // Can't apply the same spell to the same person again
     if (GetHasSpellEffect(nSpellId, oTarget))
     {
-
+        SendMessageToPC(oCaster, "*Target already affected by " + GetSpellName(nSpellId) + ".*");
         return;
     }
 

@@ -41,21 +41,24 @@ void main()
 
                     if (!DoResistSpell(oTarget, oCaster, fDelay))
                     {
-                        int nHitDice = GetHitDice(oTarget);
-                        if (nHitDice <= 3)
+                        if (GetAffectedByIllusion(oTarget))
                         {
-                            ApplyVisualEffectToObject(VFX_IMP_DEATH, oTarget);
-                            ApplySpellEffectToObject(DURATION_TYPE_INSTANT, IgnoreEffectImmunity(EffectDeath()), oTarget);
-                            return;
-                        }
-                        // Fort save or death if < 6HD
-                        else if (nHitDice <= 6)
-                        {
-                            if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_FORT, nSpellSaveDC, SAVING_THROW_TYPE_POISON))
+                            int nHitDice = GetHitDice(oTarget);
+                            if (nHitDice <= 3)
                             {
                                 ApplyVisualEffectToObject(VFX_IMP_DEATH, oTarget);
                                 ApplySpellEffectToObject(DURATION_TYPE_INSTANT, IgnoreEffectImmunity(EffectDeath()), oTarget);
                                 return;
+                            }
+                            // Fort save or death if < 6HD
+                            else if (nHitDice <= 6)
+                            {
+                                if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_FORT, nSpellSaveDC, SAVING_THROW_TYPE_POISON))
+                                {
+                                    ApplyVisualEffectToObject(VFX_IMP_DEATH, oTarget);
+                                    ApplySpellEffectToObject(DURATION_TYPE_INSTANT, IgnoreEffectImmunity(EffectDeath()), oTarget);
+                                    return;
+                                }
                             }
                         }
 
@@ -94,21 +97,24 @@ void main()
                 {
                     if (!DoResistSpell(oTarget, oCaster))
                     {
-                        int nHitDice = GetHitDice(oTarget);
-                        if (nHitDice <= 3)
+                        if (GetAffectedByIllusion(oTarget))
                         {
-                            ApplyVisualEffectToObject(VFX_IMP_DEATH, oTarget);
-                            ApplySpellEffectToObject(DURATION_TYPE_INSTANT, IgnoreEffectImmunity(EffectDeath()), oTarget);
-                            return;
-                        }
-                        // Fort save or death if < 6HD
-                        if (nHitDice <= 6)
-                        {
-                            if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_FORT, nSpellSaveDC, SAVING_THROW_TYPE_POISON))
+                            int nHitDice = GetHitDice(oTarget);
+                            if (nHitDice <= 3)
                             {
                                 ApplyVisualEffectToObject(VFX_IMP_DEATH, oTarget);
                                 ApplySpellEffectToObject(DURATION_TYPE_INSTANT, IgnoreEffectImmunity(EffectDeath()), oTarget);
                                 return;
+                            }
+                            // Fort save or death if < 6HD
+                            if (nHitDice <= 6)
+                            {
+                                if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_FORT, nSpellSaveDC, SAVING_THROW_TYPE_POISON))
+                                {
+                                    ApplyVisualEffectToObject(VFX_IMP_DEATH, oTarget);
+                                    ApplySpellEffectToObject(DURATION_TYPE_INSTANT, IgnoreEffectImmunity(EffectDeath()), oTarget);
+                                    return;
+                                }
                             }
                         }
 

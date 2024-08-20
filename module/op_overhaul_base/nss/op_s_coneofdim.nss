@@ -54,7 +54,7 @@ void main()
             RemoveEffectsFromSpell(oTarget, SPELL_CONE_OF_DIMNESS, EFFECT_TYPE_BLINDNESS, TAG_CONE_OF_DIMNESS);
 
             // Miss Chance applied for the rest of the duration
-            effect eLink = EffectLinkEffects(EffectMissChance(20), EffectIcon(EFFECT_ICON_MISS_CHANCE));
+            effect eLink = EffectLinkEffects(EffectMissChance(GetStaticValue(20)), EffectIcon(EFFECT_ICON_MISS_CHANCE));
             eLink        = TagEffect(UnyieldingEffect(eLink), TAG_CONE_OF_DIMNESS);
             ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDurationRemaining);
             return;
@@ -95,10 +95,12 @@ void main()
 
         if (!DoResistSpell(oTarget, oCaster, fDelay))
         {
-            if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_MIND_SPELLS, fDelay))
+            if (GetAffectedByIllusion(oTarget) &&
+               !GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_BLINDNESS))
             {
-                if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_BLINDNESS))
+                if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_MIND_SPELLS, fDelay))
                 {
+
                     DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_BLIND_DEAF_M, oTarget));
                     DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eRunScript, oTarget, fDuration));
                     DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eBlindness, oTarget, fDuration));

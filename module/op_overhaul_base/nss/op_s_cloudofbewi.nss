@@ -32,16 +32,15 @@ void main()
                 if (!DoResistSpell(oTarget, oCaster))
                 {
                     if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_DAZED) &&
-                        !GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_POISON))
+                        !GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_POISON) &&
+                        GetAffectedByIllusion(oTarget) &&
+                        !DoSavingThrow(oTarget, oCaster, SAVING_THROW_FORT, nSpellSaveDC, SAVING_THROW_TYPE_POISON))
                     {
-                        if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_FORT, nSpellSaveDC, SAVING_THROW_TYPE_POISON))
-                        {
-                            effect eLink = EffectLinkEffects(EffectDazed(),
-                                                             EffectVisualEffect(VFX_DUR_MIND_AFFECTING_NEGATIVE));
+                        effect eLink = EffectLinkEffects(EffectDazed(),
+                                                         EffectVisualEffect(VFX_DUR_MIND_AFFECTING_NEGATIVE));
 
-                            // Simplfied version is we apply this permanently but On Exit apply it for 1d4 + 1 more rounds
-                            ApplyAOEPersistentEffect(oTarget, eLink);
-                        }
+                        // Simplfied version is we apply this permanently but On Exit apply it for 1d4 + 1 more rounds
+                        ApplyAOEPersistentEffect(oTarget, eLink);
                     }
                 }
             }
@@ -88,16 +87,15 @@ void main()
                 if (!DoResistSpell(oTarget, oCaster))
                 {
                     if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_DAZED) &&
-                        !GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_POISON))
+                        !GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_POISON) &&
+                         GetAffectedByIllusion(oTarget) &&
+                        !DoSavingThrow(oTarget, oCaster, SAVING_THROW_FORT, nSpellSaveDC, SAVING_THROW_TYPE_POISON))
                     {
-                        if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_FORT, nSpellSaveDC, SAVING_THROW_TYPE_POISON))
-                        {
-                            effect eLink = EffectLinkEffects(EffectDazed(),
-                                                             EffectVisualEffect(VFX_DUR_MIND_AFFECTING_NEGATIVE));
+                        effect eLink = EffectLinkEffects(EffectDazed(),
+                                                         EffectVisualEffect(VFX_DUR_MIND_AFFECTING_NEGATIVE));
 
-                            // Simplfied version is we apply this permanently but On Exit apply it for 1d4 + 1 more rounds
-                            ApplyAOEPersistentEffect(oTarget, eLink);
-                        }
+                        // Simplfied version is we apply this permanently but On Exit apply it for 1d4 + 1 more rounds
+                        ApplyAOEPersistentEffect(oTarget, eLink);
                     }
                 }
             }

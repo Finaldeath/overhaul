@@ -30,21 +30,22 @@ void main()
     if (DoSpellHook()) return;
 
     int nDamage;
-    float fDuration, fDelay = 0.0;
+    float fDelay = 0.0;
+    int nDuration, nDurationType = ROUNDS;
 
     switch (nSpellId)
     {
         case SPELL_COMBUST:
         {
             nDamage = GetDiceRoll(2, 6, min(10, nCasterLevel));
-            fDuration = GetDuration(10 + nCasterLevel, ROUNDS) + 1.0;
+            nDuration = 10 + nCasterLevel;
         }
         break;
         case SPELL_INFERNO:
         {
             nDamage = GetDiceRoll(2, 6);
             fDelay = 0.75; // for Beam
-            fDuration = GetDuration(nCasterLevel, ROUNDS) + 1.0;
+            nDuration = nCasterLevel;
 
             // Apply beam as well
             ApplyBeamToObject(VFX_BEAM_FLAME, oTarget);
@@ -73,7 +74,7 @@ void main()
             // Apply with a tag so we can run multiple combustions at once
             string sTag = GetRandomUUID();
             effect eCombust = TagEffect(EffectVisualEffect(VFX_DUR_INFERNO_CHEST), sTag);
-            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eCombust, oTarget, fDuration));
+            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eCombust, oTarget, GetDuration(nDuration, nDurationType) + 1.0));
 
             switch (nSpellId)
             {

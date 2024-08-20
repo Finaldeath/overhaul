@@ -46,7 +46,8 @@ void main()
                 nPool -= GetHitDice(oTarget);
 
                 float fDelay = GetRandomDelay(0.2, 0.3);
-                if (!DoResistSpell(oTarget, oCaster, fDelay) &&
+                if (GetAffectedByIllusion(oTarget) &&
+                    !DoResistSpell(oTarget, oCaster, fDelay) &&
                     !DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_NONE, fDelay))
                 {
                     // Set them to be destroyable so they fade (but leave a loot bag in case of plot)
