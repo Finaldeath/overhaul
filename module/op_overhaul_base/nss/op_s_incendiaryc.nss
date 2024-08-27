@@ -82,7 +82,7 @@ void main()
         ApplyVisualEffectAtLocation(VFX_FNF_GAS_EXPLOSION_FIRE, lTarget);
 
         effect eAOE = EffectAreaOfEffect(AOE_PER_FOGFIRE, GetScriptName(), GetScriptName(), GetScriptName());
-        ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, GetDuration(nCasterLevel, ROUNDS));
+        ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, GetDuration(nCasterLevel, ROUNDS, TRUE, FALSE));
     }
 }
 

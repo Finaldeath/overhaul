@@ -64,7 +64,7 @@ void main()
         // Declare major variables including Area of Effect Object
         effect eAOE = EffectAreaOfEffect(AOE_PER_GLYPH_OF_WARDING, GetScriptName(), GetScriptName(), GetScriptName());
 
-        float fDuration = GetDuration(nCasterLevel / 2, MINUTES);
+        float fDuration = GetDuration(nCasterLevel / 2, MINUTES, TRUE, FALSE);
 
         ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, fDuration);
     }

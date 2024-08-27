@@ -106,7 +106,7 @@ const int SIGNAL_HOSTILE_FALSE = FALSE;
 const int SIGNAL_HOSTILE_FALSE_BUT_REALLY_TRUE = 2;  // Special for things like Charm etc. for illusion saves
 
 // Debug the spell and variables
-void DebugSpellVariables();
+int DebugSpellVariables();
 
 // Main Spell Hook fired at the top of any spell script.
 // Returns TRUE if the hook did something important, meaning the script shouldn't continue, eg: Crafting, Tensers checks, etc.
@@ -241,11 +241,11 @@ int GetStaticValue(int nValue);
 // Illusion changes are applied if it is from an illusion spell and they passed a save.
 int GetDiceRoll(int nNumberOfDice, int nDiceSize, int nBonus = 0, int bApplyMetaMagic = TRUE);
 
-// Applies metamagic to the given duration. Run this AFTER GetArrayOfTargets/GetSpellTargetValid since that does the illusion save (if needed).
+// Applies metamagic to the given duration
 // * nType - The conversion used, ROUNDS (6 seconds), MINUTES ("1 turn" in old NWN = 1 minute/10 rounds) or HOURS (module dependant)
-// Metamagic is applied automatically unless bApplyMetaMagic is FALSE.
-// Illusion changes are applied if it is from an illusion spell and they passed a save.
-float GetDuration(int nDuration, int nDurationType, int bApplyMetaMagic = TRUE);
+// * bApplyMetaMagic - Metamagic is applied automatically unless bApplyMetaMagic is FALSE.
+// * bCheckIllusionSave - If TRUE Illusion changes are applied if it is from an illusion spell and they passed a save.
+float GetDuration(int nDuration, int nDurationType, int bApplyMetaMagic = TRUE, int bCheckIllusionSave = TRUE);
 
 // Checks if the given target is valid to be targeted by oCaster
 int GetSpellTargetValid(object oTarget, object oCaster, int nTargetType);
@@ -594,7 +594,7 @@ int bSpontaneous           = GetSpellCastSpontaneouslyCalculated();
 int bHostile               = GetSpellIsHostile(nSpellId);
 
 // Debug the spell and variables
-void DebugSpellVariables()
+int DebugSpellVariables()
 {
     if (DEBUG_LEVEL >= INFO)
     {
@@ -615,7 +615,9 @@ void DebugSpellVariables()
                                                                  "] bIllusionary: [" + IntToString(bIllusionary) +
                                                                  "] nIllusionaryStrength: [" + IntToString(nIllusionaryStrength) + "]",
                                                              255, 255, 255));
+        return TRUE;
     }
+    return FALSE;
 }
 
 // Main Spell Hook fired at the top of any spell script.
@@ -1839,9 +1841,9 @@ int GetDiceRoll(int nNumberOfDice, int nDiceSize, int nBonus = 0, int bApplyMeta
 
 // Applies metamagic to the given duration
 // * nType - The conversion used, ROUNDS (6 seconds), MINUTES ("1 turn" in old NWN = 1 minute/10 rounds) or HOURS (module dependant)
-// Metamagic is applied automatically unless bApplyMetaMagic is FALSE.
-// Illusion changes are applied if it is from an illusion spell and they passed a save.
-float GetDuration(int nDuration, int nDurationType, int bApplyMetaMagic = TRUE)
+// * bApplyMetaMagic - Metamagic is applied automatically unless bApplyMetaMagic is FALSE.
+// * bCheckIllusionSave - If TRUE Illusion changes are applied if it is from an illusion spell and they passed a save.
+float GetDuration(int nDuration, int nDurationType, int bApplyMetaMagic = TRUE, int bCheckIllusionSave = TRUE)
 {
     // We sometimes put in say, nCasterLevel/2 as nDuration. We log this and change it to 1.
     if (nDuration <= 0)
