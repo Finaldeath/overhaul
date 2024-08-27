@@ -168,7 +168,7 @@ location GetSpellTargetLocationCalculated(object oTarget);
 // Instead they'll be immune and we'll send appropriate feedback messages.
 //   Returns: 0 if the saving throw roll failed
 //   Returns: 1 if the saving throw roll succeeded
-//   Returns: 2 if the target was immune to the save type specified (only checked for Death, Disease, Fear, Mind Spells, Poison, Trap and Paralysis subtypes)
+//   Returns: 2 if the target was immune to the save type specified (only checked for Disease, Fear, Mind Spells, Poison, Trap and Paralysis subtypes)
 // Note: If used within an Area of Effect Object Script (On Enter, OnExit, OnHeartbeat), you MUST pass GetAreaOfEffectCreator() into oSaveVersus!
 int DoSavingThrow(object oTarget, object oSaveVersus, int nSavingThrow, int nDC, int nSaveType = SAVING_THROW_TYPE_NONE, float fDelay = 0.0);
 
@@ -255,9 +255,10 @@ int GetSpellTargetValid(object oTarget, object oCaster, int nTargetType);
 int GetImmunityTypeFromSavingThrowType(int nSaveType);
 
 // Check and do immunity for the given immunity type.
-// It also provides feedback to the given creatures if valid, and the game usually gives such feedback.
+// It also provides feedback to the given creatures if valid.
 // If nImmunityType is IMMUNITY_TYPE_NONE this automatically fails (ie they're not immune).
-int GetIsImmuneWithFeedback(object oCreature, object oVersus, int nImmunityType);
+// * bCheckMindImmunity - If TRUE then those effects that IMMUNITY_TYPE_MIND_SPELLS covers are also checked for IMMUNITY_TYPE_MIND_SPELLS (Fear, etc.)
+int GetIsImmuneWithFeedback(object oCreature, object oVersus, int nImmunityType, int bCheckMindImmunity = TRUE);
 
 // This allows the application of a random delay to effects based on time parameters passed in.
 float GetRandomDelay(float fMinimumTime = 0.4, float MaximumTime = 1.1);
@@ -1188,7 +1189,7 @@ location GetSpellTargetLocationCalculated(object oTarget)
 // Instead they'll be immune and we'll send appropriate feedback messages.
 //   Returns: 0 if the saving throw roll failed
 //   Returns: 1 if the saving throw roll succeeded
-//   Returns: 2 if the target was immune to the save type specified
+//   Returns: 2 if the target was immune to the save type specified (only checked for Death, Disease, Fear, Mind Spells, Poison, Trap and Paralysis subtypes)
 // Note: If used within an Area of Effect Object Script (On Enter, OnExit, OnHeartbeat), you MUST pass GetAreaOfEffectCreator() into oSaveVersus!
 int DoSavingThrow(object oTarget, object oSaveVersus, int nSavingThrow, int nDC, int nSaveType = SAVING_THROW_TYPE_NONE, float fDelay = 0.0)
 {
@@ -1962,7 +1963,7 @@ int GetSpellTargetValid(object oTarget, object oCaster, int nTargetType)
     return bReturnValue;
 }
 
-// Converts a SAVING_THROW_TYPE_* to an IMMUNITY_TYPE_* where these are checked for in the saving throw functions (Death, Disease, Fear, Mind Spells, Poison, Trap and Paralysis subtypes)
+// Converts a SAVING_THROW_TYPE_* to an IMMUNITY_TYPE_* where these are checked for in the saving throw functions (Disease, Fear, Mind Spells, Poison, Trap and Paralysis subtypes)
 // else it will be IMMUNITY_TYPE_NONE (0)
 int GetImmunityTypeFromSavingThrowType(int nSaveType)
 {
@@ -1970,9 +1971,6 @@ int GetImmunityTypeFromSavingThrowType(int nSaveType)
     int nImmunityType = IMMUNITY_TYPE_NONE;
     switch (nSaveType)
     {
-        case SAVING_THROW_TYPE_DEATH:
-            nImmunityType = IMMUNITY_TYPE_DEATH;
-            break;
         case SAVING_THROW_TYPE_DISEASE:
             nImmunityType = IMMUNITY_TYPE_DISEASE;
             break;
@@ -1998,7 +1996,8 @@ int GetImmunityTypeFromSavingThrowType(int nSaveType)
 // Check and do immunity for the given immunity type.
 // It also provides feedback to the given creatures if valid.
 // If nImmunityType is IMMUNITY_TYPE_NONE this automatically fails (ie they're not immune).
-int GetIsImmuneWithFeedback(object oCreature, object oVersus, int nImmunityType)
+// * bCheckMindImmunity - If TRUE then those effects that IMMUNITY_TYPE_MIND_SPELLS covers are also checked for IMMUNITY_TYPE_MIND_SPELLS (Fear, etc.)
+int GetIsImmuneWithFeedback(object oCreature, object oVersus, int nImmunityType, int bCheckMindImmunity = TRUE)
 {
     if (nImmunityType == IMMUNITY_TYPE_NONE) return FALSE;
 
@@ -2009,6 +2008,29 @@ int GetIsImmuneWithFeedback(object oCreature, object oVersus, int nImmunityType)
 
         return TRUE;
     }
+    if (bCheckMindImmunity)
+    {
+        switch (nImmunityType)
+        {
+            case IMMUNITY_TYPE_CHARM:
+            case IMMUNITY_TYPE_CONFUSED:
+            case IMMUNITY_TYPE_DAZED:
+            case IMMUNITY_TYPE_DOMINATE:
+            case IMMUNITY_TYPE_FEAR:
+            case IMMUNITY_TYPE_PARALYSIS: // Stupid but it's here. Gah.
+            case IMMUNITY_TYPE_STUN:
+            {
+                if (GetIsImmune(oCreature, IMMUNITY_TYPE_MIND_SPELLS, oVersus))
+                {
+                    // Send some feedback
+                    SendImmunityFeedback(oVersus, oCreature, IMMUNITY_TYPE_MIND_SPELLS);
+
+                    return TRUE;
+                }
+            }
+        }
+    }
+
     return FALSE;
 }
 

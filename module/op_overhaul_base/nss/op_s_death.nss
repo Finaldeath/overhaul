@@ -27,6 +27,7 @@ void main()
 
     // Save
     int nSavingThrow = SAVING_THROW_NONE, nSavingThrowType = SAVING_THROW_TYPE_NONE;
+    int nSavingThrow2 = SAVING_THROW_NONE, nSavingThrowType2 = SAVING_THROW_TYPE_NONE;
     // Immunity - Death Magic
     int nImmunity = IMMUNITY_TYPE_DEATH;
     // Touch attack?
@@ -38,9 +39,16 @@ void main()
     // Damage on save, don't set type and it won't use
     int nDiceNum, nDiceSize, nDamageBonus, nDamageType = -1;
 
+    // Weird gets more fail effects and HD 4 kills.
+    int bWeird = FALSE;
+
+    // TargetType
+    int nTargetType = SPELL_TARGET_STANDARDHOSTILE;
+
     switch (nSpellId)
     {
         case SPELL_FINGER_OF_DEATH:
+        {
             nSavingThrow     = SAVING_THROW_FORT;
             nSavingThrowType = SAVING_THROW_TYPE_DEATH;
             nVis             = VFX_IMP_DEATH_L;
@@ -49,8 +57,10 @@ void main()
             nDiceSize        = 6;
             nDamageBonus     = nCasterLevel;
             nDamageType      = DAMAGE_TYPE_NEGATIVE;
-            break;
+        }
+        break;
         case SPELL_SLAY_LIVING:
+        {
             nTouchType       = TOUCH_MELEE;
             nSavingThrow     = SAVING_THROW_FORT;
             nSavingThrowType = SAVING_THROW_TYPE_DEATH;
@@ -60,16 +70,48 @@ void main()
             nDiceSize        = 6;
             nDamageBonus     = nCasterLevel;
             nDamageType      = DAMAGE_TYPE_NEGATIVE;
-            break;
+        }
+        break;
+        case SPELL_PHANTASMAL_KILLER:
+        {
+            nSavingThrow      = SAVING_THROW_WILL;
+            nSavingThrowType  = SAVING_THROW_TYPE_FEAR;
+            nSavingThrow2     = SAVING_THROW_FORT;
+            nSavingThrowType2 = SAVING_THROW_TYPE_FEAR;
+            nImmunity         = IMMUNITY_TYPE_FEAR;
+            nVis              = VFX_IMP_DEATH;
+            nDamageVis        = VFX_IMP_SONIC;
+            nDiceNum          = 3;
+            nDiceSize         = 6;
+            nDamageType       = DAMAGE_TYPE_MAGICAL;
+        }
+        break;
+        case SPELL_WEIRD:
+        {
+            bWeird            = TRUE;
+            nTargetType       = SPELL_TARGET_SELECTIVEHOSTILE;
+            nImpact           = VFX_FNF_WEIRD;
+            nSavingThrow      = SAVING_THROW_WILL;
+            nSavingThrowType  = SAVING_THROW_TYPE_FEAR;
+            nSavingThrow2     = SAVING_THROW_FORT;
+            nSavingThrowType2 = SAVING_THROW_TYPE_FEAR;
+            nImmunity         = IMMUNITY_TYPE_FEAR;
+            nVis              = VFX_IMP_DEATH;
+            nDamageVis        = VFX_IMP_SONIC;
+            nDiceNum          = 3;
+            nDiceSize         = 6;
+            nDamageType       = DAMAGE_TYPE_MAGICAL;
+        }
+        break;
         default:
-            Debug("[Sleep op_s_death] No valid spell ID passed in: " + IntToString(nSpellId));
+            Debug("[op_s_death] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
             break;
     }
 
     ApplyVisualEffectAtLocation(nImpact, lTarget);
 
-    json jArray = GetArrayOfTargets(SPELL_TARGET_STANDARDHOSTILE);
+    json jArray = GetArrayOfTargets(nTargetType);
     int nIndex;
     for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
     {
@@ -87,21 +129,58 @@ void main()
             {
                 if (!GetIsImmuneWithFeedback(oTarget, oCaster, nImmunity))
                 {
+                    // If weird we do 4HD check
+                    if (bWeird)
+                    {
+                        if (GetHitDice(oTarget) < 4)
+                        {
+                            DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
+                            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDeath, oTarget));
+                            continue;
+                        }
+                    }
+                    // If 1 saving throw we do it or damage. If 2 saving throws the first one makes us immune to all the effects.
+                    int bAdditionalEffect = FALSE;
                     if (!DoSavingThrow(oTarget, oCaster, nSavingThrow, nSpellSaveDC, nSavingThrowType, fDelay))
                     {
-                        DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
-                        DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDeath, oTarget));
+                        if (nSavingThrow2 == SAVING_THROW_TYPE_NONE || !DoSavingThrow(oTarget, oCaster, nSavingThrow2, nSpellSaveDC, nSavingThrowType2, fDelay))
+                        {
+                            DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
+                            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDeath, oTarget));
+                        }
+                        else if (nSavingThrow2 != SAVING_THROW_TYPE_NONE)
+                        {
+                            bAdditionalEffect = TRUE;
+                        }
                     }
-                    else if (nDamageType != -1)
+                    else if (nSavingThrow2 == SAVING_THROW_TYPE_NONE)
                     {
-                        int nDamage = GetDiceRoll(nDiceNum, nDiceSize, nDamageBonus);
+                        bAdditionalEffect = TRUE;
+                    }
 
-                        if (nTouch == 2) nDamage *= 2;
 
-                        DelayCommand(fDelay, ApplyDamageWithVFXToObject(oTarget, nDamageVis, nDamage, nDamageType));
+                    if (bAdditionalEffect)
+                    {
+                        if (nDamageType != -1)
+                        {
+                            int nDamage = GetDiceRoll(nDiceNum, nDiceSize, nDamageBonus);
+
+                            if (nTouch == 2) nDamage *= 2;
+
+                            DelayCommand(fDelay, ApplyDamageWithVFXToObject(oTarget, nDamageVis, nDamage, nDamageType));
+                        }
+                        if (bWeird)
+                        {
+                            effect eStun = EffectLinkEffects(EffectStunned(), EffectVisualEffect(VFX_IMP_STUN));
+                            effect eAbilityDecrease = EffectLinkEffects(EffectAbilityDecrease(ABILITY_STRENGTH, GetDiceRoll(1, 4)), EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+
+                            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eStun, oTarget, GetDuration(1, ROUNDS, FALSE)));
+                            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eAbilityDecrease, oTarget, GetDuration(10, MINUTES, FALSE)));
+                        }
                     }
                 }
             }
         }
     }
 }
+
