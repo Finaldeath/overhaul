@@ -67,7 +67,7 @@ void main()
         ApplyVisualEffectAtLocation(VFX_FNF_STORM, lTarget);
 
         effect eAOE = EffectAreaOfEffect(AOE_PER_STORM, GetScriptName(), GetScriptName(), GetScriptName());
-        ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, GetDuration(10, ROUNDS));
+        ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, GetDuration(10, ROUNDS, TRUE, FALSE));
     }
 }
 

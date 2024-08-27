@@ -52,7 +52,7 @@ void main()
             Debug("[op_s_darkness] Somehow this script was called without the Spell Id being SPELL_DARKNESS. nSpellId: " + IntToString(nSpellId), ERROR);
             nSpellId = SPELL_DARKNESS;
         }
-        effect eAOE = EffectAreaOfEffect(AOE_PER_DARKNESS, "op_s_darkness", "op_s_darkness", "op_s_darkness");
-        ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, GetDuration(nCasterLevel, ROUNDS));
+        effect eAOE = EffectAreaOfEffect(AOE_PER_DARKNESS, GetScriptName(), GetScriptName(), GetScriptName());
+        ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, GetDuration(nCasterLevel, ROUNDS, TRUE, FALSE));
     }
 }

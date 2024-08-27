@@ -94,6 +94,6 @@ void main()
         if (DoSpellHook()) return;
 
         effect eAOE = EffectAreaOfEffect(AOE_PER_WEB, GetScriptName(), GetScriptName(), GetScriptName());
-        ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, GetDuration(nCasterLevel / 2, ROUNDS));
+        ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, GetDuration(nCasterLevel / 2, ROUNDS, TRUE, FALSE));
     }
 }

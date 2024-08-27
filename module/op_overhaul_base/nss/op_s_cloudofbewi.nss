@@ -108,7 +108,7 @@ void main()
         ApplyVisualEffectAtLocation(VFX_IMP_DUST_EXPLOSION, lTarget);
 
         effect eAOE = EffectAreaOfEffect(AOE_PER_FOG_OF_BEWILDERMENT, GetScriptName(), GetScriptName(), GetScriptName());
-        ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, GetDuration(nCasterLevel, ROUNDS));
+        ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, GetDuration(nCasterLevel, ROUNDS, TRUE, FALSE));
     }
 }
 
