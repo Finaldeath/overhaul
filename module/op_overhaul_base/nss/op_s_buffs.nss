@@ -179,6 +179,9 @@
 
     Improved Invisibility
     Invisibility and 50% concealment, 1 minute/level.
+
+    Iron Body
+    Lots of bonuses and several penalties at once. 1 minute/level.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -852,6 +855,49 @@ void main()
                                                             EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
             bSecondLink = TRUE;
             eSecondLink = ExtraordinaryEffect(EffectInvisibility(INVISIBILITY_TYPE_NORMAL));
+        }
+        break;
+        case SPELL_IRON_BODY:
+        {
+/*
+    The character gains damage reduction 50/+3. The character is immune to
+    blindness, critical hits, ability score damage, deafness, disease, poison,
+    stunning. The character gains +100% electrical damage immunity.
+    The character gains +50% acid and fire damage immunity.
+
+    The character gains a +6 enhancement bonus to the character's Strength
+    score, but the character suffer a 6 Dexterity penalty as well, and the
+    character's speed is reduced to half normal (walking speed). The character
+    has an arcane spell failure chance of 50% and a penalty of 8 to all armor
+    check skills (hide, move silently, parry, pick pocket, set trap, and
+    tumble). The character cannot drink so any potions they attempt to drink
+    are lost.
+*/
+            fDuration = GetDuration(nCasterLevel, MINUTES);
+            nVis      = VFX_IMP_SUPER_HEROISM;
+            eLink     = IgnoreEffectImmunity(EffectLinkEffects(EffectDamageReduction(50, DAMAGE_POWER_PLUS_THREE),
+                        EffectLinkEffects(EffectImmunity(IMMUNITY_TYPE_BLINDNESS),
+                        EffectLinkEffects(EffectImmunity(IMMUNITY_TYPE_CRITICAL_HIT),
+                        EffectLinkEffects(EffectImmunity(IMMUNITY_TYPE_ABILITY_DECREASE),
+                        EffectLinkEffects(EffectImmunity(IMMUNITY_TYPE_DEAFNESS),
+                        EffectLinkEffects(EffectImmunity(IMMUNITY_TYPE_DISEASE),
+                        EffectLinkEffects(EffectImmunity(IMMUNITY_TYPE_POISON),
+                        EffectLinkEffects(EffectImmunity(IMMUNITY_TYPE_STUN),
+                        EffectLinkEffects(EffectDamageImmunityIncrease(DAMAGE_TYPE_ELECTRICAL, 100),
+                        EffectLinkEffects(EffectDamageImmunityIncrease(DAMAGE_TYPE_ACID, 50),
+                        EffectLinkEffects(EffectDamageImmunityIncrease(DAMAGE_TYPE_FIRE, 50),
+                        EffectLinkEffects(EffectAbilityIncrease(ABILITY_STRENGTH, 6),
+                        EffectLinkEffects(EffectAbilityDecrease(ABILITY_DEXTERITY, 6),
+                        EffectLinkEffects(EffectForceWalk(),
+                        EffectLinkEffects(EffectSpellFailure(50, 0, SPELL_FAILURE_TYPE_ARCANE),
+                        EffectLinkEffects(EffectSkillDecrease(SKILL_HIDE, 8),
+                        EffectLinkEffects(EffectSkillDecrease(SKILL_MOVE_SILENTLY, 8),
+                        EffectLinkEffects(EffectSkillDecrease(SKILL_PARRY, 8),
+                        EffectLinkEffects(EffectSkillDecrease(SKILL_PICK_POCKET, 8),
+                        EffectLinkEffects(EffectSkillDecrease(SKILL_SET_TRAP, 8),
+                        EffectLinkEffects(EffectSkillDecrease(SKILL_TUMBLE, 8),
+                        EffectLinkEffects(EffectVisualEffect(VFX_DUR_IRON_SKIN),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE))))))))))))))))))))))));
         }
         break;
         default:

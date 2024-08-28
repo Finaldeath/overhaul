@@ -652,6 +652,28 @@ int DoSpellHook()
         }
     }
 
+    // We do not allow potions under the effect of Iron Body
+    if (GetIsObjectValid(oCastItem))
+    {
+        switch (GetBaseItemType(oCastItem))
+        {
+            case BASE_ITEM_BLANK_POTION:
+            case BASE_ITEM_ENCHANTED_POTION:
+            case BASE_ITEM_POTIONS:
+            {
+                if (GetHasSpellEffect(SPELL_IRON_BODY, oCaster))
+                {
+                    FloatingTextStringOnCreature("*Potion quaffing failed*", oCaster, FALSE);
+                    SendMessageToPC(oCaster, "*You cannot quaff potions when under the effects of Iron Body*");
+                    // Using potions on other just in case catch statement
+                    if (oCaster != oTarget) SendMessageToPC(oTarget, "*You cannot quaff potions when under the effects of Iron Body*");
+                    ApplyVisualEffectToObject(VFX_FNF_SPELL_FAIL_HAND, oCaster);
+                    return TRUE;
+                }
+            }
+        }
+    }
+
     // TODO Need to have:
     // * Item crafting (scrolls/potions)
     // * Cases spells shouldn't be able to be cast (null magic areas)
