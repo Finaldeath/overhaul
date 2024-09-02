@@ -336,9 +336,15 @@ void main()
             DelayCommand(1.0, CreatePersistentBlade("X2_S_FAERIE001", nCasterAbilityModifier/2, fDuration));
         }
         break;
+        case SPELL_MORDENKAINENS_SWORD:
+        {
+            fDuration = GetDuration(nCasterLevel, ROUNDS);
+            eSummon = EffectSummonCreature("NW_S_HelmHorr", VFX_FNF_SUMMON_MONSTER_3);
+        }
+        break;
         default:
         {
-            Debug("[op_s_aoeeffect] No valid spell ID passed in: " + IntToString(nSpellId));
+            Debug("[op_s_summon] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
         }
         break;
