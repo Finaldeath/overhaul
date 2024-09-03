@@ -260,6 +260,9 @@ int GetImmunityTypeFromSavingThrowType(int nSaveType);
 // * bCheckMindImmunity - If TRUE then those effects that IMMUNITY_TYPE_MIND_SPELLS covers are also checked for IMMUNITY_TYPE_MIND_SPELLS (Fear, etc.)
 int GetIsImmuneWithFeedback(object oCreature, object oVersus, int nImmunityType, int bCheckMindImmunity = TRUE);
 
+// Returns TRUE if oCreature is immune to petrification and sends some feedback message to that effect.
+int GetIsImmuneToPetrificationWithFeedback(object oCreature);
+
 // This allows the application of a random delay to effects based on time parameters passed in.
 float GetRandomDelay(float fMinimumTime = 0.4, float MaximumTime = 1.1);
 
@@ -2058,6 +2061,81 @@ int GetIsImmuneWithFeedback(object oCreature, object oVersus, int nImmunityType,
     return FALSE;
 }
 
+// Returns TRUE if oCreature is immune to petrification and sends some feedback message to that effect.
+int GetIsImmuneToPetrificationWithFeedback(object oCreature)
+{
+    int bImmune = FALSE;
+    // Prevent people from petrifying DM, resulting in GUI even when effect is not successful.
+    if (GetPlotFlag(oCreature) || GetIsDM(oCreature) || GetObjectType(oCreature) != OBJECT_TYPE_CREATURE)
+    {
+        bImmune = TRUE;
+    }
+
+    // Appearance check
+    switch (GetAppearanceType(oCreature))
+    {
+        case APPEARANCE_TYPE_BASILISK:
+        case APPEARANCE_TYPE_COCKATRICE:
+        case APPEARANCE_TYPE_MEDUSA:
+        case APPEARANCE_TYPE_ALLIP:
+        case APPEARANCE_TYPE_ELEMENTAL_AIR:
+        case APPEARANCE_TYPE_ELEMENTAL_AIR_ELDER:
+        case APPEARANCE_TYPE_ELEMENTAL_EARTH:
+        case APPEARANCE_TYPE_ELEMENTAL_EARTH_ELDER:
+        case APPEARANCE_TYPE_ELEMENTAL_FIRE:
+        case APPEARANCE_TYPE_ELEMENTAL_FIRE_ELDER:
+        case APPEARANCE_TYPE_ELEMENTAL_WATER:
+        case APPEARANCE_TYPE_ELEMENTAL_WATER_ELDER:
+        case APPEARANCE_TYPE_GOLEM_STONE:
+        case APPEARANCE_TYPE_GOLEM_IRON:
+        case APPEARANCE_TYPE_GOLEM_CLAY:
+        case APPEARANCE_TYPE_GOLEM_BONE:
+        case APPEARANCE_TYPE_GORGON:
+        case APPEARANCE_TYPE_HEURODIS_LICH:
+        case APPEARANCE_TYPE_LANTERN_ARCHON:
+        case APPEARANCE_TYPE_SHADOW:
+        case APPEARANCE_TYPE_SHADOW_FIEND:
+        case APPEARANCE_TYPE_SHIELD_GUARDIAN:
+        case APPEARANCE_TYPE_SKELETAL_DEVOURER:
+        case APPEARANCE_TYPE_SKELETON_CHIEFTAIN:
+        case APPEARANCE_TYPE_SKELETON_COMMON:
+        case APPEARANCE_TYPE_SKELETON_MAGE:
+        case APPEARANCE_TYPE_SKELETON_PRIEST:
+        case APPEARANCE_TYPE_SKELETON_WARRIOR:
+        case APPEARANCE_TYPE_SKELETON_WARRIOR_1:
+        case APPEARANCE_TYPE_SPECTRE:
+        case APPEARANCE_TYPE_WILL_O_WISP:
+        case APPEARANCE_TYPE_WRAITH:
+        case APPEARANCE_TYPE_BAT_HORROR:
+        case APPEARANCE_TYPE_DRACOLICH:
+        case APPEARANCE_TYPE_MINDFLAYER_ALHOON:
+        case APPEARANCE_TYPE_DRAGON_SHADOW:
+        case APPEARANCE_TYPE_GOLEM_MITHRAL:
+        case APPEARANCE_TYPE_GOLEM_ADAMANTIUM:
+        case APPEARANCE_TYPE_DEMI_LICH:
+        case APPEARANCE_TYPE_ANIMATED_CHEST:
+        case APPEARANCE_TYPE_DWARF_GOLEM:
+        case APPEARANCE_TYPE_DWARF_HALFORC: // Golem
+        {
+            bImmune = TRUE;
+        }
+        break;
+    }
+
+    // Makes sure to check for spell immunity only, no feedback.
+    if (SpellImmunityCheck(oCreature, oCaster, -1, FALSE))
+    {
+        bImmune = TRUE;
+    }
+
+    // Feedback
+    if (bImmune)
+    {
+        SendImmunityFeedback(oCaster, oCreature, IMMUNITY_TYPE_PETRIFICATION);
+    }
+    return bImmune;
+}
+
 // This allows the application of a random delay to effects based on time parameters passed in.
 float GetRandomDelay(float fMinimumTime = 0.4, float MaximumTime = 1.1)
 {
@@ -3008,7 +3086,6 @@ void CureEffects(object oTarget, json jArray, int bSupernaturalRemoval = FALSE)
         effect eCheck = GetFirstEffect(oTarget);
         while (GetIsEffectValid(eCheck))
         {
-            SpeakString("effect type: " + IntToString(GetEffectType(eCheck, TRUE)));
             // Anything that is applied as Unyielding is not removed (native effects)
             // TODO: We also need a way to tag/get that it shouldn't be removed.
             if (GetEffectSubType(eCheck) != SUBTYPE_UNYIELDING &&
@@ -3042,12 +3119,12 @@ void CureEffects(object oTarget, json jArray, int bSupernaturalRemoval = FALSE)
                         // since On Hit: Ability Score Damage applies supernatural and extraordinary types as well
                         // Therefore FOR NOW we just remove it
                         RemoveEffect(oTarget, eCheck);
-                        SendMessageToPC(oCaster, "Cured: " + GetEffectName(eCheck) + " on " + GetName(oTarget));
+                        SendCureFeedback(oCaster, oTarget, GetEffectName(eCheck));
                     }
                     else
                     {
                         RemoveEffect(oTarget, eCheck);
-                        SendMessageToPC(oCaster, "Cured: " + GetEffectName(eCheck) + " on " + GetName(oTarget));
+                        SendCureFeedback(oCaster, oTarget, GetEffectName(eCheck));
                     }
                 }
             }

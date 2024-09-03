@@ -62,6 +62,9 @@
 
     Remove Blindness/Deafness (changed to be single target)
     The target creature is cured of blindness and deafness.
+
+    Stone to Flesh
+    Removes Petrification.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -208,6 +211,17 @@ void main()
 
             jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_BLINDNESS));
             jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_DEAF));
+        }
+        break;
+        case SPELL_STONE_TO_FLESH:
+        {
+            // This check is from the original spell script, keeping for now for compatibility
+            if (GetLocalInt(oTarget, "NW_STATUE")) return;
+
+            bSupernaturalRemoval = TRUE;
+            nVis                 = VFX_IMP_DISPEL; // Could use a new VFX
+
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_PETRIFY));
         }
         break;
         default:

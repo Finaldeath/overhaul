@@ -14,6 +14,9 @@
 #include "op_i_debug"
 #include "utl_i_strings"
 
+// Fake IMMUNITY_TYPE_* for the feedback function
+const int IMMUNITY_TYPE_PETRIFICATION = -2;
+
 // Colour codes
 const string FEEDBACK_COLOUR_FEEDBACK   = "<c\xFF\xFF\x01>";  // Yellow
 const string FEEDBACK_COLOUR_COMBAT     = "<c\xFF\x66\x01>";  // Orange
@@ -113,6 +116,9 @@ string GetPositiveOrNegativeSign(int nInteger);
 
 // Provide some feedback formatted to the games method of showing immunity feedback
 void SendImmunityFeedback(object oCaster, object oTarget, int nImmunityType);
+
+// Provides cure feedback to oCaster and oTarget
+void SendCureFeedback(object oCaster, object oTarget, string sEffectName);
 
 // Provides dispel magic feedback to oCaster and oTarget
 void SendDispelMagicFeedback(object oCaster, object oTarget, json jArrayOfSpellIds);
@@ -217,6 +223,7 @@ void SendImmunityFeedback(object oCaster, object oTarget, int nImmunityType)
         case IMMUNITY_TYPE_SPELL_RESISTANCE_DECREASE: sMessage = "Spell Resistance Decrease"; break;
         case IMMUNITY_TYPE_STUN: nStrRef = STRREF_IMMUNITY_STUN; break;
         case IMMUNITY_TYPE_TRAP: sMessage = "Trap"; break;
+        case IMMUNITY_TYPE_PETRIFICATION: sMessage = "Petrification"; break;
         default:
         {
             // EG: IMMUNITY_TYPE_NONE (0) or other values we do no messages. This should not occur though.
@@ -257,6 +264,20 @@ void SendImmunityFeedback(object oCaster, object oTarget, int nImmunityType)
             sMessage = RegExpReplace("<CUSTOM0>", GetStringByStrRef(nStrRef), sTargetName, REGEXP_BASIC);
         }
         SendMessageToPC(oTarget, sMessage);
+    }
+}
+
+// Provides cure feedback to oCaster and oTarget
+void SendCureFeedback(object oCaster, object oTarget, string sEffectName)
+{
+    // For now format same as Dispel Magic. Maybe change the colours sometime though.
+    if (GetIsObjectValid(oCaster) && oCaster != oTarget)
+    {
+        SendMessageToPC(oCaster, FEEDBACK_COLOUR_MAGIC + "Cured" + FEEDBACK_COLOUR_END + " : " + GetNameOrSomeone(oTarget, oCaster) + " : " + FEEDBACK_COLOUR_MAGIC + sEffectName + FEEDBACK_COLOUR_END);
+    }
+    if (GetIsObjectValid(oTarget))
+    {
+        SendMessageToPC(oTarget, FEEDBACK_COLOUR_MAGIC + "Cured" + FEEDBACK_COLOUR_END + " : " + GetNameOrSomeone(oTarget) + " : " + FEEDBACK_COLOUR_MAGIC + sEffectName + FEEDBACK_COLOUR_END);
     }
 }
 
