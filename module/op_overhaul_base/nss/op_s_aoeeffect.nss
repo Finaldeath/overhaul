@@ -44,6 +44,12 @@
     All creatures within the area of effect take 1d8 points of sonic damage and
     must make a Will save or be stunned for 2 rounds.
     Creatures that cannot hear are not stunned but are still damaged.
+
+    Natures Balance
+    All enemies within the area of effect have their spell resistance lowered by
+    1d4 for every 5 caster levels. All allies within the area of effect are
+    healed for 3d8 Hit Points, +1 point per caster level. Undead and constructs
+    are not healed.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -63,6 +69,7 @@ void main()
     int nStrengthCheckRoll = -1;
     // Saving throw and immunity?
     int nSavingThrow = -1, nSavingThrowType = SAVING_THROW_TYPE_NONE;
+    int bSpellResistance = TRUE;
     int nImmunity = IMMUNITY_TYPE_NONE, nEffectOnlyImmunity = IMMUNITY_TYPE_NONE;
     int bImmuneIfFlying = FALSE, bImmuneIfCannotHear = FALSE;
     int bImmuneToEffectsIfCannotHear = FALSE; // Still does damage
@@ -80,9 +87,10 @@ void main()
 
     // These effects are applied in a second loop of only real allies (Prayer and
     // the like).
-    int bAlliedLink = FALSE;
+    int bAlliedEffect = FALSE, bApplyAlliedEffectOnlyIfLiving = FALSE;
     int nAlliedVis;
     effect eAlliedLink;
+    int nHealDice = 0, nHealDiceSize, nHealBase;
 
     switch (nSpellId)
     {
@@ -141,7 +149,7 @@ void main()
                                                  EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)))));
             nDurationBase = nCasterLevel;
             nDurationType = ROUNDS;
-            bAlliedLink      = TRUE;
+            bAlliedEffect    = TRUE;
             nAlliedVis       = VFX_IMP_HOLY_AID;
             eAlliedLink      = EffectLinkEffects(EffectAttackIncrease(1),
                                EffectLinkEffects(EffectSavingThrowIncrease(SAVING_THROW_ALL, 1),
@@ -166,8 +174,8 @@ void main()
             nSavingThrow     = SAVING_THROW_WILL;
             nSavingThrowType = SAVING_THROW_TYPE_FEAR;
             nTargetType      = SPELL_TARGET_SELECTIVEHOSTILE;
-            nDurationBase = 4;
-            nDurationType = ROUNDS;
+            nDurationBase    = 4;
+            nDurationType    = ROUNDS;
             eLink            = EffectLinkEffects(EffectFrightened(),
                                EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_FEAR),
                                                  EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
@@ -218,6 +226,26 @@ void main()
             nDiceSize        = 8;
         }
         break;
+        case SPELL_NATURES_BALANCE:
+        {
+            bSpellResistance = FALSE;
+            nImpact          = VFX_FNF_NATURES_BALANCE;
+            nSavingThrow     = SAVING_THROW_WILL;
+            nImmunity        = IMMUNITY_TYPE_SPELL_RESISTANCE_DECREASE;
+            nTargetType      = SPELL_TARGET_SELECTIVEHOSTILE;
+            nDurationBase    = nCasterLevel/3;
+            nDurationType    = ROUNDS;
+            nVis             = VFX_IMP_BREACH;
+            eLink            = EffectLinkEffects(EffectSpellResistanceDecrease(GetDiceRoll(nCasterLevel/5, 4)),
+                                                 EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            bAlliedEffect    = TRUE;
+            bApplyAlliedEffectOnlyIfLiving = TRUE;
+            nAlliedVis       = VFX_IMP_HEALING_L;
+            nHealDice        = 3;
+            nHealDiceSize    = 8;
+            nHealBase        = nCasterLevel;
+        }
+        break;
         default:
             Debug("[op_s_aoeeffect] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
@@ -242,7 +270,8 @@ void main()
         {
             nCreatureLimit--;
 
-            if (!DoResistSpell(oTarget, oCaster, fDelay))
+            // NB: For now bSpellResistance controls just raw spell reistance, not immunity or absorption
+            if (!DoResistSpell(oTarget, oCaster, fDelay, bSpellResistance, TRUE, TRUE))
             {
                 if (!GetIsImmuneWithFeedback(oTarget, oCaster, nImmunity) &&
                     (!bImmuneIfFlying || !GetIsFlying(oTarget)) &&
@@ -303,7 +332,7 @@ void main()
     }
 
     // We do a second loop for allies if we have a link to apply to them.
-    if (bAlliedLink)
+    if (bAlliedEffect)
     {
         jArray = GetArrayOfTargets(SPELL_TARGET_ALLALLIES, SORT_METHOD_DISTANCE, OBJECT_TYPE_CREATURE);
         for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
@@ -316,19 +345,27 @@ void main()
 
             fDelay += fExtraDelay;
 
-            if (nCreatureLimit > 0)
+            if (nCreatureLimit > 0 && (!bApplyAlliedEffectOnlyIfLiving || GetIsLiving(oTarget)))
             {
                 nCreatureLimit--;
 
                 if (nAlliedVis != VFX_INVALID) DelayCommand(fDelay, ApplyVisualEffectToObject(nAlliedVis, oTarget));
 
-                float fDuration = 0.0;
-                if (nDurationDice > 0 || nDurationBase > 0)
+                if (nHealDice > 0)
                 {
-                    float fDuration = GetDuration(GetDiceRoll(nDurationDice, nDurationDiceSize, nDurationBase, FALSE), nDurationType);
+                    effect eHeal = EffectHeal(GetDiceRoll(nHealDice, nHealDiceSize, nHealBase));
+                    DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eHeal, oTarget));
                 }
+                else
+                {
+                    float fDuration = 0.0;
+                    if (nDurationDice > 0 || nDurationBase > 0)
+                    {
+                        float fDuration = GetDuration(GetDiceRoll(nDurationDice, nDurationDiceSize, nDurationBase, FALSE), nDurationType);
+                    }
 
-                DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eAlliedLink, oTarget, fDuration));
+                    DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eAlliedLink, oTarget, fDuration));
+                }
             }
         }
     }

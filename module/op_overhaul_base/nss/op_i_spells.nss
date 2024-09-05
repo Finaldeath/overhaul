@@ -1374,7 +1374,7 @@ int DoResistSpell(object oTarget, object oCaster, float fDelay = 0.0, int bResis
     // We test the 3 resist spell functions in the ResistSpell order for now:
     // Spell Absorption (Limited), Spell Absorption (Unlimited), Spell Immunity, Spell Resistance
 
-    if (nSpellType == SPELL_TYPE_SPELL)
+    if (bAbsorbCheck && nSpellType == SPELL_TYPE_SPELL)
     {
         // Spell Absorption (Limited) ie mantles
         if (SpellAbsorptionLimitedCheck(oTarget, oCaster, nSpellId, nSpellSchool, nSpellLevel))
@@ -1398,20 +1398,21 @@ int DoResistSpell(object oTarget, object oCaster, float fDelay = 0.0, int bResis
     }
 
     // Spell Immunity
-    if (SpellImmunityCheck(oTarget, oCaster, nSpellId))
+    if (bImmunityCheck && SpellImmunityCheck(oTarget, oCaster, nSpellId))
     {
         Debug("[DoResistSpell] SpellImmunityCheck: TRUE against target: " + GetName(oTarget));
         DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_GLOBE_USE), oTarget));
         return TRUE;
     }
 
-    if (nSpellType == SPELL_TYPE_SPELL || nSpellType == SPELL_TYPE_CREATURE_POWER)
+    if (bResistCheck && (nSpellType == SPELL_TYPE_SPELL || nSpellType == SPELL_TYPE_CREATURE_POWER))
     {
         // Spell Resistance
         int nTargetSpellResistance  = GetSpellResistance(oTarget);
         int nResistSpellCasterLevel = nCasterLevel;
 
         // Creature powers use the casters HD
+        // Should move this to the spell hook TBH
         if (nSpellType == SPELL_TYPE_CREATURE_POWER)
         {
             nResistSpellCasterLevel = GetHitDice(oCaster);
