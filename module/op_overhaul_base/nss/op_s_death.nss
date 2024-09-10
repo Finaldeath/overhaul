@@ -10,6 +10,26 @@
 
     Slay Living
     Touch Attack then Save or Die, 3d6 + 1 / caster level damage if saved.
+
+    Phantasmal Killer
+    The caster conjures an image of utmost horror to strike down a single
+    creature. The target may attempt a Will save vs. Fear to disbelieve the
+    spell, avoiding all ill effects. Failing that, the target then makes a
+    Fortitude save vs. Fear to avoid instant death. A successful save still
+    inflicts 3d6 points of magic damage.
+
+    Weird
+    A horrible phantasm rises to stand before enemy creatures in the area of
+    effect, causing them to make a Will save vs. Fear. If they fail, the
+    phantasm touches them and they must now make a Fortitude saving throw vs.
+    Fear. If this saving throw fails, the creature dies. Those who succeed
+    the Fortitude save still take 3d6 points of damage, are stunned for 1
+    round and take 1d4 strength damage for 10 minutes. Creatures with less
+    than 4 HD automatically die, without any saving throws.
+
+    Destruction
+    The target creature must make a Fortitude save or die. A successful save
+    still results in the target taking 10d6 points of divine damage.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -103,6 +123,19 @@ void main()
             nDamageType       = DAMAGE_TYPE_MAGICAL;
         }
         break;
+        case SPELL_DESTRUCTION:
+        {
+            // Spectacular death due to the explody VFX
+            eDeath = IgnoreEffectImmunity(EffectDeath(TRUE));
+            nSavingThrow     = SAVING_THROW_FORT;
+            nSavingThrowType = SAVING_THROW_TYPE_DEATH;
+            nVis             = VFX_IMP_DESTRUCTION;
+            nDamageVis       = VFX_IMP_DESTRUCTION;
+            nDiceNum         = 10;
+            nDiceSize        = 6;
+            nDamageType      = DAMAGE_TYPE_DIVINE;
+        }
+        break;
         default:
             Debug("[op_s_death] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
@@ -143,17 +176,17 @@ void main()
                     int bAdditionalEffect = FALSE;
                     if (!DoSavingThrow(oTarget, oCaster, nSavingThrow, nSpellSaveDC, nSavingThrowType, fDelay))
                     {
-                        if (nSavingThrow2 == SAVING_THROW_TYPE_NONE || !DoSavingThrow(oTarget, oCaster, nSavingThrow2, nSpellSaveDC, nSavingThrowType2, fDelay))
+                        if (nSavingThrow2 == SAVING_THROW_NONE || !DoSavingThrow(oTarget, oCaster, nSavingThrow2, nSpellSaveDC, nSavingThrowType2, fDelay))
                         {
                             DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
                             DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDeath, oTarget));
                         }
-                        else if (nSavingThrow2 != SAVING_THROW_TYPE_NONE)
+                        else if (nSavingThrow2 != SAVING_THROW_NONE)
                         {
                             bAdditionalEffect = TRUE;
                         }
                     }
-                    else if (nSavingThrow2 == SAVING_THROW_TYPE_NONE)
+                    else if (nSavingThrow2 == SAVING_THROW_NONE)
                     {
                         bAdditionalEffect = TRUE;
                     }
@@ -164,7 +197,6 @@ void main()
                         if (nDamageType != -1)
                         {
                             int nDamage = GetDiceRoll(nDiceNum, nDiceSize, nDamageBonus);
-
                             if (nTouch == 2) nDamage *= 2;
 
                             DelayCommand(fDelay, ApplyDamageWithVFXToObject(oTarget, nDamageVis, nDamage, nDamageType));
