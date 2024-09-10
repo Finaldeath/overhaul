@@ -42,10 +42,8 @@ void main()
             if (!DoResistSpell(oTarget, oCaster))
             {
                 int nDamage = GetDiceRoll(2, 4);
-                if (nTouch == 2)
-                {
-                    nDamage *= 2;
-                }
+
+                if (nTouch == TOUCH_RESULT_CRITICAL_HIT) nDamage *= 2;
 
                 float fDelay = GetVisualEffectHitDelay(VFX_DUR_MIRV_ACID, oTarget, oCaster);
 

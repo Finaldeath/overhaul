@@ -181,16 +181,16 @@ void main()
                 {
                     nMissiles--;
 
-                    int bTouchResult = DoTouchAttack(oTarget, oCaster, bTouchAttackType);
+                    int nTouchResult = DoTouchAttack(oTarget, oCaster, bTouchAttackType);
 
-                    DelayCommand(fDeltaTime, ApplyVisualEffectToObject(nVisMissile, oTarget, !bTouchResult));
+                    DelayCommand(fDeltaTime, ApplyVisualEffectToObject(nVisMissile, oTarget, !nTouchResult));
 
-                    if (!bResist && bTouchResult)
+                    if (!bResist && nTouchResult)
                     {
                         // Roll damage
                         int nDamage = GetDiceRoll(nDiceNum, nDiceSize, nDamageBonus);
 
-                        if (bTouchResult == 2) nDamage *= 2;
+                        if (nTouchResult == TOUCH_RESULT_CRITICAL_HIT) nDamage *= 2;
 
                         // Damage modification based on save (half, with Reflex allowing feats to reduce further)
                         if (nSavingThrow != -1)

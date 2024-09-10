@@ -152,7 +152,7 @@ void main()
 
         if (nTouch)
         {
-            ApplyBeamToObject(nBeam, oTarget, TRUE);
+            ApplyBeamToObject(nBeam, oTarget);
 
             bResist = DoResistSpell(oTarget, oCaster);
 
@@ -166,7 +166,7 @@ void main()
                     {
                         int nDamage = GetDiceRoll(nDice, nDiceSize, nStatic);
 
-                        if (nTouch == 2) nDamage *= 2;
+                        if (nTouch == TOUCH_RESULT_CRITICAL_HIT) nDamage *= 2;
 
                         nDamage = GetDamageBasedOnFeats(nDamage, oTarget, nSavingThrow, bSaved);
 

@@ -176,8 +176,7 @@ void HarmOrHeal(object oTarget, float fDelay, int nVisHeal, int nVisHarm, int nD
                 {
                     int nDamage = GetDiceRoll(nDice, 8, nStatic);
 
-                    // Double amount if critical
-                    if (nTouch == 2) nDamage *= 2;
+                    if (nTouch == TOUCH_RESULT_CRITICAL_HIT) nDamage *= 2;
 
                     // Will saving throw for half
                     nDamage = DoDamageSavingThrow(nDamage, oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_NEGATIVE, fDelay);

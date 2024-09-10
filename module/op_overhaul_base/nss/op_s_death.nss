@@ -197,7 +197,8 @@ void main()
                         if (nDamageType != -1)
                         {
                             int nDamage = GetDiceRoll(nDiceNum, nDiceSize, nDamageBonus);
-                            if (nTouch == 2) nDamage *= 2;
+
+                            if (nTouch == TOUCH_RESULT_CRITICAL_HIT) nDamage *= 2;
 
                             DelayCommand(fDelay, ApplyDamageWithVFXToObject(oTarget, nDamageVis, nDamage, nDamageType));
                         }

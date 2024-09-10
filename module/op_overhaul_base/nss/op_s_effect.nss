@@ -13,6 +13,11 @@
     points of sonic damage per two caster levels (maximum 5d4) and must make a
     Will save or be deafened for 1d4 rounds (the deafness duration is not able
     to be extended, empowered or maximized).
+
+    Energy Drain
+    The target creature permanently loses 2d4 character levels. The negative
+    levels cannot be dispelled and can only be restored with a Restoration or
+    Greater Restoration spell.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -35,14 +40,17 @@ void main()
     int nImmunity = IMMUNITY_TYPE_NONE;
     // Effect we apply on a failed save
     effect eLink;
-    // If duration is 0.0 apply eLink instantly
+    int nDurationType = DURATION_TYPE_INSTANT;
     float fDuration = 0.0, fExtraDelay;
     // Special duration calculation. Not maximised or empowered.
     int nDurationDice, nDurationDiceSize;
     // VFX
-    int nVis = VFX_NONE, nDamVis = VFX_NONE, bDelayRandom = FALSE;
+    int nBeam = VFX_NONE, nVis = VFX_NONE, nDamVis = VFX_NONE, bDelayRandom = FALSE;
     // Can change to selective hostile
-    int nTargetType    = SPELL_TARGET_STANDARDHOSTILE;;
+    int nTargetType    = SPELL_TARGET_STANDARDHOSTILE;
+    int nTouchType     = TOUCH_NONE;
+    int bUndeadGainHP  = FALSE;
+    int nTempHP = 0;
 
     switch (nSpellId)
     {
@@ -54,6 +62,7 @@ void main()
             eLink            = EffectLinkEffects(EffectDeaf(),
                                                  EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
             bSaveForDamage   = FALSE;
+            nDurationType    = DURATION_TYPE_TEMPORARY;
             nDurationDice    = 1;
             nDurationDiceSize = 4;
             nDamVis          = VFX_IMP_SONIC;
@@ -62,10 +71,53 @@ void main()
             nDiceSize        = 4;
         }
         break;
+        case SPELL_ENERVATION:
+        {
+            nSavingThrow     = SAVING_THROW_FORT;
+            nSavingThrowType = SAVING_THROW_TYPE_NEGATIVE;
+            nImmunity        = IMMUNITY_TYPE_NEGATIVE_LEVEL;
+            nBeam            = VFX_BEAM_BLACK;
+            nVis             = VFX_IMP_REDUCE_ABILITY_SCORE;
+            eLink            = SupernaturalEffect(EffectLinkEffects(EffectNegativeLevel(GetDiceRoll(1, 4)),
+                                                                    EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            nDurationType    = DURATION_TYPE_PERMANENT;
+            nTempHP          = min((nCasterLevel/2) * 5, 25) ;
+        }
+        break;
+        case SPELL_ENERGY_DRAIN:
+        {
+            nSavingThrow     = SAVING_THROW_FORT;
+            nSavingThrowType = SAVING_THROW_TYPE_NEGATIVE;
+            nImmunity        = IMMUNITY_TYPE_NEGATIVE_LEVEL;
+            nBeam            = VFX_BEAM_BLACK;
+            nVis             = VFX_IMP_REDUCE_ABILITY_SCORE;
+            eLink            = SupernaturalEffect(EffectLinkEffects(EffectNegativeLevel(GetDiceRoll(2, 4)),
+                                                                    EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            nDurationType    = DURATION_TYPE_PERMANENT;
+            nTempHP          = d4(2) * 5;
+        }
+        break;
         default:
             Debug("[op_s_effect] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
             break;
+    }
+
+    // Touch attack
+    int nTouchAttack = DoTouchAttack(oTarget, oCaster, nTouchType);
+
+    // Beam regardless of attitude
+    if (nBeam) ApplyBeamToObject(nBeam, oTarget, !nTouchAttack);
+
+    // Special case for undead for Enervation/Energy Drain
+    if (bUndeadGainHP)
+    {
+        if (GetRacialType(oTarget) == RACIAL_TYPE_UNDEAD)
+        {
+            effect eHP = EffectTemporaryHitpoints(nTempHP);
+
+            ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eHP, oTarget, GetDuration(1, HOURS, FALSE));
+        }
     }
 
     if (GetSpellTargetValid(oTarget, oCaster, nTargetType))
@@ -74,56 +126,62 @@ void main()
 
         float fDelay = 0.0;
 
-        if (!DoResistSpell(oTarget, oCaster, fDelay))
+        if (nTouchAttack)
         {
-            if (!GetIsImmuneWithFeedback(oTarget, oCaster, nImmunity))
+            if (!DoResistSpell(oTarget, oCaster, fDelay))
             {
-                // Saving throw or strength check?
-                int bSaved = FALSE;
-                if (nSavingThrow != -1)
+                if (!GetIsImmuneWithFeedback(oTarget, oCaster, nImmunity))
                 {
-                    bSaved = DoSavingThrow(oTarget, oCaster, nSavingThrow, nSpellSaveDC, nSavingThrowType, fDelay);
-                }
-                else if (nStrengthCheckRoll != -1)
-                {
-                    // Ability check
-                    bSaved = DoAbilityCheck(oTarget, oCaster, nStrengthCheckRoll, ABILITY_STRENGTH, ABILITY_DEXTERITY);
-                }
-
-                // Damage?
-                if (nDamageType != -1)
-                {
-                    int nDamage = GetDiceRoll(nDiceNum, nDiceSize);
-
-                    if (bSaveForDamage && nSavingThrow != -1)
+                    // Saving throw or strength check?
+                    int bSaved = FALSE;
+                    if (nSavingThrow != -1)
                     {
-                        nDamage = GetDamageBasedOnFeats(nDamage, oTarget, nSavingThrow, bSaved);
+                        bSaved = DoSavingThrow(oTarget, oCaster, nSavingThrow, nSpellSaveDC, nSavingThrowType, fDelay);
+                    }
+                    else if (nStrengthCheckRoll != -1)
+                    {
+                        // Ability check
+                        bSaved = DoAbilityCheck(oTarget, oCaster, nStrengthCheckRoll, ABILITY_STRENGTH, ABILITY_DEXTERITY);
                     }
 
-                    if (nDamage > 0)
+                    // Damage?
+                    if (nDamageType != -1)
                     {
-                        if (nDamVis != VFX_INVALID) DelayCommand(fDelay, ApplyVisualEffectToObject(nDamVis, oTarget));
-                        DelayCommand(fDelay, ApplyDamageToObject(oTarget, nDamage, nDamageType));
-                    }
-                }
+                        int nDamage = GetDiceRoll(nDiceNum, nDiceSize);
 
-                if (!bSaved)
-                {
-                    if (nVis != VFX_INVALID) DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
+                        if (nTouchAttack == TOUCH_RESULT_CRITICAL_HIT) nDamage *= 2;
 
-                    // Randomise duration?
-                    if (nDurationDice > 0)
-                    {
-                        fDuration = RoundsToSeconds(GetDiceRoll(nDurationDice, nDurationDiceSize, 0, FALSE));
+                        if (bSaveForDamage && nSavingThrow != -1)
+                        {
+                            nDamage = GetDamageBasedOnFeats(nDamage, oTarget, nSavingThrow, bSaved);
+                        }
+
+                        if (nDamage > 0)
+                        {
+                            if (nDamVis != VFX_INVALID) DelayCommand(fDelay, ApplyVisualEffectToObject(nDamVis, oTarget));
+                            DelayCommand(fDelay, ApplyDamageToObject(oTarget, nDamage, nDamageType));
+                        }
                     }
 
-                    if (fDuration == 0.0)
+                    if (!bSaved)
                     {
-                        DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eLink, oTarget));
-                    }
-                    else
-                    {
-                        DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
+                        if (nVis != VFX_INVALID) DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
+
+                        // Randomise duration?
+                        if (nDurationDice > 0)
+                        {
+                            fDuration = RoundsToSeconds(GetDiceRoll(nDurationDice, nDurationDiceSize, 0, FALSE));
+                        }
+
+                        if (nDurationType == DURATION_TYPE_INSTANT ||
+                            nDurationType == DURATION_TYPE_PERMANENT)
+                        {
+                            DelayCommand(fDelay, ApplySpellEffectToObject(nDurationType, eLink, oTarget));
+                        }
+                        else
+                        {
+                            DelayCommand(fDelay, ApplySpellEffectToObject(nDurationType, eLink, oTarget, fDuration));
+                        }
                     }
                 }
             }

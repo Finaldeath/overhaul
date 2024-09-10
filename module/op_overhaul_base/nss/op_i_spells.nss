@@ -68,6 +68,10 @@ const int TOUCH_NONE   = 0;
 const int TOUCH_MELEE  = 1;
 const int TOUCH_RANGED = 2;
 
+const int TOUCH_RESULT_MISS         = 0;
+const int TOUCH_RESULT_HIT          = 1;
+const int TOUCH_RESULT_CRITICAL_HIT = 2;
+
 // For GetSpellTargetValid similar to Bioware's
 const int SPELL_TARGET_ANYTHING         = 0;  // Anything. Most useful for spells like Dispel Magic.
 const int SPELL_TARGET_ALLALLIES        = 1;  // Allies only
@@ -194,11 +198,8 @@ int DoResistSpell(object oTarget, object oCaster, float fDelay = 0.0, int bResis
 int GetAssayResistanceBonus(object oTarget, object oCaster);
 
 // Does a relevant touch attack. Some classes add bonuses to touch attacks, which can be added in here.
-// - nType can be TOUCH_MELEE or TOUCH_RANGED. If TOUCH_NONE it simply returns 1 for "hit" with no feedback.
-// Return values:
-// * 0 - Miss
-// * 1 - Hit
-// * 2 - Critical Hit
+// - nType can be TOUCH_MELEE or TOUCH_RANGED. If TOUCH_NONE it simply returns TOUCH_RESULT_HIT with no feedback.
+// Return value: TOUCH_RESULT_* (HIT, MISS or CRITICAL_HIT).
 int DoTouchAttack(object oTarget, object oVersus, int nType, int bDisplayFeedback = TRUE);
 
 // Applies Dispel Magic to the given target (Area of Effects are also handled, as are Summoned Creatures)
@@ -1470,15 +1471,12 @@ int GetAssayResistanceBonus(object oTarget, object oCaster)
 }
 
 // Does a relevant touch attack. Some classes add bonuses to touch attacks, which can be added in here.
-// - nType can be TOUCH_MELEE or TOUCH_RANGED. If TOUCH_NONE it simply returns 1 for "hit" with no feedback.
-// Return values:
-// * 0 - Miss
-// * 1 - Hit
-// * 2 - Critical Hit
+// - nType can be TOUCH_MELEE or TOUCH_RANGED. If TOUCH_NONE it simply returns TOUCH_RESULT_HIT with no feedback.
+// Return value: TOUCH_RESULT_* (HIT, MISS or CRITICAL_HIT).
 int DoTouchAttack(object oTarget, object oVersus, int nType, int bDisplayFeedback = TRUE)
 {
     // We just "hit" if TOUCH_NONE.
-    if (nType == TOUCH_NONE) return 1;
+    if (nType == TOUCH_NONE) return TOUCH_RESULT_HIT;
 
     // Note: For now we don't use oVersus but it's possible to do this with ExecuteScript/ExecuteScriptChunk.
     if (oVersus != OBJECT_SELF)

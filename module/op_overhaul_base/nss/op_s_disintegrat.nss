@@ -49,14 +49,13 @@ void main()
                     // Limit damage to 40d6
                     nDamage = GetDiceRoll(min(nCasterLevel * 2, 40), 6);
 
-                    // Critical hit?
-                    if (nTouch == 2) nDamage *= 2;
+                    if (nTouch == TOUCH_RESULT_CRITICAL_HIT) nDamage *= 2;
                 }
                 else
                 {
                     nDamage = GetDiceRoll(5, 6);
-                    // Critical hit?
-                    if (nTouch == 2) nDamage *= 2;
+
+                    if (nTouch == TOUCH_RESULT_CRITICAL_HIT) nDamage *= 2;
                 }
 
                 // Apply the damage after a short delay (Stops script loops), then test if they're dead from it
