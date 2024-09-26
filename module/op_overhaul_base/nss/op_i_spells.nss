@@ -2029,11 +2029,19 @@ int GetIsImmuneWithFeedback(object oCreature, object oVersus, int nImmunityType,
 
     if (GetIsImmune(oCreature, nImmunityType, oVersus))
     {
-        // Send some feedback
         SendImmunityFeedback(oVersus, oCreature, nImmunityType);
-
         return TRUE;
     }
+    else if (nImmunityType == IMMUNITY_TYPE_ENTANGLE)
+    {
+        // Add in Entangle immunity here
+        if(GetIsIncorporeal(oCreature) || GetHasFeat(FEAT_WOODLAND_STRIDE, oCreature))
+        {
+            SendImmunityFeedback(oVersus, oCreature, nImmunityType);
+            return TRUE;
+        }
+    }
+
     if (bCheckMindImmunity)
     {
         switch (nImmunityType)
@@ -2048,9 +2056,7 @@ int GetIsImmuneWithFeedback(object oCreature, object oVersus, int nImmunityType,
             {
                 if (GetIsImmune(oCreature, IMMUNITY_TYPE_MIND_SPELLS, oVersus))
                 {
-                    // Send some feedback
                     SendImmunityFeedback(oVersus, oCreature, IMMUNITY_TYPE_MIND_SPELLS);
-
                     return TRUE;
                 }
             }
