@@ -908,7 +908,12 @@ void main()
 
     ApplyVisualEffectAtLocation(nImpact, lTarget);
 
-    json jArray = GetArrayOfTargets(SPELL_TARGET_ALLALLIES, SORT_METHOD_DISTANCE);
+    int nTargetType = SPELL_TARGET_ALLALLIES;
+
+    // If this is not an AOE spell we don't care what target type it is
+    if (!GetSpellIsAreaOfEffect(nSpellId)) nTargetType = SPELL_TARGET_ANYTHING;
+
+    json jArray = GetArrayOfTargets(nTargetType, SORT_METHOD_DISTANCE);
     int nIndex;
     for (nIndex = 0; nIndex < JsonGetLength(jArray) && nCreatureLimit > 0; nIndex++)
     {
