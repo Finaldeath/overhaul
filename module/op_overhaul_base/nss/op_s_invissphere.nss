@@ -49,7 +49,8 @@ void main()
         if (DoSpellHook()) return;
 
         effect eLink = EffectLinkEffects(EffectAreaOfEffect(AOE_PER_INVIS_SPHERE, GetScriptName(), GetScriptName(), GetScriptName()),
-                                         EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+                       EffectLinkEffects(EffectIcon(EFFECT_ICON_AREA_OF_EFFECT),
+                                         EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
 
         ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(nCasterLevel, MINUTES));
     }

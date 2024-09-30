@@ -2,5 +2,5 @@
 
 void main()
 {
-    DebugEffects(GetFirstPC());
+    if (GetLocalInt(OBJECT_SELF, "DEBUG_EFFECTS")) DebugEffects(GetFirstPC());
 }

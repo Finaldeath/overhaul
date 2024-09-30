@@ -341,7 +341,8 @@ void ApplyAOEPersistentEffect(object oTarget, effect eEffect, int bApplyRunScrip
 // Removes persistent RunScripts from oTarget that are applies to oTarget tagged with OBJECT_SELF's OID (ie the AOE's).
 // Call in an AOE's OnExit event or op_r_aoecleanup.
 // Returns the amount of persistent effects tagged. So if 1+ it is the last AOE they've exited of this type.
-int RemovePersistentAOEEffects(object oTarget);
+// * nOverrideSpellId - Leave as default usually, if set is special cases like Amplify and Silence interacting
+int RemovePersistentAOEEffects(object oTarget, int nOverrideSpellId = -1);
 
 // Returns TRUE if we are OK running our AOE scripts (or the EffectRunScript created by an AOE).
 // Does a check for the AOE creator, and destroys ourself (or removes the EffectRunScript) if they no longer exist.
@@ -2460,29 +2461,24 @@ void ApplyAOEPersistentEffect(object oTarget, effect eEffect, int bApplyRunScrip
         }
     }
 
-    string sTag   = ObjectToString(OBJECT_SELF);
-    effect eCheck = GetFirstEffect(oTarget);
-    while (GetIsEffectValid(eCheck))
+    // Don't apply duplicates, eg lots of -50% movement speeds
+    if (!GetHasEffect(oTarget, EFFECT_TYPE_ALL, nSpellId, TAG_AOEEFFECT))
     {
-        if (GetEffectSpellId(eCheck) == nSpellId &&
-            GetEffectTag(eCheck) == TAG_AOEEFFECT)
-        {
-            // If we have any effects already don't apply
-            return;
-        }
-        eCheck = GetNextEffect(oTarget);
+        eEffect = ExtraordinaryEffect(eEffect);
+        eEffect = TagEffect(eEffect, TAG_AOEEFFECT);
+        // We apply things "for a long time" since no AOE should be permanent. This helps with state scripts like Paralysis
+        ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eEffect, oTarget, 10000.0);
     }
-    eEffect = ExtraordinaryEffect(eEffect);
-    eEffect = TagEffect(eEffect, TAG_AOEEFFECT);
-    // We apply things "for a long time" since no AOE should be permanent. This helps with state scripts like Paralysis
-    ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eEffect, oTarget, 10000.0);
 }
 
 // Removes persistent RunScripts from oTarget that are applies to oTarget tagged with OBJECT_SELF's OID (ie the AOE's).
 // Call in an AOE's OnExit event or op_r_aoecleanup.
 // Returns the amount of persistent effects tagged. So if 1+ it is the last AOE they've exited of this type.
-int RemovePersistentAOEEffects(object oTarget)
+// * nOverrideSpellId - Leave as default usually, if set is special cases like Amplify and Silence interacting
+int RemovePersistentAOEEffects(object oTarget, int nOverrideSpellId = -1)
 {
+    int nSpellIdToCheck = nOverrideSpellId > 0 ? nOverrideSpellId : nSpellId;
+
     string sTag;
     // Carefully clear effects if last RunScript using this spell Id.
     if (GetObjectType(OBJECT_SELF) == OBJECT_TYPE_AREA_OF_EFFECT)
@@ -2500,7 +2496,7 @@ int RemovePersistentAOEEffects(object oTarget)
     while (GetIsEffectValid(eCheck))
     {
         if (GetEffectType(eCheck) == EFFECT_TYPE_RUNSCRIPT &&
-            GetEffectSpellId(eCheck) == nSpellId &&
+            GetEffectSpellId(eCheck) == nSpellIdToCheck &&
             GetEffectTag(eCheck) != sTag)
         {
             // Don't remove any effects if other RunScript from the same spell exist still
