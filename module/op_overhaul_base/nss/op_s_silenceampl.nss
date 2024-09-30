@@ -74,7 +74,6 @@ void CheckAndApplySilenceOrAmplify()
 
     if (nSilence > 0)
     {
-        SendMessageToPC(oCaster, "Silence being applied to: " + GetName(oTarget));
         // Remove all other instances of amplify
         RemoveEffectsFromSpell(oTarget, SPELL_AMPLIFY, EFFECT_TYPE_SKILL_DECREASE, TAG_AOEEFFECT);
 
@@ -87,7 +86,6 @@ void CheckAndApplySilenceOrAmplify()
 
             ApplyVisualEffectToObject(VFX_IMP_SILENCE, oTarget);
 
-            SendMessageToPC(oCaster, "Silence applied to: " + GetName(oTarget));
             // Apply as per AOE Tagged effects
             eLink = ExtraordinaryEffect(eLink);
             eLink = TagEffect(eLink, TAG_AOEEFFECT);
@@ -97,7 +95,6 @@ void CheckAndApplySilenceOrAmplify()
     }
     else if (nSilence < 0)
     {
-        SendMessageToPC(oCaster, "Amplifcation being applied to: " + GetName(oTarget));
         // Remove all other instances of silence
         RemoveEffectsFromSpell(oTarget, SPELL_SILENCE, EFFECT_TYPE_SILENCE, TAG_AOEEFFECT);
 
@@ -109,7 +106,6 @@ void CheckAndApplySilenceOrAmplify()
 
             ApplyVisualEffectToObject(VFX_IMP_REDUCE_ABILITY_SCORE, oTarget);
 
-            SendMessageToPC(oCaster, "Amplifcation applied to: " + GetName(oTarget));
             // Apply as per AOE Tagged effects
             eLink = ExtraordinaryEffect(eLink);
             eLink = TagEffect(eLink, TAG_AOEEFFECT);
@@ -120,11 +116,14 @@ void CheckAndApplySilenceOrAmplify()
     else
     {
         // Remove both
-        SendMessageToPC(oCaster, "Removing all from: " + GetName(oTarget));
         RemoveEffectsFromSpell(oTarget, SPELL_SILENCE, EFFECT_TYPE_SILENCE, TAG_AOEEFFECT);
         RemoveEffectsFromSpell(oTarget, SPELL_AMPLIFY, EFFECT_TYPE_SKILL_DECREASE, TAG_AOEEFFECT);
     }
 }
+
+const int SAVE_NOT_DONE_YET  = 0;
+const int SAVE_RESULT_FAILED = 1;
+const int SAVE_RESULT_PASSED = 2;
 
 void main()
 {
@@ -133,21 +132,58 @@ void main()
     {
         if (!AOECheck()) return;
 
-        if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
+        // No save if allied. IE we want to be amplified or silenced!
+        // This is because if we were put under the effects of Silence, then we WANT
+        // amplification to occur to fully counter it.
+        if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_ALLALLIES))
         {
-            SignalSpellCastAt(oTarget, oCaster, (GetIsFriend(oTarget, oCaster) == FALSE));
+            SignalSpellCastAt(oTarget, oCaster, FALSE);
 
-            // Always a save regardless of status to caster
-            if (!DoResistSpell(oTarget, oCaster))
+            ApplyAOEPersistentEffect(oTarget, EffectVisualEffect(VFX_DUR_CESSATE_NEUTRAL));
+
+            // If we are now more "silenced" then "amplified" we apply as such.
+            CheckAndApplySilenceOrAmplify();
+        }
+        else if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
+        {
+            SignalSpellCastAt(oTarget, oCaster, TRUE);
+
+            // Check for previous pass/fail.
+            // NB we set a variable to sort the "will save" part. We will
+            // simply reuse this if they enter again.
+            int nSaveResult = GetLocalInt(OBJECT_SELF, ObjectToString(oTarget));
+
+            if (nSaveResult == SAVE_NOT_DONE_YET)
             {
-                if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC))
-                {
-                    SendMessageToPC(oTarget, "Applying persistent AOE visual");
-                    ApplyAOEPersistentEffect(oTarget, EffectVisualEffect(VFX_DUR_CESSATE_NEUTRAL));
+                // Set we've saved (2) now and reset to 1 if not saved further down
+                int nSavedResult = SAVE_RESULT_PASSED;
 
-                    // If we are now more "silenced" then "amplified" we apply as such.
-                    CheckAndApplySilenceOrAmplify();
+                // Always a save regardless of status to caster
+                if (!DoResistSpell(oTarget, oCaster))
+                {
+                    if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC))
+                    {
+                        ApplyAOEPersistentEffect(oTarget, EffectVisualEffect(VFX_DUR_CESSATE_NEUTRAL));
+
+                        // If we are now more "silenced" then "amplified" we apply as such.
+                        CheckAndApplySilenceOrAmplify();
+                        nSavedResult = SAVE_RESULT_FAILED;
+                    }
                 }
+                SetLocalInt(OBJECT_SELF, ObjectToString(oTarget), nSavedResult);
+            }
+            // Failed, so reapply
+            else if (nSaveResult == SAVE_RESULT_FAILED)
+            {
+                ApplyAOEPersistentEffect(oTarget, EffectVisualEffect(VFX_DUR_CESSATE_NEUTRAL));
+
+                // If we are now more "silenced" then "amplified" we apply as such.
+                CheckAndApplySilenceOrAmplify();
+            }
+            // 2 = resisted/saved already
+            else if (nSaveResult == SAVE_RESULT_PASSED)
+            {
+                SendMessageToPC(oTarget, "*You previously saved and so are immune to this spell*");
             }
         }
     }

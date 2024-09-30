@@ -124,8 +124,11 @@ void main()
         ApplyVisualEffectAtLocation(VFX_FNF_HOWL_MIND, lTarget);
         ApplyVisualEffectToObject(VFX_DUR_BARD_SONG_EVIL, oTarget, FALSE, 6.0);
 
-        effect eAOE = EffectAreaOfEffect(AOE_MOB_CIRCEVIL, GetScriptName(), GetScriptName(), GetScriptName());
-        ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eAOE, oTarget, GetDuration(nCasterLevel, ROUNDS, TRUE, FALSE));
+        effect eLink = EffectLinkEffects(EffectAreaOfEffect(AOE_MOB_CIRCEVIL, GetScriptName(), GetScriptName(), GetScriptName()),
+                       EffectLinkEffects(EffectIcon(EFFECT_ICON_AREA_OF_EFFECT),
+                                         EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+
+        ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(nCasterLevel, ROUNDS, TRUE, FALSE));
     }
 }
 
