@@ -30,6 +30,12 @@
     Destruction
     The target creature must make a Fortitude save or die. A successful save
     still results in the target taking 10d6 points of divine damage.
+
+    Circle of Death
+    A wave of negative energy bursts from the target location. A number of enemy
+    creatures equal to 1d4 per caster level must make a Fortitude save or die,
+    beginning with those creatures with the lowest Hit Dice. Creatures with 9 or
+    more Hit Dice are unaffected.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -62,8 +68,11 @@ void main()
     // Weird gets more fail effects and HD 4 kills.
     int bWeird = FALSE;
 
+    int nHDMax = MAX_INT, nHDPool = MAX_INT;
+
     // TargetType
     int nTargetType = SPELL_TARGET_STANDARDHOSTILE;
+    int nSortMethod = SORT_METHOD_DISTANCE;
 
     switch (nSpellId)
     {
@@ -136,6 +145,18 @@ void main()
             nDamageType      = DAMAGE_TYPE_DIVINE;
         }
         break;
+        case SPELL_CIRCLE_OF_DEATH:
+        {
+            eDeath           = IgnoreEffectImmunity(EffectDeath());
+            nSavingThrow     = SAVING_THROW_FORT;
+            nSavingThrowType = SAVING_THROW_TYPE_DEATH;
+            nImpact          = VFX_FNF_LOS_EVIL_20;
+            nVis             = VFX_IMP_DEATH;
+            nHDMax           = 9;
+            nHDPool          = GetDiceRoll(min(20, nCasterLevel), 4);
+            nSortMethod      = SORT_METHOD_LOWEST_HD;
+        }
+        break;
         default:
             Debug("[op_s_death] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
@@ -144,7 +165,7 @@ void main()
 
     ApplyVisualEffectAtLocation(nImpact, lTarget);
 
-    json jArray = GetArrayOfTargets(nTargetType);
+    json jArray = GetArrayOfTargets(nTargetType, nSortMethod);
     int nIndex;
     for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
     {
@@ -156,7 +177,9 @@ void main()
 
         int nTouch = DoTouchAttack(oTarget, oCaster, nTouchType);
 
-        if (nTouch)
+        nHDPool -= GetHitDice(oTarget);
+
+        if (nTouch && GetHitDice(oTarget) <= nHDMax && nHDPool > 0)
         {
             if (!DoResistSpell(oTarget, oCaster, fDelay))
             {
@@ -174,7 +197,7 @@ void main()
                     }
                     // If 1 saving throw we do it or damage. If 2 saving throws the first one makes us immune to all the effects.
                     int bAdditionalEffect = FALSE;
-                    if (!DoSavingThrow(oTarget, oCaster, nSavingThrow, nSpellSaveDC, nSavingThrowType, fDelay))
+                    if (nSavingThrow == SAVING_THROW_NONE || !DoSavingThrow(oTarget, oCaster, nSavingThrow, nSpellSaveDC, nSavingThrowType, fDelay))
                     {
                         if (nSavingThrow2 == SAVING_THROW_NONE || !DoSavingThrow(oTarget, oCaster, nSavingThrow2, nSpellSaveDC, nSavingThrowType2, fDelay))
                         {

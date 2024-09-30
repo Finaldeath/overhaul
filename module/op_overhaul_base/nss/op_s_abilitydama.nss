@@ -75,7 +75,7 @@ void main()
     int nTouchAttack = DoTouchAttack(oTarget, oCaster, nTouchType);
 
     // Beam regardless of attitude
-    if (nBeam) ApplyBeamToObject(nBeam, oTarget, !nTouchAttack);
+    if (nBeam != VFX_NONE) ApplyBeamToObject(nBeam, oTarget, !nTouchAttack);
 
     if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
     {

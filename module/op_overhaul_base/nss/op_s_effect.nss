@@ -18,6 +18,11 @@
     The target creature permanently loses 2d4 character levels. The negative
     levels cannot be dispelled and can only be restored with a Restoration or
     Greater Restoration spell.
+
+    Contagion
+    The target creature is struck down with one of the following debilitating
+    diseases, randomly chosen: Blinding Sickness, Cackle Fever, Filth Fever,
+    Mind Fire, Red Ache, Shakes, or Slimy Doom.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -36,7 +41,7 @@ void main()
     // Strength ability check result?
     int nStrengthCheckRoll = -1;
     // Saving throw and immunity?
-    int nSavingThrow = -1, nSavingThrowType = SAVING_THROW_TYPE_NONE;
+    int nSavingThrow = SAVING_THROW_NONE, nSavingThrowType = SAVING_THROW_TYPE_NONE;
     int nImmunity = IMMUNITY_TYPE_NONE;
     // Effect we apply on a failed save
     effect eLink;
@@ -97,6 +102,38 @@ void main()
             nTempHP          = d4(2) * 5;
         }
         break;
+        case SPELL_CONTAGION:
+        {
+            int nDisease;
+            switch (Random(7))
+            {
+                case 0:
+                    nDisease = DISEASE_BLINDING_SICKNESS;
+                break;
+                case 1:
+                    nDisease = DISEASE_CACKLE_FEVER;
+                break;
+                case 2:
+                    nDisease = DISEASE_FILTH_FEVER;
+                break;
+                case 3:
+                    nDisease = DISEASE_MINDFIRE;
+                break;
+                case 4:
+                    nDisease = DISEASE_RED_ACHE;
+                break;
+                case 5:
+                    nDisease = DISEASE_SHAKES;
+                break;
+                case 6:
+                    nDisease = DISEASE_SLIMY_DOOM;
+                break;
+            }
+            nImmunity        = IMMUNITY_TYPE_DISEASE;
+            eLink            = SupernaturalEffect(EffectDisease(nDisease));
+            nDurationType    = DURATION_TYPE_PERMANENT;
+        }
+        break;
         default:
             Debug("[op_s_effect] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
@@ -134,7 +171,7 @@ void main()
                 {
                     // Saving throw or strength check?
                     int bSaved = FALSE;
-                    if (nSavingThrow != -1)
+                    if (nSavingThrow != SAVING_THROW_NONE)
                     {
                         bSaved = DoSavingThrow(oTarget, oCaster, nSavingThrow, nSpellSaveDC, nSavingThrowType, fDelay);
                     }
