@@ -313,6 +313,9 @@ void ApplyVisualEffectAtObjectsLocation(int nVFX, object oTarget, int bMissEffec
 // Applies damage of the given type. This helps wrapper delayed damage so we can keep at 1 HP if necessary (Harm/Heal).
 void ApplyDamageToObject(object oTarget, int nDamage, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL, int bKeepAt1HP = FALSE);
 
+// Applies damage to the oTarget which is enough to kill them (HP + 10) plus VFX.
+void ApplyDeathDamageToObject(object oTarget, int nVFX, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL);
+
 // Applies damage of the given type, and heals up to the damage done to oCaster (after resistances/immunities).
 // Must be a creature for it it work.
 void ApplyDamageWithVFXToObjectAndDrain(object oTarget, object oCaster, int nVFX, int nDamage, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL);
@@ -401,6 +404,9 @@ int GetIsLiving(object oCreature);
 
 // Returns TRUE if the given creature is a water elemental (Based on appearance)
 int GetIsWaterElemental(object oCreature);
+
+// Returns TRUE if the given creature is a vampire (Based on appearance, plus subrace string)
+int GetIsVampire(object oCreature);
 
 // Gets if either domain matches the given domain on the given class
 int GetClassHasDomain(object oCreature, int nClass, int nDomain);
@@ -2369,6 +2375,17 @@ void ApplyDamageToObject(object oTarget, int nDamage, int nDamageType = DAMAGE_T
     }
 }
 
+// Applies damage to the oTarget which is enough to kill them (HP + 10) plus VFX.
+void ApplyDeathDamageToObject(object oTarget, int nVFX, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL)
+{
+    int nDamage = GetCurrentHitPoints(oTarget) + 10;
+    effect eDamage = EffectDamage(nDamage, nDamageType, nDamagePower);
+
+    // We always delay damage by 0.0 seconds to stop any script loops
+    ApplyVisualEffectToObject(nVFX, oTarget);
+    DelayCommand(0.0, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDamage, oTarget));
+}
+
 // Private function for the below to work in a DelayCommand
 void DamageAndDrain(object oTarget, object oCaster, int nDamage, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL)
 {
@@ -2958,6 +2975,23 @@ int GetIsWaterElemental(object oCreature)
         case APPEARANCE_TYPE_ELEMENTAL_WATER_ELDER:
             return TRUE;
         break;
+    }
+    return FALSE;
+}
+
+// Returns TRUE if the given creature is a vampire (Based on appearance, plus subrace string)
+int GetIsVampire(object oCreature)
+{
+    switch (GetAppearanceType(oCreature))
+    {
+        case APPEARANCE_TYPE_VAMPIRE_FEMALE:
+        case APPEARANCE_TYPE_VAMPIRE_MALE:
+            return TRUE;
+        break;
+    }
+    if (GetStringLowerCase(GetSubRace(oTarget)) == "vampire")
+    {
+        return TRUE;
     }
     return FALSE;
 }
