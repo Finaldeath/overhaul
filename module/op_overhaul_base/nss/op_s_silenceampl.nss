@@ -127,7 +127,6 @@ const int SAVE_RESULT_PASSED = 2;
 
 void main()
 {
-
     if (GetCurrentlyRunningEvent() == EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_ENTER)
     {
         if (!AOECheck()) return;
