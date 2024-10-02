@@ -23,6 +23,12 @@
     The target creature is struck down with one of the following debilitating
     diseases, randomly chosen: Blinding Sickness, Cackle Fever, Filth Fever,
     Mind Fire, Red Ache, Shakes, or Slimy Doom.
+
+    Poison
+    The character inflicts the subject with a poison by making a successful
+    melee touch attack. The poison deals 1d6 points of Strength damage
+    immediately and another 1d6 points of Strength damage 1 minute later. Each
+    instance of damage can be negated by a Fortitude save (DC 18).
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -56,6 +62,10 @@ void main()
     int nTouchType     = TOUCH_NONE;
     int bUndeadGainHP  = FALSE;
     int nTempHP = 0;
+
+    // If set this will override nSpellId for the purposes of applying effects, so they may stack
+    // (eg Poison or Disease spells)
+    int bOverrideSpellId = FALSE;
 
     switch (nSpellId)
     {
@@ -130,8 +140,17 @@ void main()
                 break;
             }
             nImmunity        = IMMUNITY_TYPE_DISEASE;
-            eLink            = SupernaturalEffect(EffectDisease(nDisease));
+            eLink            = SetEffectSpellId(SupernaturalEffect(EffectDisease(nDisease)), SPELL_INVALID);
             nDurationType    = DURATION_TYPE_PERMANENT;
+            bOverrideSpellId = TRUE;
+        }
+        break;
+        case SPELL_POISON:
+        {
+            nImmunity        = IMMUNITY_TYPE_POISON;
+            eLink            = SetEffectSpellId(SupernaturalEffect(EffectPoison(POISON_LARGE_SCORPION_VENOM)), SPELL_INVALID);
+            nDurationType    = DURATION_TYPE_PERMANENT;
+            bOverrideSpellId = TRUE;
         }
         break;
         default:
@@ -179,6 +198,12 @@ void main()
                     {
                         // Ability check
                         bSaved = DoAbilityCheck(oTarget, oCaster, nStrengthCheckRoll, ABILITY_STRENGTH, ABILITY_DEXTERITY);
+                    }
+
+                    // Change spell ID at this point
+                    if (bOverrideSpellId)
+                    {
+                        nSpellId = SPELL_INVALID;
                     }
 
                     // Damage?
