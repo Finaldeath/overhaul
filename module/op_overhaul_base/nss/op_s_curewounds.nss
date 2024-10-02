@@ -224,6 +224,9 @@ void HealOrHarm(object oTarget, float fDelay, int nVisHeal, int nVisHarm, int nD
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_POISON));
 
             CureEffects(oTarget, jArray, TRUE);
+
+            // Also remove these specific spells
+            CureEffectsFromSpell(oTarget, SPELL_INFESTATION_OF_MAGGOTS);
         }
     }
 }

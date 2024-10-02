@@ -443,6 +443,9 @@ float GetRemainingDurationOfEffects(object oObject, int nType);
 // - bSuperanturalRemoval - If FALSE it will not remove Supernatural effects.
 void CureEffects(object oTarget, json jArray, int bSupernaturalRemoval = FALSE);
 
+// Cures nSpellId from oTarget with appropriate feedback
+void CureEffectsFromSpell(object oTarget, int nSpellId);
+
 // If a single target spell checks for nTargetType against global oTarget and adds them to a single object array if so.
 // Else if AOE loops through relevant shape to get all the targets in it. It then sorts them using nSortMethod.
 // * nTargetType - The SPELL_TARGET_* type to check versus oCaster
@@ -3165,6 +3168,15 @@ void CureEffects(object oTarget, json jArray, int bSupernaturalRemoval = FALSE)
             }
             eCheck = GetNextEffect(oTarget);
         }
+    }
+}
+
+// Cures nSpellId from oTarget with appropriate feedback
+void CureEffectsFromSpell(object oTarget, int nSpellId)
+{
+    if (RemoveEffectsFromSpell(oTarget, nSpellId))
+    {
+        SendCureFeedback(oCaster, oTarget, GetSpellName(nSpellId));
     }
 }
 

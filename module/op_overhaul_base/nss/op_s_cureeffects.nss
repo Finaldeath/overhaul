@@ -202,6 +202,9 @@ void main()
             nVis                 = VFX_IMP_REMOVE_CONDITION;
 
             jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_DISEASE));
+
+            // Also remove these specific spells
+            CureEffectsFromSpell(oTarget, SPELL_INFESTATION_OF_MAGGOTS);
         }
         break;
         case SPELL_REMOVE_BLINDNESS_AND_DEAFNESS:
