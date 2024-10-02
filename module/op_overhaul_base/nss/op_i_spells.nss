@@ -184,7 +184,7 @@ int DoDamageSavingThrow(int nDamage, object oTarget, object oSaveVersus, int nSa
 // If you use the optional ability parameters the highest will be chosen (eg put in Strength and Dexterity highest of both will be used).
 int DoAbilityCheck(object oTarget, object oSource, int nDC, int nAbilityCheck, int nOptionalAbilityCheck = -1);
 
-// Returns the modified amount of nDamage based on bSaved and the feats oTarget has (Evasion etc.)
+// Returns the modified amount of nDamage based on bSaved (usually half) and the feats oTarget has (Evasion etc.)
 // * nSavingThrowType - SAVING_THROW_REFLEX affects the feats, and other types may affect
 //                      it in the future.
 int GetDamageBasedOnFeats(int nDamage, object oTarget, int nSavingThrowType, int bSaved);
@@ -1325,7 +1325,7 @@ int DoAbilityCheck(object oTarget, object oSource, int nDC, int nAbilityCheck, i
     return bResult;
 }
 
-// Returns the modified amount of nDamage based on bSaved and the feats oTarget has (Evasion etc.)
+// Returns the modified amount of nDamage based on bSaved (usually half) and the feats oTarget has (Evasion etc.)
 // * nSavingThrowType - SAVING_THROW_REFLEX affects the feats, and other types may affect
 //                      it in the future.
 int GetDamageBasedOnFeats(int nDamage, object oTarget, int nSavingThrowType, int bSaved)
