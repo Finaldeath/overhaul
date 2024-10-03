@@ -36,6 +36,9 @@
     creatures equal to 1d4 per caster level must make a Fortitude save or die,
     beginning with those creatures with the lowest Hit Dice. Creatures with 9 or
     more Hit Dice are unaffected.
+
+    Undead to Death
+    Same as Circle of Death but Undead creatures only.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -73,6 +76,9 @@ void main()
     // TargetType
     int nTargetType = SPELL_TARGET_STANDARDHOSTILE;
     int nSortMethod = SORT_METHOD_DISTANCE;
+
+    // Racial Type check
+    int nRacialType = RACIAL_TYPE_INVALID;
 
     switch (nSpellId)
     {
@@ -157,6 +163,20 @@ void main()
             nSortMethod      = SORT_METHOD_LOWEST_HD;
         }
         break;
+        case SPELL_UNDEATH_TO_DEATH:
+        {
+            eDeath           = IgnoreEffectImmunity(EffectDeath());
+            nImmunity        = IMMUNITY_TYPE_NONE;
+            nSavingThrow     = SAVING_THROW_WILL;
+            nSavingThrowType = SAVING_THROW_TYPE_POSITIVE;
+            nImpact          = VFX_FNF_LOS_HOLY_20;
+            nVis             = VFX_IMP_DEATH;
+            nHDMax           = 9;
+            nHDPool          = GetDiceRoll(min(20, nCasterLevel), 4);
+            nSortMethod      = SORT_METHOD_LOWEST_HD;
+            nRacialType      = RACIAL_TYPE_UNDEAD;
+        }
+        break;
         default:
             Debug("[op_s_death] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
@@ -170,6 +190,9 @@ void main()
     for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
     {
         oTarget = GetArrayObject(jArray, nIndex);
+
+        // Racial check first before signal event
+        if (nRacialType != RACIAL_TYPE_INVALID && GetRacialType(oTarget) != nRacialType) continue;
 
         SignalSpellCastAt();
 
