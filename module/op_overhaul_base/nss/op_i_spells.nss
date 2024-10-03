@@ -320,6 +320,10 @@ void ApplyDeathDamageToObject(object oTarget, int nVFX, int nDamageType = DAMAGE
 // Must be a creature for it it work.
 void ApplyDamageWithVFXToObjectAndDrain(object oTarget, object oCaster, int nVFX, int nDamage, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL);
 
+// Applies damage of the given type, and adds temp HP up to the damage done to oCaster (after resistances/immunities).
+// Must be a creature for it it work.
+void ApplyDamageWithVFXToObjectAndTempHP(object oTarget, object oCaster, int nVFX, int nDamage, float fDuration, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL);
+
 // Applies damage of the given type. This helps wrapper delayed damage so we can keep at 1 HP if necessary (Harm/Heal).
 // * Also applies nVFX (no miss effect or anything special).
 void ApplyDamageWithVFXToObject(object oTarget, int nVFX, int nDamage, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL, int bKeepAt1HP = FALSE);
@@ -2406,6 +2410,25 @@ void DamageAndDrain(object oTarget, object oCaster, int nDamage, int nDamageType
     {
         ApplyVisualEffectToObject(VFX_IMP_HEALING_M, oCaster);
         ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectHeal(nAmountToHeal), oCaster);
+    }
+}
+
+// Applies damage of the given type, and adds temp HP up to the damage done to oCaster (after resistances/immunities).
+// Must be a creature for it it work.
+void ApplyDamageWithVFXToObjectAndTempHP(object oTarget, object oCaster, int nVFX, int nDamage, float fDuration, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL)
+{
+    int nOriginalHP = GetCurrentHitPoints(oTarget);
+    ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectDamage(nDamage, nDamageType, nDamagePower), oTarget);
+
+    // Amount to heal. If dead we use 0 HP since NPCs have to magically go to -10 when they die.
+    int nCurrentHP = GetIsDead(oTarget) ? 0 : GetCurrentHitPoints(oTarget);
+
+    int nAmountTempHP = nOriginalHP - nCurrentHP;
+
+    // Don't heal if the target isn't a creature to drain
+    if (GetObjectType(oTarget) == OBJECT_TYPE_CREATURE && nAmountTempHP > 0)
+    {
+        ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, EffectTemporaryHitpoints(nAmountTempHP), oCaster, fDuration);
     }
 }
 

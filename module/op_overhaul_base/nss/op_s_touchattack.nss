@@ -32,6 +32,14 @@
     1d12+10) to the living creature on a successful melee touch attack, and
     gain an equal amount of hit points. You may not gain more Hit Points than
     your maximum with the Healing Sting.
+
+    Vampiric Touch
+    The target living creature if hit with a successful melee touch attack takes
+    1d6 points of negative damage for every 2 caster levels (maximum 10d6). This
+    damage is then applied to the caster's hit points as a temporary bonus. You
+    can't gain more temporary hit points than what is required to kill the target
+    (target's current hit points +10). These hit points last 1 hour per 2 caster
+    levels.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -54,13 +62,16 @@ void main()
     // Damage > 0 gets it saved
     int nDamageType;
     int bHeal = FALSE;
+    // For Vampiric Touch
+    int bTempHP = FALSE;
 
     // Effect to apply if target is hit.
     int bApplyEffect = FALSE;
     effect eLink;
-    float fDuration;
+    float fDuration = 0.0;
 
     int nVis = VFX_NONE, nBeam = VFX_NONE;
+    int nTargetType = SPELL_TARGET_STANDARDHOSTILE;
 
     switch (nSpellId)
     {
@@ -128,6 +139,17 @@ void main()
             bHeal = TRUE;
         }
         break;
+        case SPELL_VAMPIRIC_TOUCH:
+        {
+            nTouchAttackType = TOUCH_MELEE;
+            nDice = clamp(nCasterLevel/2, 1, 10);
+            nDiceSize = 6;
+            nDamageType = DAMAGE_TYPE_NEGATIVE;
+            nVis = VFX_IMP_NEGATIVE_ENERGY;
+            bTempHP = TRUE;
+            fDuration = GetDuration(nCasterLevel/2, HOURS);
+        }
+        break;
         default:
             Debug("[op_s_touchattack] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
@@ -136,7 +158,7 @@ void main()
 
     int bResist;
 
-    if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
+    if (GetSpellTargetValid(oTarget, oCaster, nTargetType))
     {
         SignalSpellCastAt();
 
@@ -174,11 +196,15 @@ void main()
                         {
                             if (bHeal)
                             {
-                                ApplyDamageWithVFXToObjectAndDrain(oTarget, oCaster, nVis, nDamage, nDamageType);
+                                DelayCommand(0.0, ApplyDamageWithVFXToObjectAndDrain(oTarget, oCaster, nVis, nDamage, nDamageType));
+                            }
+                            else if (bTempHP)
+                            {
+                                DelayCommand(0.0, ApplyDamageWithVFXToObjectAndTempHP(oTarget, oCaster, nVis, nDamage, fDuration, nDamageType));
                             }
                             else
                             {
-                                ApplyDamageWithVFXToObject(oTarget, nVis, nDamage, nDamageType);
+                                DelayCommand(0.0, ApplyDamageWithVFXToObject(oTarget, nVis, nDamage, nDamageType));
                             }
                         }
                     }
