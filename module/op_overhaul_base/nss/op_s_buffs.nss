@@ -182,6 +182,11 @@
 
     Iron Body
     Lots of bonuses and several penalties at once. 1 minute/level.
+
+    Aura of Glory
+    The caster channels divine power to gain a +4 charisma bonus. All allies
+    near the caster gain a +5 bonus to their saving throws versus fear and are
+    healed of 1d4 damage (constructs and undead are not healed).
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -205,6 +210,9 @@ void main()
     // This is enabled for things like Improved Invisibility
     int bSecondLink = FALSE;
     effect eSecondLink;
+
+    int nHealDice = 0, nHealDiceSize = 0, nHealBase = 0;
+    int bApplyToTarget = TRUE;
 
     switch (nSpellId)
     {
@@ -900,6 +908,35 @@ void main()
                                           EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE))))))))))))))))))))))));
         }
         break;
+        case SPELL_AURAOFGLORY:
+        {
+            nImpact          = VFX_FNF_LOS_HOLY_30;
+            fDuration        = GetDuration(nCasterLevel, MINUTES);
+            nVis             = VFX_IMP_HEAD_HOLY;
+            nHealDice        = 3;
+            nHealDiceSize    = 8;
+            nHealBase        = 0;
+
+            // Apply single target effect separately - because else we'll end up
+            // with two different effects for dispel magic purposes
+            bApplyToTarget   = FALSE;
+            eLink = EffectLinkEffects(EffectAbilityIncrease(ABILITY_CHARISMA, 4),
+                    EffectLinkEffects(EffectSavingThrowIncrease(SAVING_THROW_ALL, 5, SAVING_THROW_TYPE_FEAR),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+
+            ApplyVisualEffectToObject(nVis, oTarget);
+            ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
+
+            effect eHeal = EffectHeal(GetDiceRoll(nHealDice, nHealDiceSize, nHealBase));
+            ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eHeal, oTarget);
+
+            // Final link for allies
+            eLink = EffectLinkEffects(EffectSavingThrowIncrease(SAVING_THROW_ALL, 5, SAVING_THROW_TYPE_FEAR),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+
+        }
+        break;
+
         default:
             Debug("[op_s_buffs] No valid spell ID passed in: " + IntToString(nSpellId), ERROR);
             return;
@@ -913,7 +950,10 @@ void main()
     // If this is not an AOE spell we don't care what target type it is
     if (!GetSpellIsAreaOfEffect(nSpellId)) nTargetType = SPELL_TARGET_ANYTHING;
 
-    json jArray = GetArrayOfTargets(nTargetType, SORT_METHOD_DISTANCE);
+    object oToIgnore = OBJECT_INVALID;
+    if (!bApplyToTarget) oToIgnore = oTarget;
+
+    json jArray = GetArrayOfTargets(nTargetType, SORT_METHOD_DISTANCE, OBJECT_TYPE_CREATURE, oToIgnore);
     int nIndex;
     for (nIndex = 0; nIndex < JsonGetLength(jArray) && nCreatureLimit > 0; nIndex++)
     {
@@ -935,5 +975,12 @@ void main()
         if (nVis != VFX_INVALID) DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
         DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
         if (bSecondLink) DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eSecondLink, oTarget, fDuration));
+
+        // Optional healing
+        if (nHealDice > 0 || nHealBase > 0)
+        {
+            effect eHeal = EffectHeal(GetDiceRoll(nHealDice, nHealDiceSize, nHealBase));
+            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eHeal, oTarget));
+        }
     }
 }

@@ -147,11 +147,11 @@ void DoSpellEffects(int bInitial = FALSE)
     {
         SignalSpellCastAt();
 
-        if (!bAttack || DoAttackRoll(oTarget, oCaster, nCasterLevel + GetClassSpellcasterAbilityModifier(nCasterClass), nHandStrengthModifier, CREATURE_SIZE_LARGE))
+        if (!bAttack || DoAttackRoll(oTarget, oCaster, nCasterLevel + GetClassSpellcasterAbilityModifier(oCaster, nCasterClass), nHandStrengthModifier, CREATURE_SIZE_LARGE))
         {
             if (!bBullRush || DoBullRushCheck(oTarget, oCaster, nHandStrengthModifier, CREATURE_SIZE_LARGE, 2))
             {
-                if (!bGrapple || DoGrappleCheck(oTarget, oCaster, nCasterLevel + GetClassSpellcasterAbilityModifier(nCasterClass) + nHandStrengthModifier, CREATURE_SIZE_LARGE))
+                if (!bGrapple || DoGrappleCheck(oTarget, oCaster, nCasterLevel + GetClassSpellcasterAbilityModifier(oCaster, nCasterClass) + nHandStrengthModifier, CREATURE_SIZE_LARGE))
                 {
                     if (!DoResistSpell(oTarget, oCaster))
                     {

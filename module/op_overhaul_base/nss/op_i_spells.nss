@@ -143,7 +143,7 @@ int GetSpellSaveDCCalculated(object oCaster, int nSpellIdToCheck, int nFeatId, o
 
 // Gets the given classes ability modifier or 0 if not a spellcasting class
 // If oCastItem is valid we'll use the default stat modifier, 16, used for items currently.
-int GetClassSpellcasterAbilityModifier(int nClass, object oCastItem = OBJECT_INVALID);
+int GetClassSpellcasterAbilityModifier(object oCaster, int nClass, object oCastItem = OBJECT_INVALID);
 
 // This calculates the spell caster level for any additional bonuses due to feats or similar.
 // For a AOE pass in it as the oCaster, then it uses the stored caster level.
@@ -461,7 +461,9 @@ void CureEffectsFromSpell(object oTarget, int nSpellId);
 //                 SORT_METHOD_DISTANCE_TO_CASTER - Sorts so first object is lowest distance to caster
 //                 SORT_METHOD_RANDOM    - Intentionally randomises the targets (useful to make it look cooler for Chain Lighting etc.)
 // The other variables can be set, but if not then the current Spell Id will sort the shape and size.
-json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, int nObjectFilter = OBJECT_TYPE_CREATURE, int nShape = -1, float fSize = -1.0, location lArrayTarget = LOCATION_INVALID, int bLineOfSight = TRUE, vector vOrigin = [ 0.0, 0.0, 0.0 ]);
+// NOTE: if oTargetToIgnore is set it'll be not returned by this array. Use it to
+// apply one effect to the primary target, and a different one to secondary ones.
+json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, int nObjectFilter = OBJECT_TYPE_CREATURE, object oTargetToIgnore = OBJECT_INVALID, int nShape = -1, float fSize = -1.0, location lArrayTarget = LOCATION_INVALID, int bLineOfSight = TRUE, vector vOrigin = [ 0.0, 0.0, 0.0 ]);
 
 // Loops through the persistent AOE to get all the targets in it. It then sorts them using nSortMethod.
 // * nTargetType - The SPELL_TARGET_* type to check versus oCaster
@@ -605,7 +607,7 @@ int nSpellSchool           = GetSpellSchool(nSpellId);
 int nSpellSaveDC           = GetSpellSaveDCCalculated(oCaster, nSpellId, nFeatId, oCastItem, nSpellType);
 int nCasterClass           = GetLastSpellCastClassCalculated();
 int nCasterLevel           = GetCasterLevelCalculated(oCaster, nSpellId, nFeatId, nCasterClass);
-int nCasterAbilityModifier = GetClassSpellcasterAbilityModifier(nCasterClass, oCastItem);
+int nCasterAbilityModifier = GetClassSpellcasterAbilityModifier(oCaster, nCasterClass, oCastItem);
 int nMetaMagic             = GetMetaMagicFeatCalculated(nSpellId, bIllusionary);
 int nSpellLevel            = GetLastSpellLevelCalculated();
 int bSpontaneous           = GetSpellCastSpontaneouslyCalculated();
@@ -910,7 +912,7 @@ int GetSpellSaveDCCalculated(object oCaster, int nSpellId, int nFeatId, object o
         }
         // Now use the class to get the data
         // Not a spellcaster? oh well!
-        int nAbilityModifier = GetClassSpellcasterAbilityModifier(nHighestCasterClass);
+        int nAbilityModifier = GetClassSpellcasterAbilityModifier(oCaster, nHighestCasterClass);
         int nSpellSchool = GetSpellSchool(nSpellId);
         int nFeatBonus = GetSpellFocusBonus(oCaster, nSpellSchool);
 
@@ -929,10 +931,11 @@ int GetSpellSaveDCCalculated(object oCaster, int nSpellId, int nFeatId, object o
 
 // Gets the given classes ability modifier or 0 if not a spellcasting class
 // If oCastItem is valid we'll use the default stat modifier, 16, used for items currently.
-int GetClassSpellcasterAbilityModifier(int nClass, object oCastItem = OBJECT_INVALID)
+int GetClassSpellcasterAbilityModifier(object oCaster, int nClass, object oCastItem = OBJECT_INVALID)
 {
-    // Use a stat modifier of 3 (for a base 16 stat) if casting from an item right now
-    if (GetIsObjectValid(oCastItem)) return 3;
+    // Use a stat modifier of 3 (for a base 16 stat) if casting from an item, or cheat casting
+    if (GetIsObjectValid(oCastItem) ||
+        nClass == CLASS_TYPE_INVALID) return 3;
 
     // Not a spellcaster? oh well!
     int nAbilityModifier = 0;
@@ -972,7 +975,7 @@ int GetClassIsDivineCaster(int nClass)
 
 // This calculates the spell caster level for any additional bonuses due to feats or similar.
 // For a AOE pass in it as the oCaster, then it uses the stored caster level.
-int GetCasterLevelCalculated(object oCaster, int nSpellIdToCheck, int nFeatIdToCheck, int nCasterClassToCheck)
+int GetCasterLevelCalculated(object oCasterToCheck, int nSpellIdToCheck, int nFeatIdToCheck, int nCasterClassToCheck)
 {
     if (nSpellIdToCheck == SPELL_INVALID) return 0;
 
@@ -993,7 +996,7 @@ int GetCasterLevelCalculated(object oCaster, int nSpellIdToCheck, int nFeatIdToC
         return GetCasterLevel(OBJECT_SELF);
     }
 
-    int nCasterLevel = GetCasterLevel(oCaster);
+    int nReturn = GetCasterLevel(oCasterToCheck);
 
     // Modifications due to casters feats etc.
 
@@ -1002,7 +1005,7 @@ int GetCasterLevelCalculated(object oCaster, int nSpellIdToCheck, int nFeatIdToC
     // Arcane caster. Only bother to do this if we have more than 1 class of course.
     if (nCasterClassToCheck != CLASS_TYPE_INVALID &&
         nFeatIdToCheck == -1 &&
-        GetClassByPosition(2, oCaster) != CLASS_TYPE_INVALID)
+        GetClassByPosition(2, oCasterToCheck) != CLASS_TYPE_INVALID)
     {
         // Arcane?
         if (GetClassIsArcaneCaster(nCasterClassToCheck))
@@ -1011,16 +1014,16 @@ int GetCasterLevelCalculated(object oCaster, int nSpellIdToCheck, int nFeatIdToC
             int nClassSlot, nHighestArcaneClass = -1, nHighestArcaneClassLevel = 0, nArcSpellLvlModTotal = 0;
             for (nClassSlot = 1; nClassSlot <= 8; nClassSlot++)
             {
-                int nClass = GetClassByPosition(nClassSlot, oCaster);
+                int nClass = GetClassByPosition(nClassSlot, oCasterToCheck);
                 if (nClass != CLASS_TYPE_INVALID)
                 {
                     // If it's arcane caster
                     if (GetClassIsArcaneCaster(nClass))
                     {
-                        if (GetLevelByClass(nClass, oCaster) > nHighestArcaneClassLevel)
+                        if (GetLevelByClass(nClass, oCasterToCheck) > nHighestArcaneClassLevel)
                         {
                             nHighestArcaneClass      = nClass;
-                            nHighestArcaneClassLevel = GetLevelByClass(nClass, oCaster);
+                            nHighestArcaneClassLevel = GetLevelByClass(nClass, oCasterToCheck);
                         }
                     }
                     else
@@ -1031,7 +1034,7 @@ int GetCasterLevelCalculated(object oCaster, int nSpellIdToCheck, int nFeatIdToC
                         if (sArcSpellLvlMod != "" && nArcSpellLvlMod > 0)
                         {
                             // Get the bonus. EG: 1 is 1 per level, 2 is 1 at level 2, then 2 at level 3, etc.
-                            int nLevelBonus = (GetLevelByClass(nClass, oCaster) + nArcSpellLvlMod - 1) / nArcSpellLvlMod;
+                            int nLevelBonus = (GetLevelByClass(nClass, oCasterToCheck) + nArcSpellLvlMod - 1) / nArcSpellLvlMod;
                             nArcSpellLvlModTotal += nLevelBonus;
                         }
                     }
@@ -1040,7 +1043,7 @@ int GetCasterLevelCalculated(object oCaster, int nSpellIdToCheck, int nFeatIdToC
             // Add prestige class levels if it's the highest
             if (nCasterClassToCheck == nHighestArcaneClass)
             {
-                nCasterLevel += nArcSpellLvlModTotal;
+                nReturn += nArcSpellLvlModTotal;
             }
         }
         // Divine?
@@ -1050,16 +1053,16 @@ int GetCasterLevelCalculated(object oCaster, int nSpellIdToCheck, int nFeatIdToC
             int nClassSlot, nHighestDivineClass = -1, nHighestDivineClassLevel = 0, nDivSpellLvlModTotal = 0;
             for (nClassSlot = 1; nClassSlot <= 8; nClassSlot++)
             {
-                int nClass = GetClassByPosition(nClassSlot, oCaster);
+                int nClass = GetClassByPosition(nClassSlot, oCasterToCheck);
                 if (nClass != CLASS_TYPE_INVALID)
                 {
                     // If it's arcane caster
                     if (GetClassIsDivineCaster(nClass))
                     {
-                        if (GetLevelByClass(nClass, oCaster) > nHighestDivineClassLevel)
+                        if (GetLevelByClass(nClass, oCasterToCheck) > nHighestDivineClassLevel)
                         {
                             nHighestDivineClass      = nClass;
-                            nHighestDivineClassLevel = GetLevelByClass(nClass, oCaster);
+                            nHighestDivineClassLevel = GetLevelByClass(nClass, oCasterToCheck);
                         }
                     }
                     else
@@ -1070,7 +1073,7 @@ int GetCasterLevelCalculated(object oCaster, int nSpellIdToCheck, int nFeatIdToC
                         if (sDivSpellLvlMod != "" && nDivSpellLvlMod > 0)
                         {
                             // Get the bonus. EG: 1 is 1 per level, 2 is 1 at level 2, then 2 at level 3, etc.
-                            int nLevelBonus = (GetLevelByClass(nClass, oCaster) + nDivSpellLvlMod - 1) / nDivSpellLvlMod;
+                            int nLevelBonus = (GetLevelByClass(nClass, oCasterToCheck) + nDivSpellLvlMod - 1) / nDivSpellLvlMod;
                             nDivSpellLvlModTotal += nLevelBonus;
                         }
                     }
@@ -1079,12 +1082,12 @@ int GetCasterLevelCalculated(object oCaster, int nSpellIdToCheck, int nFeatIdToC
             // Add prestige class levels if it's the highest
             if (nCasterClassToCheck == nHighestDivineClass)
             {
-                nCasterLevel += nDivSpellLvlModTotal;
+                nReturn += nDivSpellLvlModTotal;
             }
         }
     }
 
-    return nCasterLevel;
+    return nReturn;
 }
 
 // Retrieves the metamagic used, in a spell script, AOE script or run script
@@ -3234,7 +3237,9 @@ const string FIELD_METRIC   = "metric";
 //                 SORT_METHOD_DISTANCE_TO_CASTER - Sorts so first object is lowest distance to caster
 //                 SORT_METHOD_RANDOM    - Intentionally randomises the targets (useful to make it look cooler for Chain Lighting etc.)
 // The other variables can be set, but if not then the current Spell Id will sort the shape and size.
-json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, int nObjectFilter = OBJECT_TYPE_CREATURE, int nShape = -1, float fSize = -1.0, location lArrayTarget = LOCATION_INVALID, int bLineOfSight = TRUE, vector vOrigin = [ 0.0, 0.0, 0.0 ])
+// NOTE: if oTargetToIgnore is set it'll be not returned by this array. Use it to
+// apply one effect to the primary target, and a different one to secondary ones.
+json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, int nObjectFilter = OBJECT_TYPE_CREATURE, object oTargetToIgnore = OBJECT_INVALID, int nShape = -1, float fSize = -1.0, location lArrayTarget = LOCATION_INVALID, int bLineOfSight = TRUE, vector vOrigin = [ 0.0, 0.0, 0.0 ])
 {
     json jArray = JsonArray();
 
@@ -3332,7 +3337,9 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, 
     {
         if (fSafeArea < 0.0 || GetDistanceBetweenLocations(lTarget, GetLocation(oObject)) > fSafeArea)
         {
-            if (GetSpellTargetValid(oObject, oCaster, nTargetType) && (bTargetSelf == TRUE || oObject != oCaster))
+            if (GetSpellTargetValid(oObject, oCaster, nTargetType) &&
+                oObject != oTargetToIgnore &&
+               (bTargetSelf == TRUE || oObject != oCaster))
             {
                 json jObject = JsonObject();
 
@@ -3739,7 +3746,7 @@ int GetIsTargetInAOEAtLocation(int nAOE, int nTargetType = SPELL_TARGET_SELECTIV
         return FALSE;
     }
     // Simplest way that also adheres to LOS checks
-    json jArray = GetArrayOfTargets(nTargetType, SORT_METHOD_NONE, OBJECT_TYPE_CREATURE, SHAPE_SPHERE, fRadius, lCheckTarget);
+    json jArray = GetArrayOfTargets(nTargetType, SORT_METHOD_NONE, OBJECT_TYPE_CREATURE, OBJECT_INVALID, SHAPE_SPHERE, fRadius, lCheckTarget);
     if (JsonGetLength(jArray) > 0)
     {
         return TRUE;
