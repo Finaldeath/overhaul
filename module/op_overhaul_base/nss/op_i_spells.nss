@@ -2811,7 +2811,18 @@ string GetEffectName(effect eEffect)
         case EFFECT_TYPE_CUTSCENEGHOST: return "Cutscene Ghost"; break;
         case EFFECT_TYPE_CUTSCENEIMMOBILIZE: return "Cutscene Immobilize"; break;
         case EFFECT_TYPE_RUNSCRIPT: return "Run Script"; break;
-        case EFFECT_TYPE_ICON: return "Icon"; break;
+        case EFFECT_TYPE_ICON:
+        {
+            // Icons can be many effect types so we use the icon ID to identify them
+            // Add more here if you want clearer feedback for things
+            switch (GetEffectInteger(eEffect, 0))
+            {
+                case EFFECT_ICON_CURSE:  return "Curse"; break;
+                case EFFECT_ICON_DISEASE:  return "Disease"; break;
+                case EFFECT_ICON_POISON:  return "Poison"; break;
+            }
+        }
+        break;
         case EFFECT_TYPE_PACIFY: return "Pacify"; break;
         case EFFECT_TYPE_BONUS_FEAT: return "Bonus Feat"; break;
         case EFFECT_TYPE_TIMESTOP_IMMUNITY: return "Timestop Immunity"; break;
@@ -3142,6 +3153,7 @@ float GetRemainingDurationOfEffects(object oObject, int nType)
 // - bSuperanturalRemoval - If FALSE it will not remove Supernatural effects.
 void CureEffects(object oTarget, json jArray, int bSupernaturalRemoval = FALSE)
 {
+    // This could be made more optimal by one effect loop, but it'll do for now
     int nIndex;
     for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
     {
@@ -3157,7 +3169,11 @@ void CureEffects(object oTarget, json jArray, int bSupernaturalRemoval = FALSE)
             {
                 // For now if EFFECT_TYPE_POISON or DISEASE is included we assume ability score loss removal
                 int nType = GetEffectType(eCheck, TRUE);
-                if (nType == nTypeToRemove || (nType == EFFECT_TYPE_ABILITY_DECREASE && (nTypeToRemove == EFFECT_TYPE_POISON || nTypeToRemove == EFFECT_TYPE_DISEASE)))
+                if (nType == nTypeToRemove ||
+                   // Curses can be defined by their icon now
+                   (nTypeToRemove == EFFECT_TYPE_CURSE && nType == EFFECT_TYPE_ICON && GetEffectInteger(eCheck, 0) == EFFECT_ICON_CURSE) ||
+                   // Poison and Disease cause ability decreases
+                   (nType == EFFECT_TYPE_ABILITY_DECREASE && (nTypeToRemove == EFFECT_TYPE_POISON || nTypeToRemove == EFFECT_TYPE_DISEASE)))
                 {
                     // Ability scores get special treatment (ie disease/poison)
                     if (nTypeToRemove == EFFECT_TYPE_ABILITY_DECREASE)

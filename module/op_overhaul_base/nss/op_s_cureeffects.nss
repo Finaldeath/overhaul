@@ -227,6 +227,14 @@ void main()
             jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_PETRIFY));
         }
         break;
+        case SPELL_REMOVE_CURSE:
+        {
+            bSupernaturalRemoval = TRUE;
+            nVis                 = VFX_IMP_REMOVE_CONDITION;
+
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_CURSE));
+        }
+        break;
         default:
         {
             Debug("[Cure Effects] Unknown spell ID: " + IntToString(nSpellId), ERROR);

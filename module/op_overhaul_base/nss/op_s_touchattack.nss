@@ -40,6 +40,17 @@
     can't gain more temporary hit points than what is required to kill the target
     (target's current hit points +10). These hit points last 1 hour per 2 caster
     levels.
+
+    Bestow Curse
+    The character places a curse on the creature touched (melee touch attack
+    required). The character chooses one of the three following effects:
+
+    -6 effective decrease to a single ability score (minimum 3).
+    -3 effective decrease to all ability scores (minimum 3).
+    -4 enhancement penalty on attack rolls, saving throws, and skills.
+
+    The curse cannot be dispelled, but it can be removed with a Break
+    Enchantment, Remove Curse, or Greater Restoration spell.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -68,6 +79,7 @@ void main()
     // Effect to apply if target is hit.
     int bApplyEffect = FALSE;
     effect eLink;
+    int nDurationType = DURATION_TYPE_TEMPORARY;
     float fDuration = 0.0;
 
     int nVis = VFX_NONE, nBeam = VFX_NONE;
@@ -150,6 +162,57 @@ void main()
             fDuration = GetDuration(nCasterLevel/2, HOURS);
         }
         break;
+        case SPELL_BESTOW_CURSE:
+        case SPELL_BESTOW_CURSE_ALL_ABILITY_SCORES:
+        case SPELL_BESTOW_CURSE_STRENGTH:
+        case SPELL_BESTOW_CURSE_DEXTERITY:
+        case SPELL_BESTOW_CURSE_CONSTITUTION:
+        case SPELL_BESTOW_CURSE_INTELLIGENCE:
+        case SPELL_BESTOW_CURSE_WISDOM:
+        case SPELL_BESTOW_CURSE_CHARISMA:
+        case SPELL_BESTOW_CURSE_ATTACK_SAVING_THROWS_SKILLS:
+        {
+            nTouchAttackType = TOUCH_MELEE;
+            nVis = VFX_IMP_REDUCE_ABILITY_SCORE;
+            nDurationType = DURATION_TYPE_PERMANENT;
+            nSavingThrow = SAVING_THROW_WILL;
+            nImmunity = IMMUNITY_TYPE_CURSED;
+            bApplyEffect = TRUE;
+
+            switch (nSpellId)
+            {
+                case SPELL_BESTOW_CURSE:
+                case SPELL_BESTOW_CURSE_ALL_ABILITY_SCORES:
+                    eLink = EffectCurse(3, 3, 3, 3, 3, 3);
+                    break;
+                case SPELL_BESTOW_CURSE_STRENGTH:
+                    eLink = EffectCurse(6, 0, 0, 0, 0, 0);
+                    break;
+                case SPELL_BESTOW_CURSE_CONSTITUTION:
+                    eLink = EffectCurse(0, 6, 0, 0, 0, 0);
+                    break;
+                case SPELL_BESTOW_CURSE_DEXTERITY:
+                    eLink = EffectCurse(0, 0, 6, 0, 0, 0);
+                    break;
+                case SPELL_BESTOW_CURSE_INTELLIGENCE:
+                    eLink = EffectCurse(0, 0, 0, 6, 0, 0);
+                    break;
+                case SPELL_BESTOW_CURSE_WISDOM:
+                    eLink = EffectCurse(0, 0, 0, 0, 6, 0);
+                    break;
+                case SPELL_BESTOW_CURSE_CHARISMA:
+                    eLink = EffectCurse(0, 0, 0, 0, 0, 6);
+                    break;
+                case SPELL_BESTOW_CURSE_ATTACK_SAVING_THROWS_SKILLS:
+                    eLink = EffectLinkEffects(EffectAttackDecrease(4),
+                            EffectLinkEffects(EffectSkillDecrease(SKILL_ALL_SKILLS, 4),
+                            EffectLinkEffects(EffectSavingThrowDecrease(SAVING_THROW_ALL, 4),
+                                              EffectIcon(EFFECT_ICON_CURSE))));
+                    break;
+            }
+            eLink = SupernaturalEffect(eLink);
+        }
+        break;
         default:
             Debug("[op_s_touchattack] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
@@ -184,6 +247,8 @@ void main()
                 {
                     int bSaved = DoSavingThrow(oTarget, oCaster, nSavingThrow, nSpellSaveDC, nSavingThrowType);
 
+                    int bNotAppliedVFX = TRUE;
+
                     if (nDice > 0 || nStatic > 0)
                     {
                         int nDamage = GetDiceRoll(nDice, nDiceSize, nStatic);
@@ -194,6 +259,7 @@ void main()
 
                         if (nDamage > 0)
                         {
+                            bNotAppliedVFX = FALSE;
                             if (bHeal)
                             {
                                 DelayCommand(0.0, ApplyDamageWithVFXToObjectAndDrain(oTarget, oCaster, nVis, nDamage, nDamageType));
@@ -208,9 +274,10 @@ void main()
                             }
                         }
                     }
-                    if (bApplyEffect && !bSaved)
+                    if (bApplyEffect && !bSaved && bNotAppliedVFX)
                     {
-                        ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
+                        ApplyVisualEffectToObject(nVis, oTarget);
+                        ApplySpellEffectToObject(nDurationType, eLink, oTarget, fDuration);
                     }
                 }
             }

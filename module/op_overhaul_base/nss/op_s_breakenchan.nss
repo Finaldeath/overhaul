@@ -69,8 +69,13 @@ void main()
 
         // Simple ones: Petrification and Curse are immediately checked
         if (nEffectType == EFFECT_TYPE_PETRIFY ||
-            nEffectType == EFFECT_TYPE_CURSE)
+            nEffectType == EFFECT_TYPE_CURSE ||
+           // Bestow Curse reuses the icon, but effects linked to it might differ
+           (nEffectType == EFFECT_TYPE_ICON && GetEffectInteger(eCheck, 0) == EFFECT_ICON_CURSE))
         {
+            // If it was an icon, it's now "curse" for feedback purposes
+            if (nEffectType == EFFECT_TYPE_ICON) nEffectType = EFFECT_TYPE_CURSE;
+
             if (nSpellId == SPELL_INVALID || GetSpellLevel(nSpellId) <= nMaxSpellLevel)
             {
                 // Try and break it!
