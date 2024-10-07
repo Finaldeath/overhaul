@@ -389,6 +389,13 @@ int GetCanHear(object oCreature);
 // Check if oCreature is silenced
 int GetCanSpeak(object oCreature);
 
+// Returns TRUE if oCreature is affected by polymorph
+int GetIsPolymorphed(object oCreature);
+
+// Returns TRUE if oCreature is of the given RACIAL_TYPE_
+// Checks the given racial type, and if they're not polymorphed, the relevant class levels
+int GetIsRacialType(object oCreature, int nRacialType);
+
 // Returns TRUE if the given creature is incorporeal (generally based off their appearance).
 int GetIsIncorporeal(object oCreature);
 
@@ -398,7 +405,7 @@ int GetIsMetalCreature(object oCreature);
 // Returns TRUE if the given creature is humanoid (base races plus goblins etc.)
 int GetIsHumanoidCreature(object oCreature);
 
-// Returns TRUE if the given creature is mindless (elemental, undead, vermin, construct, ooze)
+// Returns TRUE if the given creature is mindless (Elemental, Undead, Vermin, Construct, Ooze)
 int GetIsMindless(object oCreature);
 
 // Returns TRUE if the given creature is flying / floating
@@ -1853,11 +1860,14 @@ int GetDiceRoll(int nNumberOfDice, int nDiceSize, int nBonus = 0, int bApplyMeta
     }
 
     int i, nDamage = 0;
-    for (i = 1; i <= nNumberOfDice; i++)
+    if (nNumberOfDice > 0 && nDiceSize > 0)
     {
-        nDamage += Random(nDiceSize) + 1;
+        for (i = 1; i <= nNumberOfDice; i++)
+        {
+            nDamage += Random(nDiceSize) + 1;
+        }
     }
-    if (bApplyMetaMagic)
+    if (bApplyMetaMagic && nDamage > 0)
     {
         // Resolve metamagic. Maximize and Empower don't stack.
         if (nMetaMagic & METAMAGIC_MAXIMIZE)
@@ -2864,6 +2874,64 @@ int GetCanSpeak(object oCreature)
     return TRUE;
 }
 
+// Returns TRUE if oCreature is affected by polymorph
+int GetIsPolymorphed(object oCreature)
+{
+    if (GetHasEffect(oCreature, EFFECT_TYPE_POLYMORPH))
+    {
+        return TRUE;
+    }
+    return FALSE;
+}
+
+// Returns TRUE if oCreature is of the given RACIAL_TYPE_
+// Checks the given racial type, and if they're not polymorphed, the relevant class levels
+int GetIsRacialType(object oCreature, int nRacialType)
+{
+    if (GetRacialType(oCreature) == nRacialType)
+        return TRUE;
+
+    if (!GetIsPolymorphed(oCreature))
+    {
+        int nClass = CLASS_TYPE_INVALID;
+        switch (nRacialType)
+        {
+            case RACIAL_TYPE_ABERRATION:        nClass = CLASS_TYPE_ABERRATION; break;
+            case RACIAL_TYPE_ANIMAL:            nClass = CLASS_TYPE_ANIMAL; break;
+            case RACIAL_TYPE_BEAST:             nClass = CLASS_TYPE_BEAST; break;
+            case RACIAL_TYPE_CONSTRUCT:         nClass = CLASS_TYPE_CONSTRUCT; break;
+            case RACIAL_TYPE_DRAGON:            nClass = CLASS_TYPE_DRAGON; break;
+            //case RACIAL_TYPE_DWARF:
+            case RACIAL_TYPE_ELEMENTAL:         nClass = CLASS_TYPE_ELEMENTAL; break;
+            //case RACIAL_TYPE_ELF:
+            case RACIAL_TYPE_FEY:
+            case RACIAL_TYPE_GIANT:             nClass = CLASS_TYPE_GIANT; break;
+            //case RACIAL_TYPE_GNOME:
+            //case RACIAL_TYPE_HALFELF:
+            //case RACIAL_TYPE_HALFLING:
+            //case RACIAL_TYPE_HALFORC:
+            //case RACIAL_TYPE_HUMAN:
+            case RACIAL_TYPE_HUMANOID_GOBLINOID:
+            case RACIAL_TYPE_HUMANOID_MONSTROUS:
+            case RACIAL_TYPE_HUMANOID_ORC:
+            case RACIAL_TYPE_HUMANOID_REPTILIAN: nClass = CLASS_TYPE_HUMANOID; break;
+            case RACIAL_TYPE_MAGICAL_BEAST:      nClass = CLASS_TYPE_MAGICAL_BEAST; break;
+            case RACIAL_TYPE_OOZE:               nClass = CLASS_TYPE_OOZE; break;
+            case RACIAL_TYPE_OUTSIDER:           nClass = CLASS_TYPE_OUTSIDER; break;
+            case RACIAL_TYPE_SHAPECHANGER:       nClass = CLASS_TYPE_SHAPECHANGER; break;
+            case RACIAL_TYPE_UNDEAD:             nClass = CLASS_TYPE_UNDEAD; break;
+            case RACIAL_TYPE_VERMIN:             nClass = CLASS_TYPE_VERMIN; break;
+        }
+        if (nClass != CLASS_TYPE_INVALID &&
+            GetLevelByClass(nClass, oCreature) > 0)
+        {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
 // Returns TRUE if the given creature is incorporeal (generally based off their appearance).
 int GetIsIncorporeal(object oCreature)
 {
@@ -2899,35 +2967,33 @@ int GetIsMetalCreature(object oCreature)
 // Returns TRUE if the given creature is humanoid (base races plus goblins etc.)
 int GetIsHumanoidCreature(object oCreature)
 {
-    switch (GetRacialType(oCreature))
+    if (GetIsRacialType(oCreature, RACIAL_TYPE_DWARF) ||
+        GetIsRacialType(oCreature, RACIAL_TYPE_ELF) ||
+        GetIsRacialType(oCreature, RACIAL_TYPE_HALFELF) ||
+        GetIsRacialType(oCreature, RACIAL_TYPE_HALFLING) ||
+        GetIsRacialType(oCreature, RACIAL_TYPE_HALFORC) ||
+        GetIsRacialType(oCreature, RACIAL_TYPE_HUMAN) ||
+        GetIsRacialType(oCreature, RACIAL_TYPE_HUMANOID_GOBLINOID) ||
+        GetIsRacialType(oCreature, RACIAL_TYPE_HUMANOID_MONSTROUS) ||
+        GetIsRacialType(oCreature, RACIAL_TYPE_HUMANOID_ORC) ||
+        GetIsRacialType(oCreature, RACIAL_TYPE_HUMANOID_REPTILIAN) ||
+        GetIsRacialType(oCreature, RACIAL_TYPE_DWARF))
     {
-        case RACIAL_TYPE_DWARF:
-        case RACIAL_TYPE_ELF:
-        case RACIAL_TYPE_HALFELF:
-        case RACIAL_TYPE_HALFLING:
-        case RACIAL_TYPE_HALFORC:
-        case RACIAL_TYPE_HUMAN:
-        case RACIAL_TYPE_HUMANOID_GOBLINOID:
-        case RACIAL_TYPE_HUMANOID_MONSTROUS:
-        case RACIAL_TYPE_HUMANOID_ORC:
-        case RACIAL_TYPE_HUMANOID_REPTILIAN:
-            return TRUE;
-            break;
+        return TRUE;
     }
     return FALSE;
 }
 
-// Returns TRUE if the given creature is humanoid (base races plus goblins etc.)
+// Returns TRUE if the given creature is mindless (Elemental, Undead, Vermin, Construct, Ooze)
 int GetIsMindless(object oCreature)
 {
-    switch (GetRacialType(oCreature))
+    if (GetIsRacialType(oCreature, RACIAL_TYPE_ELEMENTAL) ||
+        GetIsRacialType(oCreature, RACIAL_TYPE_UNDEAD) ||
+        GetIsRacialType(oCreature, RACIAL_TYPE_VERMIN) ||
+        GetIsRacialType(oCreature, RACIAL_TYPE_CONSTRUCT) ||
+        GetIsRacialType(oCreature, RACIAL_TYPE_OOZE))
     {
-        case RACIAL_TYPE_ELEMENTAL:
-        case RACIAL_TYPE_UNDEAD:
-        case RACIAL_TYPE_VERMIN:
-        case RACIAL_TYPE_CONSTRUCT:
-        case RACIAL_TYPE_OOZE:
-            return TRUE;
+        return TRUE;
     }
     return FALSE;
 }
@@ -2992,12 +3058,10 @@ int GetIsFlying(object oCreature)
 // Returns TRUE if the given creature is living (not undead, not construct)
 int GetIsLiving(object oCreature)
 {
-    switch (GetRacialType(oCreature))
+    if (GetIsRacialType(oCreature, RACIAL_TYPE_CONSTRUCT) ||
+        GetIsRacialType(oCreature, RACIAL_TYPE_UNDEAD))
     {
-        case RACIAL_TYPE_CONSTRUCT:
-        case RACIAL_TYPE_UNDEAD:
-            return FALSE;
-        break;
+        return FALSE;
     }
     return TRUE;
 }

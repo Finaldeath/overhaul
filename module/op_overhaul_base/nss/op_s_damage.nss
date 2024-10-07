@@ -45,6 +45,12 @@
     selected Construct (to a maximum of 15d6). This spell does not affect living
     creatures.
 
+    Drown
+    The caster creates water in the lungs of a target creature. Any drowned
+    creature takes 90% of its current hit points as nonmagical bludgeoning
+    damage. Golems, Elementals, Oozes, Undead and other nonliving creatures
+    cannot be drowned.
+
     ----
 
     Greater Ruin
@@ -61,8 +67,8 @@ void main()
 {
     if (DoSpellHook()) return;
 
-    int nDiceNum, nDiceSize, nDamageType, nSavingThrow = -1, nSavingThrowType = SAVING_THROW_TYPE_NONE;
-    int nDiceNum2, nDiceSize2, nDamageType2 = 0;
+    int nDiceNum, nDiceSize, nDiceBonus, nDamageType, nSavingThrow = -1, nSavingThrowType = SAVING_THROW_TYPE_NONE;
+    int nDiceNum2, nDiceSize2, nDiceBonus2, nDamageType2 = 0;
     // Toggles
     int nImpact = VFX_NONE, nVis = VFX_NONE, nBeam = VFX_NONE, bDelayRandom = FALSE, bMustBeLiving = FALSE, bWaterElementalBonusDC = FALSE;
     // Delay variables
@@ -71,6 +77,9 @@ void main()
     int nTargetType = SPELL_TARGET_STANDARDHOSTILE;
     // Magic resistance
     int bMagicResistance = TRUE;
+
+    // Saves by default are for 50% damage, this makes success negate instead
+    int bSavesNegateDamage = FALSE;
 
     switch (nSpellId)
     {
@@ -225,10 +234,30 @@ void main()
 
             // Do target validity checks here
             if (GetObjectType(oTarget) == OBJECT_TYPE_CREATURE &&
-                GetRacialType(oTarget) != RACIAL_TYPE_CONSTRUCT &&
-                GetLevelByClass(CLASS_TYPE_CONSTRUCT, oTarget) == 0)
+               !GetIsRacialType(oTarget, RACIAL_TYPE_CONSTRUCT))
             {
                 SendMessageToPC(oCaster, "*Crumble does not affect this target.*");
+                return;
+            }
+        }
+        break;
+        case SPELL_DROWN:
+        {
+            nDiceNum     = 0;
+            nDiceSize    = 0;
+            nDiceBonus   = FloatToInt(IntToFloat(GetCurrentHitPoints(oTarget)) * 0.9);
+            nDamageType  = DAMAGE_TYPE_BLUDGEONING;
+            nSavingThrow = SAVING_THROW_FORT;
+            nVis         = VFX_IMP_FROST_S; // Could do with a new VFX
+            bSavesNegateDamage = TRUE;
+
+            // Do target validity checks here
+            if (GetObjectType(oTarget) != OBJECT_TYPE_CREATURE ||
+               (!GetIsLiving(oTarget) &&
+                !GetIsRacialType(oTarget, RACIAL_TYPE_OOZE) &&
+                !GetIsRacialType(oTarget, RACIAL_TYPE_ELEMENTAL)))
+            {
+                SendMessageToPC(oCaster, "*Drown does not affect this target.*");
                 return;
             }
         }
@@ -268,11 +297,11 @@ void main()
             if (!DoResistSpell(oTarget, oCaster, fDelay, bMagicResistance, TRUE, bMagicResistance))
             {
                 // Roll damage
-                int nDamage = GetDiceRoll(nDiceNum, nDiceSize);
+                int nDamage = GetDiceRoll(nDiceNum, nDiceSize, nDiceBonus);
                 int nDamage2 = 0;
                 if (nDamageType2 > 0)
                 {
-                    nDamage2 = GetDiceRoll(nDiceNum2, nDiceSize2);
+                    nDamage2 = GetDiceRoll(nDiceNum2, nDiceSize2, nDiceBonus2);
                 }
 
                 // Damage modification based on save (half, with Reflex allowing feats to reduce further)
@@ -284,11 +313,18 @@ void main()
 
                     int bSaved = DoSavingThrow(oTarget, oCaster, nSavingThrow, nSaveDC, nSavingThrowType, fDelay);
 
-                    nDamage = GetDamageBasedOnFeats(nDamage, oTarget, nSavingThrow, bSaved);
-
-                    if (nDamage2 > 0)
+                    if (bSavesNegateDamage)
                     {
-                        nDamage2 = GetDamageBasedOnFeats(nDamage2, oTarget, nSavingThrow, bSaved);
+                        nDamage = 0;
+                    }
+                    else
+                    {
+                        nDamage = GetDamageBasedOnFeats(nDamage, oTarget, nSavingThrow, bSaved);
+
+                        if (nDamage2 > 0)
+                        {
+                            nDamage2 = GetDamageBasedOnFeats(nDamage2, oTarget, nSavingThrow, bSaved);
+                        }
                     }
                 }
 
