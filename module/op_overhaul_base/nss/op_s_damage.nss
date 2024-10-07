@@ -40,6 +40,11 @@
     cold damage per additional 3 caster levels to a maximum of 8d6 cold damage
     at level 18.
 
+    Crumble
+    This spell inflicts 1d6 points of sonic damage per caster level to a
+    selected Construct (to a maximum of 15d6). This spell does not affect living
+    creatures.
+
     ----
 
     Greater Ruin
@@ -64,7 +69,8 @@ void main()
     float fDelayOverride = 0.0, fRandomMin = 0.4, fRandomMax = 1.1;
     // Can change to selective hostile
     int nTargetType = SPELL_TARGET_STANDARDHOSTILE;
-
+    // Magic resistance
+    int bMagicResistance = TRUE;
 
     switch (nSpellId)
     {
@@ -202,6 +208,31 @@ void main()
             bDelayRandom     = TRUE;
         }
         break;
+        case SPELL_CRUMBLE:
+        {
+            nDiceNum         = min(15, nCasterLevel);
+            nDiceSize        = 6;
+            nDamageType      = DAMAGE_TYPE_SONIC;
+            nImpact          = VFX_FNF_SCREEN_SHAKE;
+            // This spell has some messy VFX in the crumble spell script so simplified
+            nVis             = VFX_FNF_MYSTICAL_EXPLOSION;
+            // VFX_FNF_ROCKEXPLODE is a bit crappy / useless (rocks are kinda going up slowly?)
+            // Could use a new VFX (rocks or metal exploding, depending on the golem type)
+
+            // No spell resistance, we also bypass spell absorption (eg Adamantum golem)
+            // But specific spell immunity still applies.
+            bMagicResistance = FALSE;
+
+            // Do target validity checks here
+            if (GetObjectType(oTarget) == OBJECT_TYPE_CREATURE &&
+                GetRacialType(oTarget) != RACIAL_TYPE_CONSTRUCT &&
+                GetLevelByClass(CLASS_TYPE_CONSTRUCT, oTarget) == 0)
+            {
+                SendMessageToPC(oCaster, "*Crumble does not affect this target.*");
+                return;
+            }
+        }
+        break;
         default:
             Debug("[op_s_damage] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
@@ -234,7 +265,7 @@ void main()
         // Immunity checks
         if (!bMustBeLiving || GetIsLiving(oTarget))
         {
-            if (!DoResistSpell(oTarget, oCaster, fDelay))
+            if (!DoResistSpell(oTarget, oCaster, fDelay, bMagicResistance, TRUE, bMagicResistance))
             {
                 // Roll damage
                 int nDamage = GetDiceRoll(nDiceNum, nDiceSize);
