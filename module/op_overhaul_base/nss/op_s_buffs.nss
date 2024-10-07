@@ -187,6 +187,10 @@
     The caster channels divine power to gain a +4 charisma bonus. All allies
     near the caster gain a +5 bonus to their saving throws versus fear and are
     healed of 1d4 damage (constructs and undead are not healed).
+
+    Ethereal Jaunt (renamed Greater Sanctuary)
+    The caster becomes ethereal. No other creature can detect the caster.
+    Attacking or performing a hostile action will make the etherealness vanish.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -934,6 +938,14 @@ void main()
             eLink = EffectLinkEffects(EffectSavingThrowIncrease(SAVING_THROW_ALL, 5, SAVING_THROW_TYPE_FEAR),
                                       EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
 
+        }
+        break;
+        case SPELL_ETHEREALNESS: // Ethereal Jaunt
+        {
+            fDuration = GetDuration(nCasterLevel/4, ROUNDS);
+            eLink     = EffectLinkEffects(EffectEthereal(),
+                        EffectLinkEffects(EffectVisualEffect(VFX_DUR_GLOW_PURPLE),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
         }
         break;
 
