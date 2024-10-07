@@ -33,43 +33,24 @@ void main()
                 ApplyAOEPersistentEffect(oTarget, eLink);
             }
         }
-        else
+        else if (nSpellId == SPELL_VINE_MINE_HAMPER_MOVEMENT)
         {
             if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
             {
                 SignalSpellCastAt();
 
-                if (nSpellId == SPELL_VINE_MINE_HAMPER_MOVEMENT)
+                if (GetAffectedByIllusion(oTarget))
                 {
-                    if (GetAffectedByIllusion(oTarget))
+                    if (!DoResistSpell(oTarget, oCaster))
                     {
-                        if (!DoResistSpell(oTarget, oCaster))
-                        {
-                            ApplyAOEPersistentEffect(oTarget, EffectMovementSpeedDecrease(50));
-                        }
-                    }
-                }
-                else
-                {
-                    if (GetTimerEnded(ObjectToString(oTarget)))
-                    {
-                        SetTimer(ObjectToString(oTarget), 5);
-
-                        if (!DoResistSpell(oTarget, oCaster))
-                        {
-                            if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_ENTANGLE))
-                            {
-                                if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_REFLEX, nSpellSaveDC))
-                                {
-                                    effect eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectEntangle()),
-                                                                     EffectVisualEffect(VFX_DUR_ENTANGLE));
-                                    ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, 6.0);
-                                }
-                            }
-                        }
+                        ApplyAOEPersistentEffect(oTarget, EffectMovementSpeedDecrease(50));
                     }
                 }
             }
+        }
+        else
+        {
+            Debug("[op_s_vinemine] OnEnter invalid spell ID: " + IntToString(nSpellId));
         }
     }
     else if (GetCurrentlyRunningEvent() == EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_EXIT)
@@ -79,41 +60,6 @@ void main()
     else if (GetCurrentlyRunningEvent() == EVENT_SCRIPT_AREAOFEFFECT_ON_HEARTBEAT)
     {
         if (!AOECheck()) return;
-
-        if (nSpellId == SPELL_VINE_MINE_HAMPER_MOVEMENT ||
-            nSpellId == SPELL_VINE_MINE_CAMOUFLAGE)
-        {
-            // All done On Enter
-        }
-        else
-        {
-            json jArray = GetArrayOfAOETargets(SPELL_TARGET_STANDARDHOSTILE);
-            int nIndex;
-            for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
-            {
-                oTarget = GetArrayObject(jArray, nIndex);
-
-                if (GetTimerEnded(ObjectToString(oTarget)))
-                {
-                    SetTimer(ObjectToString(oTarget), 5);
-
-                    SignalSpellCastAt();
-
-                    if (!DoResistSpell(oTarget, oCaster))
-                    {
-                        if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_ENTANGLE))
-                        {
-                            if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_REFLEX, nSpellSaveDC))
-                            {
-                                effect eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectEntangle()),
-                                                                 EffectVisualEffect(VFX_DUR_ENTANGLE));
-                                ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, 6.0);
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
     else
     {
@@ -125,15 +71,6 @@ void main()
             case SPELL_VINE_MINE_CAMOUFLAGE:
             {
                 eAOE = EffectAreaOfEffect(AOE_PER_VINE_MINE_CAMOUFLAGE, GetScriptName(), GetScriptName(), GetScriptName());
-            }
-            break;
-            case SPELL_VINE_MINE_ENTANGLE:
-            case SPELL_VINE_MINE:
-            {
-                // Correct if master spell cast (AI etc.)
-                if (nSpellId == SPELL_VINE_MINE) nSpellId = SPELL_VINE_MINE_ENTANGLE;
-
-                eAOE = EffectAreaOfEffect(AOE_PER_ENTANGLE, GetScriptName(), GetScriptName(), GetScriptName());
             }
             break;
             case SPELL_VINE_MINE_HAMPER_MOVEMENT:
