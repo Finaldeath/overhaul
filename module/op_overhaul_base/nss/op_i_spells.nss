@@ -402,7 +402,7 @@ int GetIsIncorporeal(object oCreature);
 // Returns TRUE if the given creature is made of metal (eg Iron Golem) based off appearance.
 int GetIsMetalCreature(object oCreature);
 
-// Returns TRUE if the given creature is humanoid (base races plus goblins etc.)
+// Returns TRUE if the given creature is humanoid (base races plus humanoid races; goblinoid, monsterous, orc, reptilian)
 int GetIsHumanoidCreature(object oCreature);
 
 // Returns TRUE if the given creature is mindless (Elemental, Undead, Vermin, Construct, Ooze)
@@ -2964,7 +2964,7 @@ int GetIsMetalCreature(object oCreature)
     return FALSE;
 }
 
-// Returns TRUE if the given creature is humanoid (base races plus goblins etc.)
+// Returns TRUE if the given creature is humanoid (base races plus humanoid races; goblinoid, monsterous, orc, reptilian)
 int GetIsHumanoidCreature(object oCreature)
 {
     if (GetIsRacialType(oCreature, RACIAL_TYPE_DWARF) ||
@@ -2976,8 +2976,7 @@ int GetIsHumanoidCreature(object oCreature)
         GetIsRacialType(oCreature, RACIAL_TYPE_HUMANOID_GOBLINOID) ||
         GetIsRacialType(oCreature, RACIAL_TYPE_HUMANOID_MONSTROUS) ||
         GetIsRacialType(oCreature, RACIAL_TYPE_HUMANOID_ORC) ||
-        GetIsRacialType(oCreature, RACIAL_TYPE_HUMANOID_REPTILIAN) ||
-        GetIsRacialType(oCreature, RACIAL_TYPE_DWARF))
+        GetIsRacialType(oCreature, RACIAL_TYPE_HUMANOID_REPTILIAN))
     {
         return TRUE;
     }
