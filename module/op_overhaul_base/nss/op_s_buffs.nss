@@ -195,6 +195,10 @@
     One with the Land
     The caster forges a strong link with nature, gaining a +4 bonus to Animal
     Empathy, Hide, Move Silently, and Set Trap skills.
+
+    Stone Bones
+    You cause the target corporeal undead to gain a +3 natural armor class
+    bonus, due to the thickening of its bones.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -961,6 +965,21 @@ void main()
                         EffectLinkEffects(EffectSkillIncrease(SKILL_MOVE_SILENTLY, 4),
                         EffectLinkEffects(EffectSkillIncrease(SKILL_SET_TRAP, 4),
                                           EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)))));
+        }
+        break;
+        case SPELL_STONE_BONES:
+        {
+            if (GetIsIncorporeal(oTarget) ||
+               !GetIsRacialType(oTarget, RACIAL_TYPE_UNDEAD))
+            {
+                FloatingTextStrRefOnCreature(85390, oCaster); // * Failure! - This spell only affects undead creatures *
+                return;
+            }
+
+            fDuration = GetDuration(nCasterLevel * 10, MINUTES);
+            nVis      = VFX_IMP_AC_BONUS;
+            eLink     = EffectLinkEffects(EffectACIncrease(3, AC_NATURAL_BONUS),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
         }
         break;
         default:
