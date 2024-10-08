@@ -67,8 +67,8 @@ void main()
 {
     if (DoSpellHook()) return;
 
-    int nDiceNum, nDiceSize, nDiceBonus, nDamageType, nSavingThrow = -1, nSavingThrowType = SAVING_THROW_TYPE_NONE;
-    int nDiceNum2, nDiceSize2, nDiceBonus2, nDamageType2 = 0;
+    int nDiceNum, nDiceSize, nDiceBonus, nDamageType, nDamagePower = DAMAGE_POWER_NORMAL, nSavingThrow = -1, nSavingThrowType = SAVING_THROW_TYPE_NONE;
+    int nDiceNum2, nDiceSize2, nDiceBonus2, nDamageType2, nDamagePower2 = DAMAGE_POWER_NORMAL;
     // Toggles
     int nImpact = VFX_NONE, nVis = VFX_NONE, nBeam = VFX_NONE, bDelayRandom = FALSE, bMustBeLiving = FALSE, bWaterElementalBonusDC = FALSE;
     // Delay variables
@@ -330,15 +330,11 @@ void main()
 
                 if (nDamage > 0)
                 {
-                    effect eDamage = EffectDamage(nDamage, nDamageType);
-
-                    if (nVis != VFX_INVALID) DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
-                    DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDamage, oTarget));
+                    DelayCommand(fDelay, ApplyDamageWithVFXToObject(oTarget, nDamage, nDamageType, nDamagePower));
                 }
                 if (nDamage2 > 0)
                 {
-                    effect eDamage = EffectDamage(nDamage2, nDamageType2);
-                    DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDamage, oTarget));
+                    DelayCommand(fDelay, ApplyDamageWithVFXToObject(oTarget, nDamage2, nDamageType2, nDamagePower2));
                 }
             }
         }
