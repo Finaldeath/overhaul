@@ -420,6 +420,12 @@ int GetIsWaterElemental(object oCreature);
 // Returns TRUE if the given creature is a vampire (Based on appearance, plus subrace string)
 int GetIsVampire(object oCreature);
 
+// Returns TRUE if the target has legs (ala Called Shot: Legs can target them)
+int GetHasLegs(object oCreature);
+
+// Returns TRUE if the target has arms (ala Called Shot: Arms can target them)
+int GetHasArms(object oCreature);
+
 // Gets if either domain matches the given domain on the given class
 int GetClassHasDomain(object oCreature, int nClass, int nDomain);
 
@@ -3096,6 +3102,30 @@ int GetIsVampire(object oCreature)
     if (GetStringLowerCase(GetSubRace(oTarget)) == "vampire")
     {
         return TRUE;
+    }
+    return FALSE;
+}
+
+// Returns TRUE if the target has legs (ala Called Shot: Legs can target them)
+int GetHasLegs(object oCreature)
+{
+    int nAppearance = GetAppearanceType(oCreature);
+
+    if (nAppearance != APPEARANCE_TYPE_INVALID)
+    {
+        return StringToInt(Get2DAString("appearance", "HASLEGS", nAppearance));
+    }
+    return FALSE;
+}
+
+// Returns TRUE if the target has arms (ala Called Shot: Arms can target them)
+int GetHasArms(object oCreature)
+{
+    int nAppearance = GetAppearanceType(oCreature);
+
+    if (nAppearance != APPEARANCE_TYPE_INVALID)
+    {
+        return StringToInt(Get2DAString("appearance", "HASARMS", nAppearance));
     }
     return FALSE;
 }

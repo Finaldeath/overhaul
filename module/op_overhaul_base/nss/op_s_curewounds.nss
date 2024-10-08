@@ -205,6 +205,9 @@ void HealOrHarm(object oTarget, float fDelay, int nVisHeal, int nVisHarm, int nD
         ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(nVisHeal), oTarget);
         ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectHeal(nAmount), oTarget);
 
+        // Any cure spell removes these
+        CureEffectsFromSpell(oTarget, SPELL_SPIKE_GROWTH);
+
         if (nSpellId == SPELL_HEAL ||
             nSpellId == SPELL_MASS_HEAL)
         {
@@ -214,6 +217,7 @@ void HealOrHarm(object oTarget, float fDelay, int nVisHeal, int nVisHarm, int nD
             // nauseated, sickened, stunned, and poisoned.
             json jArray = JsonArray();
 
+            // Todo explicitly: Dazzled, Exhusted, Fatigued, Feeblemind, Insanity, Anuseated, Sickened
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_ABILITY_DECREASE));
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_BLINDNESS));
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_CONFUSED));
@@ -226,6 +230,7 @@ void HealOrHarm(object oTarget, float fDelay, int nVisHeal, int nVisHarm, int nD
             CureEffects(oTarget, jArray, TRUE);
 
             // Also remove these specific spells
+            CureEffectsFromSpell(oTarget, SPELL_FEEBLEMIND);
             CureEffectsFromSpell(oTarget, SPELL_INFESTATION_OF_MAGGOTS);
         }
     }

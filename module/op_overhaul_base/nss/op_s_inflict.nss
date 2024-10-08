@@ -206,6 +206,9 @@ void HarmOrHeal(object oTarget, float fDelay, int nVisHeal, int nVisHarm, int nD
         ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(nVisHeal), oTarget);
         ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectHeal(nAmount), oTarget);
 
+        // Any cure spell removes these
+        CureEffectsFromSpell(oTarget, SPELL_SPIKE_GROWTH);
+
         if (nSpellId == SPELL_HARM ||
             nSpellId == SPELLABILITY_HARM_SELF)
         {
@@ -213,31 +216,23 @@ void HarmOrHeal(object oTarget, float fDelay, int nVisHeal, int nVisHarm, int nD
             // the target: ability damage, blinded, confused, dazed, dazzled,
             // deafened, diseased, exhausted, fatigued, feebleminded, insanity,
             // nauseated, sickened, stunned, and poisoned.
-            effect eCheck = GetFirstEffect(oTarget);
-            while (GetIsEffectValid(eCheck))
-            {
-                switch (GetEffectType(eCheck, TRUE))
-                {
-                    case EFFECT_TYPE_ABILITY_DECREASE:
-                    case EFFECT_TYPE_BLINDNESS:
-                    case EFFECT_TYPE_CONFUSED:
-                    case EFFECT_TYPE_DAZED:
-                    // DAZZLED
-                    case EFFECT_TYPE_DEAF:
-                    case EFFECT_TYPE_DISEASE:
-                    // EXHAUSTED (covered by ability decrease)
-                    // FATIGUED (covered by ability decrease)
-                    // SPELL_FEEBLEMIND (covered by ability decrease)
-                    // INSANITY (covered by confusion)
-                    // NAUSEATED (covered by ability decrease)
-                    // SICKENED (covered by ability decrease)
-                    case EFFECT_TYPE_STUNNED:
-                    case EFFECT_TYPE_POISON:
-                        RemoveEffect(oTarget, eCheck);
-                    break;
-                }
-                eCheck = GetNextEffect(oTarget);
-            }
+            json jArray = JsonArray();
+
+            // Todo explicitly: Dazzled, Exhusted, Fatigued, Feeblemind, Insanity, Anuseated, Sickened
+            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_ABILITY_DECREASE));
+            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_BLINDNESS));
+            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_CONFUSED));
+            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_DAZED));
+            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_DEAF));
+            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_DISEASE));
+            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_STUNNED));
+            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_POISON));
+
+            CureEffects(oTarget, jArray, TRUE);
+
+            // Also remove these specific spells
+            CureEffectsFromSpell(oTarget, SPELL_FEEBLEMIND);
+            CureEffectsFromSpell(oTarget, SPELL_INFESTATION_OF_MAGGOTS);
         }
     }
 }
