@@ -29,6 +29,11 @@
     melee touch attack. The poison deals 1d6 points of Strength damage
     immediately and another 1d6 points of Strength damage 1 minute later. Each
     instance of damage can be negated by a Fortitude save (DC 18).
+
+    Quillfire
+    The caster throws poisonous quills at a target, doing 1d8 points of acid
+    damage (+1 per 2 levels of the caster - max +5), plus inflicting Scorpion
+    Venom on the target if they fail a DC 18 Fortitude save.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -42,7 +47,7 @@ void main()
     if (DoSpellHook()) return;
 
     // Optional damage?
-    int nDamageType = -1, nDiceNum, nDiceSize;
+    int nDamageType = -1, nDiceNum, nDiceSize, nDiceBonus = 0;
     int bSaveForDamage = TRUE;
     // Strength ability check result?
     int nStrengthCheckRoll = -1;
@@ -153,6 +158,19 @@ void main()
             bOverrideSpellId = TRUE;
         }
         break;
+        case SPELL_QUILLFIRE:
+        {
+            nImmunity        = IMMUNITY_TYPE_POISON;
+            nVis             = VFX_IMP_ACID_S;
+            nDamageType      = DAMAGE_TYPE_ACID;
+            nDiceNum         = 1;
+            nDiceSize        = 8;
+            nDiceBonus       = min(5, nCasterLevel/2);
+            eLink            = SetEffectSpellId(SupernaturalEffect(EffectPoison(POISON_LARGE_SCORPION_VENOM)), SPELL_INVALID);
+            nDurationType    = DURATION_TYPE_PERMANENT;
+            bOverrideSpellId = TRUE;
+        }
+        break;
         default:
             Debug("[op_s_effect] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
@@ -209,7 +227,7 @@ void main()
                     // Damage?
                     if (nDamageType != -1)
                     {
-                        int nDamage = GetDiceRoll(nDiceNum, nDiceSize);
+                        int nDamage = GetDiceRoll(nDiceNum, nDiceSize, nDiceBonus);
 
                         if (nTouchAttack == TOUCH_RESULT_CRITICAL_HIT) nDamage *= 2;
 
