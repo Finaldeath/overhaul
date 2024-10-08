@@ -1208,7 +1208,12 @@ object GetSpellTargetObjectCalculated()
         if (GetBaseItemType(GetSpellCastItem()) == BASE_ITEM_POTIONS ||
             GetBaseItemType(GetSpellCastItem()) == BASE_ITEM_ENCHANTED_POTION)
         {
-            return OBJECT_SELF;
+            // Can be used on associates by dragging to their party bar entry
+            if (!GetIsFriend(oTarget, oCaster) ||
+                 GetAssociateType(oTarget) == ASSOCIATE_TYPE_NONE)
+            {
+                return OBJECT_SELF;
+            }
         }
     }
 
