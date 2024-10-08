@@ -34,6 +34,10 @@
     The caster throws poisonous quills at a target, doing 1d8 points of acid
     damage (+1 per 2 levels of the caster - max +5), plus inflicting Scorpion
     Venom on the target if they fail a DC 18 Fortitude save.
+
+    Doom
+    The target creature receives a -2 modifier to all attack rolls, damage
+    rolls, saving throws and skill checks.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -57,6 +61,8 @@ void main()
     // Effect we apply on a failed save
     effect eLink;
     int nDurationType = DURATION_TYPE_INSTANT;
+    int nDurationValue = ROUNDS;
+    int nDurationStatic = 0;
     float fDuration = 0.0, fExtraDelay;
     // Special duration calculation. Not maximised or empowered.
     int nDurationDice, nDurationDiceSize;
@@ -171,6 +177,22 @@ void main()
             bOverrideSpellId = TRUE;
         }
         break;
+        case SPELL_DOOM:
+        {
+            nVis      = VFX_IMP_DOOM;
+            nImmunity = IMMUNITY_TYPE_MIND_SPELLS;
+            eLink     = EffectLinkEffects(EffectDamageDecrease(2, DAMAGE_TYPE_BLUDGEONING | DAMAGE_TYPE_SLASHING | DAMAGE_TYPE_PIERCING),
+                        EffectLinkEffects(EffectSavingThrowDecrease(SAVING_THROW_ALL, 2),
+                        EffectLinkEffects(EffectAttackDecrease(2),
+                        EffectLinkEffects(EffectSkillDecrease(SKILL_ALL_SKILLS, 2),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)))));
+            nSavingThrow     = SAVING_THROW_WILL;
+            nSavingThrowType = SAVING_THROW_TYPE_MIND_SPELLS;
+            nDurationType    = DURATION_TYPE_TEMPORARY;
+            nDurationStatic  = nCasterLevel;
+            nDurationValue   = MINUTES;
+        }
+        break;
         default:
             Debug("[op_s_effect] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
@@ -250,7 +272,11 @@ void main()
                         // Randomise duration?
                         if (nDurationDice > 0)
                         {
-                            fDuration = RoundsToSeconds(GetDiceRoll(nDurationDice, nDurationDiceSize, 0, FALSE));
+                            fDuration = GetDuration(GetDiceRoll(nDurationDice, nDurationDiceSize, 0, FALSE), nDurationValue);
+                        }
+                        else if (nDurationStatic > 0)
+                        {
+                            fDuration = GetDuration(nDurationStatic, nDurationValue);
                         }
 
                         if (nDurationType == DURATION_TYPE_INSTANT ||
