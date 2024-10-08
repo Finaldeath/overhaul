@@ -191,6 +191,10 @@
     Ethereal Jaunt (renamed Greater Sanctuary)
     The caster becomes ethereal. No other creature can detect the caster.
     Attacking or performing a hostile action will make the etherealness vanish.
+
+    One with the Land
+    The caster forges a strong link with nature, gaining a +4 bonus to Animal
+    Empathy, Hide, Move Silently, and Set Trap skills.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -948,7 +952,17 @@ void main()
                                           EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
         }
         break;
-
+        case SPELL_ONE_WITH_THE_LAND:
+        {
+            fDuration = GetDuration(nCasterLevel, HOURS);
+            nVis      = VFX_IMP_IMPROVE_ABILITY_SCORE;
+            eLink     = EffectLinkEffects(EffectSkillIncrease(SKILL_ANIMAL_EMPATHY, 4),
+                        EffectLinkEffects(EffectSkillIncrease(SKILL_HIDE, 4),
+                        EffectLinkEffects(EffectSkillIncrease(SKILL_MOVE_SILENTLY, 4),
+                        EffectLinkEffects(EffectSkillIncrease(SKILL_SET_TRAP, 4),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)))));
+        }
+        break;
         default:
             Debug("[op_s_buffs] No valid spell ID passed in: " + IntToString(nSpellId), ERROR);
             return;
