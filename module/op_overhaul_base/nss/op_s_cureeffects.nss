@@ -65,6 +65,10 @@
 
     Stone to Flesh
     Removes Petrification.
+
+    Remove Paralysis
+    All paralysis and slow effects are removed from allies within the area of
+    effect.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -79,7 +83,8 @@ void main()
 
     int nTotalToAssist = 1000000, bSupernaturalRemoval = FALSE, bApplyLink = FALSE;
     int nVis = VFX_NONE, nImpact = VFX_NONE;
-    float fRadius = 0.0, fDuration = 0.0;
+    float fDuration = 0.0;
+    int nCreatureLimit = 9999;
     effect eLink;
 
     // We store what we want to remove in a Json array
@@ -235,6 +240,17 @@ void main()
             jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_CURSE));
         }
         break;
+        case SPELL_REMOVE_PARALYSIS:
+        {
+            bSupernaturalRemoval = TRUE;
+            nVis                 = VFX_IMP_REMOVE_CONDITION;
+            nImpact              = VFX_FNF_LOS_HOLY_20;
+            nCreatureLimit       = max(1, nCasterLevel/4);
+
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_PARALYZE));
+            jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_SLOW));
+        }
+        break;
         default:
         {
             Debug("[Cure Effects] Unknown spell ID: " + IntToString(nSpellId), ERROR);
@@ -249,20 +265,25 @@ void main()
     if (GetSpellIsAreaOfEffect(nSpellId)) nTargetType = SPELL_TARGET_ALLALLIES;
 
     json jArray = GetArrayOfTargets(nTargetType);
-    int nIndex;
-    for (nIndex = 0; nIndex < JsonGetLength(jArray) && nIndex < nTotalToAssist; nIndex++)
+    int nIndex, nCured = 0;
+    for (nIndex = 0; nIndex < JsonGetLength(jArray) && nIndex < nTotalToAssist && nCured < nCreatureLimit; nIndex++)
     {
         oTarget = GetArrayObject(jArray, nIndex);
 
         SignalSpellCastAt();
 
-        ApplyVisualEffectToObject(nVis, oTarget);
+        float fDelay = GetDistanceBetweenLocations(GetLocation(oTarget), lTarget);
 
         if (bApplyLink == TRUE)
         {
-            ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
+            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
         }
 
-        CureEffects(oTarget, jRemoveEffectsArray, bSupernaturalRemoval);
+        if (CureEffects(oTarget, jRemoveEffectsArray, bSupernaturalRemoval))
+        {
+            if (nVis != VFX_NONE) DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
+
+            nCured++;
+        }
     }
 }
