@@ -199,6 +199,10 @@
     Stone Bones
     You cause the target corporeal undead to gain a +3 natural armor class
     bonus, due to the thickening of its bones.
+
+    Sanctuary
+    The caster's or the person's, touched by the caster, presence is completely
+    ignored by nearby creatures for the duration of the spell.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -980,6 +984,15 @@ void main()
             nVis      = VFX_IMP_AC_BONUS;
             eLink     = EffectLinkEffects(EffectACIncrease(3, AC_NATURAL_BONUS),
                                           EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+        }
+        break;
+        case SPELL_SANCTUARY:
+        {
+            fDuration = GetDuration(nCasterLevel, HOURS);
+            nVis      = VFX_IMP_IMPROVE_ABILITY_SCORE;
+            eLink     = EffectLinkEffects(EffectSanctuary(nSpellSaveDC),
+                        EffectLinkEffects(EffectVisualEffect(VFX_DUR_SANCTUARY),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
         }
         break;
         default:
