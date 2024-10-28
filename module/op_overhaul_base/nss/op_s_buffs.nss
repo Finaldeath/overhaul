@@ -203,6 +203,10 @@
     Sanctuary
     The caster's or the person's, touched by the caster, presence is completely
     ignored by nearby creatures for the duration of the spell.
+
+    Negative Energy Protection
+    The target creature is rendered immune to all ability damage and level
+    drains and gains 100% increased immunity to negative damage.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -995,6 +999,15 @@ void main()
                                           EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
         }
         break;
+        case SPELL_NEGATIVE_ENERGY_PROTECTION:
+        {
+            fDuration = GetDuration(nCasterLevel, MINUTES);
+            nVis      = VFX_IMP_HOLY_AID;
+            eLink     = EffectLinkEffects(EffectDamageImmunityIncrease(DAMAGE_TYPE_NEGATIVE, 100),
+                        EffectLinkEffects(EffectImmunity(IMMUNITY_TYPE_ABILITY_DECREASE),
+                        EffectLinkEffects(EffectImmunity(IMMUNITY_TYPE_NEGATIVE_LEVEL),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE))));
+        }
         default:
             Debug("[op_s_buffs] No valid spell ID passed in: " + IntToString(nSpellId), ERROR);
             return;
