@@ -109,6 +109,11 @@ const int SIGNAL_HOSTILE_TRUE = TRUE;
 const int SIGNAL_HOSTILE_FALSE = FALSE;
 const int SIGNAL_HOSTILE_FALSE_BUT_REALLY_TRUE = 2;  // Special for things like Charm etc. for illusion saves
 
+// Just standardised numbers for AOEs which save-on-enter and if you re-enter and have saved you're then immune.
+const int SAVE_NOT_DONE_YET  = 0;
+const int SAVE_RESULT_FAILED = 1;
+const int SAVE_RESULT_PASSED = 2;
+
 // Debug the spell and variables
 int DebugSpellVariables();
 
@@ -248,7 +253,14 @@ int GetDiceRoll(int nNumberOfDice, int nDiceSize, int nBonus = 0, int bApplyMeta
 // * bCheckIllusionSave - If TRUE Illusion changes are applied if it is from an illusion spell and they passed a save.
 float GetDuration(int nDuration, int nDurationType, int bApplyMetaMagic = TRUE, int bCheckIllusionSave = TRUE);
 
-// Checks if the given target is valid to be targeted by oCaster
+// Checks if the given target is valid to be targeted by oCaster.
+// - nTargetType:
+//      SPELL_TARGET_ANYTHING - Any target is valid. Useful for spells needing to target allies with on effect and enemies with another.
+//      SPELL_TARGET_ALLALLIES - Any allies (GetIsFriend / GetFactionEqual).
+//      SPELL_TARGET_SELECTIVEHOSTILE - Only enemies (GetIsEnemy)
+//      SPELL_TARGET_STANDARDHOSTILE - Enemies, and neutrals/allies based on PvP (!GetIsReactionTypeFriendly()).
+// This additionally, if the spell is illusionary, do a will saving throw for the illusion check
+// if the target is valid.
 int GetSpellTargetValid(object oTarget, object oCaster, int nTargetType);
 
 // Converts a SAVING_THROW_TYPE_* to an IMMUNITY_TYPE_* where these are checked for in the saving throw functions (Death, Disease, Fear, Mind Spells, Poison, Trap and Paralysis subtypes)
@@ -1953,7 +1965,12 @@ float GetDuration(int nDuration, int nDurationType, int bApplyMetaMagic = TRUE, 
     return fDuration;
 }
 
-// Checks if the given target is valid to be targeted by oCaster
+// Checks if the given target is valid to be targeted by oCaster.
+// - nTargetType:
+//      SPELL_TARGET_ANYTHING - Any target is valid. Useful for spells needing to target allies with on effect and enemies with another.
+//      SPELL_TARGET_ALLALLIES - Any allies (GetIsFriend / GetFactionEqual).
+//      SPELL_TARGET_SELECTIVEHOSTILE - Only enemies (GetIsEnemy)
+//      SPELL_TARGET_STANDARDHOSTILE - Enemies, and neutrals/allies based on PvP (!GetIsReactionTypeFriendly()).
 // This additionally, if the spell is illusionary, do a will saving throw for the illusion check
 // if the target is valid.
 int GetSpellTargetValid(object oTarget, object oCaster, int nTargetType)

@@ -13,11 +13,6 @@
 //:://////////////////////////////////////////////
 
 #include "op_i_spells"
-#include "utl_i_timer"
-
-const int SAVE_NOT_DONE_YET  = 0;
-const int SAVE_RESULT_FAILED = 1;
-const int SAVE_RESULT_PASSED = 2;
 
 void main()
 {

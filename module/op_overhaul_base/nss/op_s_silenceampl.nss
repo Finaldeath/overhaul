@@ -46,84 +46,7 @@
 // it as a kind of "Slow/Haste" situation where the number of
 // "Amplify/Silence" then is accounted for and if it's towards one or the
 // other
-void CheckAndApplySilenceOrAmplify()
-{
-    // Check count of each
-    int nSilence = 0;
-    effect eCheck = GetFirstEffect(oTarget);
-    while (GetIsEffectValid(eCheck))
-    {
-        if (GetEffectType(eCheck, TRUE) == EFFECT_TYPE_RUNSCRIPT)
-        {
-            switch (GetEffectSpellId(eCheck))
-            {
-                case SPELL_AMPLIFY:
-                {
-                    nSilence--;
-                }
-                break;
-                case SPELL_SILENCE:
-                {
-                    nSilence++;
-                }
-                break;
-            }
-        }
-        eCheck = GetNextEffect(oTarget);
-    }
-
-    if (nSilence > 0)
-    {
-        // Remove all other instances of amplify
-        RemoveEffectsFromSpell(oTarget, SPELL_AMPLIFY, EFFECT_TYPE_SKILL_DECREASE, TAG_AOEEFFECT);
-
-        // Apply silence
-        if (!GetHasEffect(oTarget, EFFECT_TYPE_SILENCE, SPELL_SILENCE, TAG_AOEEFFECT))
-        {
-            effect eLink = EffectLinkEffects(EffectSilence(),
-                           EffectLinkEffects(EffectDamageImmunityIncrease(DAMAGE_TYPE_SONIC, 100),
-                                             EffectVisualEffect(VFX_DUR_CESSATE_NEUTRAL)));
-
-            ApplyVisualEffectToObject(VFX_IMP_SILENCE, oTarget);
-
-            // Apply as per AOE Tagged effects
-            eLink = ExtraordinaryEffect(eLink);
-            eLink = TagEffect(eLink, TAG_AOEEFFECT);
-            // We apply things "for a long time" since no AOE should be permanent. This helps with state scripts like Paralysis
-            ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, 10000.0);
-        }
-    }
-    else if (nSilence < 0)
-    {
-        // Remove all other instances of silence
-        RemoveEffectsFromSpell(oTarget, SPELL_SILENCE, EFFECT_TYPE_SILENCE, TAG_AOEEFFECT);
-
-        // Apply amplify
-        if (!GetHasEffect(oTarget, EFFECT_TYPE_SKILL_DECREASE, SPELL_AMPLIFY, TAG_AOEEFFECT))
-        {
-            effect eLink = EffectLinkEffects(EffectSkillDecrease(SKILL_MOVE_SILENTLY, 20),
-                                             EffectVisualEffect(VFX_DUR_CESSATE_NEUTRAL));
-
-            ApplyVisualEffectToObject(VFX_IMP_REDUCE_ABILITY_SCORE, oTarget);
-
-            // Apply as per AOE Tagged effects
-            eLink = ExtraordinaryEffect(eLink);
-            eLink = TagEffect(eLink, TAG_AOEEFFECT);
-            // We apply things "for a long time" since no AOE should be permanent. This helps with state scripts like Paralysis
-            ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, 10000.0);
-        }
-    }
-    else
-    {
-        // Remove both
-        RemoveEffectsFromSpell(oTarget, SPELL_SILENCE, EFFECT_TYPE_SILENCE, TAG_AOEEFFECT);
-        RemoveEffectsFromSpell(oTarget, SPELL_AMPLIFY, EFFECT_TYPE_SKILL_DECREASE, TAG_AOEEFFECT);
-    }
-}
-
-const int SAVE_NOT_DONE_YET  = 0;
-const int SAVE_RESULT_FAILED = 1;
-const int SAVE_RESULT_PASSED = 2;
+void CheckAndApplySilenceOrAmplify();
 
 void main()
 {
@@ -257,6 +180,85 @@ void main()
                 }
             }
         }
+    }
+}
+
+// This spell gets messy due to interaction with amplify. We will action
+// it as a kind of "Slow/Haste" situation where the number of
+// "Amplify/Silence" then is accounted for and if it's towards one or the
+// other
+void CheckAndApplySilenceOrAmplify()
+{
+    // Check count of each
+    int nSilence = 0;
+    effect eCheck = GetFirstEffect(oTarget);
+    while (GetIsEffectValid(eCheck))
+    {
+        if (GetEffectType(eCheck, TRUE) == EFFECT_TYPE_RUNSCRIPT)
+        {
+            switch (GetEffectSpellId(eCheck))
+            {
+                case SPELL_AMPLIFY:
+                {
+                    nSilence--;
+                }
+                break;
+                case SPELL_SILENCE:
+                {
+                    nSilence++;
+                }
+                break;
+            }
+        }
+        eCheck = GetNextEffect(oTarget);
+    }
+
+    if (nSilence > 0)
+    {
+        // Remove all other instances of amplify
+        RemoveEffectsFromSpell(oTarget, SPELL_AMPLIFY, EFFECT_TYPE_SKILL_DECREASE, TAG_AOEEFFECT);
+
+        // Apply silence
+        if (!GetHasEffect(oTarget, EFFECT_TYPE_SILENCE, SPELL_SILENCE, TAG_AOEEFFECT))
+        {
+            effect eLink = EffectLinkEffects(EffectSilence(),
+                           EffectLinkEffects(EffectDamageImmunityIncrease(DAMAGE_TYPE_SONIC, 100),
+                                             EffectVisualEffect(VFX_DUR_CESSATE_NEUTRAL)));
+
+            ApplyVisualEffectToObject(VFX_IMP_SILENCE, oTarget);
+
+            // Apply as per AOE Tagged effects
+            eLink = ExtraordinaryEffect(eLink);
+            eLink = TagEffect(eLink, TAG_AOEEFFECT);
+            // We apply things "for a long time" since no AOE should be permanent. This helps with state scripts like Paralysis
+            ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, 10000.0);
+        }
+    }
+    else if (nSilence < 0)
+    {
+        // Remove all other instances of silence
+        RemoveEffectsFromSpell(oTarget, SPELL_SILENCE, EFFECT_TYPE_SILENCE, TAG_AOEEFFECT);
+
+        // Apply amplify
+        if (!GetHasEffect(oTarget, EFFECT_TYPE_SKILL_DECREASE, SPELL_AMPLIFY, TAG_AOEEFFECT))
+        {
+            effect eLink = EffectLinkEffects(EffectSkillDecrease(SKILL_MOVE_SILENTLY, 20),
+                                             EffectVisualEffect(VFX_DUR_CESSATE_NEUTRAL));
+
+            ApplyVisualEffectToObject(VFX_IMP_REDUCE_ABILITY_SCORE, oTarget);
+
+            // Apply as per AOE Tagged effects
+            eLink = ExtraordinaryEffect(eLink);
+            eLink = TagEffect(eLink, TAG_AOEEFFECT);
+            // We apply things "for a long time" since no AOE should be permanent. This helps with state scripts like Paralysis
+            ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, 10000.0);
+        }
+    }
+    else
+    {
+        // Remove both
+        RemoveEffectsFromSpell(oTarget, SPELL_SILENCE, EFFECT_TYPE_SILENCE, TAG_AOEEFFECT);
+        RemoveEffectsFromSpell(oTarget, SPELL_AMPLIFY, EFFECT_TYPE_SKILL_DECREASE, TAG_AOEEFFECT);
     }
 }
 

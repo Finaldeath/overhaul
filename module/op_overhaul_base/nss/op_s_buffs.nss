@@ -1008,6 +1008,7 @@ void main()
                         EffectLinkEffects(EffectImmunity(IMMUNITY_TYPE_NEGATIVE_LEVEL),
                                           EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE))));
         }
+        break;
         default:
             Debug("[op_s_buffs] No valid spell ID passed in: " + IntToString(nSpellId), ERROR);
             return;
