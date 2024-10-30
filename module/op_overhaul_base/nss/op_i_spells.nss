@@ -479,8 +479,8 @@ int CureEffectsFromSpell(object oTarget, int nSpellId);
 
 // If a single target spell checks for nTargetType against global oTarget and adds them to a single object array if so.
 // Else if AOE loops through relevant shape to get all the targets in it. It then sorts them using nSortMethod.
-// * nTargetType - The SPELL_TARGET_* type to check versus oCaster
-// * nSortMethod - The sorting method to apply once all the creatures are added.
+// - nTargetType - The SPELL_TARGET_* type to check versus oCaster
+// - nSortMethod - The sorting method to apply once all the creatures are added.
 //                 SORT_METHOD_NONE      - No sorting (slightly faster)
 //                 SORT_METHOD_LOWEST_HP - Sorts so first object is the lowest HP
 //                 SORT_METHOD_LOWEST_HD - Sorts so first object is the lowest HD
@@ -493,15 +493,16 @@ int CureEffectsFromSpell(object oTarget, int nSpellId);
 json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, int nObjectFilter = OBJECT_TYPE_CREATURE, object oTargetToIgnore = OBJECT_INVALID, int nShape = -1, float fSize = -1.0, location lArrayTarget = LOCATION_INVALID, int bLineOfSight = TRUE, vector vOrigin = [ 0.0, 0.0, 0.0 ]);
 
 // Loops through the persistent AOE to get all the targets in it. It then sorts them using nSortMethod.
-// * nTargetType - The SPELL_TARGET_* type to check versus oCaster
-// * nSortMethod - The sorting method to apply once all the creatures are added.
+// - nTargetType - The SPELL_TARGET_* type to check versus oCaster
+// - nSortMethod - The sorting method to apply once all the creatures are added.
 //                 SORT_METHOD_NONE      - No sorting (slightly faster)
 //                 SORT_METHOD_LOWEST_HP - Sorts so first object is the lowest HP
 //                 SORT_METHOD_LOWEST_HD - Sorts so first object is the lowest HD
 //                 SORT_METHOD_DISTANCE  - Sorts so the first object is the lowest distance to AOE target location
 //                 SORT_METHOD_DISTANCE_TO_CASTER - Sorts so first object is lowest distance to caster
 //                 SORT_METHOD_RANDOM    - Intentionally randomises the targets (useful to make it look cooler for Chain Lighting etc.)
-// * bTargetSelf - If FALSE we won't ever get ourself into the array
+// - bTargetSelf - If FALSE we won't ever get ourself into the array
+// * NOTE: Returns just oTarget if the script running is the AOE's OnEnter.
 json GetArrayOfAOETargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, int nObjectFilter = OBJECT_TYPE_CREATURE, int bTargetSelf = TRUE);
 
 // Gets the given Object stored as FIELD_OBJECTID in jArray at nIndex
@@ -3369,8 +3370,8 @@ const string FIELD_METRIC   = "metric";
 
 // If a single target spell checks for nTargetType against global oTarget and adds them to a single object array if so.
 // Else if AOE loops through relevant shape to get all the targets in it. It then sorts them using nSortMethod.
-// * nTargetType - The SPELL_TARGET_* type to check versus oCaster
-// * nSortMethod - The sorting method to apply once all the creatures are added.
+// - nTargetType - The SPELL_TARGET_* type to check versus oCaster
+// - nSortMethod - The sorting method to apply once all the creatures are added.
 //                 SORT_METHOD_NONE      - No sorting (slightly faster)
 //                 SORT_METHOD_LOWEST_HP - Sorts so first object is the lowest HP
 //                 SORT_METHOD_LOWEST_HD - Sorts so first object is the lowest HD
@@ -3521,18 +3522,34 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, 
 }
 
 // Loops through the persistent AOE to get all the targets in it. It then sorts them using nSortMethod.
-// * nTargetType - The SPELL_TARGET_* type to check versus oCaster
-// * nSortMethod - The sorting method to apply once all the creatures are added.
+// - nTargetType - The SPELL_TARGET_* type to check versus oCaster
+// - nSortMethod - The sorting method to apply once all the creatures are added.
 //                 SORT_METHOD_NONE      - No sorting (slightly faster)
 //                 SORT_METHOD_LOWEST_HP - Sorts so first object is the lowest HP
 //                 SORT_METHOD_LOWEST_HD - Sorts so first object is the lowest HD
 //                 SORT_METHOD_DISTANCE  - Sorts so the first object is the lowest distance to AOE target location
 //                 SORT_METHOD_DISTANCE_TO_CASTER - Sorts so first object is lowest distance to caster
 //                 SORT_METHOD_RANDOM    - Intentionally randomises the targets (useful to make it look cooler for Chain Lighting etc.)
-// * bTargetSelf - If FALSE we won't ever get ourself into the array
+// - bTargetSelf - If FALSE we won't ever get ourself into the array
+// * NOTE: Returns just oTarget if the script running is the AOE's OnEnter.
 json GetArrayOfAOETargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, int nObjectFilter = OBJECT_TYPE_CREATURE, int bTargetSelf = TRUE)
 {
     json jArray = JsonArray();
+
+    // If it is the OnEnter script we will return only the entering object. Simplfies some scripts.
+    if (GetCurrentlyRunningEvent() == EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_ENTER)
+    {
+        if (GetSpellTargetValid(oTarget, oCaster, nTargetType))
+        {
+            json jObject = JsonObject();
+
+            // Just OID no need to sort
+            jObject = JsonObjectSet(jObject, FIELD_OBJECTID, JsonString(ObjectToString(oTarget)));
+
+            jArray = JsonArrayInsert(jArray, jObject);
+        }
+        return jArray;
+    }
 
     // Error checking - we log these might be mistakes in spell scripts
     if (nTargetType < 0 || nTargetType > 3)
