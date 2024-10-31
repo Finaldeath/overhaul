@@ -224,9 +224,6 @@ void main()
             break;
         }
 
-        // Supernatural auras
-        eLink = SupernaturalEffect(eLink);
-
         json jArray = GetArrayOfAOETargets(SPELL_TARGET_SELECTIVEHOSTILE);
         int nIndex;
         for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
@@ -244,7 +241,12 @@ void main()
 
                     int nDamage = DoDamageSavingThrow(GetDiceRoll(nDamageDice, nDamageDiceSize), oTarget, oCaster, nSavingThrow, nDC, nSavingThrowType);
 
-                    if (nDamage > 0) ApplyDamageWithVFXToObject(oTarget, nVis, nDamage, nDamageType);
+                    if (nDamage > 0){
+                    {
+                        float fDelay = (GetCurrentlyRunningEvent() == EVENT_SCRIPT_AREAOFEFFECT_ON_HEARTBEAT) ? GetRandomDelay() : 0.0;
+
+                        DelayCommand(fDelay, ApplyDamageWithVFXToObject(oTarget, nVis, nDamage, nDamageType));
+                    }
                 }
                 else
                 {
@@ -293,6 +295,8 @@ void main()
                                 }
                                 break;
                             }
+                            // Supernatural auras mean supernatural effects
+                            eLink = SupernaturalEffect(eLink);
 
                             ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
                         }
@@ -391,4 +395,3 @@ void main()
         ApplyEffectToObject(DURATION_TYPE_PERMANENT, eAOE, oTarget);
     }
 }
-
