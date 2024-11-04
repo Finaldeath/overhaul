@@ -5,7 +5,8 @@
 /*
     Difficulty Class, where applicable: 10 + 1 for every 3 HD.
     Duration, where applicable: 1 round for every 3 HD.
-    Damage, where applicable: 1d6 + 1d6 for every 3 HD.
+    Damage, where applicable: 1d4 + 1d4 for every 3 HD. (while the TLK entry
+    specified 1d6 the scripts do 1d4).
 
     Some creatures are able to project a 10-foot radius field of protective
     energy that has an effect on any enemies that come within range. The
@@ -25,6 +26,11 @@
     Miscellaneous: Tyrantfog (5-foot radius of green mist that saps the
         Constitution of all creatures within its grasp. Fortitude save at DC 13
         to resist).
+
+    We're putting a 24 hour cooldown on the save being redone, pass or fail.
+    This helps stop people accidentially going in and out constantly, the
+    frustration with Fear auras constantly affecting people and causing reloads,
+    and the D&D rules itself (which specifies a 24 hour cooldown!).
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -84,9 +90,9 @@ void main()
                 nDC = 10 + (GetHitDice(oCaster)/2) + GetAbilityModifier(ABILITY_CHARISMA, oCaster);
                 nDuration = min(20, GetHitDice(oCaster));
 
-                // From Bioware's script for XP3 I think:
-                // Yaron does not like the stunning beauty of a very specific dragon to
-                // last more than 10 rounds ....
+                // From Bioware's script for XP3:
+                // "Yaron does not like the stunning beauty of a very specific dragon to
+                // last more than 10 rounds ...."
                 if (GetTag(GetAreaOfEffectCreator()) == "q3_vixthra")
                 {
                     nDuration = 3 + d6();
@@ -224,6 +230,9 @@ void main()
             break;
         }
 
+        // While some auras (like Stench) are a little more "anyone is affected"
+        // we'll blanket apply selective hostile since Bioware did this and it
+        // fits 90% of cases and breaks less stuff.
         json jArray = GetArrayOfAOETargets(SPELL_TARGET_SELECTIVEHOSTILE);
         int nIndex;
         for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
@@ -241,7 +250,7 @@ void main()
 
                     int nDamage = DoDamageSavingThrow(GetDiceRoll(nDamageDice, nDamageDiceSize), oTarget, oCaster, nSavingThrow, nDC, nSavingThrowType);
 
-                    if (nDamage > 0){
+                    if (nDamage > 0)
                     {
                         float fDelay = (GetCurrentlyRunningEvent() == EVENT_SCRIPT_AREAOFEFFECT_ON_HEARTBEAT) ? GetRandomDelay() : 0.0;
 
