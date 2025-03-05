@@ -3,8 +3,8 @@
 //:: op_s_polymorph.nss
 //:://////////////////////////////////////////////
 /*
-    This can cover most of the Polymorph spells so we can tag in additional
-    benefits if we have feats/stuff relating to it.
+    This can cover most of the Polymorph spells and abilities so we can tag in
+    additional benefits if we have feats/stuff relating to it.
 
     Polymorph
     The caster is able to turn himself into one of the following forms:
@@ -12,6 +12,8 @@
 
     Shapechange
     Red Dragon, Fire Giant, Balor, Death Slaad, Iron Golem
+
+
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -24,10 +26,14 @@ void main()
 {
     if (DoSpellHook()) return;
 
+    // Duration is caster level OR the druid level
+    int nDruidLevels = GetLevelByClass(CLASS_TYPE_DRUID);
+
     // Determine Polymorph subradial type
     int nPoly;
     switch (nSpellId)
     {
+        // Spells
         case SPELL_POLYMORPH_SELF_GIANT_SPIDER: nPoly = POLYMORPH_TYPE_GIANT_SPIDER; break;
         case SPELL_POLYMORPH_SELF_TROLL: nPoly = POLYMORPH_TYPE_TROLL; break;
         case SPELL_POLYMORPH_SELF_UMBER_HULK: nPoly = POLYMORPH_TYPE_UMBER_HULK; break;
@@ -38,6 +44,16 @@ void main()
         case SPELL_SHAPECHANGE_FIRE_GIANT: nPoly = POLYMORPH_TYPE_UMBER_HULK; break;
         case SPELL_SHAPECHANGE_IRON_GOLEM: nPoly = POLYMORPH_TYPE_IRON_GOLEM; break;
         case SPELL_SHAPECHANGE_RED_DRAGON: nPoly = POLYMORPH_TYPE_RED_DRAGON; break;
+        // Feats/Abilities
+        case SPELLABILITY_ELEMENTAL_SHAPE_FIRE:  nPoly = nDruidLevels >= 20 ? POLYMORPH_TYPE_ELDER_FIRE_ELEMENTAL : POLYMORPH_TYPE_HUGE_FIRE_ELEMENTAL; break;
+        case SPELLABILITY_ELEMENTAL_SHAPE_WATER: nPoly = nDruidLevels >= 20 ? POLYMORPH_TYPE_ELDER_WATER_ELEMENTAL : POLYMORPH_TYPE_HUGE_WATER_ELEMENTAL; break;
+        case SPELLABILITY_ELEMENTAL_SHAPE_EARTH: nPoly = nDruidLevels >= 20 ? POLYMORPH_TYPE_ELDER_EARTH_ELEMENTAL : POLYMORPH_TYPE_HUGE_EARTH_ELEMENTAL; break;
+        case SPELLABILITY_ELEMENTAL_SHAPE_AIR:   nPoly = nDruidLevels >= 20 ? POLYMORPH_TYPE_ELDER_AIR_ELEMENTAL : POLYMORPH_TYPE_HUGE_AIR_ELEMENTAL; break;
+        case SPELLABILITY_WILD_SHAPE_BROWN_BEAR: nPoly = nDruidLevels >= 12 ? POLYMORPH_TYPE_DIRE_BROWN_BEAR : POLYMORPH_TYPE_BROWN_BEAR; break;
+        case SPELLABILITY_WILD_SHAPE_PANTHER:    nPoly = nDruidLevels >= 12 ? POLYMORPH_TYPE_DIRE_PANTHER : POLYMORPH_TYPE_PANTHER; break;
+        case SPELLABILITY_WILD_SHAPE_WOLF:       nPoly = nDruidLevels >= 12 ? POLYMORPH_TYPE_DIRE_WOLF : POLYMORPH_TYPE_WOLF; break;
+        case SPELLABILITY_WILD_SHAPE_BOAR:       nPoly = nDruidLevels >= 12 ? POLYMORPH_TYPE_DIRE_BOAR : POLYMORPH_TYPE_BOAR; break;
+        case SPELLABILITY_WILD_SHAPE_BADGER:     nPoly = nDruidLevels >= 12 ? POLYMORPH_TYPE_DIRE_BADGER : POLYMORPH_TYPE_BADGER; break;
         default:
         {
             Debug("[op_s_polymorph] No valid spell ID passed in: " + IntToString(nSpellId));
