@@ -32,6 +32,7 @@
 //:://////////////////////////////////////////////
 
 #include "op_i_spells"
+#include "utl_i_creature"
 
 // Get the last summon and fire a VFX at it
 void VisualAtSummonsLocation(int nVFX);
