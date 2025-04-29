@@ -86,7 +86,7 @@ void main()
 
                     if (nDamage > 0)
                     {
-                        DelayCommand(fDelay, ApplyDamageWithVFXToObject(oTarget, nDamage, DAMAGE_TYPE_FIRE));
+                        DelayCommand(fDelay, ApplyDamageWithVFXToObject(oTarget, VFX_IMP_FLAME_S, nDamage, DAMAGE_TYPE_FIRE));
                     }
                 }
             }
@@ -116,16 +116,16 @@ void main()
         break;
         case SPELLABILITY_AA_HAIL_OF_ARROWS:
         {
+            int nMaximum = GetLevelByClass(CLASS_TYPE_ARCANE_ARCHER, oCaster);
+
             json jArray = GetArrayOfTargets(SPELL_TARGET_SELECTIVEHOSTILE, SORT_METHOD_DISTANCE, OBJECT_TYPE_CREATURE);
             // Work out how many per creature, but need at least 1 :) stops divide by 0 issues.
             if (JsonGetLength(jArray) > 0)
             {
-                int nMissilesPerCreature = 1;
-
                 float fDeltaTime = 0.0;
 
                 int nIndex;
-                for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
+                for (nIndex = 0; nIndex < JsonGetLength(jArray) && nIndex < nMaximum; nIndex++)
                 {
                     oTarget = GetArrayObject(jArray, nIndex);
 
