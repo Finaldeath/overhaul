@@ -1534,12 +1534,24 @@ int DoTouchAttack(object oTarget, object oVersus, int nType, int bDisplayFeedbac
         if (DEBUG_LEVEL >= ERROR) Debug("[ERROR] DoTouchAttack used when oVersus isn't OBJECT_SELF");
     }
 
+    int nResult = TOUCH_RESULT_MISS;
     if (nType == TOUCH_MELEE)
     {
-        return TouchAttackMelee(oTarget, bDisplayFeedback);
+        nResult = TouchAttackMelee(oTarget, bDisplayFeedback, oVersus);
     }
-    // Else TOUCH_RANGED
-    return TouchAttackRanged(oTarget, bDisplayFeedback);
+    else
+    {
+        nResult = TouchAttackRanged(oTarget, bDisplayFeedback, oVersus);
+    }
+    // We now apply critical hit immunity detection (bug with the functions not doing it for us)
+    if (nResult == TOUCH_RESULT_CRITICAL_HIT)
+    {
+        if (GetIsImmuneWithFeedback(oTarget, oVersus, IMMUNITY_TYPE_CRITICAL_HIT, FALSE))
+        {
+            nResult = TOUCH_RESULT_HIT;
+        }
+    }
+    return nResult;
 }
 
 // Applies Dispel Magic to the given target (Area of Effects are also handled, items on the ground as well, as are Summoned Creatures)

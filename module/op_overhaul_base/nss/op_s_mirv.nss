@@ -158,7 +158,7 @@ void main()
         int nExtraMissiles       = nMissiles - (nMissilesPerCreature * JsonGetLength(jArray));
         if (nMissilesPerCreature > nMaxMissilesPerCreature) nMissilesPerCreature = nMaxMissilesPerCreature;
 
-        SpeakString("nMissiles: " + IntToString(nMissiles) + " nMissilesPerCreature: " + IntToString(nMissilesPerCreature) + " Creatures: " + IntToString(JsonGetLength(jArray)) + " nExtraMissiles: " + IntToString(nExtraMissiles));
+        //SpeakString("nMissiles: " + IntToString(nMissiles) + " nMissilesPerCreature: " + IntToString(nMissilesPerCreature) + " Creatures: " + IntToString(JsonGetLength(jArray)) + " nExtraMissiles: " + IntToString(nExtraMissiles));
 
         float fDeltaTime = 0.0;
 
