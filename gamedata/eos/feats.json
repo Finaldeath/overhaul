@@ -28875,7 +28875,7 @@
       "Description": {
         "Index": 8660,
         "EN": {
-          "M": "Type of Feat: General\nPrerequisite: 21st level, Strength 21\u002B, Constitution 21\u002B and Greater Rage.\nSpecifics: When the character rages, they gain \u002B8 to Strength and Constitution and a \u002B4 morale bonus to Will saves. These bonuses replace the normal rage bonuses. You can use this up to 3 times per day in addition to your usual rage uses.\nUse: Combat Mode.",
+          "M": "Type of Feat: General\nPrerequisite: Epic Barbarian, Strength 21\u002B, Constitution 21\u002B\nSpecifics: When the character rages, they gain \u002B8 to Strength and Constitution and a \u002B4 morale bonus to Will saves. These bonuses replace the normal rage bonuses. You can use this up to 3 times per day in addition to your usual rage uses.\nUse: Combat Mode.",
           "F": "Type of Feat: General\nPrerequisite: 21st level, Strength 21\u002B, Constitution 21\u002B and Greater Rage.\nSpecifics: When the character rages, they gain \u002B8 to Strength and Constitution and a \u002B4 morale bonus to Will saves. These bonuses replace the normal rage bonuses.\nUse: Combat Mode."
         },
         "FR": {
@@ -28903,10 +28903,7 @@
       "MinCon": 21,
       "MinCha": null,
       "MinSpellLevel": null,
-      "RequiredFeat1": {
-        "ID": "36fbdf37-d69c-d916-3bd6-808a6ccfc593",
-        "Label": "Greater Rage"
-      },
+      "RequiredFeat1": null,
       "RequiredFeat2": null,
       "UseableByAllClasses": false,
       "Category": null,
@@ -28930,8 +28927,11 @@
       "RequiredSkill2Minimum": null,
       "ToolsetCategory": "ClassOrRacial",
       "IsHostile": false,
-      "MinLevel": null,
-      "MinLevelClass": null,
+      "MinLevel": 21,
+      "MinLevelClass": {
+        "ID": "e02ca240-1415-95c9-e6d9-06f223ccdd0a",
+        "Label": "Barbarian"
+      },
       "MaxLevel": null,
       "MinFortitudeSave": null,
       "RequiresEpic": true,
@@ -35999,7 +35999,7 @@
       "Index": -1,
       "Overrides": "a08cde65-14f0-864d-76eb-e9db83a65bcf",
       "Disabled": false,
-      "Hint": "Barbarian (Fixed needs Epic Barb and wording)",
+      "Hint": "Barbarian",
       "ScriptConstant": "",
       "SourceLabel": "FEAT_EPIC_THUNDERING_RAGE",
       "ExtensionValues": {},
@@ -36079,8 +36079,11 @@
       "RequiredSkill2Minimum": null,
       "ToolsetCategory": "ClassOrRacial",
       "IsHostile": false,
-      "MinLevel": null,
-      "MinLevelClass": null,
+      "MinLevel": 21,
+      "MinLevelClass": {
+        "ID": "e02ca240-1415-95c9-e6d9-06f223ccdd0a",
+        "Label": "Barbarian"
+      },
       "MaxLevel": null,
       "MinFortitudeSave": null,
       "RequiresEpic": true,
