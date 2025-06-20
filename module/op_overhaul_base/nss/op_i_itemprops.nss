@@ -55,11 +55,11 @@ int GetCanApplySafeItemProperty(object oItem, itemproperty ipProperty);
 // * Do not apply the effect if it is of a certain type (On Hit property types)
 //   where already one of that type already exists.
 // ipProperty will be tagged with the current spell Id, caster level etc. for dispel magic and other purposes.
-int ApplySafeItemProperty(object oItem, itemproperty ipProperty, float fDuration, int nSpellId, object oCaster, int nCasterLevel, int nSpellSaveDC, int nMetaMagic);
+int ApplySafeItemProperty(object oItem, itemproperty ipProperty, float fDuration, int nSpellId, object oCaster, int nCasterLevel, int nSpellSaveDC, int nMetaMagic, int bDispellable = TRUE);
 
 // Simply applies ipProperty for fDuration on oItem with metadata with no checks whatsoever.
 // Can be used to add 2 properties to an item of the same type if used after ApplySafeItemProperty().
-void ApplyItemProperty(object oItem, itemproperty ipProperty, float fDuration, int nSpellId, object oCaster, int nCasterLevel, int nSpellSaveDC, int nMetaMagic);
+void ApplyItemProperty(object oItem, itemproperty ipProperty, float fDuration, int nSpellId, object oCaster, int nCasterLevel, int nSpellSaveDC, int nMetaMagic, int bDispellable = TRUE);
 
 // Returns TRUE if there are any item properties matching the given property
 int GetItemHasMatchingItemProperty(object oItem, itemproperty ipProperty, int nDurationType = DURATION_TYPE_TEMPORARY, int bCheckSubType = TRUE, int bCheckCostTable = TRUE, int bCheckParam1Value = TRUE);
@@ -109,7 +109,7 @@ void RemoveItemPropertiesMatchingTag(object oItem, string sTag);
 void RemoveItemPropertiesMatchingSpellId(object oItem, int nSpellId);
 
 // Returns a the item property tagged with Json relating to the given fields
-itemproperty ApplyItemPropertyTaggedInfo(itemproperty ipProperty, int nSpellId, object oCreator, int nCasterLevel, int nSpellSaveDC, int nMetaMagic);
+itemproperty ApplyItemPropertyTaggedInfo(itemproperty ipProperty, int nSpellId, object oCreator, int nCasterLevel, int nSpellSaveDC, int nMetaMagic, int bDispellable);
 
 // Retrieves the item properties spell Id (need to be set with ApplyItemPropertyTaggedInfo)
 // Returns SPELL_INVALID if not found
@@ -130,6 +130,10 @@ int GetItemPropertySpellSaveDC(itemproperty ipProperty);
 // Retrieves the item properties metamagic (need to be set with ApplyItemPropertyTaggedInfo)
 // Returns 0 if not found
 int GetItemPropertyMetaMagic(itemproperty ipProperty);
+
+// Retrieves the item properties dispellable property (need to be set with ApplyItemPropertyTaggedInfo)
+// Returns 0 if not found
+int GetItemPropertyDispellable(itemproperty ipProperty);
 
 // Returns the correct IP_CONST_DAMAGEBONUS_* for the given nBonus.
 int GetItemPropertyDamageBonusConstant(int nBonus);
@@ -152,6 +156,8 @@ void DebugItemProperties(object oItem)
                         "] Creator: [" + GetName(GetItemPropertyCreator(ipCheck)) +
                         "] Caster Level: [" + IntToString(GetItemPropertyCasterLevel(ipCheck)) +
                         "] Spell Save DC: [" + IntToString(GetItemPropertySpellSaveDC(ipCheck)) +
+                        "] Meta Magic: [" + IntToString(GetItemPropertyMetaMagic(ipCheck)) +
+                        "] Dispellable: [" + IntToString(GetItemPropertyDispellable(ipCheck)) +
                         "]";
 
         Debug(sDebug);
@@ -191,7 +197,7 @@ int GetCanApplySafeItemProperty(object oItem, itemproperty ipProperty)
 // * Do not apply the effect if it is of a certain type (On Hit property types)
 //   where already one of that type already exists.
 // ipProperty will be tagged with the current spell Id, caster level etc. for dispel magic and other purposes.
-int ApplySafeItemProperty(object oItem, itemproperty ipProperty, float fDuration, int nSpellId, object oCaster, int nCasterLevel, int nSpellSaveDC, int nMetaMagic)
+int ApplySafeItemProperty(object oItem, itemproperty ipProperty, float fDuration, int nSpellId, object oCaster, int nCasterLevel, int nSpellSaveDC, int nMetaMagic, int bDispellable = TRUE)
 {
     // Error checking
     if (!GetIsItemPropertyValid(ipProperty))
@@ -217,21 +223,21 @@ int ApplySafeItemProperty(object oItem, itemproperty ipProperty, float fDuration
     // Remove any that match the spell Id
     RemoveItemPropertiesMatchingSpellId(oItem, nSpellId);
 
-    ApplyItemProperty(oItem, ipProperty, fDuration, nSpellId, oCaster, nCasterLevel, nSpellSaveDC, nMetaMagic);
+    ApplyItemProperty(oItem, ipProperty, fDuration, nSpellId, oCaster, nCasterLevel, nSpellSaveDC, nMetaMagic, bDispellable);
 
     return TRUE;
 }
 
 // Simply applies ipProperty for fDuration on oItem with metadata with no checks whatsoever.
 // Can be used to add 2 properties to an item of the same type if used after ApplySafeItemProperty().
-void ApplyItemProperty(object oItem, itemproperty ipProperty, float fDuration, int nSpellId, object oCaster, int nCasterLevel, int nSpellSaveDC, int nMetaMagic)
+void ApplyItemProperty(object oItem, itemproperty ipProperty, float fDuration, int nSpellId, object oCaster, int nCasterLevel, int nSpellSaveDC, int nMetaMagic, int bDispellable = TRUE)
 {
     // No debug messages since we can use this on invalid properties (they just don't apply)
     if (!GetIsItemPropertyValid(ipProperty)) return;
     if (fDuration <= 0.0) return;
 
     // Add metadata
-    ipProperty = ApplyItemPropertyTaggedInfo(ipProperty, nSpellId, oCaster, nCasterLevel, nSpellSaveDC, nMetaMagic);
+    ipProperty = ApplyItemPropertyTaggedInfo(ipProperty, nSpellId, oCaster, nCasterLevel, nSpellSaveDC, nMetaMagic, bDispellable);
 
     // Apply it
     AddItemProperty(DURATION_TYPE_TEMPORARY, ipProperty, oItem, fDuration);
@@ -619,7 +625,7 @@ int DispelMagicalItemProperties(object oItem, object oCaster, int nCasterLevel, 
     {
         // Check if it's magical, ie from a spell (ie not assassins poison or some other nonmagical effect)
         int nSpellId = GetItemPropertySpellId(ipCheck);
-        if (nSpellId != SPELL_INVALID && !GetArrayMatchesInt(jIgnoreArray, nSpellId))
+        if (nSpellId != SPELL_INVALID && GetItemPropertyDispellable(ipCheck) && !GetArrayMatchesInt(jIgnoreArray, nSpellId))
         {
             // Do a dispel magic check
             if (d20() + nCasterLevel >= 11 + GetItemPropertyCasterLevel(ipCheck))
@@ -699,7 +705,7 @@ void RemoveItemPropertiesMatchingSpellId(object oItem, int nSpellId)
 }
 
 // Returns a the item property tagged with Json relating to the given fields
-itemproperty ApplyItemPropertyTaggedInfo(itemproperty ipProperty, int nSpellId, object oCreator, int nCasterLevel, int nSpellSaveDC, int nMetaMagic)
+itemproperty ApplyItemPropertyTaggedInfo(itemproperty ipProperty, int nSpellId, object oCreator, int nCasterLevel, int nSpellSaveDC, int nMetaMagic, int bDispellable)
 {
     // We use a Json object dumped to string for this.
     json jObject = JsonObject();
@@ -710,6 +716,7 @@ itemproperty ApplyItemPropertyTaggedInfo(itemproperty ipProperty, int nSpellId, 
     jObject = JsonObjectSet(jObject, JSON_FIELD_CASTERLEVEL, JsonInt(nCasterLevel));
     jObject = JsonObjectSet(jObject, JSON_FIELD_SPELLSAVEDC, JsonInt(nSpellSaveDC));
     jObject = JsonObjectSet(jObject, JSON_FIELD_METAMAGIC, JsonInt(nMetaMagic));
+    jObject = JsonObjectSet(jObject, JSON_FIELD_DISPELLABLE, JsonInt(bDispellable));
 
     Debug("[ApplyItemPropertyTaggedInfo] Setting JSON:" + JsonDump(jObject));
 
@@ -823,6 +830,13 @@ int GetItemPropertySpellSaveDC(itemproperty ipProperty)
 int GetItemPropertyMetaMagic(itemproperty ipProperty)
 {
     return GetItemPropertyTaggedIntField(ipProperty, JSON_FIELD_METAMAGIC, 0);
+}
+
+// Retrieves the item properties dispellable property (need to be set with ApplyItemPropertyTaggedInfo)
+// Returns 0 if not found
+int GetItemPropertyDispellable(itemproperty ipProperty)
+{
+    return GetItemPropertyTaggedIntField(ipProperty, JSON_FIELD_DISPELLABLE, 0);
 }
 
 // Returns the correct IP_CONST_DAMAGEBONUS_* for the given nBonus.

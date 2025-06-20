@@ -22,6 +22,7 @@ const string JSON_FIELD_CREATOR             = "creator";              // String 
 const string JSON_FIELD_CASTERLEVEL         = "casterlevel";          // Int
 const string JSON_FIELD_SPELLSAVEDC         = "spellsavedc";          // Int
 const string JSON_FIELD_METAMAGIC           = "metamagic";            // Int
+const string JSON_FIELD_DISPELLABLE         = "dispellable";          // Int (Boolean)
 const string JSON_FIELD_CASTERCLASS         = "casterclass";          // Int
 const string JSON_FIELD_SPELLLEVEL          = "spelllevel";           // Int
 const string JSON_FIELD_SPONTANEOUS         = "spontaneous";          // Int (boolean)
