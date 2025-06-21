@@ -1509,7 +1509,7 @@
       "Description": {
         "Index": 6084,
         "EN": {
-          "M": "Type of Feat: Class\nPrerequisite: Barbarian, Eye of Gruumsh.\nSpecifics: The barbarian may rage, gaining a \u002B4 morale bonus to Strength and Constitution and \u002B2 to all Will saving throws, in exchange for a -2 penalty to Armor Class. At 15th level, the rage ability becomes greater rage, giving the barbarian \u002B6 to Strength and Consitution and \u002B3 to Will saves (the -2 penalty to Armor Class still applies).\r\nDuration: The barbarian\u0027s constitution modifier (before the rage) plus 7 rounds, plus an extra 2 rounds for greater rage.\r\nUses:  The barbarian may use this ability once per day at first level, \u002B1 use per day at level 4, and every 4 levels thereafter, extending into epic levels.\r\nUse: Selected. It requires no action. ",
+          "M": "Type of Feat: Class\nPrerequisite: Barbarian\nSpecifics: The barbarian may rage, gaining a \u002B4 morale bonus to Strength and Constitution and \u002B2 to all Will saving throws, in exchange for a -2 penalty to Armor Class. At 15th level, the rage ability becomes greater rage, giving the barbarian \u002B6 to Strength and Consitution and \u002B3 to Will saves (the -2 penalty to Armor Class still applies).\r\nDuration: The barbarian\u0027s constitution modifier (before the rage) plus 7 rounds, plus an extra 2 rounds for greater rage.\r\nUses:  The barbarian may use this ability once per day at first level, \u002B1 use per day at level 4, and every 4 levels thereafter, extending into epic levels.\r\nUse: Selected. It requires no action. ",
           "F": "Type of Feat: Class\nPrerequisite: Barbarian.\nSpecifics: The barbarian may rage, gaining a \u002B4 morale bonus to Strength and Constitution and \u002B2 to all Will saving throws, in exchange for a -2 penalty to Armor Class. The barbarian may use this ability once per day at first level, \u002B1 use per day at level 4, and every 4 levels thereafter, extending into epic levels.\nUse: Selected. At 15th level, the rage ability becomes greater rage, giving the barbarian \u002B6 to Strength and Consitution and \u002B3 to Will saves (the -2 penalty to Armor Class still applies)."
         },
         "FR": {
@@ -4374,7 +4374,7 @@
       "Index": -1,
       "Overrides": "4ef5cd07-1139-1b77-d84c-e86773a7740b",
       "Disabled": false,
-      "Hint": "Eye of Gruumsh",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
@@ -4433,7 +4433,7 @@
       "RequiredFeat1": null,
       "RequiredFeat2": null,
       "UseableByAllClasses": false,
-      "Category": "HarmfulRanged",
+      "Category": null,
       "OnUseEffect": null,
       "SuccessorFeat": {
         "ID": "6bcb5fc0-02a1-d725-11a8-67e6b8c9d015",
@@ -4469,7 +4469,7 @@
       "Index": -1,
       "Overrides": "74be1ce4-2fbb-a311-f070-40bfa19dd536",
       "Disabled": false,
-      "Hint": "Eye of Gruumsh",
+      "Hint": "",
       "ScriptConstant": "",
       "SourceLabel": "",
       "ExtensionValues": {},
@@ -4626,7 +4626,7 @@
       "OnUseEffect": null,
       "SuccessorFeat": null,
       "CRModifier": 0.5,
-      "UsesPerDay": null,
+      "UsesPerDay": 0,
       "MasterFeat": null,
       "TargetSelf": false,
       "RequiredFeatSelection1": null,
@@ -4836,7 +4836,8 @@
       "Name": {
         "Index": 110693,
         "EN": {
-          "M": "Command the Horde"
+          "M": "Follow Orders Blindly",
+          "F": "Command the Horde"
         },
         "FR": {
           "M": "Conduite de la horde"
@@ -4876,7 +4877,7 @@
           "M": "Rodzaj atutu: Klasowy\nWymagania: Oko Gruumsha, poziom 1\nSzczeg\u00F3\u0142y: Na 1 poziomie, Oko Gruumsha mo\u017Ce da\u0107 premi\u0119 \u002B2 do morale przy rzutach obronnych na si\u0142\u0119 woli u ka\u017Cdego z\u0142ego i neutralnego orka lub p\u00F3\u0142orka w zasi\u0119gu 30 st\u00F3p, kt\u00F3rego kostka wytrzyma\u0142o\u015Bci jest ni\u017Csza od poziomu postaci. Efekt trwa przez 1 godzin\u0119 na ka\u017Cdy poziom oka Gruumsha.\nWykorzystanie: Tryb walki."
         }
       },
-      "Icon": "ife_barbrage",
+      "Icon": "ir_scommand",
       "MinAttackBonus": null,
       "MinStr": null,
       "MinDex": null,
@@ -4891,7 +4892,7 @@
       "Category": "FriendlyEnhancementAoe",
       "OnUseEffect": {
         "ID": "58579d0e-0b78-47d6-836e-007f3916d7e1",
-        "Label": "Command the Horde"
+        "Label": "Follow Orders Blindly"
       },
       "SuccessorFeat": null,
       "CRModifier": 0.5,
@@ -38366,6 +38367,523 @@
       "MinFortitudeSave": null,
       "RequiresEpic": false,
       "UseActionQueue": true
+    },
+    {
+      "ID": "b216a823-99b4-4442-943d-f00fd2e9596f",
+      "Index": 2,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "1x Day",
+      "ScriptConstant": "",
+      "SourceLabel": null,
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Eye of Gruumsh Rage",
+          "F": "New Feat"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Eye of Gruumsh\nSpecifics: The eye of Gruumsh may rage, gaining a \u002B4 morale bonus to Strength and Constitution and \u002B2 to all Will saving throws, in exchange for a -2 penalty to Armor Class. This is the same as Barbarian Rage and any bonuses applied to those rages are applied to these.\r\nDuration: The users\u0027s constitution modifier (before the rage) plus 7 rounds, plus an extra 2 rounds for greater rage.\r\nUses:  The eye of Gruumsh may use this ability once per day at first level, \u002B1 use per day at level 4, and every 4 levels thereafter, extending into epic levels.\r\nUse: Selected. It requires no action. "
+        }
+      },
+      "Icon": "ife_barbrage",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": {
+        "ID": "e5fcde6f-1257-48de-897b-a77baefa2f52",
+        "Label": "Eye of Gruumsh Rage"
+      },
+      "SuccessorFeat": {
+        "ID": "2fb6ed61-b83d-45d2-83e5-2b64b3080212",
+        "Label": "Eye of Gruumsh Rage"
+      },
+      "CRModifier": 0.5,
+      "UsesPerDay": 1,
+      "MasterFeat": null,
+      "TargetSelf": true,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": false
+    },
+    {
+      "ID": "2fb6ed61-b83d-45d2-83e5-2b64b3080212",
+      "Index": 5,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "2x Day",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Eye of Gruumsh Rage",
+          "F": "New Feat"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Eye of Gruumsh\nSpecifics: The eye of Gruumsh may rage, gaining a \u002B4 morale bonus to Strength and Constitution and \u002B2 to all Will saving throws, in exchange for a -2 penalty to Armor Class. This is the same as Barbarian Rage and any bonuses applied to those rages are applied to these.\r\nDuration: The users\u0027s constitution modifier (before the rage) plus 7 rounds, plus an extra 2 rounds for greater rage.\r\nUses:  The eye of Gruumsh may use this ability once per day at first level, \u002B1 use per day at level 4, and every 4 levels thereafter, extending into epic levels.\r\nUse: Selected. It requires no action. "
+        }
+      },
+      "Icon": "ife_barbrage",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": {
+        "ID": "e5fcde6f-1257-48de-897b-a77baefa2f52",
+        "Label": "Eye of Gruumsh Rage"
+      },
+      "SuccessorFeat": {
+        "ID": "1bea85ab-e80f-4434-bd1d-8f48569f7156",
+        "Label": "Eye of Gruumsh Rage"
+      },
+      "CRModifier": 0.5,
+      "UsesPerDay": 2,
+      "MasterFeat": null,
+      "TargetSelf": true,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": false
+    },
+    {
+      "ID": "1bea85ab-e80f-4434-bd1d-8f48569f7156",
+      "Index": 6,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "3x Day",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Eye of Gruumsh Rage",
+          "F": "New Feat"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Eye of Gruumsh\nSpecifics: The eye of Gruumsh may rage, gaining a \u002B4 morale bonus to Strength and Constitution and \u002B2 to all Will saving throws, in exchange for a -2 penalty to Armor Class. This is the same as Barbarian Rage and any bonuses applied to those rages are applied to these.\r\nDuration: The users\u0027s constitution modifier (before the rage) plus 7 rounds, plus an extra 2 rounds for greater rage.\r\nUses:  The eye of Gruumsh may use this ability once per day at first level, \u002B1 use per day at level 4, and every 4 levels thereafter, extending into epic levels.\r\nUse: Selected. It requires no action. "
+        }
+      },
+      "Icon": "ife_barbrage",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": {
+        "ID": "e5fcde6f-1257-48de-897b-a77baefa2f52",
+        "Label": "Eye of Gruumsh Rage"
+      },
+      "SuccessorFeat": {
+        "ID": "1489bbb2-2707-445f-9ac4-6b70ef67dcdd",
+        "Label": "Eye of Gruumsh Rage"
+      },
+      "CRModifier": 0.5,
+      "UsesPerDay": 3,
+      "MasterFeat": null,
+      "TargetSelf": true,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": false
+    },
+    {
+      "ID": "1489bbb2-2707-445f-9ac4-6b70ef67dcdd",
+      "Index": 7,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "4x Day",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Eye of Gruumsh Rage",
+          "F": "New Feat"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Eye of Gruumsh\nSpecifics: The eye of Gruumsh may rage, gaining a \u002B4 morale bonus to Strength and Constitution and \u002B2 to all Will saving throws, in exchange for a -2 penalty to Armor Class. This is the same as Barbarian Rage and any bonuses applied to those rages are applied to these.\r\nDuration: The users\u0027s constitution modifier (before the rage) plus 7 rounds, plus an extra 2 rounds for greater rage.\r\nUses:  The eye of Gruumsh may use this ability once per day at first level, \u002B1 use per day at level 4, and every 4 levels thereafter, extending into epic levels.\r\nUse: Selected. It requires no action. "
+        }
+      },
+      "Icon": "ife_barbrage",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": {
+        "ID": "e5fcde6f-1257-48de-897b-a77baefa2f52",
+        "Label": "Eye of Gruumsh Rage"
+      },
+      "SuccessorFeat": {
+        "ID": "130c8107-3849-42b7-b999-f5b3240f4b04",
+        "Label": "Eye of Gruumsh Rage"
+      },
+      "CRModifier": 0.5,
+      "UsesPerDay": 4,
+      "MasterFeat": null,
+      "TargetSelf": true,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": false
+    },
+    {
+      "ID": "130c8107-3849-42b7-b999-f5b3240f4b04",
+      "Index": 8,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "5x Day",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Eye of Gruumsh Rage",
+          "F": "New Feat"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Eye of Gruumsh\nSpecifics: The eye of Gruumsh may rage, gaining a \u002B4 morale bonus to Strength and Constitution and \u002B2 to all Will saving throws, in exchange for a -2 penalty to Armor Class. This is the same as Barbarian Rage and any bonuses applied to those rages are applied to these.\r\nDuration: The users\u0027s constitution modifier (before the rage) plus 7 rounds, plus an extra 2 rounds for greater rage.\r\nUses:  The eye of Gruumsh may use this ability once per day at first level, \u002B1 use per day at level 4, and every 4 levels thereafter, extending into epic levels.\r\nUse: Selected. It requires no action. "
+        }
+      },
+      "Icon": "ife_barbrage",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": {
+        "ID": "e5fcde6f-1257-48de-897b-a77baefa2f52",
+        "Label": "Eye of Gruumsh Rage"
+      },
+      "SuccessorFeat": {
+        "ID": "ad36e27f-a8d1-4152-a753-fe0f1e425e78",
+        "Label": "Eye of Gruumsh Rage"
+      },
+      "CRModifier": 0.5,
+      "UsesPerDay": 5,
+      "MasterFeat": null,
+      "TargetSelf": true,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": false
+    },
+    {
+      "ID": "ad36e27f-a8d1-4152-a753-fe0f1e425e78",
+      "Index": 9,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "6x Day",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Eye of Gruumsh Rage",
+          "F": "New Feat"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Eye of Gruumsh\nSpecifics: The eye of Gruumsh may rage, gaining a \u002B4 morale bonus to Strength and Constitution and \u002B2 to all Will saving throws, in exchange for a -2 penalty to Armor Class. This is the same as Barbarian Rage and any bonuses applied to those rages are applied to these.\r\nDuration: The users\u0027s constitution modifier (before the rage) plus 7 rounds, plus an extra 2 rounds for greater rage.\r\nUses:  The eye of Gruumsh may use this ability once per day at first level, \u002B1 use per day at level 4, and every 4 levels thereafter, extending into epic levels.\r\nUse: Selected. It requires no action. "
+        }
+      },
+      "Icon": "ife_barbrage",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": {
+        "ID": "e5fcde6f-1257-48de-897b-a77baefa2f52",
+        "Label": "Eye of Gruumsh Rage"
+      },
+      "SuccessorFeat": {
+        "ID": "30e53187-eee1-4867-87ca-617124767006",
+        "Label": "Eye of Gruumsh Rage"
+      },
+      "CRModifier": 0.5,
+      "UsesPerDay": 6,
+      "MasterFeat": null,
+      "TargetSelf": true,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": false
+    },
+    {
+      "ID": "30e53187-eee1-4867-87ca-617124767006",
+      "Index": 10,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "7x Day",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Eye of Gruumsh Rage",
+          "F": "New Feat"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Eye of Gruumsh\nSpecifics: The eye of Gruumsh may rage, gaining a \u002B4 morale bonus to Strength and Constitution and \u002B2 to all Will saving throws, in exchange for a -2 penalty to Armor Class. This is the same as Barbarian Rage and any bonuses applied to those rages are applied to these.\r\nDuration: The users\u0027s constitution modifier (before the rage) plus 7 rounds, plus an extra 2 rounds for greater rage.\r\nUses:  The eye of Gruumsh may use this ability once per day at first level, \u002B1 use per day at level 4, and every 4 levels thereafter, extending into epic levels.\r\nUse: Selected. It requires no action. "
+        }
+      },
+      "Icon": "ife_barbrage",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": {
+        "ID": "e5fcde6f-1257-48de-897b-a77baefa2f52",
+        "Label": "Eye of Gruumsh Rage"
+      },
+      "SuccessorFeat": {
+        "ID": "467f2704-c46c-45ff-a7fe-ee4662ddac42",
+        "Label": "Eye of Gruumsh Rage"
+      },
+      "CRModifier": 0.5,
+      "UsesPerDay": 7,
+      "MasterFeat": null,
+      "TargetSelf": true,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": false
+    },
+    {
+      "ID": "467f2704-c46c-45ff-a7fe-ee4662ddac42",
+      "Index": 11,
+      "Overrides": null,
+      "Disabled": false,
+      "Hint": "8x Day",
+      "ScriptConstant": "",
+      "SourceLabel": "",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": null,
+        "EN": {
+          "M": "Eye of Gruumsh Rage",
+          "F": "New Feat"
+        }
+      },
+      "Description": {
+        "Index": null,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Eye of Gruumsh\nSpecifics: The eye of Gruumsh may rage, gaining a \u002B4 morale bonus to Strength and Constitution and \u002B2 to all Will saving throws, in exchange for a -2 penalty to Armor Class. This is the same as Barbarian Rage and any bonuses applied to those rages are applied to these.\r\nDuration: The users\u0027s constitution modifier (before the rage) plus 7 rounds, plus an extra 2 rounds for greater rage.\r\nUses:  The eye of Gruumsh may use this ability once per day at first level, \u002B1 use per day at level 4, and every 4 levels thereafter, extending into epic levels.\r\nUse: Selected. It requires no action. "
+        }
+      },
+      "Icon": "ife_barbrage",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": {
+        "ID": "e5fcde6f-1257-48de-897b-a77baefa2f52",
+        "Label": "Eye of Gruumsh Rage"
+      },
+      "SuccessorFeat": null,
+      "CRModifier": 0.5,
+      "UsesPerDay": 8,
+      "MasterFeat": null,
+      "TargetSelf": true,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": false
     }
   ]
 }

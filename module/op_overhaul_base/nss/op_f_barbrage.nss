@@ -16,6 +16,8 @@
     * Instant feat usage
     * If you have the effects already we replenish the rage usage.
     * AC loss is "enemy attack bonus"
+    * Mighty Rage and Eye of Gruumsh rage comes into the same script but we
+      set the spell ID to be barbarian rage.
 
     Todo:
     * Rage VFX? Might feel a lot more impactful then...!
@@ -35,12 +37,40 @@ void main()
     if (GetHasSpellEffect(SPELLABILITY_BARBARIAN_RAGE, oTarget))
     {
         // Replenish use and feedback
-        IncrementRemainingFeatUses(oCaster, FEAT_BARBARIAN_RAGE);
-        FloatingTextStringOnCreature("*Cannot rage while raging!*", oCaster, FALSE, TRUE);
+        if (GetSpellFeatId() != FEAT_INVALID)
+            IncrementRemainingFeatUses(oCaster, GetSpellFeatId());
+        FloatingTextStringOnCreature("*Cannot rage while raging! (use reset)*", oCaster, FALSE, TRUE);
+        return;
+    }
+
+    // Check for feats other than this one being available to "use up"
+    int nFeatId = GetSpellFeatId();
+    if (nFeatId != FEAT_INVALID)
+    {
+        // We can identify the feat-chain used by the spell ID passed in
+        if (nSpellId != SPELLABILITY_BARBARIAN_RAGE && GetHasFeat(FEAT_BARBARIAN_RAGE))
+        {
+            SendMessageToPC(oCaster, "Using up Barbarian Rage.");
+            DecrementRemainingFeatUses(oCaster, FEAT_BARBARIAN_RAGE);
+            IncrementRemainingFeatUses(oCaster, nFeatId);
+        }
+        else if (nSpellId != SPELLABILITY_EPIC_MIGHTY_RAGE && GetHasFeat(FEAT_MIGHTY_RAGE))
+        {
+            SendMessageToPC(oCaster, "Using up Mighty Rage.");
+            DecrementRemainingFeatUses(oCaster, FEAT_MIGHTY_RAGE);
+            IncrementRemainingFeatUses(oCaster, nFeatId);
+        }
+        else if (nSpellId != SPELL_EYE_OF_GRUUMSH_RAGE && GetHasFeat(FEAT_EYE_OF_GRUUMSH_RAGE))
+        {
+            SendMessageToPC(oCaster, "Using up Eye of Gruumsh Rage.");
+            DecrementRemainingFeatUses(oCaster, FEAT_EYE_OF_GRUUMSH_RAGE);
+            IncrementRemainingFeatUses(oCaster, nFeatId);
+        }
     }
 
     // Set the spell ID to always be SPELLABILITY_BARBARIAN_RAGE since it can be used from
-    // other feats now (like Mighty Rage)
+    // other feats now (like Mighty Rage) and it simplifies checking for it
+    // earlier on in the script.
     nSpellId = SPELLABILITY_BARBARIAN_RAGE;
 
     SignalSpellCastAt();
@@ -81,13 +111,23 @@ void main()
         return;
     }
 
+    // Strength and Constitution can differ
+    int nConstitution = nIncrease;
+    int nStrength = nIncrease;
+    int nACDecrease = 2;
+
+    if (GetHasFeat(FEAT_SWING_BLINDLY_EYE_OF_GRUUMSH))
+    {
+        nStrength += 4;
+        nACDecrease += 4;
+    }
+
     // Effects
-    effect eLink = EffectLinkEffects(EffectAbilityIncrease(ABILITY_CONSTITUTION, nIncrease),
-                   EffectLinkEffects(EffectAbilityIncrease(ABILITY_STRENGTH, nIncrease),
+    effect eLink = EffectLinkEffects(EffectAbilityIncrease(ABILITY_CONSTITUTION, nConstitution),
+                   EffectLinkEffects(EffectAbilityIncrease(ABILITY_STRENGTH, nStrength),
                    EffectLinkEffects(EffectSavingThrowIncrease(SAVING_THROW_WILL, nSave),
-                   EffectLinkEffects(EffectEnemyAttackBonus(2),
-                   EffectLinkEffects(EffectIcon(EFFECT_ICON_AC_DECREASE),
-                                     EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE))))));
+                   EffectLinkEffects(EffectACDecrease(nACDecrease, AC_DODGE_BONUS),
+                                     EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)))));
 
     // Terrifying Rage feat
     if (GetHasFeat(FEAT_EPIC_TERRIFYING_RAGE, oCaster))
