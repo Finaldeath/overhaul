@@ -207,6 +207,8 @@ const int SPELLABILITY_WILD_SHAPE_WOLF            = 403;
 const int SPELLABILITY_WILD_SHAPE_BOAR            = 404;
 const int SPELLABILITY_WILD_SHAPE_BADGER          = 405;
 
+const int SPELLABILITY_BARD_SONG                  = 411;
+
 const int SPELL_FEAT_BLINDING_SPEED               = 647;
 const int SPELL_EPIC_WARDING                      = 695;
 const int SPELLABILITY_CURE_CRITICAL_WOUNDS_OTHER = 567;

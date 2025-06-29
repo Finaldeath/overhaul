@@ -195,8 +195,8 @@ int GetItemScrollUsable(itemproperty ip, object oItem)
             {
                 // Check spell school of the spell item property
                 // This returns an ID from iprp_spells - ie; it is a spell, but the level / spell ID is codified in another 2DA. So look it up.
-                int nSpellID        = StringToInt(Get2DAString("iprp_spells", "SpellIndex", GetItemPropertySubType(ip)));
-                string sSpellSchool = Get2DAString("spells", "School", nSpellID);
+                int nSpellId        = StringToInt(Get2DAString("iprp_spells", "SpellIndex", GetItemPropertySubType(ip)));
+                string sSpellSchool = Get2DAString("spells", "School", nSpellId);
 
                 // General spells can be cast by any wizard
                 if (sSpellSchool != "G")
@@ -227,9 +227,9 @@ int GetItemScrollUsable(itemproperty ip, object oItem)
 
 // Gets the first item property, if any, matching nSpellID and returns it, or an invalid item property if none are found (charges, spell school, or just not existing)
 // This is useful to return for returning to use on ActionUseItemOnObject() or ActionUseItemAtLocation()
-// nSpellID - SPELL_* constant to match
+// nSpellId - SPELL_* constant to match
 // oItem - The item to test
-itemproperty GetFirstItemPropertyOnItemWithSpell(int nSpellID, object oItem)
+itemproperty GetFirstItemPropertyOnItemWithSpell(int nSpellId, object oItem)
 {
     int nItemSpell;
     itemproperty ipInvalid;
@@ -242,7 +242,7 @@ itemproperty GetFirstItemPropertyOnItemWithSpell(int nSpellID, object oItem)
             nItemSpell = StringToInt(Get2DAString("iprp_spells", "SpellIndex", GetItemPropertySubType(ip)));
 
             // Check if valid. If it is do we have charges etc.
-            if (nItemSpell == nSpellID)
+            if (nItemSpell == nSpellId)
             {
                 // Usable charges?
                 if (GetItemSpellChargesAreUsable(ip, oItem) && GetItemScrollUsable(ip, oItem))
