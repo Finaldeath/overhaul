@@ -25,6 +25,10 @@
     conditions: ability damage, blinded, confused, dazed, dazzled, deafened,
     diseased, exhausted, fatigued, feebleminded, insanity, nauseated, sickened,
     stunned, and poisoned.
+
+    Lay on Hands
+    With this feat, characters can heal damage equal to their class level multiplied by their Charisma modifier.
+    When used against undead creatures, it is treated as a touch attack spell that delivers damage instead of healing.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -115,6 +119,19 @@ void main()
             nDice          = 0;
             nHealingStatic = min(250, nCasterLevel * 10);
             break;
+        case SPELLABILITY_LAY_ON_HANDS:
+        {
+            int nChr = GetAbilityModifier(ABILITY_CHARISMA);
+            if (nChr < 0) nChr = 0;
+
+            int nLevel = GetLevelByClass(CLASS_TYPE_PALADIN) + GetLevelByClass(CLASS_TYPE_DIVINECHAMPION);
+
+            nVisHeal       = VFX_IMP_HEALING_M;
+            nDice          = 0;
+            nHealingStatic = nLevel * nChr;
+            if(nHealingStatic <= 0) nHealingStatic = 1;
+        }
+        break;
         default:
             Debug("[Cure Wounds op_s_curewounds] No valid spell ID passed in: " + IntToString(nSpellId));
             return;

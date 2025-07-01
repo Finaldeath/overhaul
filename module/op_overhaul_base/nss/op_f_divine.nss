@@ -13,6 +13,13 @@
 
     The character may spend one of his turn undead attempts to add his charisma
     bonus to his armor class for a number of rounds equal to the charisma bonus.
+
+    Divine Wrath
+
+    The Champion is able to channel a portion of their deities's power once per
+    day giving them a +3 bonus on attack rolls, damage, and saving throws for a
+    number of rounds equal to their Charisma bonus. They also gain damage
+    reduction of 5/+1. The attack and saving throw bonuses increase by +2 at level 10
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -37,17 +44,76 @@ void main()
     // NB: Added 1 more round to the duration so it's more usable (takes a round to cast)
     float fDuration = GetDuration(1 + nBonus, ROUNDS);
 
+    //Check that if nDuration is not above 0, make it 1.
+    if(fDuration <= 0.0)
+    {
+        FloatingTextStrRefOnCreature(100967, oCaster, FALSE); // * Your charisma is too low to use this feat! *
+        return;
+    }
+
+    int nVis, nVis2 = VFX_INVALID;
+
     switch (nSpellId)
     {
         case SPELL_DIVINE_MIGHT:
         {
+            nVis = VFX_IMP_SUPER_HEROISM;
             int nDamageBonus = GetDamageBonusValue(nBonus);
             eLink = SupernaturalEffect(EffectLinkEffects(EffectDamageIncrease(nDamageBonus, DAMAGE_TYPE_DIVINE), EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
         }
         break;
         case SPELL_DIVINE_SHIELD:
         {
+            nVis = VFX_IMP_SUPER_HEROISM;
             eLink = SupernaturalEffect(EffectLinkEffects(EffectACIncrease(nBonus), EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+        }
+        break;
+        case SPELLABILITY_DC_DIVINE_WRATH:
+        {
+            nVis = VFX_IMP_HEAD_HOLY;
+            nVis2 = VFX_IMP_GOOD_HELP;
+
+            int nLevel = GetLevelByClass(CLASS_TYPE_DIVINECHAMPION, oCaster);
+            int nLevelBonus = (nLevel / 5) - 1;
+            if (nLevelBonus <= 0)
+            {
+                // Don't do anything if no levels!
+                FloatingTextStringOnCreature("This feat requires Divine Champion levels.", oCaster, FALSE);
+                return;
+            }
+
+            int nAttackBonus = 3 + (nLevelBonus * 2); // +2 to attack every 5 levels past 5
+            int nSaveBonus = 3 + (nLevelBonus * 2); // +2 to saves every 5 levels past 5
+            int nDamageBonus = GetDamageBonusValue(3 + (nLevelBonus * 2)); // +2 to damage every 5 levels past 5
+
+            int nDamageReduction = nLevelBonus * 5;
+
+            // Damage Power
+            int nDamageReductionPower = DAMAGE_POWER_PLUS_ONE;
+            if (nLevelBonus >= 5)
+            {
+                nDamageReductionPower = DAMAGE_POWER_PLUS_FIVE;
+            }
+            else if (nLevelBonus >= 4)
+            {
+                nDamageReductionPower = DAMAGE_POWER_PLUS_FOUR;
+            }
+            else if (nLevelBonus >= 3)
+            {
+                nDamageReductionPower = DAMAGE_POWER_PLUS_THREE;
+            }
+            else if (nLevelBonus >= 2)
+            {
+                nDamageReductionPower = DAMAGE_POWER_PLUS_TWO;
+            }
+
+            eLink = EffectLinkEffects(EffectAttackIncrease(nAttackBonus, ATTACK_BONUS_MISC),
+                    EffectLinkEffects(EffectDamageIncrease(nDamageBonus, DAMAGE_TYPE_DIVINE),
+                    EffectLinkEffects(EffectSavingThrowIncrease(SAVING_THROW_ALL, nSaveBonus, SAVING_THROW_TYPE_ALL),
+                    EffectLinkEffects(EffectDamageReduction(nDamageReduction, nDamageReductionPower),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)))));
+
+            eLink = SupernaturalEffect(eLink);
         }
         break;
         default:
@@ -65,7 +131,8 @@ void main()
     // Do not stack
     RemoveEffectsFromSpell(oTarget, nSpellId);
 
-    ApplyVisualEffectToObject(VFX_IMP_SUPER_HEROISM, oTarget);
+    ApplyVisualEffectToObject(nVis, oTarget);
+    if (nVis2 != VFX_INVALID) ApplyVisualEffectToObject(nVis2, oTarget);
     ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
 }
 
