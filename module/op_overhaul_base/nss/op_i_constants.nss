@@ -181,6 +181,9 @@ const int VFX_FNF_PIRANHA                 = 10000;
 const int VFX_SILVEYES                    = 10001;
 const int VFX_ICONGLOW                    = 10002;
 
+// feat.2da
+const int FEAT_EPIC_PLANAR_TURNING                = 804;
+
 // spells.2da
 const int SPELL_GREATER_SHADOW_CONJURATION        = 71;
 const int SPELL_SHADES                            = 158;
