@@ -173,11 +173,6 @@ void main()
                 {
                     bValid = TRUE;
                 }
-                // If wearing Gauntlets of the Lich, then can be turned
-                else if (GetTag(GetItemInSlot(INVENTORY_SLOT_ARMS)) == "x2_gauntletlich")
-                {
-                    bValid = TRUE;
-                }
 
                 // Apply results of the turn
                 if (bValid)
