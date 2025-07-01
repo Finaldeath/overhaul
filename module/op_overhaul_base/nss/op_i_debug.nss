@@ -4,16 +4,26 @@
 //:://////////////////////////////////////////////
 /*
     Overhaul debug functions.
+
+    To enable:
+    Set DEBUG_LEVEL to one of the levels:
+
+    NONE     No debug - if recompiled all debug is stripped
+    ERROR    Errors only
+    WARNING  Warnings and errors only
+    INFO     All debug - every piece of information available
+
+    Then recompile all scripts.
+
+    Example code usage (compiler now folds if statements based on some basic
+    constant folding):
+
+    if (DEBUG_LEVEL >= ERROR) Debug("Error!", ERROR);
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
 //:: https://github.com/Finaldeath/overhaul
 //:://////////////////////////////////////////////
-
-const string DEBUG_COLOUR_ERROR   = "<c\xFF\x01\x01>";  // bright red.
-const string DEBUG_COLOUR_WARNING = "<c\xFF\x66\x01>";  // Orange
-const string DEBUG_COLOUR_INFO    = "<c\xFF\xFF\xFF>";  // White
-const string DEBUG_COLOUR_END     = "</c>";
 
 // Debug levels
 const int NONE    = 0;  // No debug - if recompiled all debug is stripped
@@ -23,6 +33,11 @@ const int INFO    = 3;  // All debug - every piece of information available
 
 // Set to the types of debug you want as per above
 const int DEBUG_LEVEL = INFO;
+
+const string DEBUG_COLOUR_ERROR   = "<c\xFF\x01\x01>";  // bright red.
+const string DEBUG_COLOUR_WARNING = "<c\xFF\x66\x01>";  // Orange
+const string DEBUG_COLOUR_INFO    = "<c\xFF\xFF\xFF>";  // White
+const string DEBUG_COLOUR_END     = "</c>";
 
 // Print sDebug in various places depending on the nDebugLevel
 void Debug(string sDebug, int nLogLevel = INFO);

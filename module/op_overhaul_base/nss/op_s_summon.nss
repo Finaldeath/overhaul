@@ -343,6 +343,33 @@ void main()
             eSummon = EffectSummonCreature("NW_S_HelmHorr", VFX_FNF_SUMMON_MONSTER_3);
         }
         break;
+        case SPELLABILITY_BG_FIENDISH_SERVANT:
+        {
+            int nLevel = GetLevelByClass(CLASS_TYPE_BLACKGUARD, oCaster);
+            float fDelay = 3.0;
+            fDuration = GetDuration(nLevel, HOURS);
+
+            if (nLevel < 9)
+            {
+                eSummon = EffectSummonCreature("NW_S_SUCCUBUS",VFX_FNF_SUMMON_GATE, fDelay);
+            }
+            else if (nLevel < 15)
+            {
+                eSummon = EffectSummonCreature("NW_S_VROCK", VFX_FNF_SUMMON_GATE, fDelay);
+            }
+            else
+            {
+                if (GetHasFeat(FEAT_EPIC_EPIC_FIEND, oCaster))
+                {
+                    eSummon = EffectSummonCreature("x2_s_vrock", VFX_FNF_SUMMON_GATE, fDelay);
+                }
+                else
+                {
+                    eSummon = EffectSummonCreature("NW_S_VROCK", VFX_FNF_SUMMON_GATE, fDelay);
+                }
+            }
+        }
+        break;
         default:
         {
             Debug("[op_s_summon] No valid spell ID passed in: " + IntToString(nSpellId));
@@ -356,7 +383,7 @@ void main()
         object oCreature = CreateObject(OBJECT_TYPE_CREATURE, sSpawn, GetSpellTargetLocation());
         DelayCommand(0.5, ApplyVisualEffectAtObjectsLocation(nVis, oCreature));
     }
-    else
+    else if (GetIsEffectValid(eSummon))
     {
         // All summon effects are Extraordinary to prevent usual dispel magic. Instead
         // the summon itself can be targeted by dispel magic and may disappear (except level 10 / epic spells).
@@ -371,6 +398,10 @@ void main()
             ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eSummon, oTarget, fDuration);
         }
         ApplyVisualEffectAtLocation(nImpact, lTarget);
+    }
+    else
+    {
+        if (DEBUG_LEVEL >= ERROR) Debug("No valid summon effect generated.", ERROR);
     }
 }
 
