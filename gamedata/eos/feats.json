@@ -13399,7 +13399,8 @@
       "Description": {
         "Index": 2812,
         "EN": {
-          "M": "Type of Feat: General\nPrerequisite: Turn Undead, Cha 13\u002B, Str 13\u002B, Power Attack.\nSpecifics: The character may spend one of his turn undead attempts to add his Charisma bonus to all weapon damage for a number of rounds equal to the Charisma bonus.\nUse: Selected."
+          "M": "Type of Feat: General\nPrerequisite: Turn Undead, Cha 13\u002B, Str 13\u002B, Power Attack.\nSpecifics: The character may spend one of his turn undead attempts to add his Charisma bonus to all weapon damage for a number of rounds equal to 1 \u002B their Charisma bonus.\nUse: Selected.",
+          "F": "Type of Feat: General\nPrerequisite: Turn Undead, Cha 13\u002B, Str 13\u002B, Power Attack.\nSpecifics: The character may spend one of his turn undead attempts to add his Charisma bonus to all weapon damage for a number of rounds equal to the Charisma bonus.\nUse: Selected."
         },
         "FR": {
           "M": "Type de don : G\u00E9n\u00E9ral\nConditions : Renvoi des morts-vivants, Cha 13\u002B, For 13\u002B, Attaque en puissance\nFonctionnement : le personnage peut sacrifier une de ses tentatives de renvoi des morts-vivants pour ajouter son modificateur de Charisme \u00E0 tous les d\u00E9g\u00E2ts de ses armes pendant un nombre de rounds \u00E9gal \u00E0 son modificateur en Charisme.\nUtilisation : si s\u00E9lectionn\u00E9"
@@ -38878,6 +38879,104 @@
       "RequiredSkill2": null,
       "RequiredSkill2Minimum": null,
       "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": false,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "6a61a847-0299-4558-8e1c-8f59336f9d88",
+      "Index": -1,
+      "Overrides": "47fcd84c-0686-d45d-28a1-1599e2bcd747",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "DivineShield",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 2813,
+        "EN": {
+          "M": "Divine Shield"
+        },
+        "FR": {
+          "M": "Bouclier divin"
+        },
+        "DE": {
+          "M": "G\u00F6ttliches Schild"
+        },
+        "IT": {
+          "M": "Scudo divino"
+        },
+        "ES": {
+          "M": "Escudo divino"
+        },
+        "PL": {
+          "M": "Boska Tarcza"
+        }
+      },
+      "Description": {
+        "Index": 2814,
+        "EN": {
+          "M": "Type of Feat: General\nPrerequisite: Turn Undead, Cha 13\u002B, Str 13\u002B, Power Attack.\nSpecifics: The character may spend one of his turn undead attempts to add his Charisma bonus to his dodge armor class for a number of rounds equal to 1 \u002B their Charisma bonus.\nUse: Selected.",
+          "F": "Type of Feat: General\nPrerequisite: Turn Undead, Cha 13\u002B, Str 13\u002B, Power Attack.\nSpecifics: The character may spend one of his turn undead attempts to add his Charisma bonus to his armor class for a number of rounds equal to the Charisma bonus.\nUse: Selected."
+        },
+        "FR": {
+          "M": "Type de don : G\u00E9n\u00E9ral\nConditions : Renvoi des morts-vivants, Cha 13\u002B, For 13\u002B, Attaque en puissance\nFonctionnement : le personnage peut sacrifier une de ses tentatives de renvoi des morts-vivants pour ajouter son modificateur de Charisme \u00E0 sa classe d\u0027armure pendant un nombre de rounds \u00E9gal \u00E0 son modificateur en Charisme.\nUtilisation : si s\u00E9lectionn\u00E9"
+        },
+        "DE": {
+          "M": "Art des Talents: Allgemein\nVoraussetzung: Untote vertreiben, CH 13\u002B, ST 13\u002B, Heftiger Angriff\nVorteil: Der Charakter kann einen Einsatz von Untote vertreiben aufgeben, um sich zu sch\u00FCtzen. Er erh\u00E4lt seinen Charismabonus auf RK f\u00FCr so viele Runden, wie er Charismabonus hat.\nGebrauch: Ausw\u00E4hlen"
+        },
+        "IT": {
+          "M": "Tipo di talento: generale\nPrerequisiti: scacciare non morti, car 13\u002B, for 13\u002B, attacco poderoso.\nDettagli: il personaggio pu\u00F2 usare uno dei suoi tentativi di scacciare i non morti per aggiungere il suo bonus di carisma alla sua classe armatura, per un numero di round pari al suo bonus di carisma.\nUso: selezionato."
+        },
+        "ES": {
+          "M": "Tipo de dote: General\nPrerrequisito: Expulsar muertos vivientes, Car 13\u002B, Fue 13\u002B y Ataque poderoso.\nDetalles: El personaje puede gastar uno de sus intentos de expulsar muertos vivientes para sumar el bonificador de Carisma a la Clase de Armadura durante un n\u00FAmero de asaltos igual a dicho bonificador.\nUso: Seleccionada."
+        },
+        "PL": {
+          "M": "Rodzaj atutu: Og\u00F3lny\nWymagania: Odp\u0119dzanie Nieumar\u0142ych, Cha 13\u002B, Si 13\u002B, Pot\u0119\u017Cny Atak.\nOpis: Posta\u0107 mo\u017Ce po\u015Bwi\u0119ci\u0107 jedn\u0105 ze swych pr\u00F3b odp\u0119dzania nieumar\u0142ych, aby doda\u0107 swoj\u0105 premi\u0119 z Charyzmy do swojej klasy pancerza, na liczb\u0119 rund odpowiadaj\u0105c\u0105 wysoko\u015Bci tej premii.\nU\u017Cycie: Po wybraniu."
+        }
+      },
+      "Icon": "ife_x1divshl",
+      "MinAttackBonus": null,
+      "MinStr": 13,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": 13,
+      "MinSpellLevel": null,
+      "RequiredFeat1": {
+        "ID": "113da58a-966a-2396-258d-94b302acfe93",
+        "Label": "Power Attack"
+      },
+      "RequiredFeat2": {
+        "ID": "45249059-9fac-7fd7-0dbf-caa68c48660b",
+        "Label": "Turn Undead"
+      },
+      "UseableByAllClasses": false,
+      "Category": null,
+      "OnUseEffect": {
+        "ID": "add8e904-2182-59c4-4559-f905084bec63",
+        "Label": "Divine Shield"
+      },
+      "SuccessorFeat": null,
+      "CRModifier": 1,
+      "UsesPerDay": null,
+      "MasterFeat": null,
+      "TargetSelf": true,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "Other",
       "IsHostile": false,
       "MinLevel": null,
       "MinLevelClass": null,

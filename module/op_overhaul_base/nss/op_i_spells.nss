@@ -586,10 +586,15 @@ object GetGeneratedAOE(int nAOE);
 // Fires the ITEM_PROPERTY_SPELL_SCRIPT file, after making sure the spell hook will be ignored using the SPELL_HOOK_IGNORE script parameter
 void FireItemPropertySpellScript();
 
-// Retrieves the correct DAMAGE_POWER_PLUS_FIVE constant based on the input integer. Used for EffectDamageReduction and some
-// item properties and other things.
+// Retrieves the correct DAMAGE_POWER_PLUS_* constant based on the input integer.
+// Used for EffectDamageReduction and some item properties and other things.
 // Returns DAMAGE_POWER_PLUS_ONE by default.
 int GetDamagePowerPlusValue(int nPower);
+
+// Retrieves the correct DAMAGE_BONUS_* constant based on the input integer.
+// Used for EffectDamageIncrease and related item properites.
+// Returns DAMAGE_BONUS_1 by default, and a maximum of DAMAGE_BONUS_20.
+int GetDamageBonusValue(int nBonus);
 
 // Gets the creature size modifier for grapple and bull rush
 // If oCreature is invalid it uses nCreatureSize
@@ -3981,8 +3986,8 @@ void FireItemPropertySpellScript()
     ExecuteScript(ITEM_PROPERTY_SPELL_SCRIPT);
 }
 
-// Retrieves the correct DAMAGE_POWER_PLUS_FIVE constant based on the input integer. Used for EffectDamageReduction and some
-// item properties and other things.
+// Retrieves the correct DAMAGE_POWER_PLUS_* constant based on the input integer.
+// Used for EffectDamageReduction and some item properties and other things.
 // Returns DAMAGE_POWER_PLUS_ONE by default.
 int GetDamagePowerPlusValue(int nPower)
 {
@@ -4010,6 +4015,39 @@ int GetDamagePowerPlusValue(int nPower)
         case 20: return DAMAGE_POWER_PLUS_TWENTY; break;
     }
     return DAMAGE_POWER_PLUS_ONE;
+}
+
+// Retrieves the correct DAMAGE_BONUS_* constant based on the input integer.
+// Used for EffectDamageIncrease and related item properites.
+// Returns DAMAGE_BONUS_1 by default, and a maximum of DAMAGE_BONUS_20.
+int GetDamageBonusValue(int nBonus)
+{
+    switch (nBonus)
+    {
+        case 1: return DAMAGE_BONUS_1; break;
+        case 2: return DAMAGE_BONUS_2; break;
+        case 3: return DAMAGE_BONUS_3; break;
+        case 4: return DAMAGE_BONUS_4; break;
+        case 5: return DAMAGE_BONUS_5; break;
+        case 6: return DAMAGE_BONUS_6; break;
+        case 7: return DAMAGE_BONUS_7; break;
+        case 8: return DAMAGE_BONUS_8; break;
+        case 9: return DAMAGE_BONUS_9; break;
+        case 10: return DAMAGE_BONUS_10; break;
+        case 11: return DAMAGE_BONUS_11; break;
+        case 12: return DAMAGE_BONUS_12; break;
+        case 13: return DAMAGE_BONUS_13; break;
+        case 14: return DAMAGE_BONUS_14; break;
+        case 15: return DAMAGE_BONUS_15; break;
+        case 16: return DAMAGE_BONUS_16; break;
+        case 17: return DAMAGE_BONUS_17; break;
+        case 18: return DAMAGE_BONUS_18; break;
+        case 19: return DAMAGE_BONUS_19; break;
+        case 20: return DAMAGE_BONUS_20; break;
+    }
+    // Max bonus for now
+    if (nBonus > 20) return DAMAGE_BONUS_20;
+    return DAMAGE_BONUS_1;
 }
 
 // Gets the creature size modifier for grapple and bull rush
