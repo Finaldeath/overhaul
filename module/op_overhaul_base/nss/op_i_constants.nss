@@ -213,9 +213,12 @@ const int SPELLABILITY_WILD_SHAPE_BADGER          = 405;
 const int SPELLABILITY_BARD_SONG                  = 411;
 
 const int SPELL_FEAT_BLINDING_SPEED               = 647;
+const int SPELLABILITY_DRAGON_DISCIPLE_BREATH     = 690;
 const int SPELL_EPIC_WARDING                      = 695;
 const int SPELLABILITY_CURE_CRITICAL_WOUNDS_OTHER = 567;
 const int SPELLABILITY_RESTOREATION_OTHER         = 568;
 const int SPELLABILITY_SUMMON_BAATEZU             = 701;
 const int SPELLABILITY_HARM_SELF                  = 759;
 const int SPELLABILITY_HELL_INFERNO               = 762;
+const int SPELLABILITY_DRAGON_BREATH_PRISMATIC    = 771;
+
