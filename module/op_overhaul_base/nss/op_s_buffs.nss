@@ -926,6 +926,8 @@ void main()
                         EffectLinkEffects(EffectSkillDecrease(SKILL_TUMBLE, 8),
                         EffectLinkEffects(EffectVisualEffect(VFX_DUR_IRON_SKIN),
                                           EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE))))))))))))))))))))))));
+            // Mark it not curable
+            eLink = EffectTagWithMetadata(eLink, TRUE);
         }
         break;
         case SPELL_AURAOFGLORY:

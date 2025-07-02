@@ -138,6 +138,9 @@ void main()
     // Make effect extraordinary
     eLink = ExtraordinaryEffect(eLink);
 
+    // Make it uncurable
+    eLink = EffectTagWithMetadata(eLink, TRUE);
+
     // Apply rage bonuses
     ApplyVisualEffectToObject(VFX_IMP_IMPROVE_ABILITY_SCORE, oTarget);
     ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);

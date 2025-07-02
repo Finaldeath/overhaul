@@ -17,9 +17,6 @@ const string JSON_FIELD_OVERHAUL = "overhaul";  // Int
 const int OVERHAUL_VERSION       = 1;           // Matching check for FIELD_OVERHAUL
 
 // Fields for the Json tag storage on item properties and run script effects
-const string JSON_FIELD_SPELLID             = "spellid";              // Int
-const string JSON_FIELD_CREATOR             = "creator";              // String (OID)
-const string JSON_FIELD_CASTERLEVEL         = "casterlevel";          // Int
 const string JSON_FIELD_SPELLSAVEDC         = "spellsavedc";          // Int
 const string JSON_FIELD_METAMAGIC           = "metamagic";            // Int
 const string JSON_FIELD_DISPELLABLE         = "dispellable";          // Int (Boolean)
@@ -28,6 +25,11 @@ const string JSON_FIELD_SPELLLEVEL          = "spelllevel";           // Int
 const string JSON_FIELD_SPONTANEOUS         = "spontaneous";          // Int (boolean)
 const string JSON_FIELD_ILLUSIONARY         = "illusionary";          // Int (boolean)
 const string JSON_FIELD_ILLUSIONARYSTRENGTH = "illusionarystrength";  // Int (20 = 20%)
+const string JSON_FIELD_CANNOT_BE_CURED     = "cannotbecured";        // Int (boolean)
+// Used only for item properties
+const string JSON_FIELD_SPELLID             = "spellid";              // Int
+const string JSON_FIELD_CREATOR             = "creator";              // String (OID)
+const string JSON_FIELD_CASTERLEVEL         = "casterlevel";          // Int
 
 // Retrieves if the given sJson string has any data, and if it has it is valid Overhaul data
 // Will NOT print any debug messages on error, just reutrns FALSE.
