@@ -36,7 +36,7 @@ void main()
     // Can we speak (ie sing)
     if (!GetCanSpeak(oCaster))
     {
-        FloatingTextStrRefOnCreature(85764, oCaster, FALSE); // * You can not use this feat while silenced *
+        FloatingTextStrRefOnCreature(STRREF_YOU_CAN_NOT_USE_THIS_FEAT_WHILE_SILENCED, oCaster, FALSE); // * You can not use this feat while silenced *
         return;
     }
 

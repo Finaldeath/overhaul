@@ -41,8 +41,7 @@ void main()
                             effect eDeaf    = EffectDeaf();
                             ApplyVisualEffectToObject(VFX_IMP_BLIND_DEAF_M, oTarget);
                             ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eDeaf, oTarget, fDuration);
-                            // 85388 Deafened!
-                            FloatingTextStrRefOnCreature(85388, oTarget, FALSE);
+                            FloatingTextStrRefOnCreature(STRREF_DEAFENED, oTarget, FALSE); // Deafened!
                         }
                     }
                 }

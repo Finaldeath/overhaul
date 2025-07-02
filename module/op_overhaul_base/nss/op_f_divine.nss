@@ -35,7 +35,7 @@ void main()
     // Needs Turn Undead
     if (!GetHasFeat(FEAT_TURN_UNDEAD, oCaster))
     {
-        FloatingTextStrRefOnCreature(40550, oCaster, FALSE); // This ability is tied to your turn undead ability, which has no more uses for today.
+        FloatingTextStrRefOnCreature(STRREF_THIS_ABILITY_IS_TIED_TO_YOUR_TURN_UNDEAD_ABILITY_WHICH_HAS_NO_MORE_USES_FOR_TODAY, oCaster, FALSE); // This ability is tied to your turn undead ability, which has no more uses for today.
     }
 
     effect eLink;
@@ -47,7 +47,7 @@ void main()
     //Check that if nDuration is not above 0, make it 1.
     if(fDuration <= 0.0)
     {
-        FloatingTextStrRefOnCreature(100967, oCaster, FALSE); // * Your charisma is too low to use this feat! *
+        FloatingTextStrRefOnCreature(STRREF_YOUR_CHARISMA_IS_TOO_LOW_TO_USE_THIS_FEAT, oCaster, FALSE); // * Your charisma is too low to use this feat! *
         return;
     }
 

@@ -41,11 +41,11 @@ void main()
                     // NB: This just specifies Door, so have to do a second one for placeables
                     if (GetObjectType(oTarget) == OBJECT_TYPE_DOOR)
                     {
-                        FloatingTextStrRefOnCreature(83887, oCaster);   // * Failure! - Door unaffected by magic *
+                        FloatingTextStrRefOnCreature(STRREF_FAILURE_DOOR_UNAFFECTED_BY_MAGIC, oCaster, FALSE);   // * Failure! - Door unaffected by magic *
                     }
                     else
                     {
-                        FloatingTextStringOnCreature("* Failure! - object unaffected by magic *", oCaster);
+                        FloatingTextStringOnCreature("* Failure! - object unaffected by magic *", oCaster, FALSE);
                     }
                 }
             }
@@ -53,17 +53,17 @@ void main()
             {
                 if (GetObjectType(oTarget) == OBJECT_TYPE_DOOR)
                 {
-                    FloatingTextStrRefOnCreature(83887, oCaster);   // * Failure! - Door unaffected by magic *
+                    FloatingTextStrRefOnCreature(STRREF_FAILURE_DOOR_UNAFFECTED_BY_MAGIC, oCaster);   // * Failure! - Door unaffected by magic *
                 }
                 else
                 {
-                    FloatingTextStringOnCreature("* Failure! - object unaffected by magic *", oCaster);
+                    FloatingTextStringOnCreature("* Failure! - object unaffected by magic *", oCaster, FALSE);
                 }
             }
         }
         else
         {
-            FloatingTextStringOnCreature("* Failure! - object not locked *", oCaster);
+            FloatingTextStringOnCreature("* Failure! - object not locked *", oCaster, FALSE);
         }
     }
 }

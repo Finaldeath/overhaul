@@ -56,7 +56,7 @@ void RecurringEffect(string sID)
             {
                 if (!GetImmortal(oTarget))
                 {
-                    FloatingTextStrRefOnCreature(100932, oTarget); // * Death through ability damage *
+                    FloatingTextStrRefOnCreature(STRREF_DEATH_THROUGH_ABILITY_DAMAGE, oTarget); // * Death through ability damage *
                     ApplyDeathDamageToObject(oTarget, VFX_IMP_DEATH_L);
                 }
             }
@@ -72,7 +72,7 @@ void main()
 
     if (GetHasSpellEffect(nSpellId, oTarget))
     {
-        FloatingTextStrRefOnCreature(100775, oCaster, FALSE); // Target already has this effect!
+        FloatingTextStrRefOnCreature(STRREF_TARGET_ALREADY_HAS_THIS_EFFECT, oCaster, FALSE); // Target already has this effect!
         return;
     }
 

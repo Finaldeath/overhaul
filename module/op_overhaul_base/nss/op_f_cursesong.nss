@@ -32,7 +32,7 @@ void main()
 
     if (!GetHasFeat(FEAT_BARD_SONGS, oCaster))
     {
-        FloatingTextStrRefOnCreature(85587, oCaster, FALSE); // This ability is tied to your bard song ability, which has no more uses for today.
+        FloatingTextStrRefOnCreature(STRREF_THIS_ABILITY_IS_TIED_TO_YOUR_BARD_SONG_ABILITY_WHICH_HAS_NO_MORE_USES_FOR_TODAY, oCaster, FALSE); // This ability is tied to your bard song ability, which has no more uses for today.
         return;
     }
     // Reduce Bard Song usage
@@ -41,7 +41,7 @@ void main()
     // Can we speak (ie sing)
     if (!GetCanSpeak(oCaster))
     {
-        FloatingTextStrRefOnCreature(85764, oCaster, FALSE); // * You can not use this feat while silenced *
+        FloatingTextStrRefOnCreature(STRREF_YOU_CAN_NOT_USE_THIS_FEAT_WHILE_SILENCED, oCaster, FALSE); // * You can not use this feat while silenced *
         return;
     }
 

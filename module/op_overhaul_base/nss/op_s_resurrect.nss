@@ -60,7 +60,7 @@ void main()
         int nStrRef = GetLocalInt(oTarget,"X2_L_RESURRECT_SPELL_MSG_RESREF");
         if (nStrRef == 0)
         {
-            nStrRef = 83861; // This object can not be brought back from the dead!
+            nStrRef = STRREF_THIS_OBJECT_CAN_NOT_BE_BROUGHT_BACK_FROM_THE_DEAD; // This object can not be brought back from the dead!
         }
         if (nStrRef != -1)
         {

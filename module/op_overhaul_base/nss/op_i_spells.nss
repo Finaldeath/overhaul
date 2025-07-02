@@ -1577,7 +1577,7 @@ void DoDispelMagic(object oTarget, int nCasterLevel, int nVis = VFX_INVALID, flo
             // Non-spell Persistent AOEs cannot be dispelled
             if (nOpposingCasterLevel == 0)
             {
-                Debug("Persistent AOE with no caster level, ignoring, this shouldn't happen.");
+                if (DEBUG_LEVEL >= ERROR) Debug("Persistent AOE with no caster level, ignoring, this shouldn't happen.", ERROR);
                 return;
             }
 
@@ -1586,15 +1586,15 @@ void DoDispelMagic(object oTarget, int nCasterLevel, int nVis = VFX_INVALID, flo
 
             if (d20() + nCasterLevel >= 10 + nOpposingCasterLevel)
             {
-                FloatingTextStrRefOnCreature(100929, oCaster);  // "AoE dispelled"
+                FloatingTextStrRefOnCreature(STRREF_AREA_OF_EFFECT_DISPELLED, oCaster, FALSE);  // * Area of effect dispelled  *
                 if (GetIsObjectValid(GetAreaOfEffectCreator(oTarget)))
-                    FloatingTextStrRefOnCreature(100929, GetAreaOfEffectCreator(oTarget));
+                    FloatingTextStrRefOnCreature(STRREF_AREA_OF_EFFECT_DISPELLED, GetAreaOfEffectCreator(oTarget));
                 DelayCommand(fDelay, ApplyVisualEffectAtLocation(VFX_FNF_LOS_NORMAL_10, GetLocation(oTarget)));
                 DestroyObject(oTarget, fDelay);
             }
             else
             {
-                FloatingTextStrRefOnCreature(100930, oCaster);  // "AoE not dispelled"
+                FloatingTextStrRefOnCreature(STRREF_AREA_OF_EFFECT_NOT_DISPELLED, oCaster, FALSE);  // * Area of effect not dispelled *
             }
         }
     }

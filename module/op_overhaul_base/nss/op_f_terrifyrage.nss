@@ -75,7 +75,7 @@ void main()
                                                                EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_FEAR),
                                                                                  EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)))));
 
-                            FloatingTextStrRefOnCreature(83583, oTarget); // * trembling with fear! *
+                            FloatingTextStrRefOnCreature(STRREF_TREMBLING_WITH_FEAR, oTarget); // * trembling with fear! *
 
                             float fDuration = GetDuration(d3(), ROUNDS);
 

@@ -980,7 +980,7 @@ void main()
             if (GetIsIncorporeal(oTarget) ||
                !GetIsRacialType(oTarget, RACIAL_TYPE_UNDEAD))
             {
-                FloatingTextStrRefOnCreature(85390, oCaster); // * Failure! - This spell only affects undead creatures *
+                FloatingTextStrRefOnCreature(STRREF_FAILURE_THIS_SPELL_ONLY_AFFECTS_UNDEAD_CREATURES, oCaster); // * Failure! - This spell only affects undead creatures *
                 return;
             }
 

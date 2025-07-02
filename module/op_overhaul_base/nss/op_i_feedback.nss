@@ -103,6 +103,77 @@ const int ATTACK_RESULT_DEVASTATING_CRITICAL = 10;
 
 const int STRREF_VERSUS = 7603; // "vs."
 
+// Basic feedback strings Bioware have thus are translated (albeit with several formatting errors, oh well!)
+// Some may be used by the engine in which case we can override them in some cases.
+const int STRREF_TARGET_GRAPPLED = 2478; // *Target grappled!*
+const int STRREF_FAILURE_NOT_ENOUGH_XP_TO_CREATE_THAT_ITEM = 3785; // * Failure - Not enough XP to create that item *
+const int STRREF_FAILURE_YOU_DO_NOT_POSSESS_ENOUGH_GOLD_TO_CREATE_THAT_ITEM = 3786; // * Failure! - You do not possess enough gold to create that item *
+const int STRREF_SUCCESS_ITEM_CREATED = 8502; // * Success - Item created! *
+const int STRREF_FAILURE_YOU_DO_NOT_HAVE_THE_NECESSARY_FEAT_TO_ENCHANT_THIS_ITEM = 40487; // * Failure  - You do not have the necessary feat to enchant this item *
+const int STRREF_THIS_ABILITY_IS_TIED_TO_YOUR_TURN_UNDEAD_ABILITY_WHICH_HAS_NO_MORE_USES_FOR_TODAY = 40550; // This ability is tied to your turn undead ability, which has no more uses for today.
+const int STRREF_RROOAARR = 58651; // *RROOAARR*
+const int STRREF_HOOOOOWL = 59426; // *HOOOOOWL*
+const int STRREF_FAILURE_POTIONS_CAN_NOT_HOLD_SPELLS_HIGHER_THAN_LEVEL_3 = 76416; // * Failure - potions can not hold spells higher than level 3 *
+const int STRREF_FAILURE_ITEM_CREATION_NOT_SUCCESSFUL = 76417; // * Failure - Item creation not successful! *
+const int STRREF_TARGET_EVADES_GRAPPLE_ATTEMPT = 83309; // *Target evades grapple attempt*
+const int STRREF_SPELL_FAILED_TARGET_MUST_BE_CREATURE_OR_AN_ITEM_THAT_CAN_BE_EQUIPPED = 83326; // * Spell failed - Target must be creature or an item that can be equipped *
+const int STRREF_FAILURE_YOU_CAN_NOT_USE_THIS_ITEM_WHILE_IN_COMBAT = 83352; // * Failure: You can not use this item while in combat! *
+const int STRREF_FAILURE_USE_ON_ARMOR_OR_HELMET_ONLY               = 83353; // * Failure: Use on armor or helmet only! *
+const int STRREF_FAILURE_ITEM_MUST_BE_IN_YOUR_POSESSION            = 83354; // * Failure: Item must be in your possession *
+const int STRREF_FAILURE_TARGET_MUST_BE_A_MELEE_WEAPON_OR_PROJECTILE = 83359; // * Failure: Target must be a melee weapon or projectile *
+const int STRREF_NOTHING_HAPPENS = 83360; // * Nothing happens *
+const int STRREF_SUCCESS_THE_WEAPON_IS_COATED_WITH_POISON = 83361; // * Success: The weapon is coated with poison *
+const int STRREF_FAILURE_WEAPON_ALREADY_POISONED = 83362; // * Failure: Weapon already poisoned *
+const int STRREF_FAILURE_TARGET_WEAPON_MUST_DO_SLASHING_OR_PIERCING_DAMAGE = 83367; // * Failure: Target weapon must do slashing or piercing damage *
+const int STRREF_FAILURE_DEXTERITY_CHECK_FAILED = 83368; // * Failure: Dexterity check failed *
+const int STRREF_AUTOMATIC_SUCCESS_USE_POISON_FEAT = 83369; // * Automatic Success: Use Poison feat *
+const int STRREF_USE_POISON_DEXTERITY_CHECK_SUCCESS = 83370; // * Use Poison: Dexterity check success! *
+const int STRREF_FAILURE_CAN_NOT_USE_ONE_ITEM_TO_ENCHANT_ANOTHER = 83373; // * Failure - Can not use one item to enchant another! *
+const int STRREF_ITEM_CREATION_FAILED_MISSING_REQUIRED_MATERIAL_COMPONENT = 83374; // * Item Creation Failed - Missing required required material component *
+const int STRREF_FAILURE_INVALID_TARGET = 83384; // * Failure - Invalid Target *
+const int STRREF_FAILURE_ITEM_ALREADY_HAS_THAT_PROPERTY = 83385; // * Failure - Item already has that property! *
+const int STRREF_SUCCESS_ITEM_HAS_BEEN_ENCHANTED_WITH_A_NEW_PROPERTY = 83386;// * Success - Item has been enchanted with a new property! *
+const int STRREF_FAILURE_THIS_WEAPON_IS_ALREADY_POISONOUS = 83407; // * Failure!  This weapon is already poisonous *
+const int STRREF_FAILURE_OBJECT_IS_NOT_A_VALID_TARGET_FOR_THIS_SPELL = 83453; // *Failure - Object is not a valid target for this spell *
+const int STRREF_WEAPON_ALREADY_ENCHANTED = 83566; // * Weapon already enchanted *
+const int STRREF_YOU_CAN_NOT_CONCENTRATE_ON_USING_THIS_ABILITY_EFFECTIVELY = 83576; // * You can not concentrate on using this ability effectively *
+const int STRREF_TREMBLING_WITH_FEAR = 83583; // * trembling with fear! *
+const int STRREF_WHIRLWIND_ATTACK = 83603; // * Whirlwind Attack *
+const int STRREF_IMPROVED_WHIRLWIND_ATTACK = 83604; // * Improved Whirlwind Attack *
+const int STRREF_ITEM_CREATION_FEATS_ARE_NOT_ENABLED_IN_THIS_MODULE = 83612; // * Item creation feats are not enabled in this module *
+const int STRREF_SPELL_FAILED_TARGET_MUST_BE_A_MELEE_WEAPON_OR_CREATURE_WITH_A_MELEE_WEAPON_EQUIPPED = 83615; // * Spell Failed - Target must be a melee weapon or creature with a melee weapon equipped *
+const int STRREF_INVALID_TARGET_SPELL_MUST_BE_CAST_ON_QUARTERSTAFF = 83620; // * Invalid Target - This spell must be cast on a quarterstaff *
+const int STRREF_INVALID_TARGET_THIS_SPELL_MUST_BE_CAST_ON_A_SLASHING_WEAPON = 83621; // * Invalid Target - This spell must be cast on a slashing weapon *
+const int STRREF_FAILURE_WANDS_CAN_NOT_HOLD_SPELLS_HIGHER_THAN_LEVEL_4 = 83623; // * Failure! - wands can not hold spells higher than level 4 *
+const int STRREF_THIS_OBJECT_CAN_NOT_BE_BROUGHT_BACK_FROM_THE_DEAD = 83861; // This object can not be brought back from the dead!
+const int STRREF_YOUR_ARMOR_WAS_TORN_AWAY = 84426; // * Your armor was torn away! *
+const int STRREF_YOUR_ARMOR_WAS_DESTROYED = 84428; // * Your armor was destroyed! *
+const int STRREF_YOUR_SHIELD_WAS_TORN_AWAY = 84429; // * Your shield was torn away! *
+const int STRREF_YOUR_SHIELD_WAS_DESTROYED = 84430; // * Your shield was destroyed! *
+const int STRREF_CONCENTRATION_CROKEN_SUMMONED_CREATURE_DISPELLED = 84481; // * Concentration broken, summoned creature dispelled *
+const int STRREF_TARGET_IMMUNE = 84525; // * Target immune *
+const int STRREF_GAZE_ATTACK_FAILED_BLINDED = 84530; // * Gaze attack failed - blinded! *
+const int STRREF_FAILURE_THIS_SPELL_IS_NOT_SUPPORTED_ON_WANDS_SCROLLS_OR_POTIONS = 84544; // * Failure - This spell is not supported on wands, scrolls or potions *
+const int STRREF_WILD_MAGIC_SURGE = 84829; // * wild magic surge *
+const int STRREF_DEAFENED = 85388; // Deafened!
+const int STRREF_FAILURE_THIS_SPELL_ONLY_AFFECTS_UNDEAD_CREATURES = 85390; // * Failure! - This spell only affects undead creatures *
+const int STRREF_THIS_ABILITY_IS_TIED_TO_YOUR_BARD_SONG_ABILITY_WHICH_HAS_NO_MORE_USES_FOR_TODAY = 85587; // This ability is tied to your bard song ability, which has no more uses for today.
+const int STRREF_IMMUNE_TO_UNDEAD_GRAFT = 85591; // * Immune to Undead Graft ! *
+const int STRREF_YOU_CAN_NOT_USE_THIS_FEAT_WHILE_SILENCED = 85764; // * You can not use this feat while silenced *
+const int STRREF_FAILURE_DOOR_UNAFFECTED_BY_MAGIC = 83887; // * Failure! - Door unaffected by magic *
+const int STRREF_TARGET_ALREADY_HAS_THIS_EFFECT = 100775; // Target already has this effect!
+const int STRREF_CHAOS_SHIELD_TRIGGERED = 100925; // * Chaos Shield Triggered *
+const int STRREF_AREA_OF_EFFECT_DISPELLED = 100929; // * Area of effect dispelled  *
+const int STRREF_AREA_OF_EFFECT_NOT_DISPELLED = 100930; // * Area of effect not dispelled *
+const int STRREF_DEATH_THROUGH_ABILITY_DAMAGE = 100932; // * Death through ability damage *
+const int STRREF_ONLY_MELEE_WEAPONS_CAN_BE_COATED_WITH_ALCHEMISTS_FIRE = 100944; // *  Only melee weapons can be coated with alchemist's fire! *
+const int STRREF_YOUR_CHARISMA_IS_TOO_LOW_TO_USE_THIS_FEAT = 100967; // * Your charisma is too low to use this feat! *
+const int STRREF_SUMMON_AND_MOUNT_PALADIN_HORSE_FAILED = 111959; // ** Summon and Mount Paladin Horse Failed! **
+const int STRREF_THAT_IS_NOT_PERMITTED_IN_THIS_AREA = 111960; // That is not permitted in this area.
+const int STRREF_YOU_CANNOT_MOUNT_THAT = 119983; // ** You cannot mount that! **
+
+
+
 // Gets the name of oObject if oSenser can see or hear them (and oObject is valid!), else returns "Someone"
 // Returns the name properly in these cases:
 // * oObject isn't a creature
