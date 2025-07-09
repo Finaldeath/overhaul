@@ -31,6 +31,8 @@
 
     Prismatic Breath
     TBC
+
+    Dragon Breath, Prismatic
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -42,9 +44,42 @@
 void ApplyColorSpray(float fDelay);
 void ApplyPrismaticSpray(float fDelay, int nMaxRoll = 8);
 
+const int PRISMATIC   = 1;
+const int COLOR_SPRAY = 2;
+
 void main()
 {
     if (DoSpellHook()) return;
+
+    int nType = PRISMATIC;
+    int bResistSpell = TRUE;
+
+    switch (nSpellId)
+    {
+        case SPELL_PRISMATIC_SPRAY:
+        {
+            nType = PRISMATIC;
+        }
+        break;
+        case SPELL_COLOR_SPRAY:
+        {
+            nType = PRISMATIC;
+        }
+        break;
+        case SPELLABILITY_DRAGON_BREATH_PRISMATIC:
+        {
+            nType = PRISMATIC;
+            nSpellSaveDC = GetHitDice(oCaster);
+            bResistSpell = FALSE;
+        }
+        break;
+        default:
+        {
+            Debug("[prismatic] No valid spell ID passed in: " + IntToString(nSpellId));
+            return;
+        }
+        break;
+    }
 
     json jArray = GetArrayOfTargets(SPELL_TARGET_STANDARDHOSTILE, SORT_METHOD_DISTANCE, OBJECT_TYPE_CREATURE);
     int nIndex;
@@ -56,16 +91,16 @@ void main()
 
         float fDelay = GetDistanceBetweenLocations(GetLocation(oTarget), GetLocation(oCaster)) / 20.0;
 
-        if (!DoResistSpell(oTarget, oCaster, fDelay))
+        if (!bResistSpell || !DoResistSpell(oTarget, oCaster, fDelay))
         {
-            switch (nSpellId)
+            switch (nType)
             {
-                case SPELL_PRISMATIC_SPRAY:
+                case PRISMATIC:
                 {
                     ApplyPrismaticSpray(fDelay);
                 }
                 break;
-                case SPELL_COLOR_SPRAY:
+                case COLOR_SPRAY:
                 {
                     ApplyColorSpray(fDelay);
                 }

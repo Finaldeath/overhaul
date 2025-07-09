@@ -114,6 +114,12 @@ const int SAVE_NOT_DONE_YET  = 0;
 const int SAVE_RESULT_FAILED = 1;
 const int SAVE_RESULT_PASSED = 2;
 
+const int SPELLABILITY_DC_VERY_EASY   = 0;
+const int SPELLABILITY_DC_EASY        = 1;
+const int SPELLABILITY_DC_EASY_MEDIUM = 2;
+const int SPELLABILITY_DC_NORMAL      = 3;
+const int SPELLABILITY_DC_HARD        = 4;
+
 // Debug the spell and variables
 int DebugSpellVariables();
 
@@ -624,6 +630,18 @@ int DoBullRushCheck(object oDefender, object oBullRusher, int nBullRusherStrengt
 // vs. oTarget: AC
 // Returns 0 on miss, 1 on hit or 2 on critical hit
 int DoAttackRoll(object oTarget, object oAttacker, int nAttackerBAB, int nAttackerAbilityModifier, int nAttackerMiscModifier, int nAttackerSize = CREATURE_SIZE_MEDIUM);
+
+// Used for the scaling DC of various monster abilities.
+// If they are polymorphed it will check for shifter / druid levels.
+// Parameters:
+// oCaster       - The Shifter. If there are no shifter levels it will default to their HD.
+// nDCConst      - SPELLABILITY_DC_VERY_EASY   = 10 + levels / 3
+//                 SPELLABILITY_DC_EASY        = 10 + levels / 2
+//                 SPELLABILITY_DC_EASY_MEDIUM = 12 + levels / 2
+//                 SPELLABILITY_DC_NORMAL      = 15 + levels / 2
+//                 SPELLABILITY_DC_HARD        = 10 + levels
+// bAddDruidLevels - Take druid levels into account if a polymorphed ability
+int GetSpellabilitySaveDC(object oCaster, int nDCConst = SPELLABILITY_DC_NORMAL, int bAddDruidLevels = FALSE);
 
 // These global variables are used in most spell scripts and are initialised here to be consistent
 // NB: You can't reuse these variables in the very functions in this list, so we pass them in.
@@ -3454,6 +3472,23 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, 
         {
             vOrigin = GetPosition(oCaster);
         }
+        // Cones etc. can be odd if we target "ourselves" so we move it a little
+        // This fix is from the x2_s1_wyrmbreath script
+        if (lTarget == GetLocation(oCaster))
+        {
+            Debug("[GetArrayOfTargets] Redirecting target position due to targeting self for cone/cylinder.", INFO);
+            // Since the target and origin are the same, we have to determine the
+            // direction of the spell from the facing of OBJECT_SELF (which is more
+            // intuitive than defaulting to East everytime).
+
+            // In order to use the direction that OBJECT_SELF is facing, we have to
+            // instead we pick a point slightly in front of OBJECT_SELF as the target.
+            vector vFinalPosition;
+            vector lTargetPosition = GetPositionFromLocation(lTarget);
+            vFinalPosition.x = lTargetPosition.x +  cos(GetFacing(oCaster));
+            vFinalPosition.y = lTargetPosition.y +  sin(GetFacing(oCaster));
+            lTarget = Location(GetAreaFromLocation(lTarget), vFinalPosition, GetFacingFromLocation(lTarget));
+        }
     }
 
     // Error checking - we log these might be mistakes in spell scripts
@@ -4197,4 +4232,58 @@ int DoAttackRoll(object oTarget, object oAttacker, int nAttackerBAB, int nAttack
     return nResult;
 }
 
+// Used for the scaling DC of various monster abilities.
+// If they are polymorphed it will check for shifter / druid levels.
+// Parameters:
+// oCaster       - The Shifter. If there are no shifter levels it will default to their HD.
+// nDCConst      - SPELLABILITY_DC_VERY_EASY   = 10 + levels / 3
+//                 SPELLABILITY_DC_EASY        = 10 + levels / 2
+//                 SPELLABILITY_DC_EASY_MEDIUM = 12 + levels / 2
+//                 SPELLABILITY_DC_NORMAL      = 15 + levels / 2
+//                 SPELLABILITY_DC_HARD        = 10 + levels
+// bAddDruidLevels - Take druid levels into account if a polymorphed ability
+int GetSpellabilitySaveDC(object oCaster, int nDCConst = SPELLABILITY_DC_NORMAL, int bAddDruidLevels = FALSE)
+{
+    int nLevel = 0;
+
+    // If we are polymorphed we assume it's a druid or shifter ability.
+    if (GetIsPolymorphed(oCaster))
+    {
+        // Calculate the overall level of the shifter used for DC determination
+        nLevel = GetLevelByClass(CLASS_TYPE_SHIFTER, oCaster);
+
+        if (bAddDruidLevels)
+        {
+            nLevel += GetLevelByClass(CLASS_TYPE_DRUID, oCaster);
+        }
+    }
+    // Worst case we have a polymorphed ability with no shifter involved.
+    // Maybe we will whitelist abilities at some stage to be shifter/not shifter
+    if (nLevel == 0)
+    {
+        nLevel = GetHitDice(oCaster);
+    }
+
+    // Calculate the DC based on the requested DC constant
+    int nDC;
+    switch(nDCConst)
+    {
+        case SPELLABILITY_DC_VERY_EASY:
+            nDC = 10 + nLevel/3;
+        break;
+        case SPELLABILITY_DC_EASY:
+            nDC = 10 + nLevel/2;
+        break;
+        case SPELLABILITY_DC_EASY_MEDIUM:
+            nDC = 12 + nLevel/2;
+        break;
+        case SPELLABILITY_DC_NORMAL:
+            nDC = 15 + nLevel/2;
+        break;
+        case SPELLABILITY_DC_HARD:
+            nDC = 10 + nLevel;
+        break;
+    }
+    return nDC;
+}
 
