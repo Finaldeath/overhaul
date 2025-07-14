@@ -11,6 +11,9 @@
     Flesh to Stone
     Single target, the effect is permanent (and magical) or non-permanent if target
     is a PC and it's under hardcore rules.
+
+    Breath, Petrify
+    17DC AOE one.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -31,6 +34,10 @@ void main()
     // If set to FALSE it doesn't do resist spell checks.
     int bMagical = TRUE;
 
+    // If set to TRUE will be instantly applied (ie those spells with projectiles)
+    int bInstant = FALSE;
+
+
     // Can change to selective hostile
     int nTargetType = SPELL_TARGET_STANDARDHOSTILE;
 
@@ -39,6 +46,31 @@ void main()
         case SPELL_FLESH_TO_STONE:
         {
             bMagical = TRUE;
+            bInstant = TRUE;
+        }
+        break;
+        case SPELLABILITY_BREATH_PETRIFY:
+        {
+            bMagical = FALSE;
+
+            nSpellSaveDC = 17;
+            nCasterLevel = GetHitDice(oCaster);
+        }
+        break;
+        case SPELLABILITY_GAZE_PETRIFY:
+        {
+            bMagical = FALSE;
+
+            nSpellSaveDC = 13;
+            nCasterLevel = GetHitDice(oCaster);
+        }
+        break;
+        case SPELLABILITY_TOUCH_PETRIFY:
+        {
+            bMagical = FALSE;
+
+            nSpellSaveDC = 15;
+            nCasterLevel = GetHitDice(oCaster);
         }
         break;
         default:
@@ -59,18 +91,21 @@ void main()
 
         SignalSpellCastAt();
 
-        float fDelay = GetDistanceBetweenLocations(GetLocation(oTarget), lTarget) / 20.0;
+        float fDelay = 0.0;
+
+        if (!bInstant) fDelay = GetDistanceBetweenLocations(GetLocation(oTarget), lTarget) / 20.0;
 
         if (!GetIsImmuneToPetrificationWithFeedback(oTarget))
         {
-            if (bMagical == FALSE || !DoResistSpell(oTarget, oCaster, fDelay))
+            // Check for spell immunity still even if bMagical is FALSE since this is what Bioware intended
+            if (!DoResistSpell(oTarget, oCaster, fDelay, bMagical, TRUE, bMagical))
             {
                 if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_FORT, nSpellSaveDC, SAVING_THROW_TYPE_NONE, fDelay))
                 {
                     if (nVis != VFX_INVALID) DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
 
-                    // The duration is permanent against NPCs but only temporary against PCs
-                    if (GetIsPC(oTarget))
+                    // The duration is permanent against NPCs but only temporary against PCs or PCs allies
+                    if (GetIsPC(oTarget) || GetIsPC(GetMaster(oTarget)))
                     {
                         // Calculate Duration based on difficulty settings
                         switch (GetGameDifficulty())
@@ -88,7 +123,7 @@ void main()
                             {
                                 // Under hardcore rules or higher, this is an instant death
                                 ApplySpellEffectToObject(DURATION_TYPE_PERMANENT, eLink, oTarget);
-                                DelayCommand(2.75, PopUpDeathGUIPanel(oTarget, FALSE , TRUE, 40579)); // "You have been turned to stone."
+                                DelayCommand(2.75, PopUpDeathGUIPanel(oTarget, FALSE , TRUE, STRREF_YOU_HAVE_BEEN_TURNED_TO_STONE)); // "You have been turned to stone."
                             }
                             break;
                         }

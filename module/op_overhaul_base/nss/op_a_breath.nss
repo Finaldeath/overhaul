@@ -26,7 +26,11 @@
         Gas
         Lightning
 
+    Ones not here:
+
     Prismatic is in op_s_prismatic
+
+    Breath, Petrify is in op_s_petrify
 
     There's a lot of stuff copied from the base scripts since the damage scaling
     and DCs are not consistent. Fixed a few inconsistencies as well.
