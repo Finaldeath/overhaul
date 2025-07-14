@@ -51,6 +51,11 @@
 
     The curse cannot be dispelled, but it can be removed with a Break
     Enchantment, Remove Curse, or Greater Restoration spell.
+
+    Monster abilities:
+
+    Mephit, Salt Breath
+    Mephit, Steam Breath
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -213,6 +218,44 @@ void main()
             eLink = SupernaturalEffect(eLink);
         }
         break;
+        case SPELLABILITY_MEPHIT_SALT_BREATH:
+        {
+            nTouchAttackType = TOUCH_RANGED;
+            nDice = 1;
+            nDiceSize = 4;
+            nDamageType = DAMAGE_TYPE_ACID;
+            nVis = VFX_IMP_ACID_S;
+            nSavingThrow = SAVING_THROW_REFLEX;
+            nSavingThrowType = SAVING_THROW_TYPE_ACID;
+
+            bApplyEffect = TRUE;
+            fDuration = GetDuration(3, ROUNDS);
+
+            eLink = EffectLinkEffects(EffectACDecrease(2),
+                    EffectLinkEffects(EffectAttackDecrease(2),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            eLink = ExtraordinaryEffect(eLink);
+        }
+        break;
+        case SPELLABILITY_MEPHIT_STEAM_BREATH:
+        {
+            nTouchAttackType = TOUCH_RANGED;
+            nDice = 1;
+            nDiceSize = 4;
+            nDamageType = DAMAGE_TYPE_FIRE;
+            nVis = VFX_IMP_FLAME_S;
+            nSavingThrow = SAVING_THROW_REFLEX;
+            nSavingThrowType = SAVING_THROW_TYPE_FIRE;
+
+            bApplyEffect = TRUE;
+            fDuration = GetDuration(3, ROUNDS);
+
+            eLink = EffectLinkEffects(EffectACDecrease(4),
+                    EffectLinkEffects(EffectAttackDecrease(2),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            eLink = ExtraordinaryEffect(eLink);
+        }
+        break;
         default:
             Debug("[op_s_touchattack] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
@@ -274,9 +317,9 @@ void main()
                             }
                         }
                     }
-                    if (bApplyEffect && !bSaved && bNotAppliedVFX)
+                    if (bApplyEffect && !bSaved)
                     {
-                        ApplyVisualEffectToObject(nVis, oTarget);
+                        if (bNotAppliedVFX) ApplyVisualEffectToObject(nVis, oTarget);
                         ApplySpellEffectToObject(nDurationType, eLink, oTarget, fDuration);
                     }
                 }

@@ -26,6 +26,10 @@
         Gas
         Lightning
 
+    Breaths:
+        Hell Hound Fire Breath (added Reflex save and scaling damage)
+
+
     Ones not here:
 
     Prismatic is in op_s_prismatic
@@ -42,8 +46,6 @@
 
 #include "op_i_spells"
 
-void PlayDragonBattleCry();
-
 void main()
 {
     if (DoSpellHook()) return;
@@ -54,7 +56,6 @@ void main()
     int nImpact = VFX_INVALID;
     int nVis = VFX_INVALID;
     int bDragonBreath = FALSE;
-    int bApplyLink = FALSE;
     int nAppliedEffect = -1;
     int nImmunity = -1;
     int nDuration;
@@ -1013,6 +1014,26 @@ void main()
             {
                 nDiceNum = (GetHitDice(oCaster)/3) + 1;
             }
+        }
+        break;
+        case SPELLABILITY_HELL_HOUND_FIREBREATH:
+        {
+            nDamageType      = DAMAGE_TYPE_FIRE;
+            nSavingThrow     = SAVING_THROW_REFLEX;
+            nSavingThrowType = SAVING_THROW_TYPE_FIRE;
+            nVis             = VFX_IMP_FLAME_S;
+
+            // This used to do:
+            // 1d4 + 1 damage with no save
+            // Now it does:
+            // Scaling damage (1 + 1/3 HD d4, +1 / HD fire damage), with normal reflex save DC
+            // Should effectively be the same at levels 1-2 and more from level 3+
+            nSpellSaveDC = GetSpellabilitySaveDC(oCaster, SPELLABILITY_DC_NORMAL);
+
+            // Use the HD of the creature to determine damage and save DC
+            nDiceSize = 4;
+            nDiceNum = (GetHitDice(oCaster)/3) + 1;
+            nDiceBonus = GetHitDice(oCaster);
         }
         break;
         default:
