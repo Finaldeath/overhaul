@@ -39,10 +39,10 @@ void main()
     }
 
     // Flags for bonus turning types
-    int bElemental = GetHasFeat(FEAT_AIR_DOMAIN_POWER, oCaster) + GetHasFeat(FEAT_EARTH_DOMAIN_POWER, oCaster) + GetHasFeat(FEAT_FIRE_DOMAIN_POWER, oCaster) + GetHasFeat(FEAT_WATER_DOMAIN_POWER, oCaster);
-    int bVermin = GetHasFeat(FEAT_PLANT_DOMAIN_POWER, oCaster);
-    int bConstructs = GetHasFeat(FEAT_DESTRUCTION_DOMAIN_POWER, oCaster);
-    int bGoodOrEvilDomain = GetHasFeat(FEAT_GOOD_DOMAIN_POWER, oCaster) + GetHasFeat(FEAT_EVIL_DOMAIN_POWER, oCaster);
+    int bElemental = GetHasDomain(oCaster, DOMAIN_AIR) + GetHasDomain(oCaster, DOMAIN_EARTH) + GetHasDomain(oCaster, DOMAIN_FIRE) + GetHasDomain(oCaster, DOMAIN_WATER);
+    int bVermin = GetHasDomain(oCaster, DOMAIN_PLANT);
+    int bConstructs = GetHasDomain(oCaster, DOMAIN_DESTRUCTION);
+    int bGoodOrEvilDomain = GetHasDomain(oCaster, DOMAIN_GOOD) + GetHasDomain(oCaster, DOMAIN_EVIL);
     int bPlanar = GetHasFeat(FEAT_EPIC_PLANAR_TURNING, oCaster);
 
     // Flag for improved turning ability

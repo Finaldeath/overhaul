@@ -52,6 +52,7 @@
 #include "utl_i_item"
 #include "utl_i_maths"
 #include "utl_i_strings"
+#include "utl_i_creature"
 
 // Parameters you can set before executing a spell script (eg if not really firing one, or some other cases like
 // one spell script firing another
@@ -443,9 +444,6 @@ int GetHasLegs(object oCreature);
 
 // Returns TRUE if the target has arms (ala Called Shot: Arms can target them)
 int GetHasArms(object oCreature);
-
-// Gets if either domain matches the given domain on the given class
-int GetClassHasDomain(object oCreature, int nClass, int nDomain);
 
 // Returns TRUE if oObject has at least one effect matching the parameters.
 // * nEffectType - Can be EFFECT_TYPE_ALL to be ignored
@@ -3182,17 +3180,6 @@ int GetHasArms(object oCreature)
     if (nAppearance != APPEARANCE_TYPE_INVALID)
     {
         return StringToInt(Get2DAString("appearance", "HASARMS", nAppearance));
-    }
-    return FALSE;
-}
-
-// Gets if either domain matches the given domain on the given class
-int GetClassHasDomain(object oCreature, int nClass, int nDomain)
-{
-    if (GetDomain(oCreature, 1, nClass) == nDomain ||
-        GetDomain(oCreature, 2, nClass) == nDomain)
-    {
-        return TRUE;
     }
     return FALSE;
 }

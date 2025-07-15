@@ -43,9 +43,12 @@ void main()
 {
     if (DoSpellHook()) return;
 
-    // Apply Healing Domain metamagic (adds Empower) if cast by a Cleric
-    if (nCasterClass == CLASS_TYPE_CLERIC &&
-        GetClassHasDomain(oCaster, CLASS_TYPE_CLERIC, DOMAIN_HEALING))
+    // Apply Healing Domain metamagic (adds Empower) if cast by a class such as a
+    // Cleric (not say using an item, spellability, feat, etc.)
+    if (!GetIsObjectValid(oCastItem) &&
+         nFeatId == FEAT_INVALID &&
+         nCasterClass != CLASS_TYPE_INVALID &&
+         GetHasDomain(oCaster, DOMAIN_HEALING, nCasterClass))
     {
         nMetaMagic = nMetaMagic | METAMAGIC_EMPOWER;
     }

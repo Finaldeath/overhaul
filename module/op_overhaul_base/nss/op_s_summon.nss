@@ -370,6 +370,30 @@ void main()
             }
         }
         break;
+        case SPELLABILITY_NEGATIVE_PLANE_AVATAR: // Death Domain
+        {
+            nCasterLevel = GetLevelByClass(CLASS_TYPE_CLERIC, oCaster);
+            fDuration = GetDuration(24, HOURS);
+
+            // Set the summoned undead to the appropriate template based on the caster level
+            if (nCasterLevel <= 7)
+            {
+                eSummon = EffectSummonCreature("NW_S_SHADOW",VFX_FNF_SUMMON_UNDEAD);
+            }
+            else if ((nCasterLevel >= 8) && (nCasterLevel <= 10))
+            {
+                eSummon = EffectSummonCreature("NW_S_SHADMASTIF",VFX_FNF_SUMMON_UNDEAD);
+            }
+            else if ((nCasterLevel >= 11) && (nCasterLevel <= 14))
+            {
+                eSummon = EffectSummonCreature("NW_S_SHFIEND",VFX_FNF_SUMMON_UNDEAD); // change later
+            }
+            else if ((nCasterLevel >= 15))
+            {
+                eSummon = EffectSummonCreature("NW_S_SHADLORD",VFX_FNF_SUMMON_UNDEAD);
+            }
+        }
+        break;
         default:
         {
             Debug("[op_s_summon] No valid spell ID passed in: " + IntToString(nSpellId));

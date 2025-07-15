@@ -207,6 +207,28 @@
     Negative Energy Protection
     The target creature is rendered immune to all ability damage and level
     drains and gains 100% increased immunity to negative damage.
+
+    Divine Protection
+    Available to Clerics of the Protection Domain. The cleric is able to cast
+    an improved form of Sanctuary that sets the save DC at 10 + Chr Modifier +
+    Clerical Level. The effect has a duration of 1 round per Cleric level +
+    Charisma modifier.
+
+    Divine Strength
+    Available to Clerics of the Strength Domain. The cleric gains a bonus to
+    Strength equal to 2 + 1 per 3 class levels. This effect has a duration of
+    5 turns + the cleric's Charisma modifier.
+
+    Divine Trickery
+    Available to Clerics of the Trickery Domain. Bonus to Hide, Persuade,
+    Search, Disable Trap, Move Silently, Open Lock, Pick Pockets, and Hide
+    checks equal to the 1 per 2 levels. This effect lasts for 5 turns + the
+    cleric's Charisma modifier.
+
+    Battle Mastery
+    The clerics gains a bonus of 1 + 1 per 5 levels to Dexterity, Constitution,
+    Attack Rolls and Damage. As well the cleric receives double this value as
+    damage reduction. The effect will last for 5 rounds + charisma modifer.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -1009,6 +1031,62 @@ void main()
                         EffectLinkEffects(EffectImmunity(IMMUNITY_TYPE_ABILITY_DECREASE),
                         EffectLinkEffects(EffectImmunity(IMMUNITY_TYPE_NEGATIVE_LEVEL),
                                           EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE))));
+        }
+        break;
+        case SPELLABILITY_DIVINE_PROTECTION:
+        {
+            nSpellSaveDC = 10 + GetAbilityModifier(ABILITY_CHARISMA, oCaster) + GetLevelByClass(CLASS_TYPE_CLERIC, oCaster);
+            nCasterLevel = GetAbilityModifier(ABILITY_CHARISMA, oCaster) + GetLevelByClass(CLASS_TYPE_CLERIC, oCaster);
+            fDuration    = GetDuration(nCasterLevel, ROUNDS);
+            nVis         = VFX_IMP_HOLY_AID;
+            eLink        = EffectLinkEffects(EffectSanctuary(nSpellSaveDC),
+                           EffectLinkEffects(EffectVisualEffect(VFX_DUR_SANCTUARY),
+                                             EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+        }
+        break;
+        case SPELLABILITY_DIVINE_STRENGTH:
+        {
+            nCasterLevel = GetLevelByClass(CLASS_TYPE_CLERIC, oCaster);
+            fDuration    = GetDuration(5 + GetAbilityModifier(ABILITY_CHARISMA, oCaster), ROUNDS);
+            nVis         = VFX_IMP_HOLY_AID;
+            int nBonus   = (nCasterLevel/3) + 2;
+            eLink        = EffectLinkEffects(EffectAbilityIncrease(ABILITY_STRENGTH, nBonus),
+                                             EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+        }
+        break;
+        case SPELLABILITY_DIVINE_TRICKERY:
+        {
+            nCasterLevel = GetLevelByClass(CLASS_TYPE_CLERIC, oCaster);
+            fDuration    = GetDuration(5 + GetAbilityModifier(ABILITY_CHARISMA, oCaster), ROUNDS);
+            nVis         = VFX_IMP_MAGICAL_VISION;
+            int nBonus   = max(1, nCasterLevel/2);
+            eLink        = EffectLinkEffects(EffectSkillIncrease(SKILL_SEARCH, nBonus),
+                           EffectLinkEffects(EffectSkillIncrease(SKILL_DISABLE_TRAP, nBonus),
+                           EffectLinkEffects(EffectSkillIncrease(SKILL_MOVE_SILENTLY, nBonus),
+                           EffectLinkEffects(EffectSkillIncrease(SKILL_OPEN_LOCK, nBonus),
+                           EffectLinkEffects(EffectSkillIncrease(SKILL_PICK_POCKET, nBonus),
+                           EffectLinkEffects(EffectSkillIncrease(SKILL_HIDE, nBonus),
+                           EffectLinkEffects(EffectSkillIncrease(SKILL_PERSUADE, nBonus),
+                                             EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE))))))));
+        }
+        break;
+        case SPELLABILITY_BATTLE_MASTERY:
+        {
+            nCasterLevel = GetLevelByClass(CLASS_TYPE_CLERIC, oCaster);
+            fDuration    = GetDuration(5 + GetAbilityModifier(ABILITY_CHARISMA, oCaster), ROUNDS);
+            nVis         = VFX_IMP_HOLY_AID;
+            int nBonus   = 1 + (nCasterLevel/5);
+            // The original script adds +10 for "Epic bonus". Hmm. Not going to
+            // include seems silly when the others don't and it's not documented.
+            int nDamageBonus = nBonus;
+            int nDamageReductionBonus = nBonus * 2;
+
+            eLink        = EffectLinkEffects(EffectAttackIncrease(nBonus),
+                           EffectLinkEffects(EffectAbilityIncrease(ABILITY_CONSTITUTION, nBonus),
+                           EffectLinkEffects(EffectAbilityIncrease(ABILITY_DEXTERITY, nBonus),
+                           EffectLinkEffects(EffectDamageIncrease(nDamageBonus, DAMAGE_TYPE_BLUDGEONING | DAMAGE_TYPE_SLASHING | DAMAGE_TYPE_PIERCING),
+                           EffectLinkEffects(EffectDamageReduction(nDamageReductionBonus, DAMAGE_POWER_PLUS_FIVE),
+                                             EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE))))));
         }
         break;
         default:
