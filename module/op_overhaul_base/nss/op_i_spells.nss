@@ -53,6 +53,7 @@
 #include "utl_i_maths"
 #include "utl_i_strings"
 #include "utl_i_creature"
+#include "nw_inc_gff"
 
 // Parameters you can set before executing a spell script (eg if not really firing one, or some other cases like
 // one spell script firing another
@@ -640,6 +641,11 @@ int DoAttackRoll(object oTarget, object oAttacker, int nAttackerBAB, int nAttack
 //                 SPELLABILITY_DC_HARD        = 10 + levels
 // bAddDruidLevels - Take druid levels into account if a polymorphed ability
 int GetSpellabilitySaveDC(object oCaster, int nDCConst = SPELLABILITY_DC_NORMAL, int bAddDruidLevels = FALSE);
+
+// Clones oCreature and returns the resulting clone. It will also fix it so it isn't considered a PC, and clears the inventory.
+// Equipped items are marked to not be droppable as well just in case.
+// * fMaxHPPercent - The percentage of HP to have the clone set to
+object CreateClone(object oCreature, location lSpawn, float fMaxHPPercent = 100.0);
 
 // These global variables are used in most spell scripts and are initialised here to be consistent
 // NB: You can't reuse these variables in the very functions in this list, so we pass them in.
@@ -4274,3 +4280,66 @@ int GetSpellabilitySaveDC(object oCaster, int nDCConst = SPELLABILITY_DC_NORMAL,
     return nDC;
 }
 
+// Clones oCreature and returns the resulting clone. It will also fix it so it isn't considered a PC, and clears the inventory.
+// Equipped items are marked to not be droppable as well just in case.
+// * fMaxHPPercent - The percentage of HP to have the clone set to
+object CreateClone(object oCreature, location lSpawn, float fMaxHPPercent = 100.0)
+{
+    json jClone = ObjectToJson(oTarget, FALSE);
+
+    // Not a PC!
+    jClone = GffReplaceByte(jClone, "IsPC", 0);
+
+    // Cannot be disarmed
+    jClone = GffReplaceByte(jClone, "Disarmable", 0);
+
+    // Delete inventory
+    jClone = JsonObjectDel(jClone, "ItemList");
+
+    // Set that held items cannot be dropped
+
+    // Set Max HP
+    int nHP = JsonGetInt(GffGetByte(jClone, "MaxHitPoints"));
+
+    if (fMaxHPPercent < 100.0) nHP = FloatToInt((IntToFloat(nHP) * fMaxHPPercent) / 100.0);
+
+    jClone = GffReplaceByte(jClone, "MaxHitPoints", nHP);
+    jClone = GffReplaceByte(jClone, "CurrentHitPoints", nHP);
+    jClone = GffReplaceByte(jClone, "HitPoints", nHP);
+
+    // Set scripts
+    jClone = GffReplaceResRef(jClone, "ScriptHeartbeat", "nw_ch_ac1");
+    jClone = GffReplaceResRef(jClone, "ScriptUserDefine", "nw_ch_acd");
+    jClone = GffReplaceResRef(jClone, "ScriptSpellAt", "nw_ch_acb");
+    jClone = GffReplaceResRef(jClone, "ScriptDisturbed", "nw_ch_ac8");
+    jClone = GffReplaceResRef(jClone, "ScriptDamaged", "nw_ch_ac5");
+    jClone = GffReplaceResRef(jClone, "ScriptRested", "nw_ch_aca");
+    jClone = GffReplaceResRef(jClone, "ScriptEndRound", "nw_ch_ac3");
+    jClone = GffReplaceResRef(jClone, "ScriptSpawn", "nw_ch_ac9");
+    jClone = GffReplaceResRef(jClone, "ScriptDeath", "nw_ch_ac7");
+    jClone = GffReplaceResRef(jClone, "ScriptOnNotice", "nw_ch_ac2");
+    jClone = GffReplaceResRef(jClone, "ScriptDialogue", "nw_ch_ac4");
+    jClone = GffReplaceResRef(jClone, "ScriptAttacked", "nw_ch_ac5");
+    jClone = GffReplaceResRef(jClone, "ScriptOnBlocked", "nw_ch_ace");
+
+    // Set no conversation
+    jClone = GffReplaceResRef(jClone, "Conversation", "");
+
+    // Set faction to standard hostile
+    jClone = GffReplaceWord(jClone, "FactionID", STANDARD_FACTION_HOSTILE);
+
+    object oClone = JsonToObject(jClone, lTarget);
+
+    // Inventory slots shouldn't be droppable and make cursed just in case
+    // Move this to Json once we have some code for it.
+    int i;
+    for (i = 0; i < NUM_INVENTORY_SLOTS; i++)
+    {
+        object oItem = GetItemInSlot(i, oClone);
+        SetItemCursedFlag(oItem, TRUE);
+        SetDroppableFlag(oItem, FALSE);
+    }
+
+    // Return the clone for further changes in the script running it
+    return oClone;
+}

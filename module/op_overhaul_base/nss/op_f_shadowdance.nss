@@ -15,7 +15,6 @@
 //:://////////////////////////////////////////////
 
 #include "op_i_spells"
-#include "utl_i_creature"
 
 effect GetShadowEvadeEffect(int nLevel);
 
@@ -66,12 +65,9 @@ void main()
             SignalSpellCastAt();
 
             float fDuration = GetDuration(nCasterLevel * 3, ROUNDS);
-
-            // Simple clone for now
-            object oClone = CreateDoppleganger(oCaster, GetLocation(oCaster), STANDARD_FACTION_HOSTILE);
-
-            // Apply HP and get bonus effect
+            // Apply bonus effect
             effect eBonus;
+            float fHP = 100.0;
             if (GetHasFeat(FEAT_EPIC_EPIC_SHADOWLORD, oCaster))
             {
                 // Bonuses from Shadow Evade. For now fake it.
@@ -85,21 +81,24 @@ void main()
                 if (nCasterLevel <= 5)
                 {
                     nConceal = 10;
-                    SetCurrentHitPoints(oClone, GetMaxHitPoints(oCaster)/2);
+                    fHP = 50.0;
                 }
                 else if (nCasterLevel <= 8)
                 {
                     nConceal = 20;
-                    SetCurrentHitPoints(oClone, GetMaxHitPoints(oCaster) * 3 / 4);
+                    fHP = 75.0;
                 }
                 else
                 {
                     nConceal = 30;
-                    SetCurrentHitPoints(oClone, GetMaxHitPoints(oCaster));
+                    // fHP = 100.0;
                 }
                 eBonus = EffectLinkEffects(EffectConcealment(nConceal),
                                            EffectVisualEffect(VFX_DUR_PROT_SHADOW_ARMOR));
             }
+
+            // Simple clone for now
+            object oClone = CreateClone(oCaster, GetLocation(oCaster), fHP);
 
             ApplySpellEffectToObject(DURATION_TYPE_PERMANENT, eBonus, oClone);
 
