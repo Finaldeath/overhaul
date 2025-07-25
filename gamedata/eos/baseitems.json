@@ -293,7 +293,7 @@
       "CriticalMultiplier": 2,
       "Category": "Thrown",
       "BaseCost": 1,
-      "MaxStackSize": 50,
+      "MaxStackSize": 1000,
       "ItemCostMultiplier": 0.01,
       "InventorySound": {
         "ID": "c97db3e1-b28a-6960-70ff-c284709dc5fc",
@@ -502,6 +502,2384 @@
       "RightSlashAnimationPercent": null,
       "StraightSlashAnimationPercent": null,
       "StorePanelOrder": 7,
+      "ItemLevelRestrictionStackSize": 1,
+      "WeaponFocusFeat": null,
+      "EpicWeaponFocusFeat": null,
+      "WeaponSpecializationFeat": null,
+      "EpicWeaponSpecializationFeat": null,
+      "ImprovedCriticalFeat": null,
+      "OverwhelmingCriticalFeat": null,
+      "DevastatingCriticalFeat": null,
+      "WeaponOfChoiceFeat": null,
+      "IsMonkWeapon": false,
+      "WeaponFinesseMinimumCreatureSize": null
+    },
+    {
+      "ID": "4fb07fc2-5fec-4e7b-a089-eadc1c9c7286",
+      "Index": -1,
+      "Overrides": "57fa25f8-9dce-ef07-7a5d-202243c2bc81",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "Whip",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 83617,
+        "EN": {
+          "M": "Whip"
+        },
+        "FR": {
+          "M": "fouet"
+        },
+        "DE": {
+          "M": "Peitsche"
+        },
+        "IT": {
+          "M": "Frusta"
+        },
+        "ES": {
+          "M": "L\u00E1tigo"
+        },
+        "PL": {
+          "M": "Bicz"
+        }
+      },
+      "Description": {
+        "Index": 85392,
+        "EN": {
+          "M": "While a whip is not capable of inflicting substantial damage in combat, it can be very useful for disarming enemies, leaving them vulnerable to attacks by other weapons.\nWhile wielding a whip, a character gets the Disarm Feat for free. "
+        },
+        "FR": {
+          "M": "Bien qu\u0027un fouet ne puisse infliger des d\u00E9g\u00E2ts significatifs en combat, il peut \u00EAtre tr\u00E8s utile pour d\u00E9sarmer un ennemi en le laissant ainsi vuln\u00E9rable \u00E0 d\u0027autres formes d\u0027attaques. Tant qu\u0027il utilise un fouet, un personnage b\u00E9n\u00E9ficie gratuitement du don D\u00E9sarmement."
+        },
+        "DE": {
+          "M": "Eine Peitsche ist zwar nicht gerade daf\u00FCr bekannt, viel Schaden anzurichten, aber daf\u00FCr eignet sie sich pr\u00E4chtig, Gegner zu entwaffnen, so dass sie f\u00FCr Angriffe durch andere Waffen verletzlich werden. Wenn ein Charakter mit der Peitsche k\u00E4mpft, kann er das Talent Entwaffnen einsetzen, auch wenn er es normalerweise nicht beherrschen w\u00FCrde."
+        },
+        "IT": {
+          "M": "Anche se una frusta non pu\u00F2 provocare gravi danni, \u00E8 molto utile per disarmare i nemici, lasciandoli cos\u00EC vulnerabili all\u0027attacco con altre armi. Chi impugna una frusta ottiene il talento Disarmare."
+        },
+        "ES": {
+          "M": "Aunque con un l\u00E1tigo no puede infligirse un da\u00F1o sustancial en combate, puede ser muy \u00FAtil para desarmar a los enemigos, dej\u00E1ndolos expuestos a los ataques con otras armas.\nEl personaje obtendr\u00E1 sin coste alguno la dote \u0027Desarmar\u0027 mientras lo empu\u00F1e."
+        },
+        "PL": {
+          "M": "Chocia\u017C bicz nie mo\u017Ce powa\u017Cnie zrani\u0107 przeciwnika w walce, \u015Bwietnie nadaje si\u0119 do rozbrajania wrog\u00F3w, dzi\u0119ki czemu stan\u0105 si\u0119 oni podatni na ataki inn\u0105 broni\u0105. Posta\u0107 uzbrojona w bicz zyskuje za darmo atut Rozbrajanie."
+        }
+      },
+      "StatsText": {
+        "Index": 85391,
+        "EN": {
+          "M": "Base Damage: 1d2\nBase Critical Threat: x2\nBase Damage Type: Slashing\nWeapon Size: Small\nFeats Required: Exotic\nSpecial: Can not be used in the off-hand"
+        },
+        "FR": {
+          "M": "D\u00E9g\u00E2ts de base : 1d2\nCritique : x2\nType de d\u00E9g\u00E2ts : tranchants\nTaille de l\u0027arme : petite\nManiement : arme exotique\nSp\u00E9cial : ne peut \u00EAtre utilis\u00E9e comme arme secondaire"
+        },
+        "DE": {
+          "M": "Grundschaden: 1W2\nKritischer Treffer: x2\nSchadenstyp: Hiebwaffe\nWaffengr\u00F6\u00DFe: Klein\nBen\u00F6tigte Talente: Umgang mit exotischen Waffen\nSpeziell: Kann nicht in der Nebenhand gef\u00FChrt werden"
+        },
+        "IT": {
+          "M": "Danno base: 1d2\nColpo critico base: x2\nTipo di danno: taglio\nTaglia dell\u0027arma: piccola\nTalenti richiesti: armi esotiche\nSpeciale: non si pu\u00F2 usare nella mano secondaria"
+        },
+        "ES": {
+          "M": "Da\u00F1o base: 1d2\nAmenaza de cr\u00EDtico base: x2\nTipo de da\u00F1o base: Cortante\nTama\u00F1o del arma: Peque\u00F1a\nDotes requeridas: Ex\u00F3ticas\nEspecial: No puede usarse con la mano torpe"
+        },
+        "PL": {
+          "M": "Obra\u017Cenia: 1k2\nTrafienie krytyczne: x2\nRodzaj obra\u017Ce\u0144: sieczne\nWielko\u015B\u0107 broni: ma\u0142a\nWymagane atuty: bro\u0144 egzotyczna\nSpecjalne: tej broni nie mo\u017Cna u\u017Cywa\u0107 jako broni dodatkowej."
+        }
+      },
+      "Icon": "iwwhip",
+      "InventorySlotWidth": 2,
+      "InventorySlotHeight": 2,
+      "EquipableSlots": [
+        "MainHand",
+        "OffHand",
+        "LeftClaw",
+        "RightClaw",
+        "Bite"
+      ],
+      "CanRotateIcon": false,
+      "ModelType": "Composite",
+      "ItemModel": "WWhip",
+      "GenderSpecific": false,
+      "Part1Alpha": "Environment",
+      "Part2Alpha": "Environment",
+      "Part3Alpha": "Environment",
+      "DefaultModel": "it_bag",
+      "IsContainer": false,
+      "WeaponWieldType": "Standard",
+      "WeaponDamageType": "Slashing",
+      "WeaponSize": "Small",
+      "AmmunitionBaseItem": null,
+      "PreferredAttackDistance": 1.7,
+      "MinimumModelCount": 10,
+      "MaximumModelCount": 100,
+      "DamageDiceCount": 1,
+      "DamageDice": 2,
+      "CriticalThreatRange": 1,
+      "CriticalMultiplier": 2,
+      "Category": "Melee",
+      "BaseCost": 1,
+      "MaxStackSize": 1,
+      "ItemCostMultiplier": 2,
+      "InventorySound": {
+        "ID": "ad9dd139-1083-fbc0-481a-1ad427f0915b",
+        "Label": "whip"
+      },
+      "MinSpellProperties": 0,
+      "MaxSpellProperties": 8,
+      "ItemPropertySet": {
+        "ID": "91b1ab8b-054c-3372-caf0-d3c9fb654c7a",
+        "Label": "Melee"
+      },
+      "StorePanel": "Weapons",
+      "RequiredFeat1": {
+        "ID": "31fedca1-51d5-750f-66b6-f7a12859a83b",
+        "Label": "Weapon Proficiency (exotic)"
+      },
+      "RequiredFeat2": null,
+      "RequiredFeat3": null,
+      "RequiredFeat4": null,
+      "RequiredFeat5": null,
+      "ArmorClassType": "Deflection",
+      "BaseShieldAC": 0,
+      "ArmorCheckPenalty": 0,
+      "DefaultChargeCount": 0,
+      "GroundModelRotation": "AxisY",
+      "Weight": 2,
+      "WeaponSound": {
+        "ID": "c278911c-675c-1cf3-3dcd-13fb5418c843",
+        "Label": "Whip"
+      },
+      "AmmunitionType": null,
+      "QuickbarBehaviour": "Default",
+      "ArcaneSpellFailure": null,
+      "LeftSlashAnimationPercent": 100,
+      "RightSlashAnimationPercent": 100,
+      "StraightSlashAnimationPercent": 0,
+      "StorePanelOrder": 74,
+      "ItemLevelRestrictionStackSize": 1,
+      "WeaponFocusFeat": {
+        "ID": "b70a31eb-22a4-5051-1414-74d20388a6b8",
+        "Label": "Weapon Focus (whip)"
+      },
+      "EpicWeaponFocusFeat": {
+        "ID": "049fe22f-e031-708f-7fc9-dc2f1747083f",
+        "Label": "Epic Weapon Focus (whip)"
+      },
+      "WeaponSpecializationFeat": {
+        "ID": "1168ad87-5006-d713-c284-f83192c54d25",
+        "Label": "Weapon Specialization (whip)"
+      },
+      "EpicWeaponSpecializationFeat": {
+        "ID": "7bb5a945-a5b0-3021-9edb-0e6d27c7c50a",
+        "Label": "Epic Weapon Specialization (whip)"
+      },
+      "ImprovedCriticalFeat": {
+        "ID": "ecdb1c59-c011-c1ae-3c7a-59830a6a2986",
+        "Label": "Improved Critical (whip)"
+      },
+      "OverwhelmingCriticalFeat": {
+        "ID": "362fa667-bd52-4e6a-9272-72c9cea1fc2f",
+        "Label": "Overwhelming Critical (whip)"
+      },
+      "DevastatingCriticalFeat": {
+        "ID": "11c5c2df-7f24-5722-84d1-cbcdd79e798b",
+        "Label": "Devastating Critical (whip)"
+      },
+      "WeaponOfChoiceFeat": {
+        "ID": "ac56aef7-7694-1557-15f8-0982399b9e39",
+        "Label": "Weapon of Choice (whip)"
+      },
+      "IsMonkWeapon": false,
+      "WeaponFinesseMinimumCreatureSize": "Small"
+    },
+    {
+      "ID": "7ceec6b7-30a7-49bc-8285-641573b723c3",
+      "Index": -1,
+      "Overrides": "e605a1e9-ebad-a371-718e-6205fad273c8",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "magicstaff",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 1539,
+        "EN": {
+          "M": "Magic Staff"
+        },
+        "FR": {
+          "M": "B\u00E2ton magique"
+        },
+        "DE": {
+          "M": "Zauberstecken"
+        },
+        "IT": {
+          "M": "Bastone Magico"
+        },
+        "ES": {
+          "M": "Bast\u00F3n m\u00E1gico"
+        },
+        "PL": {
+          "M": "Magiczna Laska"
+        }
+      },
+      "Description": {
+        "Index": 1709,
+        "EN": {
+          "M": "The staff is potentially a magically-charged item. Powers and effects vary greatly. "
+        },
+        "FR": {
+          "M": "Le b\u00E2ton est un objet magique potentiel. Pouvoirs et effets varient grandement d\u0027un mod\u00E8le \u00E0 l\u0027autre."
+        },
+        "DE": {
+          "M": "Ein Zauberstecken ist \u00FCblicherweise mit Magie geladen, doch Wirkungsweise und St\u00E4rke k\u00F6nnen je nach Ausf\u00FChrung stark variieren."
+        },
+        "IT": {
+          "M": "Il bastone \u00E8 in pratica un oggetto magico a cariche. I suoi poteri ed effetti variano considerevolmente."
+        },
+        "ES": {
+          "M": "El bast\u00F3n m\u00E1gico es potencialmente un objeto cargado con magia. Sus poderes y efectos var\u00EDan enormemente."
+        },
+        "PL": {
+          "M": "Laska jest przedmiotem, kt\u00F3ry m\u00F3g\u0142 zosta\u0107 nasycony magi\u0105. Jego moce mog\u0105 by\u0107 bardzo r\u00F3\u017Cne."
+        }
+      },
+      "StatsText": {
+        "Index": 76436,
+        "EN": {
+          "M": "Base Damage: 1d6\nBase Critical Threat: x2\nBase Damage Type: Bludgeoning\nWeapon Size: Medium\nFeats Required: Simple, Druid, Monk, Rogue, or Wizard"
+        },
+        "FR": {
+          "M": "D\u00E9g\u00E2ts (base) : 1d6\nCritique : x2\nType de d\u00E9g\u00E2ts : contondant\nTaille de l\u0027arme : M\nManiement : Arme courante, Druide, Moine, Roublard ou Magicien."
+        },
+        "DE": {
+          "M": "Grundschaden: 1W6\nKritischer Treffer: x2\nSchadenstyp: Wuchtwaffe\nWaffengr\u00F6\u00DFe: Mittel\nBen\u00F6tigte Talente: Umgang mit einfachen Waffen, Druide, M\u00F6nch, Schurke oder Magier"
+        },
+        "IT": {
+          "M": "Danno base: 1d6\nMinaccia di critico base: x2\nTipo di danno base: contundente\nTaglia dell\u0027arma: media\nTalenti richiesti: armi semplici, druido, monaco, ladro o mago"
+        },
+        "ES": {
+          "M": "Da\u00F1o base: 1d6\nAmenaza de cr\u00EDtico base: x2\nTipo de da\u00F1o base: contundente\nTama\u00F1o del arma: mediano\nDotes requeridas: Sencilla, Druida, Monje, P\u00EDcaro o Mago"
+        },
+        "PL": {
+          "M": "Bazowe obra\u017Cenia: 1k6\nMno\u017Cnik przy trafieniu krytycznym: x2\nRodzaj podstawowych obra\u017Ce\u0144: Obuchowe\nWielko\u015B\u0107 broni: \u015Arednia\nWymagane atuty: bro\u0144 prosta, Druid, Mnich, \u0141otrzyk lub Czarodziej"
+        }
+      },
+      "Icon": "iwmgst",
+      "InventorySlotWidth": 1,
+      "InventorySlotHeight": 5,
+      "EquipableSlots": [
+        "MainHand",
+        "LeftClaw",
+        "RightClaw",
+        "Bite"
+      ],
+      "CanRotateIcon": true,
+      "ModelType": "Composite",
+      "ItemModel": "WMgSt",
+      "GenderSpecific": false,
+      "Part1Alpha": "Environment",
+      "Part2Alpha": "Environment",
+      "Part3Alpha": "Environment",
+      "DefaultModel": "it_bag",
+      "IsContainer": false,
+      "WeaponWieldType": "TwoHanded",
+      "WeaponDamageType": "Bludgeoning",
+      "WeaponSize": "Medium",
+      "AmmunitionBaseItem": null,
+      "PreferredAttackDistance": 1.6,
+      "MinimumModelCount": 10,
+      "MaximumModelCount": 100,
+      "DamageDiceCount": 1,
+      "DamageDice": 6,
+      "CriticalThreatRange": 1,
+      "CriticalMultiplier": 2,
+      "Category": "Staves",
+      "BaseCost": 1,
+      "MaxStackSize": 1,
+      "ItemCostMultiplier": 1,
+      "InventorySound": {
+        "ID": "f80b2ed0-271b-30d2-57a5-1472b5507684",
+        "Label": "large_pole"
+      },
+      "MinSpellProperties": 3,
+      "MaxSpellProperties": 8,
+      "ItemPropertySet": {
+        "ID": "383941c5-bbf0-701e-7109-940ac9c42399",
+        "Label": "Staves"
+      },
+      "StorePanel": "WandsMagicItems",
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "RequiredFeat3": null,
+      "RequiredFeat4": null,
+      "RequiredFeat5": null,
+      "ArmorClassType": "Deflection",
+      "BaseShieldAC": 0,
+      "ArmorCheckPenalty": 0,
+      "DefaultChargeCount": 50,
+      "GroundModelRotation": "AxisY",
+      "Weight": 4,
+      "WeaponSound": {
+        "ID": "755077dc-c2ce-893b-9515-0d33b88b845a",
+        "Label": "Wood_Blunt"
+      },
+      "AmmunitionType": null,
+      "QuickbarBehaviour": "Default",
+      "ArcaneSpellFailure": null,
+      "LeftSlashAnimationPercent": 50,
+      "RightSlashAnimationPercent": 50,
+      "StraightSlashAnimationPercent": 50,
+      "StorePanelOrder": 10,
+      "ItemLevelRestrictionStackSize": 1,
+      "WeaponFocusFeat": {
+        "ID": "3ac9e107-6c21-7591-e2a1-c49df46a5459",
+        "Label": "Weapon Focus (quarterstaff)"
+      },
+      "EpicWeaponFocusFeat": {
+        "ID": "384c7420-c968-766a-1584-ef004b58cf74",
+        "Label": "Epic Weapon Focus (quarterstaff)"
+      },
+      "WeaponSpecializationFeat": {
+        "ID": "cdb0bd39-30fa-e75e-f5cb-7976d32079e2",
+        "Label": "Weapon Specialization (quarterstaff)"
+      },
+      "EpicWeaponSpecializationFeat": {
+        "ID": "718528a6-61d7-9e2f-0bed-f5d4fd4ff311",
+        "Label": "Epic Weapon Specialization (quarterstaff)"
+      },
+      "ImprovedCriticalFeat": {
+        "ID": "bacd0ce1-a279-4b72-404b-54f0eab313c0",
+        "Label": "Improved Critical (quarterstaff)"
+      },
+      "OverwhelmingCriticalFeat": {
+        "ID": "ad179328-6c9b-e287-5425-31b39500c88a",
+        "Label": "Overwhelming Critical (quarterstaff)"
+      },
+      "DevastatingCriticalFeat": {
+        "ID": "5069ba8a-3e6f-9da0-ab84-d54721f8cad3",
+        "Label": "Devastating Critical (quarterstaff)"
+      },
+      "WeaponOfChoiceFeat": {
+        "ID": "6c14b779-6ccb-edb4-667d-11de6f570268",
+        "Label": "Weapon of Choice (quarterstaff)"
+      },
+      "IsMonkWeapon": true,
+      "WeaponFinesseMinimumCreatureSize": null
+    },
+    {
+      "ID": "e8295966-85f1-47dd-92b2-6e535d043857",
+      "Index": -1,
+      "Overrides": "9d684e2a-c25a-412d-bf43-d62fd789e24e",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "arrow",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 1517,
+        "EN": {
+          "M": "Arrow"
+        },
+        "FR": {
+          "M": "Fl\u00E8ches"
+        },
+        "DE": {
+          "M": "Pfeil"
+        },
+        "IT": {
+          "M": "Freccia"
+        },
+        "ES": {
+          "M": "Flecha"
+        },
+        "PL": {
+          "M": "Strza\u0142a"
+        }
+      },
+      "Description": {
+        "Index": 1696,
+        "EN": {
+          "M": "Arrows can vary in form and function, but most are 20 to 40 inches long and have some form of fletching (usually feathers) to provide stabilization. "
+        },
+        "FR": {
+          "M": "Les fl\u00E8ches peuvent varier selon leur fonction, mais la plupart font entre 50 centim\u00E8tres et un m\u00E8tre de long. Elles sont dot\u00E9es d\u0027un empennage (souvent \u00E0 base de plumes) qui assure leur stabilit\u00E9 en vol."
+        },
+        "DE": {
+          "M": "Pfeile gibt es in unterschiedlichen Formen f\u00FCr verschiedene Einsatzbereiche, doch die meisten sind einen halben bis einen Meter lang und befiedert (nicht unbedingt nur mit Federn), um ihre Flugbahn zu stabilisieren."
+        },
+        "IT": {
+          "M": "Le frecce possono avere diverse forme e funzioni, hanno solitamente una lunghezza che varia tra i 50 cm e il metro, con una coda di qualche tipo (di solito di piume) che favorisce la stabilit\u00E0 della traiettoria."
+        },
+        "ES": {
+          "M": "Las flechas pueden variar de forma y funci\u00F3n, pero la mayor\u00EDa tienen una longitud de entre 20 y 40 pulgadas y alg\u00FAn tipo de material en el extremo (normalmente plumas) para proporcionarles estabilidad."
+        },
+        "PL": {
+          "M": "Strza\u0142y mog\u0105 mie\u0107 r\u00F3\u017Cne kszta\u0142ty i zastosowania, ale wi\u0119kszo\u015B\u0107 ma 50-100 cm d\u0142ugo\u015Bci i s\u0105 zako\u0144czone lotkami (najcz\u0119\u015Bciej wykonanymi z pi\u00F3r), kt\u00F3re maj\u0105 zapewnia\u0107 stabilny lot."
+        }
+      },
+      "StatsText": {
+        "Index": 5422,
+        "EN": {
+          "M": "Launcher: Shortbow, Longbow"
+        },
+        "FR": {
+          "M": "Lanceur : Arc court, Arc long"
+        },
+        "DE": {
+          "M": "Werden verwendet mit: Kurzbogen, Langbogen"
+        },
+        "IT": {
+          "M": "Arma da tiro: Arco corto, Arco lungo"
+        },
+        "ES": {
+          "M": "Arma de proyectil: Arco corto, arco largo"
+        },
+        "PL": {
+          "M": "Bro\u0144: Kr\u00F3tki \u0142uk, D\u0142ugi \u0142uk"
+        }
+      },
+      "Icon": "iwamar",
+      "InventorySlotWidth": 1,
+      "InventorySlotHeight": 2,
+      "EquipableSlots": [
+        "Arrow"
+      ],
+      "CanRotateIcon": false,
+      "ModelType": "Composite",
+      "ItemModel": "WAmAr",
+      "GenderSpecific": true,
+      "Part1Alpha": "Environment",
+      "Part2Alpha": "Environment",
+      "Part3Alpha": "Environment",
+      "DefaultModel": "GI_WAmAr_001",
+      "IsContainer": false,
+      "WeaponWieldType": "Standard",
+      "WeaponDamageType": null,
+      "WeaponSize": null,
+      "AmmunitionBaseItem": null,
+      "PreferredAttackDistance": null,
+      "MinimumModelCount": 10,
+      "MaximumModelCount": 40,
+      "DamageDiceCount": null,
+      "DamageDice": null,
+      "CriticalThreatRange": null,
+      "CriticalMultiplier": null,
+      "Category": "Ammo",
+      "BaseCost": 1,
+      "MaxStackSize": 1000,
+      "ItemCostMultiplier": 0.01,
+      "InventorySound": {
+        "ID": "e1f42325-8a24-1e34-e899-06daadbe3d82",
+        "Label": "arrow\u0026bolt"
+      },
+      "MinSpellProperties": 0,
+      "MaxSpellProperties": 8,
+      "ItemPropertySet": {
+        "ID": "3f5cf0c5-4bf8-2536-b91e-9a4d2ad3896b",
+        "Label": "Ammo"
+      },
+      "StorePanel": "Weapons",
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "RequiredFeat3": null,
+      "RequiredFeat4": null,
+      "RequiredFeat5": null,
+      "ArmorClassType": null,
+      "BaseShieldAC": 0,
+      "ArmorCheckPenalty": 0,
+      "DefaultChargeCount": 0,
+      "GroundModelRotation": "None",
+      "Weight": 0,
+      "WeaponSound": null,
+      "AmmunitionType": null,
+      "QuickbarBehaviour": "Default",
+      "ArcaneSpellFailure": null,
+      "LeftSlashAnimationPercent": null,
+      "RightSlashAnimationPercent": null,
+      "StraightSlashAnimationPercent": null,
+      "StorePanelOrder": 0,
+      "ItemLevelRestrictionStackSize": 99,
+      "WeaponFocusFeat": null,
+      "EpicWeaponFocusFeat": null,
+      "WeaponSpecializationFeat": null,
+      "EpicWeaponSpecializationFeat": null,
+      "ImprovedCriticalFeat": null,
+      "OverwhelmingCriticalFeat": null,
+      "DevastatingCriticalFeat": null,
+      "WeaponOfChoiceFeat": null,
+      "IsMonkWeapon": false,
+      "WeaponFinesseMinimumCreatureSize": null
+    },
+    {
+      "ID": "582ba3ed-da24-43db-a118-b7b209686fcf",
+      "Index": -1,
+      "Overrides": "d3e9013a-e670-a800-ffab-12f0e5a61149",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "blank_scroll",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 76390,
+        "EN": {
+          "M": "Blank Scroll"
+        },
+        "FR": {
+          "M": "Parchemin vierge"
+        },
+        "DE": {
+          "M": "Leere Schriftrolle"
+        },
+        "IT": {
+          "M": "Pergamena vuota"
+        },
+        "ES": {
+          "M": "Rollo de pergamino en blanco"
+        },
+        "PL": {
+          "M": "Czysty zw\u00F3j"
+        }
+      },
+      "Description": {
+        "Index": 86787,
+        "EN": {
+          "M": "Blank scrolls can be used by characters with the scribe scroll feat to create magical scrolls of spells they know. In order to scribe a scroll, the character needs to target the blank scroll with the spell he wants to scribe onto the scroll."
+        },
+        "FR": {
+          "M": "Les parchemins vierges peuvent \u00EAtre utilis\u00E9s par des personnages ayant le don Ecriture de parchemins, pour cr\u00E9er des parchemins de sorts. Pour cela, le personnage doit lancer le sort qu\u0027il veut recopier sur le parchemin vierge."
+        },
+        "DE": {
+          "M": "Leere Schriftrollen k\u00F6nnen verwendet werden, einen beliebigen Zauber zu speichern. Dazu muss ein Charakter, der \u00FCber das Talent Schriftrolle anfertigen verf\u00FCgt, einfach den gew\u00FCnschten Zauber auf die Schriftrolle wirken."
+        },
+        "IT": {
+          "M": "Le pergamene bianche possono essere usate dai personaggi con il talento Scrivere pergamene per creare pergamene incantate con qualsiasi magia conosciuta. Per creare una pergamena, \u00E8 necessario lanciare su di essa l\u0027incantesimo desiderato."
+        },
+        "ES": {
+          "M": "Los personajes que tengan la dote \u0027Inscribir rollo de pergamino\u0027 pueden usar estos rollos para hacer pergaminos m\u00E1gicos de cualquier conjuro que conozcan. Para inscribirlo, el lanzador ha de convertir el pergamino en blanco en el objetivo del conjuro que quiera inscribir."
+        },
+        "PL": {
+          "M": "Posta\u0107 posiadaj\u0105ca atut pisania zwoj\u00F3w mo\u017Ce przygotowa\u0107 za pomoc\u0105 czystego zwoju zw\u00F3j magiczny, zawieraj\u0105cy dowolny czar, jaki zna. Aby napisa\u0107 zw\u00F3j, posta\u0107 musi rzuci\u0107 na czysty zw\u00F3j czar, kt\u00F3ry chce na nim umie\u015Bci\u0107."
+        }
+      },
+      "StatsText": {
+        "Index": 5470
+      },
+      "Icon": "iit_scroll_002",
+      "InventorySlotWidth": 1,
+      "InventorySlotHeight": 1,
+      "EquipableSlots": [],
+      "CanRotateIcon": false,
+      "ModelType": "Simple",
+      "ItemModel": "IT_SCROLL",
+      "GenderSpecific": false,
+      "Part1Alpha": null,
+      "Part2Alpha": null,
+      "Part3Alpha": null,
+      "DefaultModel": "gi_scrl",
+      "IsContainer": false,
+      "WeaponWieldType": "NotWieldable",
+      "WeaponDamageType": null,
+      "WeaponSize": null,
+      "AmmunitionBaseItem": null,
+      "PreferredAttackDistance": null,
+      "MinimumModelCount": 0,
+      "MaximumModelCount": 50,
+      "DamageDiceCount": null,
+      "DamageDice": null,
+      "CriticalThreatRange": null,
+      "CriticalMultiplier": null,
+      "Category": "Scroll",
+      "BaseCost": 1,
+      "MaxStackSize": 1000,
+      "ItemCostMultiplier": 0.36,
+      "InventorySound": {
+        "ID": "4cda07bc-a66b-c48f-292e-c8c69181cf66",
+        "Label": "paper_rustle"
+      },
+      "MinSpellProperties": 0,
+      "MaxSpellProperties": 1,
+      "ItemPropertySet": {
+        "ID": "4c723906-f172-71ca-da3e-2312a35f567a",
+        "Label": "Scrolls"
+      },
+      "StorePanel": "PotionsScrolls",
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "RequiredFeat3": null,
+      "RequiredFeat4": null,
+      "RequiredFeat5": null,
+      "ArmorClassType": null,
+      "BaseShieldAC": 0,
+      "ArmorCheckPenalty": 0,
+      "DefaultChargeCount": 0,
+      "GroundModelRotation": "None",
+      "Weight": 0.1,
+      "WeaponSound": null,
+      "AmmunitionType": null,
+      "QuickbarBehaviour": "SelectSpellTargetSelf",
+      "ArcaneSpellFailure": null,
+      "LeftSlashAnimationPercent": null,
+      "RightSlashAnimationPercent": null,
+      "StraightSlashAnimationPercent": null,
+      "StorePanelOrder": 1,
+      "ItemLevelRestrictionStackSize": 1,
+      "WeaponFocusFeat": null,
+      "EpicWeaponFocusFeat": null,
+      "WeaponSpecializationFeat": null,
+      "EpicWeaponSpecializationFeat": null,
+      "ImprovedCriticalFeat": null,
+      "OverwhelmingCriticalFeat": null,
+      "DevastatingCriticalFeat": null,
+      "WeaponOfChoiceFeat": null,
+      "IsMonkWeapon": false,
+      "WeaponFinesseMinimumCreatureSize": null
+    },
+    {
+      "ID": "af83001b-6692-4da2-b2b5-6df08d5355e6",
+      "Index": -1,
+      "Overrides": "2f781e68-4217-7ada-37de-00e3a0865233",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "crafted_scroll",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 83364,
+        "EN": {
+          "M": "Enchanted Scroll"
+        },
+        "FR": {
+          "M": "Parchemin enchant\u00E9"
+        },
+        "DE": {
+          "M": "Verzauberte Schriftrolle"
+        },
+        "IT": {
+          "M": "Pergamena incantata"
+        },
+        "ES": {
+          "M": "Rollo de pergamino encantado"
+        },
+        "PL": {
+          "M": "Zakl\u0119ty zw\u00F3j"
+        }
+      },
+      "Description": {
+        "Index": 1718,
+        "EN": {
+          "M": "Spell scrolls bear magic runes and markings that enable them to store the magic of spells. A character who is able can use the scrolls or copy the spell for his own uses."
+        },
+        "FR": {
+          "M": "Les parchemins sont couverts de runes magiques qui leur permettent d\u0027emmagasiner des sorts. Les personnages capables de les lire peuvent lancer le sort directement ou le recopier afin de pouvoir l\u0027utiliser quand bon leur semble."
+        },
+        "DE": {
+          "M": "Magische Schriftrollen tragen Runen und arkane Schriftzeichen, in denen die Macht bestimmter Zauber ruht. Ein Charakter, der Schriftrollen verwenden kann, kann auf Schriftrollen niedergeschriebene Zauber in sein Zauberbuch \u00FCbertragen, um sie sp\u00E4ter wiederholt einzusetzen."
+        },
+        "IT": {
+          "M": "Le pergamene di incantesimi sono scritte con rune e simboli che consentono di conservarne la magia. I personaggi che ne sono capaci possono utilizzare le pergamene leggendole o ricopiandone gli incantesimi per i propri scopi."
+        },
+        "ES": {
+          "M": "Los rollos de pergamino con conjuros tienen runas m\u00E1gicas y s\u00EDmbolos que les permiten almacenar la magia de los sortilegios. Un personaje capacitado para hacerlo puede usarlos o copiar los conjuros para su uso personal."
+        },
+        "PL": {
+          "M": "Zwoje z czarami zawieraj\u0105 magiczne runy i znaki, dzi\u0119ki kt\u00F3rym mog\u0105 przechowywa\u0107 magi\u0119 zakl\u0119\u0107. Ka\u017Cdy, kto potrafi z nich skorzysta\u0107 mo\u017Ce rzuci\u0107 taki czar, albo skopiowa\u0107 go na w\u0142asne potrzeby."
+        }
+      },
+      "StatsText": {
+        "Index": 5470
+      },
+      "Icon": "iit_scroll_002",
+      "InventorySlotWidth": 1,
+      "InventorySlotHeight": 1,
+      "EquipableSlots": [],
+      "CanRotateIcon": false,
+      "ModelType": "Simple",
+      "ItemModel": "IT_SCROLL",
+      "GenderSpecific": false,
+      "Part1Alpha": null,
+      "Part2Alpha": null,
+      "Part3Alpha": null,
+      "DefaultModel": "gi_scrl",
+      "IsContainer": false,
+      "WeaponWieldType": "NotWieldable",
+      "WeaponDamageType": null,
+      "WeaponSize": null,
+      "AmmunitionBaseItem": null,
+      "PreferredAttackDistance": null,
+      "MinimumModelCount": 0,
+      "MaximumModelCount": 50,
+      "DamageDiceCount": null,
+      "DamageDice": null,
+      "CriticalThreatRange": null,
+      "CriticalMultiplier": null,
+      "Category": "Scroll",
+      "BaseCost": 1,
+      "MaxStackSize": 1000,
+      "ItemCostMultiplier": 0.36,
+      "InventorySound": {
+        "ID": "4cda07bc-a66b-c48f-292e-c8c69181cf66",
+        "Label": "paper_rustle"
+      },
+      "MinSpellProperties": 0,
+      "MaxSpellProperties": 1,
+      "ItemPropertySet": {
+        "ID": "4c723906-f172-71ca-da3e-2312a35f567a",
+        "Label": "Scrolls"
+      },
+      "StorePanel": "PotionsScrolls",
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "RequiredFeat3": null,
+      "RequiredFeat4": null,
+      "RequiredFeat5": null,
+      "ArmorClassType": null,
+      "BaseShieldAC": 0,
+      "ArmorCheckPenalty": 0,
+      "DefaultChargeCount": 0,
+      "GroundModelRotation": "None",
+      "Weight": 0.1,
+      "WeaponSound": null,
+      "AmmunitionType": null,
+      "QuickbarBehaviour": "SelectSpellTargetSelf",
+      "ArcaneSpellFailure": null,
+      "LeftSlashAnimationPercent": null,
+      "RightSlashAnimationPercent": null,
+      "StraightSlashAnimationPercent": null,
+      "StorePanelOrder": 1,
+      "ItemLevelRestrictionStackSize": 1,
+      "WeaponFocusFeat": null,
+      "EpicWeaponFocusFeat": null,
+      "WeaponSpecializationFeat": null,
+      "EpicWeaponSpecializationFeat": null,
+      "ImprovedCriticalFeat": null,
+      "OverwhelmingCriticalFeat": null,
+      "DevastatingCriticalFeat": null,
+      "WeaponOfChoiceFeat": null,
+      "IsMonkWeapon": false,
+      "WeaponFinesseMinimumCreatureSize": null
+    },
+    {
+      "ID": "58915a9e-3acc-49ea-8a28-dd18f9424dfc",
+      "Index": -1,
+      "Overrides": "62c81541-8c60-78c7-2a97-d7e447beae09",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "spellscroll",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 532,
+        "EN": {
+          "M": "Scroll"
+        },
+        "FR": {
+          "M": "parchemin"
+        },
+        "DE": {
+          "M": "Schriftrolle"
+        },
+        "IT": {
+          "M": "Pergamena"
+        },
+        "ES": {
+          "M": "Rollo de pergamino"
+        },
+        "PL": {
+          "M": "Zw\u00F3j"
+        }
+      },
+      "Description": {
+        "Index": 1718,
+        "EN": {
+          "M": "Spell scrolls bear magic runes and markings that enable them to store the magic of spells. A character who is able can use the scrolls or copy the spell for his own uses."
+        },
+        "FR": {
+          "M": "Les parchemins sont couverts de runes magiques qui leur permettent d\u0027emmagasiner des sorts. Les personnages capables de les lire peuvent lancer le sort directement ou le recopier afin de pouvoir l\u0027utiliser quand bon leur semble."
+        },
+        "DE": {
+          "M": "Magische Schriftrollen tragen Runen und arkane Schriftzeichen, in denen die Macht bestimmter Zauber ruht. Ein Charakter, der Schriftrollen verwenden kann, kann auf Schriftrollen niedergeschriebene Zauber in sein Zauberbuch \u00FCbertragen, um sie sp\u00E4ter wiederholt einzusetzen."
+        },
+        "IT": {
+          "M": "Le pergamene di incantesimi sono scritte con rune e simboli che consentono di conservarne la magia. I personaggi che ne sono capaci possono utilizzare le pergamene leggendole o ricopiandone gli incantesimi per i propri scopi."
+        },
+        "ES": {
+          "M": "Los rollos de pergamino con conjuros tienen runas m\u00E1gicas y s\u00EDmbolos que les permiten almacenar la magia de los sortilegios. Un personaje capacitado para hacerlo puede usarlos o copiar los conjuros para su uso personal."
+        },
+        "PL": {
+          "M": "Zwoje z czarami zawieraj\u0105 magiczne runy i znaki, dzi\u0119ki kt\u00F3rym mog\u0105 przechowywa\u0107 magi\u0119 zakl\u0119\u0107. Ka\u017Cdy, kto potrafi z nich skorzysta\u0107 mo\u017Ce rzuci\u0107 taki czar, albo skopiowa\u0107 go na w\u0142asne potrzeby."
+        }
+      },
+      "StatsText": {
+        "Index": 5470
+      },
+      "Icon": "iit_scroll_001",
+      "InventorySlotWidth": 1,
+      "InventorySlotHeight": 1,
+      "EquipableSlots": [],
+      "CanRotateIcon": false,
+      "ModelType": "Simple",
+      "ItemModel": "IT_SCROLL",
+      "GenderSpecific": false,
+      "Part1Alpha": null,
+      "Part2Alpha": null,
+      "Part3Alpha": null,
+      "DefaultModel": "gi_scrl",
+      "IsContainer": false,
+      "WeaponWieldType": "NotWieldable",
+      "WeaponDamageType": null,
+      "WeaponSize": null,
+      "AmmunitionBaseItem": null,
+      "PreferredAttackDistance": null,
+      "MinimumModelCount": 0,
+      "MaximumModelCount": 50,
+      "DamageDiceCount": null,
+      "DamageDice": null,
+      "CriticalThreatRange": null,
+      "CriticalMultiplier": null,
+      "Category": "Scroll",
+      "BaseCost": 1,
+      "MaxStackSize": 1000,
+      "ItemCostMultiplier": 0.36,
+      "InventorySound": {
+        "ID": "4cda07bc-a66b-c48f-292e-c8c69181cf66",
+        "Label": "paper_rustle"
+      },
+      "MinSpellProperties": 1,
+      "MaxSpellProperties": 1,
+      "ItemPropertySet": {
+        "ID": "4c723906-f172-71ca-da3e-2312a35f567a",
+        "Label": "Scrolls"
+      },
+      "StorePanel": "PotionsScrolls",
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "RequiredFeat3": null,
+      "RequiredFeat4": null,
+      "RequiredFeat5": null,
+      "ArmorClassType": null,
+      "BaseShieldAC": 0,
+      "ArmorCheckPenalty": 0,
+      "DefaultChargeCount": 0,
+      "GroundModelRotation": "None",
+      "Weight": 0.1,
+      "WeaponSound": null,
+      "AmmunitionType": null,
+      "QuickbarBehaviour": "SelectSpell",
+      "ArcaneSpellFailure": null,
+      "LeftSlashAnimationPercent": null,
+      "RightSlashAnimationPercent": null,
+      "StraightSlashAnimationPercent": null,
+      "StorePanelOrder": 1,
+      "ItemLevelRestrictionStackSize": 1,
+      "WeaponFocusFeat": null,
+      "EpicWeaponFocusFeat": null,
+      "WeaponSpecializationFeat": null,
+      "EpicWeaponSpecializationFeat": null,
+      "ImprovedCriticalFeat": null,
+      "OverwhelmingCriticalFeat": null,
+      "DevastatingCriticalFeat": null,
+      "WeaponOfChoiceFeat": null,
+      "IsMonkWeapon": false,
+      "WeaponFinesseMinimumCreatureSize": null
+    },
+    {
+      "ID": "630d75c0-aef3-4d53-8756-563a799ecb69",
+      "Index": -1,
+      "Overrides": "9a3b77c4-37cb-d967-2d87-e1b8d116ca04",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "thievestools",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 1556,
+        "EN": {
+          "M": "Thieves\u0027 Tools"
+        },
+        "FR": {
+          "M": "Outils de cambrioleur"
+        },
+        "DE": {
+          "M": "Diebeswerkzeug"
+        },
+        "IT": {
+          "M": "Arnesi da Scasso"
+        },
+        "ES": {
+          "M": "Herramientas de ladr\u00F3n"
+        },
+        "PL": {
+          "M": "Z\u0142odziejskie Narz\u0119dzia"
+        }
+      },
+      "Description": {
+        "Index": 1722,
+        "EN": {
+          "M": "A set of thieves\u0027 tools includes skeleton keys, long metal picks, and assorted other tools that are all used in conjunction with the Open Lock skill to aid in the chances of success."
+        },
+        "FR": {
+          "M": "Les outils de cambrioleur sont une s\u00E9rie de passe-partout, crochets et autres outils servant \u00E0 crocheter les serrures. Ils am\u00E9liorent les chances de succ\u00E8s en cas d\u0027utilisation de la comp\u00E9tence Crochetage."
+        },
+        "DE": {
+          "M": "Zum Diebeswerkzeug geh\u00F6ren Dietriche, Rohschl\u00FCssel und andere Ger\u00E4tschaften. Es wird mit der Fertigkeit \u0022Schl\u00F6sser \u00F6ffnen\u0022 eingesetzt und erh\u00F6ht deren Erfolgschancen."
+        },
+        "IT": {
+          "M": "Gli arnesi da scasso includono alcuni passepartout, lunghi grimaldelli metallici e altri attrezzi assortiti che vengono usati assieme all\u0027abilit\u00E0 Scassinare Serrature per aumentare le possibilit\u00E0 di successo."
+        },
+        "ES": {
+          "M": "Un juego de herramientas de ladr\u00F3n incluye llaves maestras, ganz\u00FAas largas de metal y todo un surtido de herramientas que, usadas junto con la habilidad Abrir cerraduras, incrementan las probabilidades de \u00E9xito."
+        },
+        "PL": {
+          "M": "W takim zestawie narz\u0119dzi znajduj\u0105 si\u0119 wytrychy, d\u0142ugie metalowe druty i wiele innych narz\u0119dzi, kt\u00F3re w po\u0142\u0105czeniu z umiej\u0119tno\u015Bci\u0105 Otwierania Zamk\u00F3w zwi\u0119kszaj\u0105 szanse powodzenia takiej operacji."
+        }
+      },
+      "StatsText": {
+        "Index": 5460
+      },
+      "Icon": "iit_picks_001",
+      "InventorySlotWidth": 1,
+      "InventorySlotHeight": 2,
+      "EquipableSlots": [],
+      "CanRotateIcon": false,
+      "ModelType": "Simple",
+      "ItemModel": "it_picks",
+      "GenderSpecific": false,
+      "Part1Alpha": null,
+      "Part2Alpha": null,
+      "Part3Alpha": null,
+      "DefaultModel": "it_bag",
+      "IsContainer": false,
+      "WeaponWieldType": "NotWieldable",
+      "WeaponDamageType": null,
+      "WeaponSize": null,
+      "AmmunitionBaseItem": null,
+      "PreferredAttackDistance": null,
+      "MinimumModelCount": 0,
+      "MaximumModelCount": 50,
+      "DamageDiceCount": null,
+      "DamageDice": null,
+      "CriticalThreatRange": null,
+      "CriticalMultiplier": null,
+      "Category": "ThievesTools",
+      "BaseCost": 1,
+      "MaxStackSize": 1000,
+      "ItemCostMultiplier": 0.25,
+      "InventorySound": {
+        "ID": "fbc213c1-3109-ad8a-66ca-630373d594a7",
+        "Label": "key_ping"
+      },
+      "MinSpellProperties": 0,
+      "MaxSpellProperties": 8,
+      "ItemPropertySet": {
+        "ID": "5cc2e58a-588c-1fe3-4205-39a3a805cb67",
+        "Label": "Thieves"
+      },
+      "StorePanel": "Misc",
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "RequiredFeat3": null,
+      "RequiredFeat4": null,
+      "RequiredFeat5": null,
+      "ArmorClassType": null,
+      "BaseShieldAC": 0,
+      "ArmorCheckPenalty": 0,
+      "DefaultChargeCount": 0,
+      "GroundModelRotation": "None",
+      "Weight": 0.5,
+      "WeaponSound": null,
+      "AmmunitionType": null,
+      "QuickbarBehaviour": "Default",
+      "ArcaneSpellFailure": null,
+      "LeftSlashAnimationPercent": null,
+      "RightSlashAnimationPercent": null,
+      "StraightSlashAnimationPercent": null,
+      "StorePanelOrder": 0,
+      "ItemLevelRestrictionStackSize": 1,
+      "WeaponFocusFeat": null,
+      "EpicWeaponFocusFeat": null,
+      "WeaponSpecializationFeat": null,
+      "EpicWeaponSpecializationFeat": null,
+      "ImprovedCriticalFeat": null,
+      "OverwhelmingCriticalFeat": null,
+      "DevastatingCriticalFeat": null,
+      "WeaponOfChoiceFeat": null,
+      "IsMonkWeapon": false,
+      "WeaponFinesseMinimumCreatureSize": null
+    },
+    {
+      "ID": "1d019be6-ce4c-49da-9d1f-384ed6b0e2d6",
+      "Index": -1,
+      "Overrides": "b6929455-1856-b756-ee27-e6df8e13dbc5",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "throwingaxe",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 1557,
+        "EN": {
+          "M": "Throwing Axe"
+        },
+        "FR": {
+          "M": "Hache de lancer"
+        },
+        "DE": {
+          "M": "Wurfbeil"
+        },
+        "IT": {
+          "M": "Ascia da Lancio"
+        },
+        "ES": {
+          "M": "Hacha arrojadiza"
+        },
+        "PL": {
+          "M": "Toporek do Rzucania"
+        }
+      },
+      "Description": {
+        "Index": 1680,
+        "EN": {
+          "M": "The throwing axe bears little in common with the farm implement it is derived from. It has been carefully balanced for flight, sacrificing durability for precision."
+        },
+        "FR": {
+          "M": "La hache de lancer n\u0027a plus grand-chose en commun avec la hachette des cours de ferme qui lui a donn\u00E9 naissance. Parfaitement \u00E9quilibr\u00E9e pour \u00EAtre lanc\u00E9e, elle offre une grande pr\u00E9cision mais sa solidit\u00E9 en p\u00E2tit."
+        },
+        "DE": {
+          "M": "Ein Wurfbeil hat nur noch wenig \u00C4hnlichkeit mit dem Holzbearbeitungswerkzeug, aus dem es einst entstanden ist. Es wurde sorgf\u00E4ltig ausbalanciert, damit es gut fliegt, weil bei dieser Waffe Pr\u00E4zision wichtiger ist als Robustheit."
+        },
+        "IT": {
+          "M": "L\u0027ascia da lancio conserva poche somiglianze con l\u0027utensile contadino da cui deriva. \u00C8 stata accuratamente bilanciata per il tiro, sacrificando la potenza in nome della precisione."
+        },
+        "ES": {
+          "M": "El hacha arrojadiza tiene poco en com\u00FAn con la herramienta agr\u00EDcola de la que procede. Ha sido cuidadosamente equilibrada para el lanzamiento, sacrificando resistencia a cambio de precisi\u00F3n."
+        },
+        "PL": {
+          "M": "Toporek do rzucania ma niewiele wsp\u00F3lnego z narz\u0119dziem od kt\u00F3rego pochodzi. Jest to doskonale wywa\u017Cona bro\u0144, przeznaczona do rzucania - jej konstruktorzy po\u015Bwi\u0119cili trwa\u0142o\u015B\u0107 na rzecz celno\u015Bci."
+        }
+      },
+      "StatsText": {
+        "Index": 5407,
+        "EN": {
+          "M": "Base Damage: 1d6\nBase Critical Threat: x2\nBase Damage Type: Slashing\nWeapon Size: Small\nFeats Required: Martial"
+        },
+        "FR": {
+          "M": "D\u00E9g\u00E2ts (base) : 1d6\nCritique : x2\nType de d\u00E9g\u00E2ts : tranchant\nTaille de l\u0027arme : P\nDon requis : Arme de guerre"
+        },
+        "DE": {
+          "M": "Schaden: 1W6\nKritischer Treffer: x2\nWaffenkategorie: Hiebwaffe\nWaffengr\u00F6\u00DFe: Klein\nVoraussetzungen: Umgang mit Kriegswaffen"
+        },
+        "IT": {
+          "M": "Danno Base: 1d6\nMinaccia Base per il Critico: x2\nTipo di Danno Base: Tagliente\nTaglia dell\u0027Arma: Piccola\nTalenti Richiesti: Da Guerra"
+        },
+        "ES": {
+          "M": "Da\u00F1o base: 1d6\nAmenaza de cr\u00EDtico base: x2\nTipo de da\u00F1o base: Cortante\nTama\u00F1o del arma: Peque\u00F1a\nDotes requeridas: Marcial"
+        },
+        "PL": {
+          "M": "Bazowe obra\u017Cenia: 1k6\nTrafienie krytyczne: x2\nRodzaj bazowych obra\u017Ce\u0144: sieczne\nWielko\u015B\u0107 broni: ma\u0142a\nWymagane atuty: bro\u0144 bojowa"
+        }
+      },
+      "Icon": "iwthax",
+      "InventorySlotWidth": 1,
+      "InventorySlotHeight": 2,
+      "EquipableSlots": [
+        "MainHand"
+      ],
+      "CanRotateIcon": true,
+      "ModelType": "Composite",
+      "ItemModel": "WThAx",
+      "GenderSpecific": false,
+      "Part1Alpha": "Environment",
+      "Part2Alpha": "Environment",
+      "Part3Alpha": "Environment",
+      "DefaultModel": "it_bag",
+      "IsContainer": false,
+      "WeaponWieldType": "ThrowingWeapon",
+      "WeaponDamageType": "Slashing",
+      "WeaponSize": "Small",
+      "AmmunitionBaseItem": {
+        "ID": "b6929455-1856-b756-ee27-e6df8e13dbc5",
+        "Label": "Throwing Axe"
+      },
+      "PreferredAttackDistance": 30,
+      "MinimumModelCount": 10,
+      "MaximumModelCount": 100,
+      "DamageDiceCount": 1,
+      "DamageDice": 6,
+      "CriticalThreatRange": 1,
+      "CriticalMultiplier": 2,
+      "Category": "Thrown",
+      "BaseCost": 1,
+      "MaxStackSize": 1000,
+      "ItemCostMultiplier": 0.01,
+      "InventorySound": {
+        "ID": "0e8fadc2-bc0d-9cfb-a1b1-7690fe12226a",
+        "Label": "med_blade"
+      },
+      "MinSpellProperties": 0,
+      "MaxSpellProperties": 8,
+      "ItemPropertySet": {
+        "ID": "647de716-c653-76e4-723e-63dcade78eee",
+        "Label": "Thrown"
+      },
+      "StorePanel": "Weapons",
+      "RequiredFeat1": {
+        "ID": "0c9d914b-6786-02c1-19c5-d83fba02377d",
+        "Label": "Weapon Proficiency (martial)"
+      },
+      "RequiredFeat2": null,
+      "RequiredFeat3": null,
+      "RequiredFeat4": null,
+      "RequiredFeat5": null,
+      "ArmorClassType": null,
+      "BaseShieldAC": 0,
+      "ArmorCheckPenalty": 0,
+      "DefaultChargeCount": 0,
+      "GroundModelRotation": "AxisY",
+      "Weight": 1,
+      "WeaponSound": {
+        "ID": "1b0b16ae-5188-bb06-6eb0-8a8fd9a9ed54",
+        "Label": "Throw_Axe"
+      },
+      "AmmunitionType": "ThrowingAxe",
+      "QuickbarBehaviour": "Default",
+      "ArcaneSpellFailure": null,
+      "LeftSlashAnimationPercent": null,
+      "RightSlashAnimationPercent": null,
+      "StraightSlashAnimationPercent": null,
+      "StorePanelOrder": 24,
+      "ItemLevelRestrictionStackSize": 50,
+      "WeaponFocusFeat": {
+        "ID": "b785809f-9231-fd68-fc98-c00c45db6cba",
+        "Label": "Weapon Focus (throwing axe)"
+      },
+      "EpicWeaponFocusFeat": {
+        "ID": "88a36ac6-0112-9cfe-9136-e727e72167f2",
+        "Label": "Epic Weapon Focus (throwing axe)"
+      },
+      "WeaponSpecializationFeat": {
+        "ID": "e90a2c0c-1cb1-3695-7ffe-0960d1d30590",
+        "Label": "Weapon Specialization (throwing axe)"
+      },
+      "EpicWeaponSpecializationFeat": {
+        "ID": "977784db-8c80-ce47-fa14-6e25074a8004",
+        "Label": "Epic Weapon Specialization (throwing axe)"
+      },
+      "ImprovedCriticalFeat": {
+        "ID": "a5832d86-7d3c-df2f-8250-8086cc12c706",
+        "Label": "Improved Critical (throwing axe)"
+      },
+      "OverwhelmingCriticalFeat": {
+        "ID": "887bd780-de65-7259-dfaf-eff72f90b1c8",
+        "Label": "Overwhelming Critical (throwing axe)"
+      },
+      "DevastatingCriticalFeat": {
+        "ID": "ce375294-1720-f9ad-ab16-b1b2ccfaed67",
+        "Label": "Devastating Critical (throwing axe)"
+      },
+      "WeaponOfChoiceFeat": null,
+      "IsMonkWeapon": false,
+      "WeaponFinesseMinimumCreatureSize": null
+    },
+    {
+      "ID": "ccb0b14a-2727-4872-939e-ac1defee5e92",
+      "Index": -1,
+      "Overrides": "1ab15e00-ac2b-a3e6-f106-a0e8030aefc6",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "trapkit",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 1558,
+        "EN": {
+          "M": "Trap Kit"
+        },
+        "FR": {
+          "M": "Trousse \u00E0 pi\u00E8ge"
+        },
+        "DE": {
+          "M": "Fallenstellerwerkzeug"
+        },
+        "IT": {
+          "M": "Arnesi per Trappole"
+        },
+        "ES": {
+          "M": "Material de trampero"
+        },
+        "PL": {
+          "M": "Zestaw do pu\u0142apek"
+        }
+      },
+      "Description": {
+        "Index": 1721,
+        "EN": {
+          "M": "A trap kit contains various clamps, trip wires, and miscellaneous tools all designed to aid in setting traps. It is used in conjunction with the Set Traps skill to increase the chances of success."
+        },
+        "FR": {
+          "M": "Une trousse \u00E0 pi\u00E8ge contient divers ustensiles (pinces, fils, etc.) permettant de poser des pi\u00E8ges. Elle augmente les chances de succ\u00E8s en cas d\u0027utilisation de la comp\u00E9tence D\u00E9samor\u00E7age/sabotage."
+        },
+        "DE": {
+          "M": "Zum Fallenstellerwerkzeug geh\u00F6ren verschiedenste Metallklammern, Stolperdr\u00E4hte und diverse andere Ger\u00E4tschaften, die beim Aufstellen oder Entsch\u00E4rfen von Fallen n\u00FCtzlich sind. Es wird mit der Fertigkeit \u0022Fallen stellen\u0022 eingesetzt und erh\u00F6ht deren Erfolgschancen."
+        },
+        "IT": {
+          "M": "Gli arnesi per trappole comprendono uncini, fili e attrezzi vari, utili per piazzare le trappole. Vengono utilizzati assieme all\u0027abilit\u00E0 Piazzare Trappole per aumentare le probabilit\u00E0 di successo."
+        },
+        "ES": {
+          "M": "El material de trampero contiene varios cepos, alambres y diversas herramientas dise\u00F1adas para ayudar a poner trampas. Se usa junto con la habilidad Poner trampas para incrementar las probabilidades de \u00E9xito."
+        },
+        "PL": {
+          "M": "To zestaw z pu\u0142apk\u0105, zawieraj\u0105cy r\u00F3\u017Cne klamry, potykacze i wiele r\u00F3\u017Cnych narz\u0119dzi wykorzystywanych do zak\u0142adania pu\u0142apek. Wykorzystuje si\u0119 go w po\u0142\u0105czeniu z umiej\u0119tno\u015Bci\u0105 Zak\u0142adania Pu\u0142apek, aby zwi\u0119kszy\u0107 szanse powodzenia."
+        }
+      },
+      "StatsText": {
+        "Index": 5461
+      },
+      "Icon": "iit_trap_009",
+      "InventorySlotWidth": 2,
+      "InventorySlotHeight": 2,
+      "EquipableSlots": [],
+      "CanRotateIcon": false,
+      "ModelType": "Simple",
+      "ItemModel": "it_trap",
+      "GenderSpecific": false,
+      "Part1Alpha": null,
+      "Part2Alpha": null,
+      "Part3Alpha": null,
+      "DefaultModel": "it_trap_001",
+      "IsContainer": false,
+      "WeaponWieldType": "NotWieldable",
+      "WeaponDamageType": null,
+      "WeaponSize": null,
+      "AmmunitionBaseItem": null,
+      "PreferredAttackDistance": null,
+      "MinimumModelCount": 0,
+      "MaximumModelCount": 50,
+      "DamageDiceCount": null,
+      "DamageDice": null,
+      "CriticalThreatRange": null,
+      "CriticalMultiplier": null,
+      "Category": "Traps",
+      "BaseCost": 1,
+      "MaxStackSize": 1,
+      "ItemCostMultiplier": 1,
+      "InventorySound": {
+        "ID": "3c9f02d3-8991-94ab-f27d-c717a676f163",
+        "Label": "hard_material"
+      },
+      "MinSpellProperties": 1,
+      "MaxSpellProperties": 1,
+      "ItemPropertySet": {
+        "ID": "1f2c052f-77c5-cd28-d520-1e0e1bcbf0e1",
+        "Label": "TrapKits"
+      },
+      "StorePanel": "Misc",
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "RequiredFeat3": null,
+      "RequiredFeat4": null,
+      "RequiredFeat5": null,
+      "ArmorClassType": null,
+      "BaseShieldAC": 0,
+      "ArmorCheckPenalty": 0,
+      "DefaultChargeCount": 0,
+      "GroundModelRotation": "None",
+      "Weight": 0.5,
+      "WeaponSound": null,
+      "AmmunitionType": null,
+      "QuickbarBehaviour": "Default",
+      "ArcaneSpellFailure": null,
+      "LeftSlashAnimationPercent": null,
+      "RightSlashAnimationPercent": null,
+      "StraightSlashAnimationPercent": null,
+      "StorePanelOrder": 0,
+      "ItemLevelRestrictionStackSize": 1,
+      "WeaponFocusFeat": null,
+      "EpicWeaponFocusFeat": null,
+      "WeaponSpecializationFeat": null,
+      "EpicWeaponSpecializationFeat": null,
+      "ImprovedCriticalFeat": null,
+      "OverwhelmingCriticalFeat": null,
+      "DevastatingCriticalFeat": null,
+      "WeaponOfChoiceFeat": null,
+      "IsMonkWeapon": false,
+      "WeaponFinesseMinimumCreatureSize": null
+    },
+    {
+      "ID": "4b1837e2-1a30-4995-8afe-e6ff849a4f82",
+      "Index": -1,
+      "Overrides": "a6920181-bbb1-d618-b7c4-d529ca61cdd5",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "crafted_potion",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 83365,
+        "EN": {
+          "M": "Brewed Potion"
+        },
+        "FR": {
+          "M": "Potion pr\u00E9par\u00E9e"
+        },
+        "DE": {
+          "M": "Gebrauter Trank"
+        },
+        "IT": {
+          "M": "Pozione creata"
+        },
+        "ES": {
+          "M": "Poci\u00F3n elaborada"
+        },
+        "PL": {
+          "M": "Uwarzona mikstura"
+        }
+      },
+      "Description": {
+        "Index": 1719,
+        "EN": {
+          "M": "Potions store various spells, both beneficial and otherwise, until consumed."
+        },
+        "FR": {
+          "M": "Les potions sont des concentr\u00E9s d\u0027\u00E9nergie magique, et quiconque les boit est affect\u00E9 par le sort correspondant."
+        },
+        "DE": {
+          "M": "Tr\u00E4nke verm\u00F6gen verschiedenste Zauber zu wirken, wenn man sie zu sich nimmt.  Manche sind hilfreich, andere eher das Gegenteil."
+        },
+        "IT": {
+          "M": "Le pozioni contengono diversi incantesimi, sia benefici che non, finch\u00E9 non vengono bevute."
+        },
+        "ES": {
+          "M": "Las pociones almacenan diversos conjuros tan beneficiosos como de otro tipo, hasta que son consumidas."
+        },
+        "PL": {
+          "M": "Mikstury zawieraj\u0105 w sobie moc r\u00F3\u017Cnych czar\u00F3w, zar\u00F3wno korzystnych, jak i szkodliwych. Zakl\u0119cia wyzwalaj\u0105 si\u0119 po wypiciu p\u0142ynu."
+        }
+      },
+      "StatsText": {
+        "Index": 5455
+      },
+      "Icon": "iit_potion",
+      "InventorySlotWidth": 1,
+      "InventorySlotHeight": 2,
+      "EquipableSlots": [],
+      "CanRotateIcon": false,
+      "ModelType": "Composite",
+      "ItemModel": "it_potion",
+      "GenderSpecific": false,
+      "Part1Alpha": null,
+      "Part2Alpha": null,
+      "Part3Alpha": null,
+      "DefaultModel": "it_potion_000",
+      "IsContainer": false,
+      "WeaponWieldType": "NotWieldable",
+      "WeaponDamageType": null,
+      "WeaponSize": null,
+      "AmmunitionBaseItem": null,
+      "PreferredAttackDistance": null,
+      "MinimumModelCount": 10,
+      "MaximumModelCount": 100,
+      "DamageDiceCount": null,
+      "DamageDice": null,
+      "CriticalThreatRange": null,
+      "CriticalMultiplier": null,
+      "Category": "Potion",
+      "BaseCost": 1,
+      "MaxStackSize": 1000,
+      "ItemCostMultiplier": 0.2,
+      "InventorySound": {
+        "ID": "e8eeec75-5a41-0adc-2db9-39a852c0c1e6",
+        "Label": "potion_ping"
+      },
+      "MinSpellProperties": 0,
+      "MaxSpellProperties": 1,
+      "ItemPropertySet": {
+        "ID": "f8de5e9b-b689-bddc-913c-6f89c1ebfe6e",
+        "Label": "Potions"
+      },
+      "StorePanel": "PotionsScrolls",
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "RequiredFeat3": null,
+      "RequiredFeat4": null,
+      "RequiredFeat5": null,
+      "ArmorClassType": null,
+      "BaseShieldAC": 0,
+      "ArmorCheckPenalty": 0,
+      "DefaultChargeCount": 0,
+      "GroundModelRotation": "AxisX",
+      "Weight": 0.1,
+      "WeaponSound": null,
+      "AmmunitionType": null,
+      "QuickbarBehaviour": "SelectSpellTargetSelf",
+      "ArcaneSpellFailure": null,
+      "LeftSlashAnimationPercent": null,
+      "RightSlashAnimationPercent": null,
+      "StraightSlashAnimationPercent": null,
+      "StorePanelOrder": 0,
+      "ItemLevelRestrictionStackSize": 1,
+      "WeaponFocusFeat": null,
+      "EpicWeaponFocusFeat": null,
+      "WeaponSpecializationFeat": null,
+      "EpicWeaponSpecializationFeat": null,
+      "ImprovedCriticalFeat": null,
+      "OverwhelmingCriticalFeat": null,
+      "DevastatingCriticalFeat": null,
+      "WeaponOfChoiceFeat": null,
+      "IsMonkWeapon": false,
+      "WeaponFinesseMinimumCreatureSize": null
+    },
+    {
+      "ID": "3aecb357-2699-498c-b1cd-79c5535db8cf",
+      "Index": -1,
+      "Overrides": "e5200dca-2f8f-b6e0-8033-b6766918adab",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "bullet",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 1521,
+        "EN": {
+          "M": "Bullet"
+        },
+        "FR": {
+          "M": "Billes de fronde"
+        },
+        "DE": {
+          "M": "Schleuderkugel"
+        },
+        "IT": {
+          "M": "Proiettile"
+        },
+        "ES": {
+          "M": "Bala"
+        },
+        "PL": {
+          "M": "Pocisk"
+        }
+      },
+      "Description": {
+        "Index": 1678,
+        "EN": {
+          "M": "Sling bullets are smooth balls of metal that can produce severe bruising and even broken bones when launched effectively. "
+        },
+        "FR": {
+          "M": "Les billes de fronde sont de petites sph\u00E8res m\u00E9talliques pouvant infliger des d\u00E9g\u00E2ts importants, voire briser un os, pour peu que leur utilisateur sache viser."
+        },
+        "DE": {
+          "M": "Schleuderkugeln sind glatte Metallkugeln, die bei effektivem Einsatz schwere Verletzungen bis hin zu gebrochenen Knochen verursachen k\u00F6nnen."
+        },
+        "IT": {
+          "M": "I proiettili per fionda sono delle sfere levigate di metallo che riescono a generare impatti violenti e persino a frantumare le ossa se lanciati nella maniera giusta."
+        },
+        "ES": {
+          "M": "Las balas de honda son bolas de metal que pueden infligir graves contusiones e incluso romper huesos cuando se arrojan con efectividad."
+        },
+        "PL": {
+          "M": "Pociski do procy to g\u0142adkie, metalowe kule, kt\u00F3re miotane w odpowiedni spos\u00F3b mog\u0105 nabi\u0107 solidnego si\u0144ca, a nawet po\u0142ama\u0107 ko\u015Bci."
+        }
+      },
+      "StatsText": {
+        "Index": 5406,
+        "EN": {
+          "M": "Launcher: Sling"
+        },
+        "FR": {
+          "M": "Lanceur : Fronde"
+        },
+        "DE": {
+          "M": "Werden verwendet mit: Schleuder"
+        },
+        "IT": {
+          "M": "Arma da tiro: Fionda"
+        },
+        "ES": {
+          "M": "Arma de proyectil: Honda"
+        },
+        "PL": {
+          "M": "Bro\u0144: Proca"
+        }
+      },
+      "Icon": "iwambu",
+      "InventorySlotWidth": 1,
+      "InventorySlotHeight": 1,
+      "EquipableSlots": [
+        "Bullet"
+      ],
+      "CanRotateIcon": false,
+      "ModelType": "Simple",
+      "ItemModel": "WAmBu",
+      "GenderSpecific": false,
+      "Part1Alpha": "Environment",
+      "Part2Alpha": "Environment",
+      "Part3Alpha": "Environment",
+      "DefaultModel": "GI_WAmBu_001",
+      "IsContainer": false,
+      "WeaponWieldType": "Standard",
+      "WeaponDamageType": null,
+      "WeaponSize": null,
+      "AmmunitionBaseItem": null,
+      "PreferredAttackDistance": null,
+      "MinimumModelCount": 0,
+      "MaximumModelCount": 50,
+      "DamageDiceCount": null,
+      "DamageDice": null,
+      "CriticalThreatRange": null,
+      "CriticalMultiplier": null,
+      "Category": "Ammo",
+      "BaseCost": 1,
+      "MaxStackSize": 1000,
+      "ItemCostMultiplier": 0.01,
+      "InventorySound": {
+        "ID": "c8c347bd-186b-5ebb-0e93-f78861118d26",
+        "Label": "misc_tiny"
+      },
+      "MinSpellProperties": 0,
+      "MaxSpellProperties": 8,
+      "ItemPropertySet": {
+        "ID": "3f5cf0c5-4bf8-2536-b91e-9a4d2ad3896b",
+        "Label": "Ammo"
+      },
+      "StorePanel": "Weapons",
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "RequiredFeat3": null,
+      "RequiredFeat4": null,
+      "RequiredFeat5": null,
+      "ArmorClassType": null,
+      "BaseShieldAC": 0,
+      "ArmorCheckPenalty": 0,
+      "DefaultChargeCount": 0,
+      "GroundModelRotation": "None",
+      "Weight": 0,
+      "WeaponSound": null,
+      "AmmunitionType": null,
+      "QuickbarBehaviour": "Default",
+      "ArcaneSpellFailure": null,
+      "LeftSlashAnimationPercent": null,
+      "RightSlashAnimationPercent": null,
+      "StraightSlashAnimationPercent": null,
+      "StorePanelOrder": 0,
+      "ItemLevelRestrictionStackSize": 99,
+      "WeaponFocusFeat": null,
+      "EpicWeaponFocusFeat": null,
+      "WeaponSpecializationFeat": null,
+      "EpicWeaponSpecializationFeat": null,
+      "ImprovedCriticalFeat": null,
+      "OverwhelmingCriticalFeat": null,
+      "DevastatingCriticalFeat": null,
+      "WeaponOfChoiceFeat": null,
+      "IsMonkWeapon": false,
+      "WeaponFinesseMinimumCreatureSize": null
+    },
+    {
+      "ID": "a0277488-746c-46a5-a0e9-62902a815a22",
+      "Index": -1,
+      "Overrides": "610060dd-9b69-6131-6b52-f5aa872c96cf",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "dart",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 1525,
+        "EN": {
+          "M": "Dart"
+        },
+        "FR": {
+          "M": "Dards"
+        },
+        "DE": {
+          "M": "Wurfpfeil"
+        },
+        "IT": {
+          "M": "Dardo"
+        },
+        "ES": {
+          "M": "Dardo"
+        },
+        "PL": {
+          "M": "Strza\u0142ka"
+        }
+      },
+      "Description": {
+        "Index": 1676,
+        "EN": {
+          "M": "These missile weapons are close in size to a small dagger, and are hurled in combat toward their target."
+        },
+        "FR": {
+          "M": "Ces projectiles ont la taille d\u0027une petite dague et sont lanc\u00E9s vers l\u2019ennemi au combat."
+        },
+        "DE": {
+          "M": "Diese Wurfwaffen haben etwa die Gr\u00F6\u00DFe eines kleineren Dolches und werden im Gefecht auf das Ziel geschleudert."
+        },
+        "IT": {
+          "M": "Queste armi da lancio hanno dimensioni simili a quelle di un piccolo pugnale e vengono scagliate in combattimento contro i bersagli."
+        },
+        "ES": {
+          "M": "Estas armas de ataque a distancia tienen un tama\u00F1o similar al de una daga peque\u00F1a, y en combate se arrojan contra un objetivo."
+        },
+        "PL": {
+          "M": "Strza\u0142ki s\u0105 zbli\u017Cone wielko\u015Bci\u0105 do ma\u0142ych sztylet\u00F3w. W czasie walki rzuca si\u0119 nimi w cel."
+        }
+      },
+      "StatsText": {
+        "Index": 5404,
+        "EN": {
+          "M": "Base Damage: 1d4\nBase Critical Threat: x2\nBase Damage Type: Piercing\nWeapon Size: Small\nFeats Required: Simple, Druid, or Rogue"
+        },
+        "FR": {
+          "M": "D\u00E9g\u00E2ts (base) : 1d4\nCritique : x2\nType de d\u00E9g\u00E2ts : perforant\nTaille de l\u0027arme : P\nDons requis : Arme courante, Druide, Roublard"
+        },
+        "DE": {
+          "M": "Schaden: 1W4\nKritischer Treffer: x2\nWaffenkategorie: Stichwaffe\nWaffengr\u00F6\u00DFe: Klein\nVoraussetzungen: Umgang mit einfachen Waffen, Druide oder Schurke"
+        },
+        "IT": {
+          "M": "Danno Base: 1d4\nMinaccia Base per il Critico: x2\nTipo di Danno Base: Perforante\nTaglia dell\u0027Arma: Piccola\nTalenti Richiesti: Semplici, Druido o Ladro"
+        },
+        "ES": {
+          "M": "Da\u00F1o base: 1d4\nAmenaza de cr\u00EDtico base: x2\nTipo de da\u00F1o base: Perforante\nTama\u00F1o del arma: Peque\u00F1a\nDotes requeridas: Sencilla, Druida o P\u00EDcaro"
+        },
+        "PL": {
+          "M": "Bazowe obra\u017Cenia: 1k4\nTrafienie krytyczne: x2\nRodzaj bazowych obra\u017Ce\u0144: k\u0142ute\nWielko\u015B\u0107 broni: ma\u0142a\nWymagane atuty: bro\u0144 prosta, Druid lub \u0141otrzyk"
+        }
+      },
+      "Icon": "iwthdt",
+      "InventorySlotWidth": 1,
+      "InventorySlotHeight": 1,
+      "EquipableSlots": [
+        "MainHand"
+      ],
+      "CanRotateIcon": false,
+      "ModelType": "Simple",
+      "ItemModel": "WThDt",
+      "GenderSpecific": false,
+      "Part1Alpha": "Environment",
+      "Part2Alpha": "Environment",
+      "Part3Alpha": "Environment",
+      "DefaultModel": "it_dart_000",
+      "IsContainer": false,
+      "WeaponWieldType": "ThrowingWeapon",
+      "WeaponDamageType": "Piercing",
+      "WeaponSize": "Small",
+      "AmmunitionBaseItem": {
+        "ID": "610060dd-9b69-6131-6b52-f5aa872c96cf",
+        "Label": "Dart"
+      },
+      "PreferredAttackDistance": 30,
+      "MinimumModelCount": 0,
+      "MaximumModelCount": 50,
+      "DamageDiceCount": 1,
+      "DamageDice": 4,
+      "CriticalThreatRange": 1,
+      "CriticalMultiplier": 2,
+      "Category": "Thrown",
+      "BaseCost": 0.1,
+      "MaxStackSize": 1000,
+      "ItemCostMultiplier": 0.01,
+      "InventorySound": {
+        "ID": "e1f42325-8a24-1e34-e899-06daadbe3d82",
+        "Label": "arrow\u0026bolt"
+      },
+      "MinSpellProperties": 0,
+      "MaxSpellProperties": 8,
+      "ItemPropertySet": {
+        "ID": "647de716-c653-76e4-723e-63dcade78eee",
+        "Label": "Thrown"
+      },
+      "StorePanel": "Weapons",
+      "RequiredFeat1": {
+        "ID": "1094bb51-88b6-a8b2-ab6f-81987ea0f4c5",
+        "Label": "Weapon Proficiency (simple)"
+      },
+      "RequiredFeat2": {
+        "ID": "02e43375-ffcb-5e1e-9e20-b4080c3b60e0",
+        "Label": "Weapon Proficiency (druid)"
+      },
+      "RequiredFeat3": {
+        "ID": "c7ef23c3-d859-fb1f-9945-877c3d328f30",
+        "Label": "Weapon Proficiency (rogue)"
+      },
+      "RequiredFeat4": null,
+      "RequiredFeat5": null,
+      "ArmorClassType": null,
+      "BaseShieldAC": 0,
+      "ArmorCheckPenalty": 0,
+      "DefaultChargeCount": 0,
+      "GroundModelRotation": "AxisY",
+      "Weight": 0.1,
+      "WeaponSound": {
+        "ID": "68e9ab58-736f-7c60-fc98-8f3640af5571",
+        "Label": "Dart"
+      },
+      "AmmunitionType": "Dart",
+      "QuickbarBehaviour": "Default",
+      "ArcaneSpellFailure": null,
+      "LeftSlashAnimationPercent": null,
+      "RightSlashAnimationPercent": null,
+      "StraightSlashAnimationPercent": null,
+      "StorePanelOrder": 12,
+      "ItemLevelRestrictionStackSize": 50,
+      "WeaponFocusFeat": {
+        "ID": "5aaf0002-024a-d02f-0ee7-2777f9b5bf46",
+        "Label": "Weapon Focus (dart)"
+      },
+      "EpicWeaponFocusFeat": {
+        "ID": "78a64897-cea1-86bf-1d7e-b1deb44bdfbc",
+        "Label": "Epic Weapon Focus (dart)"
+      },
+      "WeaponSpecializationFeat": {
+        "ID": "a6257f6d-c905-24fa-79ab-c9d0b5c01375",
+        "Label": "Weapon Specialization (dart)"
+      },
+      "EpicWeaponSpecializationFeat": {
+        "ID": "504ae093-7702-40b5-24bd-4081f24bf25e",
+        "Label": "Epic Weapon Specialization (dart)"
+      },
+      "ImprovedCriticalFeat": {
+        "ID": "4d821f4e-74e9-a537-f8cf-28b0b229b774",
+        "Label": "Improved Critical (dart)"
+      },
+      "OverwhelmingCriticalFeat": {
+        "ID": "7d1e2e2e-c01e-6991-a513-b7aa180ed8e6",
+        "Label": "Overwhelming Critical (dart)"
+      },
+      "DevastatingCriticalFeat": {
+        "ID": "9b283f50-5657-a470-1dcb-c5182215427b",
+        "Label": "Devastating Critical (dart)"
+      },
+      "WeaponOfChoiceFeat": null,
+      "IsMonkWeapon": false,
+      "WeaponFinesseMinimumCreatureSize": null
+    },
+    {
+      "ID": "d86af788-6209-486d-9e8f-55c79141ff15",
+      "Index": -1,
+      "Overrides": "54ab5ae9-5661-c29f-fd64-1c8cbc68d5a3",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "gem",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 965,
+        "EN": {
+          "M": "Gem"
+        },
+        "FR": {
+          "M": "Gemme"
+        },
+        "DE": {
+          "M": "Edelstein"
+        },
+        "IT": {
+          "M": "Gemma"
+        },
+        "ES": {
+          "M": "Gema"
+        },
+        "PL": {
+          "M": "Klejnot"
+        }
+      },
+      "Description": {
+        "Index": 5024,
+        "EN": {
+          "M": "Gems are very popular with adventurers because they are small, portable, and light."
+        },
+        "FR": {
+          "M": "Les gemmes sont tr\u00E8s appr\u00E9ci\u00E9es des aventuriers, en raison de leur petite taille et de leur poids n\u00E9gligeable."
+        },
+        "DE": {
+          "M": "Edelsteine sind sehr beliebt bei Abenteurern, weil sie so leicht, klein und handlich sind."
+        },
+        "IT": {
+          "M": "Le gemme sono molto popolari fra gli avventurieri perch\u00E9 sono piccole, facili da trasportare e leggere."
+        },
+        "ES": {
+          "M": "Las gemas son muy populares entre los aventureros ya que son peque\u00F1as, c\u00F3modas de transportar y ligeras."
+        },
+        "PL": {
+          "M": "Klejnoty ciesz\u0105 si\u0119 w\u015Br\u00F3d poszukiwaczy przyg\u00F3d du\u017C\u0105 popularno\u015Bci\u0105, g\u0142\u00F3wnie z powodu niewielkich rozmiar\u00F3w, wagi i du\u017Cej warto\u015Bci."
+        }
+      },
+      "StatsText": {
+        "Index": 5472
+      },
+      "Icon": "iit_gem_001",
+      "InventorySlotWidth": 1,
+      "InventorySlotHeight": 1,
+      "EquipableSlots": [],
+      "CanRotateIcon": false,
+      "ModelType": "Simple",
+      "ItemModel": "IT_GEM",
+      "GenderSpecific": false,
+      "Part1Alpha": null,
+      "Part2Alpha": null,
+      "Part3Alpha": null,
+      "DefaultModel": "it_bag",
+      "IsContainer": false,
+      "WeaponWieldType": "NotWieldable",
+      "WeaponDamageType": null,
+      "WeaponSize": null,
+      "AmmunitionBaseItem": null,
+      "PreferredAttackDistance": null,
+      "MinimumModelCount": 0,
+      "MaximumModelCount": 50,
+      "DamageDiceCount": null,
+      "DamageDice": null,
+      "CriticalThreatRange": null,
+      "CriticalMultiplier": null,
+      "Category": "Container",
+      "BaseCost": 0,
+      "MaxStackSize": 1000,
+      "ItemCostMultiplier": 1,
+      "InventorySound": {
+        "ID": "003745e0-5393-352c-b3e8-374a5df306a7",
+        "Label": "gem_ping"
+      },
+      "MinSpellProperties": 0,
+      "MaxSpellProperties": 8,
+      "ItemPropertySet": {
+        "ID": "c8d4ecd6-9652-055a-a3cc-b72b56d68480",
+        "Label": "No_Props"
+      },
+      "StorePanel": "Misc",
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "RequiredFeat3": null,
+      "RequiredFeat4": null,
+      "RequiredFeat5": null,
+      "ArmorClassType": null,
+      "BaseShieldAC": 0,
+      "ArmorCheckPenalty": 0,
+      "DefaultChargeCount": 0,
+      "GroundModelRotation": "None",
+      "Weight": 0,
+      "WeaponSound": null,
+      "AmmunitionType": null,
+      "QuickbarBehaviour": "Default",
+      "ArcaneSpellFailure": null,
+      "LeftSlashAnimationPercent": null,
+      "RightSlashAnimationPercent": null,
+      "StraightSlashAnimationPercent": null,
+      "StorePanelOrder": 0,
+      "ItemLevelRestrictionStackSize": 1,
+      "WeaponFocusFeat": null,
+      "EpicWeaponFocusFeat": null,
+      "WeaponSpecializationFeat": null,
+      "EpicWeaponSpecializationFeat": null,
+      "ImprovedCriticalFeat": null,
+      "OverwhelmingCriticalFeat": null,
+      "DevastatingCriticalFeat": null,
+      "WeaponOfChoiceFeat": null,
+      "IsMonkWeapon": false,
+      "WeaponFinesseMinimumCreatureSize": null
+    },
+    {
+      "ID": "1bbaa975-4fd1-4b39-bd54-55f633d31eff",
+      "Index": -1,
+      "Overrides": "f1a7a29f-ea2b-6ee6-2df0-29c3306b8340",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "grenade",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 2730,
+        "EN": {
+          "M": "Grenadelike"
+        },
+        "FR": {
+          "M": "Projectiles \u00E0 impact"
+        },
+        "DE": {
+          "M": "Granate"
+        },
+        "IT": {
+          "M": "A granata"
+        },
+        "ES": {
+          "M": "Deflagradora"
+        },
+        "PL": {
+          "M": "Granat"
+        }
+      },
+      "Description": {
+        "Index": 2731,
+        "EN": {
+          "M": "Grenades are small flasks or containers that when thrown at an enemy (or on the ground) will explode, generally causing damage of some sort."
+        },
+        "FR": {
+          "M": "Les grenades sont des petites fioles ou des r\u00E9cipients qui, lanc\u00E9s contre un adversaire (ou au sol), explosent et infligent des d\u00E9g\u00E2ts."
+        },
+        "DE": {
+          "M": "Granaten sind kleine Fl\u00E4schchen oder Beh\u00E4lter, die explodieren, wenn man sie auf den Feind oder auf den Boden wirft. Dabei richten sie irgendeine Form von Schaden an."
+        },
+        "IT": {
+          "M": "Le granate sono piccole ampolle o contenitori che, una volta lanciati su un nemico (o a terra) esplodono, normalmente infliggendo danni di qualche tipo."
+        },
+        "ES": {
+          "M": "Las armas deflagradoras son peque\u00F1os frascos o recipientes que explotan cuando son arrojados sobre un enemigo (o el suelo), generalmente causando da\u00F1o de alg\u00FAn tipo."
+        },
+        "PL": {
+          "M": "Granaty to ma\u0142e butelki lub pojemniki, kt\u00F3re wybuchaj\u0105 po trafieniu w przeciwnika (lub po uderzeniu w ziemi\u0119) i zadaj\u0105 obra\u017Cenia jakiego\u015B rodzaju."
+        }
+      },
+      "StatsText": {
+        "Index": 5448
+      },
+      "Icon": "iit_x1_gren_003",
+      "InventorySlotWidth": 1,
+      "InventorySlotHeight": 1,
+      "EquipableSlots": [],
+      "CanRotateIcon": false,
+      "ModelType": "Simple",
+      "ItemModel": "it_x1_gren",
+      "GenderSpecific": false,
+      "Part1Alpha": "Environment",
+      "Part2Alpha": "Environment",
+      "Part3Alpha": "Environment",
+      "DefaultModel": "it_bag",
+      "IsContainer": false,
+      "WeaponWieldType": "NotWieldable",
+      "WeaponDamageType": null,
+      "WeaponSize": null,
+      "AmmunitionBaseItem": null,
+      "PreferredAttackDistance": null,
+      "MinimumModelCount": 0,
+      "MaximumModelCount": 100,
+      "DamageDiceCount": null,
+      "DamageDice": null,
+      "CriticalThreatRange": null,
+      "CriticalMultiplier": null,
+      "Category": "MiscUnequipable",
+      "BaseCost": 0,
+      "MaxStackSize": 1000,
+      "ItemCostMultiplier": 1,
+      "InventorySound": {
+        "ID": "c8c347bd-186b-5ebb-0e93-f78861118d26",
+        "Label": "misc_tiny"
+      },
+      "MinSpellProperties": 0,
+      "MaxSpellProperties": 8,
+      "ItemPropertySet": {
+        "ID": "829ca97a-bd77-7911-8155-d009c6085801",
+        "Label": "Misc_Uneq"
+      },
+      "StorePanel": "Misc",
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "RequiredFeat3": null,
+      "RequiredFeat4": null,
+      "RequiredFeat5": null,
+      "ArmorClassType": null,
+      "BaseShieldAC": 0,
+      "ArmorCheckPenalty": 0,
+      "DefaultChargeCount": 0,
+      "GroundModelRotation": "None",
+      "Weight": 0.3,
+      "WeaponSound": null,
+      "AmmunitionType": null,
+      "QuickbarBehaviour": "SelectSpell",
+      "ArcaneSpellFailure": null,
+      "LeftSlashAnimationPercent": null,
+      "RightSlashAnimationPercent": null,
+      "StraightSlashAnimationPercent": null,
+      "StorePanelOrder": 0,
+      "ItemLevelRestrictionStackSize": 1,
+      "WeaponFocusFeat": null,
+      "EpicWeaponFocusFeat": null,
+      "WeaponSpecializationFeat": null,
+      "EpicWeaponSpecializationFeat": null,
+      "ImprovedCriticalFeat": null,
+      "OverwhelmingCriticalFeat": null,
+      "DevastatingCriticalFeat": null,
+      "WeaponOfChoiceFeat": null,
+      "IsMonkWeapon": false,
+      "WeaponFinesseMinimumCreatureSize": null
+    },
+    {
+      "ID": "14cacb82-1b38-4611-895e-cad90e388874",
+      "Index": -1,
+      "Overrides": "cda20fd3-ac59-4ef3-996c-e21b1226c9a7",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "healerskit",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 1533,
+        "EN": {
+          "M": "Healer\u0027s Kit"
+        },
+        "FR": {
+          "M": "Trousse de premiers secours"
+        },
+        "DE": {
+          "M": "Heilertasche"
+        },
+        "IT": {
+          "M": "Borsa da Guaritore"
+        },
+        "ES": {
+          "M": "Material de curandero"
+        },
+        "PL": {
+          "M": "Torba Uzdrowiciela"
+        }
+      },
+      "Description": {
+        "Index": 1720,
+        "EN": {
+          "M": "A healer\u0027s kit contains various herbs, bandages, and salves, all of which can be used in conjunction with the Heal skill to heal wounds, cure poison, or remove diseases."
+        },
+        "FR": {
+          "M": "Une trousse de premiers secours contient diverses plantes m\u00E9dicinales, mais aussi des baumes et bandages, pouvant \u00EAtre utilis\u00E9s (\u00E0 condition d\u0027avoir la comp\u00E9tence Premiers secours) pour panser les blessures, gu\u00E9rir les empoisonnements ou soigner les maladies."
+        },
+        "DE": {
+          "M": "In einer Heilertasche finden die unterschiedlichsten Kr\u00E4uterlein, Wundpflaster und Salben Platz, die in Verbindung mit der Fertigkeit Heilkunde benutzt werden k\u00F6nnen, um Wunden zu schlie\u00DFen und Vergiftungen oder Krankheiten zu heilen."
+        },
+        "IT": {
+          "M": "La borsa da guaritore contiene varie erbe, bende, e unguenti che possono essere utilizzati assieme all\u0027abilit\u00E0 Guarire per curare ferite, veleni o malattie."
+        },
+        "ES": {
+          "M": "El material de curandero contiene diversas hierbas, vendas y b\u00E1lsamos que se pueden usar junto con la habilidad Sanar para curar heridas, venenos o enfermedades."
+        },
+        "PL": {
+          "M": "Torba uzdrowiciela zawiera zestaw zi\u00F3\u0142, banda\u017Ce i gaz\u0119, kt\u00F3re w po\u0142\u0105czeniu z umiej\u0119tno\u015Bci\u0105 Leczenia mo\u017Cna wykorzysta\u0107 do opatrzenia ran, wyleczenia z trucizny czy usuni\u0119cia choroby."
+        }
+      },
+      "StatsText": {
+        "Index": 5452
+      },
+      "Icon": "iit_medkit_001",
+      "InventorySlotWidth": 2,
+      "InventorySlotHeight": 1,
+      "EquipableSlots": [],
+      "CanRotateIcon": false,
+      "ModelType": "Simple",
+      "ItemModel": "it_medkit",
+      "GenderSpecific": false,
+      "Part1Alpha": null,
+      "Part2Alpha": null,
+      "Part3Alpha": null,
+      "DefaultModel": "it_bag",
+      "IsContainer": false,
+      "WeaponWieldType": "Standard",
+      "WeaponDamageType": null,
+      "WeaponSize": null,
+      "AmmunitionBaseItem": null,
+      "PreferredAttackDistance": null,
+      "MinimumModelCount": 0,
+      "MaximumModelCount": 50,
+      "DamageDiceCount": null,
+      "DamageDice": null,
+      "CriticalThreatRange": null,
+      "CriticalMultiplier": null,
+      "Category": "Healers",
+      "BaseCost": 50,
+      "MaxStackSize": 1000,
+      "ItemCostMultiplier": 1,
+      "InventorySound": {
+        "ID": "38611d78-6660-d518-bebc-74f022dca143",
+        "Label": "misc_small"
+      },
+      "MinSpellProperties": 0,
+      "MaxSpellProperties": 8,
+      "ItemPropertySet": {
+        "ID": "1a0fb59a-7476-53af-8f1d-1ac35878a657",
+        "Label": "HealerKit"
+      },
+      "StorePanel": "Misc",
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "RequiredFeat3": null,
+      "RequiredFeat4": null,
+      "RequiredFeat5": null,
+      "ArmorClassType": null,
+      "BaseShieldAC": 0,
+      "ArmorCheckPenalty": 0,
+      "DefaultChargeCount": 0,
+      "GroundModelRotation": "None",
+      "Weight": 0.5,
+      "WeaponSound": null,
+      "AmmunitionType": null,
+      "QuickbarBehaviour": "Default",
+      "ArcaneSpellFailure": null,
+      "LeftSlashAnimationPercent": null,
+      "RightSlashAnimationPercent": null,
+      "StraightSlashAnimationPercent": null,
+      "StorePanelOrder": 0,
+      "ItemLevelRestrictionStackSize": 1,
+      "WeaponFocusFeat": null,
+      "EpicWeaponFocusFeat": null,
+      "WeaponSpecializationFeat": null,
+      "EpicWeaponSpecializationFeat": null,
+      "ImprovedCriticalFeat": null,
+      "OverwhelmingCriticalFeat": null,
+      "DevastatingCriticalFeat": null,
+      "WeaponOfChoiceFeat": null,
+      "IsMonkWeapon": false,
+      "WeaponFinesseMinimumCreatureSize": null
+    },
+    {
+      "ID": "616c13ea-84a3-4180-903c-e01c78dde748",
+      "Index": -1,
+      "Overrides": "aadea58c-5b29-11f9-7877-e5098bca4230",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "bolt",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 1519,
+        "EN": {
+          "M": "Bolt"
+        },
+        "FR": {
+          "M": "Carreaux d\u0027arbal\u00E8te"
+        },
+        "DE": {
+          "M": "Bolzen"
+        },
+        "IT": {
+          "M": "Quadrello"
+        },
+        "ES": {
+          "M": "Virote"
+        },
+        "PL": {
+          "M": "Be\u0142t"
+        }
+      },
+      "Description": {
+        "Index": 1675,
+        "EN": {
+          "M": "Bolts or quarrels are the standard ammunition for all types of crossbows, varying in function depending on the shape of the head. "
+        },
+        "FR": {
+          "M": "Les carreaux sont les projectiles tir\u00E9s par les arbal\u00E8tes. Leur fonction varie en fonction de la forme de leur t\u00EAte."
+        },
+        "DE": {
+          "M": "Bolzen sind die Standardmunition f\u00FCr alle Armbrustarten. Je nach Einsatzzweck unterscheiden sie sich in der Form der Bolzenspitze."
+        },
+        "IT": {
+          "M": "I proiettili o quadrelli sono le munizioni standard per tutti i tipi di balestra, e le loro funzioni variano in base alla forma della punta."
+        },
+        "ES": {
+          "M": "Los virotes o cuadrillos forman la munici\u00F3n habitual de todo tipo de ballestas, variando su funci\u00F3n en base a la forma de la punta."
+        },
+        "PL": {
+          "M": "Be\u0142ty s\u0105 standardow\u0105 amunicj\u0105 do wszelkich rodzaj\u00F3w kusz. W zale\u017Cno\u015Bci od kszta\u0142tu grota mog\u0105 mie\u0107 r\u00F3\u017Cne funkcje."
+        }
+      },
+      "StatsText": {
+        "Index": 5403,
+        "EN": {
+          "M": "Launcher: Crossbow, Light, Crossbow, Heavy"
+        },
+        "FR": {
+          "M": "Lanceur : Arbal\u00E8te l\u00E9g\u00E8re, Arbal\u00E8te lourde"
+        },
+        "DE": {
+          "M": "Werden verwendet mit: Leichter Armbrust, Schwerer Ambrust"
+        },
+        "IT": {
+          "M": "Arma da tiro: Balestra Leggera, Balestra Pesante"
+        },
+        "ES": {
+          "M": "Arma de proyectil: Ballesta ligera, ballesta pesada"
+        },
+        "PL": {
+          "M": "Bro\u0144: Lekka kusza, Ci\u0119\u017Cka Kusza"
+        }
+      },
+      "Icon": "iwambo",
+      "InventorySlotWidth": 1,
+      "InventorySlotHeight": 2,
+      "EquipableSlots": [
+        "Bolt"
+      ],
+      "CanRotateIcon": true,
+      "ModelType": "Composite",
+      "ItemModel": "WAmBo",
+      "GenderSpecific": false,
+      "Part1Alpha": "Environment",
+      "Part2Alpha": "Environment",
+      "Part3Alpha": "Environment",
+      "DefaultModel": "GI_WAmBo_001",
+      "IsContainer": false,
+      "WeaponWieldType": "Standard",
+      "WeaponDamageType": null,
+      "WeaponSize": null,
+      "AmmunitionBaseItem": null,
+      "PreferredAttackDistance": null,
+      "MinimumModelCount": 0,
+      "MaximumModelCount": 50,
+      "DamageDiceCount": null,
+      "DamageDice": null,
+      "CriticalThreatRange": null,
+      "CriticalMultiplier": null,
+      "Category": "Ammo",
+      "BaseCost": 1,
+      "MaxStackSize": 1000,
+      "ItemCostMultiplier": 0.01,
+      "InventorySound": {
+        "ID": "e1f42325-8a24-1e34-e899-06daadbe3d82",
+        "Label": "arrow\u0026bolt"
+      },
+      "MinSpellProperties": 0,
+      "MaxSpellProperties": 8,
+      "ItemPropertySet": {
+        "ID": "3f5cf0c5-4bf8-2536-b91e-9a4d2ad3896b",
+        "Label": "Ammo"
+      },
+      "StorePanel": "Weapons",
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "RequiredFeat3": null,
+      "RequiredFeat4": null,
+      "RequiredFeat5": null,
+      "ArmorClassType": null,
+      "BaseShieldAC": 0,
+      "ArmorCheckPenalty": 0,
+      "DefaultChargeCount": 0,
+      "GroundModelRotation": "None",
+      "Weight": 0,
+      "WeaponSound": null,
+      "AmmunitionType": null,
+      "QuickbarBehaviour": "Default",
+      "ArcaneSpellFailure": null,
+      "LeftSlashAnimationPercent": null,
+      "RightSlashAnimationPercent": null,
+      "StraightSlashAnimationPercent": null,
+      "StorePanelOrder": 0,
+      "ItemLevelRestrictionStackSize": 99,
+      "WeaponFocusFeat": null,
+      "EpicWeaponFocusFeat": null,
+      "WeaponSpecializationFeat": null,
+      "EpicWeaponSpecializationFeat": null,
+      "ImprovedCriticalFeat": null,
+      "OverwhelmingCriticalFeat": null,
+      "DevastatingCriticalFeat": null,
+      "WeaponOfChoiceFeat": null,
+      "IsMonkWeapon": false,
+      "WeaponFinesseMinimumCreatureSize": null
+    },
+    {
+      "ID": "ffb95feb-952a-406e-a6c9-f626a092b3bd",
+      "Index": -1,
+      "Overrides": "f055bedd-15f9-fc55-1d86-c0a4e7bba85e",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "potions",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 1543,
+        "EN": {
+          "M": "Potion"
+        },
+        "FR": {
+          "M": "Potion"
+        },
+        "DE": {
+          "M": "Trank"
+        },
+        "IT": {
+          "M": "Pozione"
+        },
+        "ES": {
+          "M": "Poci\u00F3n"
+        },
+        "PL": {
+          "M": "Mikstura"
+        }
+      },
+      "Description": {
+        "Index": 1719,
+        "EN": {
+          "M": "Potions store various spells, both beneficial and otherwise, until consumed."
+        },
+        "FR": {
+          "M": "Les potions sont des concentr\u00E9s d\u0027\u00E9nergie magique, et quiconque les boit est affect\u00E9 par le sort correspondant."
+        },
+        "DE": {
+          "M": "Tr\u00E4nke verm\u00F6gen verschiedenste Zauber zu wirken, wenn man sie zu sich nimmt.  Manche sind hilfreich, andere eher das Gegenteil."
+        },
+        "IT": {
+          "M": "Le pozioni contengono diversi incantesimi, sia benefici che non, finch\u00E9 non vengono bevute."
+        },
+        "ES": {
+          "M": "Las pociones almacenan diversos conjuros tan beneficiosos como de otro tipo, hasta que son consumidas."
+        },
+        "PL": {
+          "M": "Mikstury zawieraj\u0105 w sobie moc r\u00F3\u017Cnych czar\u00F3w, zar\u00F3wno korzystnych, jak i szkodliwych. Zakl\u0119cia wyzwalaj\u0105 si\u0119 po wypiciu p\u0142ynu."
+        }
+      },
+      "StatsText": {
+        "Index": 5455
+      },
+      "Icon": "iit_potion",
+      "InventorySlotWidth": 1,
+      "InventorySlotHeight": 2,
+      "EquipableSlots": [],
+      "CanRotateIcon": false,
+      "ModelType": "Composite",
+      "ItemModel": "it_potion",
+      "GenderSpecific": false,
+      "Part1Alpha": null,
+      "Part2Alpha": null,
+      "Part3Alpha": null,
+      "DefaultModel": "it_potion_000",
+      "IsContainer": false,
+      "WeaponWieldType": "NotWieldable",
+      "WeaponDamageType": null,
+      "WeaponSize": null,
+      "AmmunitionBaseItem": null,
+      "PreferredAttackDistance": null,
+      "MinimumModelCount": 10,
+      "MaximumModelCount": 100,
+      "DamageDiceCount": null,
+      "DamageDice": null,
+      "CriticalThreatRange": null,
+      "CriticalMultiplier": null,
+      "Category": "Potion",
+      "BaseCost": 1,
+      "MaxStackSize": 1000,
+      "ItemCostMultiplier": 0.2,
+      "InventorySound": {
+        "ID": "e8eeec75-5a41-0adc-2db9-39a852c0c1e6",
+        "Label": "potion_ping"
+      },
+      "MinSpellProperties": 1,
+      "MaxSpellProperties": 1,
+      "ItemPropertySet": {
+        "ID": "f8de5e9b-b689-bddc-913c-6f89c1ebfe6e",
+        "Label": "Potions"
+      },
+      "StorePanel": "PotionsScrolls",
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "RequiredFeat3": null,
+      "RequiredFeat4": null,
+      "RequiredFeat5": null,
+      "ArmorClassType": null,
+      "BaseShieldAC": 0,
+      "ArmorCheckPenalty": 0,
+      "DefaultChargeCount": 0,
+      "GroundModelRotation": "AxisX",
+      "Weight": 0.1,
+      "WeaponSound": null,
+      "AmmunitionType": null,
+      "QuickbarBehaviour": "SelectSpellTargetSelf",
+      "ArcaneSpellFailure": null,
+      "LeftSlashAnimationPercent": null,
+      "RightSlashAnimationPercent": null,
+      "StraightSlashAnimationPercent": null,
+      "StorePanelOrder": 0,
       "ItemLevelRestrictionStackSize": 1,
       "WeaponFocusFeat": null,
       "EpicWeaponFocusFeat": null,
