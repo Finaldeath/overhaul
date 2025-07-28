@@ -83,6 +83,9 @@ const int SPELL_TARGET_SELECTIVEHOSTILE = 3;  // Selective hostile - IE: Will no
 // DoSavingThrow does nothing if this is passed.
 const int SAVING_THROW_NONE = -1;
 
+// DoDispelMagic will essentially remove all effects if this is nCasterLevel. It's just a really high number.
+const int CASTER_LEVEL_ALWAYS_SUCCEEDS = 1000000;
+
 const int SORT_METHOD_NONE               = 0;  // Just doesn't bother sorting
 const int SORT_METHOD_LOWEST_HP          = 1;
 const int SORT_METHOD_LOWEST_HD          = 2;
@@ -187,6 +190,7 @@ location GetSpellTargetLocationCalculated(object oTarget);
 //   Returns: 1 if the saving throw roll succeeded
 //   Returns: 2 if the target was immune to the save type specified (only checked for Disease, Fear, Mind Spells, Poison, Trap and Paralysis subtypes)
 // Note: If used within an Area of Effect Object Script (On Enter, OnExit, OnHeartbeat), you MUST pass GetAreaOfEffectCreator() into oSaveVersus!
+// * nSavingThrow - put in SAVING_THROW_NONE to get a 0 return result.
 int DoSavingThrow(object oTarget, object oSaveVersus, int nSavingThrow, int nDC, int nSaveType = SAVING_THROW_TYPE_NONE, float fDelay = 0.0);
 
 // Returns the modified amount of nDamage based on the saving throw being successful for half (or more if reflex save and feats are involved).
@@ -215,7 +219,8 @@ int GetAssayResistanceBonus(object oTarget, object oCaster);
 // Return value: TOUCH_RESULT_* (HIT, MISS or CRITICAL_HIT).
 int DoTouchAttack(object oTarget, object oVersus, int nType, int bDisplayFeedback = TRUE);
 
-// Applies Dispel Magic to the given target (Area of Effects are also handled, as are Summoned Creatures)
+// Applies Dispel Magic to the given target (Area of Effects, Items on the ground and equipped and Summoned Monsters are also handled)
+// If nCasterLevel is CASTER_LEVEL_ALWAYS_SUCCEEDS then it'll be a high number, that should pass all checks (use for Antimagic Ray etc.)
 void DoDispelMagic(object oTarget, int nCasterLevel, int nVis = VFX_INVALID, float fDelay = 0.0, int bAll = TRUE, int bBreach = FALSE);
 
 // Performs a spell breach up to nTotal spell are removed and nSR spell resistance is lowered.
@@ -271,7 +276,7 @@ float GetDuration(int nDuration, int nDurationType, int bApplyMetaMagic = TRUE, 
 // if the target is valid.
 int GetSpellTargetValid(object oTarget, object oCaster, int nTargetType);
 
-// Converts a SAVING_THROW_TYPE_* to an IMMUNITY_TYPE_* where these are checked for in the saving throw functions (Death, Disease, Fear, Mind Spells, Poison, Trap and Paralysis subtypes)
+// Converts a SAVING_THROW_TYPE_* to an IMMUNITY_TYPE_* where these are checked for in the saving throw functions (Disease, Fear, Mind Spells, Poison, Trap and Paralysis subtypes)
 // else it will be IMMUNITY_TYPE_NONE (0)
 int GetImmunityTypeFromSavingThrowType(int nSaveType);
 
@@ -1295,8 +1300,9 @@ location GetSpellTargetLocationCalculated(object oTarget)
 // Instead they'll be immune and we'll send appropriate feedback messages.
 //   Returns: 0 if the saving throw roll failed
 //   Returns: 1 if the saving throw roll succeeded
-//   Returns: 2 if the target was immune to the save type specified (only checked for Death, Disease, Fear, Mind Spells, Poison, Trap and Paralysis subtypes)
+//   Returns: 2 if the target was immune to the save type specified (only checked for Disease, Fear, Mind Spells, Poison, Trap and Paralysis subtypes)
 // Note: If used within an Area of Effect Object Script (On Enter, OnExit, OnHeartbeat), you MUST pass GetAreaOfEffectCreator() into oSaveVersus!
+// * nSavingThrow - put in SAVING_THROW_NONE to get a 0 return result.
 int DoSavingThrow(object oTarget, object oSaveVersus, int nSavingThrow, int nDC, int nSaveType = SAVING_THROW_TYPE_NONE, float fDelay = 0.0)
 {
     if (nSavingThrow == SAVING_THROW_NONE) return 0;
@@ -1582,7 +1588,8 @@ int DoTouchAttack(object oTarget, object oVersus, int nType, int bDisplayFeedbac
     return nResult;
 }
 
-// Applies Dispel Magic to the given target (Area of Effects are also handled, items on the ground as well, as are Summoned Creatures)
+// Applies Dispel Magic to the given target (Area of Effects, Items on the ground and equipped and Summoned Monsters are also handled)
+// If nCasterLevel is CASTER_LEVEL_ALWAYS_SUCCEEDS then it'll be a high number, that should pass all checks (use for Antimagic Ray etc.)
 void DoDispelMagic(object oTarget, int nCasterLevel, int nVis = VFX_INVALID, float fDelay = 0.0, int bAll = TRUE, int bBreach = FALSE)
 {
     // Similar to Biowares both for compatibility and it makes sense.
@@ -1600,7 +1607,8 @@ void DoDispelMagic(object oTarget, int nCasterLevel, int nVis = VFX_INVALID, flo
             // Non-spell Persistent AOEs cannot be dispelled
             if (nOpposingCasterLevel == 0)
             {
-                if (DEBUG_LEVEL >= ERROR) Debug("Persistent AOE with no caster level, ignoring, this shouldn't happen.", ERROR);
+                // This should happen in cases of, eg, Caltrops...!
+                //if (DEBUG_LEVEL >= ERROR) Debug("Persistent AOE with no caster level, ignoring, this shouldn't happen.", ERROR);
                 return;
             }
 
@@ -1628,11 +1636,14 @@ void DoDispelMagic(object oTarget, int nCasterLevel, int nVis = VFX_INVALID, flo
         return;
     }
 
-    // Don't dispel magic on petrified targets
-    // this change is in to prevent weird things from happening with 'statue'
-    // creatures. Also creature can be scripted to be immune to dispel
-    // magic as well.
-    if (GetHasEffect(oTarget, EFFECT_TYPE_PETRIFY) || GetLocalInt(oTarget, "X1_L_IMMUNE_TO_DISPEL") == 10)
+    // Don't dispel magic on petrified targets - this change is in to prevent
+    // weird things from happening with 'statue' creatures.
+    // Also creature can be scripted to be immune to dispel magic as well.
+    // We'll also ignore DMs and plot creatures
+    if (GetHasEffect(oTarget, EFFECT_TYPE_PETRIFY) ||
+       (GetLocalInt(oTarget, "X1_L_IMMUNE_TO_DISPEL") == 10) ||
+        GetIsDM(oTarget) ||
+        GetPlotFlag(oTarget))
     {
         return;
     }
@@ -2095,6 +2106,8 @@ int GetImmunityTypeFromSavingThrowType(int nSaveType)
     int nImmunityType = IMMUNITY_TYPE_NONE;
     switch (nSaveType)
     {
+        // NOTE: Death used to be in this list but the game engine is bugged
+        // so we're replicating this (and anyway using GetIsImmune properly, normally!)
         case SAVING_THROW_TYPE_DISEASE:
             nImmunityType = IMMUNITY_TYPE_DISEASE;
             break;

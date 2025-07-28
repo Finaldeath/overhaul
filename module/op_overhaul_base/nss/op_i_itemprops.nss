@@ -97,6 +97,7 @@ object GetItemToCastSpellOn(object oTarget, int nBaseItemType, int nSpellId, int
 // only be called when it's targeted on a single creature or an item on the ground/in inventory
 // - bCreatureItem - If set oItem is ignored (although the possessor is used) and it gets one of
 //   the creature items to remove things from, and applies it to the other 2.
+// If nCasterLevel is CASTER_LEVEL_MAXIMUM then the checks will always succeed.
 int DispelMagicalItemProperties(object oItem, object oCaster, int nCasterLevel, int bCreatureItem = FALSE);
 
 // Returns a string with the duration of the property information
@@ -578,6 +579,7 @@ object GetItemToCastSpellOn(object oTarget, int nBaseItemType, int nSpellId, int
 // only be called when it's targeted on a single creature or an item on the ground/in inventory
 // - bCreatureItem - If set oItem is ignored (although the possessor is used) and it gets one of
 //   the creature items to remove things from, and applies it to the other 2.
+// If nCasterLevel is CASTER_LEVEL_MAXIMUM then the checks will always succeed.
 int DispelMagicalItemProperties(object oItem, object oCaster, int nCasterLevel, int bCreatureItem = FALSE)
 {
     object oSecondItem, oThirdItem;
