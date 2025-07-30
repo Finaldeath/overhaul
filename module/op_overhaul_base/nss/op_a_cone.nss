@@ -283,14 +283,17 @@ void main()
             // Dispel - caster level is too high to contemplate!
             DoDispelMagic(oTarget, CASTER_LEVEL_ALWAYS_SUCCEEDS, nVis, fDelay, TRUE);
 
-            // Apply the failure for 9 seconds. A rare neutral (negative + positive) effect!
-            effect eLink = EffectLinkEffects(EffectSpellFailure(100),
-                           EffectLinkEffects(EffectSpellImmunity(SPELL_ALL_SPELLS),
-                           EffectLinkEffects(EffectVisualEffect(VFX_DUR_GLOW_LIGHT_BLUE),
-                                             EffectVisualEffect(VFX_DUR_CESSATE_NEUTRAL))));
-            eLink = ExtraordinaryEffect(eLink);
+            if (GetObjectType(oTarget) == OBJECT_TYPE_CREATURE)
+            {
+                // Apply the failure for 9 seconds. A rare neutral (negative + positive) effect!
+                effect eLink = EffectLinkEffects(EffectSpellFailure(100),
+                               EffectLinkEffects(EffectSpellImmunity(SPELL_ALL_SPELLS),
+                               EffectLinkEffects(EffectVisualEffect(VFX_DUR_GLOW_LIGHT_BLUE),
+                                                 EffectVisualEffect(VFX_DUR_CESSATE_NEUTRAL))));
+                eLink = ExtraordinaryEffect(eLink);
 
-            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, 9.0));
+                DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, 9.0));
+            }
         }
         else
         {
