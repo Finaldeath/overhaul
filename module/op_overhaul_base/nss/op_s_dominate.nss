@@ -27,7 +27,7 @@ void main()
 
     // For now all the spells in this script are single target so we just alter
     // the domination effect depending on the target.
-    effect eControl = GetScaledEffect(EffectDominated(), oTarget);
+    effect eControl = GetScaledEffect(EFFECT_TYPE_DOMINATED, oTarget);
 
     // We check for mind immunity and dominate immunity as part of the checks
     // so we want this to ignore immunity to Daze if it's targeting a PC.

@@ -84,7 +84,7 @@ void DoStorm(float fDelay)
         if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_REFLEX, nSpellSaveDC, SAVING_THROW_TYPE_ELECTRICITY))
         {
             // We don't tag this so it lasts past the end of the AOE
-            effect eLink = EffectLinkEffects(EffectStunned(),
+            effect eLink = EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_STUNNED, oTarget),
                                              EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED),
                                                                EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
 

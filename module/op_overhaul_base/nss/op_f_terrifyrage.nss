@@ -55,7 +55,7 @@ void main()
                         if (GetHitDice(oTarget) < GetHitDice(oCaster))
                         {
                             // Scaled effect
-                            effect eLink = ExtraordinaryEffect(EffectLinkEffects(GetScaledEffect(EffectFrightened(), oTarget),
+                            effect eLink = ExtraordinaryEffect(EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_FRIGHTENED, oTarget),
                                                                EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_FEAR),
                                                                                  EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));
 

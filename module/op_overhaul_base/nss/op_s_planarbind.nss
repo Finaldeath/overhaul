@@ -47,7 +47,7 @@ void main()
 
                     if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC))
                     {
-                        effect eLink = EffectLinkEffects(EffectParalyze(),
+                        effect eLink = EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_PARALYZE, oTarget),
                                                          EffectLinkEffects(EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE),
                                                                            EffectLinkEffects(EffectVisualEffect(VFX_DUR_PARALYZED),
                                                                                              EffectVisualEffect(VFX_DUR_PARALYZE_HOLD))));

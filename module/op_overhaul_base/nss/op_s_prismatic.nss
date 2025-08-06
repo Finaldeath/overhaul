@@ -130,7 +130,7 @@ void ApplyColorSpray(float fDelay)
             }
             else if(nHD <= 4)
             {
-                effect eLink   = EffectLinkEffects(EffectStunned(),
+                effect eLink   = EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_STUNNED, oTarget),
                                  EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED),
                                                    EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
                 DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_STUN, oTarget));
@@ -212,7 +212,7 @@ void ApplyPrismaticSpray(float fDelay, int nMaxRoll = 8)
             {
                 if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_FORT, nSpellSaveDC, SAVING_THROW_TYPE_PARALYSIS, fDelay))
                 {
-                    effect eLink = EffectLinkEffects(EffectParalyze(),
+                    effect eLink = EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_PARALYZE, oTarget),
                                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_PARALYZED),
                                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_PARALYZE_HOLD),
                                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE),

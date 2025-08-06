@@ -566,12 +566,12 @@ effect EffectInvalidEffect();
 
 // Gets an appropriate effect based on the target (PC or master is PC) and difficulty
 // Works around some issues when some effects are buggy applied to PCs as well.
-// Used for: Fear, Paralysis, Stun, Confusion, Charm, Dominate.
-effect GetScaledEffect(effect eEffect, object oTarget);
+// Used for: Fear, Paralysis, Cutscene Paralaysis, Stun, Confusion, Charm, Dominate.
+effect GetScaledEffect(int nEffectType, object oTarget);
 
 // Gets difficulty based scaling of duration if the target is a PC. Has to be manually applied.
 // Should be used for: Paralysis, Stun, Daze, Sleep, Charm, Domination (although the latter 2 get converted to Daze)
-// * nDuratoinType - ROUNDS, MINUTES, HOURS
+// * nDurationType - ROUNDS, MINUTES, HOURS
 float GetScaledDuration(object oTarget, int nDuration, int nDurationType);
 
 // Retrieves the SHAPE_* value from spells.2da. Returns -1 on error.
@@ -3863,38 +3863,65 @@ effect EffectInvalidEffect()
 
 // Gets an appropriate effect based on the target (PC or master is PC) and difficulty
 // Works around some issues when some effects are buggy applied to PCs as well.
-// Used for: Fear, Paralysis, Stun, Confusion, Charm, Dominate.
-effect GetScaledEffect(effect eEffect, object oTarget)
+// Used for: Fear, Paralysis, Cutscene Paralaysis, Stun, Confusion, Charm, Dominate.
+effect GetScaledEffect(int nEffectType, object oTarget)
 {
     object oMaster = GetMaster(oTarget);
-    if (GetIsPC(oTarget) || (GetIsObjectValid(oMaster) && GetIsPC(oMaster)))
+    int bPC = GetIsPC(oTarget) || (GetIsObjectValid(oMaster) && GetIsPC(oMaster));
+
+    int nDiff = GetGameDifficulty();
+    switch (nEffectType)
     {
-        int nDiff = GetGameDifficulty();
-        switch (GetEffectType(eEffect))
+        case EFFECT_TYPE_FRIGHTENED:
         {
-            case EFFECT_TYPE_FRIGHTENED:
-            {
-                if (nDiff == GAME_DIFFICULTY_VERY_EASY) return EffectAttackDecrease(2);
-                if (nDiff == GAME_DIFFICULTY_EASY) return EffectAttackDecrease(4);
-            }
-            break;
-            // Only affects DM "very easy" difficulty so meh why bother?
-            case EFFECT_TYPE_PARALYZE:
-            case EFFECT_TYPE_STUNNED:
-            case EFFECT_TYPE_CONFUSED:
-            {
-                if (nDiff == GAME_DIFFICULTY_VERY_EASY) return EffectDazed();
-            }
-            break;
-            case EFFECT_TYPE_CHARMED:
-            case EFFECT_TYPE_DOMINATED:
-            {
-                return EffectDazed();
-            }
-            break;
+            if (bPC && nDiff == GAME_DIFFICULTY_VERY_EASY) return EffectAttackDecrease(2);
+            if (bPC && nDiff == GAME_DIFFICULTY_EASY) return EffectAttackDecrease(4);
+            return EffectFrightened();
         }
+        break;
+        // Only affects DM "very easy" difficulty so meh why bother?
+        case EFFECT_TYPE_PARALYZE:
+        {
+            if (bPC && nDiff == GAME_DIFFICULTY_VERY_EASY) return EffectDazed();
+            return EffectParalyze();
+        }
+        break;
+        case EFFECT_TYPE_CUTSCENE_PARALYZE:
+        {
+            if (bPC && nDiff == GAME_DIFFICULTY_VERY_EASY) return EffectDazed();
+            return EffectCutsceneParalyze();
+        }
+        break;
+        case EFFECT_TYPE_STUNNED:
+        {
+            if (bPC && nDiff == GAME_DIFFICULTY_VERY_EASY) return EffectDazed();
+            return EffectStunned();
+        }
+        break;
+        case EFFECT_TYPE_CONFUSED:
+        {
+            if (bPC && nDiff == GAME_DIFFICULTY_VERY_EASY) return EffectDazed();
+            return EffectConfused();
+        }
+        break;
+        // TODO: Check how Charm and Domination works on any creature with
+        // a master, eg a summoned creature etc.
+        case EFFECT_TYPE_CHARMED:
+        {
+            if (bPC) return EffectDazed();
+            return EffectCharmed();
+        }
+        break;
+        case EFFECT_TYPE_DOMINATED:
+        {
+            if (bPC) return EffectDazed();
+            return EffectDominated();
+        }
+        break;
     }
-    return eEffect;
+    // Error!
+    Debug("GetScaledEffect: Invalid effect type passed in, returning Daze", ERROR);
+    return EffectDazed();
 }
 
 // Gets difficulty based scaling of duration if the target is a PC. Has to be manually applied.

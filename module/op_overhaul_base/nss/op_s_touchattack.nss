@@ -268,7 +268,7 @@ void main()
     {
         SignalSpellCastAt();
 
-        if (nBonusToHit > nBonusToHit)
+        if (nBonusToHit > 0)
         {
             // Apply the bonus, which shouldn't then apply outside this spell, I hope.
             effect eAttackBonus = EffectAttackIncrease(nBonusToHit, ATTACK_BONUS_MISC);

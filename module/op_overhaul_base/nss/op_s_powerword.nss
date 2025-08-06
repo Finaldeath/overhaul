@@ -47,7 +47,7 @@ void main()
         {
             nImpact = VFX_FNF_PWSTUN;
             nVis    = VFX_IMP_STUN;
-            eLink   = EffectLinkEffects(EffectStunned(),
+            eLink   = EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_STUNNED, oTarget),
                                         EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED),
                                                           EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
         }

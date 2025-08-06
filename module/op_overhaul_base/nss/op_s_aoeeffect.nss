@@ -92,6 +92,9 @@ void main()
     effect eAlliedLink;
     int nHealDice = 0, nHealDiceSize, nHealBase;
 
+    // If set we generate it per-target in the loop due to GetScaledEffect
+    int nEffectType = EFFECT_TYPE_INVALIDEFFECT;
+
     switch (nSpellId)
     {
         case SPELL_BALAGARNSIRONHORN:
@@ -171,14 +174,12 @@ void main()
 
             bImmuneIfCannotHear = TRUE;
             nImmunity        = IMMUNITY_TYPE_FEAR;
+            nEffectType      = EFFECT_TYPE_FRIGHTENED;
             nSavingThrow     = SAVING_THROW_WILL;
             nSavingThrowType = SAVING_THROW_TYPE_FEAR;
             nTargetType      = SPELL_TARGET_SELECTIVEHOSTILE;
             nDurationBase    = 4;
             nDurationType    = ROUNDS;
-            eLink            = EffectLinkEffects(EffectFrightened(),
-                               EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_FEAR),
-                                                 EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
 
             eAlliedLink      = EffectLinkEffects(EffectAttackIncrease(2),
                                EffectLinkEffects(EffectDamageIncrease(2, DAMAGE_TYPE_BLUDGEONING | DAMAGE_TYPE_SLASHING | DAMAGE_TYPE_PIERCING),
@@ -216,9 +217,7 @@ void main()
             nImpact          = VFX_FNF_SOUND_BURST;
             nVis             = VFX_IMP_SONIC;
             nEffectOnlyImmunity = IMMUNITY_TYPE_STUN;
-            eLink            = EffectLinkEffects(IgnoreEffectImmunity(EffectStunned()),
-                               EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_NEGATIVE),
-                                                 EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            nEffectType      = EFFECT_TYPE_STUNNED;
             nDurationBase = 2;
             nDurationType = ROUNDS;
             nDamageType      = DAMAGE_TYPE_SONIC;
@@ -309,6 +308,21 @@ void main()
                     if (!bSaved && !GetIsImmuneWithFeedback(oTarget, oCaster, nEffectOnlyImmunity) && (!bImmuneToEffectsIfCannotHear || GetCanHear(oTarget)))
                     {
                         if (nVis != VFX_INVALID) DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
+
+                        // Need to recreate fear effects due to scaling difficulty
+                        if (nEffectType == EFFECT_TYPE_FRIGHTENED)
+                        {
+                            eLink = EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_FRIGHTENED, oTarget),
+                                                      EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_FEAR),
+                                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+                        }
+                        else if (nEffectType == EFFECT_TYPE_STUNNED)
+                        {
+
+                            eLink = EffectLinkEffects(IgnoreEffectImmunity(GetScaledEffect(EFFECT_TYPE_STUNNED, oTarget)),
+                                  EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_NEGATIVE),
+                                                    EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+                        }
 
                         // Got duration?
                         float fDuration = 0.0;

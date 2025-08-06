@@ -36,12 +36,7 @@ void main()
     int nDeathVis = VFX_IMP_DEATH;
     effect eDeaf = EffectLinkEffects(EffectDeaf(), EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
     int nDeafVis = VFX_IMP_BLIND_DEAF_M;
-    effect eStun = EffectLinkEffects(IgnoreEffectImmunity(EffectStunned()),
-                   EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED),
-                                     EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
-    effect eConfuse = EffectLinkEffects(IgnoreEffectImmunity(EffectConfused()),
-                                        EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED),
-                                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+
     int nConfuseVis = VFX_IMP_CONFUSION_S;
 
     ApplyVisualEffectAtLocation(VFX_FNF_WORD, lTarget);
@@ -83,6 +78,9 @@ void main()
                 {
                     if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_CONFUSED))
                     {
+                        effect eConfuse = EffectLinkEffects(IgnoreEffectImmunity(GetScaledEffect(EFFECT_TYPE_CONFUSED, oTarget)),
+                                          EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED),
+                                                            EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
                         DelayCommand(fDelay, ApplyVisualEffectToObject(nConfuseVis, oTarget));
                         DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eConfuse, oTarget, GetDuration(1, MINUTES, FALSE)));
                     }
@@ -91,6 +89,9 @@ void main()
                 {
                     if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_STUN))
                     {
+                        effect eStun = EffectLinkEffects(IgnoreEffectImmunity(GetScaledEffect(EFFECT_TYPE_STUNNED, oTarget)),
+                                       EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED),
+                                                         EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
                         DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eStun, oTarget, GetDuration(1, ROUNDS, FALSE)));
                     }
                 }

@@ -33,7 +33,7 @@ void main()
                     {
                         if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_PARALYSIS))
                         {
-                            effect eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectParalyze()),
+                            effect eLink = EffectLinkEffects(IgnoreEffectImmunity(GetScaledEffect(EFFECT_TYPE_PARALYZE, oTarget)),
                                                              EffectVisualEffect(VFX_DUR_STONEHOLD));
                             ApplyAOEPersistentEffect(oTarget, eLink);
                         }
@@ -71,7 +71,7 @@ void main()
                         {
                             if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_PARALYSIS))
                             {
-                                effect eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectParalyze()),
+                                effect eLink = EffectLinkEffects(IgnoreEffectImmunity(GetScaledEffect(EFFECT_TYPE_PARALYZE, oTarget)),
                                                                  EffectVisualEffect(VFX_DUR_STONEHOLD));
                                 ApplyAOEPersistentEffect(oTarget, eLink);
                             }

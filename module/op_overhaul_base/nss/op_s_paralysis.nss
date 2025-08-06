@@ -32,7 +32,7 @@ void main()
     int nSavingThrow = SAVING_THROW_WILL, nSavingThrowType = SAVING_THROW_TYPE_PARALYSIS;
     int nImpact = VFX_NONE, nVis = VFX_NONE;
 
-    effect eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectParalyze()),
+    effect eLink = EffectLinkEffects(IgnoreEffectImmunity(GetScaledEffect(EFFECT_TYPE_PARALYZE, oTarget)),
                                      EffectLinkEffects(EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE),
                                                        EffectLinkEffects(EffectVisualEffect(VFX_DUR_PARALYZED),
                                                                          EffectVisualEffect(VFX_DUR_PARALYZE_HOLD))));
@@ -62,7 +62,7 @@ void main()
         case SPELL_SOLIPSISM:
         {
             // Special "cutscene paralysis" but do it here with the others
-             eLink = EffectLinkEffects(EffectCutsceneParalyze(),
+             eLink = EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_CUTSCENE_PARALYZE, oTarget),
                      EffectLinkEffects(EffectIcon(EFFECT_ICON_PARALYZE),
                      EffectLinkEffects(EffectVisualEffect(VFX_DUR_AURA_PULSE_YELLOW_WHITE),
                                        EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));

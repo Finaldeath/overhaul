@@ -113,7 +113,7 @@ void main()
             {
                 if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_MIND_SPELLS))
                 {
-                    effect eLink = EffectLinkEffects(GetScaledEffect(EffectCharmed(), oTarget),
+                    effect eLink = EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_CHARMED, oTarget),
                                                      EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_NEGATIVE),
                                                                        EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
 

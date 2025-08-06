@@ -275,7 +275,7 @@ void main()
                                 case EFFECT_TYPE_FRIGHTENED:
                                 {
                                     // Scaled effect
-                                    eLink = EffectLinkEffects(GetScaledEffect(EffectFrightened(), oTarget),
+                                    eLink = EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_FRIGHTENED, oTarget),
                                             EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_FEAR),
                                                               EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
 
@@ -285,7 +285,7 @@ void main()
                                 case EFFECT_TYPE_STUNNED:
                                 {
                                     nVis = VFX_IMP_STUN;
-                                    eLink = EffectLinkEffects(GetScaledEffect(EffectStunned(), oTarget),
+                                    eLink = EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_STUNNED, oTarget),
                                             EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED),
                                                               EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
 

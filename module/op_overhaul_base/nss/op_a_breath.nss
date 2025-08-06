@@ -1100,7 +1100,7 @@ void main()
                         case EFFECT_TYPE_FRIGHTENED:
                         {
                             fDuration = GetScaledDuration(oTarget, nDuration, ROUNDS);
-                            effect eEffect = GetScaledEffect(EffectFrightened(), oTarget);
+                            effect eEffect = GetScaledEffect(EFFECT_TYPE_FRIGHTENED, oTarget);
 
                             eApply = EffectLinkEffects(eEffect,
                                      EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_FEAR),
@@ -1110,7 +1110,7 @@ void main()
                         case EFFECT_TYPE_PARALYZE:
                         {
                             fDuration = GetScaledDuration(oTarget, nDuration, ROUNDS);
-                            effect eEffect = GetScaledEffect(EffectParalyze(), oTarget);
+                            effect eEffect = GetScaledEffect(EFFECT_TYPE_PARALYZE, oTarget);
 
                             eApply = EffectLinkEffects(eEffect,
                                      EffectLinkEffects(EffectVisualEffect(VFX_DUR_PARALYZE_HOLD),
