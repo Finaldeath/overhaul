@@ -39,6 +39,7 @@ void main()
     int nDice;
     int nDiceSize = 6;
     int nDamageType;
+    int nDamagePower = DAMAGE_POWER_ENERGY;
 
     // Effect to apply if target is hit.
     int bApplyEffect = FALSE;
@@ -60,8 +61,6 @@ void main()
         {
             bApplyEffect = TRUE;
 
-            int nAmount = GetDiceRoll(max(1, GetHitDice(oCaster)/3), 6);
-
             int nAbility;
             switch (nSpellId)
             {
@@ -72,8 +71,9 @@ void main()
                 case SPELLABILITY_BOLT_ABILITY_DRAIN_STRENGTH:     nAbility = ABILITY_STRENGTH; break;
                 case SPELLABILITY_BOLT_ABILITY_DRAIN_WISDOM:       nAbility = ABILITY_WISDOM; break;
             }
-
+            int nAmount = GetDiceRoll(max(1, GetHitDice(oCaster)/3), 6);
             eLink = SupernaturalEffect(EffectAbilityDecrease(nAbility, nAmount));
+            nImmunity = IMMUNITY_TYPE_ABILITY_DECREASE;
             nVis = VFX_IMP_NEGATIVE_ENERGY;
         }
         break;
@@ -87,9 +87,9 @@ void main()
         case SPELLABILITY_BOLT_CHARM:
         {
             bApplyEffect = TRUE;
+            fDuration = GetScaledDuration(oTarget, (1 + GetHitDice(oCaster))/2, ROUNDS);
             eLink = SupernaturalEffect(EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_CHARMED, oTarget),
                                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
-            fDuration = GetScaledDuration(oTarget, (1 + GetHitDice(oCaster))/2, ROUNDS);
             nImmunity = IMMUNITY_TYPE_CHARM;
             nVis = VFX_IMP_CHARM;
         }
@@ -104,6 +104,7 @@ void main()
         case SPELLABILITY_BOLT_CONFUSE:
         {
             bApplyEffect = TRUE;
+            fDuration = GetScaledDuration(oTarget, (GetHitDice(oCaster) + 1) / 2, ROUNDS);
             eLink = SupernaturalEffect(EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_CONFUSED, oTarget),
                                        EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED),
                                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));
@@ -113,11 +114,12 @@ void main()
         break;
         case SPELLABILITY_BOLT_DAZE:
         {
+            fDuration = GetDuration((GetHitDice(oCaster) + 1) / 2, ROUNDS);
             bApplyEffect = TRUE;
             eLink = SupernaturalEffect(EffectLinkEffects(EffectDazed(),
                                        EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED),
                                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));
-            nImmunity = IMMUNITY_TYPE_CONFUSED;
+            nImmunity = IMMUNITY_TYPE_DAZED;
             nVis = VFX_IMP_DAZED_S;
         }
         break;
@@ -127,6 +129,225 @@ void main()
             eLink = SupernaturalEffect(IgnoreEffectImmunity(EffectDeath()));
             nImmunity = IMMUNITY_TYPE_DEATH;
             nVis = VFX_IMP_DEATH;
+        }
+        break;
+        case SPELLABILITY_BOLT_DISEASE:
+        {
+            bApplyEffect = TRUE;
+            // Here we use the racial type of the attacker to select an
+            // appropriate disease.
+            switch (GetRacialType(oCaster))
+            {
+                case RACIAL_TYPE_VERMIN:
+                    eLink = SupernaturalEffect(EffectDisease(DISEASE_VERMIN_MADNESS));
+                break;
+                case RACIAL_TYPE_UNDEAD:
+                    eLink = SupernaturalEffect(EffectDisease(DISEASE_FILTH_FEVER));
+                break;
+                case RACIAL_TYPE_OUTSIDER:
+                    if(GetTag(oCaster) == "NW_SLAADRED" ||
+                       GetAppearanceType(oCaster) == APPEARANCE_TYPE_SLAAD_RED)
+                    {
+                        eLink = SupernaturalEffect(EffectDisease(DISEASE_RED_SLAAD_EGGS));
+                    }
+                    else
+                    {
+                        eLink = SupernaturalEffect(EffectDisease(DISEASE_DEMON_FEVER));
+                    }
+                break;
+                case RACIAL_TYPE_MAGICAL_BEAST:
+                    eLink = SupernaturalEffect(EffectDisease(DISEASE_SOLDIER_SHAKES));
+                break;
+                case RACIAL_TYPE_ABERRATION:
+                    eLink = SupernaturalEffect(EffectDisease(DISEASE_BLINDING_SICKNESS));
+                break;
+                default:
+                    eLink = SupernaturalEffect(EffectDisease(DISEASE_SOLDIER_SHAKES));
+                break;
+            }
+            nImmunity = IMMUNITY_TYPE_DISEASE;
+        }
+        break;
+        case SPELLABILITY_BOLT_DOMINATE:
+        {
+            bApplyEffect = TRUE;
+            fDuration = GetDuration((GetHitDice(oCaster) + 1) / 2, ROUNDS);
+            eLink = SupernaturalEffect(EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_DOMINATED, oTarget),
+                                       EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DOMINATED),
+                                                         EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));
+            nImmunity = IMMUNITY_TYPE_DOMINATE;
+            nVis = VFX_IMP_DOMINATE_S;
+        }
+        break;
+        case SPELLABILITY_BOLT_FIRE:
+        {
+            nDice = max(1, GetHitDice(oCaster)/2);
+            nDamageType = DAMAGE_TYPE_FIRE;
+            nVis = VFX_IMP_FLAME_S;
+        }
+        break;
+        case SPELLABILITY_BOLT_KNOCKDOWN:
+        {
+            nDice = 1;
+            fDuration = GetDuration(3, ROUNDS);
+            nDamageType = DAMAGE_TYPE_BLUDGEONING;
+            bApplyEffect = TRUE;
+            eLink = SupernaturalEffect(EffectLinkEffects(EffectKnockdown(),
+                                       EffectLinkEffects(EffectIcon(EFFECT_ICON_KNOCKDOWN),
+                                                         EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));
+            nImmunity = IMMUNITY_TYPE_KNOCKDOWN;
+            nVis = VFX_IMP_SONIC;
+        }
+        break;
+        case SPELLABILITY_BOLT_LEVEL_DRAIN:
+        {
+            bApplyEffect = TRUE;
+            eLink = SupernaturalEffect(EffectLinkEffects(EffectNegativeLevel(1),
+                                                         EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            nImmunity = IMMUNITY_TYPE_NEGATIVE_LEVEL;
+            nVis = VFX_IMP_NEGATIVE_ENERGY;
+        }
+        break;
+        case SPELLABILITY_BOLT_LIGHTNING:
+        {
+            nDice = max(1, GetHitDice(oCaster)/2);
+            nDamageType = DAMAGE_TYPE_ELECTRICAL;
+            nVis = VFX_IMP_LIGHTNING_S;
+            nBeam = VFX_BEAM_LIGHTNING;
+        }
+        break;
+        case SPELLABILITY_BOLT_PARALYZE:
+        {
+            fDuration = GetScaledDuration(oTarget, (GetHitDice(oCaster) + 1) / 2, ROUNDS);
+            bApplyEffect = TRUE;
+            eLink = SupernaturalEffect(EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_PARALYZE, oTarget),
+                                       EffectLinkEffects(EffectVisualEffect(VFX_DUR_PARALYZED),
+                                                         EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));
+            nImmunity = IMMUNITY_TYPE_PARALYSIS;
+        }
+        break;
+        case SPELLABILITY_BOLT_POISON:
+        {
+            bApplyEffect = TRUE;
+
+            int nHD = GetHitDice(oCaster);
+            switch (GetRacialType(oCaster))
+            {
+                case RACIAL_TYPE_OUTSIDER:
+                    if (nHD <= 9)
+                    {
+                        eLink = EffectPoison(POISON_QUASIT_VENOM);
+                    }
+                    else if (nHD < 13)
+                    {
+                        eLink = EffectPoison(POISON_BEBILITH_VENOM);
+                    }
+                    else
+                    {
+                        eLink = EffectPoison(POISON_PIT_FIEND_ICHOR);
+                    }
+                break;
+                case RACIAL_TYPE_VERMIN:
+                    if (nHD < 3)
+                    {
+                        eLink = EffectPoison(POISON_TINY_SPIDER_VENOM);
+                    }
+                    else if (nHD < 6)
+                    {
+                        eLink = EffectPoison(POISON_SMALL_SPIDER_VENOM);
+                    }
+                    else if (nHD < 9)
+                    {
+                        eLink = EffectPoison(POISON_MEDIUM_SPIDER_VENOM);
+                    }
+                    else if (nHD < 12)
+                    {
+                        eLink = EffectPoison(POISON_LARGE_SPIDER_VENOM);
+                    }
+                    else if (nHD < 15)
+                    {
+                        eLink = EffectPoison(POISON_HUGE_SPIDER_VENOM);
+                    }
+                    else if (nHD < 18)
+                    {
+                        eLink = EffectPoison(POISON_GARGANTUAN_SPIDER_VENOM);
+                    }
+                    else
+                    {
+                        eLink = EffectPoison(POISON_COLOSSAL_SPIDER_VENOM);
+                    }
+                break;
+                default:
+                    if (nHD < 3)
+                    {
+                        eLink = EffectPoison(POISON_NIGHTSHADE);
+                    }
+                    else if (nHD < 6)
+                    {
+                        eLink = EffectPoison(POISON_BLADE_BANE);
+                    }
+                    else if (nHD < 9)
+                    {
+                        eLink = EffectPoison(POISON_BLOODROOT);
+                    }
+                    else if (nHD < 12)
+                    {
+                        eLink = EffectPoison(POISON_LARGE_SPIDER_VENOM);
+                    }
+                    else if (nHD < 15)
+                    {
+                        eLink = EffectPoison(POISON_LICH_DUST);
+                    }
+                    else if (nHD < 18)
+                    {
+                        eLink = EffectPoison(POISON_DARK_REAVER_POWDER);
+                    }
+                    else
+                    {
+                        eLink = EffectPoison(POISON_BLACK_LOTUS_EXTRACT);
+                    }
+                break;
+            }
+
+            nImmunity = IMMUNITY_TYPE_POISON;
+        }
+        break;
+        case SPELLABILITY_BOLT_SHARDS:
+        {
+            nDice = max(1, GetHitDice(oCaster)/2);
+            nDamageType = DAMAGE_TYPE_PIERCING;
+            nDamagePower = DAMAGE_POWER_PLUS_ONE;
+        }
+        break;
+        case SPELLABILITY_BOLT_SLOW:
+        {
+            bApplyEffect = TRUE;
+            fDuration = GetDuration((1 + GetHitDice(oCaster))/2, ROUNDS);
+            eLink = SupernaturalEffect(EffectLinkEffects(EffectSlow(),
+                                                         EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            nImmunity = IMMUNITY_TYPE_SLOW;
+            nVis = VFX_IMP_SLOW;
+        }
+        break;
+        case SPELLABILITY_BOLT_STUN:
+        {
+            fDuration = GetScaledDuration(oTarget, (GetHitDice(oCaster) + 1) / 2, ROUNDS);
+            bApplyEffect = TRUE;
+            eLink = SupernaturalEffect(EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_STUNNED, oTarget),
+                                                         EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            nImmunity = IMMUNITY_TYPE_STUN;
+            nVis = VFX_IMP_STUN;
+        }
+        break;
+        case SPELLABILITY_BOLT_WEB:
+        {
+            fDuration = GetScaledDuration(oTarget, (GetHitDice(oCaster) + 1) / 2, ROUNDS);
+            bApplyEffect = TRUE;
+            eLink = SupernaturalEffect(EffectLinkEffects(EffectEntangle(),
+                                       EffectLinkEffects(EffectVisualEffect(VFX_DUR_WEB),
+                                                         EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));
+            nImmunity = IMMUNITY_TYPE_ENTANGLE;
+            nVis = VFX_IMP_STUN;
         }
         break;
         default:
@@ -163,7 +384,7 @@ void main()
                     if (nTouch == TOUCH_RESULT_CRITICAL_HIT) nDamage *= 2;
 
                     bNotAppliedVFX = FALSE;
-                    DelayCommand(0.0, ApplyDamageWithVFXToObject(oTarget, nVis, nDamage, nDamageType));
+                    DelayCommand(0.0, ApplyDamageWithVFXToObject(oTarget, nVis, nDamage, nDamageType, nDamagePower));
                 }
                 if (bApplyEffect)
                 {

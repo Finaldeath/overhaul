@@ -566,13 +566,14 @@ effect EffectInvalidEffect();
 
 // Gets an appropriate effect based on the target (PC or master is PC) and difficulty
 // Works around some issues when some effects are buggy applied to PCs as well.
-// Used for: Fear, Paralysis, Cutscene Paralaysis, Stun, Confusion, Charm, Dominate.
+// Used for: Fear, Paralysis, Cutscene Paralaysis, Stun, Confusion, Charm, Dominate
+// Use GetScaledDuration() in combination with this (also for Sleep don't change the effect but do use GetScaledDuration!)
 effect GetScaledEffect(int nEffectType, object oTarget);
 
 // Gets difficulty based scaling of duration if the target is a PC. Has to be manually applied.
-// Should be used for: Paralysis, Stun, Daze, Sleep, Charm, Domination (although the latter 2 get converted to Daze)
+// Used for: Fear, Paralysis, Cutscene Paralysis, Sleep, Stun, Confusion, Charm, Dominate.
 // * nDurationType - ROUNDS, MINUTES, HOURS
-float GetScaledDuration(object oTarget, int nDuration, int nDurationType);
+float GetScaledDuration(object oTarget, int nDuration, int nDurationType, int bApplyMetaMagic = TRUE);
 
 // Retrieves the SHAPE_* value from spells.2da. Returns -1 on error.
 int GetSpellShape(int nSpellId);
@@ -3925,11 +3926,11 @@ effect GetScaledEffect(int nEffectType, object oTarget)
 }
 
 // Gets difficulty based scaling of duration if the target is a PC. Has to be manually applied.
-// Should be used for: Paralysis, Stun, Daze, Sleep, Charm, Domination (although the latter 2 get converted to Daze)
-// * nDuratoinType - ROUNDS, MINUTES, HOURS
-float GetScaledDuration(object oTarget, int nDuration, int nDurationType)
+// Used for: Fear, Paralysis, Cutscene Paralysis, Sleep, Stun, Confusion, Charm, Dominate.
+// * nDurationType - ROUNDS, MINUTES, HOURS
+float GetScaledDuration(object oTarget, int nDuration, int nDurationType, int bApplyMetaMagic = TRUE)
 {
-    float fDuration = GetDuration(nDuration, nDurationType);
+    float fDuration = GetDuration(nDuration, nDurationType, bApplyMetaMagic);
     float fReturn   = fDuration;
     if (GetIsPC(oTarget))
     {
