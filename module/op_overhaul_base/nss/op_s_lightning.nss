@@ -134,7 +134,7 @@ void main()
             {
                 if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_ELECTRICITY, fDelay))
                 {
-                    effect eStun = EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_STUNNED, oTarget), EffectVisualEffect(VFX_IMP_STUN));
+                    effect eStun = GetEffectLink(EFFECT_TYPE_STUNNED, oTarget);
                     DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eStun, oTarget, 6.0));
                 }
             }

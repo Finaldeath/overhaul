@@ -47,10 +47,7 @@ void main()
 
                     if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC))
                     {
-                        effect eLink = EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_PARALYZE, oTarget),
-                                                         EffectLinkEffects(EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE),
-                                                                           EffectLinkEffects(EffectVisualEffect(VFX_DUR_PARALYZED),
-                                                                                             EffectVisualEffect(VFX_DUR_PARALYZE_HOLD))));
+                        effect eLink = GetEffectLink(EFFECT_TYPE_PARALYZE, oTarget);
 
                         ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(nCasterLevel / 2, ROUNDS));
                     }

@@ -581,10 +581,9 @@ effect GetScaledEffect(int nEffectType, object oTarget);
 float GetScaledDuration(object oTarget, int nDuration, int nDurationType, int bApplyMetaMagic = TRUE);
 
 // Gets an effect link with the right standard VFX and any additional icon/effects for it.
-//
-// Some special ones:
 // * nEffectType - EFFECT_TYPE_* or some special ones with LINK_EFFECT_* values
-// * oTarget     - Certain effects are altered before the link (eg Charmed) put oTarget in if required.
+// * oTarget     - Required only for: Fear, Paralysis, Cutscene Paralaysis, Stun, Confusion, Charm, Dominate
+//                 NOTE: All need GetScaledDuration for their durations! along with the addition of Sleep.
 // * nValue1/2/3 - If it needs a value, eg Arcane Spell Failure, then insert it here. Sometimes used for a VFX.
 // * bIngoreEffectImmunity - Adds IgnoreEffectImmunity. Make sure you do proper GetIsImmuneWithFeedback checks!
 effect GetEffectLink(int nEffectType, object oTarget = OBJECT_INVALID, int nValue1 = 0, int nValue2 = 0, int nValue3 = 0, int bIngoreEffectImmunity = FALSE);
@@ -3970,11 +3969,11 @@ float GetScaledDuration(object oTarget, int nDuration, int nDurationType, int bA
     return fReturn;
 }
 
+
 // Gets an effect link with the right standard VFX and any additional icon/effects for it.
-//
-// Some special ones:
 // * nEffectType - EFFECT_TYPE_* or some special ones with LINK_EFFECT_* values
-// * oTarget     - Certain effects are altered before the link (eg Charmed) put oTarget in if required.
+// * oTarget     - Required only for: Fear, Paralysis, Cutscene Paralaysis, Stun, Confusion, Charm, Dominate
+//                 NOTE: All need GetScaledDuration for their durations! along with the addition of Sleep.
 // * nValue1/2/3 - If it needs a value, eg Arcane Spell Failure, then insert it here. Sometimes used for a VFX.
 // * bIngoreEffectImmunity - Adds IgnoreEffectImmunity. Make sure you do proper GetIsImmuneWithFeedback checks!
 effect GetEffectLink(int nEffectType, object oTarget = OBJECT_INVALID, int nValue1 = 0, int nValue2 = 0, int nValue3 = 0, int bIngoreEffectImmunity = FALSE)
@@ -4140,7 +4139,15 @@ effect GetEffectLink(int nEffectType, object oTarget = OBJECT_INVALID, int nValu
         }
         break;
         // EFFECT_TYPE_CUTSCENEGHOST      // Not in but think about
-        // EFFECT_TYPE_CUTSCENEIMMOBILIZE // Not in but think about
+        case EFFECT_TYPE_CUTSCENEIMMOBILIZE:
+        {
+            // Special kind of paralaysis
+            eLink = EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_CUTSCENE_PARALYZE, oTarget),
+                    EffectLinkEffects(EffectIcon(EFFECT_ICON_PARALYZE),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_AURA_PULSE_YELLOW_WHITE),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));
+        }
+        break;
         // EFFECT_TYPE_CUTSCENE_DOMINATED // Not in but think about
         case EFFECT_TYPE_CUTSCENE_PARALYZE:
         {

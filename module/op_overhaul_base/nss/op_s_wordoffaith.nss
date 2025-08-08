@@ -34,7 +34,7 @@ void main()
 
     effect eDeath = IgnoreEffectImmunity(EffectDeath());
     int nDeathVis = VFX_IMP_DEATH;
-    effect eDeaf = EffectLinkEffects(EffectDeaf(), EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+    effect eDeaf = GetEffectLink(EFFECT_TYPE_DEAF);
     int nDeafVis = VFX_IMP_BLIND_DEAF_M;
 
     int nConfuseVis = VFX_IMP_CONFUSION_S;
@@ -78,9 +78,7 @@ void main()
                 {
                     if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_CONFUSED))
                     {
-                        effect eConfuse = EffectLinkEffects(IgnoreEffectImmunity(GetScaledEffect(EFFECT_TYPE_CONFUSED, oTarget)),
-                                          EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED),
-                                                            EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+                        effect eConfuse = GetEffectLink(EFFECT_TYPE_CONFUSED, oTarget, 0, 0, 0, TRUE);
                         DelayCommand(fDelay, ApplyVisualEffectToObject(nConfuseVis, oTarget));
                         DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eConfuse, oTarget, GetDuration(1, MINUTES, FALSE)));
                     }
@@ -89,9 +87,7 @@ void main()
                 {
                     if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_STUN))
                     {
-                        effect eStun = EffectLinkEffects(IgnoreEffectImmunity(GetScaledEffect(EFFECT_TYPE_STUNNED, oTarget)),
-                                       EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED),
-                                                         EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+                        effect eStun = GetEffectLink(EFFECT_TYPE_STUNNED, oTarget, 0, 0, 0, TRUE);
                         DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eStun, oTarget, GetDuration(1, ROUNDS, FALSE)));
                     }
                 }

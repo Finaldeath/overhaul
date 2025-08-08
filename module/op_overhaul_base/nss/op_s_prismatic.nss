@@ -124,21 +124,19 @@ void ApplyColorSpray(float fDelay)
             */
             if(nHD <= 2)
             {
-                effect eLink = EffectLinkEffects(EffectSleep(), EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+                effect eLink = GetEffectLink(EFFECT_TYPE_SLEEP);
                 DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_SLEEP, oTarget));
                 DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, RoundsToSeconds(3 + d4())));
             }
             else if(nHD <= 4)
             {
-                effect eLink   = EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_STUNNED, oTarget),
-                                 EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED),
-                                                   EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+                effect eLink   = GetEffectLink(EFFECT_TYPE_STUNNED, oTarget);
                 DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_STUN, oTarget));
                 DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, RoundsToSeconds(2 + d4())));
             }
             else
             {
-                effect eLink = EffectLinkEffects(EffectBlindness(), EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+                effect eLink = GetEffectLink(EFFECT_TYPE_BLINDNESS);
                 DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_BLIND_DEAF_M, oTarget));
                 DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, RoundsToSeconds(1 + d4())));
             }
@@ -212,11 +210,8 @@ void ApplyPrismaticSpray(float fDelay, int nMaxRoll = 8)
             {
                 if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_FORT, nSpellSaveDC, SAVING_THROW_TYPE_PARALYSIS, fDelay))
                 {
-                    effect eLink = EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_PARALYZE, oTarget),
-                                   EffectLinkEffects(EffectVisualEffect(VFX_DUR_PARALYZED),
-                                   EffectLinkEffects(EffectVisualEffect(VFX_DUR_PARALYZE_HOLD),
-                                   EffectLinkEffects(EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE),
-                                                     EffectRunScriptEnhanced(FALSE, "op_rs_removespel")))));
+                    effect eLink = EffectLinkEffects(GetEffectLink(EFFECT_TYPE_PARALYZE, oTarget),
+                                                     EffectRunScriptEnhanced(FALSE, "op_rs_removespel"));
                     DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, RoundsToSeconds(10)));
                 }
             }
@@ -229,10 +224,8 @@ void ApplyPrismaticSpray(float fDelay, int nMaxRoll = 8)
             {
                 if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_MIND_SPELLS, fDelay))
                 {
-                    effect eLink = EffectLinkEffects(EffectConfused(),
-                                   EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED),
-                                   EffectLinkEffects(EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE),
-                                                     EffectRunScriptEnhanced(FALSE, "op_rs_removespel"))));
+                    effect eLink = EffectLinkEffects(GetEffectLink(EFFECT_TYPE_CONFUSED, oTarget),
+                                                     EffectRunScriptEnhanced(FALSE, "op_rs_removespel"));
                     DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_CONFUSION_S, oTarget));
                     DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, RoundsToSeconds(10)));
                 }

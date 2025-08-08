@@ -22,8 +22,8 @@ void main()
 {
     if (DoSpellHook()) return;
 
-    effect eDeaf = EffectLinkEffects(EffectDeaf(), EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
-    effect eKnockdown = EffectLinkEffects(EffectKnockdown(), EffectIcon(EFFECT_ICON_KNOCKDOWN));
+    effect eDeaf = GetEffectLink(EFFECT_TYPE_DEAF);
+    effect eKnockdown = GetEffectLink(EFFECT_TYPE_KNOCKDOWN);
 
     ApplyVisualEffectAtLocation(VFX_FNF_MYSTICAL_EXPLOSION, lTarget);
     ApplyVisualEffectAtLocation(VFX_FNF_SCREEN_SHAKE2, lTarget);
@@ -45,9 +45,7 @@ void main()
         }
         if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_SONIC, fDelay))
         {
-            effect eStun = EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_STUNNED, oTarget),
-                           EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED),
-                                             EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            effect eStun = GetEffectLink(EFFECT_TYPE_STUNNED, oTarget);
             DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_STUN, oTarget));
             DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eStun, oTarget, RoundsToSeconds(1)));
         }

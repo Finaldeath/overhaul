@@ -47,9 +47,7 @@ void main()
         {
             nImpact = VFX_FNF_PWSTUN;
             nVis    = VFX_IMP_STUN;
-            eLink   = EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_STUNNED, oTarget),
-                                        EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED),
-                                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            eLink   = GetEffectLink(EFFECT_TYPE_STUNNED, oTarget);
         }
         break;
         case SPELL_POWER_WORD_BLIND:
@@ -58,8 +56,7 @@ void main()
             nHPRemaining = 200;
             nImpact      = VFX_FNF_PWBLIND;
             nVis         = VFX_IMP_BLIND_DEAF_M;
-            eLink        = EffectLinkEffects(EffectBlindness(),
-                                             EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            eLink        = GetEffectLink(EFFECT_TYPE_BLINDNESS);
         }
         break;
         case SPELL_POWER_WORD_KILL:
