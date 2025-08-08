@@ -125,6 +125,11 @@ const int SPELLABILITY_DC_EASY_MEDIUM = 2;
 const int SPELLABILITY_DC_NORMAL      = 3;
 const int SPELLABILITY_DC_HARD        = 4;
 
+// For GetEffectLink()
+const int LINK_EFFECT_DOOM   = -10; // Damage Decrease, Saving Thow Decrease, Attack Decrease, Skill Decrease
+const int LINK_EFFECT_AID    = -11; // Damage Increase, Saving Throw Increase, Attack Increase, Skill Increase
+const int LINK_EFFECT_SHAKEN = -12; // 2 Attack Decrease, Saving Throw Decrease,
+
 // Debug the spell and variables
 int DebugSpellVariables();
 
@@ -574,6 +579,15 @@ effect GetScaledEffect(int nEffectType, object oTarget);
 // Used for: Fear, Paralysis, Cutscene Paralysis, Sleep, Stun, Confusion, Charm, Dominate.
 // * nDurationType - ROUNDS, MINUTES, HOURS
 float GetScaledDuration(object oTarget, int nDuration, int nDurationType, int bApplyMetaMagic = TRUE);
+
+// Gets an effect link with the right standard VFX and any additional icon/effects for it.
+//
+// Some special ones:
+// * nEffectType - EFFECT_TYPE_* or some special ones with LINK_EFFECT_* values
+// * oTarget     - Certain effects are altered before the link (eg Charmed) put oTarget in if required.
+// * nValue1/2/3 - If it needs a value, eg Arcane Spell Failure, then insert it here. Sometimes used for a VFX.
+// * bIngoreEffectImmunity - Adds IgnoreEffectImmunity. Make sure you do proper GetIsImmuneWithFeedback checks!
+effect GetEffectLink(int nEffectType, object oTarget = OBJECT_INVALID, int nValue1 = 0, int nValue2 = 0, int nValue3 = 0, int bIngoreEffectImmunity = FALSE);
 
 // Retrieves the SHAPE_* value from spells.2da. Returns -1 on error.
 int GetSpellShape(int nSpellId);
@@ -3867,6 +3881,11 @@ effect EffectInvalidEffect()
 // Used for: Fear, Paralysis, Cutscene Paralaysis, Stun, Confusion, Charm, Dominate.
 effect GetScaledEffect(int nEffectType, object oTarget)
 {
+    if (!GetIsObjectValid(oTarget))
+    {
+        Debug("[GetScaledEffect] oTarget is invalid!", ERROR);
+    }
+
     object oMaster = GetMaster(oTarget);
     int bPC = GetIsPC(oTarget) || (GetIsObjectValid(oMaster) && GetIsPC(oMaster));
 
@@ -3949,6 +3968,724 @@ float GetScaledDuration(object oTarget, int nDuration, int nDurationType, int bA
         }
     }
     return fReturn;
+}
+
+// Gets an effect link with the right standard VFX and any additional icon/effects for it.
+//
+// Some special ones:
+// * nEffectType - EFFECT_TYPE_* or some special ones with LINK_EFFECT_* values
+// * oTarget     - Certain effects are altered before the link (eg Charmed) put oTarget in if required.
+// * nValue1/2/3 - If it needs a value, eg Arcane Spell Failure, then insert it here. Sometimes used for a VFX.
+// * bIngoreEffectImmunity - Adds IgnoreEffectImmunity. Make sure you do proper GetIsImmuneWithFeedback checks!
+effect GetEffectLink(int nEffectType, object oTarget = OBJECT_INVALID, int nValue1 = 0, int nValue2 = 0, int nValue3 = 0, int bIngoreEffectImmunity = FALSE)
+{
+    effect eLink = EffectInvalidEffect();
+    switch (nEffectType)
+    {
+        // Special "LINK_EFFECT" ones
+        case LINK_EFFECT_DOOM:
+        {
+            if (bIngoreEffectImmunity)
+            {
+                eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectDamageDecrease(nValue1, DAMAGE_TYPE_BLUDGEONING | DAMAGE_TYPE_SLASHING | DAMAGE_TYPE_PIERCING)),
+                        EffectLinkEffects(IgnoreEffectImmunity(EffectSavingThrowDecrease(SAVING_THROW_ALL, nValue1)),
+                        EffectLinkEffects(IgnoreEffectImmunity(EffectAttackDecrease(nValue1)),
+                        EffectLinkEffects(IgnoreEffectImmunity(EffectSkillDecrease(SKILL_ALL_SKILLS, nValue1)),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)))));
+            }
+            else
+            {
+                eLink = EffectLinkEffects(EffectDamageDecrease(nValue1, DAMAGE_TYPE_BLUDGEONING | DAMAGE_TYPE_SLASHING | DAMAGE_TYPE_PIERCING),
+                        EffectLinkEffects(EffectSavingThrowDecrease(SAVING_THROW_ALL, nValue1),
+                        EffectLinkEffects(EffectAttackDecrease(nValue1),
+                        EffectLinkEffects(EffectSkillDecrease(SKILL_ALL_SKILLS, nValue1),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)))));
+            }
+        }
+        break;
+        case LINK_EFFECT_AID:
+        {
+            eLink = EffectLinkEffects(EffectDamageIncrease(nValue1, DAMAGE_TYPE_BLUDGEONING | DAMAGE_TYPE_SLASHING | DAMAGE_TYPE_PIERCING),
+                    EffectLinkEffects(EffectSavingThrowIncrease(SAVING_THROW_ALL, nValue1),
+                    EffectLinkEffects(EffectAttackIncrease(nValue1),
+                    EffectLinkEffects(EffectSkillIncrease(SKILL_ALL_SKILLS, nValue1),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)))));
+        }
+        break;
+        case LINK_EFFECT_SHAKEN:
+        {
+            eLink = EffectLinkEffects(EffectSavingThrowDecrease(SAVING_THROW_ALL, 2),
+                    EffectLinkEffects(EffectAttackDecrease(2),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_FEAR),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));
+        }
+        break;
+        // Standard ones
+        case EFFECT_TYPE_ABILITY_DECREASE:
+        {
+            if (bIngoreEffectImmunity)
+            {
+                eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectAbilityDecrease(nValue1, nValue2)),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            }
+            else
+            {
+                eLink = EffectLinkEffects(EffectAbilityDecrease(nValue1, nValue2),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            }
+        }
+        break;
+        case EFFECT_TYPE_ABILITY_INCREASE:
+        {
+            eLink = EffectLinkEffects(EffectAbilityIncrease(nValue1, nValue2),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+        }
+        break;
+        case EFFECT_TYPE_AC_DECREASE:
+        {
+            if (bIngoreEffectImmunity)
+            {
+                eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectACDecrease(nValue1, nValue2)),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            }
+            else
+            {
+                eLink = EffectLinkEffects(EffectACDecrease(nValue1, nValue2),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            }
+        }
+        break;
+        case EFFECT_TYPE_AC_INCREASE:
+        {
+            eLink = EffectLinkEffects(EffectACIncrease(nValue1, nValue2),
+                    EffectLinkEffects(EffectVisualEffect(nValue3),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+        }
+        break;
+        case EFFECT_TYPE_ARCANE_SPELL_FAILURE:
+        {
+            int nIcon = nValue1 < 0 ? EFFECT_ICON_ARCANE_SPELL_FAILURE_GOOD : EFFECT_ICON_ARCANE_SPELL_FAILURE_BAD;
+            eLink     = EffectLinkEffects(EffectSpellFailure(nValue1, SPELL_SCHOOL_GENERAL, SPELL_FAILURE_TYPE_ARCANE),
+                        EffectLinkEffects(EffectIcon(nIcon),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+        }
+        break;
+        case EFFECT_TYPE_AREA_OF_EFFECT:
+        {
+            eLink     = EffectLinkEffects(EffectAreaOfEffect(nValue1),
+                        EffectLinkEffects(EffectIcon(EFFECT_ICON_AREA_OF_EFFECT),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+        }
+        break;
+        case EFFECT_TYPE_BONUS_FEAT:
+        {
+            // Using "Neutral" cessation for now
+            eLink     = EffectLinkEffects(EffectBonusFeat(nValue1),
+                        EffectLinkEffects(EffectIcon(EFFECT_ICON_BONUS_FEAT),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEUTRAL)));
+
+        }
+        break;
+        case EFFECT_TYPE_CHARMED:
+        {
+            if (bIngoreEffectImmunity)
+            {
+                eLink = EffectLinkEffects(IgnoreEffectImmunity(GetScaledEffect(EFFECT_TYPE_CHARMED, oTarget)),
+                        EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_NEGATIVE),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            }
+            else
+            {
+                eLink = EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_CHARMED, oTarget),
+                        EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_NEGATIVE),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            }
+        }
+        break;
+        case EFFECT_TYPE_CONCEALMENT:
+        {
+            eLink     = EffectLinkEffects(EffectConcealment(nValue1),
+                        EffectLinkEffects(EffectVisualEffect(VFX_DUR_INVISIBILITY),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+        }
+        break;
+        case EFFECT_TYPE_CONFUSED:
+        {
+            if (bIngoreEffectImmunity)
+            {
+                eLink = EffectLinkEffects(IgnoreEffectImmunity(GetScaledEffect(EFFECT_TYPE_CONFUSED, oTarget)),
+                        EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_NEGATIVE),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            }
+            else
+            {
+                eLink = EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_CONFUSED, oTarget),
+                        EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            }
+        }
+        break;
+        case EFFECT_TYPE_CURSE:
+        {
+            if (bIngoreEffectImmunity)
+            {
+                eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectCurse(nValue1, nValue1, nValue1, nValue1, nValue1, nValue1)),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            }
+            else
+            {
+                eLink = EffectLinkEffects(EffectCurse(nValue1, nValue1, nValue1, nValue1, nValue1, nValue1),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            }
+        }
+        break;
+        // EFFECT_TYPE_CUTSCENEGHOST      // Not in but think about
+        // EFFECT_TYPE_CUTSCENEIMMOBILIZE // Not in but think about
+        // EFFECT_TYPE_CUTSCENE_DOMINATED // Not in but think about
+        case EFFECT_TYPE_CUTSCENE_PARALYZE:
+        {
+            eLink = EffectLinkEffects(EffectCutsceneParalyze(),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+        }
+        break;
+        case EFFECT_TYPE_DAZED:
+        {
+            if (bIngoreEffectImmunity)
+            {
+                eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectDazed()),
+                        EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_NEGATIVE),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            }
+            else
+            {
+                eLink = EffectLinkEffects(EffectDazed(),
+                        EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            }
+        }
+        break;
+        case EFFECT_TYPE_DAMAGE_DECREASE:
+        {
+            if (bIngoreEffectImmunity)
+            {
+                eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectDamageDecrease(nValue1, nValue2)),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            }
+            else
+            {
+                eLink = EffectLinkEffects(EffectDamageDecrease(nValue1, nValue2),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            }
+        }
+        break;
+        case EFFECT_TYPE_DAMAGE_IMMUNITY_DECREASE:
+        {
+            if (bIngoreEffectImmunity)
+            {
+                eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectDamageImmunityDecrease(nValue1, nValue2)),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            }
+            else
+            {
+                eLink = EffectLinkEffects(EffectDamageImmunityDecrease(nValue1, nValue2),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            }
+        }
+        break;
+        case EFFECT_TYPE_DAMAGE_IMMUNITY_INCREASE:
+        {
+            eLink = EffectLinkEffects(EffectDamageImmunityIncrease(nValue1, nValue2),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+        }
+        break;
+        case EFFECT_TYPE_DAMAGE_INCREASE:
+        {
+            eLink = EffectLinkEffects(EffectDamageIncrease(nValue1, nValue2),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+        }
+        break;
+        case EFFECT_TYPE_DAMAGE_REDUCTION:
+        {
+            eLink = EffectLinkEffects(EffectDamageReduction(nValue1, nValue2, nValue3),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+        }
+        break;
+        case EFFECT_TYPE_DAMAGE_RESISTANCE:
+        {
+            eLink = EffectLinkEffects(EffectDamageResistance(nValue1, nValue2, nValue3),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+        }
+        break;
+        // EFFECT_TYPE_DARKNESS // TODO
+        case EFFECT_TYPE_DEAF:
+        {
+            if (bIngoreEffectImmunity)
+            {
+                eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectDeaf()),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            }
+            else
+            {
+                eLink = EffectLinkEffects(EffectDeaf(),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            }
+        }
+        break;
+        case EFFECT_TYPE_DOMINATED:
+        {
+            if (bIngoreEffectImmunity)
+            {
+                eLink = EffectLinkEffects(IgnoreEffectImmunity(GetScaledEffect(EFFECT_TYPE_DOMINATED, oTarget)),
+                        EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DOMINATED),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            }
+            else
+            {
+                eLink = EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_DOMINATED, oTarget),
+                        EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DOMINATED),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            }
+        }
+        break;
+        case EFFECT_TYPE_DISEASE:
+        {
+            // No cessation for this
+            if (bIngoreEffectImmunity)
+            {
+                eLink = IgnoreEffectImmunity(EffectDisease(nValue1));
+            }
+            else
+            {
+                eLink = EffectDisease(nValue1);
+            }
+        }
+        break;
+        case EFFECT_TYPE_ELEMENTALSHIELD:
+        {
+            eLink = EffectLinkEffects(EffectDamageShield(nValue1, nValue2, nValue3),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+        }
+        break;
+        case EFFECT_TYPE_ENEMY_ATTACK_BONUS:
+        {
+            // NB: Only one icon for now
+            int nCessate = nValue1 > 0 ? VFX_DUR_CESSATE_NEGATIVE: VFX_DUR_CESSATE_POSITIVE;
+            eLink = EffectLinkEffects(EffectEnemyAttackBonus(nValue1),
+                                      EffectVisualEffect(nCessate));
+        }
+        break;
+        case EFFECT_TYPE_ENTANGLE:
+        {
+            if (bIngoreEffectImmunity)
+            {
+                eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectEntangle()),
+                        EffectLinkEffects(EffectVisualEffect(nValue1),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            }
+            else
+            {
+                eLink = EffectLinkEffects(EffectEntangle(),
+                        EffectLinkEffects(EffectVisualEffect(nValue1),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            }
+        }
+        break;
+        case EFFECT_TYPE_ETHEREAL:
+        {
+            eLink = EffectLinkEffects(EffectEthereal(),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_GLOW_PURPLE),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+        }
+        break;
+        case EFFECT_TYPE_FORCE_WALK:
+        {
+            eLink = EffectLinkEffects(EffectForceWalk(),
+                    EffectLinkEffects(EffectIcon(EFFECT_ICON_FORCE_WALK),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+        }
+        break;
+        case EFFECT_TYPE_FRIGHTENED:
+        {
+            if (bIngoreEffectImmunity)
+            {
+                eLink = EffectLinkEffects(IgnoreEffectImmunity(GetScaledEffect(EFFECT_TYPE_FRIGHTENED, oTarget)),
+                        EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_FEAR),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            }
+            else
+            {
+                eLink = EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_FRIGHTENED, oTarget),
+                        EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_FEAR),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            }
+        }
+        break;
+        case EFFECT_TYPE_HASTE:
+        {
+            eLink = EffectLinkEffects(EffectHaste(),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+        }
+        break;
+        // EFFECT_TYPE_HITPOINTCHANGEWHENDYING // Maybe sometime
+        // EFFECT_TYPE_IMMUNITY // Need to think about
+        // EFFECT_TYPE_IMPROVEDINVISIBILITY // Probably never going to be in the game
+        case EFFECT_TYPE_INVISIBILITY:
+        {
+            eLink = EffectLinkEffects(EffectInvisibility(INVISIBILITY_TYPE_NORMAL), // "Hardcode" this here
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+        }
+        break;
+        // EFFECT_TYPE_INVULNERABLE // Doesn't exist. SetPlot perhaps? :D
+        case EFFECT_TYPE_KNOCKDOWN:
+        {
+            if (bIngoreEffectImmunity)
+            {
+                eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectKnockdown()),
+                        EffectLinkEffects(EffectIcon(EFFECT_ICON_KNOCKDOWN),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            }
+            else
+            {
+                eLink = EffectLinkEffects(EffectKnockdown(),
+                        EffectLinkEffects(EffectIcon(EFFECT_ICON_KNOCKDOWN),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            }
+        }
+        break;
+        case EFFECT_TYPE_MISS_CHANCE:
+        {
+            eLink = EffectLinkEffects(EffectMissChance(nValue1, nValue2),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+        }
+        break;
+        case EFFECT_TYPE_MODIFY_ATTACKS:
+        {
+            int nIcon = nValue1 > 0 ? EFFECT_ICON_MODIFY_ATTACKS_INCREASED : EFFECT_ICON_MODIFY_ATTACKS_DECREASED;
+            int nCessate = nValue1 > 0 ? VFX_DUR_CESSATE_POSITIVE : VFX_DUR_CESSATE_NEGATIVE;
+
+            eLink = EffectLinkEffects(EffectModifyAttacks(nValue1),
+                    EffectLinkEffects(EffectIcon(nIcon),
+                                      EffectVisualEffect(nCessate)));
+        }
+        break;
+        case EFFECT_TYPE_MOVEMENT_SPEED_DECREASE:
+        {
+            if (bIngoreEffectImmunity)
+            {
+                eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectMovementSpeedDecrease(nValue1)),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            }
+            else
+            {
+                eLink = EffectLinkEffects(EffectMovementSpeedDecrease(nValue1),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            }
+        }
+        break;
+        case EFFECT_TYPE_MOVEMENT_SPEED_INCREASE:
+        {
+            eLink = EffectLinkEffects(EffectMovementSpeedIncrease(nValue1),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+        }
+        break;
+        case EFFECT_TYPE_NEGATIVELEVEL:
+        {
+            if (bIngoreEffectImmunity)
+            {
+                eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectNegativeLevel(nValue1, nValue2)),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            }
+            else
+            {
+                eLink = EffectLinkEffects(EffectNegativeLevel(nValue1, nValue2),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            }
+        }
+        break;
+        case EFFECT_TYPE_PACIFY:
+        {
+            // Add an icon for it at some point
+            eLink = EffectLinkEffects(EffectPacified(),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+        }
+        break;
+        case EFFECT_TYPE_PARALYZE:
+        {
+            if (bIngoreEffectImmunity)
+            {
+                eLink = EffectLinkEffects(IgnoreEffectImmunity(GetScaledEffect(EFFECT_TYPE_PARALYZE, oTarget)),
+                        EffectLinkEffects(EffectVisualEffect(VFX_DUR_PARALYZED),
+                        EffectLinkEffects(EffectVisualEffect(VFX_DUR_PARALYZE_HOLD),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));
+            }
+            else
+            {
+                eLink = EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_PARALYZE, oTarget),
+                        EffectLinkEffects(EffectVisualEffect(VFX_DUR_PARALYZED),
+                        EffectLinkEffects(EffectVisualEffect(VFX_DUR_PARALYZE_HOLD),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));
+            }
+        }
+        break;
+        case EFFECT_TYPE_PETRIFY:
+        {
+            eLink = EffectLinkEffects(EffectPetrify(),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+        }
+        break;
+        case EFFECT_TYPE_POISON:
+        {
+            // No cessation for this
+            if (bIngoreEffectImmunity)
+            {
+                eLink = IgnoreEffectImmunity(EffectPoison(nValue1));
+            }
+            else
+            {
+                eLink = EffectPoison(nValue1);
+            }
+        }
+        break;
+        case EFFECT_TYPE_POLYMORPH:
+        {
+            // bLocked parameter
+            int nCessate = nValue1 > 0 ? VFX_DUR_CESSATE_NEGATIVE : VFX_DUR_CESSATE_POSITIVE;
+
+            eLink = EffectLinkEffects(EffectPolymorph(nValue1, nValue2, nValue3),
+                                      EffectVisualEffect(nCessate));
+        }
+        break;
+        case EFFECT_TYPE_REGENERATE:
+        {
+            eLink = EffectLinkEffects(EffectRegenerate(nValue1, IntToFloat(nValue2)),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+        }
+        break;
+        case EFFECT_TYPE_SANCTUARY:
+        {
+            eLink = EffectLinkEffects(EffectSanctuary(nValue1),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_SANCTUARY),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+        }
+        break;
+        case EFFECT_TYPE_SAVING_THROW_DECREASE:
+        {
+            if (bIngoreEffectImmunity)
+            {
+                eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectSavingThrowDecrease(nValue1, nValue2, nValue3)),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            }
+            else
+            {
+                eLink = EffectLinkEffects(EffectSavingThrowDecrease(nValue1, nValue2, nValue3),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            }
+        }
+        break;
+        case EFFECT_TYPE_SAVING_THROW_INCREASE:
+        {
+            eLink = EffectLinkEffects(EffectSavingThrowIncrease(nValue1, nValue2, nValue3),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+        }
+        break;
+        case EFFECT_TYPE_SEEINVISIBLE:
+        {
+            eLink = EffectLinkEffects(EffectSeeInvisible(),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_MAGICAL_SIGHT),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+        }
+        break;
+        case EFFECT_TYPE_SILENCE:
+        {
+            if (bIngoreEffectImmunity)
+            {
+                eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectSilence()),
+                        EffectLinkEffects(EffectDamageImmunityIncrease(DAMAGE_TYPE_SONIC, 100),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEUTRAL)));
+            }
+            else
+            {
+                eLink = EffectLinkEffects(EffectSilence(),
+                        EffectLinkEffects(EffectDamageImmunityIncrease(DAMAGE_TYPE_SONIC, 100),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEUTRAL)));
+            }
+        }
+        break;
+        case EFFECT_TYPE_SKILL_DECREASE:
+        {
+            if (bIngoreEffectImmunity)
+            {
+                eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectSkillDecrease(nValue1, nValue2)),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            }
+            else
+            {
+                eLink = EffectLinkEffects(EffectSkillIncrease(nValue1, nValue2),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            }
+        }
+        break;
+        case EFFECT_TYPE_SKILL_INCREASE:
+        {
+            eLink = EffectLinkEffects(EffectSavingThrowIncrease(nValue1, nValue2, nValue3),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+        }
+        break;
+        case EFFECT_TYPE_SLEEP:
+        {
+            if (bIngoreEffectImmunity)
+            {
+                eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectSleep()),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            }
+            else
+            {
+                eLink = EffectLinkEffects(EffectSleep(),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            }
+        }
+        break;
+        case EFFECT_TYPE_SLOW:
+        {
+            if (bIngoreEffectImmunity)
+            {
+                eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectSlow()),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            }
+            else
+            {
+                eLink = EffectLinkEffects(EffectSlow(),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            }
+        }
+        break;
+        case EFFECT_TYPE_SPELL_FAILURE:
+        {
+            eLink     = EffectLinkEffects(EffectSpellFailure(nValue1, SPELL_SCHOOL_GENERAL, SPELL_FAILURE_TYPE_ALL),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+        }
+        break;
+        case EFFECT_TYPE_SPELL_IMMUNITY:
+        {
+            eLink = EffectLinkEffects(EffectImmunity(nValue1),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+        }
+        break;
+        case EFFECT_TYPE_SPELL_RESISTANCE_DECREASE:
+        {
+            if (bIngoreEffectImmunity)
+            {
+                eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectSpellResistanceDecrease(nValue1)),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            }
+            else
+            {
+                eLink = EffectLinkEffects(EffectSpellResistanceDecrease(nValue1),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            }
+        }
+        break;
+        case EFFECT_TYPE_SPELL_RESISTANCE_INCREASE:
+        {
+            eLink = EffectLinkEffects(EffectImmunity(nValue1),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_MAGIC_RESISTANCE),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+        }
+        break;
+        case EFFECT_TYPE_SPELLLEVELABSORPTION:
+        {
+            int nVFX = VFX_DUR_SPELLTURNING;
+            if (nValue2 == 0)
+            {
+                nVFX = nValue1 <= 3 ? VFX_DUR_GLOBE_INVULNERABILITY : VFX_DUR_GLOBE_MINOR;
+            }
+            eLink = EffectLinkEffects(EffectSpellLevelAbsorption(nValue1, nValue2, nValue3),
+                    EffectLinkEffects(EffectVisualEffect(nVFX),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+        }
+        break;
+        case EFFECT_TYPE_STUNNED:
+        {
+            if (bIngoreEffectImmunity)
+            {
+                eLink = EffectLinkEffects(IgnoreEffectImmunity(GetScaledEffect(EFFECT_TYPE_STUNNED, oTarget)),
+                        EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            }
+            else
+            {
+                eLink = EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_STUNNED, oTarget),
+                        EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            }
+        }
+        break;
+        //EFFECT_TYPE_SUMMON_CREATURE
+        //EFFECT_TYPE_SWARM
+        //EFFECT_TYPE_TAUNT // TODO if EffectTaunt is added
+        case EFFECT_TYPE_TEMPORARY_HITPOINTS:
+        {
+            eLink = EffectLinkEffects(EffectTemporaryHitpoints(nValue1),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+        }
+        break;
+        case EFFECT_TYPE_TIMESTOP:
+        {
+            eLink = EffectLinkEffects(EffectTimeStop(),
+                    EffectLinkEffects(EffectIcon(EFFECT_ICON_TIMESTOP),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+        }
+        break;
+        case EFFECT_TYPE_TIMESTOP_IMMUNITY:
+        {
+            eLink = EffectLinkEffects(EffectTimeStopImmunity(),
+                    EffectLinkEffects(EffectIcon(EFFECT_ICON_TIMESTOP),  // TODO replace
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+        }
+        break;
+        case EFFECT_TYPE_TRUESEEING:
+        {
+            eLink = EffectLinkEffects(EffectTrueSeeing(),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_MAGICAL_SIGHT),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+        }
+        break;
+        case EFFECT_TYPE_TURN_RESISTANCE_DECREASE:
+        {
+            eLink = EffectLinkEffects(EffectTurnResistanceDecrease(nValue1),
+                    EffectLinkEffects(EffectIcon(EFFECT_ICON_TURN_RESISTANCE_DECREASE),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+        }
+        break;
+        case EFFECT_TYPE_TURN_RESISTANCE_INCREASE:
+        {
+            eLink = EffectLinkEffects(EffectTurnResistanceIncrease(nValue1),
+                    EffectLinkEffects(EffectIcon(EFFECT_ICON_TURN_RESISTANCE_INCREASE),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+        }
+        break;
+        case EFFECT_TYPE_TURNED:
+        {
+            eLink = EffectLinkEffects(EffectTurned(),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_FEAR),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+        }
+        break;
+        case EFFECT_TYPE_ULTRAVISION:
+        {
+            eLink = EffectLinkEffects(EffectUltravision(),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_ULTRAVISION),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+        }
+        break;
+        // EFFECT_TYPE_WOUNDING // TODO if EffecTWounding is added
+        default:
+        {
+            Debug("[GetEffectLink] Invalid EFFECT_TYPE_ passed in: " + IntToString(nEffectType), ERROR);
+        }
+        break;
+    }
+    return eLink;
 }
 
 // Retrieves the SHAPE_* value from spells.2da. Returns -1 on error.

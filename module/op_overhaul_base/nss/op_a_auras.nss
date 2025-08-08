@@ -71,8 +71,7 @@ void main()
                 nSavingThrow = SAVING_THROW_WILL;
                 nImmunity = IMMUNITY_TYPE_BLINDNESS;
                 nVis = VFX_IMP_BLIND_DEAF_M;
-                eLink = EffectLinkEffects(EffectBlindness(),
-                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+                eLink = GetEffectLink(EFFECT_ICON_BLINDNESS);
             }
             break;
             case SPELLABILITY_AURA_COLD:
@@ -146,11 +145,7 @@ void main()
             {
                 nSavingThrow = SAVING_THROW_WILL;
                 nVis  = VFX_IMP_DOOM;
-                eLink = EffectLinkEffects(EffectSavingThrowDecrease(SAVING_THROW_ALL, 2),
-                        EffectLinkEffects(EffectAttackDecrease(2),
-                        EffectLinkEffects(EffectDamageDecrease(2, DAMAGE_TYPE_BLUDGEONING | DAMAGE_TYPE_SLASHING | DAMAGE_TYPE_PIERCING),
-                        EffectLinkEffects(EffectSkillDecrease(SKILL_ALL_SKILLS, 2),
-                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)))));
+                eLink = GetEffectLink(LINK_EFFECT_DOOM, OBJECT_INVALID, 2);
             }
             break;
             case SPELLABILITY_AURA_PROTECTION:
@@ -275,9 +270,7 @@ void main()
                                 case EFFECT_TYPE_FRIGHTENED:
                                 {
                                     // Scaled effect
-                                    eLink = EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_FRIGHTENED, oTarget),
-                                            EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_FEAR),
-                                                              EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+                                    eLink = GetEffectLink(EFFECT_TYPE_FRIGHTENED, oTarget);
 
                                     fDuration = GetScaledDuration(oTarget, nDuration, nDurationType);
                                 }
@@ -285,9 +278,7 @@ void main()
                                 case EFFECT_TYPE_STUNNED:
                                 {
                                     nVis = VFX_IMP_STUN;
-                                    eLink = EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_STUNNED, oTarget),
-                                            EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED),
-                                                              EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+                                    eLink = GetEffectLink(EFFECT_TYPE_STUNNED, oTarget);
 
                                     fDuration = GetScaledDuration(oTarget, nDuration, nDurationType);
                                 }

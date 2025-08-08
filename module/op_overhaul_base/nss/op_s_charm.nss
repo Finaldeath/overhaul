@@ -113,9 +113,7 @@ void main()
             {
                 if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_MIND_SPELLS))
                 {
-                    effect eLink = EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_CHARMED, oTarget),
-                                                     EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_NEGATIVE),
-                                                                       EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+                    effect eLink = GetEffectLink(EFFECT_TYPE_CHARMED, oTarget);
 
                     DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_CHARM, oTarget));
                     DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));

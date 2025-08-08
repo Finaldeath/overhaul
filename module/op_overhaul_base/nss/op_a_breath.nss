@@ -1098,46 +1098,22 @@ void main()
                     switch (nAppliedEffect)
                     {
                         case EFFECT_TYPE_FRIGHTENED:
-                        {
-                            fDuration = GetScaledDuration(oTarget, nDuration, ROUNDS);
-                            effect eEffect = GetScaledEffect(EFFECT_TYPE_FRIGHTENED, oTarget);
-
-                            eApply = EffectLinkEffects(eEffect,
-                                     EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_FEAR),
-                                                       EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
-                        }
-                        break;
+                        case EFFECT_TYPE_SLEEP:
                         case EFFECT_TYPE_PARALYZE:
                         {
                             fDuration = GetScaledDuration(oTarget, nDuration, ROUNDS);
-                            effect eEffect = GetScaledEffect(EFFECT_TYPE_PARALYZE, oTarget);
-
-                            eApply = EffectLinkEffects(eEffect,
-                                     EffectLinkEffects(EffectVisualEffect(VFX_DUR_PARALYZE_HOLD),
-                                     EffectLinkEffects(EffectVisualEffect(VFX_DUR_PARALYZED),
-                                                       EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));
-                        }
-                        break;
-                        case EFFECT_TYPE_SLEEP:
-                        {
-                            fDuration = GetScaledDuration(oTarget, nDuration, ROUNDS);
-
-                            eApply = EffectLinkEffects(EffectSleep(),
-                                                       EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+                            eApply = GetEffectLink(nAppliedEffect, oTarget);
                         }
                         break;
                         case EFFECT_TYPE_SLOW:
                         {
                             fDuration = GetDuration(nDuration, ROUNDS);
-
-                            eApply = EffectLinkEffects(EffectSlow(),
-                                                       EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+                            eApply = GetEffectLink(nAppliedEffect, oTarget);
                         }
                         break;
                         case EFFECT_TYPE_ABILITY_DECREASE:
                         {
                             nDurationType = DURATION_TYPE_PERMANENT;
-
                             eApply = EffectLinkEffects(EffectAbilityDecrease(ABILITY_STRENGTH, nDuration),
                                                        EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
                         }

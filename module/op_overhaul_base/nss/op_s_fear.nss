@@ -80,11 +80,7 @@ void main()
                     {
                         DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
                         float fDuration = GetScaledDuration(oTarget, nDuration, ROUNDS);
-                        effect eFear = GetScaledEffect(EFFECT_TYPE_FRIGHTENED, oTarget);
-
-                        effect eApply = EffectLinkEffects(eFear,
-                                        EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_FEAR),
-                                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+                        effect eApply = GetEffectLink(EFFECT_TYPE_FRIGHTENED, oTarget);
 
                         if (bUseLink)
                         {

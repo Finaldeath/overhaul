@@ -88,8 +88,7 @@ void main()
         {
             bApplyEffect = TRUE;
             fDuration = GetScaledDuration(oTarget, (1 + GetHitDice(oCaster))/2, ROUNDS);
-            eLink = SupernaturalEffect(EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_CHARMED, oTarget),
-                                                         EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            eLink = SupernaturalEffect(GetEffectLink(EFFECT_TYPE_CHARMED, oTarget));
             nImmunity = IMMUNITY_TYPE_CHARM;
             nVis = VFX_IMP_CHARM;
         }
@@ -105,9 +104,7 @@ void main()
         {
             bApplyEffect = TRUE;
             fDuration = GetScaledDuration(oTarget, (GetHitDice(oCaster) + 1) / 2, ROUNDS);
-            eLink = SupernaturalEffect(EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_CONFUSED, oTarget),
-                                       EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED),
-                                                         EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));
+            eLink = SupernaturalEffect(GetEffectLink(EFFECT_TYPE_CONFUSED, oTarget));
             nImmunity = IMMUNITY_TYPE_CONFUSED;
             nVis = VFX_IMP_CONFUSION_S;
         }
@@ -116,9 +113,7 @@ void main()
         {
             fDuration = GetDuration((GetHitDice(oCaster) + 1) / 2, ROUNDS);
             bApplyEffect = TRUE;
-            eLink = SupernaturalEffect(EffectLinkEffects(EffectDazed(),
-                                       EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED),
-                                                         EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));
+            eLink = SupernaturalEffect(GetEffectLink(EFFECT_TYPE_DAZED));
             nImmunity = IMMUNITY_TYPE_DAZED;
             nVis = VFX_IMP_DAZED_S;
         }
@@ -172,9 +167,7 @@ void main()
         {
             bApplyEffect = TRUE;
             fDuration = GetDuration((GetHitDice(oCaster) + 1) / 2, ROUNDS);
-            eLink = SupernaturalEffect(EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_DOMINATED, oTarget),
-                                       EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DOMINATED),
-                                                         EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));
+            eLink = SupernaturalEffect(GetEffectLink(EFFECT_TYPE_DOMINATED, oTarget));
             nImmunity = IMMUNITY_TYPE_DOMINATE;
             nVis = VFX_IMP_DOMINATE_S;
         }
@@ -192,9 +185,7 @@ void main()
             fDuration = GetDuration(3, ROUNDS);
             nDamageType = DAMAGE_TYPE_BLUDGEONING;
             bApplyEffect = TRUE;
-            eLink = SupernaturalEffect(EffectLinkEffects(EffectKnockdown(),
-                                       EffectLinkEffects(EffectIcon(EFFECT_ICON_KNOCKDOWN),
-                                                         EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));
+            eLink = SupernaturalEffect(GetEffectLink(EFFECT_TYPE_KNOCKDOWN));
             nImmunity = IMMUNITY_TYPE_KNOCKDOWN;
             nVis = VFX_IMP_SONIC;
         }
@@ -220,9 +211,7 @@ void main()
         {
             fDuration = GetScaledDuration(oTarget, (GetHitDice(oCaster) + 1) / 2, ROUNDS);
             bApplyEffect = TRUE;
-            eLink = SupernaturalEffect(EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_PARALYZE, oTarget),
-                                       EffectLinkEffects(EffectVisualEffect(VFX_DUR_PARALYZED),
-                                                         EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));
+            eLink = SupernaturalEffect(GetEffectLink(EFFECT_TYPE_PARALYZE, oTarget));
             nImmunity = IMMUNITY_TYPE_PARALYSIS;
         }
         break;
@@ -333,8 +322,7 @@ void main()
         {
             fDuration = GetScaledDuration(oTarget, (GetHitDice(oCaster) + 1) / 2, ROUNDS);
             bApplyEffect = TRUE;
-            eLink = SupernaturalEffect(EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_STUNNED, oTarget),
-                                                         EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            eLink = SupernaturalEffect(GetEffectLink(EFFECT_TYPE_STUNNED, oTarget));
             nImmunity = IMMUNITY_TYPE_STUN;
             nVis = VFX_IMP_STUN;
         }

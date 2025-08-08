@@ -55,9 +55,7 @@ void main()
                         if (GetHitDice(oTarget) < GetHitDice(oCaster))
                         {
                             // Scaled effect
-                            effect eLink = ExtraordinaryEffect(EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_FRIGHTENED, oTarget),
-                                                               EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_FEAR),
-                                                                                 EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));
+                            effect eLink = ExtraordinaryEffect(GetEffectLink(EFFECT_TYPE_FRIGHTENED, oTarget));
 
                             // Help!
                             PlayVoiceChat(VOICE_CHAT_HELP,  oTarget);
@@ -70,10 +68,7 @@ void main()
                         // Up to twice the barbs HD ... shaken
                         else
                         {
-                            effect eLink = ExtraordinaryEffect(EffectLinkEffects(EffectSavingThrowDecrease(SAVING_THROW_ALL, 2),
-                                                               EffectLinkEffects(EffectAttackDecrease(2),
-                                                               EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_FEAR),
-                                                                                 EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)))));
+                            effect eLink = ExtraordinaryEffect(GetEffectLink(LINK_EFFECT_SHAKEN));
 
                             FloatingTextStrRefOnCreature(STRREF_TREMBLING_WITH_FEAR, oTarget); // * trembling with fear! *
 

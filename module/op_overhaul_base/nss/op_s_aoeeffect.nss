@@ -104,9 +104,7 @@ void main()
             bImmuneIfFlying    = TRUE;
             nImpact            = VFX_FNF_SCREEN_SHAKE;
             nVis               = VFX_IMP_HEAD_NATURE;
-            eLink              = EffectLinkEffects(IgnoreEffectImmunity(EffectKnockdown()),
-                                                   EffectLinkEffects(EffectIcon(EFFECT_ICON_KNOCKDOWN),
-                                                                     EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            eLink              = GetEffectLink(EFFECT_TYPE_KNOCKDOWN);
             nDurationBase      = 1;
             nDurationType      = ROUNDS;
         }
@@ -131,7 +129,7 @@ void main()
             fImpactScale   = 0.5; // Make it smaller due to altered AOE sizing
             nVis           = VFX_IMP_FLAME_M;      // TODO update to less firey VFX
             nEffectOnlyImmunity = IMMUNITY_TYPE_KNOCKDOWN;
-            eLink          = EffectLinkEffects(IgnoreEffectImmunity(EffectKnockdown()), EffectIcon(EFFECT_ICON_KNOCKDOWN));
+            eLink          = GetEffectLink(EFFECT_TYPE_KNOCKDOWN);
             nDurationBase  = 2;
             nDurationType  = ROUNDS;
             bDelayRandom   = TRUE;
@@ -145,20 +143,13 @@ void main()
             nTargetType      = SPELL_TARGET_SELECTIVEHOSTILE;
             nImpact          = VFX_FNF_LOS_HOLY_30;
             nVis             = VFX_IMP_DOOM;
-            eLink            = EffectLinkEffects(EffectAttackDecrease(1),
-                               EffectLinkEffects(EffectSavingThrowDecrease(SAVING_THROW_ALL, 1),
-                               EffectLinkEffects(EffectDamageDecrease(1, DAMAGE_TYPE_BLUDGEONING | DAMAGE_TYPE_SLASHING | DAMAGE_TYPE_PIERCING),
-                               EffectLinkEffects(EffectSkillDecrease(SKILL_ALL_SKILLS, 1),
-                                                 EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)))));
+            eLink            = GetEffectLink(LINK_EFFECT_DOOM, OBJECT_INVALID, 1);
+
             nDurationBase = nCasterLevel;
             nDurationType = ROUNDS;
             bAlliedEffect    = TRUE;
             nAlliedVis       = VFX_IMP_HOLY_AID;
-            eAlliedLink      = EffectLinkEffects(EffectAttackIncrease(1),
-                               EffectLinkEffects(EffectSavingThrowIncrease(SAVING_THROW_ALL, 1),
-                               EffectLinkEffects(EffectDamageIncrease(1, DAMAGE_TYPE_BLUDGEONING | DAMAGE_TYPE_SLASHING | DAMAGE_TYPE_PIERCING),
-                               EffectLinkEffects(EffectSkillIncrease(SKILL_ALL_SKILLS, 1),
-                                                 EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)))));
+            eAlliedLink      = GetEffectLink(LINK_EFFECT_AID, OBJECT_INVALID, 1);
         }
         break;
         case SPELL_WAR_CRY:
@@ -197,9 +188,7 @@ void main()
             nImpact          = VFX_FNF_STRIKE_HOLY;
             nVis             = VFX_IMP_DIVINE_STRIKE_HOLY;
             nEffectOnlyImmunity = IMMUNITY_TYPE_DAZED;
-            eLink            = EffectLinkEffects(IgnoreEffectImmunity(EffectDazed()),
-                               EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_NEGATIVE),
-                                                 EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            eLink            = GetEffectLink(EFFECT_TYPE_DAZED);
             nDurationDice    = 1;
             nDurationDiceSize = 6;
             nDurationType  = ROUNDS;
@@ -312,23 +301,19 @@ void main()
                         // Need to recreate fear effects due to scaling difficulty
                         if (nEffectType == EFFECT_TYPE_FRIGHTENED)
                         {
-                            eLink = EffectLinkEffects(GetScaledEffect(EFFECT_TYPE_FRIGHTENED, oTarget),
-                                                      EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_FEAR),
-                                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+                            eLink = GetEffectLink(EFFECT_TYPE_FRIGHTENED, oTarget);
                         }
                         else if (nEffectType == EFFECT_TYPE_STUNNED)
                         {
 
-                            eLink = EffectLinkEffects(IgnoreEffectImmunity(GetScaledEffect(EFFECT_TYPE_STUNNED, oTarget)),
-                                  EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_NEGATIVE),
-                                                    EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+                            eLink = GetEffectLink(EFFECT_TYPE_STUNNED, oTarget);
                         }
 
                         // Got duration?
                         float fDuration = 0.0;
                         if (nDurationDice > 0 || nDurationBase > 0)
                         {
-                            float fDuration = GetDuration(GetDiceRoll(nDurationDice, nDurationDiceSize, nDurationBase, FALSE), nDurationType);
+                            fDuration = GetDuration(GetDiceRoll(nDurationDice, nDurationDiceSize, nDurationBase, FALSE), nDurationType);
                         }
 
                         if (fDuration == 0.0)

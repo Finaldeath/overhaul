@@ -27,16 +27,10 @@ void main()
 
     // For now all the spells in this script are single target so we just alter
     // the domination effect depending on the target.
-    effect eControl = GetScaledEffect(EFFECT_TYPE_DOMINATED, oTarget);
-
     // We check for mind immunity and dominate immunity as part of the checks
     // so we want this to ignore immunity to Daze if it's targeting a PC.
     // TODO: Do we replace the effect icon with "Dominated (Dazed)" or similar?
-    eControl = IgnoreEffectImmunity(eControl);
-
-    effect eLink = EffectLinkEffects(eControl,
-                                     EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DOMINATED),
-                                                       EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+    effect eLink = GetEffectLink(EFFECT_TYPE_DOMINATED, oTarget, 0, 0, 0, TRUE);
 
     effect eVis = EffectVisualEffect(VFX_IMP_DOMINATE_S);
 
