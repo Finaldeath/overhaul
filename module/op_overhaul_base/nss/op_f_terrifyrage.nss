@@ -55,12 +55,12 @@ void main()
                         if (GetHitDice(oTarget) < GetHitDice(oCaster))
                         {
                             // Scaled effect
-                            effect eLink = ExtraordinaryEffect(GetEffectLink(EFFECT_TYPE_FRIGHTENED, oTarget));
+                            effect eLink = ExtraordinaryEffect(GetEffectLink(EFFECT_TYPE_FRIGHTENED));
 
                             // Help!
                             PlayVoiceChat(VOICE_CHAT_HELP,  oTarget);
 
-                            float fDuration = GetScaledDuration(oTarget, d3(), ROUNDS);
+                            float fDuration = GetDuration(d3(), ROUNDS, EFFECT_TYPE_FRIGHTENED);
 
                             ApplyVisualEffectToObject(VFX_IMP_FEAR_S, oTarget);
                             ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);

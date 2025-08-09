@@ -40,30 +40,31 @@ void main()
 
     effect eLink, eInstant;
     int nHPRemaining, bAOE = FALSE, nImpact = VFX_NONE, nVis = VFX_NONE;
+    int nEffectType;
 
     switch (nSpellId)
     {
         case SPELL_POWER_WORD_STUN:
         {
+            nEffectType = EFFECT_TYPE_STUNNED;
             nImpact = VFX_FNF_PWSTUN;
             nVis    = VFX_IMP_STUN;
-            eLink   = GetEffectLink(EFFECT_TYPE_STUNNED, oTarget);
         }
         break;
         case SPELL_POWER_WORD_BLIND:
         {
             bAOE         = TRUE;
             nHPRemaining = 200;
+            nEffectType  = EFFECT_TYPE_BLINDNESS;
             nImpact      = VFX_FNF_PWBLIND;
             nVis         = VFX_IMP_BLIND_DEAF_M;
-            eLink        = GetEffectLink(EFFECT_TYPE_BLINDNESS);
         }
         break;
         case SPELL_POWER_WORD_KILL:
         {
-            nImpact  = VFX_FNF_PWKILL;
-            nVis     = VFX_IMP_DEATH;
-            eInstant = EffectDeath();
+            nEffectType = EFFECT_TYPE_DEATH;
+            nImpact     = VFX_FNF_PWKILL;
+            nVis        = VFX_IMP_DEATH;
 
             if (!GetIsObjectValid(oTarget))
             {
@@ -108,6 +109,7 @@ void main()
 
                     if (!DoResistSpell(oTarget, oCaster, fDelay))
                     {
+                        effect eApply = GetEffectLink(nEffectType);
                         if (nSpellId == SPELL_POWER_WORD_BLIND)
                         {
                             // Up to 50: Permanent
@@ -116,15 +118,15 @@ void main()
                             DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
                             if (nCurrentHP <= 50)
                             {
-                                DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_PERMANENT, eLink, oTarget));
+                                DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_PERMANENT, eApply, oTarget));
                             }
                             else if (nCurrentHP <= 100)
                             {
-                                DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(d4() + 1, MINUTES)));
+                                DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eApply, oTarget, GetDuration(d4() + 1, MINUTES)));
                             }
                             else
                             {
-                                DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(d4() + 1, ROUNDS)));
+                                DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eApply, oTarget, GetDuration(d4() + 1, ROUNDS)));
                             }
                         }
                         else if (nSpellId == SPELL_POWER_WORD_KILL)
@@ -133,7 +135,7 @@ void main()
                             if (nCurrentHP <= 20)
                             {
                                 DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
-                                DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eInstant, oTarget));
+                                DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eApply, oTarget));
                             }
                         }
                     }
@@ -154,6 +156,7 @@ void main()
                 if (!DoResistSpell(oTarget, oCaster))
                 {
                     int nCurrentHP = GetCurrentHitPoints(oTarget);
+                    effect eApply = GetEffectLink(nEffectType);
                     switch (nSpellId)
                     {
                         case SPELL_POWER_WORD_STUN:
@@ -174,7 +177,7 @@ void main()
                                     fDuration = GetDuration(GetDiceRoll(1, 4), ROUNDS);
                                 }
                                 ApplyVisualEffectToObject(nVis, oTarget);
-                                ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
+                                ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eApply, oTarget, fDuration);
                             }
                         }
                         break;
@@ -183,7 +186,7 @@ void main()
                             if (nCurrentHP <= 100)
                             {
                                 ApplyVisualEffectToObject(nVis, oTarget);
-                                ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eInstant, oTarget);
+                                ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eApply, oTarget);
                             }
                         }
                         break;

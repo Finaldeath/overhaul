@@ -250,11 +250,11 @@ void main()
                         }
                         if (bWeird)
                         {
-                            effect eStun = GetEffectLink(EFFECT_TYPE_STUNNED, oTarget);
+                            effect eStun = GetEffectLink(EFFECT_TYPE_STUNNED);
                             effect eAbilityDecrease = EffectLinkEffects(EffectAbilityDecrease(ABILITY_STRENGTH, GetDiceRoll(1, 4)), EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
 
                             DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eStun, oTarget, GetDuration(1, ROUNDS, FALSE)));
-                            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eAbilityDecrease, oTarget, GetDuration(10, MINUTES, FALSE)));
+                            DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eAbilityDecrease, oTarget, GetDuration(10, MINUTES, EFFECT_TYPE_STUNNED, FALSE)));
                         }
                     }
                 }

@@ -34,10 +34,6 @@ void main()
 
     effect eDeath = IgnoreEffectImmunity(EffectDeath());
     int nDeathVis = VFX_IMP_DEATH;
-    effect eDeaf = GetEffectLink(EFFECT_TYPE_DEAF);
-    int nDeafVis = VFX_IMP_BLIND_DEAF_M;
-
-    int nConfuseVis = VFX_IMP_CONFUSION_S;
 
     ApplyVisualEffectAtLocation(VFX_FNF_WORD, lTarget);
 
@@ -78,8 +74,8 @@ void main()
                 {
                     if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_CONFUSED))
                     {
-                        effect eConfuse = GetEffectLink(EFFECT_TYPE_CONFUSED, oTarget, 0, 0, 0, TRUE);
-                        DelayCommand(fDelay, ApplyVisualEffectToObject(nConfuseVis, oTarget));
+                        effect eConfuse = GetEffectLinkIgnoreImmunity(EFFECT_TYPE_CONFUSED);
+                        DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_CONFUSION_S, oTarget));
                         DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eConfuse, oTarget, GetDuration(1, MINUTES, FALSE)));
                     }
                 }
@@ -87,13 +83,15 @@ void main()
                 {
                     if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_STUN))
                     {
-                        effect eStun = GetEffectLink(EFFECT_TYPE_STUNNED, oTarget, 0, 0, 0, TRUE);
+                        effect eStun = GetEffectLinkIgnoreImmunity(EFFECT_TYPE_STUNNED);
+                        DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_STUN, oTarget));
                         DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eStun, oTarget, GetDuration(1, ROUNDS, FALSE)));
                     }
                 }
                 if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_DEAFNESS))
                 {
-                    DelayCommand(fDelay, ApplyVisualEffectToObject(nDeafVis, oTarget));
+                    effect eDeaf = GetEffectLinkIgnoreImmunity(EFFECT_TYPE_DEAF);
+                    DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_BLIND_DEAF_M, oTarget));
                     DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eDeaf, oTarget, GetDuration(GetDiceRoll(1, 4), ROUNDS, FALSE)));
                 }
             }

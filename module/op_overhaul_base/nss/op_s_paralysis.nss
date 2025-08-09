@@ -31,11 +31,7 @@ void main()
     int nImmunity1 = IMMUNITY_TYPE_MIND_SPELLS, nImmunity2 = IMMUNITY_TYPE_PARALYSIS;
     int nSavingThrow = SAVING_THROW_WILL, nSavingThrowType = SAVING_THROW_TYPE_PARALYSIS;
     int nImpact = VFX_NONE, nVis = VFX_NONE;
-
-    effect eLink = GetEffectLink(EFFECT_TYPE_PARALYZE, oTarget, 0, 0, 0, TRUE);
-
-    // See op_ss_paralysis for why we're storing metadata for this effect
-    eLink = EffectTagWithMetadata(eLink);
+    int nEffectType = EFFECT_TYPE_PARALYZE;
 
     // Check target for certain spells
     switch (nSpellId)
@@ -59,7 +55,7 @@ void main()
         case SPELL_SOLIPSISM:
         {
             // Special "cutscene paralysis" but do it here with the others
-            eLink = GetEffectLink(EFFECT_TYPE_CUTSCENE_PARALYZE, oTarget);
+            nEffectType = EFFECT_TYPE_CUTSCENE_PARALYZE;
             nVis = VFX_IMP_HEAD_ODD;
             nImmunity2 = IMMUNITY_TYPE_NONE;
         }
@@ -85,7 +81,12 @@ void main()
             {
                 if (!DoSavingThrow(oTarget, oCaster, nSavingThrow, nSpellSaveDC, nSavingThrowType, fDelay))
                 {
-                    float fDuration = GetScaledDuration(oTarget, nCasterLevel, ROUNDS);
+                    effect eLink = GetEffectLinkIgnoreImmunity(nEffectType);
+
+                    // See op_ss_paralysis for why we're storing metadata for this effect
+                    eLink = EffectTagWithMetadata(eLink);
+
+                    float fDuration = GetDuration(nCasterLevel, ROUNDS, nEffectType);
 
                     if (nVis != VFX_NONE) DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
                     DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));

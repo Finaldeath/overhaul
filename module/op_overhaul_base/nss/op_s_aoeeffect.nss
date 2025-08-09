@@ -143,13 +143,13 @@ void main()
             nTargetType      = SPELL_TARGET_SELECTIVEHOSTILE;
             nImpact          = VFX_FNF_LOS_HOLY_30;
             nVis             = VFX_IMP_DOOM;
-            eLink            = GetEffectLink(LINK_EFFECT_DOOM, OBJECT_INVALID, 1);
+            eLink            = GetEffectLink(LINK_EFFECT_DOOM, 1);
 
             nDurationBase = nCasterLevel;
             nDurationType = ROUNDS;
             bAlliedEffect    = TRUE;
             nAlliedVis       = VFX_IMP_HOLY_AID;
-            eAlliedLink      = GetEffectLink(LINK_EFFECT_AID, OBJECT_INVALID, 1);
+            eAlliedLink      = GetEffectLink(LINK_EFFECT_AID, 1);
         }
         break;
         case SPELL_WAR_CRY:
@@ -299,21 +299,17 @@ void main()
                         if (nVis != VFX_INVALID) DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
 
                         // Need to recreate fear effects due to scaling difficulty
-                        if (nEffectType == EFFECT_TYPE_FRIGHTENED)
+                        if (nEffectType == EFFECT_TYPE_FRIGHTENED ||
+                            nEffectType == EFFECT_TYPE_STUNNED)
                         {
-                            eLink = GetEffectLink(EFFECT_TYPE_FRIGHTENED, oTarget);
-                        }
-                        else if (nEffectType == EFFECT_TYPE_STUNNED)
-                        {
-
-                            eLink = GetEffectLink(EFFECT_TYPE_STUNNED, oTarget);
+                            eLink = GetEffectLink(nEffectType);
                         }
 
                         // Got duration?
                         float fDuration = 0.0;
                         if (nDurationDice > 0 || nDurationBase > 0)
                         {
-                            fDuration = GetDuration(GetDiceRoll(nDurationDice, nDurationDiceSize, nDurationBase, FALSE), nDurationType);
+                            fDuration = GetDuration(GetDiceRoll(nDurationDice, nDurationDiceSize, nDurationBase, FALSE), nDurationType, nEffectType);
                         }
 
                         if (fDuration == 0.0)

@@ -17,10 +17,6 @@ void main()
 {
     if (DoSpellHook()) return;
 
-    effect eLink = EffectLinkEffects(EffectConfused(),
-                                     EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_DISABLED),
-                                                       EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
-    effect eImpact;
     int nTargetType = SPELL_TARGET_STANDARDHOSTILE;
     int nVis = VFX_INVALID, nImpact = VFX_INVALID;
     int bDelayRandom = FALSE;
@@ -57,7 +53,8 @@ void main()
                 if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_MIND_SPELLS, fDelay))
                 {
                     if (nVis >= 0) DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
-                    float fDuration = GetScaledDuration(oTarget, nCasterLevel, ROUNDS);
+                    float fDuration = GetDuration(nCasterLevel, ROUNDS, EFFECT_TYPE_CONFUSED);
+                    effect eLink = GetEffectLink(EFFECT_TYPE_CONFUSED);
                     DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
                 }
             }

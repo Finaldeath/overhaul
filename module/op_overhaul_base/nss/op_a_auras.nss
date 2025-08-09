@@ -56,9 +56,9 @@ void main()
         int nDamageType, nDamageDice = 0, nDamageDiceSize = 4; // If nDamageDice is set just do damage
         int nDuration = max(1, nVariable);
         int nDurationType = ROUNDS;
-        int nEffectType = EFFECT_TYPE_INVALIDEFFECT; // If damage dice is not set apply this effect, or eLink if not set
+        int nEffectType = EFFECT_TYPE_INVALIDEFFECT; // If damage dice is not set apply this effect
+        int nEffectValue = 0;
 
-        effect eLink;
         int nSavingThrow = SAVING_THROW_NONE, nSavingThrowType = SAVING_THROW_TYPE_NONE;
         int nVis = VFX_NONE;
         int nImmunity = IMMUNITY_TYPE_NONE;
@@ -71,7 +71,7 @@ void main()
                 nSavingThrow = SAVING_THROW_WILL;
                 nImmunity = IMMUNITY_TYPE_BLINDNESS;
                 nVis = VFX_IMP_BLIND_DEAF_M;
-                eLink = GetEffectLink(EFFECT_ICON_BLINDNESS);
+                nEffectType = EFFECT_TYPE_BLINDNESS;
             }
             break;
             case SPELLABILITY_AURA_COLD:
@@ -134,8 +134,6 @@ void main()
             {
                 nSavingThrow = SAVING_THROW_FORT;
                 nVis = VFX_IMP_REDUCE_ABILITY_SCORE;
-                eLink = EffectLinkEffects(EffectAbilityDecrease(ABILITY_STRENGTH, d8(2)),
-                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
                 // From original script
                 nDC = 11;
                 nDuration = max(1, FloatToInt(GetChallengeRating(oCaster)) * 3);
@@ -145,7 +143,8 @@ void main()
             {
                 nSavingThrow = SAVING_THROW_WILL;
                 nVis  = VFX_IMP_DOOM;
-                eLink = GetEffectLink(LINK_EFFECT_DOOM, OBJECT_INVALID, 2);
+                nEffectType = LINK_EFFECT_DOOM;
+                nEffectValue = 2;
             }
             break;
             case SPELLABILITY_AURA_PROTECTION:
@@ -154,13 +153,13 @@ void main()
                 if (GetCurrentlyRunningEvent() != EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_ENTER) return;
 
                 // Just apply the persistent effect here and exit
-                eLink = EffectLinkEffects(EffectSpellLevelAbsorption(3, 0),
-                        EffectLinkEffects(VersusAlignmentEffect(EffectACIncrease(2, AC_DEFLECTION_BONUS), ALIGNMENT_ALL, ALIGNMENT_EVIL),
-                        EffectLinkEffects(VersusAlignmentEffect(EffectSavingThrowIncrease(SAVING_THROW_ALL, 2), ALIGNMENT_ALL, ALIGNMENT_EVIL),
-                        EffectLinkEffects(VersusAlignmentEffect(EffectImmunity(IMMUNITY_TYPE_MIND_SPELLS), ALIGNMENT_ALL, ALIGNMENT_EVIL),
-                        EffectLinkEffects(EffectVisualEffect(VFX_DUR_GLOBE_MINOR),
-                        EffectLinkEffects(EffectVisualEffect(VFX_DUR_PROTECTION_GOOD_MINOR),
-                                          EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)))))));
+                effect eLink = EffectLinkEffects(EffectSpellLevelAbsorption(3, 0),
+                               EffectLinkEffects(VersusAlignmentEffect(EffectACIncrease(2, AC_DEFLECTION_BONUS), ALIGNMENT_ALL, ALIGNMENT_EVIL),
+                               EffectLinkEffects(VersusAlignmentEffect(EffectSavingThrowIncrease(SAVING_THROW_ALL, 2), ALIGNMENT_ALL, ALIGNMENT_EVIL),
+                               EffectLinkEffects(VersusAlignmentEffect(EffectImmunity(IMMUNITY_TYPE_MIND_SPELLS), ALIGNMENT_ALL, ALIGNMENT_EVIL),
+                               EffectLinkEffects(EffectVisualEffect(VFX_DUR_GLOBE_MINOR),
+                               EffectLinkEffects(EffectVisualEffect(VFX_DUR_PROTECTION_GOOD_MINOR),
+                                                 EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)))))));
 
                 if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_ALLALLIES))
                 {
@@ -171,6 +170,7 @@ void main()
             break;
             case SPELLABILITY_AURA_STUN:
             {
+                nVis = VFX_IMP_STUN;
                 nSavingThrow = SAVING_THROW_WILL;
                 nSavingThrowType = SAVING_THROW_TYPE_MIND_SPELLS;
                 nEffectType = EFFECT_TYPE_STUNNED;
@@ -210,8 +210,6 @@ void main()
                 nSavingThrowType = SAVING_THROW_TYPE_POISON;
                 nImmunity = IMMUNITY_TYPE_POISON;
                 nVis = VFX_IMP_REDUCE_ABILITY_SCORE;
-                eLink = EffectLinkEffects(EffectAbilityDecrease(ABILITY_STRENGTH, d6()),
-                                          EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
                 // From original script
                 nDC = 13;
                 nDuration = 10;
@@ -263,38 +261,27 @@ void main()
                         {
                             ApplyVisualEffectToObject(nVis, oTarget);
 
-                            float fDuration = 0.0;
-
-                            switch (nEffectType)
+                            if (nEffectType == EFFECT_TYPE_DEATH)
                             {
-                                case EFFECT_TYPE_FRIGHTENED:
-                                {
-                                    // Scaled effect
-                                    eLink = GetEffectLink(EFFECT_TYPE_FRIGHTENED, oTarget);
-
-                                    fDuration = GetScaledDuration(oTarget, nDuration, nDurationType);
-                                }
-                                break;
-                                case EFFECT_TYPE_STUNNED:
-                                {
-                                    nVis = VFX_IMP_STUN;
-                                    eLink = GetEffectLink(EFFECT_TYPE_STUNNED, oTarget);
-
-                                    fDuration = GetScaledDuration(oTarget, nDuration, nDurationType);
-                                }
-                                break;
-                                case EFFECT_TYPE_DEATH:
-                                {
-                                    ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectDeath(), oTarget);
-                                    return;
-                                }
-                                break;
-                                default:
-                                {
-                                    fDuration = GetDuration(nDuration, nDurationType);
-                                }
-                                break;
+                                ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectDeath(), oTarget);
+                                return;
                             }
+                            effect eLink;
+
+                            if (nSpellId == SPELLABILITY_AURA_HORRIFICAPPEARANCE)
+                            {
+                                eLink = GetEffectLink(EFFECT_TYPE_ABILITY_DECREASE, ABILITY_STRENGTH, d8(2));
+                            }
+                            else if (nSpellId == SPELLABILITY_TROGLODYTE_STENCH)
+                            {
+                                eLink = GetEffectLink(EFFECT_TYPE_ABILITY_DECREASE, ABILITY_STRENGTH, d6());
+                            }
+                            else
+                            {
+                                eLink = GetEffectLink(EFFECT_TYPE_FRIGHTENED, nEffectValue);
+                            }
+                            float fDuration = GetDuration(nDuration, nDurationType, nEffectType);
+
                             // Supernatural auras mean supernatural effects
                             eLink = SupernaturalEffect(eLink);
 

@@ -79,8 +79,8 @@ void main()
                     if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_FEAR, fDelay))
                     {
                         DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
-                        float fDuration = GetScaledDuration(oTarget, nDuration, ROUNDS);
-                        effect eApply = GetEffectLink(EFFECT_TYPE_FRIGHTENED, oTarget);
+                        effect eApply = GetEffectLink(EFFECT_TYPE_FRIGHTENED);
+                        float fDuration = GetDuration(nDuration, ROUNDS, EFFECT_TYPE_FRIGHTENED);
 
                         if (bUseLink)
                         {

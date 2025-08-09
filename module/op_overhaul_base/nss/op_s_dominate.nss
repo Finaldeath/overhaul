@@ -25,15 +25,6 @@ void main()
 {
     if (DoSpellHook()) return;
 
-    // For now all the spells in this script are single target so we just alter
-    // the domination effect depending on the target.
-    // We check for mind immunity and dominate immunity as part of the checks
-    // so we want this to ignore immunity to Daze if it's targeting a PC.
-    // TODO: Do we replace the effect icon with "Dominated (Dazed)" or similar?
-    effect eLink = GetEffectLink(EFFECT_TYPE_DOMINATED, oTarget, 0, 0, 0, TRUE);
-
-    effect eVis = EffectVisualEffect(VFX_IMP_DOMINATE_S);
-
     if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
     {
         // Even though the spell is "Hostile" for PvP purposes we'll leave it as being non-hostile
@@ -50,14 +41,14 @@ void main()
             {
                 if (!GetIsHumanoidCreature(oTarget)) return;
 
-                fDuration = GetDuration(2 + (nCasterLevel / 3), ROUNDS);
+                fDuration = GetDuration(2 + (nCasterLevel / 3), ROUNDS, EFFECT_TYPE_DOMINATED);
             }
             break;
             case SPELL_DOMINATE_ANIMAL:
             {
                 if (GetRacialType(oTarget) != RACIAL_TYPE_ANIMAL) return;
 
-                fDuration = GetDuration(3 + nCasterLevel, ROUNDS);
+                fDuration = GetDuration(3 + nCasterLevel, ROUNDS, EFFECT_TYPE_DOMINATED);
             }
             break;
             case SPELL_DOMINATE_MONSTER: fDuration = GetDuration(3 + nCasterLevel, MINUTES); break;
@@ -65,7 +56,7 @@ void main()
             {
                 if (GetRacialType(oTarget) != RACIAL_TYPE_UNDEAD || GetHitDice(oTarget) > nCasterLevel * 2) return;
 
-                fDuration = GetDuration(nCasterLevel, HOURS);
+                fDuration = GetDuration(nCasterLevel, HOURS, EFFECT_TYPE_DOMINATED);
             }
             break;
             default:
@@ -87,7 +78,14 @@ void main()
                     (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_DOMINATE) &&
                      !GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_MIND_SPELLS)))
                 {
-                    ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eVis, oTarget);
+                    // For now all the spells in this script are single target so we just alter
+                    // the domination effect depending on the target.
+                    // We check for mind immunity and dominate immunity as part of the checks
+                    // so we want this to ignore immunity to Daze if it's targeting a PC.
+                    // TODO: Do we replace the effect icon with "Dominated (Dazed)" or similar?
+                    effect eLink = GetEffectLinkIgnoreImmunity(EFFECT_TYPE_DOMINATED);
+
+                    ApplyVisualEffectToObject(VFX_IMP_DOMINATE_S, oTarget);
                     ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
                 }
             }

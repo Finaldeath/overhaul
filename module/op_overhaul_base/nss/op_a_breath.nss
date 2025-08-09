@@ -1093,22 +1093,15 @@ void main()
                 {
                     // Effect
                     effect eApply;
-                    float fDuration;
                     int nDurationType = DURATION_TYPE_TEMPORARY;
                     switch (nAppliedEffect)
                     {
                         case EFFECT_TYPE_FRIGHTENED:
                         case EFFECT_TYPE_SLEEP:
                         case EFFECT_TYPE_PARALYZE:
-                        {
-                            fDuration = GetScaledDuration(oTarget, nDuration, ROUNDS);
-                            eApply = GetEffectLink(nAppliedEffect, oTarget);
-                        }
-                        break;
                         case EFFECT_TYPE_SLOW:
                         {
-                            fDuration = GetDuration(nDuration, ROUNDS);
-                            eApply = GetEffectLink(nAppliedEffect, oTarget);
+                            eApply = GetEffectLink(nAppliedEffect);
                         }
                         break;
                         case EFFECT_TYPE_ABILITY_DECREASE:
@@ -1119,7 +1112,7 @@ void main()
                         }
                         break;
                     }
-
+                    float fDuration = GetDuration(nDuration, ROUNDS, nAppliedEffect);
                     eApply = ExtraordinaryEffect(eApply);
 
                     if (nVis != VFX_INVALID) DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));

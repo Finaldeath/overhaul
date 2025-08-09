@@ -78,6 +78,6 @@ void main()
         if (DoSpellHook()) return;
 
         effect eAOE = EffectAreaOfEffect(AOE_PER_WALLBLADE, GetScriptName(), GetScriptName(), GetScriptName());
-        ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, GetDuration(nCasterLevel / 2, ROUNDS, TRUE, FALSE));
+        ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, GetDuration(nCasterLevel / 2, ROUNDS));
     }
 }

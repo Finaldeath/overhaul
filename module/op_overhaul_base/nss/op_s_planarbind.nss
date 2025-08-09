@@ -47,9 +47,9 @@ void main()
 
                     if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC))
                     {
-                        effect eLink = GetEffectLink(EFFECT_TYPE_PARALYZE, oTarget);
+                        effect eLink = GetEffectLink(EFFECT_TYPE_PARALYZE);
 
-                        ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(nCasterLevel / 2, ROUNDS));
+                        ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(nCasterLevel / 2, ROUNDS, EFFECT_TYPE_PARALYZE));
                     }
                 }
             }

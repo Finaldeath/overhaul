@@ -205,24 +205,14 @@ void main()
                 effect eLink;
                 float fDuration = 0.0;
                 // Create effects and duration now
-                if (nEffectType == EFFECT_TYPE_FRIGHTENED ||
-                    nEffectType == EFFECT_TYPE_STUNNED ||
-                    nEffectType == EFFECT_TYPE_PARALYZE ||
-                    nEffectType == EFFECT_TYPE_CHARMED ||
-                    nEffectType == EFFECT_TYPE_CONFUSED)
-                {
-                    eLink = GetEffectLink(nEffectType, oTarget);
-                    fDuration = GetScaledDuration(oTarget, nDuration, ROUNDS);
-                }
-                else if (nEffectType == EFFECT_TYPE_DEATH)
+                if (nEffectType == EFFECT_TYPE_DEATH)
                 {
                     eLink = IgnoreEffectImmunity(EffectDeath());
                 }
-                else if (nEffectType == EFFECT_TYPE_DAZED ||
-                         nEffectType == LINK_EFFECT_DOOM)
+                else // Anything else
                 {
-                    eLink = GetEffectLink(nEffectType, oTarget);
-                    fDuration = GetDuration(nDuration, ROUNDS);
+                    eLink = GetEffectLink(nEffectType);
+                    fDuration = GetDuration(nDuration, ROUNDS, nEffectType);
                 }
 
                 if (fDuration == 0.0)

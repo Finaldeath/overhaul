@@ -87,8 +87,8 @@ void main()
         case SPELLABILITY_BOLT_CHARM:
         {
             bApplyEffect = TRUE;
-            fDuration = GetScaledDuration(oTarget, (1 + GetHitDice(oCaster))/2, ROUNDS);
-            eLink = SupernaturalEffect(GetEffectLink(EFFECT_TYPE_CHARMED, oTarget));
+            fDuration = GetDuration((1 + GetHitDice(oCaster))/2, ROUNDS, EFFECT_TYPE_CHARMED);
+            eLink = SupernaturalEffect(GetEffectLinkIgnoreImmunity(EFFECT_TYPE_CHARMED));
             nImmunity = IMMUNITY_TYPE_CHARM;
             nVis = VFX_IMP_CHARM;
         }
@@ -103,8 +103,8 @@ void main()
         case SPELLABILITY_BOLT_CONFUSE:
         {
             bApplyEffect = TRUE;
-            fDuration = GetScaledDuration(oTarget, (GetHitDice(oCaster) + 1) / 2, ROUNDS);
-            eLink = SupernaturalEffect(GetEffectLink(EFFECT_TYPE_CONFUSED, oTarget));
+            fDuration = GetDuration((GetHitDice(oCaster) + 1) / 2, ROUNDS, EFFECT_TYPE_CONFUSED);
+            eLink = SupernaturalEffect(GetEffectLinkIgnoreImmunity(EFFECT_TYPE_CONFUSED));
             nImmunity = IMMUNITY_TYPE_CONFUSED;
             nVis = VFX_IMP_CONFUSION_S;
         }
@@ -166,8 +166,8 @@ void main()
         case SPELLABILITY_BOLT_DOMINATE:
         {
             bApplyEffect = TRUE;
-            fDuration = GetDuration((GetHitDice(oCaster) + 1) / 2, ROUNDS);
-            eLink = SupernaturalEffect(GetEffectLink(EFFECT_TYPE_DOMINATED, oTarget));
+            fDuration = GetDuration((GetHitDice(oCaster) + 1) / 2, ROUNDS, EFFECT_TYPE_DOMINATED);
+            eLink = SupernaturalEffect(GetEffectLink(EFFECT_TYPE_DOMINATED));
             nImmunity = IMMUNITY_TYPE_DOMINATE;
             nVis = VFX_IMP_DOMINATE_S;
         }
@@ -209,9 +209,9 @@ void main()
         break;
         case SPELLABILITY_BOLT_PARALYZE:
         {
-            fDuration = GetScaledDuration(oTarget, (GetHitDice(oCaster) + 1) / 2, ROUNDS);
+            fDuration = GetDuration((GetHitDice(oCaster) + 1) / 2, ROUNDS, EFFECT_TYPE_PARALYZE);
             bApplyEffect = TRUE;
-            eLink = SupernaturalEffect(GetEffectLink(EFFECT_TYPE_PARALYZE, oTarget));
+            eLink = SupernaturalEffect(GetEffectLinkIgnoreImmunity(EFFECT_TYPE_PARALYZE));
             nImmunity = IMMUNITY_TYPE_PARALYSIS;
         }
         break;
@@ -312,28 +312,25 @@ void main()
         {
             bApplyEffect = TRUE;
             fDuration = GetDuration((1 + GetHitDice(oCaster))/2, ROUNDS);
-            eLink = SupernaturalEffect(EffectLinkEffects(EffectSlow(),
-                                                         EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            eLink = SupernaturalEffect(GetEffectLink(EFFECT_TYPE_SLOW));
             nImmunity = IMMUNITY_TYPE_SLOW;
             nVis = VFX_IMP_SLOW;
         }
         break;
         case SPELLABILITY_BOLT_STUN:
         {
-            fDuration = GetScaledDuration(oTarget, (GetHitDice(oCaster) + 1) / 2, ROUNDS);
+            fDuration = GetDuration((GetHitDice(oCaster) + 1) / 2, ROUNDS, EFFECT_TYPE_STUNNED);
             bApplyEffect = TRUE;
-            eLink = SupernaturalEffect(GetEffectLink(EFFECT_TYPE_STUNNED, oTarget));
+            eLink = SupernaturalEffect(GetEffectLink(EFFECT_TYPE_STUNNED));
             nImmunity = IMMUNITY_TYPE_STUN;
             nVis = VFX_IMP_STUN;
         }
         break;
         case SPELLABILITY_BOLT_WEB:
         {
-            fDuration = GetScaledDuration(oTarget, (GetHitDice(oCaster) + 1) / 2, ROUNDS);
+            fDuration = GetDuration((GetHitDice(oCaster) + 1) / 2, ROUNDS);
             bApplyEffect = TRUE;
-            eLink = SupernaturalEffect(EffectLinkEffects(EffectEntangle(),
-                                       EffectLinkEffects(EffectVisualEffect(VFX_DUR_WEB),
-                                                         EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));
+            eLink = SupernaturalEffect(GetEffectLink(EFFECT_TYPE_ENTANGLE, VFX_DUR_WEB));
             nImmunity = IMMUNITY_TYPE_ENTANGLE;
             nVis = VFX_IMP_STUN;
         }

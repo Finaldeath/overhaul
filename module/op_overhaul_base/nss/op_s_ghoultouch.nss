@@ -107,11 +107,13 @@ void main()
                                    EffectLinkEffects(EffectIcon(EFFECT_ICON_AREA_OF_EFFECT),
                                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
 
-                    effect eParalysis = GetEffectLink(EFFECT_TYPE_PARALYZE, oTarget);
+                    effect eParalysis = GetEffectLink(EFFECT_TYPE_PARALYZE);
 
                     int nDuration = GetDiceRoll(1, 6, 2);
-                    ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetScaledDuration(oTarget, nDuration, ROUNDS));
-                    ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eParalysis, oTarget, GetScaledDuration(oTarget, nDuration, ROUNDS));
+                    float fDuration = GetDuration(nDuration, ROUNDS, EFFECT_TYPE_PARALYZE);
+
+                    ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
+                    ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eParalysis, oTarget, fDuration);
                 }
             }
         }

@@ -59,6 +59,13 @@ void main()
         break;
         case SPELLABILITY_GAZE_PETRIFY:
         {
+            // Can't use Gazes if can't see
+            if (!GetCanSee(oCaster))
+            {
+                FloatingTextStrRefOnCreature(STRREF_GAZE_ATTACK_FAILED_BLINDED, oCaster, FALSE); // * Gaze attack failed - blinded! *
+                return;
+            }
+
             bMagical = FALSE;
 
             nSpellSaveDC = 13;

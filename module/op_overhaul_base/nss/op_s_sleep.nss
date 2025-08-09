@@ -19,9 +19,6 @@ void main()
 {
     if (DoSpellHook()) return;
 
-    effect eLink = EffectLinkEffects(EffectSleep(),
-                                     EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_NEGATIVE),
-                                                       EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
     int nImpact = VFX_NONE, nVis = VFX_NONE, nHDLimit, nHDPool;
     int nDuration;
 
@@ -73,8 +70,10 @@ void main()
                     {
                         if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_MIND_SPELLS, fDelay))
                         {
+                            float fDuration = GetDuration(nDuration, ROUNDS, EFFECT_TYPE_SLEEP);
+                            effect eLink = GetEffectLink(EFFECT_TYPE_SLEEP);
+
                             DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
-                            float fDuration = GetScaledDuration(oTarget, nDuration, ROUNDS);
                             DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
                         }
                     }

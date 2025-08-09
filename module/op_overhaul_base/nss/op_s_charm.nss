@@ -85,27 +85,27 @@ void main()
                 // No target validation needed
                 case SPELL_CHARM_MONSTER:
                 {
-                    fDuration = GetScaledDuration(oTarget, 3 + (nCasterLevel / 2), ROUNDS);
+                    fDuration = GetDuration(3 + (nCasterLevel / 2), ROUNDS, EFFECT_TYPE_CHARMED);
                 }
                 break;
                 // Certain racial types
                 case SPELL_MASS_CHARM:
                 {
                     if (!GetIsHumanoidCreature(oTarget)) return;
-                    fDuration = GetScaledDuration(oTarget, nCasterLevel / 2, ROUNDS);
+                    fDuration = GetDuration(nCasterLevel / 2, ROUNDS, EFFECT_TYPE_CHARMED);
                 }
                 break;
                 case SPELL_CHARM_PERSON:
                 {
                     if (!GetIsHumanoidCreature(oTarget)) return;
-                    fDuration = GetScaledDuration(oTarget, 2 + (nCasterLevel / 3), ROUNDS);
+                    fDuration = GetDuration(2 + (nCasterLevel / 3), ROUNDS, EFFECT_TYPE_CHARMED);
                 }
                 break;
                 case SPELL_CHARM_PERSON_OR_ANIMAL:
                 {
                     if (!GetIsHumanoidCreature(oTarget) &&
                         GetRacialType(oTarget) != CLASS_TYPE_ANIMAL) return;
-                    fDuration = GetScaledDuration(oTarget, 2 + (nCasterLevel / 3), ROUNDS);
+                    fDuration = GetDuration(2 + (nCasterLevel / 3), ROUNDS, EFFECT_TYPE_CHARMED);
                 }
                 break;
             }
@@ -113,7 +113,7 @@ void main()
             {
                 if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_MIND_SPELLS))
                 {
-                    effect eLink = GetEffectLink(EFFECT_TYPE_CHARMED, oTarget);
+                    effect eLink = GetEffectLink(EFFECT_TYPE_CHARMED);
 
                     DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_CHARM, oTarget));
                     DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
