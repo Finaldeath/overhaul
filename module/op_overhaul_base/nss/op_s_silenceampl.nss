@@ -137,7 +137,7 @@ void main()
             case SPELL_AMPLIFY:
             {
                 nOppositeSpell = SPELL_SILENCE;
-                nAOE = AOE_PER_AMPLIFY;
+                nAOE = AOE_MOB_AMPLIFY;
             }
             break;
             default:
