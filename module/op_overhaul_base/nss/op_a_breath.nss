@@ -28,7 +28,7 @@
 
     Breaths:
         Hell Hound Fire Breath (added Reflex save and scaling damage)
-
+        Iron Golem Poison Breath
 
     Ones not here:
 
@@ -1036,6 +1036,13 @@ void main()
             nDiceBonus = GetHitDice(oCaster);
         }
         break;
+        case SPELLABILITY_GOLEM_BREATH_GAS:
+        {
+            nSavingThrow = SAVING_THROW_NONE;
+            nImmunity = IMMUNITY_TYPE_POISON;
+            nAppliedEffect = EFFECT_TYPE_POISON;
+        }
+        break;
         default:
         {
             if (DEBUG_LEVEL >= ERROR) Debug("[op_a_breath] No valid spell ID passed in: " + IntToString(nSpellId), ERROR);
@@ -1109,6 +1116,12 @@ void main()
                             nDurationType = DURATION_TYPE_PERMANENT;
                             eApply = EffectLinkEffects(EffectAbilityDecrease(ABILITY_STRENGTH, nDuration),
                                                        EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+                        }
+                        break;
+                        case EFFECT_TYPE_POISON:
+                        {
+                            nDurationType = DURATION_TYPE_PERMANENT;
+                            eApply = EffectPoison(POISON_IRON_GOLEM);
                         }
                         break;
                     }
