@@ -5,6 +5,7 @@
 /*
     Cure Minor Wounds    4 healing
     Cure Light Wounds    1d8 + 1/caster level (max 5)
+        Lesser Body Adjustment
     Cure Moderate Wounds 2d8 + 1/caster level (max 10)
     Cure Serious Wounds  3d8 + 1/caster level (max 15)
     Cure Critical Wounds 4d8 + 1/caster level (max 20)
@@ -68,6 +69,7 @@ void main()
             nVisHeal       = VFX_IMP_HEAD_HEAL;
             break;
         case SPELL_CURE_LIGHT_WOUNDS:
+        case SPELLABILITY_LESSER_BODY_ADJUSTMENT:
             nDice          = 1;
             nHealingStatic = min(nCasterLevel, 5);
             nVisHeal       = VFX_IMP_HEALING_S;

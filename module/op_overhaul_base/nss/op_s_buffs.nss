@@ -229,6 +229,9 @@
     The clerics gains a bonus of 1 + 1 per 5 levels to Dexterity, Constitution,
     Attack Rolls and Damage. As well the cleric receives double this value as
     damage reduction. The effect will last for 5 rounds + charisma modifer.
+
+    Mummy Bolster Undead
+    All allies in area gain +(HD/4) Turn Resistance bonus.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -1087,6 +1090,15 @@ void main()
                            EffectLinkEffects(EffectDamageIncrease(nDamageBonus, DAMAGE_TYPE_BLUDGEONING | DAMAGE_TYPE_SLASHING | DAMAGE_TYPE_PIERCING),
                            EffectLinkEffects(EffectDamageReduction(nDamageReductionBonus, DAMAGE_POWER_PLUS_FIVE),
                                              EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE))))));
+        }
+        break;
+        case SPELLABILITY_MUMMY_BOLSTER_UNDEAD:
+        {
+            fDuration = GetDuration(10, ROUNDS);
+            eLink = GetEffectLink(EFFECT_TYPE_TURN_RESISTANCE_INCREASE, GetHitDice(oCaster)/4);
+            nVis = VFX_IMP_HEAD_EVIL;
+            nImpact = VFX_FNF_LOS_EVIL_30;
+            bDelayRandom = TRUE;
         }
         break;
         default:
