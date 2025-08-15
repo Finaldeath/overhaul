@@ -166,6 +166,12 @@ int GetSpellSaveDCCalculated(object oCaster, int nSpellIdToCheck, int nFeatId, o
 // If oCastItem is valid we'll use the default stat modifier, 16, used for items currently.
 int GetClassSpellcasterAbilityModifier(object oCaster, int nClass, object oCastItem = OBJECT_INVALID);
 
+// Gets if the given class is a spellcaster
+int GetClassIsSpellcaster(int nClass);
+
+// Gets if the given class is a spontaneous spellcaster (Sorcerer), if not then it's slot based (Wizard/Cleric)
+int GetClassIsSpontaneousSpellcaster(int nClass);
+
 // This calculates the spell caster level for any additional bonuses due to feats or similar.
 // For a AOE pass in it as the oCaster, then it uses the stored caster level.
 int GetCasterLevelCalculated(object oCaster, int nSpellIdToCheck, int nFeatIdToCheck, int nCasterClassToCheck);
@@ -1021,15 +1027,57 @@ int GetClassSpellcasterAbilityModifier(object oCaster, int nClass, object oCastI
     int nAbilityModifier = 0;
     switch (HashString(Get2DAString("classes", "SpellcastingAbil", nClass)))
     {
-        case "STR": nAbilityModifier = GetAbilityModifier(ABILITY_STRENGTH, oCaster); break;
-        case "DEX": nAbilityModifier = GetAbilityModifier(ABILITY_DEXTERITY, oCaster); break;
-        case "CON": nAbilityModifier = GetAbilityModifier(ABILITY_CONSTITUTION, oCaster); break;
-        case "WIS": nAbilityModifier = GetAbilityModifier(ABILITY_WISDOM, oCaster); break;
-        case "INT": nAbilityModifier = GetAbilityModifier(ABILITY_INTELLIGENCE, oCaster); break;
-        case "CHA": nAbilityModifier = GetAbilityModifier(ABILITY_CHARISMA, oCaster); break;
+        case "STR": return GetAbilityModifier(ABILITY_STRENGTH, oCaster); break;
+        case "DEX": return GetAbilityModifier(ABILITY_DEXTERITY, oCaster); break;
+        case "CON": return GetAbilityModifier(ABILITY_CONSTITUTION, oCaster); break;
+        case "WIS": return GetAbilityModifier(ABILITY_WISDOM, oCaster); break;
+        case "INT": return GetAbilityModifier(ABILITY_INTELLIGENCE, oCaster); break;
+        case "CHA": return GetAbilityModifier(ABILITY_CHARISMA, oCaster); break;
     }
-    return nAbilityModifier;
+    // Fallback to primary statistic (eg feat-spells)
+    if (nAbilityModifier == 0)
+    {
+        switch (HashString(Get2DAString("classes", "PrimaryAbil", nClass)))
+        {
+            case "STR": return GetAbilityModifier(ABILITY_STRENGTH, oCaster); break;
+            case "DEX": return GetAbilityModifier(ABILITY_DEXTERITY, oCaster); break;
+            case "CON": return GetAbilityModifier(ABILITY_CONSTITUTION, oCaster); break;
+            case "WIS": return GetAbilityModifier(ABILITY_WISDOM, oCaster); break;
+            case "INT": return GetAbilityModifier(ABILITY_INTELLIGENCE, oCaster); break;
+            case "CHA": return GetAbilityModifier(ABILITY_CHARISMA, oCaster); break;
+        }
+    }
+    // Error no ability found return 0
+    Debug("Error: GetClassSpellcasterAbilityModifier could not find valid ability score", ERROR);
+    return 0;
 }
+
+// Gets if the given class is a spellcaster
+int GetClassIsSpellcaster(int nClass)
+{
+    string sSpellCaster = Get2DAString("classes", "SpellCaster", nClass);
+
+    if (sSpellCaster == "")
+    {
+        Debug("Error: GetClassIsSpellcaster could not find sSpellCaster entry", ERROR);
+        return FALSE;
+    }
+    return StringToInt(sSpellCaster);
+}
+
+// Gets if the given class is a spontaneous spellcaster (Sorcerer), if not then it's slot based (Wizard/Cleric)
+int GetClassIsSpontaneousSpellcaster(int nClass)
+{
+    string sMemorizes = Get2DAString("classes", "MemorizesSpells", nClass);
+
+    if (sMemorizes == "")
+    {
+        Debug("Error: GetClassIsSpontaneousSpellcaster could not find MemorizesSpells entry", ERROR);
+        return FALSE;
+    }
+    return !(StringToInt(sMemorizes));
+}
+
 
 // Checks if the given nClass has arcane spell casting (is a spellcaster and that spellcasting is arcane).
 int GetClassIsArcaneCaster(int nClass)
@@ -5135,3 +5183,72 @@ object CreateClone(object oCreature, location lSpawn, float fMaxHPPercent = 100.
     // Return the clone for further changes in the script running it
     return oClone;
 }
+
+// Replenishes nSpellId by 1 use in this order:
+// * Special Abilities
+// * Spell slot based classes (Cleric, Wizard)
+// * Sponganeous casters (Sorcerer, Bard)
+// Does not take into account metamagic just increments the lowest spell
+void IncrementRemainingSpellUses(object oCreature, int nSpellId)
+{
+    // Special abilities
+    int n;
+    for (n = 0; n < GetSpellAbilityCount(oCreature); n++)
+    {
+        if (GetSpellAbilitySpell(oCreature, n) == nSpellId &&
+           !GetSpellAbilityReady(oCreature, n))
+        {
+            SetSpellAbilityReady(oCreature, n);
+            return;
+        }
+    }
+    // Slot based classes
+    for (n = 1; n < 8; n++)
+    {
+        int nClass = GetClassByPosition(n, oCreature);
+
+        if (nClass != CLASS_TYPE_INVALID)
+        {
+            if (GetClassIsSpellcaster(nClass) && !GetClassIsSpontaneousSpellcaster(nClass))
+            {
+                // Check for spell in their book, loop all the spells redo the
+                // lowest one given metamagic and domain spells exists (keep it basic for now).
+                int nSpellSlot, nSpellLevel;
+                for (nSpellLevel = 0; nSpellLevel <= 9; nSpellLevel++)
+                {
+                    for (nSpellSlot = 0; nSpellSlot < GetMemorizedSpellCountByLevel(oCreature, nClass, nSpellLevel); nSpellSlot++)
+                    {
+                        if (GetMemorizedSpellId(oCreature, nClass, nSpellLevel, nSpellSlot) == nSpellId &&
+                           !GetMemorizedSpellReady(oCreature, nClass, nSpellLevel, nSpellSlot))
+                        {
+                            SetMemorizedSpellReady(oCreature, nClass, nSpellLevel, nSpellSlot, TRUE);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    // Spontaneous classes
+    for (n = 1; n < 8; n++)
+    {
+        int nClass = GetClassByPosition(n, oCreature);
+
+        if (nClass != CLASS_TYPE_INVALID)
+        {
+            if (GetClassIsSpellcaster(nClass) && GetClassIsSpontaneousSpellcaster(nClass))
+            {
+                // Check for spell in their book, loop all the spells redo the
+                // lowest one given metamagic and domain spells exists (keep it basic for now).
+                int nSpellLevel = GetSpellLevelByClass(nClass, nSpellId);
+
+                if (nSpellLevel >= 0)
+                {
+                    ReadySpellLevel(oCreature, nSpellLevel, nClass, 1);
+                    return;
+                }
+            }
+        }
+    }
+}
+
