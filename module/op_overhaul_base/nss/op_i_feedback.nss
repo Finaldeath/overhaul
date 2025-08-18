@@ -109,6 +109,7 @@ const int STRREF_TARGET_GRAPPLED = 2478; // *Target grappled!*
 const int STRREF_FAILURE_NOT_ENOUGH_XP_TO_CREATE_THAT_ITEM = 3785; // * Failure - Not enough XP to create that item *
 const int STRREF_FAILURE_YOU_DO_NOT_POSSESS_ENOUGH_GOLD_TO_CREATE_THAT_ITEM = 3786; // * Failure! - You do not possess enough gold to create that item *
 const int STRREF_SUCCESS_ITEM_CREATED = 8502; // * Success - Item created! *
+const int STRREF_BURP = 10499; // *Burp*
 const int STRREF_YOU_HAVE_BEEN_TURNED_TO_STONE = 40579; // You have been turned to stone.
 const int STRREF_FAILURE_YOU_DO_NOT_HAVE_THE_NECESSARY_FEAT_TO_ENCHANT_THIS_ITEM = 40487; // * Failure  - You do not have the necessary feat to enchant this item *
 const int STRREF_THIS_ABILITY_IS_TIED_TO_YOUR_TURN_UNDEAD_ABILITY_WHICH_HAS_NO_MORE_USES_FOR_TODAY = 40550; // This ability is tied to your turn undead ability, which has no more uses for today.

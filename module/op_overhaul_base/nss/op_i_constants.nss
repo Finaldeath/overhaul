@@ -210,6 +210,10 @@ const int SPELLABILITY_WILD_SHAPE_WOLF            = 403;
 const int SPELLABILITY_WILD_SHAPE_BOAR            = 404;
 const int SPELLABILITY_WILD_SHAPE_BADGER          = 405;
 
+const int SPELL_ITEM_ALCOHOL_BEER                 = 406;
+const int SPELL_ITEM_ALCOHOL_WINE                 = 407;
+const int SPELL_ITEM_ALCOHOL_SPIRITS              = 408;
+
 const int SPELLABILITY_BARD_SONG                  = 411;
 
 const int SPELL_FEAT_BLINDING_SPEED               = 647;
