@@ -605,6 +605,7 @@ void main()
             if (nSpellId == SPELL_FEAT_BLINDING_SPEED)
             {
                 fDuration = GetDuration(10, ROUNDS);
+                eLink = SupernaturalEffect(eLink); // Don't dispel a feat-spell like this
             }
             else
             {
