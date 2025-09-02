@@ -48,7 +48,35 @@ void main()
             ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eApply, oTarget, 60.0);
         }
         break;
-    }
+        case SPELL_ITEM_BELLADONNA:
+        {
+            float fDuration = RoundsToSeconds(10);
+            effect eLink = EffectLinkEffects(VersusRacialTypeEffect(EffectACIncrease(5), RACIAL_TYPE_SHAPECHANGER),
+                                             EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+            // Cannot dispel item effects
+            eLink = ExtraordinaryEffect(eLink);
 
+            ApplyVisualEffectToObject(VFX_IMP_AC_BONUS, oTarget);
+            ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
+        }
+        case SPELL_ITEM_GARLIC:
+        {
+            float fDuration = RoundsToSeconds(10);
+            // NB: you always get bad breath, ignore any immunities!
+            effect eLink = EffectLinkEffects(VersusRacialTypeEffect(EffectAttackIncrease(2), RACIAL_TYPE_UNDEAD),
+                           EffectLinkEffects(IgnoreEffectImmunity(EffectAbilityDecrease(ABILITY_CHARISMA, 1)),
+                                             EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+            // Cannot dispel item effects
+            eLink = ExtraordinaryEffect(eLink);
+
+            ApplyVisualEffectToObject(VFX_IMP_AC_BONUS, oTarget);
+            ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
+        }
+        break;
+        default:
+            Debug("[op_ip_general] No valid spell ID passed in: " + IntToString(nSpellId), ERROR);
+            return;
+        break;
+    }
 }
 
