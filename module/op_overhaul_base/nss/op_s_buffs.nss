@@ -208,6 +208,16 @@
     The target creature is rendered immune to all ability damage and level
     drains and gains 100% increased immunity to negative damage.
 
+    Shield
+    The caster gains a +4 deflection bonus to AC. As well, the caster is
+    immune to the spell magic missile for the duration of the shield.
+
+    Ironguts
+    When touched, the target creature gains a +5 circumstance bonus on
+    Fortitude saves against all poisons.
+
+    ----
+
     Divine Protection
     Available to Clerics of the Protection Domain. The cleric is able to cast
     an improved form of Sanctuary that sets the save DC at 10 + Chr Modifier +
@@ -1035,6 +1045,26 @@ void main()
                         EffectLinkEffects(EffectImmunity(IMMUNITY_TYPE_ABILITY_DECREASE),
                         EffectLinkEffects(EffectImmunity(IMMUNITY_TYPE_NEGATIVE_LEVEL),
                                           EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE))));
+        }
+        break;
+        case SPELL_SHIELD:
+        {
+            fDuration = GetDuration(nCasterLevel, MINUTES);
+            nVis      = VFX_IMP_AC_BONUS;
+            eLink     = EffectLinkEffects(EffectACIncrease(4, AC_DEFLECTION_BONUS),
+                        EffectLinkEffects(EffectSpellImmunity(SPELL_MAGIC_MISSILE),
+                        EffectLinkEffects(EffectVisualEffect(VFX_DUR_GLOBE_MINOR),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE))));
+        }
+        break;
+        case SPELL_IRONGUTS:
+        {
+            fDuration = GetDuration(nCasterLevel * 10, MINUTES);
+            nVis      = VFX_IMP_HEAD_ACID;
+            // Mimic original Bioware spell, fire a second visual!
+            DelayCommand(0.3, ApplyVisualEffectToObject(VFX_IMP_HEAD_HOLY, oTarget));
+            eLink     = EffectLinkEffects(EffectSavingThrowIncrease(SAVING_THROW_FORT, 5, SAVING_THROW_TYPE_POISON),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
         }
         break;
         case SPELLABILITY_DIVINE_PROTECTION:

@@ -677,6 +677,9 @@ int GetSpellabilitySaveDC(object oCaster, int nDCConst = SPELLABILITY_DC_NORMAL,
 // * fMaxHPPercent - The percentage of HP to have the clone set to
 object CreateClone(object oCreature, location lSpawn, float fMaxHPPercent = 100.0);
 
+// Can the given creature concentrate? Checks for disabling effects and actions.
+int GetCanConcentrate(object oCreature);
+
 // These global variables are used in most spell scripts and are initialised here to be consistent
 // NB: You can't reuse these variables in the very functions in this list, so we pass them in.
 int bIllusionary           = GetSpellIsIllusionary();
@@ -5252,3 +5255,63 @@ void IncrementRemainingSpellUses(object oCreature, int nSpellId)
     }
 }
 
+// Can the given creature concentrate? Checks for disabling effects and actions.
+int GetCanConcentrate(object oCreature)
+{
+    // By default can concentrate
+    int bReturn = TRUE;
+
+    // These actions fail concentration. Slightly extended from Bioware's list.
+    switch (GetCurrentAction(oCreature))
+    {
+        // Attacking
+        case ACTION_ATTACKOBJECT:
+        // Spells
+        case ACTION_CASTSPELL:
+        case ACTION_ITEMCASTSPELL:
+        case ACTION_COUNTERSPELL:
+        // Skill actions
+        case ACTION_TAUNT:
+        case ACTION_PICKPOCKET:
+        case ACTION_HEAL:
+        case ACTION_ANIMALEMPATHY:
+        // Traps
+        case ACTION_DISABLETRAP:
+        case ACTION_FLAGTRAP:
+        case ACTION_SETTRAP:
+        case ACTION_EXAMINETRAP:
+        case ACTION_RECOVERTRAP:
+            return FALSE;
+        break;
+    }
+
+    // These action modes shouldn't be used
+    if (GetActionMode(oCreature, ACTION_MODE_DEFENSIVE_CAST) ||
+        GetActionMode(oCreature, ACTION_MODE_DIRTY_FIGHTING) ||
+        GetActionMode(oCreature, ACTION_MODE_EXPERTISE) ||
+        GetActionMode(oCreature, ACTION_MODE_IMPROVED_EXPERTISE) ||
+        GetActionMode(oCreature, ACTION_MODE_IMPROVED_POWER_ATTACK) ||
+        GetActionMode(oCreature, ACTION_MODE_PARRY) ||
+        GetActionMode(oCreature, ACTION_MODE_POWER_ATTACK) ||
+        GetActionMode(oCreature, ACTION_MODE_RAPID_SHOT))
+    {
+        return FALSE;
+    }
+
+    effect eCheck = GetFirstEffect(oCreature);
+    while (GetIsEffectValid(eCheck))
+    {
+        int nType = GetEffectType(eCheck);
+        if (nType == EFFECT_TYPE_STUNNED || nType == EFFECT_TYPE_PARALYZE ||
+            nType == EFFECT_TYPE_SLEEP || nType == EFFECT_TYPE_FRIGHTENED ||
+            nType == EFFECT_TYPE_PETRIFY || nType == EFFECT_TYPE_CONFUSED ||
+            nType == EFFECT_TYPE_DOMINATED || nType == EFFECT_TYPE_POLYMORPH)
+        {
+            return FALSE;
+        }
+        eCheck = GetNextEffect(oCreature);
+    }
+
+    // We can concentrate!
+    return TRUE;
+}
