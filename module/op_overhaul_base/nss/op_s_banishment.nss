@@ -51,7 +51,7 @@ void main()
                     !DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_NONE, fDelay))
                 {
                     // Set them to be destroyable so they fade (but leave a loot bag in case of plot)
-                    SetIsDestroyable(TRUE, FALSE, FALSE, oTarget);
+                    if (!GetIsPC(oTarget)) SetIsDestroyable(TRUE, FALSE, FALSE, oTarget);
 
                     // This deals with Immortal and Plot flag fine.
                     DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_UNSUMMON, oTarget));
