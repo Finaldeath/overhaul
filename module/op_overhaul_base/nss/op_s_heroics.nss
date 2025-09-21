@@ -50,7 +50,7 @@ void main()
 
     if (JsonGetLength(jFeatArray) == 0)
     {
-        SendMessageToPC(oCaster, "Heroics: ERROR: Invalid spell ID?");
+        Debug("Heroics: ERROR: Invalid spell ID or something?", ERROR);
         ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_FNF_SPELL_FAIL_HAND), oCaster);
         return;
     }
@@ -79,7 +79,7 @@ void main()
     // Check we can learn them. Upgraded feat if we have the original
     if (nFeatToApply == FEAT_INVALID)
     {
-        SendMessageToPC(oCaster, "Heroics: No feats can be learned.");
+        SendMessageToPCByStrRef(oCaster, STRREF_HEROICS_NO_FEATS_CAN_BE_LEARNED); // *Heroics: No feats can be learned.*
         ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_FNF_SPELL_FAIL_HAND), oCaster);
         return;
     }

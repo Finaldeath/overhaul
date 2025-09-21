@@ -102,7 +102,7 @@ void main()
 
     if (DoSavingThrow(OBJECT_SELF, oCreator, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_PARALYSIS))
     {
-        FloatingTextStringOnCreature("*Freed from Paralysis*", OBJECT_SELF, FALSE);
+        FloatingTextStrRefOnCreature(STRREF_FREED_FROM_PARALYSIS, OBJECT_SELF, FALSE); // *Freed from Paralysis*
         RemoveEffect(OBJECT_SELF, eCheck);
     }
 }

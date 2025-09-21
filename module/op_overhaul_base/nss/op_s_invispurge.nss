@@ -105,6 +105,6 @@ int RemoveInvisibityEffects(object oTarget)
         }
         eCheck = GetNextEffect(oTarget);
     }
-    if (bRemovedSomething) SendMessageToPC(oTarget, "*Invisibility purged*");
+    if (bRemovedSomething) SendMessageToPCByStrRef(oTarget, STRREF_INVISIBILITY_PURGED); // *Invisibility purged*
     return bRemovedSomething;
 }

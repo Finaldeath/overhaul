@@ -75,7 +75,6 @@ void main()
             // Spellcasting Concentration Check
             if (GetCurrentAction(oTarget) == ACTION_CASTSPELL)
             {
-                SendMessageToPC(oCaster, "They're casting a spell " + GetName(oTarget));
                 // Can't get what spell it is (or type) but whatever it is we're concentrating checking it
                 if (!GetOpposingSkillCheck(oTarget, oCaster, SKILL_CONCENTRATION, nSpellSaveDC))
                 {

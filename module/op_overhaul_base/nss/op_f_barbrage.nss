@@ -39,7 +39,7 @@ void main()
         // Replenish use and feedback
         if (GetSpellFeatId() != FEAT_INVALID)
             IncrementRemainingFeatUses(oCaster, GetSpellFeatId());
-        FloatingTextStringOnCreature("*Cannot rage while raging! (use reset)*", oCaster, FALSE, TRUE);
+        FloatingTextStrRefOnCreature(STRREF_CANNOT_RAGE_WHILE_RAGING, oCaster, FALSE, TRUE); // *Cannot rage while raging! (use reset)*
         return;
     }
 
@@ -50,19 +50,19 @@ void main()
         // We can identify the feat-chain used by the spell ID passed in
         if (nSpellId != SPELLABILITY_BARBARIAN_RAGE && GetHasFeat(FEAT_BARBARIAN_RAGE))
         {
-            SendMessageToPC(oCaster, "Using up Barbarian Rage.");
+            SendMessageToPCByStrRef(oCaster, STRREF_USING_UP_BARBARIAN_RAGE); // Using up Barbarian Rage.
             DecrementRemainingFeatUses(oCaster, FEAT_BARBARIAN_RAGE);
             IncrementRemainingFeatUses(oCaster, nFeatId);
         }
         else if (nSpellId != SPELLABILITY_EPIC_MIGHTY_RAGE && GetHasFeat(FEAT_MIGHTY_RAGE))
         {
-            SendMessageToPC(oCaster, "Using up Mighty Rage.");
+            SendMessageToPCByStrRef(oCaster, STRREF_USING_UP_MIGHTY_RAGE); // Using up Mighty Rage.
             DecrementRemainingFeatUses(oCaster, FEAT_MIGHTY_RAGE);
             IncrementRemainingFeatUses(oCaster, nFeatId);
         }
         else if (nSpellId != SPELL_EYE_OF_GRUUMSH_RAGE && GetHasFeat(FEAT_EYE_OF_GRUUMSH_RAGE))
         {
-            SendMessageToPC(oCaster, "Using up Eye of Gruumsh Rage.");
+            SendMessageToPCByStrRef(oCaster, STRREF_USING_UP_EYE_OF_GRUUMSH_RAGE); // Using up Eye of Gruumsh Rage.
             DecrementRemainingFeatUses(oCaster, FEAT_EYE_OF_GRUUMSH_RAGE);
             IncrementRemainingFeatUses(oCaster, nFeatId);
         }
@@ -107,7 +107,7 @@ void main()
     // If nRounds is not high enough, why bother?
     if (fDuration == 0.0)
     {
-        FloatingTextStringOnCreature("*Cannot rage with no duration!*", oCaster, FALSE, TRUE);
+        FloatingTextStrRefOnCreature(STRREF_CANNOT_RAGE_WITH_NO_DURATION, oCaster, FALSE, TRUE); // *Cannot rage with no duration!*
         return;
     }
 
@@ -132,7 +132,7 @@ void main()
     // Terrifying Rage feat
     if (GetHasFeat(FEAT_EPIC_TERRIFYING_RAGE, oCaster))
     {
-        eLink = EffectLinkEffects(eLink, EffectAreaOfEffect(AOE_MOB_FEAR,"op_f_terrifyrage", "",""));
+        eLink = EffectLinkEffects(eLink, EffectAreaOfEffect(AOE_MOB_FEAR, "op_f_terrifyrage", "", ""));
     }
 
     // Make effect extraordinary

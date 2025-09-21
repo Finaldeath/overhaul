@@ -73,7 +73,7 @@ void main()
 
         if (!GetCanSpeak(oCaster))
         {
-            FloatingTextStringOnCreature("*Dirge cannot affect targets if you cannot sing*", oCaster, FALSE);
+            FloatingTextStrRefOnCreature(STRREF_DIRGE_CANNOT_SPEAK, oCaster, FALSE); // *Dirge cannot affect targets if you cannot sing*
             return;
         }
 

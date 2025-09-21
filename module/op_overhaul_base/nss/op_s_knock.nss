@@ -45,7 +45,7 @@ void main()
                     }
                     else
                     {
-                        FloatingTextStringOnCreature("* Failure! - object unaffected by magic *", oCaster, FALSE);
+                        FloatingTextStrRefOnCreature(STRREF_OBJECT_UNAFFECTED_BY_MAGIC, oCaster, FALSE); // * Failure! - object unaffected by magic *
                     }
                 }
             }
@@ -57,13 +57,13 @@ void main()
                 }
                 else
                 {
-                    FloatingTextStringOnCreature("* Failure! - object unaffected by magic *", oCaster, FALSE);
+                    FloatingTextStrRefOnCreature(STRREF_OBJECT_UNAFFECTED_BY_MAGIC, oCaster, FALSE); // * Failure! - object unaffected by magic *
                 }
             }
         }
         else
         {
-            FloatingTextStringOnCreature("* Failure! - object not locked *", oCaster, FALSE);
+            FloatingTextStrRefOnCreature(STRREF_OBJECT_NOT_LOCKED, oCaster, FALSE); // * Failure! - object not locked *
         }
     }
 }

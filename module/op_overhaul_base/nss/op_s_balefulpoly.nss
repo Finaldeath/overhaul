@@ -31,7 +31,7 @@ void main()
             GetHasEffect(oTarget, EFFECT_TYPE_PETRIFY) ||
             GetIsDead(oTarget))
         {
-            SendMessageToPC(oCaster, "*Baleful Polymoprh cannot affect this target*");
+            SendMessageToPCByStrRef(oCaster, STRREF_BALEFUL_POLYMORPH_CANNOT_AFFECT_TARGET); // *Baleful Polymoprh cannot affect this target*
             return;
         }
 

@@ -62,7 +62,7 @@ void main()
             // 2 = resisted/saved already
             else if (nWillSaveResult == SAVE_RESULT_PASSED)
             {
-                SendMessageToPC(oTarget, "*You previously saved and so are immune to this mind fog*");
+                SendMessageToPCByStrRef(oTarget, STRREF_PREVIOUSLY_SAVED_NOW_IMMUNE);
             }
         }
     }

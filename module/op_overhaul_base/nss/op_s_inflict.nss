@@ -116,7 +116,7 @@ void main()
     {
         if (oTarget != oCaster)
         {
-            FloatingTextStringOnCreature("Harm Self must be targeted on yourself.", oCaster, FALSE);
+            FloatingTextStrRefOnCreature(STRREF_HARM_SELF_INVALID_TARGET, oCaster, FALSE); // *Harm Self must be targeted on yourself*
             return;
         }
     }

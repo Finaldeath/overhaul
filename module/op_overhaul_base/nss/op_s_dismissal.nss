@@ -51,7 +51,7 @@ void main()
         }
         else
         {
-            FloatingTextStringOnCreature("*Target is not an outsider, summon, familiar or animal companion.", oCaster, FALSE);
+            FloatingTextStrRefOnCreature(STRREF_DISMISSAL_INVALID_TARGET, oCaster, FALSE); // *Target is not an outsider, summon, familiar or animal companion*
         }
     }
 }

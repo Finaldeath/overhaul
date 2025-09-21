@@ -61,7 +61,7 @@ void main()
             // 2 = resisted/saved already
             else if (nSaveResult == SAVE_RESULT_PASSED)
             {
-                SendMessageToPC(oTarget, "*You previously saved and so are immune to this spell*");
+                SendMessageToPCByStrRef(oTarget, STRREF_PREVIOUSLY_SAVED_NOW_IMMUNE); // *You previously saved and so are immune to this spell*
             }
         }
     }

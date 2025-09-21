@@ -386,8 +386,7 @@ object GetMeleeWeaponToCastSpellOn(object oTarget, int nSpellId, int nDamageType
     // Failure message
     if (nDamageType == DAMAGE_TYPE_SLASHING)
     {
-        // 83621 * Invalid Target - This spell must be cast on a slashing weapon *
-        SendMessageToPCByStrRef(OBJECT_SELF, 83621);
+        SendMessageToPCByStrRef(OBJECT_SELF, STRREF_INVALID_TARGET_THIS_SPELL_MUST_BE_CAST_ON_A_SLASHING_WEAPON); // * Invalid Target - This spell must be cast on a slashing weapon *
     }
     else if (nDamageType != -1)
     {
@@ -411,8 +410,7 @@ object GetMeleeWeaponToCastSpellOn(object oTarget, int nSpellId, int nDamageType
     }
     else
     {
-        // 83615 * Spell Failed - Target must be a melee weapon or creature with a melee weapon equipped *
-        SendMessageToPCByStrRef(OBJECT_SELF, 83615);
+        SendMessageToPCByStrRef(OBJECT_SELF, STRREF_SPELL_FAILED_TARGET_MUST_BE_CREATURE_OR_AN_ITEM_THAT_CAN_BE_EQUIPPED); // * Spell Failed - Target must be a melee weapon or creature with a melee weapon equipped *
     }
 
     return OBJECT_INVALID;
@@ -447,7 +445,7 @@ object GetRangedWeaponToCastSpellOn(object oTarget, int nSpellId)
     }
 
     // Failure message
-    SendMessageToPC(OBJECT_SELF, "* Spell Failed - Target must be a ranged weapon or creature with a ranged weapon equipped *");
+    SendMessageToPCByStrRef(OBJECT_SELF, STRREF_SPELL_FAILED_NO_RANGED_WEAPON); // * Spell Failed - Target must be a ranged weapon or creature with a ranged weapon equipped *
     return OBJECT_INVALID;
 }
 
@@ -490,8 +488,7 @@ object GetArmorOrShieldToCastSpellOn(object oTarget, int nSpellId, int bAllowShi
         }
     }
     // Failure message
-    // 83826 - * Spell Failed - Target must be a valid creature, armor or shield *
-    SendMessageToPCByStrRef(OBJECT_SELF, 83826);
+    SendMessageToPCByStrRef(OBJECT_SELF, STRREF_SPELL_FAILED_NO_VALID_ARMOR_OR_SHIELD); // * Spell Failed - Target must be a valid creature, armor or shield *
     return OBJECT_INVALID;
 }
 
@@ -525,8 +522,7 @@ object GetEquippableItemToCastSpellOn(object oTarget, int nSpellId)
         }
     }
     // Failure message
-    // 83326 * Spell failed - Target must be creature or an item that can be equipped *
-    SendMessageToPCByStrRef(OBJECT_SELF, 83326);
+    SendMessageToPCByStrRef(OBJECT_SELF, STRREF_SPELL_FAILED_TARGET_MUST_BE_CREATURE_OR_AN_ITEM_THAT_CAN_BE_EQUIPPED); //  Spell failed - Target must be creature or an item that can be equipped *
     return OBJECT_INVALID;
 }
 

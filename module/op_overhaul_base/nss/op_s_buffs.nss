@@ -552,7 +552,7 @@ void main()
         {
             if (GetRacialType(oTarget) != RACIAL_TYPE_ANIMAL)
             {
-                SendMessageToPC(oCaster, "*Awaken can only affect animal targets*");
+                SendMessageToPCByStrRef(oCaster, STRREF_AWAKEN_ONLY_ANIMAL_TARGETS); // *Awaken can only affect animal targets*
                 return;
             }
             nVis             = VFX_IMP_HOLY_AID;
@@ -593,7 +593,7 @@ void main()
             // Can't have haste
             if (GetHasEffectOrItemProperty(oTarget, EFFECT_TYPE_HASTE, ITEM_PROPERTY_HASTE))
             {
-                SendMessageToPC(oCaster, "*Expeditious Retreat cannot be cast when hasted.*");
+                SendMessageToPCByStrRef(oCaster, STRREF_EXPEDITIOUS_RETREAT_NO_HASTE); // *Expeditious Retreat cannot be cast when hasted.*
                 return;
             }
             nVis      = VFX_IMP_HASTE;  // TODO New VFX

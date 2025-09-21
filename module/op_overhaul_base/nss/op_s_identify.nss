@@ -119,10 +119,10 @@ void main()
     // Failure state
     if (nSpellId == SPELL_READ_MAGIC)
     {
-        SendMessageToPC(oCaster, "*You must target an unidentified spell scroll or potion.*");
+        SendMessageToPCByStrRef(oCaster, STRREF_READ_MAGIC_INVALID_ITEM); // *You must target an unidentified spell scroll or potion.*
     }
     else
     {
-        SendMessageToPC(oCaster, "*You must target an unidentified item.*");
+        SendMessageToPCByStrRef(oCaster, STRREF_IDENTIFY_INVALID_ITEM); // *You must target an unidentified item.*
     }
 }

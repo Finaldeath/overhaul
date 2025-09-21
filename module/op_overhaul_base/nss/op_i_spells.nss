@@ -754,8 +754,8 @@ int DoSpellHook()
     {
         if (GetHasSpellEffect(SPELL_TENSERS_TRANSFORMATION, oCaster))
         {
-            FloatingTextStringOnCreature("*Spell casting failed*", oCaster, FALSE);
-            SendMessageToPC(oCaster, "*You cannot cast spells or use spells on items when under the effects of Tensers Transformation*");
+            FloatingTextStrRefOnCreature(STRREF_SPELL_CASTING_FAILED, oCaster, FALSE); // *Spell casting failed*
+            SendMessageToPCByStrRef(oCaster, STRREF_TENSERS_TRANSFORMATION_CANNOT_USE_ITEMS); // *You cannot cast spells or use spells on items when under the effects of Tensers Transformation*
             ApplyVisualEffectToObject(VFX_FNF_SPELL_FAIL_HAND, oCaster);
             return TRUE;
         }
@@ -772,10 +772,10 @@ int DoSpellHook()
             {
                 if (GetHasSpellEffect(SPELL_IRON_BODY, oCaster))
                 {
-                    FloatingTextStringOnCreature("*Potion quaffing failed*", oCaster, FALSE);
-                    SendMessageToPC(oCaster, "*You cannot quaff potions when under the effects of Iron Body*");
+                    FloatingTextStrRefOnCreature(STRREF_POTION_QUAFFING_FAILED, oCaster, FALSE); // *Potion quaffing failed*
+                    SendMessageToPCByStrRef(oCaster, STRREF_IRON_BODY_FAILED_POTION_QUAFF); // *You cannot quaff potions when under the effects of Iron Body*
                     // Using potions on other just in case catch statement
-                    if (oCaster != oTarget) SendMessageToPC(oTarget, "*You cannot quaff potions when under the effects of Iron Body*");
+                    if (oCaster != oTarget) SendMessageToPCByStrRef(oTarget, STRREF_IRON_BODY_FAILED_POTION_QUAFF);
                     ApplyVisualEffectToObject(VFX_FNF_SPELL_FAIL_HAND, oCaster);
                     return TRUE;
                 }
@@ -3479,11 +3479,11 @@ int CureEffects(object oTarget, json jArray, int bSupernaturalRemoval = FALSE)
                         }
                         else if (nAbilityDecreaseType == 1)
                         {
-                            FloatingTextStringOnCreature("*Poison ability damage cannot be removed by this spell*", oTarget, TRUE, TRUE);
+                            FloatingTextStrRefOnCreature(STRREF_CANNOT_HEAL_POISON_ABILITY_DAMAGE, oTarget, TRUE, TRUE); // *Poison ability damage cannot be removed by this spell*
                         }
                         else if (nAbilityDecreaseType == 2)
                         {
-                            FloatingTextStringOnCreature("*Disease ability damage cannot be removed by this spell*", oTarget, TRUE, TRUE);
+                            FloatingTextStrRefOnCreature(STRREF_CANNOT_HEAL_DISEASE_ABILITY_DAMAGE, oTarget, TRUE, TRUE); // *Disease ability damage cannot be removed by this spell*
                         }
                         // Old notes we might still use:
                         // How does EFFECT_TYPE_ABILITY_DECREASE get implemented in the engine?

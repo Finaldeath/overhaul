@@ -81,7 +81,7 @@ void main()
                 }
                 else
                 {
-                    SendMessageToPC(oTarget, "*You previously tested and so are immune to this creatures terrifying rage*");
+                    SendMessageToPCByStrRef(oTarget, STRREF_IMMUNE_TERRIFYING_RAGE); // *You previously tested and so are immune to this creatures terrifying rage*
                 }
             }
         }

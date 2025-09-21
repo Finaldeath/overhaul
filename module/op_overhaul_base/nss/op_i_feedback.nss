@@ -147,6 +147,7 @@ const int STRREF_SPELL_FAILED_TARGET_MUST_BE_A_MELEE_WEAPON_OR_CREATURE_WITH_A_M
 const int STRREF_INVALID_TARGET_SPELL_MUST_BE_CAST_ON_QUARTERSTAFF = 83620; // * Invalid Target - This spell must be cast on a quarterstaff *
 const int STRREF_INVALID_TARGET_THIS_SPELL_MUST_BE_CAST_ON_A_SLASHING_WEAPON = 83621; // * Invalid Target - This spell must be cast on a slashing weapon *
 const int STRREF_FAILURE_WANDS_CAN_NOT_HOLD_SPELLS_HIGHER_THAN_LEVEL_4 = 83623; // * Failure! - wands can not hold spells higher than level 4 *
+const int STRREF_SPELL_FAILED_NO_VALID_ARMOR_OR_SHIELD = 83826; // * Spell Failed - Target must be a valid creature, armor or shield *
 const int STRREF_THIS_OBJECT_CAN_NOT_BE_BROUGHT_BACK_FROM_THE_DEAD = 83861; // This object can not be brought back from the dead!
 const int STRREF_YOUR_ARMOR_WAS_TORN_AWAY = 84426; // * Your armor was torn away! *
 const int STRREF_YOUR_ARMOR_WAS_DESTROYED = 84428; // * Your armor was destroyed! *

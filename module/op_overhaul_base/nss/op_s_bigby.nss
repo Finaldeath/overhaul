@@ -70,7 +70,9 @@ void main()
     // Can't apply the same spell to the same person again
     if (GetHasSpellEffect(nSpellId, oTarget))
     {
-        SendMessageToPC(oCaster, "*Target already affected by " + GetSpellName(nSpellId) + ".*");
+        // Basic Bioware feedback
+        SendMessageToPCByStrRef(oCaster, STRREF_TARGET_ALREADY_HAS_THIS_EFFECT);
+        // Old message: "*Target already affected by " + GetSpellName(nSpellId) + ".*"
         return;
     }
 

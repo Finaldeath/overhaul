@@ -236,7 +236,7 @@ void main()
             if (GetObjectType(oTarget) == OBJECT_TYPE_CREATURE &&
                !GetIsRacialType(oTarget, RACIAL_TYPE_CONSTRUCT))
             {
-                SendMessageToPC(oCaster, "*Crumble does not affect this target.*");
+                SendMessageToPCByStrRef(oCaster, STRREF_CRUMBLE_DOES_NOT_AFFECT_TARGET); // *Crumble does not affect this target.*
                 return;
             }
         }
@@ -257,7 +257,7 @@ void main()
                 !GetIsRacialType(oTarget, RACIAL_TYPE_OOZE) &&
                 !GetIsRacialType(oTarget, RACIAL_TYPE_ELEMENTAL)))
             {
-                SendMessageToPC(oCaster, "*Drown does not affect this target.*");
+                SendMessageToPCByStrRef(oCaster, STRREF_DROWN_DOES_NOT_AFFECT_TARGET); // *Drown does not affect this target.*
                 return;
             }
         }

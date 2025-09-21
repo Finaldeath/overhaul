@@ -78,7 +78,7 @@ void main()
             if (nLevelBonus <= 0)
             {
                 // Don't do anything if no levels!
-                FloatingTextStringOnCreature("This feat requires Divine Champion levels.", oCaster, FALSE);
+                FloatingTextStrRefOnCreature(STRREF_DIVINE_WRATH_INVALID_USER, oCaster, FALSE); // *Divine Wrath requires Divine Champion levels*
                 return;
             }
 

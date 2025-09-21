@@ -94,7 +94,7 @@ void main()
     else
     {
         // No creature items?
-        SendMessageToPC(oCaster, "*Magic Fang: No creature weapons found on " + GetName(oTarget) + "*");
+        SendMessageToPCByStrRef(oCaster, STRREF_MAGIC_FANG_INVALID_TARGET); // *Magic Fang must be cast on a creature with creature weapons*
         ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_FNF_SPELL_FAIL_HAND), oCaster);
     }
 }

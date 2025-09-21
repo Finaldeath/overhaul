@@ -43,7 +43,7 @@ void main()
     {
         // Replenish use and feedback
         IncrementRemainingSpellUses(oCaster, GetSpellId());
-        FloatingTextStringOnCreature("*Cannot rage while raging! (use reset)*", oCaster, FALSE, TRUE);
+        FloatingTextStrRefOnCreature(STRREF_CANNOT_RAGE_WHILE_RAGING, oCaster, FALSE, TRUE);
         return;
     }
 
