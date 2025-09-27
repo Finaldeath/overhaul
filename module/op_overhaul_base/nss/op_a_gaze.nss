@@ -19,6 +19,11 @@
     Positive Energy: Destroy Evil, Destroy Chaos.
     Movement Impeding: Paralysis.
     Miscellaneous: Krenshar Fear Gaze (DC 12, 3 round duration).
+    Sea Hag Evil Eye:
+        A dire gaze can be cast upon any single creature within 30 feet.
+        The target must succeed at a Fortitude save (DC 11).
+        Creatures who fail lose 5 points from both strength and constitution and
+        also have a 25% chance of losing 5 points from all ability scores due to fright.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -158,6 +163,41 @@ void main()
             nVis = VFX_IMP_STUN;
         }
         break;
+        case SPELLABILITY_SEAHAG_EVILEYE:
+        {
+            nSavingThrow = SAVING_THROW_FORT;
+            nSpellSaveDC = 11;
+            nVis = VFX_IMP_REDUCE_ABILITY_SCORE;
+
+            // Weird way the original script does duration
+            // TBh may simplify this...
+            nDuration = FloatToInt(GetChallengeRating(OBJECT_SELF)) * 3;
+            // This used to be float maths, just using integer maths now. Meh.
+            int nDifficulty = GetGameDifficulty();
+            if (nDifficulty == GAME_DIFFICULTY_VERY_EASY)
+            {
+                nDuration = nDuration / 4;
+            }
+            else if (nDifficulty == GAME_DIFFICULTY_EASY)
+            {
+                nDuration = nDuration / 2;
+            }
+            else if (nDifficulty == GAME_DIFFICULTY_NORMAL)
+            {
+                // No change
+            }
+            else if (nDifficulty == GAME_DIFFICULTY_CORE_RULES)
+            {
+                nDuration = FloatToInt(IntToFloat(nDuration) * 1.5);
+            }
+            else // GAME_DIFFICULTY_DIFFICULT
+            {
+                nDuration = nDuration * 2;
+            }
+            // Min 1 round
+            nDuration = max(1, nDuration);
+        }
+        break;
         default:
         {
             if (DEBUG_LEVEL >= ERROR) Debug("[op_a_gaze] No valid spell ID passed in: " + IntToString(nSpellId), ERROR);
@@ -189,6 +229,34 @@ void main()
                 if (nEffectType == EFFECT_TYPE_DEATH)
                 {
                     DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectDeath(), oTarget));
+                }
+                else if (nSpellId == SPELLABILITY_SEAHAG_EVILEYE)
+                {
+                    // Insane this one...lots of ability decrease at once
+                    effect eApply;
+                    if (d4() == 1)
+                    {
+                        // Every score
+                        eApply = EffectLinkEffects(EffectAbilityDecrease(ABILITY_STRENGTH, 5),
+                                 EffectLinkEffects(EffectAbilityDecrease(ABILITY_DEXTERITY, 5),
+                                 EffectLinkEffects(EffectAbilityDecrease(ABILITY_CONSTITUTION, 5),
+                                 EffectLinkEffects(EffectAbilityDecrease(ABILITY_WISDOM, 5),
+                                 EffectLinkEffects(EffectAbilityDecrease(ABILITY_INTELLIGENCE, 5),
+                                 EffectLinkEffects(EffectAbilityDecrease(ABILITY_CHARISMA, 5),
+                                                   EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)))))));
+                    }
+                    else
+                    {
+                        // Just Strength + Constitution
+                        eApply = EffectLinkEffects(EffectAbilityDecrease(ABILITY_STRENGTH, 5),
+                                 EffectLinkEffects(EffectAbilityDecrease(ABILITY_CONSTITUTION, 5),
+                                                   EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+
+                    }
+                    eApply = SupernaturalEffect(eApply);
+
+                    float fDuration = GetDuration(nDuration, ROUNDS, EFFECT_TYPE_ABILITY_DECREASE);
+                    DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eApply, oTarget, fDuration));
                 }
                 else
                 {

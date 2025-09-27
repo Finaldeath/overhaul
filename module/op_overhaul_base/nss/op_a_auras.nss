@@ -26,6 +26,10 @@
     Miscellaneous: Tyrantfog (5-foot radius of green mist that saps the
         Constitution of all creatures within its grasp. Fortitude save at DC 13
         to resist).
+        Troglodyte Stench: Similar to the Tyrantfog, but strength damage to
+        non-Trogs.
+        Horrific Appearance: DC 11 save or suffer 2D8 points of Strength Ability
+        Damage for the CR of the cast times six rounds.
 
     We're putting a 24 hour cooldown on the save being redone, pass or fail.
     This helps stop people accidentially going in and out constantly, the
@@ -133,6 +137,7 @@ void main()
             case SPELLABILITY_AURA_HORRIFICAPPEARANCE:
             {
                 nSavingThrow = SAVING_THROW_FORT;
+                nImmunity = IMMUNITY_TYPE_ABILITY_DECREASE;
                 nVis = VFX_IMP_REDUCE_ABILITY_SCORE;
                 // From original script
                 nDC = 11;
@@ -215,6 +220,17 @@ void main()
                 nDuration = 10;
             }
             break;
+            case SPELLABILITY_TYRANT_FOG_MIST:
+            {
+                nSavingThrow = SAVING_THROW_FORT;
+                nSavingThrowType = SAVING_THROW_TYPE_POISON;
+                nImmunity = IMMUNITY_TYPE_POISON;
+                nVis = VFX_IMP_REDUCE_ABILITY_SCORE;
+                // From original script
+                nDC = 13;
+                nDuration = 5;
+            }
+            break;
             default:
             {
                 Debug("[op_s_auras] IMPACT AREA: No valid spell ID passed in: " + IntToString(nSpellId), ERROR);
@@ -275,6 +291,10 @@ void main()
                             else if (nSpellId == SPELLABILITY_TROGLODYTE_STENCH)
                             {
                                 eLink = GetEffectLink(EFFECT_TYPE_ABILITY_DECREASE, ABILITY_STRENGTH, d6());
+                            }
+                            else if (nSpellId == SPELLABILITY_TYRANT_FOG_MIST)
+                            {
+                                eLink = GetEffectLink(EFFECT_TYPE_ABILITY_DECREASE, ABILITY_CONSTITUTION, 1);
                             }
                             else
                             {
@@ -367,6 +387,11 @@ void main()
             case SPELLABILITY_TROGLODYTE_STENCH:
             {
                 eAOE = EffectAreaOfEffect(AOE_MOB_TROGLODYTE_STENCH, GetScriptName(), "", "");
+            }
+            break;
+            case SPELLABILITY_TYRANT_FOG_MIST:
+            {
+                eAOE = EffectAreaOfEffect(AOE_MOB_TYRANT_FOG, GetScriptName(), "", "");
             }
             break;
             default:
