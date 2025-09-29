@@ -38,17 +38,21 @@ void main()
 
     int nDice;
     int nDiceSize = 6;
+    int nDiceBonus = 0;
     int nDamageType;
     int nDamagePower = DAMAGE_POWER_ENERGY;
 
     // Effect to apply if target is hit.
     int bApplyEffect = FALSE;
+    int bApplyEffectOnlyIfCritical = FALSE;
     effect eLink;
     int nSubtype = SUBTYPE_SUPERNATURAL;
     float fDuration = 0.0; // 0.0 will be permanent
 
     int nVis = VFX_NONE, nBeam = VFX_NONE;
     int nTargetType = SPELL_TARGET_STANDARDHOSTILE;
+
+    int bHealIfUndead = FALSE; // Heal damage dice if undead
 
     switch (nSpellId)
     {
@@ -335,6 +339,40 @@ void main()
             nVis = VFX_IMP_STUN;
         }
         break;
+        case SPELLABILITY_EYEBALL_FROST_RAY:
+        {
+            int nLevel = GetHitDice(oCaster);
+            int nCount = max(1, nLevel/5);
+            nDice = nCount;
+            nDiceSize = 4;
+            nDiceBonus = nLevel / 2;
+            nDamageType = DAMAGE_TYPE_COLD;
+            nVis = VFX_IMP_FROST_S;
+        }
+        break;
+        case SPELLABILITY_EYEBALL_INFLICT_WOUNDS_RAY:
+        {
+            int nLevel = GetHitDice(oCaster);
+            int nCount = max(1, nLevel/5);
+            nDice = 2;
+            nDiceSize = 6;
+            nDiceBonus = nCount * 2;
+            nDamageType = VFX_IMP_NEGATIVE_ENERGY;
+            nVis = DAMAGE_TYPE_NEGATIVE;
+            bHealIfUndead = TRUE;
+        }
+        break;
+        case SPELLABILITY_EYEBALL_FLAME_RAY:
+        {
+            int nLevel = GetHitDice(oCaster);
+            int nCount = max(1, nLevel/5);
+            nDice = nCount;
+            nDiceSize = 6;
+            nDiceBonus = nCount;
+            nDamageType = DAMAGE_TYPE_FIRE;
+            nVis = VFX_IMP_FLAME_S;
+        }
+        break;
         default:
             Debug("[op_a_bolt] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
@@ -358,13 +396,19 @@ void main()
         {
             ApplyBeamToObject(nBeam, oTarget);
 
-            if (!GetIsImmuneWithFeedback(oTarget, oCaster, nImmunity))
+            if (bHealIfUndead && GetRacialType(oTarget) == RACIAL_TYPE_UNDEAD)
+            {
+                int nHeal = GetDiceRoll(nDice, nDiceSize, nDiceBonus);
+                ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectHeal(nHeal), oTarget);
+                ApplyVisualEffectToObject(VFX_IMP_HEALING_M, oTarget);
+            }
+            else if (!GetIsImmuneWithFeedback(oTarget, oCaster, nImmunity))
             {
                 int bNotAppliedVFX = TRUE;
 
                 if (nDice > 0)
                 {
-                    int nDamage = GetDiceRoll(nDice, nDiceSize);
+                    int nDamage = GetDiceRoll(nDice, nDiceSize, nDiceBonus);
 
                     if (nTouch == TOUCH_RESULT_CRITICAL_HIT) nDamage *= 2;
 
@@ -375,6 +419,50 @@ void main()
                 {
                     if (bNotAppliedVFX) ApplyVisualEffectToObject(nVis, oTarget);
                     ApplySpellEffectToObject(nDurationType, eLink, oTarget, fDuration);
+                }
+                // Eyeball specific things. Bioware made these very rare (ranged touch + save)
+                if (nTouch == TOUCH_RESULT_CRITICAL_HIT)
+                {
+                    switch (nSpellId)
+                    {
+                        case SPELLABILITY_EYEBALL_FROST_RAY:
+                        {
+                            int nDC = 10 + (GetHitDice(oCaster)/3);
+                            if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_FORT, nDC, SAVING_THROW_TYPE_COLD))
+                            {
+                                effect eLink = EffectLinkEffects(GetEffectLink(EFFECT_TYPE_PARALYZE),
+                                                                 EffectVisualEffect(VFX_DUR_ICESKIN));
+                                // Freeze for 1 round
+                                ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, RoundsToSeconds(1));
+                                ApplyVisualEffectToObject(VFX_IMP_FROST_L, oTarget);
+                            }
+                        }
+                        break;
+                        case SPELLABILITY_EYEBALL_INFLICT_WOUNDS_RAY:
+                        {
+                            int nDC = 10 + (GetHitDice(oCaster)/3);
+                            if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_FORT, nDC, SAVING_THROW_TYPE_NEGATIVE))
+                            {
+                                effect eLink = GetEffectLink(EFFECT_TYPE_SLOW);
+                                // Slow for 2d3 rounds
+                                ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, RoundsToSeconds(d3(2)));
+                                ApplyVisualEffectToObject(VFX_IMP_SLOW, oTarget);
+                            }
+                        }
+                        break;
+                        case SPELLABILITY_EYEBALL_FLAME_RAY:
+                        {
+                            int nDC = 10 + (GetHitDice(oCaster)/3);
+                            if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_FORT, nDC, SAVING_THROW_TYPE_FIRE))
+                            {
+                                effect eLink = GetEffectLink(EFFECT_TYPE_KNOCKDOWN);
+                                // Knockdown for 2 rounds
+                                ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, RoundsToSeconds(2));
+                                ApplyVisualEffectToObject(VFX_IMP_FLAME_M, oTarget);
+                            }
+                        }
+                        break;
+                    }
                 }
             }
         }
