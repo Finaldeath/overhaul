@@ -7,16 +7,8 @@
 
     Grenade.
     Fires at a target. If hit, the target takes
-    direct damage. If missed, all enemies within
+    additional direct damage. All enemies within
     an area of effect take splash damage.
-
-    HOWTO:
-    - If target is valid attempt a hit
-       - If miss then MISS
-       - If hit then direct damage
-    - If target is invalid or MISS
-       - have area of effect near target
-       - everyone in area takes splash damage
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -156,12 +148,61 @@ void main()
         break;
         case SPELL_ITEM_TANGLEFOOT_BAG:
         {
+            if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
+            {
+                effect eLink = GetEffectLink(EFFECT_TYPE_ENTANGLE);
 
+                // Items are not "spells" and cannot be dispelled
+                eLink = ExtraordinaryEffect(eLink);
+
+                SignalSpellCastAt();
+
+                if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_REFLEX, 15))
+                {
+                    ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(2, ROUNDS));
+                }
+            }
         }
         break;
         case SPELL_ITEM_HOLY_WATER:
         {
+            // Extra direct damage if target is valid
+            int nTargetDamage = 0;
+            object oMainTarget = oTarget;
+            if (GetIsObjectValid(oTarget) && GetRacialType(oTarget) == RACIAL_TYPE_UNDEAD)
+            {
+                if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
+                {
+                    int nTouch = DoTouchAttack(oTarget, oCaster, TOUCH_RANGED);
+                    if (nTouch)
+                    {
+                        nTargetDamage = nTouch == TOUCH_RESULT_CRITICAL_HIT ? 2 : 1;
+                    }
+                }
+            }
 
+            // AOE grenade
+            ApplyVisualEffectAtLocation(VFX_FNF_LOS_NORMAL_20, lTarget);
+            json jArray = GetArrayOfTargets(SPELL_TARGET_STANDARDHOSTILE, SORT_METHOD_DISTANCE, OBJECT_TYPE_CREATURE);
+            int nIndex;
+            for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
+            {
+                oTarget = GetArrayObject(jArray, nIndex);
+
+                if (GetRacialType(oTarget) == RACIAL_TYPE_UNDEAD)
+                {
+                    SignalSpellCastAt();
+
+                    float fDelay = GetDistanceBetweenLocations(lTarget, GetLocation(oTarget)) / 20.0;
+
+                    int nDamage = d4(2);
+
+                    if (oTarget == oMainTarget) nDamage += nTargetDamage;
+
+                    DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_HEAD_HOLY, oTarget));
+                    DelayCommand(fDelay, ApplyDamageToObject(oTarget, nDamage, DAMAGE_TYPE_DIVINE));
+                }
+            }
         }
         break;
         case SPELL_ITEM_CHOKING_POWDER:
