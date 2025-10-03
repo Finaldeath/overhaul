@@ -1911,6 +1911,7 @@ int GetSpellIllusionaryStrength(int bIllusionary)
     return 0;
 }
 
+const string ILLUSIONARY_SAVING_THROW_STATE = "ILLUSIONARY_SAVING_THROW_STATE";
 // Checks if oTarget failed the will save done in GetSpellTargetValid() when they
 // were checked. Can affect GetDiceRoll/GetDuration.
 int GetTargetIllusionarySave(object oTarget)
@@ -1924,7 +1925,7 @@ int GetTargetIllusionarySave(object oTarget)
 
     if (bIllusionary)
     {
-        return GetLocalInt(oTarget, "ILLUSIONARY_SAVING_THROW_STATE");
+        return GetLocalInt(oTarget, ILLUSIONARY_SAVING_THROW_STATE);
     }
     return FALSE;
 }
@@ -1943,7 +1944,7 @@ void DoIllusionSavingThrow(object oTarget, object oCaster)
         // Maybe a mind spell? Not sure. For now we'll leave it as is.
         bSave = DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC);
     }
-    SetLocalInt(oTarget, "ILLUSIONARY_SAVING_THROW_STATE", bSave);
+    SetLocalInt(oTarget, ILLUSIONARY_SAVING_THROW_STATE, bSave);
 }
 
 // Gets a modified value for nValue (minimum 1). Use if GetTargetIllusionarySave is TRUE.
@@ -2806,12 +2807,26 @@ void SignalSpellCastAt(object oSignalTarget = OBJECT_INVALID, object oSignalCast
         bIllusionSaveForced = TRUE;
     }
 
-    // Do a illusion saving throw now, before any effects are triggered.
-    // Doors and placeables automatically fail this. Sorry dudes you just don't have a mind.
-    // Done here since we know oSignalTarget is being affected by a hostile spell in context of the script
-    if (bSignalHostile || bIllusionSaveForced && GetObjectType(oSignalTarget) == OBJECT_TYPE_CREATURE)
+    // If oSignalTarget is an item, get the possessor instead
+    if (GetObjectType(oSignalTarget) == OBJECT_TYPE_ITEM)
     {
-        DoIllusionSavingThrow(oSignalTarget, oSignalCaster);
+        oSignalTarget = GetItemPossessor(oSignalTarget);
+
+        // Usually items on the ground, we instead signal against ourselves!
+        if (!GetIsObjectValid(oSignalTarget))
+        {
+            oSignalTarget = oSignalCaster;
+        }
+    }
+    else if(GetObjectType(oSignalTarget) == OBJECT_TYPE_CREATURE)
+    {
+        // Do a illusion saving throw now, before any effects are triggered.
+        // Doors and placeables automatically fail this. Sorry dudes you just don't have a mind.
+        // Done here since we know oSignalTarget is being affected by a hostile spell in context of the script
+        if (bSignalHostile || bIllusionSaveForced)
+        {
+            DoIllusionSavingThrow(oSignalTarget, oSignalCaster);
+        }
     }
 
     SignalEvent(oSignalTarget, EventSpellCastAt(oSignalCaster, nSignalSpellId, bSignalHostile));
@@ -4109,9 +4124,17 @@ effect GetEffectLink(int nEffectType, int nValue1 = 0, int nValue2 = 0, int nVal
         break;
         case EFFECT_TYPE_AC_INCREASE:
         {
-            eLink = EffectLinkEffects(EffectACIncrease(nValue1, nValue2),
-                    EffectLinkEffects(EffectVisualEffect(nValue3),
-                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+            if (nValue3 > 0)
+            {
+                eLink = EffectLinkEffects(EffectACIncrease(nValue1, nValue2),
+                        EffectLinkEffects(EffectVisualEffect(nValue3),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+            }
+            else
+            {
+                eLink = EffectLinkEffects(EffectACIncrease(nValue1, nValue2),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE));
+            }
         }
         break;
         case EFFECT_TYPE_ARCANE_SPELL_FAILURE:
@@ -4477,6 +4500,12 @@ effect GetEffectLink(int nEffectType, int nValue1 = 0, int nValue2 = 0, int nVal
             eLink = EffectLinkEffects(EffectSpellLevelAbsorption(nValue1, nValue2, nValue3),
                     EffectLinkEffects(EffectVisualEffect(nVFX),
                                       EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+            // Add the Globe icon instead of the default one
+            if (nValue2 == 0)
+            {
+                eLink = HideEffectIcon(eLink);
+                eLink = EffectLinkEffects(eLink, EffectIcon(EFFECT_ICON_GLOBE_OF_INVUNERABILITY));
+            }
         }
         break;
         case EFFECT_TYPE_STUNNED:
@@ -4540,8 +4569,10 @@ effect GetEffectLink(int nEffectType, int nValue1 = 0, int nValue2 = 0, int nVal
         case EFFECT_TYPE_ULTRAVISION:
         {
             eLink = EffectLinkEffects(EffectUltravision(),
+                    EffectLinkEffects(EffectIcon(EFFECT_ICON_ULTRAVISION),
                     EffectLinkEffects(EffectVisualEffect(VFX_DUR_ULTRAVISION),
-                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_MAGICAL_SIGHT),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)))));
         }
         break;
         // EFFECT_TYPE_WOUNDING // TODO if EffectWounding is added

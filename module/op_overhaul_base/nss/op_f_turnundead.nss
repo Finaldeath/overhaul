@@ -103,9 +103,7 @@ void main()
     int nHD, nHDCount;
 
     // Turn Effect
-    effect eLink = EffectLinkEffects(EffectTurned(),
-                   EffectLinkEffects(EffectVisualEffect(VFX_DUR_MIND_AFFECTING_FEAR),
-                                     EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+    effect eLink = GetEffectLink(EFFECT_TYPE_TURNED);
 
     // Destroy ignores death immunity.
     effect eDeath = IgnoreEffectImmunity(EffectDeath(TRUE));

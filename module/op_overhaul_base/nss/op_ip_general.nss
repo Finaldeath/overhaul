@@ -4,6 +4,19 @@
 //:://////////////////////////////////////////////
 /*
     General item properties used for things like Alcahol etc.
+
+    Grenade.
+    Fires at a target. If hit, the target takes
+    direct damage. If missed, all enemies within
+    an area of effect take splash damage.
+
+    HOWTO:
+    - If target is valid attempt a hit
+       - If miss then MISS
+       - If hit then direct damage
+    - If target is invalid or MISS
+       - have area of effect near target
+       - everyone in area takes splash damage
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -71,6 +84,109 @@ void main()
 
             ApplyVisualEffectToObject(VFX_IMP_AC_BONUS, oTarget);
             ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
+        }
+        break;
+        case SPELL_ITEM_ALCHEMISTS_FIRE:
+        {
+            // Applies flaming attacks to an item, or does a grenade explosion
+            if (GetObjectType(oTarget) == OBJECT_TYPE_ITEM)
+            {
+                if (GetItemIsMelee(oTarget))
+                {
+                    itemproperty ipProperty1 = ItemPropertyOnHitCastSpell(IP_CONST_ONHIT_CASTSPELL_ONHIT_FIREDAMAGE, 1);
+                    itemproperty ipProperty2 = ItemPropertyVisualEffect(ITEM_VISUAL_FIRE);
+                    float fDuration = GetDuration(4, ROUNDS);
+                    if (GetCanApplySafeItemProperty(oTarget, ipProperty1))
+                    {
+                        ApplySafeItemProperty(oTarget, ipProperty1, fDuration, nSpellId, oCaster, nCasterLevel, nSpellSaveDC, nMetaMagic);
+                        ApplyItemProperty(oTarget, ipProperty2, fDuration, nSpellId, oCaster, nCasterLevel, nSpellSaveDC, nMetaMagic);
+                        if (GetIsObjectValid(GetItemPossessor(oTarget)))
+                        {
+                            ApplyVisualEffectToObject(VFX_IMP_PULSE_FIRE, GetItemPossessor(oTarget));
+                        }
+                        else
+                        {
+                            ApplyVisualEffectToObject(VFX_IMP_PULSE_FIRE, oTarget);
+                        }
+                    }
+                }
+                else
+                {
+                    FloatingTextStrRefOnCreature(STRREF_ONLY_MELEE_WEAPONS_CAN_BE_COATED_WITH_ALCHEMISTS_FIRE, oCaster); // *  Only melee weapons can be coated with alchemist's fire! *
+                }
+            }
+            else
+            {
+                // Extra direct damage if target is valid
+                int nTargetDamage = 0;
+                object oMainTarget = oTarget;
+                if (GetIsObjectValid(oTarget))
+                {
+                    if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
+                    {
+                        int nTouch = DoTouchAttack(oTarget, oCaster, TOUCH_RANGED);
+                        if (nTouch)
+                        {
+                            nTargetDamage = nTouch == TOUCH_RESULT_CRITICAL_HIT ? 2 : 1;
+                        }
+                    }
+                }
+
+                // AOE grenade
+                ApplyVisualEffectAtLocation(VFX_FNF_FIREBALL, lTarget);
+                json jArray = GetArrayOfTargets(SPELL_TARGET_STANDARDHOSTILE, SORT_METHOD_DISTANCE, OBJECT_TYPE_CREATURE | OBJECT_TYPE_PLACEABLE | OBJECT_TYPE_DOOR);
+                int nIndex;
+                for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
+                {
+                    oTarget = GetArrayObject(jArray, nIndex);
+
+                    SignalSpellCastAt();
+
+                    float fDelay = GetDistanceBetweenLocations(lTarget, GetLocation(oTarget)) / 20.0;
+
+                    int nDamage = 1;
+
+                    if (oTarget == oMainTarget) nDamage += nTargetDamage;
+
+                    DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_FLAME_M, oTarget));
+                    DelayCommand(fDelay, ApplyDamageToObject(oTarget, nDamage, DAMAGE_TYPE_FIRE));
+                }
+            }
+        }
+        break;
+        case SPELL_ITEM_TANGLEFOOT_BAG:
+        {
+
+        }
+        break;
+        case SPELL_ITEM_HOLY_WATER:
+        {
+
+        }
+        break;
+        case SPELL_ITEM_CHOKING_POWDER:
+        {
+
+        }
+        break;
+        case SPELL_ITEM_THUNDERSTONE:
+        {
+
+        }
+        break;
+        case SPELL_ITEM_ACID_FLASK:
+        {
+
+        }
+        break;
+        case SPELL_ITEM_GRENADE_CHICKEN:
+        {
+
+        }
+        break;
+        case SPELL_ITEM_CALTROPS:
+        {
+
         }
         break;
         default:

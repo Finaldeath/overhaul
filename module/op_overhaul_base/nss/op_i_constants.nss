@@ -198,28 +198,30 @@ const int SPELL_SHAPECHANGE_FIRE_GIANT            = 393;
 const int SPELL_SHAPECHANGE_BALOR                 = 394;
 const int SPELL_SHAPECHANGE_DEATH_SLAAD           = 395;
 const int SPELL_SHAPECHANGE_IRON_GOLEM            = 396;
-
 const int SPELLABILITY_ELEMENTAL_SHAPE_FIRE       = 397;
 const int SPELLABILITY_ELEMENTAL_SHAPE_WATER      = 398;
 const int SPELLABILITY_ELEMENTAL_SHAPE_EARTH      = 399;
 const int SPELLABILITY_ELEMENTAL_SHAPE_AIR        = 400;
-
 const int SPELLABILITY_WILD_SHAPE_BROWN_BEAR      = 401;
 const int SPELLABILITY_WILD_SHAPE_PANTHER         = 402;
 const int SPELLABILITY_WILD_SHAPE_WOLF            = 403;
 const int SPELLABILITY_WILD_SHAPE_BOAR            = 404;
 const int SPELLABILITY_WILD_SHAPE_BADGER          = 405;
-
 const int SPELL_ITEM_ALCOHOL_BEER                 = 406;
 const int SPELL_ITEM_ALCOHOL_WINE                 = 407;
 const int SPELL_ITEM_ALCOHOL_SPIRITS              = 408;
 const int SPELL_ITEM_BELLADONNA                   = 409;
 const int SPELL_ITEM_GARLIC                       = 410;
-
 const int SPELLABILITY_BARD_SONG                  = 411;
-
+const int SPELL_ITEM_ALCHEMISTS_FIRE              = 464;
+const int SPELL_ITEM_TANGLEFOOT_BAG               = 465;
+const int SPELL_ITEM_HOLY_WATER                   = 466;
+const int SPELL_ITEM_CHOKING_POWDER               = 467;
+const int SPELL_ITEM_THUNDERSTONE                 = 468;
+const int SPELL_ITEM_ACID_FLASK                   = 469;
+const int SPELL_ITEM_GRENADE_CHICKEN              = 470;
+const int SPELL_ITEM_CALTROPS                     = 471;
 const int SPELL_FEAT_BLINDING_SPEED               = 647;
-
 const int SPELLABILITY_WYRMLING_BREATH_COLD       = 663;
 const int SPELLABILITY_WYRMLING_BREATH_ACID       = 664;
 const int SPELLABILITY_WYRMLING_BREATH_FIRE       = 665;
@@ -228,6 +230,7 @@ const int SPELLABILITY_WYRMLING_BREATH_LIGHTNING  = 667;
 const int SPELLABILITY_CAPITVATING_SONG           = 686;
 const int SPELLABILITY_DRAGON_DISCIPLE_BREATH     = 690;
 const int SPELL_EPIC_WARDING                      = 695;
+const int SPELL_ITEM_FLAMING_WEAPON_PROPERTIES    = 696;
 const int SPELLABILITY_CURE_CRITICAL_WOUNDS_OTHER = 567;
 const int SPELLABILITY_RESTOREATION_OTHER         = 568;
 const int SPELLABILITY_SUMMON_BAATEZU             = 701;
