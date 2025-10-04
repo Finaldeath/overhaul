@@ -128,6 +128,7 @@ const int FEAT_SWING_BLINDLY_EYE_OF_GRUUMSH = 483;
 // Area Effects
 const int AOE_MOB_AMPLIFY = 30001;
 const int AOE_MOB_BLANK = 30000;
+const int AOE_PER_CALTROPS = 30002;
 
 // Soundsets
 const int SOUNDSET_CAT_HOUSECAT = 30019;

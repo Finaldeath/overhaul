@@ -4,6 +4,9 @@
 //:://////////////////////////////////////////////
 /*
     General item properties for AOE effects (ie those with persistent AOEs).
+
+    Note that it is silly these disappear when the person throwing them
+    dies, but that is just how the game is.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -11,6 +14,7 @@
 //:://////////////////////////////////////////////
 
 #include "op_i_spells"
+#include "utl_i_timer"
 
 void main()
 {
@@ -68,6 +72,31 @@ void main()
                 return;
             }
             break;
+            case SPELL_ITEM_CALTROPS:
+            {
+                if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE) &&
+                   !GetIsFlying(oTarget) &&
+                    GetTimerEnded(ObjectToString(oTarget)))
+                {
+                    SetTimer(ObjectToString(oTarget), 5);
+
+                    SignalSpellCastAt();
+
+                    float fDelay = GetRandomDelay(0.5, 1.0);
+
+                    DelayCommand(fDelay, ApplyDamageToObject(oTarget, 1, DAMAGE_TYPE_PIERCING));
+
+                    // Intentional: OBJECT_SELF is the AOE itself, not the caster
+                    int nDamageDone = GetLocalInt(OBJECT_SELF, "CALTROPS_TOTAL_DAMAGE");
+                    nDamageDone++;
+                    SetLocalInt(OBJECT_SELF, "CALTROPS_TOTAL_DAMAGE", nDamageDone);
+                    if (nDamageDone >= 25)
+                    {
+                        DestroyObject(OBJECT_SELF);
+                    }
+                }
+            }
+            break;
         }
     }
     else if (GetCurrentlyRunningEvent() == EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_EXIT)
@@ -123,6 +152,42 @@ void main()
     else if (GetCurrentlyRunningEvent() == EVENT_SCRIPT_AREAOFEFFECT_ON_HEARTBEAT)
     {
         if (!AOECheck()) return;
+
+        switch(nSpellId)
+        {
+            case SPELL_ITEM_CALTROPS:
+            {
+                // Intentional: OBJECT_SELF is the AOE itself, not the caster
+                int nDamageDone = GetLocalInt(OBJECT_SELF, "CALTROPS_TOTAL_DAMAGE");
+
+                json jArray = GetArrayOfAOETargets(SPELL_TARGET_STANDARDHOSTILE);
+                int nIndex;
+                for (nIndex = 0; nIndex < JsonGetLength(jArray) && nDamageDone < 25; nIndex++)
+                {
+                    oTarget = GetArrayObject(jArray, nIndex);
+
+                    if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE) &&
+                       !GetIsFlying(oTarget) &&
+                        GetTimerEnded(ObjectToString(oTarget)))
+                    {
+                        SetTimer(ObjectToString(oTarget), 5);
+
+                        SignalSpellCastAt();
+
+                        float fDelay = GetRandomDelay(0.5, 1.0);
+
+                        DelayCommand(fDelay, ApplyDamageToObject(oTarget, 1, DAMAGE_TYPE_PIERCING));
+                        nDamageDone++;
+                        if (nDamageDone >= 25)
+                        {
+                            DestroyObject(OBJECT_SELF);
+                        }
+                    }
+                }
+                SetLocalInt(OBJECT_SELF, "CALTROPS_TOTAL_DAMAGE", nDamageDone);
+            }
+            break;
+        }
     }
     else
     {
@@ -140,24 +205,9 @@ void main()
                 fDuration = GetDuration(5, ROUNDS);
             }
             break;
-            case SPELL_ITEM_THUNDERSTONE:
-            {
-
-            }
-            break;
-            case SPELL_ITEM_ACID_FLASK:
-            {
-
-            }
-            break;
-            case SPELL_ITEM_GRENADE_CHICKEN:
-            {
-
-            }
-            break;
             case SPELL_ITEM_CALTROPS:
             {
-
+                eAOE = EffectAreaOfEffect(AOE_PER_CALTROPS, GetScriptName(), GetScriptName(), "");
             }
             break;
             default:
@@ -167,7 +217,14 @@ void main()
         }
 
         ApplyVisualEffectAtLocation(nVis, lTarget);
-        ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, fDuration);
+        if (fDuration > 0.0)
+        {
+            ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, fDuration);
+        }
+        else
+        {
+            ApplySpellEffectAtLocation(DURATION_TYPE_PERMANENT, eAOE, lTarget);
+        }
     }
 }
 

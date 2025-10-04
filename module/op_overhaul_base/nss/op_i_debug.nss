@@ -50,7 +50,14 @@ void Debug(string sDebug, int nLogLevel = INFO)
 {
     if (nLogLevel <= DEBUG_LEVEL)
     {
-        // _ _FUNCTION__, __FILE__,__LINE__, __DATE__ and __TIME__
+        // TODO:
+        // These are useful to have but cannot be added as default parameters:
+        //   __FUNCTION__ - Function name
+        //   __LINE__ - Line of the Debug statement call
+        //   __DATE__ - Compile date
+        //   __TIME__ - Compile time
+        // We'd need to recode all the Debug() calls to use these, to do later!
+        // Note __FILENAME__ isn't needed since GetScriptName works fine.
         sDebug = "[" + GetScriptName() + "] " + sDebug;
 
         WriteTimestampedLogEntry(sDebug);

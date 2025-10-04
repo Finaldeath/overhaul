@@ -3,12 +3,9 @@
 //:: op_ip_general.nss
 //:://////////////////////////////////////////////
 /*
-    General item properties used for things like Alcahol etc.
+    General item properties used for things like Alcahol, grenades etc.
 
-    Grenade.
-    Fires at a target. If hit, the target takes
-    additional direct damage. All enemies within
-    an area of effect take splash damage.
+    AOE items are in op_ip_generalaoe like Caltrops.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -205,29 +202,97 @@ void main()
             }
         }
         break;
-        case SPELL_ITEM_CHOKING_POWDER:
-        {
-
-        }
-        break;
         case SPELL_ITEM_THUNDERSTONE:
         {
+            ApplyVisualEffectAtLocation(VFX_FNF_LOS_NORMAL_30, lTarget);
+            ApplyVisualEffectAtLocation(VFX_FNF_SCREEN_SHAKE, lTarget);
 
+            effect eLink = GetEffectLink(EFFECT_TYPE_DEAF);
+            float fDuration = GetDuration(5, ROUNDS);
+
+            json jArray = GetArrayOfTargets(SPELL_TARGET_STANDARDHOSTILE, SORT_METHOD_DISTANCE, OBJECT_TYPE_CREATURE);
+            int nIndex;
+            for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
+            {
+                oTarget = GetArrayObject(jArray, nIndex);
+
+                // From the Bioware version
+                if (oTarget != oCaster)
+                {
+                    SignalSpellCastAt();
+
+                    float fDelay = GetDistanceBetweenLocations(lTarget, GetLocation(oTarget)) / 20.0;
+
+                    if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_FORT, 15, SAVING_THROW_TYPE_NONE, fDelay))
+                    {
+                        DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_HEAD_NATURE, oTarget));
+                        DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
+                    }
+                }
+            }
         }
         break;
         case SPELL_ITEM_ACID_FLASK:
         {
+            // Extra direct damage if target is valid
+            int nTargetDamage = 0;
+            object oMainTarget = oTarget;
+            if (GetIsObjectValid(oTarget))
+            {
+                if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
+                {
+                    int nTouch = DoTouchAttack(oTarget, oCaster, TOUCH_RANGED);
+                    if (nTouch)
+                    {
+                        nTargetDamage = nTouch == TOUCH_RESULT_CRITICAL_HIT ? 2 : 1;
+                    }
+                }
+            }
 
+            // AOE grenade
+            ApplyVisualEffectAtLocation(VFX_FNF_LOS_NORMAL_30, lTarget); // Could use a new VFX
+            json jArray = GetArrayOfTargets(SPELL_TARGET_STANDARDHOSTILE, SORT_METHOD_DISTANCE, OBJECT_TYPE_CREATURE | OBJECT_TYPE_PLACEABLE | OBJECT_TYPE_DOOR);
+            int nIndex;
+            for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
+            {
+                oTarget = GetArrayObject(jArray, nIndex);
+
+                SignalSpellCastAt();
+
+                float fDelay = GetDistanceBetweenLocations(lTarget, GetLocation(oTarget)) / 20.0;
+
+                int nDamage = d6();
+
+                if (oTarget == oMainTarget) nDamage += nTargetDamage;
+
+                DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_ACID_L, oTarget));
+                DelayCommand(fDelay, ApplyDamageToObject(oTarget, nDamage, DAMAGE_TYPE_ACID));
+            }
         }
         break;
         case SPELL_ITEM_GRENADE_CHICKEN:
         {
+            // This is the same as the original, with lots of kludge removed
+            // see x0_s3_gag.nss. Basically it's 1d6 damage to a single target.
+            if(GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
+            {
+                int nTouch = DoTouchAttack(oTarget, oCaster, TOUCH_RANGED);
+                ApplyVisualEffectAtLocation(VFX_FNF_FIREBALL, lTarget);
 
-        }
-        break;
-        case SPELL_ITEM_CALTROPS:
-        {
+                if (nTouch >= 0)
+                {
+                    // Roll damage
+                    int nDamage = d6(1);
 
+                    if(nTouch == TOUCH_RESULT_CRITICAL_HIT)
+                    {
+                        nDamage *= 2;
+                    }
+
+                    ApplyDamageToObject(oTarget, nDamage, DAMAGE_TYPE_FIRE);
+                    ApplyVisualEffectToObject(VFX_IMP_FLAME_S, oTarget);
+                }
+            }
         }
         break;
         default:
