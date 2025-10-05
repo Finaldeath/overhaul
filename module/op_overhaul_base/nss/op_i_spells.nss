@@ -460,6 +460,9 @@ int GetIsWaterElemental(object oCreature);
 // Returns TRUE if the given creature is a vampire (Based on appearance, plus subrace string)
 int GetIsVampire(object oCreature);
 
+// Returns TRUE if the given creature is a mindflayer (based on appearance)
+int GetIsMindflayer(object oCreature);
+
 // Returns TRUE if the target has legs (ala Called Shot: Legs can target them)
 int GetHasLegs(object oCreature);
 
@@ -3313,6 +3316,20 @@ int GetIsVampire(object oCreature)
     if (GetStringLowerCase(GetSubRace(oTarget)) == "vampire")
     {
         return TRUE;
+    }
+    return FALSE;
+}
+
+// Returns TRUE if the given creature is a mindflayer (based on appearance)
+int GetIsMindflayer(object oCreature)
+{
+    switch (GetAppearanceType(oCreature))
+    {
+        case APPEARANCE_TYPE_MINDFLAYER:
+        case APPEARANCE_TYPE_MINDFLAYER_2:
+        case APPEARANCE_TYPE_MINDFLAYER_ALHOON:
+            return TRUE;
+        break;
     }
     return FALSE;
 }

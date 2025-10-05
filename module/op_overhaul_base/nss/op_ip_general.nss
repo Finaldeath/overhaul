@@ -295,6 +295,24 @@ void main()
             }
         }
         break;
+        case SPELLABILITY_ROGUES_CUNNING:
+        {
+            // or "Potion of Extra Thieving"
+            effect eLink = EffectLinkEffects(EffectSkillIncrease(SKILL_SEARCH, 10),
+                           EffectLinkEffects(EffectSkillIncrease(SKILL_DISABLE_TRAP, 10),
+                           EffectLinkEffects(EffectSkillIncrease(SKILL_MOVE_SILENTLY, 10),
+                           EffectLinkEffects(EffectSkillIncrease(SKILL_OPEN_LOCK, 5),
+                           EffectLinkEffects(EffectSkillIncrease(SKILL_PICK_POCKET, 10),
+                           EffectLinkEffects(EffectSkillIncrease(SKILL_SET_TRAP, 10),
+                           EffectLinkEffects(EffectSkillIncrease(SKILL_HIDE, 10),
+                                             EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE))))))));
+
+            float fDuration = GetDuration(5, MINUTES);
+
+            ApplyVisualEffectToObject(VFX_IMP_MAGICAL_VISION, oTarget);
+            ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
+        }
+        break;
         default:
             Debug("[op_ip_general] No valid spell ID passed in: " + IntToString(nSpellId), ERROR);
             return;

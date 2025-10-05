@@ -233,7 +233,7 @@ void main()
             break;
             default:
             {
-                Debug("[op_s_auras] IMPACT AREA: No valid spell ID passed in: " + IntToString(nSpellId), ERROR);
+                Debug("IMPACT AREA: No valid spell ID passed in: " + IntToString(nSpellId), ERROR);
                 return;
             }
             break;
@@ -396,7 +396,7 @@ void main()
             break;
             default:
             {
-                Debug("[op_s_auras] No valid spell ID passed in: " + IntToString(nSpellId), ERROR);
+                Debug("No valid spell ID passed in: " + IntToString(nSpellId), ERROR);
                 return;
             }
             break;
