@@ -39,6 +39,9 @@
 
     Firebrand
     As Ball Lightning but fire damage.
+
+    Manticore Spikes
+    Touch attack to damage. 6 spikes total. Can have 6 per creature.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -51,7 +54,9 @@ void main()
 {
     if (DoSpellHook()) return;
 
-    int nMissiles, nMaxMissilesPerCreature = 99999, nDiceNum, nDiceSize, nDamageBonus, nDamageType, nSavingThrow = -1, nSavingThrowType = SAVING_THROW_TYPE_NONE;
+    int nMissiles, nMaxMissilesPerCreature = 99999, nDiceNum, nDiceSize, nDamageBonus, nDamageType;
+    int nSavingThrow = -1, nSavingThrowType = SAVING_THROW_TYPE_NONE;
+    int bSpellResistance = TRUE;
     int bTouchAttackType = TOUCH_NONE;
     int nVisMissile = VFX_INVALID, nVis = VFX_INVALID;
 
@@ -141,6 +146,20 @@ void main()
             nSavingThrowType        = SAVING_THROW_TYPE_FIRE;
         }
         break;
+        case SPELLABILITY_MANTICORE_SPIKES:
+        {
+            nMissiles        = 6;
+            // No max per creature!
+            bTouchAttackType = TOUCH_RANGED;
+            bSpellResistance = FALSE;
+            nDiceNum         = 1;
+            nDiceSize        = 8;
+            nDamageBonus     = 2;
+            nDamageType      = DAMAGE_TYPE_PIERCING;
+            nVisMissile      = VFX_IMP_MIRV_NORMAL_DART; // TODO: Better vfx
+            nVis             = VFX_IMP_MANTICORE_SPIKES;
+        }
+        break;
         default:
             Debug("[op_s_mirv] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
@@ -173,7 +192,7 @@ void main()
             {
                 float fDelay = GetVisualEffectHitDelay(nVisMissile, oTarget, oCaster);
 
-                int bResist = DoResistSpell(oTarget, oCaster, fDelay);
+                int bResist = bSpellResistance ? DoResistSpell(oTarget, oCaster, fDelay) : FALSE;
 
                 // Sort each missile in turn
                 int nCnt;
