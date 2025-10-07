@@ -87,8 +87,8 @@ void main()
                     float fDuration = GetDuration(4, ROUNDS);
                     if (GetCanApplySafeItemProperty(oTarget, ipProperty1))
                     {
-                        ApplySafeItemProperty(oTarget, ipProperty1, fDuration, nSpellId, oCaster, nCasterLevel, nSpellSaveDC, nMetaMagic);
-                        ApplyItemProperty(oTarget, ipProperty2, fDuration, nSpellId, oCaster, nCasterLevel, nSpellSaveDC, nMetaMagic);
+                        ApplySafeItemProperty(oTarget, ipProperty1, fDuration, nSpellId, oCaster, nCasterLevel, nSpellSaveDC, nMetaMagic, FALSE);
+                        ApplyItemProperty(oTarget, ipProperty2, fDuration, nSpellId, oCaster, nCasterLevel, nSpellSaveDC, nMetaMagic, FALSE);
                         if (GetIsObjectValid(GetItemPossessor(oTarget)))
                         {
                             ApplyVisualEffectToObject(VFX_IMP_PULSE_FIRE, GetItemPossessor(oTarget));
@@ -310,7 +310,62 @@ void main()
             float fDuration = GetDuration(5, MINUTES);
 
             ApplyVisualEffectToObject(VFX_IMP_MAGICAL_VISION, oTarget);
+
+            // We'll treat this as a spell for the purposes of dispelling
             ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
+        }
+        break;
+        case SPELL_IOUN_STONE_BLUE:
+        case SPELL_IOUN_STONE_DEEP_RED:
+        case SPELL_IOUN_STONE_DUSTY_ROSE:
+        case SPELL_IOUN_STONE_PALE_BLUE:
+        case SPELL_IOUN_STONE_PINK:
+        case SPELL_IOUN_STONE_PINK_GREEN:
+        case SPELL_IOUN_STONE_SCARLET_BLUE:
+        {
+            // Remove all current stone effects
+            effect eEffect = GetFirstEffect(oTarget);
+            while (GetIsEffectValid(eEffect))
+            {
+                switch (GetEffectSpellId(eEffect))
+                {
+                    case SPELL_IOUN_STONE_BLUE:
+                    case SPELL_IOUN_STONE_DEEP_RED:
+                    case SPELL_IOUN_STONE_DUSTY_ROSE:
+                    case SPELL_IOUN_STONE_PALE_BLUE:
+                    case SPELL_IOUN_STONE_PINK:
+                    case SPELL_IOUN_STONE_PINK_GREEN:
+                    case SPELL_IOUN_STONE_SCARLET_BLUE:
+                        RemoveEffect(oTarget, eEffect);
+                    break;
+                }
+                eEffect = GetNextEffect(oTarget);
+            }
+
+            int nVis;
+            switch (nSpellId)
+            {
+                case SPELL_IOUN_STONE_BLUE:         eEffect = EffectAbilityIncrease(ABILITY_WISDOM, 2);
+                                                    nVis = VFX_DUR_IOUNSTONE_BLUE; break;
+                case SPELL_IOUN_STONE_DEEP_RED:     eEffect = EffectAbilityIncrease(ABILITY_DEXTERITY, 2);
+                                                    nVis = VFX_DUR_IOUNSTONE_RED; break;
+                case SPELL_IOUN_STONE_DUSTY_ROSE:   eEffect = EffectACIncrease(1, AC_DEFLECTION_BONUS);
+                                                    nVis = VFX_DUR_IOUNSTONE_YELLOW; break; // Not sure why this VFX isn't "dusty rose"
+                case SPELL_IOUN_STONE_PALE_BLUE:    eEffect = EffectAbilityIncrease(ABILITY_STRENGTH, 2);
+                                                    nVis = VFX_DUR_IOUNSTONE_BLUE; break;
+                case SPELL_IOUN_STONE_PINK:         eEffect = EffectAbilityIncrease(ABILITY_CONSTITUTION, 2);
+                                                    nVis = VFX_DUR_IOUNSTONE_RED; break;
+                case SPELL_IOUN_STONE_PINK_GREEN:   eEffect = EffectAbilityIncrease(ABILITY_CHARISMA, 2);
+                                                    nVis = VFX_DUR_IOUNSTONE_GREEN; break; // Could use a pink/green version
+                case SPELL_IOUN_STONE_SCARLET_BLUE: eEffect = EffectAbilityIncrease(ABILITY_INTELLIGENCE, 2);
+                                                    nVis = VFX_DUR_IOUNSTONE_BLUE; break;
+            }
+            // Not dispellable. Or if we do make it disepllable we need to up
+            // the caster level.
+            effect eLink = ExtraordinaryEffect(EffectLinkEffects(eEffect,
+                                                                 EffectVisualEffect(nVis, 2)));
+            // 3600 is a lot of time! It's a literal hour, not an in-game hour.
+            ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, 3600.0);
         }
         break;
         default:
