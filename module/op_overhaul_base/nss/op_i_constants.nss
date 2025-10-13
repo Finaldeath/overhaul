@@ -223,6 +223,7 @@ const int SPELL_ITEM_GRENADE_CHICKEN              = 470;
 const int SPELL_ITEM_CALTROPS                     = 471;
 const int SPELLABILITY_PSIONIC_MIND_BLAST         = 551;
 const int SPELLABILITY_PSIONIC_CHARM_MONSTER      = 552;
+const int SPELLABILITY_HASTE_SLOW                 = 563;
 const int SPELL_FEAT_BLINDING_SPEED               = 647;
 const int SPELLABILITY_WYRMLING_BREATH_COLD       = 663;
 const int SPELLABILITY_WYRMLING_BREATH_ACID       = 664;

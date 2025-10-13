@@ -242,6 +242,9 @@
 
     Mummy Bolster Undead
     All allies in area gain +(HD/4) Turn Resistance bonus.
+
+    Haste-Slow
+    The target of this spell is either hasted (66%) or slowed (33%).
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -1108,6 +1111,26 @@ void main()
             nVis = VFX_IMP_HEAD_EVIL;
             nImpact = VFX_FNF_LOS_EVIL_30;
             bDelayRandom = TRUE;
+        }
+        break;
+        case SPELLABILITY_HASTE_SLOW:
+        {
+            fDuration = GetDuration(nCasterLevel, ROUNDS);
+            if (d100() > 33)
+            {
+                // NB: Just to make it clearer for the AI we consider this HASTE
+                nSpellId = SPELL_HASTE;
+                eLink = GetEffectLink(EFFECT_TYPE_HASTE);
+                nVis = VFX_IMP_HASTE;
+            }
+            else
+            {
+                // NB: Just to make it clearer for the AI we consider this SLOW
+                nSpellId = SPELL_SLOW;
+                eLink = GetEffectLink(EFFECT_TYPE_SLOW);
+                nVis = VFX_IMP_SLOW;
+            }
+            // This is always considered a hostile spell.
         }
         break;
         default:
