@@ -11,6 +11,16 @@
     Epic:
     - Save DC raised by +1 for each 2 levels past 10th
 
+
+    Undead Graft
+
+    Pale Master may use their undead arm to paralyze
+    foes for 1d6+2 rounds on a successful melee touch attack
+
+    Save is 14 + pale master level/2
+
+    Elves immune to this effect
+    TaB pg 66;
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -63,6 +73,48 @@ void main()
                     }
                 }
             }
+        }
+        break;
+        case SPELLABILITY_PM_UNDEAD_GRAFT_1:
+        case SPELLABILITY_PM_UNDEAD_GRAFT_2:
+        {
+            if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
+            {
+                if (GetRacialType(oTarget) == RACIAL_TYPE_ELF)
+                {
+                    FloatingTextStrRefOnCreature(STRREF_IMMUNE_TO_UNDEAD_GRAFT, oTarget, FALSE);
+                    FloatingTextStrRefOnCreature(STRREF_IMMUNE_TO_UNDEAD_GRAFT, oCaster, FALSE);
+                    return;
+                }
+
+                effect eLink = EffectLinkEffects(EffectParalyze(),
+                               EffectLinkEffects(EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE),
+                               EffectLinkEffects(EffectVisualEffect(VFX_DUR_ICESKIN),
+                                                 EffectVisualEffect(VFX_DUR_FREEZE_ANIMATION))));
+                int nVis = VFX_IMP_NEGATIVE_ENERGY;
+
+                // Cannot dispel this ability
+                eLink = ExtraordinaryEffect(eLink);
+
+                nSpellSaveDC = 14 + GetLevelByClass(CLASS_TYPE_PALEMASTER)/2;
+
+                float fDuration = GetDuration(d6() + 2, ROUNDS);
+
+                if (DoTouchAttack(oTarget, oCaster, TOUCH_MELEE))
+                {
+                    if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_FORT, nSpellSaveDC, SAVING_THROW_TYPE_NEGATIVE))
+                    {
+                        ApplyVisualEffectToObject(nVis, oTarget);
+                        ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
+                    }
+                }
+                else
+                {
+                    // * GZ: According to TaB missed attacks are not wasted.
+                    IncrementRemainingFeatUses(oCaster, GetSpellFeatId());
+                }
+            }
+
         }
         break;
         default:

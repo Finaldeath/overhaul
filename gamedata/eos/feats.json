@@ -40493,6 +40493,196 @@
       "MinFortitudeSave": null,
       "RequiresEpic": false,
       "UseActionQueue": true
+    },
+    {
+      "ID": "68723190-c6a2-41d7-adc1-a26d945c5ccd",
+      "Index": -1,
+      "Overrides": "92828c1e-a42c-c89e-b89c-f3f3b2f1cafa",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_UNDEAD_GRAFT_1",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8750,
+        "EN": {
+          "M": "Undead Graft I"
+        },
+        "FR": {
+          "M": "Greffon mort-vivant I"
+        },
+        "DE": {
+          "M": "Untotes Transplantat I"
+        },
+        "IT": {
+          "M": "Trapianto non morto I"
+        },
+        "ES": {
+          "M": "Injerto de muerto viviente I"
+        },
+        "PL": {
+          "M": "Wszczep nieumar\u0142ych I"
+        }
+      },
+      "Description": {
+        "Index": 8751,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Pale Master level 6.\nSpecifics: Two times per day a Pale Master may use their undead arm to paralyze foes. If you miss your attempt is not wasted. At level 8 this may be used three times per day. Elves are immune to the effects of Undead Graft.\nUse: Selected.",
+          "F": "Type of Feat: Class\nPrerequisite: Pale Master level 6.\nSpecifics: Two times per day a Pale Master may use their undead arm to paralyze foes. At level 8 this may be used three times per day.\nUse: Selected."
+        },
+        "FR": {
+          "M": "Type de don : Classe.\nConditions : Ma\u00EEtre bl\u00EAme 6.\nFonctionnement : Deux fois par jour, un Ma\u00EEtre bl\u00EAme peut utiliser son bras mort-vivant pour paralyser des adversaires. Au 8\u00E8me niveau, il peut utiliser ce pouvoir trois fois par jour.\nUtilisation : doit \u00EAtre s\u00E9lectionn\u00E9."
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse\nVoraussetzung: Bleicher Meister der 6. Stufe.\nVorteil: Zweimal t\u00E4glich kann der Bleiche Meister seinen untoten Arm einsetzen, um seine Gegner zu l\u00E4hmen. Ab der 8. Stufe kann die F\u00E4higkeit dreimal t\u00E4glich verwendet werden.\nGebrauch: Ausw\u00E4hlen."
+        },
+        "IT": {
+          "M": "Tipo talento: di classe.\nPrerequisiti: signore pallido livello 6.\nDescrizione: il signore pallido pu\u00F2 usare il suo braccio non morto per paralizzare i nemici, per due volte al giorno.\nAl livello 8 il talento pu\u00F2 essere usato tre volte al giorno.\nUso: selezione."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Maestro de la lividez de nivel 6\u00BA.\nDetalles: El maestro de la lividez es capaz de usar su brazo de muerto viviente para paralizar enemigos dos veces al d\u00EDa. A nivel 8\u00BA puede utilizarlo tres veces al d\u00EDa.\nUso: Seleccionada."
+        },
+        "PL": {
+          "M": "Rodzaj Atutu: klasowy\nWymagania: Blady mistrz poziom 6.\nOpis: Dwa razy dziennie Blady mistrz mo\u017Ce swoj\u0105 nieumar\u0142\u0105 ko\u0144czyn\u0105 parali\u017Cowa\u0107 wrog\u00F3w. Od \u00F3smego poziomu mo\u017Ce to robi\u0107 trzy razy.\nU\u017Cywanie: po wybraniu."
+        }
+      },
+      "Icon": "ife_x2spundgrt1",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": null,
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": "HarmfulTouch",
+      "OnUseEffect": {
+        "ID": "c6d6a62a-680e-cc21-0e0c-0432975a2b21",
+        "Label": "Undead Graft I"
+      },
+      "SuccessorFeat": {
+        "ID": "94ce9d6e-1013-17df-8f98-ab127034055a",
+        "Label": "Undead Graft II"
+      },
+      "CRModifier": 0.5,
+      "UsesPerDay": 2,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": true,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": true
+    },
+    {
+      "ID": "9ce6344c-b358-4ef1-b374-9ced8a886d75",
+      "Index": -1,
+      "Overrides": "94ce9d6e-1013-17df-8f98-ab127034055a",
+      "Disabled": false,
+      "Hint": "",
+      "ScriptConstant": "",
+      "SourceLabel": "FEAT_UNDEAD_GRAFT_2",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 8752,
+        "EN": {
+          "M": "Undead Graft II"
+        },
+        "FR": {
+          "M": "Corruption de la putrescence II"
+        },
+        "DE": {
+          "M": "Untotes Transplantat II"
+        },
+        "IT": {
+          "M": "Trapianto non morto II"
+        },
+        "ES": {
+          "M": "Injerto de muerto viviente II"
+        },
+        "PL": {
+          "M": "Wszczep nieumar\u0142ych II"
+        }
+      },
+      "Description": {
+        "Index": 8751,
+        "EN": {
+          "M": "Type of Feat: Class\nPrerequisite: Pale Master level 6.\nSpecifics: Two times per day a Pale Master may use their undead arm to paralyze foes. If you miss your attempt is not wasted. At level 8 this may be used three times per day. Elves are immune to the effects of Undead Graft.\nUse: Selected.",
+          "F": "Type of Feat: Class\nPrerequisite: Pale Master level 6.\nSpecifics: Two times per day a Pale Master may use their undead arm to paralyze foes. At level 8 this may be used three times per day.\nUse: Selected."
+        },
+        "FR": {
+          "M": "Type de don : Classe.\nConditions : Ma\u00EEtre bl\u00EAme 6.\nFonctionnement : Deux fois par jour, un Ma\u00EEtre bl\u00EAme peut utiliser son bras mort-vivant pour paralyser des adversaires. Au 8\u00E8me niveau, il peut utiliser ce pouvoir trois fois par jour.\nUtilisation : doit \u00EAtre s\u00E9lectionn\u00E9."
+        },
+        "DE": {
+          "M": "Art des Talents: Klasse\nVoraussetzung: Bleicher Meister der 6. Stufe.\nVorteil: Zweimal t\u00E4glich kann der Bleiche Meister seinen untoten Arm einsetzen, um seine Gegner zu l\u00E4hmen. Ab der 8. Stufe kann die F\u00E4higkeit dreimal t\u00E4glich verwendet werden.\nGebrauch: Ausw\u00E4hlen."
+        },
+        "IT": {
+          "M": "Tipo talento: di classe.\nPrerequisiti: signore pallido livello 6.\nDescrizione: il signore pallido pu\u00F2 usare il suo braccio non morto per paralizzare i nemici, per due volte al giorno.\nAl livello 8 il talento pu\u00F2 essere usato tre volte al giorno.\nUso: selezione."
+        },
+        "ES": {
+          "M": "Tipo de dote: Clase\nPrerrequisito: Maestro de la lividez de nivel 6\u00BA.\nDetalles: El maestro de la lividez es capaz de usar su brazo de muerto viviente para paralizar enemigos dos veces al d\u00EDa. A nivel 8\u00BA puede utilizarlo tres veces al d\u00EDa.\nUso: Seleccionada."
+        },
+        "PL": {
+          "M": "Rodzaj Atutu: klasowy\nWymagania: Blady mistrz poziom 6.\nOpis: Dwa razy dziennie Blady mistrz mo\u017Ce swoj\u0105 nieumar\u0142\u0105 ko\u0144czyn\u0105 parali\u017Cowa\u0107 wrog\u00F3w. Od \u00F3smego poziomu mo\u017Ce to robi\u0107 trzy razy.\nU\u017Cywanie: po wybraniu."
+        }
+      },
+      "Icon": "ife_x2spundgrt1",
+      "MinAttackBonus": null,
+      "MinStr": null,
+      "MinDex": null,
+      "MinInt": null,
+      "MinWis": null,
+      "MinCon": null,
+      "MinCha": null,
+      "MinSpellLevel": null,
+      "RequiredFeat1": {
+        "ID": "92828c1e-a42c-c89e-b89c-f3f3b2f1cafa",
+        "Label": "Undead Graft I"
+      },
+      "RequiredFeat2": null,
+      "UseableByAllClasses": false,
+      "Category": "HarmfulTouch",
+      "OnUseEffect": {
+        "ID": "3f98dcc0-e185-8ba7-fa7c-6646b14b29d6",
+        "Label": "Undead Graft II"
+      },
+      "SuccessorFeat": null,
+      "CRModifier": 0.5,
+      "UsesPerDay": 3,
+      "MasterFeat": null,
+      "TargetSelf": false,
+      "RequiredFeatSelection1": null,
+      "RequiredFeatSelection2": null,
+      "RequiredFeatSelection3": null,
+      "RequiredFeatSelection4": null,
+      "RequiredFeatSelection5": null,
+      "RequiredSkill1": null,
+      "RequiredSkill1Minimum": null,
+      "RequiredSkill2": null,
+      "RequiredSkill2Minimum": null,
+      "ToolsetCategory": "ClassOrRacial",
+      "IsHostile": true,
+      "MinLevel": null,
+      "MinLevelClass": null,
+      "MaxLevel": null,
+      "MinFortitudeSave": null,
+      "RequiresEpic": false,
+      "UseActionQueue": true
     }
   ]
 }
