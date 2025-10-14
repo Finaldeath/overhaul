@@ -139,6 +139,11 @@ int GetItemPropertyDispellable(itemproperty ipProperty);
 // Returns the correct IP_CONST_DAMAGEBONUS_* for the given nBonus.
 int GetItemPropertyDamageBonusConstant(int nBonus);
 
+// Copies item properties from oOld to oNew. If bWeapon is TRUE it checks if the
+// weapon type is the same (ranged to melee not allowed).
+void CopyItemPropertiesPolymorph(object oOld, object oNew, int bWeapon = FALSE);
+
+
 // Debugs the given item and it's properties
 void DebugItemProperties(object oItem)
 {
@@ -856,4 +861,30 @@ int GetItemPropertyDamageBonusConstant(int nBonus)
     // Default/error
     Debug("[GetItemPropertyDamageBonusConstant] nBonus value: " + IntToString(nBonus) + " not matching constants, returning 1.", ERROR);
     return IP_CONST_DAMAGEBONUS_1;
+}
+
+// Copies item properties from oOld to oNew. If bWeapon is TRUE it checks if the
+// weapon type is the same (ranged to melee not allowed).
+void CopyItemPropertiesPolymorph(object oOld, object oNew, int bWeapon = FALSE)
+{
+    if (GetIsObjectValid(oOld) && GetIsObjectValid(oNew))
+    {
+        itemproperty ip = GetFirstItemProperty(oOld);
+        while (GetIsItemPropertyValid(ip))
+        {
+            if (bWeapon)
+            {
+                if (GetWeaponRanged(oOld) == GetWeaponRanged(oNew)   )
+                {
+                    AddItemProperty(DURATION_TYPE_PERMANENT,ip,oNew);
+                }
+            }
+            else
+            {
+                    AddItemProperty(DURATION_TYPE_PERMANENT,ip,oNew);
+            }
+            ip = GetNextItemProperty(oOld);
+
+        }
+    }
 }

@@ -47,6 +47,8 @@
 //:://////////////////////////////////////////////
 
 #include "utl_i_item"
+#include "op_i_itemprops"
+#include "op_i_spells"
 
 const string FIELD_ITEM_PROPERTY_TYPE = "iptype";
 const string FIELD_ITEM_PROPERTY_SUBTYPE = "ipsubtype";
@@ -54,6 +56,10 @@ const string FIELD_ITEM_PROPERTY_COST_TABLE = "ipcosttable";
 const string FIELD_ITEM_PROPERTY_COST_TABLE_VALUE = "ipcosttablevalue";
 const string FIELD_ITEM_PROPERTY_PARAM1 = "ipparam1";
 const string FIELD_ITEM_PROPERTY_PARAM_VALUE = "ipparam1value";
+
+// Applies the nPolymorph to oCreature permamently
+// Also does the Bioware-style item copying for the given polymorph type for oCreature
+void ApplyPolymorphAndItemMerging(object oCreature, int nPolymorph);
 
 // Returns a link of effects which are effectively the item properties that
 // oCreature has at the given moment.
@@ -78,6 +84,72 @@ effect GetItemPropertyEquivalentEffect(json jItemProperty);
 // - Monster Damge properies
 // - On Hit: Cast Spell
 void PolmyorphCopyItemProperties(object oSource, object oTarget);
+
+
+// Applies the nPolymorph to oCreature permamently
+// Also does the Bioware-style item copying for the given polymorph type for oCreature
+void ApplyPolymorphAndItemMerging(object oCreature, int nPolymorph)
+{
+    int bMergeWeapon = (StringToInt(Get2DAString("polymorph", "MergeW", nPolymorph)) == 1);
+    int bMergeArmor  = (StringToInt(Get2DAString("polymorph", "MergeA", nPolymorph)) == 1);
+    int bMergeItems  = (StringToInt(Get2DAString("polymorph", "MergeI", nPolymorph)) == 1);
+
+    // Items to pass to the next function
+    object oWeaponOld = GetItemInSlot(INVENTORY_SLOT_RIGHTHAND, oCreature);
+    object oArmorOld  = GetItemInSlot(INVENTORY_SLOT_CHEST, oCreature);
+    object oRing1Old  = GetItemInSlot(INVENTORY_SLOT_LEFTRING, oCreature);
+    object oRing2Old  = GetItemInSlot(INVENTORY_SLOT_RIGHTRING, oCreature);
+    object oAmuletOld = GetItemInSlot(INVENTORY_SLOT_NECK, oCreature);
+    object oCloakOld  = GetItemInSlot(INVENTORY_SLOT_CLOAK, oCreature);
+    object oBootsOld  = GetItemInSlot(INVENTORY_SLOT_BOOTS, oCreature);
+    object oBeltOld   = GetItemInSlot(INVENTORY_SLOT_BELT, oCreature);
+    object oHelmetOld = GetItemInSlot(INVENTORY_SLOT_HEAD, oCreature);
+    object oShield    = GetItemInSlot(INVENTORY_SLOT_LEFTHAND, oCreature);
+
+    if (GetIsObjectValid(oShield))
+    {
+        if (GetBaseItemType(oShield) != BASE_ITEM_LARGESHIELD &&
+            GetBaseItemType(oShield) != BASE_ITEM_SMALLSHIELD &&
+            GetBaseItemType(oShield) != BASE_ITEM_TOWERSHIELD)
+        {
+            oShield = OBJECT_INVALID;
+        }
+    }
+
+    effect ePoly = ExtraordinaryEffect(EffectPolymorph(nPolymorph));
+    ClearAllActions(FALSE, oTarget); // prevents an exploit
+
+    ApplyEffectToObject(DURATION_TYPE_PERMANENT, ePoly, oTarget);
+
+    object oWeaponNew = GetItemInSlot(INVENTORY_SLOT_RIGHTHAND, oTarget);
+    object oArmorNew = GetItemInSlot(INVENTORY_SLOT_CARMOUR, oTarget);
+
+    // Identify weapon
+    SetIdentified(oWeaponNew, TRUE);
+
+    if (bMergeWeapon)
+    {
+        CopyItemPropertiesPolymorph(oWeaponOld, oWeaponNew, TRUE);
+    }
+    if (bMergeArmor)
+    {
+        // Merge item properties from Armor, helmet and shield
+        CopyItemPropertiesPolymorph(oArmorOld, oArmorNew);
+        CopyItemPropertiesPolymorph(oHelmetOld, oArmorNew);
+        CopyItemPropertiesPolymorph(oShield, oArmorNew);
+    }
+    if (bMergeItems)
+    {
+        // Merge item properties from from rings, amulets, cloak, boots, belt
+        CopyItemPropertiesPolymorph(oRing1Old, oArmorNew);
+        CopyItemPropertiesPolymorph(oRing2Old, oArmorNew);
+        CopyItemPropertiesPolymorph(oAmuletOld, oArmorNew);
+        CopyItemPropertiesPolymorph(oCloakOld, oArmorNew);
+        CopyItemPropertiesPolymorph(oBootsOld, oArmorNew);
+        CopyItemPropertiesPolymorph(oBeltOld, oArmorNew);
+    }
+}
+
 
 // Returns a link of effects which are effectively the item properties that
 // oCreature has at the given moment.

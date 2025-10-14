@@ -44,7 +44,6 @@
 
 #include "op_i_constants"
 #include "op_i_debug"
-#include "op_i_eosconstant"
 #include "op_i_feats"
 #include "op_i_feedback"
 #include "op_i_itemprops"
