@@ -34,6 +34,47 @@ void main()
             }
         }
         break;
+        case SPELL_ITEM_BLESS_BOLT:
+        {
+            if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
+            {
+                int nAppear = GetAppearanceType(oTarget);
+                if (nAppear == APPEARANCE_TYPE_RAKSHASA_BEAR_MALE ||
+                    nAppear == APPEARANCE_TYPE_RAKSHASA_TIGER_FEMALE ||
+                    nAppear == APPEARANCE_TYPE_RAKSHASA_TIGER_MALE ||
+                    nAppear == APPEARANCE_TYPE_RAKSHASA_WOLF_MALE ||
+                    FindSubString(GetStringLowerCase(GetSubRace(oTarget)), "rakshasa") > -1)
+                {
+                    effect eDeath = EffectDeath();
+                    ApplyVisualEffectToObject(VFX_IMP_DEATH, oTarget);
+                    ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDeath, oTarget);
+                }
+            }
+        }
+        break;
+        case SPELL_ITEM_PLANAR_RIFT_BLACK_BLADE:
+        {
+            // Like Bioware's we redirect the caster to be the master, since
+            // it is actually "still a spell"
+            oCaster = GetMaster(oCaster);
+
+            nSpellSaveDC = 10 + nCasterLevel;
+
+            // Check in case disconnected or something
+            if (GetIsObjectValid(oCaster))
+            {
+                if (!DoResistSpell(oTarget, oCaster))
+                {
+                    if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_FORT, nSpellSaveDC, SAVING_THROW_TYPE_DEATH))
+                    {
+                        effect eDeath = EffectDeath(TRUE);
+                        ApplyVisualEffectToObject(VFX_IMP_DEATH, oTarget);
+                        ApplySpellEffectToObject(DURATION_TYPE_INSTANT, eDeath, oTarget);
+                    }
+                }
+            }
+        }
+        break;
         default:
             Debug("[op_ip_onhit] No valid spell ID passed in: " + IntToString(nSpellId), ERROR);
             return;

@@ -56,7 +56,7 @@ void main()
         {
             if (GetIsPolymorphed(oCaster))
             {
-                int nShifter = GetLevelByClass(CLASS_TYPE_SHIFTER,OBJECT_SELF) / 3;
+                int nShifter = GetLevelByClass(CLASS_TYPE_SHIFTER, oCaster) / 3;
                 if (nShifter < 1)
                 {
                     nShifter = 0;
@@ -152,8 +152,6 @@ void main()
             nVis             = VFX_IMP_STUN;
         }
         break;
-
-
         default:
             Debug("[op_s_aoeeffect] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
