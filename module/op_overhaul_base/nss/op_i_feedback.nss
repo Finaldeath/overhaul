@@ -160,6 +160,7 @@ const int STRREF_FAILURE_THIS_SPELL_IS_NOT_SUPPORTED_ON_WANDS_SCROLLS_OR_POTIONS
 const int STRREF_WILD_MAGIC_SURGE = 84829; // * wild magic surge *
 const int STRREF_DEAFENED = 85388; // Deafened!
 const int STRREF_FAILURE_THIS_SPELL_ONLY_AFFECTS_UNDEAD_CREATURES = 85390; // * Failure! - This spell only affects undead creatures *
+const int STRREF_EXTRACT_BRAIN_SUCCESSFUL = 85566; // Extract brain successful!
 const int STRREF_THIS_ABILITY_IS_TIED_TO_YOUR_BARD_SONG_ABILITY_WHICH_HAS_NO_MORE_USES_FOR_TODAY = 85587; // This ability is tied to your bard song ability, which has no more uses for today.
 const int STRREF_IMMUNE_TO_UNDEAD_GRAFT = 85591; // * Immune to Undead Graft ! *
 const int STRREF_YOU_CAN_NOT_USE_THIS_FEAT_WHILE_SILENCED = 85764; // * You can not use this feat while silenced *

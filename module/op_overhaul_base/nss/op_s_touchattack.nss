@@ -56,6 +56,7 @@
 
     Mephit, Salt Breath
     Mephit, Steam Breath
+    Extract Brain
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -74,6 +75,12 @@ void main()
     // Saving throw and immunity?
     int nSavingThrow = SAVING_THROW_NONE, nSavingThrowType = SAVING_THROW_TYPE_NONE;
     int nImmunity = IMMUNITY_TYPE_NONE;
+
+    // Spell resistance etc.?
+    int bSpellResistanceCheck = TRUE;
+
+    // Feedback message on target
+    int nStrRefFeedback = 0;
 
     // Damage > 0 gets it saved
     int nDamageType;
@@ -221,6 +228,7 @@ void main()
         case SPELLABILITY_MEPHIT_SALT_BREATH:
         {
             nTouchAttackType = TOUCH_RANGED;
+            bSpellResistanceCheck = FALSE;
             nDice = 1;
             nDiceSize = 4;
             nDamageType = DAMAGE_TYPE_ACID;
@@ -240,6 +248,7 @@ void main()
         case SPELLABILITY_MEPHIT_STEAM_BREATH:
         {
             nTouchAttackType = TOUCH_RANGED;
+            bSpellResistanceCheck = FALSE;
             nDice = 1;
             nDiceSize = 4;
             nDamageType = DAMAGE_TYPE_FIRE;
@@ -256,13 +265,46 @@ void main()
             eLink = ExtraordinaryEffect(eLink);
         }
         break;
+        case SPELLABILITY_EXTRACT_BRAIN:
+        {
+            nTouchAttackType = TOUCH_MELEE;
+            bSpellResistanceCheck = FALSE;
+            nStrRefFeedback = STRREF_EXTRACT_BRAIN_SUCCESSFUL;
+            bApplyEffect = TRUE;
+
+            // Easy or Very Easy get a save, else no save
+            if (GetGameDifficulty() < GAME_DIFFICULTY_NORMAL)
+            {
+                nSavingThrow = SAVING_THROW_FORT;
+                nSpellSaveDC = 10 + (GetHitDice(oCaster)/2);
+            }
+
+            if (GetAbilityScore(oTarget, ABILITY_INTELLIGENCE) < 5)
+            {
+                // Bypasses death immunity
+                nVis = VFX_COM_BLOOD_CRT_YELLOW_HEAD;
+                eLink = IgnoreEffectImmunity(EffectDeath());
+            }
+            else
+            {
+                // Allow stacking
+                nSpellId = SPELL_INVALID;
+
+                nVis = VFX_COM_BLOOD_CRT_YELLOW_HEAD;
+                nDurationType = DURATION_TYPE_PERMANENT;
+
+                int nDamage = d3() + 2;
+                eLink = ExtraordinaryEffect(GetEffectLink(EFFECT_TYPE_ABILITY_DECREASE, ABILITY_INTELLIGENCE, nDamage));
+            }
+        }
+        break;
         default:
-            Debug("[op_s_touchattack] No valid spell ID passed in: " + IntToString(nSpellId));
+            Debug("[Tocuh Attack] No valid spell ID passed in: " + IntToString(nSpellId));
             return;
             break;
     }
 
-    int bResist;
+    int bResist = FALSE;
 
     if (GetSpellTargetValid(oTarget, oCaster, nTargetType))
     {
@@ -282,7 +324,7 @@ void main()
         {
             ApplyBeamToObject(nBeam, oTarget);
 
-            bResist = DoResistSpell(oTarget, oCaster);
+            if (bSpellResistanceCheck) bResist = DoResistSpell(oTarget, oCaster);
 
             if (!bResist)
             {
@@ -319,6 +361,11 @@ void main()
                     }
                     if (bApplyEffect && !bSaved)
                     {
+                        if (nStrRefFeedback)
+                        {
+                            FloatingTextStrRefOnCreature(nStrRefFeedback, oTarget);
+                            FloatingTextStrRefOnCreature(nStrRefFeedback, oCaster);
+                        }
                         if (bNotAppliedVFX) ApplyVisualEffectToObject(nVis, oTarget);
                         ApplySpellEffectToObject(nDurationType, eLink, oTarget, fDuration);
                     }
