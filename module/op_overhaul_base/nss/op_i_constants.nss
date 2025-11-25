@@ -306,6 +306,7 @@ const int SPELLABILITY_EYEBALL_INFLICT_WOUNDS_RAY         = 711;
 const int SPELLABILITY_EYEBALL_FLAME_RAY                  = 712;
 const int SPELLABILITY_PSIONIC_MIND_BLAST_PERSONAL        = 713;
 const int SPELLABILITY_EXTRACT_BRAIN                      = 716;
+const int SPELLABILITY_ETHEREALNESS                       = 724;
 const int SPELLABILITY_DRAGON_SHAPE                       = 725;
 const int SPELLABILITY_BEHOLDER_ANTIMAGIC_CONE            = 727;
 const int SPELLABILITY_OUTSIDER_SHAPE                     = 732;

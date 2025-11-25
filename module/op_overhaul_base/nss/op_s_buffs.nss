@@ -1133,6 +1133,14 @@ void main()
             // This is always considered a hostile spell.
         }
         break;
+        case SPELLABILITY_ETHEREALNESS:
+        {
+            eLink = EffectLinkEffects(EffectEthereal(),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_BLUR),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+            fDuration = GetDuration(5, ROUNDS);
+        }
+        break;
         default:
             Debug("[op_s_buffs] No valid spell ID passed in: " + IntToString(nSpellId), ERROR);
             return;
