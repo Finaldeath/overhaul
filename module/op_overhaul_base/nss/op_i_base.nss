@@ -1,6 +1,6 @@
-//::///////////////////////////////////////////////
+//:://////////////////////////////////////////////
 //:: Overhaul Include: Base
-//:: op_i_base.nss
+//:: op_i_base
 //:://////////////////////////////////////////////
 /*
     Base include file for Overhaul. A one stop shop for including all
@@ -11,10 +11,9 @@
 //:: https://github.com/Finaldeath/overhaul
 //:://////////////////////////////////////////////
 
-// Eos constants include is generated from the Eos data
-#include "op_i_eosconstant"
-
 // Main Overhaul includes
+
+// Eos constants include is in here, generated from the Eos data
 #include "op_i_constants"
 #include "op_i_debug"
 #include "op_i_spells"

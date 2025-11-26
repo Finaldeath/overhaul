@@ -1,6 +1,6 @@
-//::///////////////////////////////////////////////
+//:://////////////////////////////////////////////
 //:: Overhaul Include: Constants
-//:: op_i_constants.nss
+//:: op_i_constants
 //:://////////////////////////////////////////////
 /*
     Hand written constant values for 2das etc.
@@ -12,7 +12,7 @@
 //:: https://github.com/Finaldeath/overhaul
 //:://////////////////////////////////////////////
 
-#include "op_i_eosconstants"
+#include "op_i_eosconstant"
 
 // Some default/invalid values
 const int SPELL_ANY       = -2;  // Since GetEffectSpellId can return -1

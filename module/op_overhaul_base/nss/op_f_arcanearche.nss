@@ -1,4 +1,4 @@
-//::///////////////////////////////////////////////
+//:://////////////////////////////////////////////
 //:: Arcane Archer Feat Abilities
 //:: op_f_arcanearche
 //:://////////////////////////////////////////////
@@ -34,10 +34,11 @@ void main()
         case SPELLABILITY_AA_IMBUE_ARROW:
         {
             // Basically fireball with a different caster level
-            nCasterLevel = GetLevelByClass(CLASS_TYPE_ARCANE_ARCHER,oCaster);
+            nCasterLevel = GetLevelByClass(CLASS_TYPE_ARCANE_ARCHER, oCaster);
             if (nCasterLevel > 10)
             {
-                nCasterLevel = 10 + ((nCasterLevel-10)/2);      // add some epic progression of 1d6 per 2 levels after 10
+                // add some epic progression of 1d6 per 2 levels after 10
+                nCasterLevel = 10 + ((nCasterLevel-10)/2);
             }
             else // * preserve minimum damage of 10d6
             {
