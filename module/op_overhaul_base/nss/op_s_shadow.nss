@@ -38,7 +38,7 @@ void main()
     // If already illusionary we exit.
     if (bIllusionary)
     {
-        Debug("[op_s_shadow] Recursive illusion call to this script?", ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[op_s_shadow] Recursive illusion call to this script?");
         return;
     }
 
@@ -117,13 +117,13 @@ void main()
         case SPELL_GREATER_SHADOW_CONJURATION:
         case SPELL_SHADES:
         {
-            Debug("[Shadow Spells] Directly casting parent spell. ID: " + IntToString(nSpellId), ERROR);
+            if (DEBUG_LEVEL >= ERROR) Error("[Shadow Spells] Directly casting parent spell. ID: " + IntToString(nSpellId));
             return;
         }
         break;
         default:
         {
-            Debug("[Shadow Spells] Unknown spell ID: " + IntToString(nSpellId), ERROR);
+            if (DEBUG_LEVEL >= ERROR) Error("No valid spell ID passed in: " + IntToString(nSpellId));
             return;
         }
         break;
@@ -135,7 +135,7 @@ void main()
     // Validate
     if (ResManGetAliasFor(sScript, RESTYPE_NSS) == "")
     {
-        Debug("[op_s_shadow] Spell script for target spell not found: " + sScript, ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[op_s_shadow] Spell script for target spell not found: " + sScript);
         return;
     }
 

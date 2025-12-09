@@ -184,7 +184,7 @@ int GetLastSpellCastClassCalculated();
 // Retrieves the spell level (0 - 9), in a spell script or run script. AOEs won't store this yet.
 int GetLastSpellLevelCalculated();
 
-// Retrieves if the spell was spontaneously ccast, in a spell script or run script. AOEs won't store this yet.
+// Retrieves if the spell was spontaneously cast, in a spell script or run script. AOEs won't store this yet.
 int GetSpellCastSpontaneouslyCalculated();
 
 // Will return the target of the spell. Some special cases are taken into account with Run Script and potions.
@@ -709,23 +709,23 @@ int DebugSpellVariables()
 {
     if (DEBUG_LEVEL >= INFO)
     {
-        Debug("[Spell Script] Script:" + GetStringColoredRGB("[" + GetScriptName() +
-                                                                 "] ID: [" + IntToString(nSpellId) +
-                                                                 "] Name: [" + GetSpellName(nSpellId) +
-                                                                 "] Type: [" + IntToString(nSpellType) +
-                                                                 "] Level: [" + IntToString(nSpellLevel) +
-                                                                 "] Caster: [" + GetName(oCaster) +
-                                                                 "] Cast Item: [" + GetName(oCastItem) +
-                                                                 "] Caster class: [" + IntToString(nCasterClass) +
-                                                                 "] Spontanously cast: [" + IntToString(bSpontaneous) +
-                                                                 "] Target: [" + GetName(oTarget) +
-                                                                 "] Save DC: [" + IntToString(nSpellSaveDC) +
-                                                                 "] Caster Level: [" + IntToString(nCasterLevel) +
-                                                                 "] MetaMagic: [" + IntToString(nMetaMagic) +
-                                                                 "] Hostile: [" + IntToString(bHostile) +
-                                                                 "] bIllusionary: [" + IntToString(bIllusionary) +
-                                                                 "] nIllusionaryStrength: [" + IntToString(nIllusionaryStrength) + "]",
-                                                             255, 255, 255));
+        Info("[Spell Script] Script:" + GetStringColoredRGB("[" + GetScriptName() +
+                                                             "] ID: [" + IntToString(nSpellId) +
+                                                             "] Name: [" + GetSpellName(nSpellId) +
+                                                             "] Type: [" + IntToString(nSpellType) +
+                                                             "] Level: [" + IntToString(nSpellLevel) +
+                                                             "] Caster: [" + GetName(oCaster) +
+                                                             "] Cast Item: [" + GetName(oCastItem) +
+                                                             "] Caster class: [" + IntToString(nCasterClass) +
+                                                             "] Spontanously cast: [" + IntToString(bSpontaneous) +
+                                                             "] Target: [" + GetName(oTarget) +
+                                                             "] Save DC: [" + IntToString(nSpellSaveDC) +
+                                                             "] Caster Level: [" + IntToString(nCasterLevel) +
+                                                             "] MetaMagic: [" + IntToString(nMetaMagic) +
+                                                             "] Hostile: [" + IntToString(bHostile) +
+                                                             "] bIllusionary: [" + IntToString(bIllusionary) +
+                                                             "] nIllusionaryStrength: [" + IntToString(nIllusionaryStrength) + "]",
+                                                         255, 255, 255));
         return TRUE;
     }
     return FALSE;
@@ -817,7 +817,7 @@ object GetSpellCastItemCalculated()
     {
         if (!GetIsObjectValid(GetEffectCreator(GetLastRunScriptEffect())))
         {
-            Debug("[GetSpellCaster] Invalid cast item for run script effect.", ERROR);
+            if (DEBUG_LEVEL >= ERROR) Error("[GetSpellCaster] Invalid cast item for run script effect.");
         }
         return GetEffectCreator(GetLastRunScriptEffect());  // TODO
     }
@@ -837,7 +837,7 @@ object GetSpellCaster()
     {
         if (!GetIsObjectValid(GetEffectCreator(GetLastRunScriptEffect())))
         {
-            Debug("[GetSpellCaster] Invalid caster for run script. Applied script?", ERROR);
+            if (DEBUG_LEVEL >= ERROR) Error("[GetSpellCaster] Invalid caster for run script. Applied script?");
         }
         return GetEffectCreator(GetLastRunScriptEffect());
     }
@@ -861,7 +861,7 @@ int GetSpellIdCalculated()
     {
         if (GetEffectType(GetLastRunScriptEffect()) != EFFECT_TYPE_RUNSCRIPT)
         {
-            Debug("[GetSpellIdCalculated] Invalid effect for run script.", ERROR);
+            if (DEBUG_LEVEL >= ERROR) Error("[GetSpellIdCalculated] Invalid effect for run script.");
         }
         return GetEffectSpellId(GetLastRunScriptEffect());
     }
@@ -892,11 +892,11 @@ int GetSpellIdCalculated()
 
         if (sSubSpell == "")
         {
-            Debug("[GetSpellIdCalculated] Error: Found random subspell to be invalid? Column: SubRadSpell" + IntToString(nChoice), ERROR);
+            if (DEBUG_LEVEL >= ERROR) Error("[GetSpellIdCalculated] Error: Found random subspell to be invalid? Column: SubRadSpell" + IntToString(nChoice));
         }
         else
         {
-            Debug("[GetSpellIdCalculated] Info: Replaced master spell with subspell: " + sSubSpell);
+            if (DEBUG_LEVEL >= INFO) Info("[GetSpellIdCalculated] Info: Replaced master spell with subspell: " + sSubSpell);
             nReturn = StringToInt(sSubSpell);
         }
     }
@@ -917,7 +917,7 @@ int GetSpellType(int nSpellIdToCheck)
         case "4": return SPELL_TYPE_ITEM_POWER; break;
     }
     // Something else invalid
-    Debug("[GetSpellType] Invalid UserType column!", ERROR);
+    if (DEBUG_LEVEL >= ERROR) Error("[GetSpellType] Invalid UserType column!");
     return SPELL_TYPE_INVALID;
 }
 
@@ -1053,7 +1053,7 @@ int GetClassSpellcasterAbilityModifier(object oCaster, int nClass, object oCastI
         }
     }
     // Error no ability found return 0
-    Debug("Error: GetClassSpellcasterAbilityModifier could not find valid ability score", ERROR);
+    if (DEBUG_LEVEL >= ERROR) Error("Error: GetClassSpellcasterAbilityModifier could not find valid ability score");
     return 0;
 }
 
@@ -1064,7 +1064,7 @@ int GetClassIsSpellcaster(int nClass)
 
     if (sSpellCaster == "")
     {
-        Debug("Error: GetClassIsSpellcaster could not find sSpellCaster entry", ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("Error: GetClassIsSpellcaster could not find SpellCaster entry");
         return FALSE;
     }
     return StringToInt(sSpellCaster);
@@ -1077,7 +1077,7 @@ int GetClassIsSpontaneousSpellcaster(int nClass)
 
     if (sMemorizes == "")
     {
-        Debug("Error: GetClassIsSpontaneousSpellcaster could not find MemorizesSpells entry", ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("Error: GetClassIsSpontaneousSpellcaster could not find MemorizesSpells entry");
         return FALSE;
     }
     return !(StringToInt(sMemorizes));
@@ -1117,7 +1117,7 @@ int GetCasterLevelCalculated(object oCasterToCheck, int nSpellIdToCheck, int nFe
     {
         if (GetEffectType(GetLastRunScriptEffect()) != EFFECT_TYPE_RUNSCRIPT)
         {
-            Debug("[GetCasterLevelCalculated] Run Script Effect has invalid type.", ERROR);
+            if (DEBUG_LEVEL >= ERROR) Error("[GetCasterLevelCalculated] Run Script Effect has invalid type.");
         }
         // Caster level is stored on the effect itself
         return GetEffectCasterLevel(GetLastRunScriptEffect());
@@ -1259,7 +1259,10 @@ int GetMetaMagicFeatCalculated(int nSpellId, int bIllusion)
         nMetaMagic = nMetaMagic & nCurrentMetaMagic;
 
         // Debug
-        if (nMetaMagic != nTest) Debug("[GetMetaMagicFeatCalculated] Illusion MetaMagic altered.");
+        if (DEBUG_LEVEL >= INFO)
+        {
+            if (nMetaMagic != nTest) Info("[GetMetaMagicFeatCalculated] Illusion MetaMagic altered.");
+        }
     }
 
     return nMetaMagic;
@@ -1280,7 +1283,7 @@ int GetLastSpellCastClassCalculated()
 // Retrieves the spell level (0 - 9), in a spell script or run script.
 int GetLastSpellLevelCalculated()
 {
-    if (GetIsStateScript()) return METAMAGIC_NONE;
+    if (GetIsStateScript()) return 0;
 
     if (GetLastRunScriptEffectScriptType() != 0)
     {
@@ -1292,7 +1295,7 @@ int GetLastSpellLevelCalculated()
 // Retrieves if the spell was spontaneously ccast, in a spell script or run script.
 int GetSpellCastSpontaneouslyCalculated()
 {
-    if (GetIsStateScript()) return METAMAGIC_NONE;
+    if (GetIsStateScript()) return FALSE;
 
     if (GetLastRunScriptEffectScriptType() != 0)
     {
@@ -1384,7 +1387,7 @@ int DoSavingThrow(object oTarget, object oSaveVersus, int nSavingThrow, int nDC,
 
     if (nSaveType < 0 || nSaveType > SAVING_THROW_TYPE_PARALYSIS)
     {
-        Debug("[ERROR] DoSavingThrow: Invalid saving throw type specified: " + IntToString(nSavingThrow), ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[DoSavingThrow] Invalid saving throw type specified: " + IntToString(nSavingThrow));
     }
 
     int nVis    = VFX_INVALID;
@@ -1409,7 +1412,7 @@ int DoSavingThrow(object oTarget, object oSaveVersus, int nSavingThrow, int nDC,
     }
     else
     {
-        Debug("[ERROR] DoSavingThrow: Invalid saving throw specified: " + IntToString(nSavingThrow) + " Auto failure.", ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[ERROR] DoSavingThrow: Invalid saving throw specified: " + IntToString(nSavingThrow) + " Auto failure.");
     }
     // Apply VFX
     /*
@@ -1515,7 +1518,7 @@ int DoResistSpell(object oTarget, object oCaster, float fDelay = 0.0, int bResis
     // Error check
     if (!GetIsObjectValid(oTarget) || !GetIsObjectValid(oCaster))
     {
-        Debug("[DoResistSpell] Error, caster or target is invalid. Caster: " + GetName(oCaster) + " Target: " + GetName(oTarget), ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[DoResistSpell] Error, caster or target is invalid. Caster: " + GetName(oCaster) + " Target: " + GetName(oTarget));
         return FALSE;
     }
 
@@ -1536,7 +1539,7 @@ int DoResistSpell(object oTarget, object oCaster, float fDelay = 0.0, int bResis
         // Spell Absorption (Limited) ie mantles
         if (SpellAbsorptionLimitedCheck(oTarget, oCaster, nSpellId, nSpellSchool, nSpellLevel))
         {
-            Debug("[DoResistSpell] SpellAbsorptionLimitedCheck: TRUE against target: " + GetName(oTarget));
+            if (DEBUG_LEVEL >= INFO) Info("[DoResistSpell] SpellAbsorptionLimitedCheck: TRUE against target: " + GetName(oTarget));
             if (fDelay > 0.5)
             {
                 fDelay = fDelay - 0.1;
@@ -1548,7 +1551,7 @@ int DoResistSpell(object oTarget, object oCaster, float fDelay = 0.0, int bResis
         // Spell Absorption (Unlimited) ie Globes
         if (SpellAbsorptionUnlimitedCheck(oTarget, oCaster, nSpellId, nSpellSchool, nSpellLevel))
         {
-            Debug("[DoResistSpell] SpellAbsorptionUnlimitedCheck: TRUE against target: " + GetName(oTarget));
+            if (DEBUG_LEVEL >= INFO) Info("[DoResistSpell] SpellAbsorptionUnlimitedCheck: TRUE against target: " + GetName(oTarget));
             DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_GLOBE_USE), oTarget));
             return TRUE;
         }
@@ -1557,7 +1560,7 @@ int DoResistSpell(object oTarget, object oCaster, float fDelay = 0.0, int bResis
     // Spell Immunity
     if (bImmunityCheck && SpellImmunityCheck(oTarget, oCaster, nSpellId))
     {
-        Debug("[DoResistSpell] SpellImmunityCheck: TRUE against target: " + GetName(oTarget));
+        if (DEBUG_LEVEL >= INFO) Info("[DoResistSpell] SpellImmunityCheck: TRUE against target: " + GetName(oTarget));
         DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_GLOBE_USE), oTarget));
         return TRUE;
     }
@@ -1594,7 +1597,7 @@ int DoResistSpell(object oTarget, object oCaster, float fDelay = 0.0, int bResis
 
         if (SpellResistanceCheck(oTarget, oCaster, nSpellId, nResistSpellCasterLevel, nTargetSpellResistance))
         {
-            Debug("[DoResistSpell] SpellResistanceCheck: TRUE against target: " + GetName(oTarget));
+            if (DEBUG_LEVEL >= INFO) Info("[DoResistSpell] SpellResistanceCheck: TRUE against target: " + GetName(oTarget));
             DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_IMP_MAGIC_RESISTANCE_USE), oTarget));
             return TRUE;
         }
@@ -1637,7 +1640,7 @@ int DoTouchAttack(object oTarget, object oVersus, int nType, int bDisplayFeedbac
     // Note: For now we don't use oVersus but it's possible to do this with ExecuteScript/ExecuteScriptChunk.
     if (oVersus != OBJECT_SELF)
     {
-        if (DEBUG_LEVEL >= ERROR) Debug("[ERROR] DoTouchAttack used when oVersus isn't OBJECT_SELF");
+        if (DEBUG_LEVEL >= ERROR) Error("[ERROR] DoTouchAttack used when oVersus isn't OBJECT_SELF");
     }
 
     int nResult = TOUCH_RESULT_MISS;
@@ -1922,7 +1925,7 @@ int GetTargetIllusionarySave(object oTarget)
 
     if (!bDoneSpellTargetValid)
     {
-        Debug("[GetTargetIllusionarySave] Called before we've tested anyone for illusion saves.", ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[GetTargetIllusionarySave] Called before we've tested anyone for illusion saves.");
     }
 
     if (bIllusionary)
@@ -1961,7 +1964,7 @@ int GetIllusionModifiedValue(int nValue)
     }
     else
     {
-        Debug("[GetIllusionModifiedValue] No script parameter for illusionary strength");
+        if (DEBUG_LEVEL >= INFO) Info("[GetIllusionModifiedValue] No script parameter for illusionary strength");
     }
     return nValue;
 }
@@ -2006,7 +2009,7 @@ int GetDiceRoll(int nNumberOfDice, int nDiceSize, int nBonus = 0, int bApplyMeta
     // If we have 0 dice, it is still "valid" but we should consider using GetStaticValue.
     if (nNumberOfDice <= 0)
     {
-        Debug("[GetDiceRoll] nNumberOfDice is 0 or less. Consider using GetStaticValue() instead.");
+        if (DEBUG_LEVEL >= WARNING) Warning("[GetDiceRoll] nNumberOfDice is 0 or less. Consider using GetStaticValue() instead.");
     }
 
     int i, nDamage = 0;
@@ -2051,7 +2054,7 @@ float GetDuration(int nDuration, int nDurationType, int nEffectType = EFFECT_TYP
     if (nDuration <= 0)
     {
         nDuration = 1;
-        Debug("[GetDuration] nDuration is 0 or lower! " + IntToString(nDuration), ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[GetDuration] nDuration is 0 or lower! " + IntToString(nDuration));
     }
 
     float fDuration = 0.0;
@@ -2086,7 +2089,7 @@ float GetDuration(int nDuration, int nDurationType, int nEffectType = EFFECT_TYP
     }
     else
     {
-        Debug("[ERROR] Spells GetDuration: Incorrect nDurationType: " + IntToString(nDurationType), ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[ERROR] Spells GetDuration: Incorrect nDurationType: " + IntToString(nDurationType));
     }
 
     // Alter duration if particular types of effect
@@ -2157,7 +2160,7 @@ int GetSpellTargetValid(object oTarget, object oCaster, int nTargetType)
             // This kind of spell will affect all friendlies and anyone in my party/faction, even if we are upset with each other currently.
             case SPELL_TARGET_ALLALLIES:
             {
-                Debug("[INFO] GetSpellTargetValid: All allies oTarget: " + GetName(oTarget) + " GetIsFriend: " + IntToString(GetIsFriend(oTarget, oCaster)) + " GetFactionEqual: " + IntToString(GetFactionEqual(oTarget, oCaster)), INFO);
+                if (DEBUG_LEVEL >= INFO) Info("[INFO] GetSpellTargetValid: All allies oTarget: " + GetName(oTarget) + " GetIsFriend: " + IntToString(GetIsFriend(oTarget, oCaster)) + " GetFactionEqual: " + IntToString(GetFactionEqual(oTarget, oCaster)));
                 if (GetIsFriend(oTarget, oCaster) || GetFactionEqual(oTarget, oCaster))
                 {
                     bReturnValue = TRUE;
@@ -2166,7 +2169,7 @@ int GetSpellTargetValid(object oTarget, object oCaster, int nTargetType)
             break;
             case SPELL_TARGET_STANDARDHOSTILE:
             {
-                Debug("[INFO] GetSpellTargetValid: Standard hostile oTarget: " + GetName(oTarget) + " GetIsReactionTypeFriendly: " + IntToString(GetIsReactionTypeFriendly(oTarget, oCaster)), INFO);
+                if (DEBUG_LEVEL >= INFO) Info("[INFO] GetSpellTargetValid: Standard hostile oTarget: " + GetName(oTarget) + " GetIsReactionTypeFriendly: " + IntToString(GetIsReactionTypeFriendly(oTarget, oCaster)));
                 // This has been rewritten. We do a simple check for the reaction type now.
                 // Previously there was a lot of checks for henchmen, AOEs that PCs cast, etc.
                 if (!GetIsReactionTypeFriendly(oTarget, oCaster))
@@ -2178,7 +2181,7 @@ int GetSpellTargetValid(object oTarget, object oCaster, int nTargetType)
             // Only harms enemies, ever, such as Call Lightning
             case SPELL_TARGET_SELECTIVEHOSTILE:
             {
-                Debug("[INFO] GetSpellTargetValid: Selective hostile oTarget: " + GetName(oTarget) + " GetIsEnemy: " + IntToString(GetIsEnemy(oTarget, oCaster)), INFO);
+                if (DEBUG_LEVEL >= INFO) Info("[INFO] GetSpellTargetValid: Selective hostile oTarget: " + GetName(oTarget) + " GetIsEnemy: " + IntToString(GetIsEnemy(oTarget, oCaster)));
                 if (GetIsEnemy(oTarget, oCaster))
                 {
                     bReturnValue = TRUE;
@@ -2192,7 +2195,7 @@ int GetSpellTargetValid(object oTarget, object oCaster, int nTargetType)
             break;
             default:
             {
-                Debug("[ERROR] GetSpellTargetValid: Invalid input: " + IntToString(nTargetType), ERROR);
+                if (DEBUG_LEVEL >= ERROR) Error("[ERROR] GetSpellTargetValid: Invalid input: " + IntToString(nTargetType));
             }
             break;
         }
@@ -2415,7 +2418,7 @@ float GetVisualEffectHitDelay(int nVFX, object oTarget, object oSource)
             return fDist / (3.0 * log(fDist) + 2.0);
         }
     }
-    if (DEBUG_LEVEL >= ERROR) Debug("[ERROR] GetVisualEffectHitDelay Called with no programmed FX: " + IntToString(nProgrammedVFX), ERROR);
+    if (DEBUG_LEVEL >= ERROR) Error("[ERROR] GetVisualEffectHitDelay Called with no programmed FX: " + IntToString(nProgrammedVFX));
     // Default is distance / 20
     return GetDistanceBetween(oSource, oTarget) / 20.0;
 }
@@ -2442,10 +2445,13 @@ effect EffectChangeProperties(effect eEffect, int nSpellId = SPELL_INVALID, int 
 void ApplySpellEffectToObject(int nDurationType, effect eEffect, object oTarget, float fDuration = 0.0)
 {
     // Error checking
-    if (nDurationType == DURATION_TYPE_TEMPORARY && fDuration <= 0.0)
-        Debug("[ApplySpellEffectToObject] Error: Temporary duration but fDuration is: " + FloatToString(fDuration), ERROR);
-    else if (nDurationType != DURATION_TYPE_TEMPORARY && fDuration != 0.0)
-        Debug("[ApplySpellEffectToObject] Error: Non-Temporary duration but fDuration is: " + FloatToString(fDuration), ERROR);
+    if (DEBUG_LEVEL >= ERROR)
+    {
+        if (nDurationType == DURATION_TYPE_TEMPORARY && fDuration <= 0.0)
+            Error("[ApplySpellEffectToObject] Error: Temporary duration but fDuration is: " + FloatToString(fDuration));
+        else if (nDurationType != DURATION_TYPE_TEMPORARY && fDuration != 0.0)
+            Error("[ApplySpellEffectToObject] Error: Non-Temporary duration but fDuration is: " + FloatToString(fDuration));
+    }
 
     ApplyEffectToObject(nDurationType, EffectChangeProperties(eEffect, nSpellId, nCasterLevel, oCaster), oTarget, fDuration);
 }
@@ -2454,10 +2460,13 @@ void ApplySpellEffectToObject(int nDurationType, effect eEffect, object oTarget,
 void ApplySpellEffectAtLocation(int nDurationType, effect eEffect, location lTarget, float fDuration = 0.0)
 {
     // Error checking
-    if (nDurationType == DURATION_TYPE_TEMPORARY && fDuration <= 0.0)
-        Debug("[ApplySpellEffectToObject] Error: Temporary duration but fDuration is: " + FloatToString(fDuration), ERROR);
-    else if (nDurationType != DURATION_TYPE_TEMPORARY && fDuration != 0.0)
-        Debug("[ApplySpellEffectToObject] Error: Non-Temporary duration but fDuration is: " + FloatToString(fDuration), ERROR);
+    if (DEBUG_LEVEL >= ERROR)
+    {
+        if (nDurationType == DURATION_TYPE_TEMPORARY && fDuration <= 0.0)
+            Error("[ApplySpellEffectToObject] Error: Temporary duration but fDuration is: " + FloatToString(fDuration));
+        else if (nDurationType != DURATION_TYPE_TEMPORARY && fDuration != 0.0)
+            Error("[ApplySpellEffectToObject] Error: Non-Temporary duration but fDuration is: " + FloatToString(fDuration));
+    }
 
     ApplyEffectAtLocation(nDurationType, EffectChangeProperties(eEffect, nSpellId, nCasterLevel, oCaster), lTarget, fDuration);
 }
@@ -2475,15 +2484,16 @@ void ApplyBeamToObject(int nBeam, object oTarget, int bMissEffect = FALSE, int n
     // Validate nBeam value can be a beam
     if (Get2DAString("visualeffects", "Type_FD", nBeam) != "B")
     {
-        Debug("[ApplyBeamToObject] VFX is not Beam type: " + IntToString(nBeam), ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[ApplyBeamToObject] VFX is not Beam type: " + IntToString(nBeam));
         return;
     }
     // Technically nBodyPart can be invalid (and thus default to ground/root of the target) but we'll try and keep it sane enough for now
     if (nBodyPart < 0 || nBodyPart > 11)
     {
-        Debug("[ApplyBeamToObject] Target nBodyPart is invalid: " + IntToString(nBodyPart), ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[ApplyBeamToObject] Target nBodyPart is invalid: " + IntToString(nBodyPart));
         return;
     }
+
 
     // Get duration from spells.2da
     if (fDuration == 0.0)
@@ -2497,7 +2507,7 @@ void ApplyBeamToObject(int nBeam, object oTarget, int bMissEffect = FALSE, int n
         }
         else
         {
-            Debug("[ApplyBeamToObject] Cannot find valid CastTime for the duration for nSpellId: " + IntToString(nSpellId), ERROR);
+            if (DEBUG_LEVEL >= ERROR) Error("[ApplyBeamToObject] Cannot find valid CastTime for the duration for nSpellId: " + IntToString(nSpellId));
             return;
         }
     }
@@ -2523,7 +2533,7 @@ void ApplyVisualEffectToObject(int nVFX, object oTarget, int bMissEffect = FALSE
     string sType = Get2DAString("visualeffects", "Type_FD", nVFX);
     if (sType == "" || sType == "B")
     {
-        Debug("[ApplyVisualEffectToObject] VFX invalid or a Beam type: " + IntToString(nVFX), ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[ApplyVisualEffectToObject] VFX invalid or a Beam type: " + IntToString(nVFX));
         return;
     }
 
@@ -2553,7 +2563,7 @@ void ApplyVisualEffectAtLocation(int nVFX, location lTarget, int bMissEffect = F
     string sType = Get2DAString("visualeffects", "Type_FD", nVFX);
     if (sType == "" || sType == "D" || sType == "B")
     {
-        Debug("[ApplyVisualEffectToObject] VFX invalid or a Beam/Duration type: " + IntToString(nVFX), ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[ApplyVisualEffectToObject] VFX invalid or a Beam/Duration type: " + IntToString(nVFX));
     }
 
     effect eVFX = EffectVisualEffect(nVFX, bMissEffect, fScale, vTranslate, vRotate);
@@ -2751,7 +2761,11 @@ int AOECheck()
     {
         effect eRunScript = GetLastRunScriptEffect();
         if (GetEffectType(eRunScript) != EFFECT_TYPE_RUNSCRIPT)
-            Debug("[AOECheck] Run Script Effect has invalid type.", ERROR);
+        {
+            if (DEBUG_LEVEL >= ERROR) Error("[AOECheck] Run Script Effect has invalid type.");
+            // Continue the script fwiw
+            return TRUE;
+        }
 
         if (!GetIsObjectValid(GetEffectCreator(eRunScript)) ||
             !GetIsObjectValid(StringToObject(GetEffectTag(eRunScript))))
@@ -2777,7 +2791,7 @@ int AOECheck()
         }
         else
         {
-            Debug("[AOECheck] Called outside of run script or AOE event?", ERROR);
+            if (DEBUG_LEVEL >= ERROR) Error("[AOECheck] Called outside of run script or AOE event?");
         }
     }
     return TRUE;
@@ -2852,7 +2866,7 @@ float GetVFXScale(object oCreature)
                    2.0;
     float fFinal = fmin(fScale, fMax);
 
-    Debug("[GetVFXScale] fScale: " + FloatToString(fScale, 10, 4) + " fMax: " + FloatToString(fMax, 10, 4) + " fFinal: " + FloatToString(fFinal, 10, 4));
+    if (DEBUG_LEVEL >= INFO) Info("[GetVFXScale] fScale: " + FloatToString(fScale, 10, 4) + " fMax: " + FloatToString(fMax, 10, 4) + " fFinal: " + FloatToString(fFinal, 10, 4));
 
     return fFinal;
 }
@@ -2937,7 +2951,7 @@ int GetSpellIsAreaOfEffect(int nSpellId)
     {
         if (Get2DAString("spells", "TargetSizeX", nSpellId) == "" && Get2DAString("spells", "TargetSizeX", nSpellId) == "")
         {
-            Debug("[GetSpellIsAreaOfEffect] Spell " + GetSpellName(nSpellId) + " is set with a TargetShape but no valid X or Y size.", ERROR);
+            if (DEBUG_LEVEL >= ERROR) Error("[GetSpellIsAreaOfEffect] Spell " + GetSpellName(nSpellId) + " is set with a TargetShape but no valid X or Y size.");
             return FALSE;
         }
 
@@ -3636,7 +3650,7 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, 
         // This fix is from the x2_s1_wyrmbreath script
         if (lTarget == GetLocation(oCaster))
         {
-            Debug("[GetArrayOfTargets] Redirecting target position due to targeting self for cone/cylinder.", INFO);
+            if (DEBUG_LEVEL >= INFO) Info("[GetArrayOfTargets] Redirecting target position due to targeting self for cone/cylinder.");
             // Since the target and origin are the same, we have to determine the
             // direction of the spell from the facing of OBJECT_SELF (which is more
             // intuitive than defaulting to East everytime).
@@ -3654,32 +3668,32 @@ json GetArrayOfTargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANCE, 
     // Error checking - we log these might be mistakes in spell scripts
     if (nTargetType < 0 || nTargetType > 3)
     {
-        Debug("[GetArrayOfTargets] nTargetType invalid: " + IntToString(nTargetType), ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[GetArrayOfTargets] nTargetType invalid: " + IntToString(nTargetType));
         return jArray;
     }
     if (nSortMethod < 0 || nSortMethod > 5)
     {
-        Debug("[GetArrayOfTargets] nSortMethod invalid: " + IntToString(nSortMethod), ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[GetArrayOfTargets] nSortMethod invalid: " + IntToString(nSortMethod));
         return jArray;
     }
     if (nShape < 0 || nShape > 4)
     {
-        Debug("[GetArrayOfTargets] nShape invalid: " + IntToString(nShape), ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[GetArrayOfTargets] nShape invalid: " + IntToString(nShape));
         return jArray;
     }
     if (fSize <= 0.0 || fSize >= 50.0)
     {
-        Debug("[GetArrayOfTargets] fSize invalid: " + FloatToString(fSize), ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[GetArrayOfTargets] fSize invalid: " + FloatToString(fSize));
         return jArray;
     }
     if (!GetIsObjectValid(GetAreaFromLocation(lTarget)))
     {
-        Debug("[GetArrayOfTargets] lTarget invalid. Area OID: " + ObjectToString(GetAreaFromLocation(lTarget)), ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[GetArrayOfTargets] lTarget invalid. Area OID: " + ObjectToString(GetAreaFromLocation(lTarget)));
         return jArray;
     }
     if (nObjectFilter < 0 || nObjectFilter > 32767)
     {
-        Debug("[GetArrayOfTargets] nObjectFilter invalid: " + IntToString(nObjectFilter), ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[GetArrayOfTargets] nObjectFilter invalid: " + IntToString(nObjectFilter));
         return jArray;
     }
 
@@ -3783,22 +3797,22 @@ json GetArrayOfAOETargets(int nTargetType, int nSortMethod = SORT_METHOD_DISTANC
     // Error checking - we log these might be mistakes in spell scripts
     if (nTargetType < 0 || nTargetType > 3)
     {
-        Debug("[GetArrayOfAOETargets] nTargetType invalid: " + IntToString(nTargetType), ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[GetArrayOfAOETargets] nTargetType invalid: " + IntToString(nTargetType));
         return jArray;
     }
     if (nSortMethod < 0 || nSortMethod > 5)
     {
-        Debug("[GetArrayOfAOETargets] nSortMethod invalid: " + IntToString(nSortMethod), ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[GetArrayOfAOETargets] nSortMethod invalid: " + IntToString(nSortMethod));
         return jArray;
     }
     if (nObjectFilter < 0 || nObjectFilter > 32767)
     {
-        Debug("[GetArrayOfAOETargets] nObjectFilter invalid: " + IntToString(nObjectFilter), ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[GetArrayOfAOETargets] nObjectFilter invalid: " + IntToString(nObjectFilter));
         return jArray;
     }
     if (bTargetSelf != FALSE && bTargetSelf != TRUE)
     {
-        Debug("[GetArrayOfAOETargets] bTargetSelf invalid: " + IntToString(bTargetSelf), ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[GetArrayOfAOETargets] bTargetSelf invalid: " + IntToString(bTargetSelf));
         return jArray;
     }
 
@@ -3858,7 +3872,7 @@ object GetArrayObject(json jArray, int nIndex)
         }
         else
         {
-            Debug("[ERROR] Spell script: " + GetScriptName() + " has target OID is invalid in sorted array loop " + sOID, ERROR);
+            if (DEBUG_LEVEL >= ERROR) Error("[ERROR] Spell script: " + GetScriptName() + " has target OID is invalid in sorted array loop " + sOID);
         }
     }
     return OBJECT_INVALID;
@@ -3881,13 +3895,13 @@ effect EffectRunScriptEnhanced(int bAutomatic = TRUE, string sRemovedScript = ""
     if (GetStringLength(sInteveralScript) > 16 ||
         GetStringLength(sRemovedScript) > 16)
     {
-        Debug("[EffectRunScriptEnhanced] Script name too long: " + sInteveralScript, ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[EffectRunScriptEnhanced] Script name too long: " + sInteveralScript);
         return EffectInvalidEffect();
     }
     if (ResManGetAliasFor(sRemovedScript, RESTYPE_NSS) == "" &&
         ResManGetAliasFor(sInteveralScript, RESTYPE_NSS) == "")
     {
-        Debug("[EffectRunScriptEnhanced] Script not found: " + sInteveralScript, ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[EffectRunScriptEnhanced] Script not found: " + sInteveralScript);
         return EffectInvalidEffect();
     }
 
@@ -3985,7 +3999,7 @@ effect EffectTrackItemProperties(json jOIDs, int nSpellIdToTrack = SPELL_INVALID
 
     if (sTag == "")
     {
-        Debug("[EffectTrackItemProperties] No OIDs set so can't remove item properties later.", ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[EffectTrackItemProperties] No OIDs set so can't remove item properties later.");
         return EffectInvalidEffect();
     }
 
@@ -4022,7 +4036,7 @@ effect GetScaledEffect(int nEffectType, object oTarget)
 {
     if (!GetIsObjectValid(oTarget))
     {
-        Debug("[GetScaledEffect] oTarget is invalid!", ERROR);
+        if (DEBUG_LEVEL >= WARNING) Warning("[GetScaledEffect] oTarget is invalid!");
     }
 
     object oMaster = GetMaster(oTarget);
@@ -4079,7 +4093,7 @@ effect GetScaledEffect(int nEffectType, object oTarget)
         break;
     }
     // Error!
-    Debug("GetScaledEffect: Invalid effect type passed in, returning Daze", ERROR);
+    if (DEBUG_LEVEL >= ERROR) Error("GetScaledEffect: Invalid effect type passed in (" + IntToString(nEffectType) + "), returning Daze");
     return EffectDazed();
 }
 
@@ -4594,7 +4608,7 @@ effect GetEffectLink(int nEffectType, int nValue1 = 0, int nValue2 = 0, int nVal
         // EFFECT_TYPE_WOUNDING // TODO if EffectWounding is added
         default:
         {
-            Debug("[GetEffectLink] Invalid EFFECT_TYPE_ passed in: " + IntToString(nEffectType), ERROR);
+            if (DEBUG_LEVEL >= ERROR) Error("[GetEffectLink] Invalid EFFECT_TYPE_ passed in: " + IntToString(nEffectType));
         }
         break;
     }
@@ -4854,7 +4868,7 @@ int GetIsTargetInAOEAtLocation(int nAOE, int nTargetType = SPELL_TARGET_SELECTIV
 
     if (fRadius == 0.0)
     {
-        Debug("[GetTargetInAOEAtLocation] AOE ref: " + IntToString(nAOE) + " has no radius set and this function only supports spheres right now.", ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[GetTargetInAOEAtLocation] AOE ref: " + IntToString(nAOE) + " has no radius set and this function only supports spheres right now.");
         return FALSE;
     }
     // Simplest way that also adheres to LOS checks
@@ -4898,7 +4912,11 @@ object GetGeneratedAOE(int nAOE)
 {
     string sTag = Get2DAString("vfx_persistent", "LABEL", nAOE);
 
-    if (sTag == "") Debug("[GetGeneratedAOE] nAOE has no Label: " + IntToString(nAOE), ERROR);
+    if (sTag == "")
+    {
+        if (DEBUG_LEVEL >= ERROR) Error("[GetGeneratedAOE] nAOE has no Label: " + IntToString(nAOE));
+        return OBJECT_INVALID;
+    }
 
     int nNth       = 0;
     object oTagged = GetObjectByTag(sTag, nNth);

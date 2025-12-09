@@ -37,35 +37,43 @@ void main()
     if (DoSpellHook()) return;
 
     // For single target spells just do their effects
-    if (nSpellId == SPELL_CLARITY)
+    switch (nSpellId)
     {
-        MindBlank(oTarget, TRUE, 5.0 + GetDuration(nCasterLevel, ROUNDS));
-    }
-    else if (nSpellId == SPELL_LESSER_MIND_BLANK)
-    {
-        MindBlank(oTarget, FALSE, GetDuration(nCasterLevel, MINUTES));
-    }
-    // For Mind Blank do an AOE version
-    else if (nSpellId == SPELL_MIND_BLANK)
-    {
-        ApplyVisualEffectAtLocation(VFX_FNF_LOS_NORMAL_20, lTarget);
-
-        json jArray = GetArrayOfTargets(SPELL_TARGET_ALLALLIES);
-        int nIndex;
-        for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
+        case SPELL_CLARITY:
         {
-            oTarget = GetArrayObject(jArray, nIndex);
-
-            SignalSpellCastAt();
-
-            float fDelay = GetDistanceBetweenLocations(lTarget, GetLocation(oTarget)) / 20;
-
-            DelayCommand(fDelay, MindBlank(oTarget, FALSE, GetDuration(nCasterLevel, MINUTES)));
+            MindBlank(oTarget, TRUE, 5.0 + GetDuration(nCasterLevel, ROUNDS));
         }
-    }
-    else
-    {
-        Debug("[Mind Blank Spell Script] Error: Invalid spell ID", ERROR);
+        break;
+        case SPELL_LESSER_MIND_BLANK:
+        {
+            MindBlank(oTarget, FALSE, GetDuration(nCasterLevel, MINUTES));
+        }
+        break;
+        case SPELL_MIND_BLANK:
+        {
+            // For Mind Blank do an AOE version
+            ApplyVisualEffectAtLocation(VFX_FNF_LOS_NORMAL_20, lTarget);
+
+            json jArray = GetArrayOfTargets(SPELL_TARGET_ALLALLIES);
+            int nIndex;
+            for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
+            {
+                oTarget = GetArrayObject(jArray, nIndex);
+
+                SignalSpellCastAt();
+
+                float fDelay = GetDistanceBetweenLocations(lTarget, GetLocation(oTarget)) / 20;
+
+                DelayCommand(fDelay, MindBlank(oTarget, FALSE, GetDuration(nCasterLevel, MINUTES)));
+            }
+        }
+        break;
+        default:
+        {
+            if (DEBUG_LEVEL >= ERROR) Error("No valid spell ID passed in: " + IntToString(nSpellId));
+            return;
+        }
+        break;
     }
 }
 

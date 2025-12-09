@@ -53,7 +53,7 @@ int GetRunScriptIllusionaryStrength(effect eRunScript);
 // Returns 0 if not found
 int GetRunScriptSpellSaveDC(effect eRunScript)
 {
-    if (GetEffectType(eRunScript) != EFFECT_TYPE_RUNSCRIPT) Debug("[GetRunScriptSpellSaveDC] eRunScript isn't Run Script type", ERROR);
+    if (DEBUG_LEVEL >= ERROR) if (GetEffectType(eRunScript) != EFFECT_TYPE_RUNSCRIPT) Error("[GetRunScriptSpellSaveDC] eRunScript isn't Run Script type");
     return GetJsonMetadataIntField(GetEffectString(eRunScript, 0), JSON_FIELD_SPELLSAVEDC, 0);
 }
 
@@ -61,7 +61,7 @@ int GetRunScriptSpellSaveDC(effect eRunScript)
 // Returns 0 if not found
 int GetRunScriptMetaMagic(effect eRunScript)
 {
-    if (GetEffectType(eRunScript) != EFFECT_TYPE_RUNSCRIPT) Debug("[GetRunScriptMetaMagic] eRunScript isn't Run Script type", ERROR);
+    if (DEBUG_LEVEL >= ERROR) if (GetEffectType(eRunScript) != EFFECT_TYPE_RUNSCRIPT) Error("[GetRunScriptMetaMagic] eRunScript isn't Run Script type");
     return GetJsonMetadataIntField(GetEffectString(eRunScript, 0), JSON_FIELD_METAMAGIC, 0);
 }
 
@@ -69,7 +69,7 @@ int GetRunScriptMetaMagic(effect eRunScript)
 // Returns CLASS_TYPE_INVALID if not found
 int GetRunScriptCasterClass(effect eRunScript)
 {
-    if (GetEffectType(eRunScript) != EFFECT_TYPE_RUNSCRIPT) Debug("[GetRunScriptCasterClass] eRunScript isn't Run Script type", ERROR);
+    if (DEBUG_LEVEL >= ERROR) if (GetEffectType(eRunScript) != EFFECT_TYPE_RUNSCRIPT) Error("[GetRunScriptCasterClass] eRunScript isn't Run Script type");
     return GetJsonMetadataIntField(GetEffectString(eRunScript, 0), JSON_FIELD_CASTERCLASS, CLASS_TYPE_INVALID);
 }
 
@@ -77,7 +77,7 @@ int GetRunScriptCasterClass(effect eRunScript)
 // Returns -1 if not found
 int GetRunScriptSpellLevel(effect eRunScript)
 {
-    if (GetEffectType(eRunScript) != EFFECT_TYPE_RUNSCRIPT) Debug("[GetRunScriptSpellLevel] eRunScript isn't Run Script type", ERROR);
+    if (DEBUG_LEVEL >= ERROR) if (GetEffectType(eRunScript) != EFFECT_TYPE_RUNSCRIPT) Error("[GetRunScriptSpellLevel] eRunScript isn't Run Script type");
     return GetJsonMetadataIntField(GetEffectString(eRunScript, 0), JSON_FIELD_SPELLLEVEL, -1);
 }
 
@@ -85,7 +85,7 @@ int GetRunScriptSpellLevel(effect eRunScript)
 // Returns 0 if not found
 int GetRunScriptSpontaneous(effect eRunScript)
 {
-    if (GetEffectType(eRunScript) != EFFECT_TYPE_RUNSCRIPT) Debug("[GetRunScriptSpontaneous] eRunScript isn't Run Script type", ERROR);
+    if (DEBUG_LEVEL >= ERROR) if (GetEffectType(eRunScript) != EFFECT_TYPE_RUNSCRIPT) Error("[GetRunScriptSpontaneous] eRunScript isn't Run Script type");
     return GetJsonMetadataIntField(GetEffectString(eRunScript, 0), JSON_FIELD_SPONTANEOUS, 0);
 }
 
@@ -93,7 +93,7 @@ int GetRunScriptSpontaneous(effect eRunScript)
 // Returns 0 if not found
 int GetRunScriptIllusionary(effect eRunScript)
 {
-    if (GetEffectType(eRunScript) != EFFECT_TYPE_RUNSCRIPT) Debug("[GetRunScriptIllusionary] eRunScript isn't Run Script type", ERROR);
+    if (DEBUG_LEVEL >= ERROR) if (GetEffectType(eRunScript) != EFFECT_TYPE_RUNSCRIPT) Error("[GetRunScriptIllusionary] eRunScript isn't Run Script type");
     return GetJsonMetadataIntField(GetEffectString(eRunScript, 0), JSON_FIELD_ILLUSIONARY, 0);
 }
 
@@ -101,6 +101,6 @@ int GetRunScriptIllusionary(effect eRunScript)
 // Returns 0 if not found
 int GetRunScriptIllusionaryStrength(effect eRunScript)
 {
-    if (GetEffectType(eRunScript) != EFFECT_TYPE_RUNSCRIPT) Debug("[GetRunScriptIllusionaryStrength] eRunScript isn't Run Script type", ERROR);
+    if (DEBUG_LEVEL >= ERROR) if (GetEffectType(eRunScript) != EFFECT_TYPE_RUNSCRIPT) Error("[GetRunScriptIllusionaryStrength] eRunScript isn't Run Script type");
     return GetJsonMetadataIntField(GetEffectString(eRunScript, 0), JSON_FIELD_ILLUSIONARYSTRENGTH, 0);
 }

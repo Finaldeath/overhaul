@@ -161,9 +161,11 @@ void main()
         }
         break;
         default:
-            Debug("[op_s_mirv] No valid spell ID passed in: " + IntToString(nSpellId));
+        {
+            if (DEBUG_LEVEL >= ERROR) Error("No valid spell ID passed in: " + IntToString(nSpellId));
             return;
-            break;
+        }
+        break;
     }
 
     int nTargetType = SPELL_TARGET_STANDARDHOSTILE;

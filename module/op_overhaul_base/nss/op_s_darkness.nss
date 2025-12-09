@@ -49,7 +49,7 @@ void main()
         // anything but Darkness.
         if (nSpellId != SPELL_DARKNESS)
         {
-            Debug("[op_s_darkness] Somehow this script was called without the Spell Id being SPELL_DARKNESS. nSpellId: " + IntToString(nSpellId), ERROR);
+            if (DEBUG_LEVEL >= WARNING) Warning("Somehow this script was called without the Spell Id being SPELL_DARKNESS. Setting to SPELL_DARKNESS. nSpellId: " + IntToString(nSpellId));
             nSpellId = SPELL_DARKNESS;
         }
         effect eAOE = EffectAreaOfEffect(AOE_PER_DARKNESS, GetScriptName(), GetScriptName(), GetScriptName());

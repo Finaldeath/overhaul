@@ -408,7 +408,7 @@ void main()
         break;
         default:
         {
-            Debug("[op_s_summon] No valid spell ID passed in: " + IntToString(nSpellId));
+            if (DEBUG_LEVEL >= ERROR) Error("No valid spell ID passed in: " + IntToString(nSpellId));
             return;
         }
         break;
@@ -437,7 +437,7 @@ void main()
     }
     else
     {
-        if (DEBUG_LEVEL >= ERROR) Debug("No valid summon effect generated.", ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("No valid summon effect generated.");
     }
 }
 
@@ -502,7 +502,11 @@ void CreateSummonWeapon(string sSummonResref, int nAttackBonus, float fDuration)
 
                 //Create item on the creature, epuip it and add properties.
                 object oWeapon = GetItemInSlot(INVENTORY_SLOT_RIGHTHAND, oBlade);
-                if (!GetIsObjectValid(oWeapon)) Debug("Error: Cannot find summon weapon on: " + GetName(oBlade), ERROR);
+                if (!GetIsObjectValid(oWeapon))
+                {
+                    if (DEBUG_LEVEL >= ERROR) Error("Error: Cannot find summon weapon on: " + GetName(oBlade));
+                    return;
+                }
                 SetDroppableFlag(oWeapon, FALSE);
 
                 if (nAttackBonus > 0)
@@ -515,7 +519,7 @@ void CreateSummonWeapon(string sSummonResref, int nAttackBonus, float fDuration)
     }
     else
     {
-        Debug("Error: Cannot create summon weapon.", ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("Cannot create summon weapon.");
     }
 }
 

@@ -79,20 +79,20 @@ int GetJsonMetadataIntField(string sJson, string sField, int nDefault = 0)
     // Any data?
     if (sJson == "")
     {
-        Debug("[GetJsonMetadataIntField] Error: No data input.", ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[GetJsonMetadataIntField] Error: No data input.");
         return nDefault;
     }
     json jObject = JsonParse(sJson);
 
     if (JsonGetType(jObject) == JSON_TYPE_NULL)
     {
-        Debug("[GetJsonMetadataIntField] No found valid Json. Error: " + JsonGetError(jObject), ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[GetJsonMetadataIntField] No found valid Json. Error: " + JsonGetError(jObject));
         return nDefault;
     }
     // Is it overhaul?
     if (JsonGetInt(JsonObjectGet(jObject, JSON_FIELD_OVERHAUL)) != OVERHAUL_VERSION)
     {
-        Debug("[GetJsonMetadataIntField] Json found but not Overhaul. Error: " + JsonGetError(jObject), ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[GetJsonMetadataIntField] Json found but not Overhaul. Error: " + JsonGetError(jObject));
         return nDefault;
     }
 
@@ -112,20 +112,20 @@ object GetJsonMetadataObjectField(string sJson, string sField)
     // Any data?
     if (sJson == "")
     {
-        Debug("[GetJsonMetadataObjectField] Error: No data input.", ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[GetJsonMetadataObjectField] Error: No data input.");
         return OBJECT_INVALID;
     }
     json jObject = JsonParse(sJson);
 
     if (JsonGetType(jObject) == JSON_TYPE_NULL)
     {
-        Debug("[GetJsonMetadataObjectField] No found valid Json. Error: " + JsonGetError(jObject), ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[GetJsonMetadataObjectField] No found valid Json. Error: " + JsonGetError(jObject));
         return OBJECT_INVALID;
     }
     // Is it overhaul?
     if (JsonGetInt(JsonObjectGet(jObject, JSON_FIELD_OVERHAUL)) != OVERHAUL_VERSION)
     {
-        Debug("[GetJsonMetadataObjectField] Json found but not Overhaul. Error: " + JsonGetError(jObject), ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[GetJsonMetadataObjectField] Json found but not Overhaul. Error: " + JsonGetError(jObject));
         return OBJECT_INVALID;
     }
 

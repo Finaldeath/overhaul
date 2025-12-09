@@ -51,7 +51,7 @@ void main()
 
         if (nCasterLevel == 0)
         {
-            if (DEBUG_LEVEL >= ERROR) Debug("[ERROR] Command the Horde no class levels in Eye of Gruumsh. Script called in error?");
+            if (DEBUG_LEVEL >= ERROR) Error("[ERROR] Command the Horde no class levels in Eye of Gruumsh. Script called in error?");
             return;
         }
 
@@ -89,7 +89,8 @@ void main()
     }
     else
     {
-        if (DEBUG_LEVEL >= ERROR) Debug("Error: Eye of Gruumsh script fired with incorrect spell");
+        if (DEBUG_LEVEL >= ERROR) Error("No valid spell ID passed in: " + IntToString(nSpellId));
+        return;
     }
 }
 

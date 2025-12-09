@@ -19,14 +19,14 @@ void main()
     // If this run script isn't the right one to run, we exit
     if (!GetItemTrackingIDMatches(GetLastRunScriptEffect()))
     {
-        Debug("[Run Script: Clean Item Properties] No longer current removal script, exiting.", INFO);
+        if (DEBUG_LEVEL >= INFO) Info("[Run Script: Clean Item Properties] No longer current removal script, exiting.");
         return;
     }
 
     if (nSpellId == -1 ||
         GetLastRunScriptEffectScriptType() != RUNSCRIPT_EFFECT_SCRIPT_TYPE_ON_REMOVED)
     {
-        Debug("[Run Script: Clean Item Properties] No spell Id or script not firing in On Removed slot.", ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[Run Script: Clean Item Properties] No spell Id or script not firing in On Removed slot.");
         return;
     }
 
@@ -35,7 +35,7 @@ void main()
 
     if (sTag == "")
     {
-        Debug("[Run Script: Clean Item Properties] No item data stored.", ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[Run Script: Clean Item Properties] No item data stored.");
         return;
     }
 
@@ -59,7 +59,8 @@ void main()
         }
         else
         {
-            // Error - object has been lost since spell was cast
+            // Info debug - object has been lost since spell was cast (logged out or destroyed)
+            if (DEBUG_LEVEL >= INFO) Info("[Run Script: Clean Item Properties] OID not found in module or not an item: " + sOID);
         }
     }
 }

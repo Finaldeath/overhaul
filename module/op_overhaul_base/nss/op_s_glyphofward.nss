@@ -30,7 +30,7 @@ void main()
 
         oTarget = GetEnteringObject();
 
-        if (DEBUG_LEVEL >= INFO) Debug("[INFO] Glyph of Warding. Entering object: " + GetName(oTarget));
+        if (DEBUG_LEVEL >= INFO) Info("Glyph of Warding. Entering object: " + GetName(oTarget));
 
         if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_SELECTIVEHOSTILE))
         {

@@ -55,6 +55,12 @@ void main()
             ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
         }
         break;
+        default:
+        {
+            if (DEBUG_LEVEL >= ERROR) Error("No valid spell ID passed in: " + IntToString(nSpellId));
+            return;
+        }
+        break;
     }
 }
 

@@ -41,6 +41,12 @@ void main()
             nHeal = GetMaxHitPoints(oTarget) + 10;
         }
         break;
+        default:
+        {
+            if (DEBUG_LEVEL >= ERROR) Error("No valid spell ID passed in: " + IntToString(nSpellId));
+            return;
+        }
+        break;
     }
 
     SignalSpellCastAt();

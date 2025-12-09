@@ -369,8 +369,10 @@ void main()
         }
         break;
         default:
-            Debug("[op_ip_general] No valid spell ID passed in: " + IntToString(nSpellId), ERROR);
+        {
+            if (DEBUG_LEVEL >= ERROR) Error("No valid spell ID passed in: " + IntToString(nSpellId));
             return;
+        }
         break;
     }
 }

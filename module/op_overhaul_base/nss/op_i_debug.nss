@@ -39,16 +39,57 @@ const string DEBUG_COLOUR_WARNING = "<c\xFF\x66\x01>";  // Orange
 const string DEBUG_COLOUR_INFO    = "<c\xFF\xFF\xFF>";  // White
 const string DEBUG_COLOUR_END     = "</c>";
 
+// Print sDebug if Info debug allowed. Automatically includes the script name.
+// Best usage: if (DEBUG_LEVEL >= ERROR) Error("Error");
+void Error(string sDebug);
+
+// Print sDebug if Info debug allowed. Automatically includes the script name.
+// Best usage: if (DEBUG_LEVEL >= WARNING) Warning("Warning");
+void Warning(string sDebug);
+
+// Print sDebug if Info debug allowed. Automatically includes the script name.
+// Best usage: if (DEBUG_LEVEL >= INFO) Info("Info");
+void Info(string sDebug);
+
 // Print sDebug in various places depending on the nDebugLevel
-void Debug(string sDebug, int nLogLevel = INFO);
+// * nDebugLevel - ERROR, WARNING or INFO
+void DebugString(string sDebug, int nLogLevel);
 
 // Debugs each nwscript visible effect on oObject
 void DebugEffects(object oObject);
 
-// Print sDebug in various places depending on the nDebugLevel
-void Debug(string sDebug, int nLogLevel = INFO)
+// Print sDebug if DEBUG_LEVEL >= ERROR
+void Error(string sDebug)
 {
-    if (nLogLevel <= DEBUG_LEVEL)
+    if (DEBUG_LEVEL >= ERROR)
+    {
+        DebugString(sDebug, ERROR);
+    }
+}
+
+// Print sDebug if DEBUG_LEVEL >= WARNING
+void Warning(string sDebug)
+{
+    if (DEBUG_LEVEL >= WARNING)
+    {
+        DebugString(sDebug, WARNING);
+    }
+}
+
+
+// Print sDebug if DEBUG_LEVEL >= INFO
+void Info(string sDebug)
+{
+    if (DEBUG_LEVEL >= INFO)
+    {
+        DebugString(sDebug, INFO);
+    }
+}
+
+// Print sDebug in various places depending on the nDebugLevel
+void DebugString(string sDebug, int nLogLevel)
+{
+    if (DEBUG_LEVEL >= nLogLevel)
     {
         // TODO:
         // These are useful to have but cannot be added as default parameters:
@@ -59,6 +100,13 @@ void Debug(string sDebug, int nLogLevel = INFO)
         // We'd need to recode all the Debug() calls to use these, to do later!
         // Note __FILENAME__ isn't needed since GetScriptName works fine.
         sDebug = "[" + GetScriptName() + "] " + sDebug;
+
+        switch (nLogLevel)
+        {
+            case ERROR: sDebug = "[ERROR] " + sDebug;
+            case WARNING: sDebug = "[WARNING] " + sDebug;
+            case INFO: sDebug = "[INFO] " + sDebug;
+        }
 
         WriteTimestampedLogEntry(sDebug);
 
@@ -192,88 +240,91 @@ string GetSubtypeName(int nSubtype)
 
 void DebugEffects(object oObject)
 {
-    int nCount;
-    object oCreator;
-    string sTag, sIntegersEtc;
-    vector vVector;
-
-    string sType = "Thing";
-    switch (GetObjectType(oObject))
+    if (DEBUG_LEVEL >= INFO)
     {
-        case OBJECT_TYPE_AREA_OF_EFFECT: sType = "Area of Effect"; break;
-        case OBJECT_TYPE_CREATURE: sType = "Creature"; break;
-        case OBJECT_TYPE_DOOR: sType = "Door"; break;
-        case OBJECT_TYPE_ENCOUNTER: sType = "Encounter"; break;
-        case OBJECT_TYPE_ITEM: sType = "Item"; break;
-        case OBJECT_TYPE_PLACEABLE: sType = "Placeable"; break;
-        case OBJECT_TYPE_STORE: sType = "Store"; break;
-        case OBJECT_TYPE_TRIGGER: sType = "Trigger"; break;
-        case OBJECT_TYPE_WAYPOINT: sType = "Waypoint"; break;
-    }
+        int nCount;
+        object oCreator;
+        string sTag, sIntegersEtc;
+        vector vVector;
 
-    Debug("[DebugEffects] " + sType + " name: " + GetName(oObject) + " tag: [" + GetTag(oObject) + "] OID: [" + ObjectToString(oObject) + "]");
-
-    // Report on all effects
-    effect eEffect = GetFirstEffect(oObject);
-    while (GetIsEffectValid(eEffect))
-    {
-        nCount++;
-
-        string sDebug = "No. [" + IntToString(nCount) + "]" +
-                        " Type [" + GetReadableEffectType(GetEffectType(eEffect, TRUE)) + "]" +
-                        " Creator [" + GetName(GetEffectCreator(eEffect)) + "|" + ObjectToString(GetEffectCreator(eEffect)) + "]" +
-                        " Subtype [" + GetSubtypeName(GetEffectSubType(eEffect)) + "]" +
-                        " Duration Type [" + IntToString(GetEffectDurationType(eEffect)) + "]";
-
-        if (GetEffectDurationType(eEffect) == DURATION_TYPE_TEMPORARY)
+        string sType = "Thing";
+        switch (GetObjectType(oObject))
         {
-            sDebug += " Duration [" + IntToString(GetEffectDuration(eEffect)) + "]" +
-                      " Duration Remaining [" + IntToString(GetEffectDurationRemaining(eEffect)) + "]";
+            case OBJECT_TYPE_AREA_OF_EFFECT: sType = "Area of Effect"; break;
+            case OBJECT_TYPE_CREATURE: sType = "Creature"; break;
+            case OBJECT_TYPE_DOOR: sType = "Door"; break;
+            case OBJECT_TYPE_ENCOUNTER: sType = "Encounter"; break;
+            case OBJECT_TYPE_ITEM: sType = "Item"; break;
+            case OBJECT_TYPE_PLACEABLE: sType = "Placeable"; break;
+            case OBJECT_TYPE_STORE: sType = "Store"; break;
+            case OBJECT_TYPE_TRIGGER: sType = "Trigger"; break;
+            case OBJECT_TYPE_WAYPOINT: sType = "Waypoint"; break;
         }
 
-        sDebug += " SpellId [" + IntToString(GetEffectSpellId(eEffect)) + "]" +
-                  " CL [" + IntToString(GetEffectCasterLevel(eEffect)) + "]";
+        Info("[DebugEffects] " + sType + " name: " + GetName(oObject) + " tag: [" + GetTag(oObject) + "] OID: [" + ObjectToString(oObject) + "]");
 
-        if (GetEffectTag(eEffect) != "")
+        // Report on all effects
+        effect eEffect = GetFirstEffect(oObject);
+        while (GetIsEffectValid(eEffect))
         {
-            sDebug += " Tag [" + GetEffectTag(eEffect) + "]";
+            nCount++;
+
+            string sDebug = "No. [" + IntToString(nCount) + "]" +
+                            " Type [" + GetReadableEffectType(GetEffectType(eEffect, TRUE)) + "]" +
+                            " Creator [" + GetName(GetEffectCreator(eEffect)) + "|" + ObjectToString(GetEffectCreator(eEffect)) + "]" +
+                            " Subtype [" + GetSubtypeName(GetEffectSubType(eEffect)) + "]" +
+                            " Duration Type [" + IntToString(GetEffectDurationType(eEffect)) + "]";
+
+            if (GetEffectDurationType(eEffect) == DURATION_TYPE_TEMPORARY)
+            {
+                sDebug += " Duration [" + IntToString(GetEffectDuration(eEffect)) + "]" +
+                          " Duration Remaining [" + IntToString(GetEffectDurationRemaining(eEffect)) + "]";
+            }
+
+            sDebug += " SpellId [" + IntToString(GetEffectSpellId(eEffect)) + "]" +
+                      " CL [" + IntToString(GetEffectCasterLevel(eEffect)) + "]";
+
+            if (GetEffectTag(eEffect) != "")
+            {
+                sDebug += " Tag [" + GetEffectTag(eEffect) + "]";
+            }
+
+            if (GetEffectInteger(eEffect, 0)) sDebug += " int0 [" + IntToString(GetEffectInteger(eEffect, 0)) + "]";
+            if (GetEffectInteger(eEffect, 1)) sDebug += " int1 [" + IntToString(GetEffectInteger(eEffect, 1)) + "]";
+            if (GetEffectInteger(eEffect, 2)) sDebug += " int2 [" + IntToString(GetEffectInteger(eEffect, 2)) + "]";
+            if (GetEffectInteger(eEffect, 3)) sDebug += " int3 [" + IntToString(GetEffectInteger(eEffect, 3)) + "]";
+            if (GetEffectInteger(eEffect, 4)) sDebug += " int4 [" + IntToString(GetEffectInteger(eEffect, 4)) + "]";
+            if (GetEffectInteger(eEffect, 5)) sDebug += " int5 [" + IntToString(GetEffectInteger(eEffect, 5)) + "]";
+            if (GetEffectInteger(eEffect, 6)) sDebug += " int6 [" + IntToString(GetEffectInteger(eEffect, 6)) + "]";
+            if (GetEffectInteger(eEffect, 7)) sDebug += " int7 [" + IntToString(GetEffectInteger(eEffect, 7)) + "]";
+            if (GetEffectInteger(eEffect, 8)) sDebug += " int8 [" + IntToString(GetEffectInteger(eEffect, 8)) + "]";
+            if (GetEffectInteger(eEffect, 9)) sDebug += " int9 [" + IntToString(GetEffectInteger(eEffect, 9)) + "]";
+            if (GetEffectInteger(eEffect, 10)) sDebug += " int10 [" + IntToString(GetEffectInteger(eEffect, 10)) + "]";
+            if (GetEffectInteger(eEffect, 11)) sDebug += " int11 [" + IntToString(GetEffectInteger(eEffect, 11)) + "]";
+            if (GetEffectInteger(eEffect, 12)) sDebug += " int12 [" + IntToString(GetEffectInteger(eEffect, 12)) + "]";
+            if (GetEffectInteger(eEffect, 13)) sDebug += " int13 [" + IntToString(GetEffectInteger(eEffect, 13)) + "]";
+            if (GetEffectInteger(eEffect, 14)) sDebug += " int14 [" + IntToString(GetEffectInteger(eEffect, 14)) + "]";
+            if (GetEffectInteger(eEffect, 15)) sDebug += " int15 [" + IntToString(GetEffectInteger(eEffect, 15)) + "]";
+            if (GetEffectInteger(eEffect, 16)) sDebug += " int16 [" + IntToString(GetEffectInteger(eEffect, 16)) + "]";
+
+            if (ObjectToString(GetEffectObject(eEffect, 0)) != "") sDebug += " obj0 [" + GetName(GetEffectObject(eEffect, 0)) + "|" + ObjectToString(GetEffectObject(eEffect, 0)) + "]";
+            if (GetIsObjectValid(GetEffectObject(eEffect, 1))) sDebug += " obj1 [" + GetName(GetEffectObject(eEffect, 1)) + "]";
+            if (GetIsObjectValid(GetEffectObject(eEffect, 2))) sDebug += " obj2 [" + GetName(GetEffectObject(eEffect, 2)) + "]";
+            if (GetIsObjectValid(GetEffectObject(eEffect, 3))) sDebug += " obj3 [" + GetName(GetEffectObject(eEffect, 3)) + "]";
+
+            if (GetEffectFloat(eEffect, 0) != 0.0) sDebug += " flt0 [" + FloatToString(GetEffectFloat(eEffect, 0)) + "]";
+            if (GetEffectFloat(eEffect, 1) != 0.0) sDebug += " flt1 [" + FloatToString(GetEffectFloat(eEffect, 1)) + "]";
+            if (GetEffectFloat(eEffect, 2) != 0.0) sDebug += " flt2 [" + FloatToString(GetEffectFloat(eEffect, 2)) + "]";
+            if (GetEffectFloat(eEffect, 3) != 0.0) sDebug += " flt3 [" + FloatToString(GetEffectFloat(eEffect, 3)) + "]";
+
+            vector vVector = GetEffectVector(eEffect, 0);
+            if (vVector.x != 0.0 || vVector.y != 0.0 || vVector.z != 0.0) sDebug += " vec0 [" + FloatToString(vVector.x) + "|" + FloatToString(vVector.y) + "|" + FloatToString(vVector.z) + "]";
+            vVector = GetEffectVector(eEffect, 1);
+            if (vVector.x != 0.0 || vVector.y != 0.0 || vVector.z != 0.0) sDebug += " vec1 [" + FloatToString(vVector.x) + "|" + FloatToString(vVector.y) + "|" + FloatToString(vVector.z) + "]";
+
+            Info(sDebug);
+
+            eEffect = GetNextEffect(oObject);
         }
-
-        if (GetEffectInteger(eEffect, 0)) sDebug += " int0 [" + IntToString(GetEffectInteger(eEffect, 0)) + "]";
-        if (GetEffectInteger(eEffect, 1)) sDebug += " int1 [" + IntToString(GetEffectInteger(eEffect, 1)) + "]";
-        if (GetEffectInteger(eEffect, 2)) sDebug += " int2 [" + IntToString(GetEffectInteger(eEffect, 2)) + "]";
-        if (GetEffectInteger(eEffect, 3)) sDebug += " int3 [" + IntToString(GetEffectInteger(eEffect, 3)) + "]";
-        if (GetEffectInteger(eEffect, 4)) sDebug += " int4 [" + IntToString(GetEffectInteger(eEffect, 4)) + "]";
-        if (GetEffectInteger(eEffect, 5)) sDebug += " int5 [" + IntToString(GetEffectInteger(eEffect, 5)) + "]";
-        if (GetEffectInteger(eEffect, 6)) sDebug += " int6 [" + IntToString(GetEffectInteger(eEffect, 6)) + "]";
-        if (GetEffectInteger(eEffect, 7)) sDebug += " int7 [" + IntToString(GetEffectInteger(eEffect, 7)) + "]";
-        if (GetEffectInteger(eEffect, 8)) sDebug += " int8 [" + IntToString(GetEffectInteger(eEffect, 8)) + "]";
-        if (GetEffectInteger(eEffect, 9)) sDebug += " int9 [" + IntToString(GetEffectInteger(eEffect, 9)) + "]";
-        if (GetEffectInteger(eEffect, 10)) sDebug += " int10 [" + IntToString(GetEffectInteger(eEffect, 10)) + "]";
-        if (GetEffectInteger(eEffect, 11)) sDebug += " int11 [" + IntToString(GetEffectInteger(eEffect, 11)) + "]";
-        if (GetEffectInteger(eEffect, 12)) sDebug += " int12 [" + IntToString(GetEffectInteger(eEffect, 12)) + "]";
-        if (GetEffectInteger(eEffect, 13)) sDebug += " int13 [" + IntToString(GetEffectInteger(eEffect, 13)) + "]";
-        if (GetEffectInteger(eEffect, 14)) sDebug += " int14 [" + IntToString(GetEffectInteger(eEffect, 14)) + "]";
-        if (GetEffectInteger(eEffect, 15)) sDebug += " int15 [" + IntToString(GetEffectInteger(eEffect, 15)) + "]";
-        if (GetEffectInteger(eEffect, 16)) sDebug += " int16 [" + IntToString(GetEffectInteger(eEffect, 16)) + "]";
-
-        if (ObjectToString(GetEffectObject(eEffect, 0)) != "") sDebug += " obj0 [" + GetName(GetEffectObject(eEffect, 0)) + "|" + ObjectToString(GetEffectObject(eEffect, 0)) + "]";
-        if (GetIsObjectValid(GetEffectObject(eEffect, 1))) sDebug += " obj1 [" + GetName(GetEffectObject(eEffect, 1)) + "]";
-        if (GetIsObjectValid(GetEffectObject(eEffect, 2))) sDebug += " obj2 [" + GetName(GetEffectObject(eEffect, 2)) + "]";
-        if (GetIsObjectValid(GetEffectObject(eEffect, 3))) sDebug += " obj3 [" + GetName(GetEffectObject(eEffect, 3)) + "]";
-
-        if (GetEffectFloat(eEffect, 0) != 0.0) sDebug += " flt0 [" + FloatToString(GetEffectFloat(eEffect, 0)) + "]";
-        if (GetEffectFloat(eEffect, 1) != 0.0) sDebug += " flt1 [" + FloatToString(GetEffectFloat(eEffect, 1)) + "]";
-        if (GetEffectFloat(eEffect, 2) != 0.0) sDebug += " flt2 [" + FloatToString(GetEffectFloat(eEffect, 2)) + "]";
-        if (GetEffectFloat(eEffect, 3) != 0.0) sDebug += " flt3 [" + FloatToString(GetEffectFloat(eEffect, 3)) + "]";
-
-        vector vVector = GetEffectVector(eEffect, 0);
-        if (vVector.x != 0.0 || vVector.y != 0.0 || vVector.z != 0.0) sDebug += " vec0 [" + FloatToString(vVector.x) + "|" + FloatToString(vVector.y) + "|" + FloatToString(vVector.z) + "]";
-        vVector = GetEffectVector(eEffect, 1);
-        if (vVector.x != 0.0 || vVector.y != 0.0 || vVector.z != 0.0) sDebug += " vec1 [" + FloatToString(vVector.x) + "|" + FloatToString(vVector.y) + "|" + FloatToString(vVector.z) + "]";
-
-        Debug(sDebug);
-
-        eEffect = GetNextEffect(oObject);
     }
 }

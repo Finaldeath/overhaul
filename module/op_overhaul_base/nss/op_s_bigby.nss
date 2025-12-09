@@ -139,7 +139,7 @@ void DoSpellEffects(int bInitial = FALSE)
         break;
         default:
         {
-            Debug("[op_s_damage] No valid spell ID passed in: " + IntToString(nSpellId));
+            if (DEBUG_LEVEL >= ERROR) Error("No valid spell ID passed in: " + IntToString(nSpellId));
             return;
         }
         break;
@@ -231,7 +231,7 @@ void PerRoundImpact(int bSaveResult)
         break;
         default:
         {
-            Debug("[op_s_bigby] No valid spell ID passed into PerRoundImpact: " + IntToString(nSpellId));
+            if (DEBUG_LEVEL >= ERROR) Error("No valid spell ID passed into PerRoundImpact: " + IntToString(nSpellId));
             return;
         }
         break;

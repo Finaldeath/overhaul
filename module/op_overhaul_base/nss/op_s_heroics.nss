@@ -50,7 +50,7 @@ void main()
 
     if (JsonGetLength(jFeatArray) == 0)
     {
-        Debug("Heroics: ERROR: Invalid spell ID or something?", ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("Heroics: ERROR: Invalid spell ID or something?");
         ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(VFX_FNF_SPELL_FAIL_HAND), oCaster);
         return;
     }

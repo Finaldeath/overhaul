@@ -119,7 +119,7 @@ void main()
             break;
             default:
             {
-                if (DEBUG_LEVEL >= ERROR) Debug("[op_s_protection] No valid spell ID passed in: " + IntToString(nSpellId), ERROR);
+                if (DEBUG_LEVEL >= ERROR) Error("No valid spell ID passed in: " + IntToString(nSpellId));
                 return;
             }
             break;
@@ -189,7 +189,7 @@ int GetAlignmentFromSpell(int nSpellId)
         break;
         default:
         {
-            if (DEBUG_LEVEL >= ERROR) Debug("[op_s_protection] No valid spell ID passed in: " + IntToString(nSpellId), ERROR);
+            if (DEBUG_LEVEL >= ERROR) Error("GetAlignmentFromSpell: No valid spell ID passed in: " + IntToString(nSpellId));
             return -1;
         }
         break;

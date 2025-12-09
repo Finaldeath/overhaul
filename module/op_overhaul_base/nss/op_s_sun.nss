@@ -47,13 +47,16 @@ void main()
     switch (nSpellId)
     {
         case SPELL_SUNBEAM:
+        {
             nDamageDice = min(20, nCasterLevel);
             nSecondDice = 3;
             nTargetType = SPELL_TARGET_STANDARDHOSTILE;
             nSortMethod = SORT_METHOD_DISTANCE_TO_CASTER;
             nObjectType = OBJECT_TYPE_CREATURE;
-            break;
+        }
+        break;
         case SPELL_SUNBURST:
+        {
             nBeam = VFX_NONE;
             nGroundVis = VFX_IMP_DIVINE_STRIKE_FIRE; // Could use a new VFX tbh.
             nImpact = VFX_FNF_LOS_HOLY_30;
@@ -63,11 +66,14 @@ void main()
             nTargetType = SPELL_TARGET_STANDARDHOSTILE;
             nSortMethod = SORT_METHOD_DISTANCE;
             nObjectType = OBJECT_TYPE_CREATURE;
-            break;
+        }
+        break;
         default:
-            Debug("[op_s_sun] No valid spell ID passed in: " + IntToString(nSpellId));
+        {
+            if (DEBUG_LEVEL >= ERROR) Error("No valid spell ID passed in: " + IntToString(nSpellId));
             return;
-            break;
+        }
+        break;
     }
 
     float fDelay = 0.0;

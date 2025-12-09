@@ -50,7 +50,7 @@ void main()
         }
         else
         {
-            Debug("[op_s_vinemine] OnEnter invalid spell ID: " + IntToString(nSpellId));
+            if (DEBUG_LEVEL >= ERROR) Error("OnEnter invalid spell ID: " + IntToString(nSpellId));
         }
     }
     else if (GetCurrentlyRunningEvent() == EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_EXIT)
@@ -80,7 +80,7 @@ void main()
             break;
             default:
             {
-                Debug("[op_s_vinemine] No valid spell ID passed in: " + IntToString(nSpellId));
+                if (DEBUG_LEVEL >= ERROR) Error("No valid spell ID passed in: " + IntToString(nSpellId));
                 return;
             }
             break;

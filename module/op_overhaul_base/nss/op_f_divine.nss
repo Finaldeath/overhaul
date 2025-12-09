@@ -118,7 +118,7 @@ void main()
         break;
         default:
         {
-            if (DEBUG_LEVEL >= ERROR) Debug("Invalid spell Id", ERROR);
+            if (DEBUG_LEVEL >= ERROR) Error("No valid spell ID passed in: " + IntToString(nSpellId));
             return;
         }
         break;

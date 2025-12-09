@@ -263,7 +263,7 @@ void main()
         break;
         default:
         {
-            if (DEBUG_LEVEL >= ERROR) Debug("[op_a_cone] No valid spell ID passed in: " + IntToString(nSpellId), ERROR);
+            if (DEBUG_LEVEL >= ERROR) Error("No valid spell ID passed in: " + IntToString(nSpellId));
             return;
         }
         break;

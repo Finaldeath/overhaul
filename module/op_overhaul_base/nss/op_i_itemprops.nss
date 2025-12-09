@@ -147,28 +147,31 @@ void CopyItemPropertiesPolymorph(object oOld, object oNew, int bWeapon = FALSE);
 // Debugs the given item and it's properties
 void DebugItemProperties(object oItem)
 {
-    Debug("Debugging item properties of: " + GetName(oItem));
-    itemproperty ipCheck = GetFirstItemProperty(oItem);
-    int nCount           = 1;
-    while (GetIsItemPropertyValid(ipCheck))
+    if (DEBUG_LEVEL >= INFO)
     {
-        string sDebug = "  Item Property [" + IntToString(nCount) +
-                        "] Name: [" + ItemPropertyToString(ipCheck) +
-                        "] Tag: [" + GetItemPropertyTag(ipCheck) +
-                        "] Uses remaining: [" + IntToString(GetItemPropertyUsesPerDayRemaining(oItem, ipCheck)) +
-                        "] Duration: [" + GetItemPropertyDurationString(ipCheck) +
-                        // Stuff that may not be set for now debug default values
-                        "] Spell Id: [" + IntToString(GetItemPropertySpellId(ipCheck)) +
-                        "] Creator: [" + GetName(GetItemPropertyCreator(ipCheck)) +
-                        "] Caster Level: [" + IntToString(GetItemPropertyCasterLevel(ipCheck)) +
-                        "] Spell Save DC: [" + IntToString(GetItemPropertySpellSaveDC(ipCheck)) +
-                        "] Meta Magic: [" + IntToString(GetItemPropertyMetaMagic(ipCheck)) +
-                        "] Dispellable: [" + IntToString(GetItemPropertyDispellable(ipCheck)) +
-                        "]";
+        Info("Debugging item properties of: " + GetName(oItem));
+        itemproperty ipCheck = GetFirstItemProperty(oItem);
+        int nCount           = 1;
+        while (GetIsItemPropertyValid(ipCheck))
+        {
+            string sDebug = "  Item Property [" + IntToString(nCount) +
+                            "] Name: [" + ItemPropertyToString(ipCheck) +
+                            "] Tag: [" + GetItemPropertyTag(ipCheck) +
+                            "] Uses remaining: [" + IntToString(GetItemPropertyUsesPerDayRemaining(oItem, ipCheck)) +
+                            "] Duration: [" + GetItemPropertyDurationString(ipCheck) +
+                            // Stuff that may not be set for now debug default values
+                            "] Spell Id: [" + IntToString(GetItemPropertySpellId(ipCheck)) +
+                            "] Creator: [" + GetName(GetItemPropertyCreator(ipCheck)) +
+                            "] Caster Level: [" + IntToString(GetItemPropertyCasterLevel(ipCheck)) +
+                            "] Spell Save DC: [" + IntToString(GetItemPropertySpellSaveDC(ipCheck)) +
+                            "] Meta Magic: [" + IntToString(GetItemPropertyMetaMagic(ipCheck)) +
+                            "] Dispellable: [" + IntToString(GetItemPropertyDispellable(ipCheck)) +
+                            "]";
 
-        Debug(sDebug);
-        nCount++;
-        ipCheck = GetNextItemProperty(oItem);
+            Info(sDebug);
+            nCount++;
+            ipCheck = GetNextItemProperty(oItem);
+        }
     }
 }
 
@@ -208,12 +211,12 @@ int ApplySafeItemProperty(object oItem, itemproperty ipProperty, float fDuration
     // Error checking
     if (!GetIsItemPropertyValid(ipProperty))
     {
-        Debug("[ApplySafeItemProperty] Invalid input item property.");
+        if (DEBUG_LEVEL >= ERROR) Error("[ApplySafeItemProperty] Invalid input item property.");
         return FALSE;
     }
     if (fDuration <= 0.0)
     {
-        Debug("[ApplySafeItemProperty] Invalid fDuration: " + FloatToString(fDuration));
+        if (DEBUG_LEVEL >= ERROR) Error("[ApplySafeItemProperty] Invalid fDuration: " + FloatToString(fDuration));
         return FALSE;
     }
 
@@ -601,7 +604,7 @@ int DispelMagicalItemProperties(object oItem, object oCaster, int nCasterLevel, 
 
                 if (!GetIsObjectValid(oItem))
                 {
-                    Debug("[DispelMagicalItemProperties] No valid creature weapons but want to dispel them? oPossessor: " + GetName(oPossessor));
+                    if (DEBUG_LEVEL >= ERROR) Error("[DispelMagicalItemProperties] No valid creature weapons but want to dispel them? oPossessor: " + GetName(oPossessor));
                     return 0;
                 }
             }
@@ -721,7 +724,7 @@ itemproperty ApplyItemPropertyTaggedInfo(itemproperty ipProperty, int nSpellId, 
     jObject = JsonObjectSet(jObject, JSON_FIELD_METAMAGIC, JsonInt(nMetaMagic));
     jObject = JsonObjectSet(jObject, JSON_FIELD_DISPELLABLE, JsonInt(bDispellable));
 
-    Debug("[ApplyItemPropertyTaggedInfo] Setting JSON:" + JsonDump(jObject));
+    if (DEBUG_LEVEL >= INFO) Info("[ApplyItemPropertyTaggedInfo] Setting JSON:" + JsonDump(jObject));
 
     return TagItemProperty(ipProperty, JsonDump(jObject));
 }
@@ -741,13 +744,13 @@ int GetItemPropertyTaggedIntField(itemproperty ipProperty, string sField, int nD
 
     if (JsonGetType(jObject) == JSON_TYPE_NULL)
     {
-        Debug("[GetItemPropertyTaggedIntField] No found valid Json. Error: " + JsonGetError(jObject), ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[GetItemPropertyTaggedIntField] No found valid Json. Error: " + JsonGetError(jObject));
         return nDefault;
     }
     // Is it overhaul?
     if (JsonGetInt(JsonObjectGet(jObject, JSON_FIELD_OVERHAUL)) != OVERHAUL_VERSION)
     {
-        Debug("[GetItemPropertyTaggedIntField] Json found but not Overhaul. Error: " + JsonGetError(jObject), ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[GetItemPropertyTaggedIntField] Json found but not Overhaul. Error: " + JsonGetError(jObject));
         return nDefault;
     }
 
@@ -774,13 +777,13 @@ object GetItemPropertyTaggedObjectField(itemproperty ipProperty, string sField)
 
     if (JsonGetType(jObject) == JSON_TYPE_NULL)
     {
-        Debug("[GetItemPropertyTaggedObjectField] No found valid Json. Error: " + JsonGetError(jObject), ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[GetItemPropertyTaggedObjectField] No found valid Json. Error: " + JsonGetError(jObject));
         return OBJECT_INVALID;
     }
     // Is it overhaul?
     if (JsonGetInt(JsonObjectGet(jObject, JSON_FIELD_OVERHAUL)) != OVERHAUL_VERSION)
     {
-        Debug("[GetItemPropertyTaggedObjectField] Json found but not Overhaul. Error: " + JsonGetError(jObject), ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("[GetItemPropertyTaggedObjectField] Json found but not Overhaul. Error: " + JsonGetError(jObject));
         return OBJECT_INVALID;
     }
 
@@ -859,7 +862,7 @@ int GetItemPropertyDamageBonusConstant(int nBonus)
         case 10: return IP_CONST_DAMAGEBONUS_10; break;
     }
     // Default/error
-    Debug("[GetItemPropertyDamageBonusConstant] nBonus value: " + IntToString(nBonus) + " not matching constants, returning 1.", ERROR);
+    if (DEBUG_LEVEL >= ERROR) Error("[GetItemPropertyDamageBonusConstant] nBonus value: " + IntToString(nBonus) + " not matching constants, returning 1.");
     return IP_CONST_DAMAGEBONUS_1;
 }
 
@@ -884,7 +887,6 @@ void CopyItemPropertiesPolymorph(object oOld, object oNew, int bWeapon = FALSE)
                     AddItemProperty(DURATION_TYPE_PERMANENT,ip,oNew);
             }
             ip = GetNextItemProperty(oOld);
-
         }
     }
 }

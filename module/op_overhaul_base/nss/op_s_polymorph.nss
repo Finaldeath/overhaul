@@ -115,7 +115,7 @@ void main()
         case SPELLABILITY_CONSTRUCT_SHAPE_STONE_GOLEM:      nPoly = POLYMORPH_TYPE_STONE_GOLEM; break;
         default:
         {
-            Debug("No valid spell ID passed in: " + IntToString(nSpellId));
+            if (DEBUG_LEVEL >= ERROR) Error("No valid spell ID passed in: " + IntToString(nSpellId));
             return;
         }
         break;

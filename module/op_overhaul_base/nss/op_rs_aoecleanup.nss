@@ -28,6 +28,6 @@ void main()
     }
     else
     {
-        Debug("[op_rs_aoecleanup] This run script event shouldn't happen: " + IntToString(GetLastRunScriptEffectScriptType()), ERROR);
+        if (DEBUG_LEVEL >= ERROR) Error("This run script event shouldn't happen: " + IntToString(GetLastRunScriptEffectScriptType()));
     }
 }

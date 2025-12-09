@@ -26,7 +26,7 @@ void main()
 
         oTarget = GetEnteringObject();
 
-        if (DEBUG_LEVEL >= INFO) Debug("[INFO] Delayed Fireball Blast. Entering object: " + GetName(oTarget));
+        if (DEBUG_LEVEL >= INFO) Info("Delayed Fireball Blast. Entering object: " + GetName(oTarget));
 
         if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_SELECTIVEHOSTILE))
         {
@@ -56,7 +56,7 @@ void main()
             case SPELL_DELAYED_BLAST_FIREBALL_5_ROUNDS: nMaxCount = 5; break;
         }
 
-        if (DEBUG_LEVEL >= INFO) Debug("[INFO] Delayed Fireball Blast. Heartbeat. Count: " + IntToString(nCount) + " Max Count: " + IntToString(nMaxCount));
+        if (DEBUG_LEVEL >= INFO) Info("Delayed Fireball Blast. Heartbeat. Count: " + IntToString(nCount) + " Max Count: " + IntToString(nMaxCount));
 
         if (nCount >= nMaxCount)
         {
@@ -91,7 +91,7 @@ void main()
             case SPELL_DELAYED_BLAST_FIREBALL_5_ROUNDS: fDuration = 30.0; break;
             default:
             {
-                if (DEBUG_LEVEL >= ERROR) Debug("[ERROR] Delayed Blast Fireball: Invalid subspell selected.", ERROR);
+                if (DEBUG_LEVEL >= ERROR) Error("[ERROR] Delayed Blast Fireball: Invalid subspell selected.");
                 return;
             }
             break;

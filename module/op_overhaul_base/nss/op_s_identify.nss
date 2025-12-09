@@ -116,6 +116,11 @@ void main()
             }
         }
     }
+    else
+    {
+        if (DEBUG_LEVEL >= ERROR) Error("No valid spell ID passed in: " + IntToString(nSpellId));
+        return;
+    }
     // Failure state
     if (nSpellId == SPELL_READ_MAGIC)
     {

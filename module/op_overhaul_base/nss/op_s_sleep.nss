@@ -25,16 +25,20 @@ void main()
     switch (nSpellId)
     {
         case SPELL_SLEEP:
+        {
             nImpact   = VFX_FNF_LOS_NORMAL_20;
             nVis      = VFX_IMP_SLEEP;
             nHDLimit  = 4;
             nHDPool   = GetDiceRoll(1, 4, 4);
             nDuration = nCasterLevel + 5;
-            break;
+        }
+        break;
         default:
-            Debug("[Sleep op_s_sleep] No valid spell ID passed in: " + IntToString(nSpellId));
+        {
+            if (DEBUG_LEVEL >= ERROR) Error("No valid spell ID passed in: " + IntToString(nSpellId));
             return;
-            break;
+        }
+        break;
     }
 
     ApplyVisualEffectAtLocation(nImpact, lTarget);

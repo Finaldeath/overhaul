@@ -138,9 +138,11 @@ void main()
         }
         break;
         default:
-            Debug("[Cure Wounds op_s_curewounds] No valid spell ID passed in: " + IntToString(nSpellId));
+        {
+            if (DEBUG_LEVEL >= ERROR) Error("No valid spell ID passed in: " + IntToString(nSpellId));
             return;
-            break;
+        }
+        break;
     }
 
     if (GetSpellIsAreaOfEffect(nSpellId))

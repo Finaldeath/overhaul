@@ -60,6 +60,12 @@ void main()
             nImmunity2 = IMMUNITY_TYPE_NONE;
         }
         break;
+        default:
+        {
+            if (DEBUG_LEVEL >= ERROR) Error("No valid spell ID passed in: " + IntToString(nSpellId));
+            return;
+        }
+        break;
     }
 
     ApplyVisualEffectAtLocation(nImpact, lTarget);

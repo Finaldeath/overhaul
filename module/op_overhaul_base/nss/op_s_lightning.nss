@@ -38,29 +38,37 @@ void main()
     switch (nSpellId)
     {
         case SPELL_CHAIN_LIGHTNING:
+        {
             nDamageDice = min(10, nCasterLevel / 2);
             nTargetType = SPELL_TARGET_SELECTIVEHOSTILE;
             nSortMethod = SORT_METHOD_RANDOM;
             nObjectType = OBJECT_TYPE_CREATURE;
             nMaxTargets = nCasterLevel;
-            break;
+        }
+        break;
         case SPELL_LIGHTNING_BOLT:
+        {
             nDamageDice = min(10, nCasterLevel);
             nTargetType = SPELL_TARGET_STANDARDHOSTILE;
             nSortMethod = SORT_METHOD_DISTANCE_TO_CASTER;
             nObjectType = OBJECT_TYPE_CREATURE | OBJECT_TYPE_DOOR | OBJECT_TYPE_PLACEABLE;
-            break;
+        }
+        break;
         case SPELL_GEDLEES_ELECTRIC_LOOP:
+        {
             nDamageDice = clamp(nCasterLevel/2, 1, 5);
             nTargetType = SPELL_TARGET_SELECTIVEHOSTILE;
             nSortMethod = SORT_METHOD_RANDOM;
             nObjectType = OBJECT_TYPE_CREATURE;
             bExtraStun  = TRUE;
-            break;
+        }
+        break;
         default:
-            Debug("[op_s_lightning] No valid spell ID passed in: " + IntToString(nSpellId));
+        {
+            if (DEBUG_LEVEL >= ERROR) Error("No valid spell ID passed in: " + IntToString(nSpellId));
             return;
-            break;
+        }
+        break;
     }
 
     float fDelay = 0.0;

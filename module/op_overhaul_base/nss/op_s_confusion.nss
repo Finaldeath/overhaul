@@ -29,9 +29,11 @@ void main()
             bDelayRandom = TRUE;
             break;
         default:
-            Debug("[Confusion op_s_confusion] No valid spell ID passed in: " + IntToString(nSpellId));
+        {
+            if (DEBUG_LEVEL >= ERROR) Error("No valid spell ID passed in: " + IntToString(nSpellId));
             return;
-            break;
+        }
+        break;
     }
 
     ApplyVisualEffectAtLocation(nImpact, lTarget);

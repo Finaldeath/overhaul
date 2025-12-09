@@ -106,8 +106,10 @@ void main()
         break;
         */
         default:
-            Debug("[Inflict Wounds op_s_inflict] No valid spell ID passed in: " + IntToString(nSpellId) + " name: " + GetSpellName(nSpellId));
+        {
+            if (DEBUG_LEVEL >= ERROR) Error("No valid spell ID passed in: " + IntToString(nSpellId));
             return;
+        }
         break;
     }
 

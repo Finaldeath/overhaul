@@ -302,7 +302,7 @@ void SendImmunityFeedback(object oCaster, object oTarget, int nImmunityType)
         default:
         {
             // EG: IMMUNITY_TYPE_NONE (0) or other values we do no messages. This should not occur though.
-            if (DEBUG_LEVEL >= ERROR) Debug("[ERROR] SendImmunityFeedback: Invalid nImmunityType: " + IntToString(nImmunityType));
+            if (DEBUG_LEVEL >= ERROR) Error("[ERROR] SendImmunityFeedback: Invalid nImmunityType: " + IntToString(nImmunityType));
             return;
         }
         break;
@@ -441,7 +441,7 @@ void SendFakeDamageFeedbackMessage(object oTarget, object oSource, int nDamage, 
     // TLK string:
     // STRREF_FEEDBACK_COMPLEX_DAMAGE 10466
     //  <CUSTOM0> damages <CUSTOM1>: <CUSTOM2>
-    Debug("[SendFakeDamageFeedbackMessage] Not implemented yet.");
+    if (DEBUG_LEVEL >= INFO) Info("[SendFakeDamageFeedbackMessage] Not implemented yet.");
 }
 
 // Provides a game-formatted feedback message for skill. Optionally can have oVersus. Will not play sound effects (eg for disarm trap)

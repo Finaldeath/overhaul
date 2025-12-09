@@ -65,7 +65,7 @@ void main()
         case SPELLABILITY_INTENSITY_3: nAbility1 = ABILITY_DEXTERITY; nAbility2 = ABILITY_CONSTITUTION; nIncrease = 3; break;
         default:
         {
-            if (DEBUG_LEVEL >= ERROR) Debug("[op_a_rage] No valid spell ID passed in: " + IntToString(nSpellId), ERROR);
+            if (DEBUG_LEVEL >= ERROR) Error("No valid spell ID passed in: " + IntToString(nSpellId));
             return;
         }
         break;

@@ -29,8 +29,10 @@ void main()
         }
         break;
         default:
-            Debug("[op_f_famanicom] No valid spell ID passed in: " + IntToString(nSpellId), ERROR);
+        {
+            if (DEBUG_LEVEL >= ERROR) Error("No valid spell ID passed in: " + IntToString(nSpellId));
             return;
+        }
         break;
     }
 

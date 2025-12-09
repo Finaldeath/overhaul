@@ -37,7 +37,7 @@ void main()
             // Use Cutscene Immobilize (no state script) or similar for that.
             if (GetEffectDurationType(eCheck) != DURATION_TYPE_TEMPORARY)
             {
-                Debug("[op_ss_paralysis] Found Paralysis effect with non-temporary duration. Do not do this!", ERROR);
+                if (DEBUG_LEVEL >= ERROR) Error("Found Paralysis effect with non-temporary duration. Do not do this!");
             }
             // Duration needs to have ticked down a little
             else if (GetEffectDuration(eCheck) != GetEffectDurationRemaining(eCheck))
@@ -91,7 +91,7 @@ void main()
                     // Fallback Dummy value
                     if (nSpellSaveDC == 0)
                     {
-                        Debug("[op_ss_paralysis] Fallback dummy DC of 13.");
+                        if (DEBUG_LEVEL >= WARNING) Warning("[op_ss_paralysis] Fallback dummy DC of 13.");
                         nSpellSaveDC = 13;
                     }
                 }

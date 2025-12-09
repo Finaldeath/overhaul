@@ -42,18 +42,22 @@ void main()
         case SPELL_REGENERATE_CRITICAL_WOUNDS: nHealing = 4; break;
         case SPELL_REGENERATE: nHealing = 5; break;
         case SPELL_REGENERATE_RING:
+        {
             nHealing    = 1;
             nMaxTargets = max(1, nCasterLevel / 2);
             nImpact = VFX_IMP_PULSE_NATURE;
-            break;
+        }
+        break;
         case SPELL_REGENERATE_CIRCLE:
+        {
             nHealing    = 3;
             nMaxTargets = max(1, nCasterLevel / 2);
             nImpact = VFX_IMP_PULSE_NATURE;
-            break;
+        }
+        break;
         default:
         {
-            Debug("[Regenerate] Unknown spell ID: " + IntToString(nSpellId), ERROR);
+            if (DEBUG_LEVEL >= ERROR) Error("No valid spell ID passed in: " + IntToString(nSpellId));
             return;
         }
         break;

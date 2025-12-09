@@ -183,9 +183,11 @@ void main()
             fDuration   = GetDuration(nCasterLevel, ROUNDS);
             break;
         default:
-            Debug("[Item Property spells] No valid spell ID passed in: " + IntToString(nSpellId));
+        {
+            if (DEBUG_LEVEL >= ERROR) Error("No valid spell ID passed in: " + IntToString(nSpellId));
             return;
-            break;
+        }
+        break;
     }
 
     if (GetIsObjectValid(oTarget) && GetObjectType(oTarget) == OBJECT_TYPE_ITEM)
