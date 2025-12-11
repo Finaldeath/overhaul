@@ -80,6 +80,14 @@ void main()
             nCasterLevel = GetHitDice(oCaster);
         }
         break;
+        case SPELLABILITY_BEHOLDER_RAY_PETRIFY:
+        {
+            bMagical = FALSE;
+
+            nSpellSaveDC = 15;
+            nCasterLevel = 15; // Bioware made it 15
+        }
+        break;
         default:
         {
             if (DEBUG_LEVEL >= ERROR) Error("No valid spell ID passed in: " + IntToString(nSpellId));

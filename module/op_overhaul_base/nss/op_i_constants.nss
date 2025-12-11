@@ -22,6 +22,9 @@ const int EFFECT_TYPE_ALL = -1;
 const int MAX_INT     = 2147483647;
 const float MAX_FLOAT = 9999999.0;
 
+// Fake IMMUNITY_TYPE_* for GetIsImmuneWithFeedback and feedback function
+const int IMMUNITY_TYPE_PETRIFICATION = -2;
+
 // iprp_onhitspell.2da
 const int IP_CONST_ONHIT_CASTSPELL_ONHIT_BLACKSTAFF = 141;
 
@@ -313,6 +316,7 @@ const int SPELLABILITY_OUTSIDER_SHAPE                     = 732;
 const int SPELLABILITY_OUTSIDER_SHAPE_AZER_CHIEFTAIN      = 733;
 const int SPELLABILITY_OUTSIDER_SHAPE_RAKSHASA            = 734;
 const int SPELLABILITY_OUTSIDER_SHAPE_DEATH_SLAAD         = 735;
+const int SPELLABILITY_BEHOLDER_SPECIAL_ATTACKS           = 736;
 const int SPELLABILITY_CONSTRUCT_SHAPE                    = 737;
 const int SPELLABILITY_CONSTRUCT_SHAPE_STONE_GOLEM        = 738;
 const int SPELLABILITY_CONSTRUCT_SHAPE_DEMONFLESH_GOLEM   = 739;
@@ -322,5 +326,15 @@ const int SPELLABILITY_HARM_SELF                          = 759;
 const int SPELLABILITY_HELL_INFERNO                       = 762;
 const int SPELLABILITY_PSIONIC_MASS_CONCUSSION            = 763;
 const int SPELLABILITY_DRAGON_BREATH_PRISMATIC            = 771;
+const int SPELLABILITY_BEHOLDER_RAY_DEATH                 = 776;
+const int SPELLABILITY_BEHOLDER_RAY_TELEKENESIS           = 777;
+const int SPELLABILITY_BEHOLDER_RAY_PETRIFY               = 778;
+const int SPELLABILITY_BEHOLDER_RAY_CHARM                 = 779;
+const int SPELLABILITY_BEHOLDER_RAY_SLOW                  = 780;
+const int SPELLABILITY_BEHOLDER_RAY_WOUND                 = 783;
+const int SPELLABILITY_BEHOLDER_RAY_FEAR                  = 784;
+const int SPELLABILITY_BEHOLDER_RAY_UNUSED_1              = 785;
+const int SPELLABILITY_BEHOLDER_RAY_UNUSED_2              = 786;
+const int SPELLABILITY_BEHOLDER_RAY_UNUSED_3              = 787;
 const int SPELLABILITY_ILLITHID_MIND_BLAST                = 789;
 

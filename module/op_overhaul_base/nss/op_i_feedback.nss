@@ -11,11 +11,9 @@
 //:: https://github.com/Finaldeath/overhaul
 //:://////////////////////////////////////////////
 
+#include "op_i_constants"
 #include "op_i_debug"
 #include "utl_i_strings"
-
-// Fake IMMUNITY_TYPE_* for the feedback function
-const int IMMUNITY_TYPE_PETRIFICATION = -2;
 
 // Colour codes
 const string FEEDBACK_COLOUR_FEEDBACK   = "<c\xFF\xFF\x01>";  // Yellow

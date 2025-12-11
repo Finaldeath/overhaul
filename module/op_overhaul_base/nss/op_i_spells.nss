@@ -2249,7 +2249,11 @@ int GetIsImmuneWithFeedback(object oCreature, object oVersus, int nImmunityType,
 {
     if (nImmunityType == IMMUNITY_TYPE_NONE) return FALSE;
 
-    if (GetIsImmune(oCreature, nImmunityType, oVersus))
+    if (nImmunityType == IMMUNITY_TYPE_PETRIFICATION)
+    {
+        return GetIsImmuneToPetrificationWithFeedback(oCreature);
+    }
+    else if (GetIsImmune(oCreature, nImmunityType, oVersus))
     {
         SendImmunityFeedback(oVersus, oCreature, nImmunityType);
         return TRUE;
