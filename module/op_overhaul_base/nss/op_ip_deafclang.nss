@@ -23,6 +23,13 @@ const string TIMER_DEAFENING_CLANG = "TIMER_DEAFENING_CLANG";
 
 void main()
 {
+    // Validate the spell cast item
+    if (!GetIsObjectValid(oCastItem))
+    {
+        if (DEBUG_LEVEL >= ERROR) Error("Item property spell being cast from a non-item: " + IntToString(nSpellId));
+        return;
+    }
+
     // Cannot happen more than once every 6 seconds. Timer can be on us.
     if (GetTimerEnded(TIMER_DEAFENING_CLANG))
     {

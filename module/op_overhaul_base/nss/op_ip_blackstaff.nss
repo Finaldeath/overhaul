@@ -19,6 +19,13 @@
 
 void main()
 {
+    // Validate the spell cast item
+    if (!GetIsObjectValid(oCastItem))
+    {
+        if (DEBUG_LEVEL >= ERROR) Error("Item property spell being cast from a non-item: " + IntToString(nSpellId));
+        return;
+    }
+
     // NB: No spell hook in On Hit special scripts.
     if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
     {

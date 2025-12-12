@@ -51,7 +51,12 @@
     damage. Golems, Elementals, Oozes, Undead and other nonliving creatures
     cannot be drowned.
 
-    ----
+    Tide of Battle
+    Centered around the caster, this spell rains down holy damage on all within
+    the area of effect, including the caster. Each target will take between
+    30 and 100 damage.
+
+    Epic Spells:
 
     Greater Ruin
     The caster deals 35d6 positive damage to a single target. Fortitude half.
@@ -260,6 +265,20 @@ void main()
                 SendMessageToPCByStrRef(oCaster, STRREF_DROWN_DOES_NOT_AFFECT_TARGET); // *Drown does not affect this target.*
                 return;
             }
+        }
+        break;
+        case SPELLABILITY_TIDE_OF_BATTLE:
+        {
+            // 30 - 100 damage. Bioware just made it d100 and if < 30 = 30.
+            // Corrected for what little it's worth (tbh spell might be repurposed)
+            nDiceNum         = 1;
+            nDiceSize        = 71;
+            nDiceBonus       = 29;
+            nDamageType      = DAMAGE_TYPE_DIVINE;
+            nImpact          = VFX_FNF_METEOR_SWARM;
+            nVis             = VFX_IMP_DEATH_WARD;
+            bDelayRandom     = TRUE;
+            bMagicResistance = FALSE;
         }
         break;
         default:

@@ -245,6 +245,9 @@
 
     Haste-Slow
     The target of this spell is either hasted (66%) or slowed (33%).
+
+    Shadowblend
+    The creature is able to blend into shadows, gaining 90% concealment.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -1139,6 +1142,18 @@ void main()
                     EffectLinkEffects(EffectVisualEffect(VFX_DUR_BLUR),
                                       EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
             fDuration = GetDuration(5, ROUNDS);
+        }
+        break;
+        case SPELLABILITY_SHADOWBLEND:
+        {
+            // Can be dispelled
+            eLink = EffectLinkEffects(EffectConcealment(90),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_PROT_SHADOW_ARMOR),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+            fDuration = GetDuration(10, ROUNDS);
+
+            // Doesn't work with continual flame applied. Sure Bioware.
+            if (GetHasSpellEffect(SPELL_CONTINUAL_FLAME, oTarget)) return;
         }
         break;
         default:

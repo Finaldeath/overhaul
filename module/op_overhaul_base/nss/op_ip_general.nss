@@ -18,6 +18,13 @@ void main()
 {
     if (DoSpellHook()) return;
 
+    // Validate the spell cast item
+    if (!GetIsObjectValid(oCastItem))
+    {
+        if (DEBUG_LEVEL >= ERROR) Error("Item property spell being cast from a non-item: " + IntToString(nSpellId));
+        return;
+    }
+
     switch (nSpellId)
     {
         case SPELL_ITEM_ALCOHOL_BEER:
