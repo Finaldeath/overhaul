@@ -10,7 +10,9 @@
         Also deals with deciding to use the beholders Antimagic Eye (casting the
         SPELLABILITY_BEHOLDER_ANTIMAGIC_CONE if needed).
 
-        This "spell" can be ignored if the AI deals with the stuff instead.
+        Either better AI or a if in the future projectiles can be done without
+        actions we can consolidate this and make it much easier.
+
 
     Ray attacks. There are 10 in the 3E monster manual. Each eyes effects
     resemble a spell cast by a level 13 sorcerer. Save DC is 18.
@@ -31,11 +33,11 @@
     SPELLABILITY_BEHOLDER_RAY_DEATH       - Finger of Death (Death or d6(3) + 13 magical damage)
     SPELLABILITY_BEHOLDER_RAY_TELEKENESIS - Knockdown (1 round)
     SPELLABILITY_BEHOLDER_RAY_PETRIFY     - Flesh to Stone (Petrify, may be permanent as per rules)
-    SPELLABILITY_BEHOLDER_RAY_CHARM       - Charm Person or Monster (4 rounds)
+    SPELLABILITY_BEHOLDER_RAY_CHARM       - Charm Person or Monster (4 rounds) (Actually "Charm anything"). Against PCs/PC associates it turns into Daze anyway.
     SPELLABILITY_BEHOLDER_RAY_SLOW        - Slow (6 rounds)
     SPELLABILITY_BEHOLDER_RAY_WOUND       - Inflict Moderate Wounds (d8(2) + 10 magical damage)
     SPELLABILITY_BEHOLDER_RAY_FEAR        - Fear (1 + d4() rounds)
-    SPELLABILITY_BEHOLDER_RAY_UNUSED_1    - Missing ones are sleep, disintegrate and one of the charms
+    SPELLABILITY_BEHOLDER_RAY_UNUSED_1    - Missing ones are sleep, disintegrate and one of the charm variants
     SPELLABILITY_BEHOLDER_RAY_UNUSED_2
     SPELLABILITY_BEHOLDER_RAY_UNUSED_3
 */
@@ -48,8 +50,7 @@
 
 // SPELLABILITY_BEHOLDER_RAY_*
 int BeholderDetermineHasEffect(int nRay, object oCreature);
-int BeholderGetTargetThreatRating(object oTarget);
-
+void BeholderDoFireRay(object oTarget, int nRay);
 
 void main()
 {
@@ -71,91 +72,131 @@ void main()
             // projectiles on the spell and no cast time.
             // We are going to mimic the default AI since frankly this is
             // for now just for compatibility.
+            // From reading Bioware's code it does some "target prioritisation"
+            // around a PC and their summon/henchman, but bizarrely doesn't
+            // use it to even validate targets to check if they're even
+            // alive.
+            // We'll simplify but keep Bioware's logic of 3 targets max. We
+            // also will correct the fact there are a ton of logic errors.
+            // We assume oTarget is always valid.
+            // If oTarget has a master, use them, their summon/henchman (if not oTarget)
+            // as the third target.
 
-            /*
-            struct beholder_target_struct stTargets = GetRayTargets(oTarget);
-            int nRay;
-            int nOdd;
-            if (stTargets.nCount ==0)
+            object oTarget1 = oTarget;
+            object oTarget2, oTarget3;
+            int nTargets = 1;
+
+            object oMaster = GetMaster(oTarget);
+            if (GetIsObjectValid(oMaster))
             {
-                //emergency fallback
-                    BehDoFireBeam(BEHOLDER_RAY_SLOW,stTargets.oTarget1);
-                    BehDoFireBeam(BEHOLDER_RAY_DEATH,stTargets.oTarget1);
-                    BehDoFireBeam(BEHOLDER_RAY_FEAR,stTargets.oTarget1);
-                    BehDoFireBeam(BEHOLDER_RAY_TK,stTargets.oTarget1);
-            }
-            else if (stTargets.nCount ==1) // AI for only one target
-            {
-                nOdd=d2()==1;
-                if (nOdd)
+                // Check for validity...and swap kind of like how Bioware did
+                if (GetObjectSeen(oMaster) && !GetIsDead(oMaster))
                 {
-                    BehDoFireBeam(BEHOLDER_RAY_SLOW,stTargets.oTarget1);
-                    BehDoFireBeam(BEHOLDER_RAY_DEATH,stTargets.oTarget1);
-                    if (d2()==1)
-                        BehDoFireBeam(BEHOLDER_RAY_FEAR,stTargets.oTarget1);
+                    // Prioritise the master
+                    oTarget1 = oMaster;
+                    // Second target is now the associate
+                    oTarget2 = oTarget;
+                    nTargets = 2;
+
+                    // Check other associates to add a third
+                    object oSummon = GetAssociate(ASSOCIATE_TYPE_SUMMONED, oMaster, 1);
+                    object oHenchman = GetAssociate(ASSOCIATE_TYPE_HENCHMAN, oMaster, 1);
+                    if (GetIsObjectValid(oSummon) && !GetIsDead(oSummon) && oSummon != oTarget)
+                    {
+                        oTarget3 = oSummon;
+                        nTargets = 3;
+                    }
+                    else if (GetIsObjectValid(oHenchman) && !GetIsDead(oHenchman) && oHenchman != oTarget)
+                    {
+                        oTarget3 = oHenchman;
+                        nTargets = 3;
+                    }
+                }
+            }
+
+            // This is Bioware's code but fixed up and made more senaible.
+            // However it is still quite weird.
+            if (nTargets == 1)
+            {
+                if (d2() == 1)
+                {
+                    BeholderDoFireRay(oTarget1, SPELLABILITY_BEHOLDER_RAY_SLOW);
+                    BeholderDoFireRay(oTarget1, SPELLABILITY_BEHOLDER_RAY_DEATH);
+                    if (d2() == 1)
+                        BeholderDoFireRay(oTarget1, SPELLABILITY_BEHOLDER_RAY_FEAR);
                 }
                 else
                 {
-                    BehDoFireBeam(BEHOLDER_RAY_WOUND,stTargets.oTarget1);
-                    BehDoFireBeam(BEHOLDER_RAY_TK,stTargets.oTarget1);
-                    if (d2()==1)
-                        BehDoFireBeam(BEHOLDER_RAY_PETRI,stTargets.oTarget1);
+                    BeholderDoFireRay(oTarget1, SPELLABILITY_BEHOLDER_RAY_WOUND);
+                    BeholderDoFireRay(oTarget1, SPELLABILITY_BEHOLDER_RAY_TELEKENESIS);
+                    if (d2() == 1)
+                        BeholderDoFireRay(oTarget1, SPELLABILITY_BEHOLDER_RAY_PETRIFY);
                 }
-                if (d3()==1)
+                if (d3() == 1)
                 {
-                    BehDoFireBeam(BEHOLDER_RAY_CHARM,stTargets.oTarget2);
+                    BeholderDoFireRay(oTarget1, SPELLABILITY_BEHOLDER_RAY_CHARM);
                 }
             }
-            else if (stTargets.nCount ==2)
+            else if (nTargets == 2)
             {
-                if (nOdd)
+                if (d2() == 1)
                 {
-                    BehDoFireBeam(BEHOLDER_RAY_SLOW,stTargets.oTarget1);
-                    BehDoFireBeam(BEHOLDER_RAY_DEATH,stTargets.oTarget1);
-                    BehDoFireBeam(BEHOLDER_RAY_FEAR,stTargets.oTarget1);
-                    BehDoFireBeam(BEHOLDER_RAY_WOUND,stTargets.oTarget2);
-                    BehDoFireBeam(BEHOLDER_RAY_TK,stTargets.oTarget2);
-                    if (d2()==1)
-                        BehDoFireBeam(BEHOLDER_RAY_PETRI,stTargets.oTarget2);
-                    BehDoFireBeam(BEHOLDER_RAY_CHARM,stTargets.oTarget2);
+                    BeholderDoFireRay(oTarget1, SPELLABILITY_BEHOLDER_RAY_SLOW);
+                    BeholderDoFireRay(oTarget1, SPELLABILITY_BEHOLDER_RAY_DEATH);
+                    BeholderDoFireRay(oTarget1, SPELLABILITY_BEHOLDER_RAY_FEAR);
+
+                    BeholderDoFireRay(oTarget2, SPELLABILITY_BEHOLDER_RAY_WOUND);
+                    BeholderDoFireRay(oTarget2, SPELLABILITY_BEHOLDER_RAY_TELEKENESIS);
+                    if (d2() == 1)
+                        BeholderDoFireRay(oTarget2, SPELLABILITY_BEHOLDER_RAY_PETRIFY);
+                    BeholderDoFireRay(oTarget2, SPELLABILITY_BEHOLDER_RAY_CHARM);
                 }
                 else
                 {
-                    BehDoFireBeam(BEHOLDER_RAY_WOUND,stTargets.oTarget1);
-                    BehDoFireBeam(BEHOLDER_RAY_TK,stTargets.oTarget1);
-                    if (d2()==1)
-                        BehDoFireBeam(BEHOLDER_RAY_PETRI,stTargets.oTarget1);
-                    BehDoFireBeam(BEHOLDER_RAY_SLOW,stTargets.oTarget2);
-                    BehDoFireBeam(BEHOLDER_RAY_DEATH,stTargets.oTarget2);
-                    BehDoFireBeam(BEHOLDER_RAY_FEAR,stTargets.oTarget2);
+                    BeholderDoFireRay(oTarget1, SPELLABILITY_BEHOLDER_RAY_WOUND);
+                    BeholderDoFireRay(oTarget1, SPELLABILITY_BEHOLDER_RAY_TELEKENESIS);
+                    if (d2() == 1)
+                        BeholderDoFireRay(oTarget2, SPELLABILITY_BEHOLDER_RAY_TELEKENESIS);
+
+                    BeholderDoFireRay(oTarget2, SPELLABILITY_BEHOLDER_RAY_SLOW);
+                    BeholderDoFireRay(oTarget2, SPELLABILITY_BEHOLDER_RAY_DEATH);
+                    BeholderDoFireRay(oTarget2, SPELLABILITY_BEHOLDER_RAY_FEAR);
                 }
             }
-            else if (stTargets.nCount ==3)
+            else if (nTargets == 3)
             {
-               if (nOdd)
+               if (d2() == 1)
                {
-                    BehDoFireBeam(BEHOLDER_RAY_DEATH,stTargets.oTarget1);
-                    BehDoFireBeam(BEHOLDER_RAY_SLOW,stTargets.oTarget1);
-                    if (d2()==1)
-                        BehDoFireBeam(BEHOLDER_RAY_FEAR,stTargets.oTarget2);
-                    BehDoFireBeam(BEHOLDER_RAY_WOUND,stTargets.oTarget2);
-                    BehDoFireBeam(BEHOLDER_RAY_TK,stTargets.oTarget3);
-                    BehDoFireBeam(BEHOLDER_RAY_PETRI,stTargets.oTarget3);
-                    BehDoFireBeam(BEHOLDER_RAY_CHARM,stTargets.oTarget2);
+                    BeholderDoFireRay(oTarget1, SPELLABILITY_BEHOLDER_RAY_DEATH);
+                    BeholderDoFireRay(oTarget1, SPELLABILITY_BEHOLDER_RAY_SLOW);
+
+                    BeholderDoFireRay(oTarget2, SPELLABILITY_BEHOLDER_RAY_WOUND);
+                    if (d2() == 1)
+                        BeholderDoFireRay(oTarget2, SPELLABILITY_BEHOLDER_RAY_FEAR);
+                    BeholderDoFireRay(oTarget2, SPELLABILITY_BEHOLDER_RAY_CHARM);
+
+                    BeholderDoFireRay(oTarget3, SPELLABILITY_BEHOLDER_RAY_TELEKENESIS);
+                    BeholderDoFireRay(oTarget3, SPELLABILITY_BEHOLDER_RAY_PETRIFY);
                }
                else
                {
-                    BehDoFireBeam(BEHOLDER_RAY_DEATH,stTargets.oTarget2);
-                    BehDoFireBeam(BEHOLDER_RAY_SLOW,stTargets.oTarget3);
-                    BehDoFireBeam(BEHOLDER_RAY_FEAR,stTargets.oTarget1);
-                    if (d2()==1)
-                        BehDoFireBeam(BEHOLDER_RAY_WOUND,stTargets.oTarget2);
-                    BehDoFireBeam(BEHOLDER_RAY_TK,stTargets.oTarget1);
-                    BehDoFireBeam(BEHOLDER_RAY_PETRI,stTargets.oTarget3);
-                    BehDoFireBeam(BEHOLDER_RAY_CHARM,stTargets.oTarget1);
+                    BeholderDoFireRay(oTarget1, SPELLABILITY_BEHOLDER_RAY_FEAR);
+                    BeholderDoFireRay(oTarget1, SPELLABILITY_BEHOLDER_RAY_TELEKENESIS);
+                    BeholderDoFireRay(oTarget1, SPELLABILITY_BEHOLDER_RAY_CHARM);
+
+                    if (d2() == 1)
+                        BeholderDoFireRay(oTarget2, SPELLABILITY_BEHOLDER_RAY_WOUND);
+                    BeholderDoFireRay(oTarget2, SPELLABILITY_BEHOLDER_RAY_DEATH);
+
+                    BeholderDoFireRay(oTarget3, SPELLABILITY_BEHOLDER_RAY_SLOW);
+                    BeholderDoFireRay(oTarget3, SPELLABILITY_BEHOLDER_RAY_PETRIFY);
                }
             }
-            */
+            else
+            {
+                if (DEBUG_LEVEL >= ERROR) Error("Beholder beams no valid targets?");
+            }
+
             // Only fire Antimagic Cone if we are beholders and not beholder mages
             switch (GetAppearanceType(oCaster))
             {
@@ -307,9 +348,6 @@ int BeholderDetermineHasEffect(int nRay, object oCreature)
         case SPELLABILITY_BEHOLDER_RAY_FEAR:
             if (GetHasEffect(oCreature, EFFECT_TYPE_FRIGHTENED)) return TRUE;
 
-        case SPELLABILITY_BEHOLDER_RAY_DEATH:
-            if (GetIsDead(oCreature)) return TRUE;
-
         case SPELLABILITY_BEHOLDER_RAY_CHARM:
             if (GetHasEffect(oCreature, EFFECT_TYPE_CHARMED)) return TRUE;
 
@@ -322,37 +360,41 @@ int BeholderDetermineHasEffect(int nRay, object oCreature)
     return FALSE;
 }
 
-int BeholderGetTargetThreatRating(object oTarget)
+void BeholderDoFireRay(object oTarget, int nRay)
 {
-    if (oTarget == OBJECT_INVALID || GetIsDead(oTarget))
+    // Don't use a ray if it's already got an effect
+    if (BeholderDetermineHasEffect(nRay, oTarget)) return;
+
+    int bHit = DoTouchAttack(oTarget, oCaster, TOUCH_RANGED, FALSE);
+
+    if (bHit)
     {
-        return 0;
+         ActionCastSpellAtObject(nRay,oTarget,METAMAGIC_ANY,TRUE,0,PROJECTILE_PATH_TYPE_DEFAULT,TRUE);
     }
-
-    int nRet = 20;
-    if (GetDistanceBetween(oTarget, oCaster) <5.0f)
+    else
     {
-        nRet += 3;
+        // Bioware's miss code
+        location lFail = GetLocation(oTarget);
+        vector vFail = GetPositionFromLocation(lFail);
+
+        if (GetDistanceBetween(oCaster, oTarget) > 6.0f)
+        {
+           vFail.x += IntToFloat(Random(3)) - 1.5;
+           vFail.y += IntToFloat(Random(3)) - 1.5;
+           vFail.z += IntToFloat(Random(2));
+           lFail = Location(GetArea(oTarget),vFail,0.0f);
+        }
+        //----------------------------------------------------------------------
+        // if we are fairly near, calculating a location could cause us to
+        // spin, so we use the same location all the time
+        //----------------------------------------------------------------------
+        else
+        {
+              vFail.z += 0.8;
+              vFail.y += 0.2;
+              vFail.x -= 0.2;
+        }
+        ActionCastFakeSpellAtLocation(nRay, lFail);
     }
-
-    nRet += (GetHitDice(oTarget) - GetHitDice(oCaster) /2);
-
-    if (GetPlotFlag(oTarget))
-    {
-        nRet -= 6 ;
-    }
-
-    if (GetMaster(oTarget)!= OBJECT_INVALID)
-    {
-        nRet -= 4;
-    }
-
-    if (GetHasEffect(oTarget, EFFECT_TYPE_PETRIFY))
-    {
-        nRet -=10;
-    }
-
-    return nRet;
 }
-
 
