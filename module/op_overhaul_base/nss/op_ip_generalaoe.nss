@@ -16,6 +16,8 @@
 #include "op_i_spells"
 #include "utl_i_timer"
 
+const string CALTROPS_TOTAL_DAMAGE = "CALTROPS_TOTAL_DAMAGE";
+
 void main()
 {
     if (GetCurrentlyRunningEvent() == EVENT_SCRIPT_AREAOFEFFECT_ON_OBJECT_ENTER)
@@ -87,9 +89,9 @@ void main()
                     DelayCommand(fDelay, ApplyDamageToObject(oTarget, 1, DAMAGE_TYPE_PIERCING));
 
                     // Intentional: OBJECT_SELF is the AOE itself, not the caster
-                    int nDamageDone = GetLocalInt(OBJECT_SELF, "CALTROPS_TOTAL_DAMAGE");
+                    int nDamageDone = GetLocalInt(OBJECT_SELF, CALTROPS_TOTAL_DAMAGE);
                     nDamageDone++;
-                    SetLocalInt(OBJECT_SELF, "CALTROPS_TOTAL_DAMAGE", nDamageDone);
+                    SetLocalInt(OBJECT_SELF, CALTROPS_TOTAL_DAMAGE, nDamageDone);
                     if (nDamageDone >= 25)
                     {
                         DestroyObject(OBJECT_SELF);
@@ -158,7 +160,7 @@ void main()
             case SPELL_ITEM_CALTROPS:
             {
                 // Intentional: OBJECT_SELF is the AOE itself, not the caster
-                int nDamageDone = GetLocalInt(OBJECT_SELF, "CALTROPS_TOTAL_DAMAGE");
+                int nDamageDone = GetLocalInt(OBJECT_SELF, CALTROPS_TOTAL_DAMAGE);
 
                 json jArray = GetArrayOfAOETargets(SPELL_TARGET_STANDARDHOSTILE);
                 int nIndex;
@@ -184,7 +186,7 @@ void main()
                         }
                     }
                 }
-                SetLocalInt(OBJECT_SELF, "CALTROPS_TOTAL_DAMAGE", nDamageDone);
+                SetLocalInt(OBJECT_SELF, CALTROPS_TOTAL_DAMAGE, nDamageDone);
             }
             break;
         }

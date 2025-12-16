@@ -8,8 +8,7 @@
 
     Every round a creature spends in the cloud, it suffers 2d6 acid damage.
 
-    Note: Currently the movement speed decrease stacks with more than one AOE,
-    so we might sort this out later, possibly with EffectRunScript.
+    This also is Acid Bomb, since that's how Bioware did it.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -78,9 +77,54 @@ void main()
     {
         if (DoSpellHook()) return;
 
+        float fDuration = GetDuration(nCasterLevel / 2, ROUNDS);
+
+        // Acid bomb does 5 turn duration AOE, plus impact damage.
+        if (nSpellId == SPELL_ITEM_ACIDBOMB)
+        {
+            fDuration = GetDuration(5, ROUNDS);
+
+            // 10d6 acid damage to the direct target
+            int nTargetDamage = 0;
+            object oMainTarget = oTarget;
+            if (GetIsObjectValid(oTarget))
+            {
+                if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
+                {
+                    int nTouch = DoTouchAttack(oTarget, oCaster, TOUCH_RANGED);
+                    if (nTouch)
+                    {
+                        nTargetDamage = d6(10);
+                        if (nTouch == TOUCH_RESULT_CRITICAL_HIT) nTargetDamage *= 2;
+                    }
+                }
+            }
+
+            // AOE grenade for 1 damage
+            json jArray = GetArrayOfTargets(SPELL_TARGET_STANDARDHOSTILE, SORT_METHOD_DISTANCE, OBJECT_TYPE_CREATURE | OBJECT_TYPE_PLACEABLE | OBJECT_TYPE_DOOR);
+            int nIndex;
+            for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
+            {
+                oTarget = GetArrayObject(jArray, nIndex);
+
+                SignalSpellCastAt();
+
+                float fDelay = GetDistanceBetweenLocations(lTarget, GetLocation(oTarget)) / 20.0;
+
+                int nDamage = 1;
+
+                if (oTarget == oMainTarget) nDamage += nTargetDamage;
+
+                DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_ACID_L, oTarget));
+                DelayCommand(fDelay, ApplyDamageToObject(oTarget, nDamage, DAMAGE_TYPE_ACID));
+            }
+            // To help with the persistent AOE slow, we set the spell Id to Acid Fog even if it's Acid Bomb.
+            nSpellId = SPELL_ACID_FOG;
+        }
+
         ApplyVisualEffectAtLocation(VFX_FNF_GAS_EXPLOSION_ACID, lTarget);
 
         effect eAOE = EffectAreaOfEffect(AOE_PER_FOGACID, GetScriptName(), GetScriptName(), GetScriptName());
-        ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, GetDuration(nCasterLevel / 2, ROUNDS));
+        ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, fDuration);
     }
 }

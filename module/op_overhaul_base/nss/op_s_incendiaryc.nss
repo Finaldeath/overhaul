@@ -5,6 +5,8 @@
 /*
     The caster creates a cloud of smoke and embers that causes 4d6 points of
     fire damage each round to all objects within the area of effect.
+
+    This is also the Firebomb item spell as well.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -79,10 +81,56 @@ void main()
     {
         if (DoSpellHook()) return;
 
+        float fDuration = GetDuration(nCasterLevel, ROUNDS, TRUE, FALSE);
+
+
+        // Acid bomb does 5 turn duration AOE, plus impact damage.
+        if (nSpellId == SPELL_ITEM_FIREBOMB)
+        {
+            fDuration = GetDuration(5, ROUNDS);
+
+            // 10d6 fire damage to the direct target
+            int nTargetDamage = 0;
+            object oMainTarget = oTarget;
+            if (GetIsObjectValid(oTarget))
+            {
+                if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
+                {
+                    int nTouch = DoTouchAttack(oTarget, oCaster, TOUCH_RANGED);
+                    if (nTouch)
+                    {
+                        nTargetDamage = d6(10);
+                        if (nTouch == TOUCH_RESULT_CRITICAL_HIT) nTargetDamage *= 2;
+                    }
+                }
+            }
+
+            // AOE grenade for 1 damage
+            json jArray = GetArrayOfTargets(SPELL_TARGET_STANDARDHOSTILE, SORT_METHOD_DISTANCE, OBJECT_TYPE_CREATURE | OBJECT_TYPE_PLACEABLE | OBJECT_TYPE_DOOR);
+            int nIndex;
+            for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
+            {
+                oTarget = GetArrayObject(jArray, nIndex);
+
+                SignalSpellCastAt();
+
+                float fDelay = GetDistanceBetweenLocations(lTarget, GetLocation(oTarget)) / 20.0;
+
+                int nDamage = 1;
+
+                if (oTarget == oMainTarget) nDamage += nTargetDamage;
+
+                DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_FLAME_M, oTarget));
+                DelayCommand(fDelay, ApplyDamageToObject(oTarget, nDamage, DAMAGE_TYPE_FIRE));
+            }
+            // To help with the persistent AOE slow, we set the spell Id to Incendiary Cloud even if it's Fire Bomb.
+            nSpellId = SPELL_INCENDIARY_CLOUD;
+        }
+
         ApplyVisualEffectAtLocation(VFX_FNF_GAS_EXPLOSION_FIRE, lTarget);
 
         effect eAOE = EffectAreaOfEffect(AOE_PER_FOGFIRE, GetScriptName(), GetScriptName(), GetScriptName());
-        ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, GetDuration(nCasterLevel, ROUNDS, TRUE, FALSE));
+        ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, fDuration);
     }
 }
 
