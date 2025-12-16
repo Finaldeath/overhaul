@@ -76,7 +76,6 @@ void main()
         }
         break;
         case SPELLABILITY_PM_UNDEAD_GRAFT_1:
-        case SPELLABILITY_PM_UNDEAD_GRAFT_2:
         {
             if (GetSpellTargetValid(oTarget, oCaster, SPELL_TARGET_STANDARDHOSTILE))
             {
