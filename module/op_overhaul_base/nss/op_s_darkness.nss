@@ -45,13 +45,23 @@ void main()
         // Default to the normal spell script.
         if (DoSpellHook()) return;
 
-        // Check the spell Id for now we error and just reset it. Illusion spells shouldn't be setting this to
-        // anything but Darkness.
-        if (nSpellId != SPELL_DARKNESS)
+        // We always make the spell ID consistent with SPELL_DARKNESS since
+        // there are some (rather weird) engine checks related to this spell ID
+        switch (nSpellId)
         {
-            if (DEBUG_LEVEL >= WARNING) Warning("Somehow this script was called without the Spell Id being SPELL_DARKNESS. Setting to SPELL_DARKNESS. nSpellId: " + IntToString(nSpellId));
-            nSpellId = SPELL_DARKNESS;
+            case SPELL_DARKNESS:
+            case SPELL_DARKNESS_WARLOCK:
+                nSpellId = SPELL_DARKNESS;
+            break;
+            default:
+            {
+                // Check the spell Id for now we error and just reset it. Illusion spells shouldn't be setting this to
+                // anything but Darkness.
+                if (DEBUG_LEVEL >= WARNING) Warning("Somehow this script was called without the Spell Id being SPELL_DARKNESS. Setting to SPELL_DARKNESS. nSpellId: " + IntToString(nSpellId));
+                nSpellId = SPELL_DARKNESS;
+            }
         }
+
         effect eAOE = EffectAreaOfEffect(AOE_PER_DARKNESS, GetScriptName(), GetScriptName(), GetScriptName());
         ApplySpellEffectAtLocation(DURATION_TYPE_TEMPORARY, eAOE, lTarget, GetDuration(nCasterLevel, ROUNDS, TRUE, FALSE));
     }

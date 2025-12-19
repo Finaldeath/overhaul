@@ -29,6 +29,7 @@ void main()
 
             if (!GetHasFeat(FEAT_WOODLAND_STRIDE, oTarget) &&
                 !GetIsIncorporeal(oTarget) &&
+                !GetIsFlying(oTarget) &&
                 !DoResistSpell(oTarget, oCaster, 0.0, FALSE, TRUE, FALSE))
             {
                 ApplyAOEPersistentEffect(oTarget, EffectMovementSpeedDecrease(50));
@@ -60,6 +61,7 @@ void main()
             oTarget = GetArrayObject(jArray, nIndex);
 
             if (!GetHasFeat(FEAT_WOODLAND_STRIDE, oTarget) &&
+                !GetIsFlying(oTarget) &&
                 !GetIsIncorporeal(oTarget))
             {
                 if (GetTimerEnded(ObjectToString(oTarget)))

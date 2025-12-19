@@ -785,6 +785,13 @@ int DoSpellHook()
         }
     }
 
+    // Warlock spells are always reset to maximum after each cast
+    if (nCasterClass == CLASS_TYPE_WARLOCK)
+    {
+        int n;
+        for (n = 0; n <= 4; n++) ReadySpellLevel(oCaster, n, CLASS_TYPE_WARLOCK);
+    }
+
     // TODO Need to have:
     // * Item crafting (scrolls/potions)
     // * Cases spells shouldn't be able to be cast (null magic areas)
@@ -2891,7 +2898,7 @@ string GetSpellName(int nSpellId)
 // If the given class cannot cast the given spell we return the innate level (let's assume this for domain spells etc.)
 int GetSpellLevel(int nSpellId, int nClass = CLASS_TYPE_INVALID)
 {
-    if (nClass != CLASS_TYPE_INVALID)
+    if (nClass != CLASS_TYPE_INVALID && nClass != CLASS_TYPE_WARLOCK)
     {
         string sColumn = Get2DAString("classes", "SpellTableColumn", nClass);
 
@@ -2905,7 +2912,7 @@ int GetSpellLevel(int nSpellId, int nClass = CLASS_TYPE_INVALID)
             }
         }
     }
-    // Else return the innate level
+    // Else return the innate level (if warlock or no valid class)
     return StringToInt(Get2DAString("spells", "Innate", nSpellId));
 }
 
