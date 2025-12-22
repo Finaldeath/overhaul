@@ -68,14 +68,11 @@ void main()
                         // Up to twice the barbs HD ... shaken
                         else
                         {
-                            effect eLink = ExtraordinaryEffect(GetEffectLink(LINK_EFFECT_SHAKEN));
-
                             FloatingTextStrRefOnCreature(STRREF_TREMBLING_WITH_FEAR, oTarget); // * trembling with fear! *
-
                             float fDuration = GetDuration(d3(), ROUNDS);
 
                             ApplyVisualEffectToObject(VFX_IMP_FEAR_S, oTarget);
-                            ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration, SPELL_SHAKEN);
+                            ApplySpecialEffect(oTarget, SPELL_SHAKEN, fDuration);
                         }
                     }
                 }

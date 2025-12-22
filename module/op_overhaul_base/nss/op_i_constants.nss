@@ -24,6 +24,10 @@ const float MAX_FLOAT = 9999999.0;
 
 // Fake IMMUNITY_TYPE_* for GetIsImmuneWithFeedback and feedback function
 const int IMMUNITY_TYPE_PETRIFICATION = -2;
+const int IMMUNITY_TYPE_SICKEN        = -3;
+const int IMMUNITY_TYPE_SHAKEN        = -4;
+const int IMMUNITY_TYPE_FATIGUE       = -5;
+const int IMMUNITY_TYPE_EXHAUSATION   = -6;
 
 // iprp_onhitspell.2da
 const int IP_CONST_ONHIT_CASTSPELL_ONHIT_BLACKSTAFF = 141;

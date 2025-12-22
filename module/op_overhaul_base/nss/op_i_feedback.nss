@@ -297,6 +297,10 @@ void SendImmunityFeedback(object oCaster, object oTarget, int nImmunityType)
         case IMMUNITY_TYPE_STUN: nStrRef = STRREF_IMMUNITY_STUN; break;
         case IMMUNITY_TYPE_TRAP: sMessage = "Trap"; break;
         case IMMUNITY_TYPE_PETRIFICATION: sMessage = "Petrification"; break;
+        case IMMUNITY_TYPE_FATIGUE: sMessage = "Fatigue"; break;
+        case IMMUNITY_TYPE_EXHAUSATION: sMessage = "Exhaustion"; break;
+        case IMMUNITY_TYPE_SICKEN: sMessage = "Sicken"; break;
+        case IMMUNITY_TYPE_SHAKEN: sMessage = "Shaken"; break;
         default:
         {
             // EG: IMMUNITY_TYPE_NONE (0) or other values we do no messages. This should not occur though.

@@ -125,10 +125,13 @@ const int SPELLABILITY_DC_NORMAL      = 3;
 const int SPELLABILITY_DC_HARD        = 4;
 
 // For GetEffectLink()
-const int LINK_EFFECT_DOOM   = -10; // Damage Decrease, Saving Thow Decrease, Attack Decrease, Skill Decrease
-const int LINK_EFFECT_AID    = -11; // Damage Increase, Saving Throw Increase, Attack Increase, Skill Increase
-const int LINK_EFFECT_SHAKEN = -12; // 2 Attack Decrease, Saving Throw Decrease. Shaken should be set with the otherwised unused spell SPELL_SHAKEN so it won't stack.
-const int LINK_EFFECT_SICKEN = -13; // Sickened is -2 to attack, damage, saving throws and skills. Use SPELL_SICKEN so it won't stack.
+const int LINK_EFFECT_DOOM       = -10; // Damage Decrease, Saving Thow Decrease, Attack Decrease, Skill Decrease
+const int LINK_EFFECT_AID        = -11; // Damage Increase, Saving Throw Increase, Attack Increase, Skill Increase
+// For ApplySpecialEffect() as well
+const int LINK_EFFECT_SHAKEN     = -12; // 2 Attack Decrease, Saving Throw Decrease. Shaken should be set with the otherwised unused spell SPELL_SHAKEN so it won't stack.
+const int LINK_EFFECT_SICKEN     = -13; // Sickened is -2 to attack, damage, saving throws and skills. Use SPELL_SICKEN so it won't stack.
+const int LINK_EFFECT_FATIGUE    = -14; // Fatigued is -2 to strength and dexterity. Use SPELL_FATIGUE so it won't stack. Technically should "not be able to run or charge" but quite powerful if this is added.
+const int LINK_EFFECT_EXHAUSTION = -15; // Exhausted is -6 to strength and dexterity. -50% movement speed. Use SPELL_FATIGUE so it won't stack.
 
 
 // Debug the spell and variables
@@ -366,6 +369,13 @@ void ApplyDamageWithVFXToObjectAndTempHP(object oTarget, object oCaster, int nVF
 // * Also applies nVFX (no miss effect or anything special).
 void ApplyDamageWithVFXToObject(object oTarget, int nVFX, int nDamage, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL, int bKeepAt1HP = FALSE);
 
+// Applies a special effect, use the SPELL_* types below. If fDuration is negative (eg -1.0) it applies it permanently.
+// SPELL_SHAKEN - 2 Attack Decrease, Saving Throw Decrease. Shaken should be set with the otherwised unused spell SPELL_SHAKEN so it won't stack.
+// SPELL_SICKEN - Sickened is -2 to attack, damage, saving throws and skills. Use SPELL_SICKEN so it won't stack.
+// SPELL_FATIGUE - Fatigued is -2 to strength and dexterity. Use SPELL_FATIGUE so it won't stack. Technically should "not be able to run or charge" but quite powerful if this is added.
+// SPELL_EXHAUSTION - Exhausted is -6 to strength and dexterity. -50% movement speed. Use SPELL_EXHAUSTION so it won't stack.
+void ApplySpecialEffect(object oTarget, int nSpellId, float fDuration, int nSubType = SUBTYPE_EXTRAORDINARY, string sTag = "");
+
 // Applies eEffect to oTarget, if it hasn't got it from this spell ID AOE already
 // If bApplyRunScript is set, it also attaches the RunScript to remove it later (if no more AOEs are affecting them).
 // NOTE: Not necessarily perfect; eg if failing a save applies a movement speed effect in a given AOE, moving out of that one
@@ -379,6 +389,9 @@ void ApplyDamageWithVFXToObject(object oTarget, int nVFX, int nDamage, int nDama
 // - Applies it for a very long temporary duration
 // Apply these effects only once (ie OnEnter). Don't tag an effect as AOEEFFECT, and it'll be left alone (eg temporary stuns/entangles).
 void ApplyAOEPersistentEffect(object oTarget, effect eEffect, int bApplyRunScript = TRUE);
+
+// As ApplyAOEPersistentEffect but applies a special effect ala ApplySpecialEffect
+void ApplySpecialAOEPersistentEffect(object oTarget, int nSpellId, int bApplyRunScript = TRUE);
 
 // Removes persistent RunScripts from oTarget that are applies to oTarget tagged with OBJECT_SELF's OID (ie the AOE's).
 // Call in an AOE's OnExit event or op_r_aoecleanup.
@@ -2262,6 +2275,47 @@ int GetIsImmuneWithFeedback(object oCreature, object oVersus, int nImmunityType,
     {
         return GetIsImmuneToPetrificationWithFeedback(oCreature);
     }
+    else if (nImmunityType == IMMUNITY_TYPE_FATIGUE)
+    {
+        // Needs to be a living creature
+        if (!GetIsLiving(oCreature) ||
+             SpellImmunityCheck(oCreature, oVersus, SPELL_FATIGUE, FALSE))
+        {
+            SendImmunityFeedback(oVersus, oCreature, nImmunityType);
+            return TRUE;
+        }
+    }
+    else if (nImmunityType == IMMUNITY_TYPE_EXHAUSATION)
+    {
+        // Needs to be a living creature
+        if (!GetIsLiving(oCreature) ||
+             SpellImmunityCheck(oCreature, oVersus, SPELL_EXHAUSTION, FALSE))
+        {
+            SendImmunityFeedback(oVersus, oCreature, nImmunityType);
+            return TRUE;
+        }
+    }
+    else if(nImmunityType == IMMUNITY_TYPE_SHAKEN)
+    {
+        // Taken as Fear check
+        if(GetIsImmune(oCreature, EFFECT_ICON_IMMUNITY_FEAR, oVersus) ||
+           SpellImmunityCheck(oCreature, oVersus, SPELL_SICKEN, FALSE))
+        {
+            SendImmunityFeedback(oVersus, oCreature, nImmunityType);
+            return TRUE;
+        }
+    }
+    else if (nImmunityType == IMMUNITY_TYPE_SICKEN)
+    {
+        if(GetIsImmune(oCreature, IMMUNITY_TYPE_POISON, oVersus) ||
+           GetIsImmune(oCreature, IMMUNITY_TYPE_DISEASE, oVersus) ||
+           SpellImmunityCheck(oCreature, oVersus, SPELL_SICKEN, FALSE))
+        {
+            SendImmunityFeedback(oVersus, oCreature, nImmunityType);
+            return TRUE;
+        }
+    }
+    // All normal IMMUNITY_TYPE_* constants go below.
     else if (GetIsImmune(oCreature, nImmunityType, oVersus))
     {
         SendImmunityFeedback(oVersus, oCreature, nImmunityType);
@@ -2689,6 +2743,42 @@ void ApplyDamageWithVFXToObject(object oTarget, int nVFX, int nDamage, int nDama
     }
 }
 
+// Applies a special effect, use the SPELL_* types below. If fDuration is negative (eg -1.0) it applies it permanently.
+// SPELL_SHAKEN - 2 Attack Decrease, Saving Throw Decrease. Shaken should be set with the otherwised unused spell SPELL_SHAKEN so it won't stack.
+// SPELL_SICKEN - Sickened is -2 to attack, damage, saving throws and skills. Use SPELL_SICKEN so it won't stack.
+// SPELL_FATIGUE - Fatigued is -2 to strength and dexterity. Use SPELL_FATIGUE so it won't stack. Technically should "not be able to run or charge" but quite powerful if this is added.
+// SPELL_EXHAUSTION - Exhausted is -6 to strength and dexterity. -50% movement speed. Use SPELL_EXHAUSTION so it won't stack.
+void ApplySpecialEffect(object oTarget, int nSpellId, float fDuration, int nSubType = SUBTYPE_EXTRAORDINARY, string sTag = "")
+{
+    effect eLink;
+    switch (nSpellId)
+    {
+        case SPELL_SHAKEN: eLink = GetEffectLink(LINK_EFFECT_SHAKEN); break;
+        case SPELL_SICKEN: eLink = GetEffectLink(LINK_EFFECT_SICKEN); break;
+        case SPELL_FATIGUE: eLink = GetEffectLink(LINK_EFFECT_FATIGUE); break;
+        case SPELL_EXHAUSTION: eLink = GetEffectLink(LINK_EFFECT_EXHAUSTION); break;
+        default: if (DEBUG_LEVEL >= ERROR) Error("[ApplySpecialEffect] Invalid spell Id: " + IntToString(nSpellId)); return; break;
+    }
+
+    switch (nSubType)
+    {
+        case SUBTYPE_EXTRAORDINARY: eLink = ExtraordinaryEffect(eLink); break;
+        case SUBTYPE_MAGICAL:       eLink = MagicalEffect(eLink); break;
+        case SUBTYPE_SUPERNATURAL:  eLink = SupernaturalEffect(eLink); break;
+        case SUBTYPE_UNYIELDING:    eLink = UnyieldingEffect(eLink); break;
+        default: if (DEBUG_LEVEL >= ERROR) Error("[ApplySpecialEffect] Invalid subtype: " + IntToString(nSubType)); return; break;
+    }
+
+    if (sTag != "")
+    {
+        eLink = TagEffect(eLink, sTag);
+    }
+
+    int nDurationType = fDuration >= 0.0 ? DURATION_TYPE_TEMPORARY : DURATION_TYPE_PERMANENT;
+
+    ApplyEffectToObject(nDurationType, EffectChangeProperties(eLink, nSpellId, nCasterLevel, oCaster), oTarget, fDuration);
+}
+
 // Applies eEffect to oTarget, if it hasn't got it from this spell ID AOE already
 // If bApplyRunScript is set, it also attaches the RunScript to remove it later (if no more AOEs are affecting them).
 // NOTE: Not necessarily perfect; eg if failing a save applies a movement speed effect in a given AOE, moving out of that one
@@ -2703,6 +2793,43 @@ void ApplyDamageWithVFXToObject(object oTarget, int nVFX, int nDamage, int nDama
 // Apply these effects only once (ie OnEnter). Don't tag an effect as AOEEFFECT, and it'll be left alone (eg temporary stuns/entangles).
 void ApplyAOEPersistentEffect(object oTarget, effect eEffect, int bApplyRunScript = TRUE)
 {
+    if (bApplyRunScript)
+    {
+        if (!GetHasEffect(oTarget, EFFECT_TYPE_RUNSCRIPT, SPELL_ANY, ObjectToString(OBJECT_SELF)))
+        {
+            // Apply run script which when removed (or AOE dies) it clears all tagged AOE effects if no
+            // other run scripts from the same spell Id exist
+            effect eLink = EffectLinkEffects(EffectRunScriptEnhanced(FALSE, "op_rs_aoecleanup", "op_rs_aoecleanup", 6.0),
+                                             EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            eLink        = ExtraordinaryEffect(eLink);
+            eLink        = TagEffect(eLink, ObjectToString(OBJECT_SELF));
+            ApplySpellEffectToObject(DURATION_TYPE_PERMANENT, eLink, oTarget);
+        }
+    }
+
+    // Don't apply duplicates, eg lots of -50% movement speeds
+    if (!GetHasEffect(oTarget, EFFECT_TYPE_ALL, nSpellId, TAG_AOEEFFECT))
+    {
+        eEffect = ExtraordinaryEffect(eEffect);
+        eEffect = TagEffect(eEffect, TAG_AOEEFFECT);
+        // We apply things "for a long time" since no AOE should be permanent. This helps with state scripts like Paralysis
+        ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eEffect, oTarget, 10000.0);
+    }
+}
+
+// As ApplyAOEPersistentEffect but applies a special effect ala ApplySpecialEffect
+void ApplySpecialAOEPersistentEffect(object oTarget, int nSpellId, int bApplyRunScript = TRUE)
+{
+    effect eEffect;
+    switch (nSpellId)
+    {
+        case SPELL_SHAKEN: eEffect = GetEffectLink(LINK_EFFECT_SHAKEN); break;
+        case SPELL_SICKEN: eEffect = GetEffectLink(LINK_EFFECT_SICKEN); break;
+        case SPELL_FATIGUE: eEffect = GetEffectLink(LINK_EFFECT_FATIGUE); break;
+        case SPELL_EXHAUSTION: eEffect = GetEffectLink(LINK_EFFECT_EXHAUSTION); break;
+        default: if (DEBUG_LEVEL >= ERROR) Error("[ApplySpecialEffect] Invalid spell Id: " + IntToString(nSpellId)); return; break;
+    }
+
     if (bApplyRunScript)
     {
         if (!GetHasEffect(oTarget, EFFECT_TYPE_RUNSCRIPT, SPELL_ANY, ObjectToString(OBJECT_SELF)))
@@ -4151,11 +4278,32 @@ effect GetEffectLink(int nEffectType, int nValue1 = 0, int nValue2 = 0, int nVal
         case LINK_EFFECT_SICKEN:
         {
             // TODO: Sicken persistent VFX and icon
+            // TODO: Possibly force this to ignore effects since it's a "nautral" effect
             eLink = EffectLinkEffects(EffectSavingThrowDecrease(SAVING_THROW_ALL, 2),
                     EffectLinkEffects(EffectAttackDecrease(2),
                     EffectLinkEffects(EffectDamageDecrease(2, DAMAGE_TYPE_BLUDGEONING | DAMAGE_TYPE_SLASHING | DAMAGE_TYPE_PIERCING),
                     EffectLinkEffects(EffectSkillDecrease(SKILL_ALL_SKILLS, 2),
                                       EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)))));
+        }
+        break;
+        case LINK_EFFECT_FATIGUE:
+        {
+            // TODO: Fatigue persistent VFX
+            // This ignores immunities since it's a "nautral" effect
+            eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectAbilityDecrease(ABILITY_STRENGTH, 2)),
+                    EffectLinkEffects(IgnoreEffectImmunity(EffectAbilityDecrease(ABILITY_DEXTERITY, 2)),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+        }
+        break;
+        case LINK_EFFECT_EXHAUSTION:
+        {
+            // TODO: Exhuastion persistent VFX and icon
+            // TODO: Movement speed from this can stack, possibly a better way to do this with EffectRunScript
+            // This ignores immunities since it's a "nautral" effect
+            eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectMovementSpeedDecrease(50)),
+                    EffectLinkEffects(IgnoreEffectImmunity(EffectAbilityDecrease(ABILITY_STRENGTH, 6)),
+                    EffectLinkEffects(IgnoreEffectImmunity(EffectAbilityDecrease(ABILITY_DEXTERITY, 6)),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));
         }
         break;
         // Standard ones
@@ -4677,6 +4825,26 @@ effect GetEffectLinkIgnoreImmunity(int nEffectType, int nValue1 = 0, int nValue2
                     EffectLinkEffects(IgnoreEffectImmunity(EffectSkillDecrease(SKILL_ALL_SKILLS, 2)),
                                       EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)))));
         }
+        case LINK_EFFECT_FATIGUE:
+        {
+            // TODO: Fatigue persistent VFX
+            // This ignores immunities since it's a "nautral" effect
+            eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectAbilityDecrease(ABILITY_STRENGTH, 2)),
+                    EffectLinkEffects(IgnoreEffectImmunity(EffectAbilityDecrease(ABILITY_DEXTERITY, 2)),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+        }
+        break;
+        case LINK_EFFECT_EXHAUSTION:
+        {
+            // TODO: Exhuastion persistent VFX and icon
+            // TODO: Movement speed from this can stack, possibly a better way to do this with EffectRunScript
+            // This ignores immunities since it's a "nautral" effect
+            eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectMovementSpeedDecrease(50)),
+                    EffectLinkEffects(IgnoreEffectImmunity(EffectAbilityDecrease(ABILITY_STRENGTH, 6)),
+                    EffectLinkEffects(IgnoreEffectImmunity(EffectAbilityDecrease(ABILITY_DEXTERITY, 6)),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));
+        }
+        break;
         // Standard ones
         case EFFECT_TYPE_ABILITY_DECREASE:
         {

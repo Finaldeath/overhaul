@@ -20,7 +20,7 @@ void main()
 {
     if (DoSpellHook()) return;
 
-    effect eLink = EffectLinkEffects(EffectKnockdown(), EffectIcon(EFFECT_ICON_KNOCKDOWN));
+    effect eLink = GetEffectLink(EFFECT_TYPE_KNOCKDOWN);
     float fDuration = RoundsToSeconds(3);
 
     ApplyVisualEffectAtLocation(VFX_FNF_LOS_NORMAL_20, lTarget);
@@ -43,7 +43,8 @@ void main()
                  sAOETag == "VFX_PER_FOGSTINK" ||
                  sAOETag == "VFX_PER_FOGFIRE" ||
                  sAOETag == "VFX_PER_FOGMIND" ||
-                 sAOETag == "VFX_PER_CREEPING_DOOM")
+                 sAOETag == "VFX_PER_CREEPING_DOOM" ||
+                 sAOETag == "VFX_PER_MIASMICCLOUD")
             {
                 DelayCommand(fDelay, ApplyVisualEffectAtLocation(VFX_IMP_PULSE_WIND, GetLocation(oTarget)));
                 DestroyObject(oTarget);
