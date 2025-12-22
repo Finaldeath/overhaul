@@ -128,10 +128,11 @@ const int SPELLABILITY_DC_HARD        = 4;
 const int LINK_EFFECT_DOOM       = -10; // Damage Decrease, Saving Thow Decrease, Attack Decrease, Skill Decrease
 const int LINK_EFFECT_AID        = -11; // Damage Increase, Saving Throw Increase, Attack Increase, Skill Increase
 // For ApplySpecialEffect() as well
-const int LINK_EFFECT_SHAKEN     = -12; // 2 Attack Decrease, Saving Throw Decrease. Shaken should be set with the otherwised unused spell SPELL_SHAKEN so it won't stack.
-const int LINK_EFFECT_SICKEN     = -13; // Sickened is -2 to attack, damage, saving throws and skills. Use SPELL_SICKEN so it won't stack.
-const int LINK_EFFECT_FATIGUE    = -14; // Fatigued is -2 to strength and dexterity. Use SPELL_FATIGUE so it won't stack. Technically should "not be able to run or charge" but quite powerful if this is added.
-const int LINK_EFFECT_EXHAUSTION = -15; // Exhausted is -6 to strength and dexterity. -50% movement speed. Use SPELL_FATIGUE so it won't stack.
+const int LINK_EFFECT_SHAKEN     = -12; // Shaken: 2 Attack Decrease, Saving Throw Decrease.
+const int LINK_EFFECT_SICKEN     = -13; // Sickened: -2 to attack, damage, saving throws and skills.
+const int LINK_EFFECT_FATIGUE    = -14; // Fatigued: -2 to strength and dexterity. Technically should "not be able to run or charge" but quite powerful if this is added.
+const int LINK_EFFECT_EXHAUSTION = -15; // Exhausted: -6 to strength and dexterity. -50% movement speed.
+const int LINK_EFFECT_DAZZLE     = -16; // Dazzled: -1 to attack, Spot and Search (Using 3.5E version since it's slightly better)
 
 
 // Debug the spell and variables
@@ -370,10 +371,11 @@ void ApplyDamageWithVFXToObjectAndTempHP(object oTarget, object oCaster, int nVF
 void ApplyDamageWithVFXToObject(object oTarget, int nVFX, int nDamage, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL, int bKeepAt1HP = FALSE);
 
 // Applies a special effect, use the SPELL_* types below. If fDuration is negative (eg -1.0) it applies it permanently.
-// SPELL_SHAKEN - 2 Attack Decrease, Saving Throw Decrease. Shaken should be set with the otherwised unused spell SPELL_SHAKEN so it won't stack.
-// SPELL_SICKEN - Sickened is -2 to attack, damage, saving throws and skills. Use SPELL_SICKEN so it won't stack.
-// SPELL_FATIGUE - Fatigued is -2 to strength and dexterity. Use SPELL_FATIGUE so it won't stack. Technically should "not be able to run or charge" but quite powerful if this is added.
-// SPELL_EXHAUSTION - Exhausted is -6 to strength and dexterity. -50% movement speed. Use SPELL_EXHAUSTION so it won't stack.
+// SPELL_EFFECT_SHAKEN - Shaken: 2 Attack Decrease, Saving Throw Decrease.
+// SPELL_EFFECT_SICKEN - Sickened: -2 to attack, damage, saving throws and skills.
+// SPELL_EFFECT_FATIGUE - Fatigued: -2 to strength and dexterity. Technically should "not be able to run or charge" but quite powerful if this is added.
+// SPELL_EFFECT_EXHAUSTION - Exhausted: -6 to strength and dexterity. -50% movement speed.
+// SPELL_EFFECT_DAZZLE - Dazzled: -1 to attack, Spot and Search (Using 3.5E version since it's slightly better)
 void ApplySpecialEffect(object oTarget, int nSpellId, float fDuration, int nSubType = SUBTYPE_EXTRAORDINARY, string sTag = "");
 
 // Applies eEffect to oTarget, if it hasn't got it from this spell ID AOE already
@@ -2279,7 +2281,7 @@ int GetIsImmuneWithFeedback(object oCreature, object oVersus, int nImmunityType,
     {
         // Needs to be a living creature
         if (!GetIsLiving(oCreature) ||
-             SpellImmunityCheck(oCreature, oVersus, SPELL_FATIGUE, FALSE))
+             SpellImmunityCheck(oCreature, oVersus, SPELL_EFFECT_FATIGUE, FALSE))
         {
             SendImmunityFeedback(oVersus, oCreature, nImmunityType);
             return TRUE;
@@ -2289,7 +2291,7 @@ int GetIsImmuneWithFeedback(object oCreature, object oVersus, int nImmunityType,
     {
         // Needs to be a living creature
         if (!GetIsLiving(oCreature) ||
-             SpellImmunityCheck(oCreature, oVersus, SPELL_EXHAUSTION, FALSE))
+             SpellImmunityCheck(oCreature, oVersus, SPELL_EFFECT_EXHAUSTION, FALSE))
         {
             SendImmunityFeedback(oVersus, oCreature, nImmunityType);
             return TRUE;
@@ -2299,7 +2301,7 @@ int GetIsImmuneWithFeedback(object oCreature, object oVersus, int nImmunityType,
     {
         // Taken as Fear check
         if(GetIsImmune(oCreature, EFFECT_ICON_IMMUNITY_FEAR, oVersus) ||
-           SpellImmunityCheck(oCreature, oVersus, SPELL_SICKEN, FALSE))
+           SpellImmunityCheck(oCreature, oVersus, SPELL_EFFECT_SHAKEN, FALSE))
         {
             SendImmunityFeedback(oVersus, oCreature, nImmunityType);
             return TRUE;
@@ -2309,7 +2311,17 @@ int GetIsImmuneWithFeedback(object oCreature, object oVersus, int nImmunityType,
     {
         if(GetIsImmune(oCreature, IMMUNITY_TYPE_POISON, oVersus) ||
            GetIsImmune(oCreature, IMMUNITY_TYPE_DISEASE, oVersus) ||
-           SpellImmunityCheck(oCreature, oVersus, SPELL_SICKEN, FALSE))
+           SpellImmunityCheck(oCreature, oVersus, SPELL_EFFECT_SICKEN, FALSE))
+        {
+            SendImmunityFeedback(oVersus, oCreature, nImmunityType);
+            return TRUE;
+        }
+    }
+    else if (nImmunityType == IMMUNITY_TYPE_DAZZLE)
+    {
+        // Needs to have eyes
+        if (!GetCanSee(oCreature) ||
+             SpellImmunityCheck(oCreature, oVersus, SPELL_EFFECT_DAZZLE, FALSE))
         {
             SendImmunityFeedback(oVersus, oCreature, nImmunityType);
             return TRUE;
@@ -2744,19 +2756,21 @@ void ApplyDamageWithVFXToObject(object oTarget, int nVFX, int nDamage, int nDama
 }
 
 // Applies a special effect, use the SPELL_* types below. If fDuration is negative (eg -1.0) it applies it permanently.
-// SPELL_SHAKEN - 2 Attack Decrease, Saving Throw Decrease. Shaken should be set with the otherwised unused spell SPELL_SHAKEN so it won't stack.
-// SPELL_SICKEN - Sickened is -2 to attack, damage, saving throws and skills. Use SPELL_SICKEN so it won't stack.
-// SPELL_FATIGUE - Fatigued is -2 to strength and dexterity. Use SPELL_FATIGUE so it won't stack. Technically should "not be able to run or charge" but quite powerful if this is added.
-// SPELL_EXHAUSTION - Exhausted is -6 to strength and dexterity. -50% movement speed. Use SPELL_EXHAUSTION so it won't stack.
+// SPELL_EFFECT_SHAKEN - Shaken: 2 Attack Decrease, Saving Throw Decrease.
+// SPELL_EFFECT_SICKEN - Sickened: -2 to attack, damage, saving throws and skills.
+// SPELL_EFFECT_FATIGUE - Fatigued: -2 to strength and dexterity. Technically should "not be able to run or charge" but quite powerful if this is added.
+// SPELL_EFFECT_EXHAUSTION - Exhausted: -6 to strength and dexterity. -50% movement speed.
+// SPELL_EFFECT_DAZZLE - Dazzled: -1 to attack, Spot and Search (Using 3.5E version since it's slightly better)
 void ApplySpecialEffect(object oTarget, int nSpellId, float fDuration, int nSubType = SUBTYPE_EXTRAORDINARY, string sTag = "")
 {
     effect eLink;
     switch (nSpellId)
     {
-        case SPELL_SHAKEN: eLink = GetEffectLink(LINK_EFFECT_SHAKEN); break;
-        case SPELL_SICKEN: eLink = GetEffectLink(LINK_EFFECT_SICKEN); break;
-        case SPELL_FATIGUE: eLink = GetEffectLink(LINK_EFFECT_FATIGUE); break;
-        case SPELL_EXHAUSTION: eLink = GetEffectLink(LINK_EFFECT_EXHAUSTION); break;
+        case SPELL_EFFECT_SHAKEN: eLink = GetEffectLink(LINK_EFFECT_SHAKEN); break;
+        case SPELL_EFFECT_SICKEN: eLink = GetEffectLink(LINK_EFFECT_SICKEN); break;
+        case SPELL_EFFECT_FATIGUE: eLink = GetEffectLink(LINK_EFFECT_FATIGUE); break;
+        case SPELL_EFFECT_EXHAUSTION: eLink = GetEffectLink(LINK_EFFECT_EXHAUSTION); break;
+        case SPELL_EFFECT_DAZZLE: eLink = GetEffectLink(LINK_EFFECT_DAZZLE); break;
         default: if (DEBUG_LEVEL >= ERROR) Error("[ApplySpecialEffect] Invalid spell Id: " + IntToString(nSpellId)); return; break;
     }
 
@@ -2820,16 +2834,6 @@ void ApplyAOEPersistentEffect(object oTarget, effect eEffect, int bApplyRunScrip
 // As ApplyAOEPersistentEffect but applies a special effect ala ApplySpecialEffect
 void ApplySpecialAOEPersistentEffect(object oTarget, int nSpellId, int bApplyRunScript = TRUE)
 {
-    effect eEffect;
-    switch (nSpellId)
-    {
-        case SPELL_SHAKEN: eEffect = GetEffectLink(LINK_EFFECT_SHAKEN); break;
-        case SPELL_SICKEN: eEffect = GetEffectLink(LINK_EFFECT_SICKEN); break;
-        case SPELL_FATIGUE: eEffect = GetEffectLink(LINK_EFFECT_FATIGUE); break;
-        case SPELL_EXHAUSTION: eEffect = GetEffectLink(LINK_EFFECT_EXHAUSTION); break;
-        default: if (DEBUG_LEVEL >= ERROR) Error("[ApplySpecialEffect] Invalid spell Id: " + IntToString(nSpellId)); return; break;
-    }
-
     if (bApplyRunScript)
     {
         if (!GetHasEffect(oTarget, EFFECT_TYPE_RUNSCRIPT, SPELL_ANY, ObjectToString(OBJECT_SELF)))
@@ -2847,10 +2851,7 @@ void ApplySpecialAOEPersistentEffect(object oTarget, int nSpellId, int bApplyRun
     // Don't apply duplicates, eg lots of -50% movement speeds
     if (!GetHasEffect(oTarget, EFFECT_TYPE_ALL, nSpellId, TAG_AOEEFFECT))
     {
-        eEffect = ExtraordinaryEffect(eEffect);
-        eEffect = TagEffect(eEffect, TAG_AOEEFFECT);
-        // We apply things "for a long time" since no AOE should be permanent. This helps with state scripts like Paralysis
-        ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eEffect, oTarget, 10000.0);
+        ApplySpecialEffect(oTarget, nSpellId, 10000.0, SUBTYPE_EXTRAORDINARY, TAG_AOEEFFECT);
     }
 }
 
@@ -4306,6 +4307,16 @@ effect GetEffectLink(int nEffectType, int nValue1 = 0, int nValue2 = 0, int nVal
                                       EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));
         }
         break;
+        case LINK_EFFECT_DAZZLE:
+        {
+            // TODO: Dazzle persistent VFX and icon
+            // This ignores immunities since it's a "nautral" effect
+            eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectAttackDecrease(1)),
+                    EffectLinkEffects(IgnoreEffectImmunity(EffectSkillDecrease(SKILL_SPOT, 1)),
+                    EffectLinkEffects(IgnoreEffectImmunity(EffectSkillDecrease(SKILL_SEARCH, 1)),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));
+        }
+        break;
         // Standard ones
         case EFFECT_TYPE_ABILITY_DECREASE:
         {
@@ -4842,6 +4853,16 @@ effect GetEffectLinkIgnoreImmunity(int nEffectType, int nValue1 = 0, int nValue2
             eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectMovementSpeedDecrease(50)),
                     EffectLinkEffects(IgnoreEffectImmunity(EffectAbilityDecrease(ABILITY_STRENGTH, 6)),
                     EffectLinkEffects(IgnoreEffectImmunity(EffectAbilityDecrease(ABILITY_DEXTERITY, 6)),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));
+        }
+        break;
+        case LINK_EFFECT_DAZZLE:
+        {
+            // TODO: Dazzle persistent VFX and icon
+            // This ignores immunities since it's a "nautral" effect
+            eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectAttackDecrease(1)),
+                    EffectLinkEffects(IgnoreEffectImmunity(EffectSkillDecrease(SKILL_SPOT, 1)),
+                    EffectLinkEffects(IgnoreEffectImmunity(EffectSkillDecrease(SKILL_SEARCH, 1)),
                                       EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));
         }
         break;

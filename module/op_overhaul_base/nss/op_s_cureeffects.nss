@@ -106,6 +106,8 @@ void main()
             nVis       = VFX_IMP_REMOVE_CONDITION;
 
             jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_FRIGHTENED));
+            // Lesser "fear" effect
+            CureEffectsFromSpell(oTarget, SPELL_EFFECT_SHAKEN);
         }
         break;
         case SPELL_FREEDOM_OF_MOVEMENT:
@@ -190,6 +192,8 @@ void main()
             jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_PARALYZE));
             jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_SLOW));
             jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_STUNNED));
+            // Lesser "fear" effect
+            CureEffectsFromSpell(oTarget, SPELL_EFFECT_SHAKEN);
         }
         break;
         case SPELL_NEUTRALIZE_POISON:

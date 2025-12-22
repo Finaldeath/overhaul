@@ -28,6 +28,7 @@ const int IMMUNITY_TYPE_SICKEN        = -3;
 const int IMMUNITY_TYPE_SHAKEN        = -4;
 const int IMMUNITY_TYPE_FATIGUE       = -5;
 const int IMMUNITY_TYPE_EXHAUSATION   = -6;
+const int IMMUNITY_TYPE_DAZZLE        = -7;
 
 // iprp_onhitspell.2da
 const int IP_CONST_ONHIT_CASTSPELL_ONHIT_BLACKSTAFF = 141;

@@ -253,8 +253,10 @@ void HealOrHarm(object oTarget, float fDelay, int nVisHeal, int nVisHarm, int nD
 
             CureEffects(oTarget, jArray, TRUE);
 
-            // Cure Sickened
-            CureEffectsFromSpell(oTarget, SPELL_SICKEN);
+            // Cure the various "not NWN effects" we mimic
+            CureEffectsFromSpell(oTarget, SPELL_EFFECT_SICKEN);
+            CureEffectsFromSpell(oTarget, SPELL_EFFECT_EXHAUSTION);
+            CureEffectsFromSpell(oTarget, SPELL_EFFECT_FATIGUE);
 
             // Also remove these specific spells
             CureEffectsFromSpell(oTarget, SPELL_FEEBLEMIND);
