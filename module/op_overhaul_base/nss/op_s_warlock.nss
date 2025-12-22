@@ -72,6 +72,16 @@ void main()
     // We then get what essence may apply (on top). Either nSpellId's or an overlay one. We apply the essence on top.
     int nEssenceId = GetAppliedWarlockEssence(nSpellId);
 
+    // Essence may be higher level, set it here
+    if (nEssenceId != SPELL_INVALID)
+    {
+        // Use Innate levels - all Warlock setup does.
+        if (GetSpellLevel(nEssenceId) > GetSpellLevel(nSpellId))
+        {
+            nSpellLevel = GetSpellLevel(nEssenceId);
+        }
+    }
+
     // We alter the spell Id now to always be "Eldritch Blast" for simplicity since
     // this covers us having multiple negative effects stacking for cases of
     // ability/skill changes.

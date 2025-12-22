@@ -248,6 +248,9 @@
 
     Shadowblend
     The creature is able to blend into shadows, gaining 90% concealment.
+
+    Warlock buffs
+    Various minor and major warlock buffs.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -1154,6 +1157,121 @@ void main()
 
             // Doesn't work with continual flame applied. Sure Bioware.
             if (GetHasSpellEffect(SPELL_CONTINUAL_FLAME, oTarget)) return;
+        }
+        break;
+        case SPELL_ALLSEEING_EYES:
+        {
+            // You gain a +6 bonus to your Search and Spot skills.
+            eLink = EffectLinkEffects(EffectSkillIncrease(SKILL_SEARCH, 6),
+                    EffectLinkEffects(EffectSkillIncrease(SKILL_SPOT, 6),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_MAGICAL_SIGHT), // TODO new VFX
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE))));
+            nVis = VFX_IMP_IMPROVE_ABILITY_SCORE; // TODO new VFX
+            fDuration = GetDuration(24, HOURS);
+        }
+        break;
+        case SPELL_BEGUILING_INFLUENCE:
+        {
+            // You gain a +6 bonus to your Bluff, Persuade, and Intimidate
+            eLink = EffectLinkEffects(EffectSkillIncrease(SKILL_SEARCH, 6),
+                    EffectLinkEffects(EffectSkillIncrease(SKILL_SPOT, 6),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_GLOW_LIGHT_PURPLE), // TODO new VFX
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE))));
+            nVis = VFX_IMP_IMPROVE_ABILITY_SCORE; // TODO new VFX
+            fDuration = GetDuration(24, HOURS);
+        }
+        break;
+        case SPELL_DARK_ONES_OWN_LUCK_FORTITUDE:
+        case SPELL_DARK_ONES_OWN_LUCK_REFLEX:
+        case SPELL_DARK_ONES_OWN_LUCK_WILL:
+        {
+            // You gain a luck bonus equal to your Charisma bonus (if any) on
+            // Fortitude saves, Reflex saves, or Will saves (your choice each
+            // time you use this ability) for a period of 24 hours. You can’t
+            // apply this ability to two different save types at the same time.
+            // This bonus can never exceed your class level.
+            int nSavingThrowType;
+            switch (nSpellId)
+            {
+                case SPELL_DARK_ONES_OWN_LUCK_FORTITUDE: nSavingThrowType = SAVING_THROW_FORT; break;
+                case SPELL_DARK_ONES_OWN_LUCK_REFLEX: nSavingThrowType = SAVING_THROW_REFLEX; break;
+                case SPELL_DARK_ONES_OWN_LUCK_WILL: nSavingThrowType = SAVING_THROW_WILL; break;
+            }
+            // Bonus calculation and limits
+            int nBonus = GetAbilityModifier(ABILITY_CHARISMA, oCaster);
+            if (nBonus > nCasterLevel) nBonus = nCasterLevel;
+            if (nBonus < 1) return;
+
+            eLink = GetEffectLink(EFFECT_TYPE_SAVING_THROW_INCREASE, nSavingThrowType, nBonus, SAVING_THROW_TYPE_ALL);
+            nVis = VFX_IMP_IMPROVE_ABILITY_SCORE; // TODO new VFX
+            fDuration = GetDuration(24, HOURS);
+
+            nRemoveSpell1 = SPELL_DARK_ONES_OWN_LUCK_FORTITUDE;
+            nRemoveSpell1 = SPELL_DARK_ONES_OWN_LUCK_WILL;
+            nRemoveSpell1 = SPELL_DARK_ONES_OWN_LUCK_REFLEX;
+        }
+        break;
+        case SPELL_DEVILS_SIGHT:
+        {
+            // You can gain darkvision allowing you to see in the dark, and
+            // ultravision allowing you to see through magical darkness.
+            eLink = EffectLinkEffects(EffectUltravision(),
+                    EffectLinkEffects(EffectBonusFeat(FEAT_DARKVISION),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_MAGICAL_SIGHT), // TODO new VFX
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE))));
+            nVis = VFX_IMP_IMPROVE_ABILITY_SCORE; // TODO new VFX
+            fDuration = GetDuration(24, HOURS);
+        }
+        break;
+        case SPELL_ENTROPIC_WARDING:
+        {
+            // 20% ranged concealment
+            eLink     = EffectLinkEffects(EffectConcealment(20, MISS_CHANCE_TYPE_VS_RANGED),
+                        EffectLinkEffects(EffectVisualEffect(VFX_DUR_GLOW_LIGHT_PURPLE),
+                                          EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+            nVis = VFX_IMP_AC_BONUS; // TODO new VFX
+            fDuration = GetDuration(24, HOURS);
+        }
+        break;
+        case SPELL_LEAPS_AND_BOUNDS:
+        {
+            // You gain a +4 bonus to your Dexterity and a +4 bonus to your Tumble skill for 24 hours.
+            eLink = EffectLinkEffects(EffectAbilityIncrease(ABILITY_DEXTERITY, 4),
+                    EffectLinkEffects(EffectSkillIncrease(SKILL_TUMBLE, 4),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_GLOW_LIGHT_YELLOW), // TODO new VFX
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE))));
+            nVis = VFX_IMP_IMPROVE_ABILITY_SCORE; // TODO new VFX
+            fDuration = GetDuration(24, HOURS);
+        }
+        break;
+        case SPELL_OTHERWORLDLY_WHISPERS:
+        {
+            // You gain a +6 bonus to your Lore and Spellcraft skill for 24 hours.
+            eLink = EffectLinkEffects(EffectSkillIncrease(SKILL_LORE, 6),
+                    EffectLinkEffects(EffectSkillIncrease(SKILL_SPELLCRAFT, 6),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_GLOW_PURPLE), // TODO new VFX
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE))));
+            nVis = VFX_IMP_IMPROVE_ABILITY_SCORE; // TODO new VFX
+            fDuration = GetDuration(24, HOURS);
+        }
+        break;
+        case SPELL_SEE_THE_UNSEEN:
+        {
+            // Darkvision + see invisible
+            eLink = EffectLinkEffects(EffectSeeInvisible(),
+                    EffectLinkEffects(EffectBonusFeat(FEAT_DARKVISION),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_MAGICAL_SIGHT), // TODO new VFX
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE))));
+            nVis = VFX_IMP_IMPROVE_ABILITY_SCORE; // TODO new VFX
+            fDuration = GetDuration(24, HOURS);
+        }
+        break;
+        case SPELL_SERPENTS_TONGUE:
+        {
+            // you gain a +5 bonus on saves against poison
+            eLink = GetEffectLink(EFFECT_TYPE_SAVING_THROW_INCREASE, SAVING_THROW_ALL, 5, SAVING_THROW_TYPE_POISON);
+            nVis = VFX_IMP_IMPROVE_ABILITY_SCORE; // TODO new VFX
+            fDuration = GetDuration(24, HOURS);
         }
         break;
         default:

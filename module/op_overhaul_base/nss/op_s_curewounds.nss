@@ -241,17 +241,20 @@ void HealOrHarm(object oTarget, float fDelay, int nVisHeal, int nVisHarm, int nD
             // nauseated, sickened, stunned, and poisoned.
             json jArray = JsonArray();
 
-            // Todo explicitly: Dazzled, Exhusted, Fatigued, Feeblemind, Insanity, Anuseated, Sickened
+            // Todo explicitly: Dazzled, Exhusted, Fatigued, Feeblemind, Insanity, Nauseated, Sickened
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_ABILITY_DECREASE));
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_BLINDNESS));
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_CONFUSED));
-            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_DAZED));
+            jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_DAZED)); // also Nauseated
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_DEAF));
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_DISEASE));
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_STUNNED));
             jArray = JsonArrayInsert(jArray, JsonInt(EFFECT_TYPE_POISON));
 
             CureEffects(oTarget, jArray, TRUE);
+
+            // Cure Sickened
+            CureEffectsFromSpell(oTarget, SPELL_SICKEN);
 
             // Also remove these specific spells
             CureEffectsFromSpell(oTarget, SPELL_FEEBLEMIND);

@@ -75,7 +75,7 @@ void main()
                             float fDuration = GetDuration(d3(), ROUNDS);
 
                             ApplyVisualEffectToObject(VFX_IMP_FEAR_S, oTarget);
-                            ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration);
+                            ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration, SPELL_SHAKEN);
                         }
                     }
                 }

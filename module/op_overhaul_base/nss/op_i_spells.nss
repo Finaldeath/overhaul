@@ -127,7 +127,9 @@ const int SPELLABILITY_DC_HARD        = 4;
 // For GetEffectLink()
 const int LINK_EFFECT_DOOM   = -10; // Damage Decrease, Saving Thow Decrease, Attack Decrease, Skill Decrease
 const int LINK_EFFECT_AID    = -11; // Damage Increase, Saving Throw Increase, Attack Increase, Skill Increase
-const int LINK_EFFECT_SHAKEN = -12; // 2 Attack Decrease, Saving Throw Decrease,
+const int LINK_EFFECT_SHAKEN = -12; // 2 Attack Decrease, Saving Throw Decrease. Shaken should be set with the otherwised unused spell SPELL_SHAKEN so it won't stack.
+const int LINK_EFFECT_SICKEN = -13; // Sickened is -2 to attack, damage, saving throws and skills. Use SPELL_SICKEN so it won't stack.
+
 
 // Debug the spell and variables
 int DebugSpellVariables();
@@ -310,7 +312,7 @@ float GetVisualEffectHitDelay(int nVFX, object oTarget, object oSource);
 effect EffectChangeProperties(effect eEffect, int nSpellId = SPELL_INVALID, int nCasterLevel = 0, object oCreator = OBJECT_SELF);
 
 // Applies the given effect but merges in the right spell Id, caster Id and caster level.
-void ApplySpellEffectToObject(int nDurationType, effect eEffect, object oTarget, float fDuration = 0.0);
+void ApplySpellEffectToObject(int nDurationType, effect eEffect, object oTarget, float fDuration = 0.0, int nSpellIdOverride = SPELL_INVALID);
 
 // Applies the given effect but merges in the right spell Id, caster Id and caster level.
 void ApplySpellEffectAtLocation(int nDurationType, effect eEffect, location lTarget, float fDuration = 0.0);
@@ -2453,7 +2455,7 @@ effect EffectChangeProperties(effect eEffect, int nSpellId = SPELL_INVALID, int 
 }
 
 // Applies the given effect but merges in the right spell Id, caster Id and caster level.
-void ApplySpellEffectToObject(int nDurationType, effect eEffect, object oTarget, float fDuration = 0.0)
+void ApplySpellEffectToObject(int nDurationType, effect eEffect, object oTarget, float fDuration = 0.0, int nSpellIdOverride = SPELL_INVALID)
 {
     // Error checking
     if (DEBUG_LEVEL >= ERROR)
@@ -2464,7 +2466,9 @@ void ApplySpellEffectToObject(int nDurationType, effect eEffect, object oTarget,
             Error("[ApplySpellEffectToObject] Error: Non-Temporary duration but fDuration is: " + FloatToString(fDuration));
     }
 
-    ApplyEffectToObject(nDurationType, EffectChangeProperties(eEffect, nSpellId, nCasterLevel, oCaster), oTarget, fDuration);
+    int nSpellIdToUse = nSpellIdOverride == SPELL_INVALID ? nSpellId : nSpellIdOverride;
+
+    ApplyEffectToObject(nDurationType, EffectChangeProperties(eEffect, nSpellIdToUse, nCasterLevel, oCaster), oTarget, fDuration);
 }
 
 // Applies the given effect but merges in the right spell Id, caster Id and caster level.
@@ -4144,6 +4148,16 @@ effect GetEffectLink(int nEffectType, int nValue1 = 0, int nValue2 = 0, int nVal
                                       EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));
         }
         break;
+        case LINK_EFFECT_SICKEN:
+        {
+            // TODO: Sicken persistent VFX and icon
+            eLink = EffectLinkEffects(EffectSavingThrowDecrease(SAVING_THROW_ALL, 2),
+                    EffectLinkEffects(EffectAttackDecrease(2),
+                    EffectLinkEffects(EffectDamageDecrease(2, DAMAGE_TYPE_BLUDGEONING | DAMAGE_TYPE_SLASHING | DAMAGE_TYPE_PIERCING),
+                    EffectLinkEffects(EffectSkillDecrease(SKILL_ALL_SKILLS, 2),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)))));
+        }
+        break;
         // Standard ones
         case EFFECT_TYPE_ABILITY_DECREASE:
         {
@@ -4654,6 +4668,15 @@ effect GetEffectLinkIgnoreImmunity(int nEffectType, int nValue1 = 0, int nValue2
                                       EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));
         }
         break;
+        case LINK_EFFECT_SICKEN:
+        {
+            // TODO: Sicken persistent VFX and icon
+            eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectSavingThrowDecrease(SAVING_THROW_ALL, 2)),
+                    EffectLinkEffects(IgnoreEffectImmunity(EffectAttackDecrease(2)),
+                    EffectLinkEffects(IgnoreEffectImmunity(EffectDamageDecrease(2, DAMAGE_TYPE_BLUDGEONING | DAMAGE_TYPE_SLASHING | DAMAGE_TYPE_PIERCING)),
+                    EffectLinkEffects(IgnoreEffectImmunity(EffectSkillDecrease(SKILL_ALL_SKILLS, 2)),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)))));
+        }
         // Standard ones
         case EFFECT_TYPE_ABILITY_DECREASE:
         {

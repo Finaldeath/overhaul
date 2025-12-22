@@ -30,6 +30,8 @@ int GetIsWarlockEssence(int nSpellId)
     switch (nSpellId)
     {
         case SPELL_DRAINING_BLAST:
+        case SPELL_FRIGHTFUL_BLAST:
+        case SPELL_SICKENING_BLAST:
         {
             return TRUE;
         }
@@ -83,6 +85,34 @@ void ApplyEssenceEffect(int nSpellId, object oTarget, float fDelay)
                 effect eLink = GetEffectLink(EFFECT_TYPE_SLOW);
                 DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_SLOW, oTarget));
                 DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, RoundsToSeconds(1)));
+            }
+        }
+        break;
+        case SPELL_FRIGHTFUL_BLAST:
+        {
+            // Will save or shaken for 1 minute (unless already shaken, won't reapply new duration or anything)
+            if (!GetHasEffect(oTarget, EFFECT_TYPE_ALL, SPELL_SHAKEN))
+            {
+                if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_FEAR))
+                {
+                    if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_FEAR, fDelay))
+                    {
+                        effect eLink = GetEffectLink(LINK_EFFECT_SHAKEN);
+                        DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_FEAR_S, oTarget));
+                        DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, TurnsToSeconds(1), SPELL_SHAKEN));
+                    }
+                }
+            }
+        }
+        break;
+        case SPELL_SICKENING_BLAST:
+        {
+            // Fortitude save or sickened for 1 minute
+            if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_NONE, fDelay))
+            {
+                effect eLink = GetEffectLink(LINK_EFFECT_SICKEN);
+                DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_DISEASE_S, oTarget));
+                DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, TurnsToSeconds(1), SPELL_SICKEN));
             }
         }
         break;
