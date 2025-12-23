@@ -58,6 +58,9 @@
 
     Flame Arrow
     +1/2 caster levels (max +10) to arrows.
+
+    Hideous Blow
+    Warlock moves their eldritch blast into their melee weapon.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -102,7 +105,7 @@ void main()
             nVis        = VFX_IMP_EVIL_HELP;
             ipProperty1 = ItemPropertyVisualEffect(ITEM_VISUAL_EVIL);
             ipProperty2 = ItemPropertyEnhancementBonus(4);
-            ipProperty3 = ItemPropertyOnHitCastSpell(IP_CONST_ONHIT_CASTSPELL_ONHIT_BLACKSTAFF, nCasterLevel);
+            ipProperty3 = ItemPropertyOnHitCastSpell(IP_CONST_ONHIT_CASTSPELL_BLACKSTAFF_ON_HIT, nCasterLevel);
             fDuration   = GetDuration(nCasterLevel, MINUTES);
             break;
         case SPELL_BLADE_THIRST:
@@ -182,6 +185,16 @@ void main()
             nVis        = VFX_IMP_HEAD_FIRE;
             fDuration   = GetDuration(nCasterLevel, ROUNDS);
             break;
+        case SPELL_HIDEOUS_BLOW:
+        {
+            // Warlock spell
+            oTarget     = GetMeleeWeaponToCastSpellOn(oTarget, nSpellId);
+            nVis        = VFX_IMP_EVIL_HELP; // VFX todo warlock
+            ipProperty1 = ItemPropertyVisualEffect(ITEM_VISUAL_EVIL);
+            ipProperty2 = ItemPropertyOnHitCastSpell(IP_CONST_ONHIT_CASTPSELL_HIDEOUS_BLOW_ON_HIT, nCasterLevel);
+            fDuration   = GetDuration(5, ROUNDS); // Decided on 30 seconds
+        }
+        break;
         default:
         {
             if (DEBUG_LEVEL >= ERROR) Error("No valid spell ID passed in: " + IntToString(nSpellId));

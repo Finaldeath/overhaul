@@ -178,6 +178,7 @@ void main()
         break;
         case SPELL_ANIMATE_DEAD:
         case SPELLABILITY_PM_ANIMATE_DEAD:
+        case SPELL_THE_DEAD_WALK:
         {
             if (nCasterLevel <= 5)
             {

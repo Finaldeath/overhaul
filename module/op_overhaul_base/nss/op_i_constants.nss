@@ -30,8 +30,10 @@ const int IMMUNITY_TYPE_FATIGUE       = -5;
 const int IMMUNITY_TYPE_EXHAUSATION   = -6;
 const int IMMUNITY_TYPE_DAZZLE        = -7;
 
-// iprp_onhitspell.2da
-const int IP_CONST_ONHIT_CASTSPELL_ONHIT_BLACKSTAFF = 141;
+// iprp_onhitspell.2da. Might move these to be a function call so we don't
+// have to have a massive ton of constants.
+const int IP_CONST_ONHIT_CASTSPELL_BLACKSTAFF_ON_HIT   = 141;
+const int IP_CONST_ONHIT_CASTPSELL_HIDEOUS_BLOW_ON_HIT = 142;
 
 // effecticons.2da
 const int EFFECT_ICON_GENERIC_DECREASE          = 130;

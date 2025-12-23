@@ -29,10 +29,23 @@
 
 void main()
 {
+    // Brimstone Blast fire damage comes first.
+    if (GetLastRunScriptEffectScriptType() != 0)
+    {
+        // If saved remove this instance
+        if (DoBrimstoneBlast(oTarget))
+        {
+            RemoveEffectsFromSpell(oTarget, SPELL_BRIMSTONE_BLAST);
+        }
+        return;
+    }
+
     if (DoSpellHook()) return;
 
     // VFX
     int nImpact = VFX_NONE, nVis = VFX_IMP_HEAD_ODD, nBeam = VFX_BEAM_ODD;
+    int nObjectType = OBJECT_TYPE_CREATURE | OBJECT_TYPE_DOOR | OBJECT_TYPE_PLACEABLE;
+    int nMaxTargets = 1000;
 
     // Can change to selective hostile
     int nTargetType = SPELL_TARGET_STANDARDHOSTILE;
@@ -49,10 +62,41 @@ void main()
             // Nothing extra, use default Beam
         }
         break;
+        case SPELL_ELDRITCH_CHAIN:
+        {
+            // You can “jump” the chain to one secondary target per five caster
+            // levels, so you can strike two additional targets at 10th level,
+            // three additional targets at 15th level, and four additional targets at 20th level.
+            nTargetType = SPELL_TARGET_SELECTIVEHOSTILE;
+            // We target just creatures because we're choosing them specifically
+            nObjectType = OBJECT_TYPE_CREATURE;
+            // Initial 1, + up to 4 more max
+            nMaxTargets = 1 + clamp(nCasterLevel/5, 1, 4);
+        }
+        break;
         case SPELL_ELDRITCH_GLAIVE:
         {
             // No extra VFX for now, but need to apply a "Glaive" to our hand or something
             nBeam = VFX_NONE;
+        }
+        break;
+        case SPELL_HIDEOUS_BLOW_ON_HIT:
+        {
+            // Need a valid item
+            if (!GetIsObjectValid(oCastItem))
+            {
+                if (DEBUG_LEVEL >= ERROR) Error("No valid spell cast item for On Hit property Hideous Blow.");
+                return;
+            }
+
+            // No beam; wouldn't make sense
+            nBeam = VFX_NONE;
+            // Remove the item property, no more uses of it until cast again.
+            // TODO: Much more useful would be to have a toggle where it sets
+            // your attacks per round to be 1, applies this item property
+            // permanently, and therefore can do the one-per-round on primary
+            // weapon.
+            RemoveItemPropertiesMatchingSpellId(oCastItem, SPELL_HIDEOUS_BLOW);
         }
         break;
         default:
@@ -80,20 +124,23 @@ void main()
         if (GetSpellLevel(nEssenceId) > GetSpellLevel(nSpellId))
         {
             nSpellLevel = GetSpellLevel(nEssenceId);
+            // Refresh the save DC. We should move this to a function perhaps.
+            nSpellSaveDC = 10 + nSpellLevel + GetAbilityModifier(ABILITY_CHARISMA, oCaster);
         }
     }
-
-    // We alter the spell Id now to always be "Eldritch Blast" for simplicity since
-    // this covers us having multiple negative effects stacking for cases of
-    // ability/skill changes.
-    nSpellId = SPELL_ELDRITCH_BLAST;
 
     // Used for Eldtrich Glaive
     int nAttacks = GetAttacksPerRound(oCaster);
 
+    // Damage type may be altered by some essences
+    int nDamageType = GetWarlockEldritchBlastDamageType(nSpellId);
+
     ApplyVisualEffectAtLocation(nImpact, lTarget);
 
-    json jArray = GetArrayOfTargets(nTargetType, SORT_METHOD_DISTANCE, OBJECT_TYPE_CREATURE | OBJECT_TYPE_DOOR | OBJECT_TYPE_PLACEABLE);
+    object oLastTarget;
+    float fLastDelay = 0.0;
+
+    json jArray = GetArrayOfTargets(nTargetType, SORT_METHOD_DISTANCE, nObjectType);
     int nIndex;
     for (nIndex = 0; nIndex < JsonGetLength(jArray); nIndex++)
     {
@@ -106,6 +153,38 @@ void main()
         {
             fDelay = GetDistanceBetweenLocations(GetLocation(oTarget), lTarget) / 20.0;
 
+            // Hit roll for single target
+            int nTouch = DoTouchAttack(oTarget, oCaster, nTouchType);
+
+            // Beam gets applied like lighting bolt one to the next, regardless of misses!
+            // May revamp this to apply to a "nearby point" to then jump to the next one on miss...
+            // Also this looks a little goofy since we do it from the initial target, so if there
+            // are 2 creatures side to side of them, it goes to the middle, then left then right.
+            // We can maybe fix this by reordering the targets chosen and being careful to tag
+            // the original one. But for now leaving it as is.
+            if (nSpellId == SPELL_ELDRITCH_CHAIN)
+            {
+                if (nIndex >= nMaxTargets)
+                {
+                    // Max targets reached, but we'll continue to signal spell cast at
+                    continue;
+                }
+                else if (nIndex == 0)
+                {
+                    ApplyBeamToObject(nBeam, oTarget, FALSE, BODY_NODE_HAND, 1.7, oCaster);
+                    oLastTarget = oTarget;
+                    fDelay = 0.5;
+                    fLastDelay = 0.5;
+                }
+                else
+                {
+                    fDelay = fLastDelay + 0.25;
+                    fLastDelay = fDelay;
+                    DelayCommand(fDelay, ApplyBeamToObject(nBeam, oTarget, FALSE, BODY_NODE_CHEST, 1.7 - fDelay, oLastTarget));
+                    oLastTarget = oTarget;
+                }
+            }
+
             if (!DoResistSpell(oTarget, oCaster, fDelay))
             {
                 // Roll damage
@@ -114,12 +193,15 @@ void main()
                 // Half damage if not a creature
                 if (GetObjectType(oTarget) != OBJECT_TYPE_CREATURE) nDamage /= 2;
 
+                // Half damage if SPELL_ELDRITCH_CHAIN and after the first target
+                if (nSpellId == SPELL_ELDRITCH_CHAIN && nIndex > 1) nDamage /= 2;
+
                 // Reflex save
                 nDamage = DoDamageSavingThrow(nDamage, oTarget, oCaster, SAVING_THROW_REFLEX, nSpellSaveDC, SAVING_THROW_TYPE_NONE, fDelay);
 
                 if (nDamage > 0)
                 {
-                    DelayCommand(fDelay, ApplyDamageWithVFXToObject(oTarget, nDamage, DAMAGE_TYPE_MAGICAL));
+                    DelayCommand(fDelay, ApplyDamageWithVFXToObject(oTarget, nDamage, nDamageType));
                 }
 
                 // Apply essence
@@ -151,7 +233,7 @@ void main()
 
                     if (nDamage > 0)
                     {
-                        DelayCommand(fDelay, ApplyDamageWithVFXToObject(oTarget, nDamage, DAMAGE_TYPE_MAGICAL));
+                        DelayCommand(fDelay, ApplyDamageWithVFXToObject(oTarget, nDamage, nDamageType));
                     }
 
                     // Apply essence

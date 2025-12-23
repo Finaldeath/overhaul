@@ -8,6 +8,7 @@
     Charm Person - Humanoid only
     Charm Person or Animal - Humanoid or Animals
     Charm Monster - Anything
+    Charm - Warlock Lesser spell
 
     AOE:
     Mass Charm - Humanoid only
@@ -51,6 +52,7 @@ void main()
         case SPELL_CHARM_MONSTER:
         case SPELL_CHARM_PERSON:
         case SPELL_CHARM_PERSON_OR_ANIMAL:
+        case SPELL_CHARM:
             nTargetType = SPELL_TARGET_STANDARDHOSTILE;
             break;
         default:

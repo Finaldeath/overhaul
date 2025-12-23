@@ -183,6 +183,15 @@ void main()
         case SPELL_BESTOW_CURSE_WISDOM:
         case SPELL_BESTOW_CURSE_CHARISMA:
         case SPELL_BESTOW_CURSE_ATTACK_SAVING_THROWS_SKILLS:
+        case SPELL_CURSE_OF_DESPAIR:
+        case SPELL_CURSE_OF_DESPAIR_ALL_ABILITY_SCORES:
+        case SPELL_CURSE_OF_DESPAIR_ATTACK_SAVING_THROWS_SKILLS:
+        case SPELL_CURSE_OF_DESPAIR_CHARISMA:
+        case SPELL_CURSE_OF_DESPAIR_CONSTITUTION:
+        case SPELL_CURSE_OF_DESPAIR_DEXTERITY:
+        case SPELL_CURSE_OF_DESPAIR_INTELLIGENCE:
+        case SPELL_CURSE_OF_DESPAIR_STRENGTH:
+        case SPELL_CURSE_OF_DESPAIR_WISDOM:
         {
             nTouchAttackType = TOUCH_MELEE;
             nVis = VFX_IMP_REDUCE_ABILITY_SCORE;
@@ -195,27 +204,36 @@ void main()
             {
                 case SPELL_BESTOW_CURSE:
                 case SPELL_BESTOW_CURSE_ALL_ABILITY_SCORES:
+                case SPELL_CURSE_OF_DESPAIR:
+                case SPELL_CURSE_OF_DESPAIR_ALL_ABILITY_SCORES:
                     eLink = EffectCurse(3, 3, 3, 3, 3, 3);
                     break;
                 case SPELL_BESTOW_CURSE_STRENGTH:
+                case SPELL_CURSE_OF_DESPAIR_STRENGTH:
                     eLink = EffectCurse(6, 0, 0, 0, 0, 0);
                     break;
                 case SPELL_BESTOW_CURSE_CONSTITUTION:
+                case SPELL_CURSE_OF_DESPAIR_CONSTITUTION:
                     eLink = EffectCurse(0, 6, 0, 0, 0, 0);
                     break;
                 case SPELL_BESTOW_CURSE_DEXTERITY:
+                case SPELL_CURSE_OF_DESPAIR_DEXTERITY:
                     eLink = EffectCurse(0, 0, 6, 0, 0, 0);
                     break;
                 case SPELL_BESTOW_CURSE_INTELLIGENCE:
+                case SPELL_CURSE_OF_DESPAIR_INTELLIGENCE:
                     eLink = EffectCurse(0, 0, 0, 6, 0, 0);
                     break;
                 case SPELL_BESTOW_CURSE_WISDOM:
+                case SPELL_CURSE_OF_DESPAIR_WISDOM:
                     eLink = EffectCurse(0, 0, 0, 0, 6, 0);
                     break;
                 case SPELL_BESTOW_CURSE_CHARISMA:
+                case SPELL_CURSE_OF_DESPAIR_CHARISMA:
                     eLink = EffectCurse(0, 0, 0, 0, 0, 6);
                     break;
                 case SPELL_BESTOW_CURSE_ATTACK_SAVING_THROWS_SKILLS:
+                case SPELL_CURSE_OF_DESPAIR_ATTACK_SAVING_THROWS_SKILLS:
                     eLink = EffectLinkEffects(EffectAttackDecrease(4),
                             EffectLinkEffects(EffectSkillDecrease(SKILL_ALL_SKILLS, 4),
                             EffectLinkEffects(EffectSavingThrowDecrease(SAVING_THROW_ALL, 4),
@@ -370,6 +388,27 @@ void main()
                         }
                         if (bNotAppliedVFX) ApplyVisualEffectToObject(nVis, oTarget);
                         ApplySpellEffectToObject(nDurationType, eLink, oTarget, fDuration);
+                    }
+                    // Additional Warlock ability effect
+                    if (bSaved)
+                    {
+                        switch (nSpellId)
+                        {
+                            case SPELL_CURSE_OF_DESPAIR:
+                            case SPELL_CURSE_OF_DESPAIR_ALL_ABILITY_SCORES:
+                            case SPELL_CURSE_OF_DESPAIR_ATTACK_SAVING_THROWS_SKILLS:
+                            case SPELL_CURSE_OF_DESPAIR_CHARISMA:
+                            case SPELL_CURSE_OF_DESPAIR_CONSTITUTION:
+                            case SPELL_CURSE_OF_DESPAIR_DEXTERITY:
+                            case SPELL_CURSE_OF_DESPAIR_INTELLIGENCE:
+                            case SPELL_CURSE_OF_DESPAIR_STRENGTH:
+                            case SPELL_CURSE_OF_DESPAIR_WISDOM:
+                            {
+                                eLink = GetEffectLink(EFFECT_TYPE_ATTACK_DECREASE, 1);
+                                ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(1, MINUTES), SPELL_CURSE_OF_DESPAIR);
+                            }
+                            break;
+                        }
                     }
                 }
             }
