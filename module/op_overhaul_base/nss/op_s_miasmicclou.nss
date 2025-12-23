@@ -47,7 +47,7 @@ void main()
                         if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_FORT, nSpellSaveDC))
                         {
                             // Simplfied version is we apply this permanently but On Exit apply it for 1 more round
-                            ApplySpecialAOEPersistentEffect(oTarget, SPELL_FATIGUE);
+                            ApplySpecialAOEPersistentEffect(oTarget, SPELL_EFFECT_FATIGUE);
                             nSaveResult = SAVE_RESULT_FAILED;
                         }
                     }
@@ -57,9 +57,9 @@ void main()
                 else if (nSaveResult == SAVE_RESULT_FAILED)
                 {
                     // Remove anything that is tagged with our OID
-                    RemoveEffectsFromSpell(oTarget, SPELL_FATIGUE, EFFECT_TYPE_ALL, ObjectToString(OBJECT_SELF));
+                    RemoveEffectsFromSpell(oTarget, SPELL_EFFECT_FATIGUE, EFFECT_TYPE_ALL, ObjectToString(OBJECT_SELF));
 
-                    ApplySpecialAOEPersistentEffect(oTarget, SPELL_FATIGUE);
+                    ApplySpecialAOEPersistentEffect(oTarget, SPELL_EFFECT_FATIGUE);
                 }
                 // 2 = resisted/saved already
                 else if (nSaveResult == SAVE_RESULT_PASSED)
@@ -77,7 +77,7 @@ void main()
         // We tag it with our OID to remove later however if they re-enter.
         if (GetLocalInt(OBJECT_SELF, ObjectToString(oTarget)) == SAVE_RESULT_FAILED)
         {
-            ApplySpecialEffect(oTarget, SPELL_FATIGUE, RoundsToSeconds(1), SUBTYPE_EXTRAORDINARY, ObjectToString(OBJECT_SELF));
+            ApplySpecialEffect(oTarget, SPELL_EFFECT_FATIGUE, RoundsToSeconds(1), SUBTYPE_EXTRAORDINARY, ObjectToString(OBJECT_SELF));
         }
     }
     else if (GetCurrentlyRunningEvent() == EVENT_SCRIPT_AREAOFEFFECT_ON_HEARTBEAT)

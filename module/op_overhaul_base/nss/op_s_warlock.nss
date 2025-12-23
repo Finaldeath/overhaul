@@ -32,7 +32,7 @@ void main()
     if (DoSpellHook()) return;
 
     // VFX
-    int nImpact = VFX_NONE, nVis = VFX_IMP_HEAD_ODD, nBeam = VFX_NONE;
+    int nImpact = VFX_NONE, nVis = VFX_IMP_HEAD_ODD, nBeam = VFX_BEAM_ODD;
 
     // Can change to selective hostile
     int nTargetType = SPELL_TARGET_STANDARDHOSTILE;
@@ -46,12 +46,13 @@ void main()
         case SPELL_ELDRITCH_BLAST:
         case SPELL_ELDRITCH_SPEAR:
         {
-            nBeam = VFX_BEAM_ODD;
+            // Nothing extra, use default Beam
         }
         break;
         case SPELL_ELDRITCH_GLAIVE:
         {
             // No extra VFX for now, but need to apply a "Glaive" to our hand or something
+            nBeam = VFX_NONE;
         }
         break;
         default:
@@ -130,10 +131,12 @@ void main()
             int bResistSpell = FALSE;
             // Hit roll for single target
             int nTouch = DoTouchAttack(oTarget, oCaster, nTouchType);
+
+            // Beam gets applied regardless
+            ApplyBeamToObject(nBeam, oTarget, (nTouch == FALSE));
+
             if (nTouch)
             {
-                // Beam gets applied regardless
-                ApplyBeamToObject(nBeam, oTarget, (nTouch == FALSE));
 
                 bResistSpell = DoResistSpell(oTarget, oCaster, fDelay);
                 if (!bResistSpell)

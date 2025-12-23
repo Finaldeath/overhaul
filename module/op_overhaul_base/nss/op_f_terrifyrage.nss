@@ -72,7 +72,7 @@ void main()
                             float fDuration = GetDuration(d3(), ROUNDS);
 
                             ApplyVisualEffectToObject(VFX_IMP_FEAR_S, oTarget);
-                            ApplySpecialEffect(oTarget, SPELL_SHAKEN, fDuration);
+                            ApplySpecialEffect(oTarget, SPELL_EFFECT_SHAKEN, fDuration);
                         }
                     }
                 }

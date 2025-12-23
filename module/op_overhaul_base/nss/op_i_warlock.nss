@@ -94,14 +94,14 @@ void ApplyEssenceEffect(int nSpellId, object oTarget, float fDelay)
         case SPELL_FRIGHTFUL_BLAST:
         {
             // Will save or shaken for 1 minute (unless already shaken, won't reapply new duration or anything)
-            if (!GetHasEffect(oTarget, EFFECT_TYPE_ALL, SPELL_SHAKEN))
+            if (!GetHasEffect(oTarget, EFFECT_TYPE_ALL, SPELL_EFFECT_SHAKEN))
             {
                 if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_SHAKEN))
                 {
                     if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_FEAR, fDelay))
                     {
                         DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_FEAR_S, oTarget));
-                        DelayCommand(fDelay, ApplySpecialEffect(oTarget, SPELL_SHAKEN, TurnsToSeconds(1)));
+                        DelayCommand(fDelay, ApplySpecialEffect(oTarget, SPELL_EFFECT_SHAKEN, TurnsToSeconds(1)));
                     }
                 }
             }
@@ -116,7 +116,7 @@ void ApplyEssenceEffect(int nSpellId, object oTarget, float fDelay)
                 {
                     effect eLink = GetEffectLink(LINK_EFFECT_SICKEN);
                     DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_DISEASE_S, oTarget));
-                    DelayCommand(fDelay, ApplySpecialEffect(oTarget, SPELL_SICKEN, TurnsToSeconds(1)));
+                    DelayCommand(fDelay, ApplySpecialEffect(oTarget, SPELL_EFFECT_SICKEN, TurnsToSeconds(1)));
                 }
             }
         }

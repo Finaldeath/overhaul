@@ -15,6 +15,9 @@
 
     Regenerate Serious Wounds was: Monstrous Regeneration
     Regenerate Massive Wounds was: Regeneration
+
+    Warlock Fiendish Healing added as a regeneration spell, to mirror the
+    QoL stuff.
 */
 //:://////////////////////////////////////////////
 //:: Part of the Overhaul Project; see for dates/creator info
@@ -32,7 +35,8 @@ void main()
 
     int nHealing, nMaxTargets = 1;
     int nImpact = VFX_NONE;
-    int nVis     = VFX_IMP_HEAD_NATURE;
+    int nVis = VFX_IMP_HEAD_NATURE;
+    int nDuration = 10 + nCasterLevel;
 
     switch (nSpellId)
     {
@@ -53,6 +57,25 @@ void main()
             nHealing    = 3;
             nMaxTargets = max(1, nCasterLevel / 2);
             nImpact = VFX_IMP_PULSE_NATURE;
+        }
+        break;
+        case SPELL_FIENDISH_RESILIENCE:
+        {
+            // Warlock ability. 1 HP by default, increased to 2 at 13 and 5 at 18.
+            if (GetLevelByClass(CLASS_TYPE_WARLOCK, oCaster) >= 18)
+            {
+                nHealing = 5;
+            }
+            else if (GetLevelByClass(CLASS_TYPE_WARLOCK, oCaster) >= 13)
+            {
+                nHealing = 2;
+            }
+            else
+            {
+                nHealing = 1;
+            }
+            nDuration = 20; // Always 2 minutes, so 20 rounds
+            nVis = VFX_IMP_HEAD_NATURE; // TODO new VFX
         }
         break;
         default:
@@ -78,7 +101,7 @@ void main()
         SignalSpellCastAt();
 
         float fDelay    = GetDistanceBetweenLocations(lTarget, GetLocation(oTarget)) / 25.0;
-        float fDuration = GetDuration(10 + nCasterLevel, ROUNDS);
+        float fDuration = GetDuration(nDuration, ROUNDS);
 
         // We first check for any existing of this exact same level of regen
         fDuration += GetRemainingDurationOfRegen(oTarget, nHealing);
