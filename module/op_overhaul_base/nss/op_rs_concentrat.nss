@@ -24,6 +24,9 @@ void main()
 {
     if (GetCanConcentrate(oCaster)) return;
 
+    // Fire a VFX showing the spell has failed
+    ApplyVisualEffectToObject(VFX_FNF_SPELL_FAIL_HAND, oCaster);
+
     // Check the spell and remove it's effects
     switch (nSpellId)
     {
@@ -49,15 +52,28 @@ void main()
             // Don't bother with the feedback if this is the case
             if (GetIsObjectValid(oBlade))
             {
-                FloatingTextStrRefOnCreature(STRREF_CONCENTRATION_CROKEN_SUMMONED_CREATURE_DISPELLED, oCaster);
+                FloatingTextStrRefOnCreature(STRREF_CONCENTRATION_BROKEN_SUMMONED_CREATURE_DISPELLED, oCaster);
                 ApplyVisualEffectAtLocation(VFX_IMP_UNSUMMON, GetLocation(oBlade));
-                DestroyObject(oBlade, 0.1);
+                DestroyObject(oBlade, 0.1); // Failsafe
             }
         }
         break;
-        default:
+        case SPELL_HUNGRY_DARKNESS:
+        {
+            // Concentrate or lose the darkness AOE after 2 more rounds
+            RemoveExistingAOEsByCaster(AOE_PER_DARKNESS, oCaster, RoundsToSeconds(2));
 
+            FloatingTextStrRefOnCreature(STRREF_CONCENTRATION_LOST_HUNGRY_DARKNESS, oCaster); // *Concentration Lost - Hungry Darkness will cease after 2 more rounds*
+        }
+        break;
+        default:
+        {
+            if (DEBUG_LEVEL >= ERROR) Error("No valid spell Id found for concentration checks: " + IntToString(nSpellId));
+        }
         break;
     }
+
+    // Remove this effect since it's no longer needed
+    RemoveEffectsFromSpell(oCaster, nSpellId, EFFECT_TYPE_RUNSCRIPT);
 }
 

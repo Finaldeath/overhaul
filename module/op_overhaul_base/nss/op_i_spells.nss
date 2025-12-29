@@ -133,6 +133,7 @@ const int LINK_EFFECT_SICKEN     = -13; // Sickened: -2 to attack, damage, savin
 const int LINK_EFFECT_FATIGUE    = -14; // Fatigued: -2 to strength and dexterity. Technically should "not be able to run or charge" but quite powerful if this is added.
 const int LINK_EFFECT_EXHAUSTION = -15; // Exhausted: -6 to strength and dexterity. -50% movement speed.
 const int LINK_EFFECT_DAZZLE     = -16; // Dazzled: -1 to attack, Spot and Search (Using 3.5E version since it's slightly better)
+const int LINK_EFFECT_NAUSEA     = -17; // Nauseated: Essentially Dazed, it means you can move but can't cast spells or attack. We'll replace the icon and bypass mind immunities.
 
 
 // Debug the spell and variables
@@ -376,6 +377,7 @@ void ApplyDamageWithVFXToObject(object oTarget, int nVFX, int nDamage, int nDama
 // SPELL_EFFECT_FATIGUE - Fatigued: -2 to strength and dexterity. Technically should "not be able to run or charge" but quite powerful if this is added.
 // SPELL_EFFECT_EXHAUSTION - Exhausted: -6 to strength and dexterity. -50% movement speed.
 // SPELL_EFFECT_DAZZLE - Dazzled: -1 to attack, Spot and Search (Using 3.5E version since it's slightly better)
+// SPELL_EFFECT_NAUSEA - Nauseated: Essentially Dazed, it means you can move but can't cast spells or attack. We'll replace the icon and bypass mind immunities.
 void ApplySpecialEffect(object oTarget, int nSpellId, float fDuration, int nSubType = SUBTYPE_EXTRAORDINARY, string sTag = "");
 
 // Applies eEffect to oTarget, if it hasn't got it from this spell ID AOE already
@@ -406,6 +408,12 @@ int RemovePersistentAOEEffects(object oTarget, int nOverrideSpellId = -1);
 // Call in the OnEnter, OnHeartbeat of an AOE scripts or the Interval of the EffectRunScript created by the AOE.
 // This might be removed later (D&D AOEs should probably persist past their creators death) but for now will stop some bugs and is tidier.
 int AOECheck();
+
+// Removes all the existing AOE_* created by oCaster. Can stops stacking if so required.
+void RemoveExistingAOEsByCaster(int nAOE, object oCaster, float fDelay = 0.0);
+
+// Gets the given AOE_xxx tag
+string GetAOETag(int nAOE);
 
 // Signals a spell cast event.
 // By default if the default parameters are used then the global automatically
@@ -2761,6 +2769,7 @@ void ApplyDamageWithVFXToObject(object oTarget, int nVFX, int nDamage, int nDama
 // SPELL_EFFECT_FATIGUE - Fatigued: -2 to strength and dexterity. Technically should "not be able to run or charge" but quite powerful if this is added.
 // SPELL_EFFECT_EXHAUSTION - Exhausted: -6 to strength and dexterity. -50% movement speed.
 // SPELL_EFFECT_DAZZLE - Dazzled: -1 to attack, Spot and Search (Using 3.5E version since it's slightly better)
+// SPELL_EFFECT_NAUSEA - Nauseated: Essentially Dazed, it means you can move but can't cast spells or attack. We'll replace the icon and bypass mind immunities.
 void ApplySpecialEffect(object oTarget, int nSpellId, float fDuration, int nSubType = SUBTYPE_EXTRAORDINARY, string sTag = "")
 {
     effect eLink;
@@ -2771,6 +2780,7 @@ void ApplySpecialEffect(object oTarget, int nSpellId, float fDuration, int nSubT
         case SPELL_EFFECT_FATIGUE: eLink = GetEffectLink(LINK_EFFECT_FATIGUE); break;
         case SPELL_EFFECT_EXHAUSTION: eLink = GetEffectLink(LINK_EFFECT_EXHAUSTION); break;
         case SPELL_EFFECT_DAZZLE: eLink = GetEffectLink(LINK_EFFECT_DAZZLE); break;
+        case SPELL_EFFECT_NAUSEA: eLink = GetEffectLink(LINK_EFFECT_NAUSEA); break;
         default: if (DEBUG_LEVEL >= ERROR) Error("[ApplySpecialEffect] Invalid spell Id: " + IntToString(nSpellId)); return; break;
     }
 
@@ -2938,6 +2948,36 @@ int AOECheck()
         }
     }
     return TRUE;
+}
+
+// Removes all the existing AOE_* created by oCaster. Can stops stacking if so required.
+void RemoveExistingAOEsByCaster(int nAOE, object oCaster, float fDelay = 0.0)
+{
+    // Find the AOEs and destroy them if the creator matches
+    string sTag = GetAOETag(nAOE);
+
+    if (sTag == "")
+    {
+        if (DEBUG_LEVEL >= ERROR) Error("[RemoveExistingAOEsByCaster] Invalid nAOE: " + IntToString(nAOE));
+        return;
+    }
+
+    int nNth = 0;
+    object oAOE = GetObjectByTag(sTag, nNth);
+    while (GetIsObjectValid(oAOE))
+    {
+        if (GetAreaOfEffectCreator(oAOE) == oCaster)
+        {
+            DestroyObject(oAOE, fDelay);
+        }
+        oAOE = GetObjectByTag(sTag, ++nNth);
+    }
+}
+
+// Gets the given AOE_xxx tag
+string GetAOETag(int nAOE)
+{
+    return Get2DAString("vfx_persistent", "Label", nAOE);
 }
 
 // Signals a spell cast event.
@@ -4317,6 +4357,17 @@ effect GetEffectLink(int nEffectType, int nValue1 = 0, int nValue2 = 0, int nVal
                                       EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));
         }
         break;
+        case LINK_EFFECT_NAUSEA:
+        {
+            // TODO: Nausea persistent VFX and icon
+            // This ignores immunities since it's a "nautral" effect
+            eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectDazed()),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            // New icon
+            eLink = HideEffectIcon(eLink);
+            eLink = EffectLinkEffects(eLink, EffectIcon(EFFECT_ICON_GENERIC_DECREASE));
+        }
+        break;
         // Standard ones
         case EFFECT_TYPE_ABILITY_DECREASE:
         {
@@ -4864,6 +4915,17 @@ effect GetEffectLinkIgnoreImmunity(int nEffectType, int nValue1 = 0, int nValue2
                     EffectLinkEffects(IgnoreEffectImmunity(EffectSkillDecrease(SKILL_SPOT, 1)),
                     EffectLinkEffects(IgnoreEffectImmunity(EffectSkillDecrease(SKILL_SEARCH, 1)),
                                       EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE))));
+        }
+        break;
+        case LINK_EFFECT_NAUSEA:
+        {
+            // TODO: Nausea persistent VFX and icon
+            // This ignores immunities since it's a "nautral" effect
+            eLink = EffectLinkEffects(IgnoreEffectImmunity(EffectDazed()),
+                                      EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            // New icon
+            eLink = HideEffectIcon(eLink);
+            eLink = EffectLinkEffects(eLink, EffectIcon(EFFECT_ICON_GENERIC_DECREASE));
         }
         break;
         // Standard ones
@@ -5548,6 +5610,14 @@ int GetCanConcentrate(object oCreature)
 {
     // By default can concentrate
     int bReturn = TRUE;
+
+    // Now effects can be something other than black blade (which would auto
+    // unsummon on death) so this needs checking. Dead or dying.
+    if (GetIsDead(oCreature)) return FALSE;
+
+    // Commandable state is required. Mostly effects but covers some other
+    // edge cases.
+    if (!GetCommandable(oCreature)) return FALSE;
 
     // These actions fail concentration. Slightly extended from Bioware's list.
     switch (GetCurrentAction(oCreature))

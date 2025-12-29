@@ -394,6 +394,7 @@ void main()
                     {
                         switch (nSpellId)
                         {
+                            // Even if the save against this ability succeeds, the creature takes a -1 penalty on attack rolls for 1 minute.
                             case SPELL_CURSE_OF_DESPAIR:
                             case SPELL_CURSE_OF_DESPAIR_ALL_ABILITY_SCORES:
                             case SPELL_CURSE_OF_DESPAIR_ATTACK_SAVING_THROWS_SKILLS:
@@ -404,7 +405,10 @@ void main()
                             case SPELL_CURSE_OF_DESPAIR_STRENGTH:
                             case SPELL_CURSE_OF_DESPAIR_WISDOM:
                             {
+                                // We make this a "-1 attack curse"-style thing.
                                 eLink = GetEffectLink(EFFECT_TYPE_ATTACK_DECREASE, 1);
+                                eLink = EffectLinkEffects(eLink, EffectIcon(EFFECT_ICON_CURSE));
+                                eLink = ExtraordinaryEffect(eLink);
                                 ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(1, MINUTES), SPELL_CURSE_OF_DESPAIR);
                             }
                             break;

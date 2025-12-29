@@ -257,6 +257,7 @@ void HealOrHarm(object oTarget, float fDelay, int nVisHeal, int nVisHarm, int nD
             CureEffectsFromSpell(oTarget, SPELL_EFFECT_SICKEN);
             CureEffectsFromSpell(oTarget, SPELL_EFFECT_EXHAUSTION);
             CureEffectsFromSpell(oTarget, SPELL_EFFECT_FATIGUE);
+            CureEffectsFromSpell(oTarget, SPELL_EFFECT_NAUSEA); // This is EffectDazed really so may be already removed
 
             // Also remove these specific spells
             CureEffectsFromSpell(oTarget, SPELL_FEEBLEMIND);

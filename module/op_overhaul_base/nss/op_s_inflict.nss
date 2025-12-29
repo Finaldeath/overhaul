@@ -232,6 +232,12 @@ void HarmOrHeal(object oTarget, float fDelay, int nVisHeal, int nVisHarm, int nD
 
             CureEffects(oTarget, jArray, TRUE);
 
+            // Cure the various "not NWN effects" we mimic
+            CureEffectsFromSpell(oTarget, SPELL_EFFECT_SICKEN);
+            CureEffectsFromSpell(oTarget, SPELL_EFFECT_EXHAUSTION);
+            CureEffectsFromSpell(oTarget, SPELL_EFFECT_FATIGUE);
+            CureEffectsFromSpell(oTarget, SPELL_EFFECT_NAUSEA); // This is EffectDazed really so may be already removed
+
             // Also remove these specific spells
             CureEffectsFromSpell(oTarget, SPELL_FEEBLEMIND);
             CureEffectsFromSpell(oTarget, SPELL_INFESTATION_OF_MAGGOTS);

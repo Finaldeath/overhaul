@@ -194,6 +194,8 @@ void main()
             jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_STUNNED));
             // Lesser "fear" effect
             CureEffectsFromSpell(oTarget, SPELL_EFFECT_SHAKEN);
+            // Removes "curse" style effects
+            CureEffectsFromSpell(oTarget, SPELL_CURSE_OF_DESPAIR);
         }
         break;
         case SPELL_NEUTRALIZE_POISON:
@@ -242,6 +244,8 @@ void main()
             nVis                 = VFX_IMP_REMOVE_CONDITION;
 
             jRemoveEffectsArray = JsonArrayInsert(jRemoveEffectsArray, JsonInt(EFFECT_TYPE_CURSE));
+            // Removes "curse" style effects
+            CureEffectsFromSpell(oTarget, SPELL_CURSE_OF_DESPAIR);
         }
         break;
         case SPELL_REMOVE_PARALYSIS:
