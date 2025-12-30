@@ -244,6 +244,9 @@ void DoDispelMagic(object oTarget, int nCasterLevel, int nVis = VFX_INVALID, flo
 // for spells like Voracious Dispelling.
 void ApplyDispelEffect(effect eDispel, int nVFX, object oTarget);
 
+// Applies damage as per Voracious Dispelling using jRecordedSpells
+void ApplyVoraciousDispelling(object oTarget, json jRecordedSpells);
+
 // Gets all the magical effects on oTarget and adds them to a json
 // array, with the link ID and the spell level.
 json GetDispellableEffectsOnTarget(object oTarget);
@@ -1880,26 +1883,31 @@ void ApplyDispelEffect(effect eDispel, int nVFX, object oTarget)
     // Spells are now removed (at least as much as nwscript matters)
     if (nSpellId == SPELL_VORACIOUS_DISPELLING)
     {
-        // Compare before and after
-        json jAfterSpells = GetDispellableEffectsOnTarget(oTarget);
-
-        json jDiff = JsonDiff(jRecordedSpells, jAfterSpells);
-
-        json jRemaining = JsonPatch(jRecordedSpells, jDiff);
-
-        int nIndex;
-        int nDamage = 0;
-        for (nIndex = 0; nIndex < JsonGetLength(jRemaining); nIndex++)
-        {
-            // Remove all non-matching values.
-            json jObject = JsonArrayGet(jRemaining, nIndex);
-
-            // Get the spell level, add to damage
-            nDamage += JsonGetInt(JsonObjectGet(jObject, FIELD_EFFECT_SPELL_LEVEL));
-        }
-
-        ApplyDamageWithVFXToObject(oTarget, VFX_IMP_MAGBLUE, nDamage);
+        // This has to be delayed a smidge, since EffectDispelMagic essentially
+        // does a DelayCommand(0.0, RemoveEffect()); so it's still technically
+        // visible to nwscript at this point.
+        DelayCommand(0.01, ApplyVoraciousDispelling(oTarget, jRecordedSpells));
     }
+}
+
+// Applies damage as per Voracious Dispelling using jRecordedSpells
+void ApplyVoraciousDispelling(object oTarget, json jRecordedSpells)
+{
+    // Difference between the recorded spells and the spells now
+    json jDispelled = JsonSetOp(jRecordedSpells, JSON_SET_DIFFERENCE, GetDispellableEffectsOnTarget(oTarget));
+
+    int nIndex;
+    int nDamage = 0;
+    for (nIndex = 0; nIndex < JsonGetLength(jDispelled); nIndex++)
+    {
+        // Remove all non-matching values.
+        json jObject = JsonArrayGet(jDispelled, nIndex);
+
+        // Get the spell level, add to damage
+        nDamage += JsonGetInt(JsonObjectGet(jObject, FIELD_EFFECT_SPELL_LEVEL));
+    }
+
+    ApplyDamageWithVFXToObject(oTarget, VFX_IMP_MAGBLUE, nDamage);
 }
 
 // Gets all the magical effects on oTarget and adds them to a json
@@ -1915,11 +1923,17 @@ json GetDispellableEffectsOnTarget(object oTarget)
         if (GetEffectSpellId(eCheck) != SPELL_INVALID &&
             GetEffectSubType(eCheck) == SUBTYPE_MAGICAL)
         {
+            SpeakString("Effect found, Link ID: " + GetEffectLinkId(eCheck));
             // Effect Link ID is added first for the unique part below
             json jObject = JsonObject();
             jObject = JsonObjectSet(jObject, FIELD_EFFECT_LINK_ID, JsonString(GetEffectLinkId(eCheck)));
 
-            // Spell Level is needed
+            // Spell Level is needed. We could store this on every effect applied
+            // but this needs more framework around it since currently it's only
+            // used for very specific circumstances (eg tagging barbarian rage
+            // as not dispellable). Sadly the game doesn't store the spell
+            // level or class that applied the effect.
+            /*
             int nSpellLevel = GetEffectTaggedSpellLevel(eCheck);
 
             // If -1 we get default value and warn
@@ -1929,6 +1943,11 @@ json GetDispellableEffectsOnTarget(object oTarget)
                 // Just get innate level
                 nSpellLevel = GetSpellLevel(GetEffectSpellId(eCheck));
             }
+            */
+
+            // Just get innate level
+            nSpellLevel = GetSpellLevel(GetEffectSpellId(eCheck));
+
             jObject = JsonObjectSet(jObject, FIELD_EFFECT_SPELL_LEVEL, JsonInt(nSpellLevel));
 
             jArray = JsonArrayInsert(jArray, jObject);
