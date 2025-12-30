@@ -240,6 +240,14 @@ int DoTouchAttack(object oTarget, object oVersus, int nType, int bDisplayFeedbac
 // If nCasterLevel is CASTER_LEVEL_ALWAYS_SUCCEEDS then it'll be a high number, that should pass all checks (use for Antimagic Ray etc.)
 void DoDispelMagic(object oTarget, int nCasterLevel, int nVis = VFX_INVALID, float fDelay = 0.0, int bAll = TRUE, int bBreach = FALSE);
 
+// Applies eDispel dispel effect. This is used so we can record before/after
+// for spells like Voracious Dispelling.
+void ApplyDispelEffect(effect eDispel, int nVFX, object oTarget);
+
+// Gets all the magical effects on oTarget and adds them to a json
+// array, with the link ID and the spell level.
+json GetDispellableEffectsOnTarget(object oTarget);
+
 // Performs a spell breach up to nTotal spell are removed and nSR spell resistance is lowered.
 void DoSpellBreach(object oTarget, int nTotal, int nSR, int bVFX = TRUE);
 
@@ -568,7 +576,7 @@ effect EffectRunScriptEnhanced(int bAutomatic = TRUE, string sRemovedScript = ""
 effect EffectTagWithMetadata(effect eEffect, int bCannotBeCured = FALSE);
 
 // Retrieves the effects save DC (need to be set with EffectTagWithMetadata)
-// Returns 0 if not found
+// Returns -1 if not found
 int GetEffectTaggedSpellSaveDC(effect eEffect);
 
 // Retrieves the effects metamagic (need to be set with EffectTagWithMetadata)
@@ -1743,6 +1751,8 @@ void DoDispelMagic(object oTarget, int nCasterLevel, int nVis = VFX_INVALID, flo
         return;
     }
 
+    // Otherwise is a Placeable or Creature or Door
+
     // Don't dispel magic on petrified targets - this change is in to prevent
     // weird things from happening with 'statue' creatures.
     // Also creature can be scripted to be immune to dispel magic as well.
@@ -1847,8 +1857,90 @@ void DoDispelMagic(object oTarget, int nCasterLevel, int nVis = VFX_INVALID, flo
         }
     }
 
-    if (nVis != VFX_INVALID) DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, EffectVisualEffect(nVis), oTarget));
-    DelayCommand(fDelay, ApplyEffectToObject(DURATION_TYPE_INSTANT, eDispel, oTarget));
+    DelayCommand(fDelay, ApplyDispelEffect(eDispel, nVis, oTarget));
+}
+
+const string FIELD_EFFECT_LINK_ID = "effectlinkid";
+const string FIELD_EFFECT_SPELL_LEVEL = "effectspelllevel";
+
+// Applies eDispel dispel effect. This is used so we can record before/after
+// for spells like Voracious Dispelling.
+void ApplyDispelEffect(effect eDispel, int nVFX, object oTarget)
+{
+    // Record the spells if needed
+    json jRecordedSpells;
+    if (nSpellId == SPELL_VORACIOUS_DISPELLING)
+    {
+        jRecordedSpells = GetDispellableEffectsOnTarget(oTarget);
+    }
+
+    ApplyVisualEffectToObject(nVFX, oTarget);
+    ApplyEffectToObject(DURATION_TYPE_INSTANT, eDispel, oTarget);
+
+    // Spells are now removed (at least as much as nwscript matters)
+    if (nSpellId == SPELL_VORACIOUS_DISPELLING)
+    {
+        // Compare before and after
+        json jAfterSpells = GetDispellableEffectsOnTarget(oTarget);
+
+        json jDiff = JsonDiff(jRecordedSpells, jAfterSpells);
+
+        json jRemaining = JsonPatch(jRecordedSpells, jDiff);
+
+        int nIndex;
+        int nDamage = 0;
+        for (nIndex = 0; nIndex < JsonGetLength(jRemaining); nIndex++)
+        {
+            // Remove all non-matching values.
+            json jObject = JsonArrayGet(jRemaining, nIndex);
+
+            // Get the spell level, add to damage
+            nDamage += JsonGetInt(JsonObjectGet(jObject, FIELD_EFFECT_SPELL_LEVEL));
+        }
+
+        ApplyDamageWithVFXToObject(oTarget, VFX_IMP_MAGBLUE, nDamage);
+    }
+}
+
+// Gets all the magical effects on oTarget and adds them to a json
+// array, with the link ID and the spell level.
+json GetDispellableEffectsOnTarget(object oTarget)
+{
+    json jArray = JsonArray();
+
+    effect eCheck = GetFirstEffect(oTarget);
+    while (GetIsEffectValid(eCheck))
+    {
+        // Engine applied effect? Ignore it...meh.
+        if (GetEffectSpellId(eCheck) != SPELL_INVALID &&
+            GetEffectSubType(eCheck) == SUBTYPE_MAGICAL)
+        {
+            // Effect Link ID is added first for the unique part below
+            json jObject = JsonObject();
+            jObject = JsonObjectSet(jObject, FIELD_EFFECT_LINK_ID, JsonString(GetEffectLinkId(eCheck)));
+
+            // Spell Level is needed
+            int nSpellLevel = GetEffectTaggedSpellLevel(eCheck);
+
+            // If -1 we get default value and warn
+            if (nSpellLevel == -1)
+            {
+                if (DEBUG_LEVEL >= WARNING) Warning("[GetDispellableEffectsOnTarget] Magical effect from spell applied, no metadata on effect.");
+                // Just get innate level
+                nSpellLevel = GetSpellLevel(GetEffectSpellId(eCheck));
+            }
+            jObject = JsonObjectSet(jObject, FIELD_EFFECT_SPELL_LEVEL, JsonInt(nSpellLevel));
+
+            jArray = JsonArrayInsert(jArray, jObject);
+        }
+
+        eCheck = GetNextEffect(oTarget);
+    }
+
+    // Make unique
+    jArray = JsonArrayTransform(jArray, JSON_ARRAY_UNIQUE);
+
+    return jArray;
 }
 
 // Performs a spell breach up to nTotal spell are removed and nSR spell resistance is lowered.
@@ -4130,10 +4222,10 @@ effect EffectTagWithMetadata(effect eEffect, int bCannotBeCured = FALSE)
 }
 
 // Retrieves the effects save DC (need to be set with EffectTagWithMetadata)
-// Returns 0 if not found
+// Returns -1 if not found
 int GetEffectTaggedSpellSaveDC(effect eEffect)
 {
-    return GetJsonMetadataIntField(GetEffectTag(eEffect), JSON_FIELD_SPELLSAVEDC, 0);
+    return GetJsonMetadataIntField(GetEffectTag(eEffect), JSON_FIELD_SPELLSAVEDC, -1);
 }
 
 // Retrieves the effects metamagic (need to be set with EffectTagWithMetadata)
