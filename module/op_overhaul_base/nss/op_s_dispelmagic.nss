@@ -29,6 +29,7 @@ void main()
     {
         case SPELL_LESSER_DISPEL: nCasterLevel = min(nCasterLevel, 5); break;
         case SPELL_DISPEL_MAGIC:
+        case SPELL_RELENTLESS_DISPELLING:
         case SPELL_VORACIOUS_DISPELLING: nCasterLevel = min(nCasterLevel, 10); break;
         case SPELL_GREATER_DISPELLING: nCasterLevel = min(nCasterLevel, 15); break;
         case SPELL_MORDENKAINENS_DISJUNCTION:

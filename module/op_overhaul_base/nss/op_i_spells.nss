@@ -1880,6 +1880,13 @@ void ApplyDispelEffect(effect eDispel, int nVFX, object oTarget)
     ApplyVisualEffectToObject(nVFX, oTarget);
     ApplyEffectToObject(DURATION_TYPE_INSTANT, eDispel, oTarget);
 
+    // Relentless Dispelling applies the same  effect after 6 seconds
+    if (nSpellId == SPELL_RELENTLESS_DISPELLING)
+    {
+        DelayCommand(6.0, ApplyVisualEffectToObject(nVFX, oTarget));
+        DelayCommand(6.0, ApplyEffectToObject(DURATION_TYPE_INSTANT, eDispel, oTarget));
+    }
+
     // Spells are now removed (at least as much as nwscript matters)
     if (nSpellId == SPELL_VORACIOUS_DISPELLING)
     {

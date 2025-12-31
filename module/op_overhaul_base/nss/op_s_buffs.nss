@@ -266,7 +266,7 @@ void main()
     // Toggles
     int bDelayRandom = FALSE;
     int nImpact = VFX_NONE, nVis = VFX_NONE;
-    int nRemoveSpell1 = SPELL_INVALID, nRemoveSpell2 = SPELL_INVALID, nRemoveSpell3 = SPELL_INVALID, nRemoveSpell4 = SPELL_INVALID;
+    int nRemoveSpell1 = SPELL_INVALID, nRemoveSpell2 = SPELL_INVALID, nRemoveSpell3 = SPELL_INVALID, nRemoveSpell4 = SPELL_INVALID, nRemoveSpell5 = SPELL_INVALID;
     int nCreatureLimit = 99999;
     effect eLink;
     float fDuration;
@@ -1274,6 +1274,41 @@ void main()
             fDuration = GetDuration(24, HOURS);
         }
         break;
+        case SPELL_WALK_UNSEEN:
+        {
+            // 24 hours of invisibility
+            fDuration = GetDuration(24, HOURS);
+            eLink     = GetEffectLink(EFFECT_TYPE_INVISIBILITY);
+        }
+        break;
+        case SPELL_IGNORE_THE_PYRE_ACID:
+        case SPELL_IGNORE_THE_PYRE_COLD:
+        case SPELL_IGNORE_THE_PYRE_ELECTRICITY:
+        case SPELL_IGNORE_THE_PYRE_FIRE:
+        case SPELL_IGNORE_THE_PYRE_SONIC:
+        {
+            // 24 hours of the given resistance up to nCasterLevel
+            int nDamageType;
+            switch (nSpellId)
+            {
+                case SPELL_IGNORE_THE_PYRE_ACID:        nDamageType = DAMAGE_TYPE_ACID; break;
+                case SPELL_IGNORE_THE_PYRE_COLD:        nDamageType = DAMAGE_TYPE_COLD; break;
+                case SPELL_IGNORE_THE_PYRE_ELECTRICITY: nDamageType = DAMAGE_TYPE_ELECTRICAL; break;
+                case SPELL_IGNORE_THE_PYRE_FIRE:        nDamageType = DAMAGE_TYPE_FIRE; break;
+                case SPELL_IGNORE_THE_PYRE_SONIC:       nDamageType = DAMAGE_TYPE_SONIC; break;
+            }
+            nRemoveSpell1 = SPELL_IGNORE_THE_PYRE_ACID;
+            nRemoveSpell2 = SPELL_IGNORE_THE_PYRE_COLD;
+            nRemoveSpell3 = SPELL_IGNORE_THE_PYRE_ELECTRICITY;
+            nRemoveSpell4 = SPELL_IGNORE_THE_PYRE_FIRE;
+            nRemoveSpell5 = SPELL_IGNORE_THE_PYRE_SONIC;
+
+            eLink = EffectLinkEffects(EffectDamageResistance(nDamageType, nCasterLevel),
+                    EffectLinkEffects(EffectVisualEffect(VFX_DUR_PROTECTION_ELEMENTS), // TODO new VFX
+                                      EffectVisualEffect(VFX_DUR_CESSATE_POSITIVE)));
+            fDuration = GetDuration(24, HOURS);
+        }
+        break;
         default:
         {
             if (DEBUG_LEVEL >= ERROR) Error("No valid spell ID passed in: " + IntToString(nSpellId));
@@ -1310,6 +1345,7 @@ void main()
         if (nRemoveSpell2 != SPELL_INVALID) RemoveEffectsFromSpell(oTarget, nRemoveSpell2);
         if (nRemoveSpell3 != SPELL_INVALID) RemoveEffectsFromSpell(oTarget, nRemoveSpell3);
         if (nRemoveSpell4 != SPELL_INVALID) RemoveEffectsFromSpell(oTarget, nRemoveSpell4);
+        if (nRemoveSpell5 != SPELL_INVALID) RemoveEffectsFromSpell(oTarget, nRemoveSpell5);
 
         if (nVis != VFX_INVALID) DelayCommand(fDelay, ApplyVisualEffectToObject(nVis, oTarget));
         DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, fDuration));
@@ -1323,3 +1359,4 @@ void main()
         }
     }
 }
+

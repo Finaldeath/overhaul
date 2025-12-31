@@ -55,16 +55,19 @@ void main()
     switch (nSpellId)
     {
         case SPELL_SLOW:
+        {
             nTargetType     = SPELL_TARGET_SELECTIVEHOSTILE;
             nSavingThrow    = SAVING_THROW_WILL;
             nImmunity1       = IMMUNITY_TYPE_SLOW;
             nCreatureLimit  = nCasterLevel;
             nImpact         = VFX_FNF_LOS_NORMAL_30;
             nVis            = VFX_IMP_SLOW;
-            eLink           = EffectLinkEffects(EffectSlow(), EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE));
+            eLink           = GetEffectLink(EFFECT_TYPE_SLOW);
             fDuration       = GetDuration(nCasterLevel, ROUNDS);
-            break;
+        }
+        break;
         case SPELL_BANE:
+        {
             nTargetType      = SPELL_TARGET_SELECTIVEHOSTILE;
             nSavingThrow     = SAVING_THROW_WILL;
             nSavingThrowType = SAVING_THROW_TYPE_MIND_SPELLS;
@@ -76,8 +79,10 @@ void main()
                                                  EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
             fDuration        = GetDuration(nCasterLevel, MINUTES);
             nRemoveSpellId   = SPELL_BLESS;
-            break;
+        }
+        break;
         case SPELL_BLINDNESS_AND_DEAFNESS:
+        {
             nSavingThrow     = SAVING_THROW_FORT;
             nImmunity1       = IMMUNITY_TYPE_BLINDNESS;
             nImmunity2       = IMMUNITY_TYPE_DEAFNESS;
@@ -86,8 +91,10 @@ void main()
                                EffectLinkEffects(EffectDeaf(),
                                                  EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
             fDuration        = GetDuration(nCasterLevel, ROUNDS);
-            break;
+        }
+        break;
         case SPELL_MASS_BLINDNESS_AND_DEAFNESS:
+        {
             nTargetType      = SPELL_TARGET_SELECTIVEHOSTILE;
             nSavingThrow     = SAVING_THROW_FORT;
             nImmunity1       = IMMUNITY_TYPE_BLINDNESS;
@@ -98,17 +105,27 @@ void main()
                                EffectLinkEffects(EffectDeaf(),
                                                  EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
             fDuration        = GetDuration(nCasterLevel, ROUNDS);
-            break;
+        }
+        break;
         case SPELL_DOOM:
+        {
             nSavingThrow     = SAVING_THROW_FORT;
             nVis             = VFX_IMP_DOOM;
-            eLink            = EffectLinkEffects(EffectSavingThrowDecrease(SAVING_THROW_ALL, 2),
-                               EffectLinkEffects(EffectAttackDecrease(2),
-                               EffectLinkEffects(EffectDamageDecrease(2, DAMAGE_TYPE_BLUDGEONING | DAMAGE_TYPE_SLASHING | DAMAGE_TYPE_PIERCING),
-                               EffectLinkEffects(EffectSkillDecrease(SKILL_ALL_SKILLS, 2),
-                                                 EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)))));
+            eLink            = GetEffectLink(LINK_EFFECT_DOOM);
             fDuration        = GetDuration(nCasterLevel, ROUNDS);
-            break;
+        }
+        break;
+        case SPELL_DREAD_SEIZURE:
+        {
+            nSavingThrow    = SAVING_THROW_FORT;
+            nVis            = VFX_IMP_SLOW; // TODO new VFX
+            eLink           = EffectLinkEffects(EffectMovementSpeedDecrease(30),
+                              EffectLinkEffects(EffectAttackDecrease(3),
+                                                EffectVisualEffect(VFX_DUR_CESSATE_NEGATIVE)));
+            fDuration       = GetDuration(3, ROUNDS);
+            nRemoveSpellId  = SPELL_DREAD_SEIZURE;
+        }
+        break;
         default:
         {
             if (DEBUG_LEVEL >= ERROR) Error("No valid spell ID passed in: " + IntToString(nSpellId));
