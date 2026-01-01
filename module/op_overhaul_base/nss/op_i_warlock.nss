@@ -58,6 +58,8 @@ int GetIsWarlockEssence(int nSpellId)
         case SPELL_BESHADOWED_BLAST:
         case SPELL_BRIMSTONE_BLAST:
         case SPELL_HELLRIME_BLAST:
+        case SPELL_BEWITCHING_BLAST:
+        case SPELL_NOXIOUS_BLAST:
         {
             return TRUE;
         }
@@ -129,7 +131,7 @@ void ApplyEssenceEffect(int nSpellId, object oTarget, float fDelay)
                     if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_FEAR, fDelay))
                     {
                         DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_FEAR_S, oTarget)); // TODO new VFX (need "shaken" VFX)
-                        DelayCommand(fDelay, ApplySpecialEffect(oTarget, SPELL_EFFECT_SHAKEN, TurnsToSeconds(1), nSpellId));
+                        DelayCommand(fDelay, ApplySpecialEffect(oTarget, SPELL_EFFECT_SHAKEN, GetDuration(1, MINUTES), nSpellId));
                     }
                 }
             }
@@ -142,9 +144,8 @@ void ApplyEssenceEffect(int nSpellId, object oTarget, float fDelay)
             {
                 if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_NONE, fDelay))
                 {
-                    effect eLink = GetEffectLink(LINK_EFFECT_SICKEN);
                     DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_DISEASE_S, oTarget)); // TODO new VFX (need "sicken" VFX)
-                    DelayCommand(fDelay, ApplySpecialEffect(oTarget, SPELL_EFFECT_SICKEN, TurnsToSeconds(1), nSpellId));
+                    DelayCommand(fDelay, ApplySpecialEffect(oTarget, SPELL_EFFECT_SICKEN, GetDuration(1, MINUTES), nSpellId));
                 }
             }
         }
@@ -173,7 +174,6 @@ void ApplyEssenceEffect(int nSpellId, object oTarget, float fDelay)
             // Did we save against the damage?
             if (!DoBrimstoneBlast(oTarget, fDelay))
             {
-
                 // The fire damage persists for 1 round per five class levels you have up to a maximum of 4 rounds at level 20.
                 int nRounds =  clamp(nCasterLevel/5, 1, 4);
 
@@ -197,6 +197,38 @@ void ApplyEssenceEffect(int nSpellId, object oTarget, float fDelay)
                     effect eLink = GetEffectLink(EFFECT_TYPE_ABILITY_DECREASE, ABILITY_DEXTERITY, 4);
                     DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_REDUCE_ABILITY_SCORE, oTarget)); // TODO vfx
                     DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(10, MINUTES), nSpellId));
+                }
+            }
+        }
+        break;
+        case SPELL_BEWITCHING_BLAST:
+        {
+            // Will save or be confused for 1 round. This is a mind-influencing effect.
+            if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_CONFUSED))
+            {
+                if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_WILL, nSpellSaveDC, SAVING_THROW_TYPE_MIND_SPELLS, fDelay))
+                {
+                    // We'll remove existing castings since, while the
+                    // engine won't stack it, this is considered a magical effect
+                    // so we don't want to overload dispel magic
+                    RemoveEffectsFromSpell(oTarget, nSpellId);
+
+                    effect eLink = GetEffectLink(EFFECT_TYPE_CONFUSION);
+                    DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_CONFUSION_S, oTarget)); // TODO vfx
+                    DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(1, ROUNDS), nSpellId));
+                }
+            }
+        }
+        break;
+        case SPELL_NOXIOUS_BLAST:
+        {
+            // Fortitude save or be nauseated for 1 minute. Nauseated creatures cannot attack, cast spells but can walk around.
+            if (!GetIsImmuneWithFeedback(oTarget, oCaster, SPELL_EFFECT_NAUSEA))
+            {
+                if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_FORT, nSpellSaveDC, SAVING_THROW_TYPE_NONE, fDelay))
+                {
+                    DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_POISON_S, oTarget)); // TODO new VFX (need "nausea" VFX)
+                    DelayCommand(fDelay, ApplySpecialEffect(oTarget, SPELL_EFFECT_NAUSEA, GetDuration(1, MINUTES), nSpellId));
                 }
             }
         }

@@ -40,7 +40,7 @@ void main()
                 ApplyDamageWithVFXToObject(oTarget, VFX_IMP_MAGBLUE, GetDiceRoll(1, 6), DAMAGE_TYPE_MAGICAL); // TODO new VFX for the bat swarm damage
 
                 // Also save or nauseated
-                if (!GetIsImmune(oTarget, IMMUNITY_TYPE_DISEASE) && !GetIsImmune(oTarget, IMMUNITY_TYPE_POISON))
+                if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_NAUSEA))
                 {
                     if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_FORT, 11, SAVING_THROW_TYPE_DISEASE))
                     {
@@ -68,7 +68,7 @@ void main()
                 ApplyDamageWithVFXToObject(oTarget, VFX_IMP_MAGBLUE, GetDiceRoll(1, 6), DAMAGE_TYPE_MAGICAL); // TODO new VFX for the bat swarm damage
 
                 // Also save or nauseated
-                if (!GetIsImmune(oTarget, IMMUNITY_TYPE_DISEASE) && !GetIsImmune(oTarget, IMMUNITY_TYPE_POISON))
+                if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_NAUSEA))
                 {
                     if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_FORT, 11, SAVING_THROW_TYPE_DISEASE))
                     {

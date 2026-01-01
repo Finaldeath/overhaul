@@ -29,6 +29,7 @@ const int IMMUNITY_TYPE_SHAKEN        = -4;
 const int IMMUNITY_TYPE_FATIGUE       = -5;
 const int IMMUNITY_TYPE_EXHAUSATION   = -6;
 const int IMMUNITY_TYPE_DAZZLE        = -7;
+const int IMMUNITY_TYPE_NAUSEA        = -8;
 
 // iprp_onhitspell.2da. Might move these to be a function call so we don't
 // have to have a massive ton of constants.

@@ -2453,6 +2453,17 @@ int GetIsImmuneWithFeedback(object oCreature, object oVersus, int nImmunityType,
             return TRUE;
         }
     }
+    else if (nImmunityType == IMMUNITY_TYPE_NAUSEA)
+    {
+        // Needs to not be immune to disease or poison
+        if (!GetIsImmune(oCreature, IMMUNITY_TYPE_POISON, oVersus) ||
+             GetIsImmune(oCreature, IMMUNITY_TYPE_DISEASE, oVersus) ||
+             SpellImmunityCheck(oCreature, oVersus, SPELL_EFFECT_NAUSEA, FALSE))
+        {
+            SendImmunityFeedback(oVersus, oCreature, nImmunityType);
+            return TRUE;
+        }
+    }
     // All normal IMMUNITY_TYPE_* constants go below.
     else if (GetIsImmune(oCreature, nImmunityType, oVersus))
     {
