@@ -60,6 +60,7 @@ int GetIsWarlockEssence(int nSpellId)
         case SPELL_HELLRIME_BLAST:
         case SPELL_BEWITCHING_BLAST:
         case SPELL_NOXIOUS_BLAST:
+        case SPELL_REPELLING_BLAST:
         {
             return TRUE;
         }
@@ -213,7 +214,7 @@ void ApplyEssenceEffect(int nSpellId, object oTarget, float fDelay)
                     // so we don't want to overload dispel magic
                     RemoveEffectsFromSpell(oTarget, nSpellId);
 
-                    effect eLink = GetEffectLink(EFFECT_TYPE_CONFUSION);
+                    effect eLink = GetEffectLink(EFFECT_TYPE_CONFUSED);
                     DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_CONFUSION_S, oTarget)); // TODO vfx
                     DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(1, ROUNDS), nSpellId));
                 }
@@ -229,6 +230,20 @@ void ApplyEssenceEffect(int nSpellId, object oTarget, float fDelay)
                 {
                     DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_POISON_S, oTarget)); // TODO new VFX (need "nausea" VFX)
                     DelayCommand(fDelay, ApplySpecialEffect(oTarget, SPELL_EFFECT_NAUSEA, GetDuration(1, MINUTES), nSpellId));
+                }
+            }
+        }
+        break;
+        case SPELL_REPELLING_BLAST:
+        {
+            // Will save or be confused for 1 round. This is a mind-influencing effect.
+            if (!GetIsImmuneWithFeedback(oTarget, oCaster, IMMUNITY_TYPE_KNOCKDOWN))
+            {
+                if (!DoSavingThrow(oTarget, oCaster, SAVING_THROW_REFLEX, nSpellSaveDC, SAVING_THROW_TYPE_NONE, fDelay))
+                {
+                    effect eLink = GetEffectLink(EFFECT_TYPE_KNOCKDOWN);
+                    DelayCommand(fDelay, ApplyVisualEffectToObject(VFX_IMP_DUST_EXPLOSION, oTarget)); // TODO vfx
+                    DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, GetDuration(1, ROUNDS), nSpellId));
                 }
             }
         }
