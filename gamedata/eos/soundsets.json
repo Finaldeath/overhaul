@@ -23137,6 +23137,513 @@
           "SoundFile": "c_x0wyrmlg_dead"
         }
       ]
+    },
+    {
+      "ID": "0de14e7d-7231-4f9a-9905-bd3511c6f543",
+      "Index": -1,
+      "Overrides": "4e557289-5080-8e99-f73e-88b2be4b0dd1",
+      "Disabled": false,
+      "Hint": "Renamed from \u0022Lich, Mage\u0022 which was correct.",
+      "ScriptConstant": "",
+      "SourceLabel": "Belpheron_Construct",
+      "ExtensionValues": {},
+      "Name": {
+        "Index": 3811,
+        "EN": {
+          "M": "Golem, Belpheron\u0027s Construct",
+          "F": "Lich, Mage"
+        },
+        "FR": {
+          "M": "Liche, mage"
+        },
+        "DE": {
+          "M": "Leichnam, Magier"
+        },
+        "IT": {
+          "M": "Lich, mago"
+        },
+        "ES": {
+          "M": "Liche, m\u00E1gico"
+        },
+        "PL": {
+          "M": "Lisz, mag"
+        }
+      },
+      "Gender": "Male",
+      "Type": "NPCPart",
+      "SoundsetResource": "vs_nx0headm",
+      "Entries": [
+        {
+          "Type": "ATTACK",
+          "Text": {
+            "Index": 9979,
+            "EN": {
+              "M": "Belpheron\u0027s power will strike you down!"
+            },
+            "FR": {
+              "M": "Par la puissance de Belph\u00E9ron vous succomberez."
+            },
+            "DE": {
+              "M": "Belpherons Macht wird Euch niederstrecken!"
+            },
+            "IT": {
+              "M": "Il potere di Belpheron ti abbatter\u00E0!"
+            },
+            "ES": {
+              "M": "\u00A1El poder de Belpheron os aplastar\u00E1!"
+            },
+            "PL": {
+              "M": "Niech Belferon ze\u015Ble ci szybk\u0105 \u015Bmier\u0107!"
+            }
+          },
+          "SoundFile": "vs_nx0headm_attk"
+        },
+        {
+          "Type": "BATTLECRY1",
+          "Text": {
+            "Index": 9980,
+            "EN": {
+              "M": "Try, mortal."
+            },
+            "FR": {
+              "M": "Essayez, mortel.",
+              "F": "Essayez, mortelle."
+            },
+            "DE": {
+              "M": "Versucht es nur!"
+            },
+            "IT": {
+              "M": "Prendi questo, mortale."
+            },
+            "ES": {
+              "M": "Int\u00E9ntalo, mortal."
+            },
+            "PL": {
+              "M": "Spr\u00F3buj szcz\u0119\u015Bcia, \u015Bmiertelniku."
+            }
+          },
+          "SoundFile": "vs_nx0headm_bat1"
+        },
+        {
+          "Type": "BATTLECRY2",
+          "Text": {
+            "Index": 9981,
+            "EN": {
+              "M": "Taste Belpheron\u0027s power!"
+            },
+            "FR": {
+              "M": "Go\u00FBtez \u00E0 la puissance de Belph\u00E9ron !"
+            },
+            "DE": {
+              "M": "Kostet Belpherons Macht!"
+            },
+            "IT": {
+              "M": "Assaggia il potere di Belpheron!"
+            },
+            "ES": {
+              "M": "\u00A1Prueba el poder de Belpheron!"
+            },
+            "PL": {
+              "M": "Dr\u017Cyj przed pot\u0119g\u0105 Belferona!"
+            }
+          },
+          "SoundFile": "vs_nx0headm_bat2"
+        },
+        {
+          "Type": "BATTLECRY3",
+          "Text": {
+            "Index": 9982,
+            "EN": {
+              "M": "Run, coward!"
+            },
+            "FR": {
+              "M": "Fuyez, l\u00E2che !"
+            },
+            "DE": {
+              "M": "Rennt, Feigling!"
+            },
+            "IT": {
+              "M": "Fuggi, codardo!"
+            },
+            "ES": {
+              "M": "\u00A1Corre, cobarde!"
+            },
+            "PL": {
+              "M": "Uciekaj, tch\u00F3rzu!"
+            }
+          },
+          "SoundFile": "vs_nx0headm_bat3"
+        },
+        {
+          "Type": "HEALME",
+          "Text": {
+            "Index": 9983,
+            "EN": {
+              "M": "I require repair."
+            },
+            "FR": {
+              "M": "J\u0027ai besoin d\u0027un rafistolage."
+            },
+            "DE": {
+              "M": "Ich muss repariert werden."
+            },
+            "IT": {
+              "M": "Ho bisogno di essere riparato."
+            },
+            "ES": {
+              "M": "Necesito una reparaci\u00F3n."
+            },
+            "PL": {
+              "M": "Wymagam naprawy."
+            }
+          },
+          "SoundFile": "vs_nx0headm_heal"
+        },
+        {
+          "Type": "HELP",
+          "Text": {
+            "Index": 9984,
+            "EN": {
+              "M": "I require assistance to complete this task."
+            },
+            "FR": {
+              "M": "J\u0027ai besoin d\u0027aide pour venir \u00E0 bout de cette t\u00E2che."
+            },
+            "DE": {
+              "M": "Ich ben\u00F6tige Unterst\u00FCtzung, um diese Aufgabe zu vollenden."
+            },
+            "IT": {
+              "M": "Ho bisogno di assistenza per completare questa impresa."
+            },
+            "ES": {
+              "M": "Necesito ayuda para terminar esta tarea."
+            },
+            "PL": {
+              "M": "Nie podo\u0142am temu zadaniu w pojedynk\u0119."
+            }
+          },
+          "SoundFile": "vs_nx0headm_help"
+        },
+        {
+          "Type": "ENEMIES",
+          "SoundFile": "vs_nx0headm_enmy"
+        },
+        {
+          "Type": "FLEE",
+          "SoundFile": "vs_nx0headm_flee"
+        },
+        {
+          "Type": "TAUNT",
+          "SoundFile": "vs_nx0headm_tant"
+        },
+        {
+          "Type": "GUARDME",
+          "SoundFile": "vs_nx0headm_gard"
+        },
+        {
+          "Type": "HOLD",
+          "SoundFile": "vs_nx0headm_hold"
+        },
+        {
+          "Type": "GATTACK1",
+          "SoundFile": "vs_nx0headm_atk1"
+        },
+        {
+          "Type": "GATTACK2",
+          "SoundFile": "vs_nx0headm_atk2"
+        },
+        {
+          "Type": "GATTACK3",
+          "SoundFile": "vs_nx0headm_atk3"
+        },
+        {
+          "Type": "PAIN1",
+          "SoundFile": "vs_nx0headm_hit1"
+        },
+        {
+          "Type": "PAIN2",
+          "SoundFile": "vs_nx0headm_hit2"
+        },
+        {
+          "Type": "PAIN3",
+          "SoundFile": "vs_nx0headm_hit3"
+        },
+        {
+          "Type": "NEARDEATH",
+          "SoundFile": "vs_nx0headm_dyin"
+        },
+        {
+          "Type": "DEATH",
+          "SoundFile": "vs_nx0headm_dead"
+        },
+        {
+          "Type": "POISONED",
+          "SoundFile": "vs_nx0headm_sick"
+        },
+        {
+          "Type": "SPELLFAILED",
+          "SoundFile": "vs_nx0headm_spel"
+        },
+        {
+          "Type": "WEAPONSUCKS",
+          "SoundFile": "vs_nx0headm_inff"
+        },
+        {
+          "Type": "FOLLOWME",
+          "SoundFile": "vs_nx0headm_foll"
+        },
+        {
+          "Type": "LOOKHERE",
+          "SoundFile": "vs_nx0headm_look"
+        },
+        {
+          "Type": "GROUP",
+          "SoundFile": "vs_nx0headm_grup"
+        },
+        {
+          "Type": "MOVEOVER",
+          "SoundFile": "vs_nx0headm_move"
+        },
+        {
+          "Type": "PICKLOCK",
+          "SoundFile": "vs_nx0headm_pick"
+        },
+        {
+          "Type": "SEARCH",
+          "SoundFile": "vs_nx0headm_srch"
+        },
+        {
+          "Type": "HIDE",
+          "SoundFile": "vs_nx0headm_hide"
+        },
+        {
+          "Type": "CANDO",
+          "SoundFile": "vs_nx0headm_can"
+        },
+        {
+          "Type": "CANTDO",
+          "SoundFile": "vs_nx0headm_cant"
+        },
+        {
+          "Type": "TASKCOMPLETE",
+          "SoundFile": "vs_nx0headm_done"
+        },
+        {
+          "Type": "ENCUMBERED",
+          "SoundFile": "vs_nx0headm_encm"
+        },
+        {
+          "Type": "SELECTED",
+          "SoundFile": "vs_nx0headm_slct"
+        },
+        {
+          "Type": "HELLO",
+          "Text": {
+            "Index": 9985,
+            "EN": {
+              "M": "You are not the master."
+            },
+            "FR": {
+              "M": "Vous n\u0027\u00EAtes pas mon ma\u00EEtre."
+            },
+            "DE": {
+              "M": "Ihr seid nicht der Meister."
+            },
+            "IT": {
+              "M": "Tu non sei il padrone."
+            },
+            "ES": {
+              "M": "T\u00FA no eres el amo."
+            },
+            "PL": {
+              "M": "Nie ty tu rz\u0105dzisz."
+            }
+          },
+          "SoundFile": "vs_nx0headm_hi"
+        },
+        {
+          "Type": "YES",
+          "Text": {
+            "Index": 9986,
+            "EN": {
+              "M": "Yes."
+            },
+            "FR": {
+              "M": "Oui."
+            },
+            "DE": {
+              "M": "Ja."
+            },
+            "IT": {
+              "M": "S\u00EC."
+            },
+            "ES": {
+              "M": "S\u00ED."
+            },
+            "PL": {
+              "M": "Tak."
+            }
+          },
+          "SoundFile": "vs_nx0headm_yes"
+        },
+        {
+          "Type": "NO",
+          "Text": {
+            "Index": 9987,
+            "EN": {
+              "M": "No."
+            },
+            "FR": {
+              "M": "Non."
+            },
+            "DE": {
+              "M": "Nein."
+            },
+            "IT": {
+              "M": "No."
+            },
+            "ES": {
+              "M": "No."
+            },
+            "PL": {
+              "M": "Nie."
+            }
+          },
+          "SoundFile": "vs_nx0headm_no"
+        },
+        {
+          "Type": "STOP",
+          "SoundFile": "vs_nx0headm_stop"
+        },
+        {
+          "Type": "REST",
+          "SoundFile": "vs_nx0headm_rest"
+        },
+        {
+          "Type": "BORED",
+          "SoundFile": "vs_nx0headm_bore"
+        },
+        {
+          "Type": "GOODBYE",
+          "Text": {
+            "Index": 9988,
+            "EN": {
+              "M": "Depart."
+            },
+            "FR": {
+              "M": "Partez."
+            },
+            "DE": {
+              "M": "Geht."
+            },
+            "IT": {
+              "M": "Vattene."
+            },
+            "ES": {
+              "M": "Fuera."
+            },
+            "PL": {
+              "M": "Odejd\u017A."
+            }
+          },
+          "SoundFile": "vs_nx0headm_bye"
+        },
+        {
+          "Type": "THANKS",
+          "SoundFile": "vs_nx0headm_thnx"
+        },
+        {
+          "Type": "LAUGH",
+          "SoundFile": "vs_nx0headm_haha"
+        },
+        {
+          "Type": "CUSS",
+          "SoundFile": "vs_nx0headm_cuss"
+        },
+        {
+          "Type": "CHEER",
+          "Text": {
+            "Index": 9989,
+            "EN": {
+              "M": "I have succeeded in my task."
+            },
+            "FR": {
+              "M": "J\u0027ai accompli ma t\u00E2che."
+            },
+            "DE": {
+              "M": "Ich bin bei meiner Aufgabe erfolgreich gewesen."
+            },
+            "IT": {
+              "M": "Ho completato la mia impresa."
+            },
+            "ES": {
+              "M": "He logrado mi cometido."
+            },
+            "PL": {
+              "M": "Zadanie wykonane."
+            }
+          },
+          "SoundFile": "vs_nx0headm_vict"
+        },
+        {
+          "Type": "TALKTOME",
+          "Text": {
+            "Index": 9990,
+            "EN": {
+              "M": "Hear me."
+            },
+            "FR": {
+              "M": "Ecoutez-moi."
+            },
+            "DE": {
+              "M": "H\u00F6rt mich."
+            },
+            "IT": {
+              "M": "Ascoltami."
+            },
+            "ES": {
+              "M": "Esc\u00FAchame."
+            },
+            "PL": {
+              "M": "Wys\u0142uchajcie mnie!"
+            }
+          },
+          "SoundFile": "vs_nx0headm_say"
+        },
+        {
+          "Type": "GOODIDEA",
+          "SoundFile": "vs_nx0headm_good"
+        },
+        {
+          "Type": "BADIDEA",
+          "SoundFile": "vs_nx0headm_bad"
+        },
+        {
+          "Type": "THREATEN",
+          "Text": {
+            "Index": 9991,
+            "EN": {
+              "M": "Do not underestimate Belpheron\u0027s power. "
+            },
+            "FR": {
+              "M": "Ne sous-estimez pas le pouvoir de Belph\u00E9ron."
+            },
+            "DE": {
+              "M": "Untersch\u00E4tzt niemals Belpherons Macht."
+            },
+            "IT": {
+              "M": "Non sottovalutare il potere di Belpheron."
+            },
+            "ES": {
+              "M": "No ha de subestimarse el poder de Belpheron."
+            },
+            "PL": {
+              "M": "Nie doceniasz pot\u0119gi Belferona."
+            }
+          },
+          "SoundFile": "vs_nx0headm_warn"
+        }
+      ]
     }
   ]
 }
