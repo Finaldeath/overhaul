@@ -365,22 +365,22 @@ void ApplyVisualEffectAtLocation(int nVFX, location lTarget, int bMissEffect = F
 void ApplyVisualEffectAtObjectsLocation(int nVFX, object oTarget, int bMissEffect = FALSE, float fScale = 1.0f, vector vTranslate = [ 0.0, 0.0, 0.0 ], vector vRotate = [ 0.0, 0.0, 0.0 ]);
 
 // Applies damage of the given type. This helps wrapper delayed damage so we can keep at 1 HP if necessary (Harm/Heal).
-void ApplyDamageToObject(object oTarget, int nDamage, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL, int bKeepAt1HP = FALSE);
+void ApplyDamageToObject(object oTarget, int nDamage, int nDamageType, int nDamagePower = DAMAGE_POWER_NORMAL, int bKeepAt1HP = FALSE);
 
 // Applies damage to the oTarget which is enough to kill them (HP + 10) plus VFX.
-void ApplyDeathDamageToObject(object oTarget, int nVFX, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL);
+void ApplyDeathDamageToObject(object oTarget, int nVFX, int nDamageType, int nDamagePower = DAMAGE_POWER_NORMAL);
 
 // Applies damage of the given type, and heals up to the damage done to oCaster (after resistances/immunities).
 // Must be a creature for it it work.
-void ApplyDamageWithVFXToObjectAndDrain(object oTarget, object oCaster, int nVFX, int nDamage, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL);
+void ApplyDamageWithVFXToObjectAndDrain(object oTarget, object oCaster, int nVFX, int nDamage, int nDamageType, int nDamagePower = DAMAGE_POWER_NORMAL);
 
 // Applies damage of the given type, and adds temp HP up to the damage done to oCaster (after resistances/immunities).
 // Must be a creature for it it work.
-void ApplyDamageWithVFXToObjectAndTempHP(object oTarget, object oCaster, int nVFX, int nDamage, float fDuration, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL);
+void ApplyDamageWithVFXToObjectAndTempHP(object oTarget, object oCaster, int nVFX, int nDamage, float fDuration, int nDamageType, int nDamagePower = DAMAGE_POWER_NORMAL);
 
 // Applies damage of the given type. This helps wrapper delayed damage so we can keep at 1 HP if necessary (Harm/Heal).
 // * Also applies nVFX (no miss effect or anything special).
-void ApplyDamageWithVFXToObject(object oTarget, int nVFX, int nDamage, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL, int bKeepAt1HP = FALSE);
+void ApplyDamageWithVFXToObject(object oTarget, int nVFX, int nDamage, int nDamageType, int nDamagePower = DAMAGE_POWER_NORMAL, int bKeepAt1HP = FALSE);
 
 // Applies a special effect, use the SPELL_* types below. If fDuration is negative (eg -1.0) it applies it permanently.
 // SPELL_EFFECT_SHAKEN - Shaken: 2 Attack Decrease, Saving Throw Decrease.
@@ -1914,7 +1914,7 @@ void ApplyVoraciousDispelling(object oTarget, json jRecordedSpells)
         nDamage += JsonGetInt(JsonObjectGet(jObject, FIELD_EFFECT_SPELL_LEVEL));
     }
 
-    ApplyDamageWithVFXToObject(oTarget, VFX_IMP_MAGBLUE, nDamage);
+    ApplyDamageWithVFXToObject(oTarget, VFX_IMP_MAGBLUE, nDamage, DAMAGE_TYPE_MAGICAL);
 }
 
 // Gets all the magical effects on oTarget and adds them to a json
@@ -2801,7 +2801,7 @@ void ApplyVisualEffectAtObjectsLocation(int nVFX, object oTarget, int bMissEffec
 }
 
 // Applies damage of the given type. This helps wrapper delayed damage so we can keep at 1 HP if necessary (Harm/Heal).
-void ApplyDamageToObject(object oTarget, int nDamage, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL, int bKeepAt1HP = FALSE)
+void ApplyDamageToObject(object oTarget, int nDamage, int nDamageType, int nDamagePower = DAMAGE_POWER_NORMAL, int bKeepAt1HP = FALSE)
 {
     if (bKeepAt1HP)
     {
@@ -2817,7 +2817,7 @@ void ApplyDamageToObject(object oTarget, int nDamage, int nDamageType = DAMAGE_T
 }
 
 // Applies damage to the oTarget which is enough to kill them (HP + 10) plus VFX.
-void ApplyDeathDamageToObject(object oTarget, int nVFX, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL)
+void ApplyDeathDamageToObject(object oTarget, int nVFX, int nDamageType, int nDamagePower = DAMAGE_POWER_NORMAL)
 {
     int nDamage = GetCurrentHitPoints(oTarget) + 10;
     effect eDamage = EffectDamage(nDamage, nDamageType, nDamagePower);
@@ -2828,7 +2828,7 @@ void ApplyDeathDamageToObject(object oTarget, int nVFX, int nDamageType = DAMAGE
 }
 
 // Private function for the below to work in a DelayCommand
-void DamageAndDrain(object oTarget, object oCaster, int nDamage, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL)
+void DamageAndDrain(object oTarget, object oCaster, int nDamage, int nDamageType, int nDamagePower = DAMAGE_POWER_NORMAL)
 {
     int nOriginalHP = GetCurrentHitPoints(oTarget);
     ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectDamage(nDamage, nDamageType, nDamagePower), oTarget);
@@ -2848,7 +2848,7 @@ void DamageAndDrain(object oTarget, object oCaster, int nDamage, int nDamageType
 
 // Applies damage of the given type, and adds temp HP up to the damage done to oCaster (after resistances/immunities).
 // Must be a creature for it it work.
-void ApplyDamageWithVFXToObjectAndTempHP(object oTarget, object oCaster, int nVFX, int nDamage, float fDuration, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL)
+void ApplyDamageWithVFXToObjectAndTempHP(object oTarget, object oCaster, int nVFX, int nDamage, float fDuration, int nDamageType, int nDamagePower = DAMAGE_POWER_NORMAL)
 {
     int nOriginalHP = GetCurrentHitPoints(oTarget);
     ApplySpellEffectToObject(DURATION_TYPE_INSTANT, EffectDamage(nDamage, nDamageType, nDamagePower), oTarget);
@@ -2867,7 +2867,7 @@ void ApplyDamageWithVFXToObjectAndTempHP(object oTarget, object oCaster, int nVF
 
 // Applies damage of the given type, and heals up to the damage done to oCaster (after resistances/immunities).
 // Must be a creature for it it work.
-void ApplyDamageWithVFXToObjectAndDrain(object oTarget, object oCaster, int nVFX, int nDamage, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL)
+void ApplyDamageWithVFXToObjectAndDrain(object oTarget, object oCaster, int nVFX, int nDamage, int nDamageType, int nDamagePower = DAMAGE_POWER_NORMAL)
 {
     ApplyVisualEffectToObject(nVFX, oTarget);
     DelayCommand(0.0, DamageAndDrain(oTarget, oCaster, nDamage, nDamageType, nDamagePower));
@@ -2875,7 +2875,7 @@ void ApplyDamageWithVFXToObjectAndDrain(object oTarget, object oCaster, int nVFX
 
 // Applies damage of the given type. This helps wrapper delayed damage so we can keep at 1 HP if necessary (Harm/Heal).
 // * Also applies nVFX (no miss effect or anything special).
-void ApplyDamageWithVFXToObject(object oTarget, int nVFX, int nDamage, int nDamageType = DAMAGE_TYPE_MAGICAL, int nDamagePower = DAMAGE_POWER_NORMAL, int bKeepAt1HP = FALSE)
+void ApplyDamageWithVFXToObject(object oTarget, int nVFX, int nDamage, int nDamageType, int nDamagePower = DAMAGE_POWER_NORMAL, int bKeepAt1HP = FALSE)
 {
     ApplyVisualEffectToObject(nVFX, oTarget);
 

@@ -30,12 +30,12 @@
     Bioware changed (and limited) these to the below, and changed the save DC
     to 15.
 
-    SPELLABILITY_BEHOLDER_RAY_DEATH       - Finger of Death (Death or d6(3) + 13 magical damage)
+    SPELLABILITY_BEHOLDER_RAY_DEATH       - Finger of Death (Death or d6(3) + 13 negative damage)
     SPELLABILITY_BEHOLDER_RAY_TELEKENESIS - Knockdown (1 round)
     SPELLABILITY_BEHOLDER_RAY_PETRIFY     - Flesh to Stone (Petrify, may be permanent as per rules)
     SPELLABILITY_BEHOLDER_RAY_CHARM       - Charm Person or Monster (4 rounds) (Actually "Charm anything"). Against PCs/PC associates it turns into Daze anyway.
     SPELLABILITY_BEHOLDER_RAY_SLOW        - Slow (6 rounds)
-    SPELLABILITY_BEHOLDER_RAY_WOUND       - Inflict Moderate Wounds (d8(2) + 10 magical damage)
+    SPELLABILITY_BEHOLDER_RAY_WOUND       - Inflict Moderate Wounds (d8(2) + 10 negative damage)
     SPELLABILITY_BEHOLDER_RAY_FEAR        - Fear (1 + d4() rounds)
     SPELLABILITY_BEHOLDER_RAY_UNUSED_1    - Missing ones are sleep, disintegrate and one of the charm variants
     SPELLABILITY_BEHOLDER_RAY_UNUSED_2
@@ -63,6 +63,7 @@ void main()
     effect eLink;
     int nVis = VFX_NONE;
     int nDamage = 0;
+    int nDamageType = DAMAGE_TYPE_MAGICAL;
 
     switch (nSpellId)
     {
@@ -304,6 +305,7 @@ void main()
         case SPELLABILITY_BEHOLDER_RAY_WOUND:
         {
             nDamage = d8(2) + 10;
+            nDamageType = DAMAGE_TYPE_NEGATIVE;
             nVis = VFX_COM_BLOOD_REG_RED;
             nSavingThrow = SAVING_THROW_FORT;
         }
@@ -322,7 +324,7 @@ void main()
         {
             if (nDamage > 0)
             {
-                ApplyDamageToObject(oTarget, nDamage);
+                ApplyDamageToObject(oTarget, nDamage, nDamageType);
             }
             else if (fDuration > 0.0)
             {
@@ -335,7 +337,7 @@ void main()
         }
         else if (nSpellId == SPELLABILITY_BEHOLDER_RAY_DEATH)
         {
-            ApplyDamageWithVFXToObject(oTarget, VFX_IMP_NEGATIVE_ENERGY, d6(3) + 13);
+            ApplyDamageWithVFXToObject(oTarget, VFX_IMP_NEGATIVE_ENERGY, d6(3) + 13, DAMAGE_TYPE_NEGATIVE);
         }
     }
 }

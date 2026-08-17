@@ -105,7 +105,7 @@ void DoTentacle(float fDelay)
 
             // 1d6 + 4 damage
             int nDamage = d6() + 4;
-            AssignCommand(oCaster, DelayCommand(fDelay, ApplyDamageWithVFXToObject(oTarget, VFX_NONE, nDamage, DAMAGE_TYPE_BLUDGEONING, DAMAGE_POWER_PLUS_TWO)));
+            AssignCommand(oCaster, DelayCommand(fDelay, ApplyDamageWithVFXToObject(oTarget, VFX_DUR_EVARD_TENTACLE, nDamage, DAMAGE_TYPE_BLUDGEONING, DAMAGE_POWER_PLUS_TWO)));
             AssignCommand(oCaster, DelayCommand(fDelay, ApplySpellEffectToObject(DURATION_TYPE_TEMPORARY, eLink, oTarget, 6.0)));
         }
     }

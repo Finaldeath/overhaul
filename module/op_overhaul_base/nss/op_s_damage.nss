@@ -351,11 +351,11 @@ void main()
 
                 if (nDamage > 0)
                 {
-                    DelayCommand(fDelay, ApplyDamageWithVFXToObject(oTarget, nDamage, nDamageType, nDamagePower));
+                    DelayCommand(fDelay, ApplyDamageWithVFXToObject(oTarget, nVis, nDamage, nDamageType, nDamagePower));
                 }
                 if (nDamage2 > 0)
                 {
-                    DelayCommand(fDelay, ApplyDamageWithVFXToObject(oTarget, nDamage2, nDamageType2, nDamagePower2));
+                    DelayCommand(fDelay, ApplyDamageWithVFXToObject(oTarget, nVis, nDamage2, nDamageType2, nDamagePower2));
                 }
             }
         }

@@ -238,7 +238,7 @@ void PerRoundImpact(int bSaveResult)
     }
     if (nDamage > 0)
     {
-        ApplyDamageToObject(oTarget, nDamage);
+        ApplyDamageToObject(oTarget, nDamage, DAMAGE_TYPE_MAGICAL);
     }
     if (!bSaveResult)
     {

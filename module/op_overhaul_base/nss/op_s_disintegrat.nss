@@ -128,6 +128,6 @@ void ApplyDisintegrate(object oTarget, int nDamage)
         ApplyBeamToObject(VFX_BEAM_DISINTEGRATE, oTarget, FALSE, BODY_NODE_HAND, 1.5, oCaster);
 
         ApplyVisualEffectToObject(VFX_IMP_MAGBLUE, oTarget);
-        ApplyDamageToObject(oTarget, nDamage);
+        ApplyDamageToObject(oTarget, nDamage, DAMAGE_TYPE_MAGICAL);
     }
 }

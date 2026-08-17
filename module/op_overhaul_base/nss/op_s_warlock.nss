@@ -201,7 +201,7 @@ void main()
 
                 if (nDamage > 0)
                 {
-                    DelayCommand(fDelay, ApplyDamageWithVFXToObject(oTarget, nDamage, nDamageType));
+                    DelayCommand(fDelay, ApplyDamageWithVFXToObject(oTarget, nVis, nDamage, nDamageType));
                 }
 
                 // Apply essence
@@ -233,7 +233,7 @@ void main()
 
                     if (nDamage > 0)
                     {
-                        DelayCommand(fDelay, ApplyDamageWithVFXToObject(oTarget, nDamage, nDamageType));
+                        DelayCommand(fDelay, ApplyDamageWithVFXToObject(oTarget, nVis, nDamage, nDamageType));
                     }
 
                     // Apply essence

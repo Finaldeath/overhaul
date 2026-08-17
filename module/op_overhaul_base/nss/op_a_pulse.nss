@@ -160,7 +160,7 @@ void main()
         case SPELLABILITY_PULSE_DROWN:
         {
             // This damages you for half your HP
-            ApplyDamageToObject(oCaster, GetCurrentHitPoints(oCaster)/2);
+            ApplyDamageToObject(oCaster, GetCurrentHitPoints(oCaster)/2, DAMAGE_TYPE_MAGICAL);
 
             // Special Drown immunity case
             bDrown = TRUE;

@@ -128,7 +128,7 @@ void MindBlank(object oTarget, int bClarity, float fDuration)
             // Apply damage if it's clarity
             if (bClarity)
             {
-                ApplyDamageToObject(oTarget, 1);
+                ApplyDamageToObject(oTarget, 1, DAMAGE_TYPE_MAGICAL);
             }
             RemoveEffect(oTarget, eSearch);
         }

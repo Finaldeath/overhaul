@@ -57,7 +57,7 @@ void RecurringEffect(string sID)
                 if (!GetImmortal(oTarget))
                 {
                     FloatingTextStrRefOnCreature(STRREF_DEATH_THROUGH_ABILITY_DAMAGE, oTarget); // * Death through ability damage *
-                    ApplyDeathDamageToObject(oTarget, VFX_IMP_DEATH_L);
+                    ApplyDeathDamageToObject(oTarget, VFX_IMP_DEATH_L, DAMAGE_TYPE_MAGICAL);
                 }
             }
         }
